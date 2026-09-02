@@ -58,12 +58,16 @@ def styles():
 
 def markdown_table(lines: list[str], st) -> Table:
     rows = []
+    header_style = ParagraphStyle("TableHeader", parent=st["table"], textColor=colors.white, fontName="Helvetica-Bold")
     for line in lines:
         cells = [cell.strip() for cell in line.strip().strip("|").split("|")]
         if all(re.fullmatch(r":?-{3,}:?", cell) for cell in cells):
             continue
-        rows.append([Paragraph(inline(cell), st["table"]) for cell in cells])
-    width = A4[0] - 38 * mm
+        cell_style = header_style if not rows else st["table"]
+        rows.append([Paragraph(inline(cell), cell_style) for cell in cells])
+    # Main paper pages use two columns. Keep tables within one column so they
+    # remain close to the paragraph that introduces them.
+    width = 82 * mm
     table = Table(rows, colWidths=[width / len(rows[0])] * len(rows[0]), repeatRows=1, hAlign="LEFT")
     table.setStyle(TableStyle([
         ("BACKGROUND", (0, 0), (-1, 0), NAVY),
@@ -127,7 +131,7 @@ def parse(markdown: str):
         if line.startswith("# "):
             flush_paragraph(); flush_list()
             story.append(Paragraph(inline(line[2:]), st["title"])); seen_title = True
-        elif seen_title and (line.startswith("**[Author") or line.startswith("*[Affiliations")):
+        elif seen_title and (line.startswith("**Sai Krishna") or line.startswith("*Affiliations")):
             flush_paragraph(); flush_list(); story.append(Paragraph(inline(line.replace("**", "").strip("*")), st["authors"]))
         elif line.startswith("## "):
             flush_paragraph(); flush_list(); abstract_mode = line[3:].strip() == "Abstract"
@@ -141,12 +145,12 @@ def parse(markdown: str):
                 block.append(lines[i][2:]); i += 1
             story.append(Paragraph(inline(" ".join(block)), st["quote"]))
             continue
-        elif re.match(r"^\d+\. ", line) or line.startswith("- "):
+        elif re.match(r"^\d{1,2}\. ", line) or line.startswith("- "):
             flush_paragraph()
-            ordered = bool(re.match(r"^\d+\. ", line))
+            ordered = bool(re.match(r"^\d{1,2}\. ", line))
             if list_items and ordered != list_ordered: flush_list()
             list_ordered = ordered
-            list_items.append(re.sub(r"^(?:\d+\.|-)\s+", "", line))
+            list_items.append(re.sub(r"^(?:\d{1,2}\.|-)\s+", "", line))
         elif not line.strip():
             flush_paragraph(); flush_list()
         elif list_items:
@@ -173,9 +177,16 @@ def main() -> int:
     source = Path(sys.argv[1])
     destination = Path(sys.argv[2])
     destination.parent.mkdir(parents=True, exist_ok=True)
-    doc = BaseDocTemplate(str(destination), pagesize=A4, leftMargin=19*mm, rightMargin=19*mm, topMargin=20*mm, bottomMargin=18*mm, title="Path to Least Non-Determinism")
-    frame = Frame(doc.leftMargin, doc.bottomMargin, doc.width, doc.height, id="body")
-    doc.addPageTemplates(PageTemplate(id="paper", frames=[frame], onPage=decorate))
+    doc = BaseDocTemplate(str(destination), pagesize=A4, leftMargin=18*mm, rightMargin=18*mm, topMargin=20*mm, bottomMargin=18*mm, title="Path to Least Non-Determinism")
+    first_frame = Frame(doc.leftMargin, doc.bottomMargin, doc.width, doc.height, id="front-matter")
+    gutter = 6 * mm
+    column_width = (doc.width - gutter) / 2
+    left_frame = Frame(doc.leftMargin, doc.bottomMargin, column_width, doc.height, id="left-column")
+    right_frame = Frame(doc.leftMargin + column_width + gutter, doc.bottomMargin, column_width, doc.height, id="right-column")
+    doc.addPageTemplates([
+        PageTemplate(id="front", frames=[first_frame], onPage=decorate, autoNextPageTemplate="columns"),
+        PageTemplate(id="columns", frames=[left_frame, right_frame], onPage=decorate),
+    ])
     doc.build(parse(source.read_text(encoding="utf-8")))
     print(destination)
     return 0
