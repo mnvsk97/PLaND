@@ -421,10 +421,10 @@ def build(markdown: str, destination: Path, figures_dir: Path) -> None:
     document = Document()
     configure_styles(document)
     configure_document(document)
-    document.core_properties.title = "Path to Least Non-Determinism"
+    document.core_properties.title = "PLaND - Path to Least Non Determinism"
     document.core_properties.subject = "Controlled evolution of agent skills"
     document.core_properties.keywords = "agent skills, deterministic workflows, evaluation"
-    document.core_properties.author = "Sai Krishna; Asit Sahoo"
+    document.core_properties.author = "Maddipatla Naga Venkata Sai Krishna; Asit Kumar Sahoo"
 
     lines = markdown.splitlines()
     body: list[str] = []
@@ -544,7 +544,7 @@ def build(markdown: str, destination: Path, figures_dir: Path) -> None:
             index += 1
             continue
 
-        if first_heading and stripped.startswith("**Sai Krishna**"):
+        if first_heading and stripped.startswith("**Maddipatla Naga Venkata Sai Krishna**"):
             flush_body(document, body)
             paragraph = document.add_paragraph()
             paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER

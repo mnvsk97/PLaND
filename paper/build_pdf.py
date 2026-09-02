@@ -280,7 +280,7 @@ def parse(markdown: str):
         elif line.startswith("# "):
             flush_paragraph(); flush_list()
             story.append(Paragraph(inline(line[2:]), st["title"])); seen_title = True
-        elif seen_title and (line.startswith("**Sai Krishna") or line.startswith("*Author affiliations") or line.startswith("*Affiliations")):
+        elif seen_title and (line.startswith("**Maddipatla Naga Venkata Sai Krishna") or line.startswith("*Author affiliations") or line.startswith("*Affiliations")):
             flush_paragraph(); flush_list(); story.append(Paragraph(inline(line.replace("**", "").strip("*")), st["authors"]))
         elif line.startswith("## "):
             flush_paragraph(); flush_list(); abstract_mode = line[3:].strip() == "Abstract"
@@ -331,7 +331,7 @@ def main() -> int:
     renderSVG.drawToFile(architecture_diagram(), str(figure_path))
     renderSVG.drawToFile(evolution_diagram(), str(source.parent / "figures" / "evolution-loop.svg"))
     renderSVG.drawToFile(evolution_path_diagram(), str(source.parent / "figures" / "evolution-path.svg"))
-    doc = BaseDocTemplate(str(destination), pagesize=A4, leftMargin=18*mm, rightMargin=18*mm, topMargin=20*mm, bottomMargin=18*mm, title="Path to Least Non-Determinism")
+    doc = BaseDocTemplate(str(destination), pagesize=A4, leftMargin=18*mm, rightMargin=18*mm, topMargin=20*mm, bottomMargin=18*mm, title="PLaND - Path to Least Non Determinism")
     first_frame = Frame(doc.leftMargin, doc.bottomMargin, doc.width, doc.height, id="front-matter")
     gutter = 6 * mm
     column_width = (doc.width - gutter) / 2
