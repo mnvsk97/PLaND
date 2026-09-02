@@ -342,6 +342,27 @@ system contention; it does not move monotonically with token counts in one
 small run. Multi-objective acceptance rules and repeated measurements are
 therefore necessary for stronger conclusions.
 
+### 6.4 Small per-run savings become material at enterprise scale
+
+The absolute savings in a 20-document proof-of-concept can appear modest, but
+agent expense is multiplicative with deployment volume. In the frozen-prompt
+follow-up experiment, the hybrid SOP reduced validation usage by 27,317 tokens
+across 10 documents, or approximately 2,732 tokens per document, while
+preserving accuracy. If the same per-document difference held across one
+million comparable documents, it would avoid approximately 2.73 billion model
+tokens. The measured mean-latency difference of 2.71 seconds per document would
+also correspond to roughly 31 days of aggregate processing time across one
+million documents, although parallel execution means this is not equivalent to
+31 days of calendar latency.
+
+This calculation is an illustration, not a production forecast: document mix,
+model serving, batching, caching, concurrency, hardware utilization, and price
+all affect realized savings. The broader implication is that repeated
+model-mediated interpretation has a cumulative cost. Enterprises executing
+millions of documents, workflow steps, or agent runs can therefore benefit
+substantially from even moderate per-execution reductions, provided quality and
+operational guardrails continue to hold at scale.
+
 ## 7. Limitations and Threats to Validity
 
 This proof-of-concept has several material limitations:
