@@ -1,129 +1,63 @@
-# Path to Least Non-Determinism
+# PLaND: Path to Least Non-Determinism
 
-## Objective
+PLaND uses two Agent Skills.
 
-Transform an Agent Skill into the least non-deterministic hybrid workflow supported by evaluation evidence. Code steps bypass unnecessary model reasoning while natural-language steps preserve semantic flexibility.
+## 1. `generate-initial-version`
 
-The skill is the unit of capability, the SOP step is the unit of analysis, and the script is the unit of compilation.
+Inputs:
 
-## Skill representation
-
-Every workflow step has exactly one representation:
-
-1. A single English instruction for semantic or context-dependent judgment.
-2. A relative reference to a focused supporting file; use another skill only for an independently discoverable capability.
-3. An explicit command that runs a Python or Bash script for mechanical, stable, testable behavior.
-
-The root `SKILL.md` orchestrates these steps. `scripts/`, `references/`, and `assets/` follow the Agent Skills specification conventions. `pyproject.toml` and `tests/` are project extensions for reproducible dependencies and executable-step verification.
-
-## Dependency and network assumptions
-
-- Python libraries are declared in `pyproject.toml`.
-- Prefer maintained open-source libraries that run locally.
-- Do not introduce a new paid product or metered service without authorization.
-- Do not hide an LLM call inside a step classified as deterministic.
-- Scripts may call explicitly permitted services, including APIs inside a VPC.
-- Network destinations are governed by project policy rather than universally disabled.
-- Credentials are injected by the runtime and are never stored in the skill.
-- Total cost includes compute, storage, and service calls, not only model tokens.
-
-## Agent generation and evolution loop
-
-### Inputs
-
-- requirements;
+- workflow requirements;
 - datasource files;
-- an optional existing skill;
-- labeled examples with `input`, `output`, and `reasoning` columns;
-- a fixed runtime model;
-- a target validation accuracy and optimization guardrails.
+- optional guidance about initial generation.
 
-The `reasoning` column is reference rationale. The runtime agent receives the row input and permitted datasource access, but never that row's expected output or reasoning.
-
-### Baseline generation
-
-Codex acts as the builder and optimizer. It inspects the requirements and data sources and generates a DeepAgent project:
+Output: a runnable LangChain DeepAgent skeleton containing one workflow-named SOP skill.
 
 ```python
 agent = create_deep_agent(
     model=MODEL,
     tools=[my_custom_tool],
     system_prompt=SYSTEM_PROMPT,
-    skills=["./skills/<workflow-name>/"],
+    skills=["./skills/"],
 )
 ```
 
-The runtime model stays fixed so improvements can be attributed to changes in the system prompt, SOP, skills, or tools.
+The initial project contains `agent.py`, `instructions.md`, `pyproject.toml`, a datasource manifest and tool, and exactly one `skills/<workflow>/SKILL.md`. The SOP begins as the shortest sufficient ordered list of natural-language actions and decisions. The generator does not create scripts, additional skills, subagents, memory, or graphs without an initial requirement for them.
 
-### Evaluation
+## 2. `pland-evolver`
 
-For each example:
+Inputs:
 
-1. Run the generated agent from an isolated initial state.
-2. Store the input identifier, output, complete trace, errors, latency, token usage, and estimated cost.
-3. Compare the actual output with independently held expected output using a task-appropriate scorer.
-4. Aggregate accuracy and operational metrics.
+- the generated agent;
+- labeled evals with `input`, `output`, and `reasoning`;
+- a configured runner;
+- a target validation accuracy and resource limits.
 
-Use task-appropriate metrics: exact accuracy or F1 for classification, field-level scores for extraction, and final-state verification for workflows. Use an LLM judge only for semantic properties that deterministic checks cannot settle.
+For each eval, run the agent from isolated state and store its output, complete trace, latency, tokens, cost, and errors. Score actual output against expected output. The runtime agent never receives that row's expected output or reasoning.
 
-### Evolution
+When validation accuracy is below the target, use development traces and scorer feedback to propose one bounded change. Allowed changes are the system prompt, single SOP skill and references, tools and scripts, and approved dependencies. Keep the model, evaluation truth, scorer, datasource snapshot, held-out set, target, and permissions fixed.
 
-If validation accuracy is below the target, Codex receives the development traces, outputs, expected outputs, reference reasoning, scorer feedback, and aggregate metrics. It clusters failures and proposes a bounded change.
+Each SOP step has one representation:
 
-Allowed changes:
+1. a direct English instruction for semantic judgment;
+2. a one-level relative reference for substantial supporting procedure;
+3. an explicit Python or Bash command for mechanical, stable, testable behavior.
 
-- system prompt or `instructions.md`;
-- `SOP.md`;
-- skills and references;
-- tools and deterministic scripts;
-- `pyproject.toml` for approved dependencies.
+One deterministic step initially maps to one focused script. Code steps bypass unnecessary model reasoning while English steps preserve semantic flexibility. Never hide an LLM call inside a deterministic command.
 
-Fixed during an experiment:
+Accept a candidate only when validation evidence satisfies the accuracy guardrail and configured cost, latency, dependency, network, and security policies. Stop successfully when `validation_accuracy >= target_accuracy`; also enforce iteration, cost, time, and no-improvement limits. Run held-out data once for final reporting.
 
-- runtime model;
-- evaluation truth and scoring boundary;
-- held-out examples;
-- target accuracy;
-- execution permissions and environment policy.
+## Shared constraints
 
-Evaluate one candidate against the same datasource snapshot, model, environment, timeout, scorer, and trial policy. Accept it only when it satisfies the accuracy guardrail and configured cost, latency, dependency, network, and security policies. Preserve evidence for accepted and rejected candidates.
+- Follow the Agent Skills specification and progressive disclosure.
+- Keep `SKILL.md` short; move substantial conditional detail into focused references.
+- Declare Python libraries in `pyproject.toml`.
+- Prefer the standard library, then the smallest maintained open-source dependency set that materially improves correctness or resource use.
+- Do not introduce a new paid product or metered service without explicit authorization.
+- Treat a free SDK that requires a paid service, subscription, or usage plan as a paid dependency path.
+- Optimize total expense across model tokens, wall-clock time, CPU, memory, storage, network, service charges, and repeated setup work.
+- Bound loops, concurrency, retries, timeouts, input and output sizes, and temporary storage.
+- Approved VPC and API calls are allowed under a fixed restricted network policy.
+- Inject credentials at runtime and never store them in skills.
+- Compare initial and evolved SOPs using held-out quality, cost, latency, token usage, variance, errors, and counts of English, reference, and command steps.
 
-### Data splits
-
-- Development examples drive failure analysis and candidate generation.
-- Validation examples select candidates and determine successful stopping.
-- The final held-out set is used once for final reporting.
-
-Do not repeatedly evolve against the held-out set.
-
-### Stopping conditions
-
-Success:
-
-```text
-validation_accuracy >= target_accuracy
-```
-
-Safety stops:
-
-- maximum iterations;
-- maximum optimization cost or elapsed time;
-- no validation improvement for a configured number of iterations;
-- repeated infrastructure failure;
-- user interruption.
-
-## Before and after
-
-Before evolution, `SOP.md` is primarily a series of natural-language steps. After evolution, it is a hybrid of English instructions, focused references, and executable commands.
-
-Compare both versions under identical conditions using:
-
-- held-out task quality;
-- average and percentile latency;
-- input, output, and total tokens;
-- average and total cost;
-- error rate and run-to-run variance;
-- number of model-mediated and executable steps;
-- compilation cost and break-even execution count.
-
-The system is not intended to eliminate natural language. It follows the path to least non-determinism by replacing only the instructions that evaluation evidence shows can be safely expressed as executable behavior.
+The skill is the unit of capability, the SOP step is the unit of analysis, and the script is the unit of compilation.

@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-09-02T05:07:53.351623+00:00",
+  "candidate": "candidate-001-deterministic-signals",
+  "hypothesis": "Replace free-form cue identification with deterministic signal extraction and restrict filesystem writes.",
+  "target_accuracy": 0.9,
+  "development": {
+    "baseline": {
+      "cases": 10,
+      "correct": 9,
+      "accuracy": 0.9,
+      "errors": {},
+      "input_tokens": 338122,
+      "output_tokens": 2305,
+      "total_tokens": 340427,
+      "estimated_model_cost_usd": 0.0,
+      "latency_seconds": {
+        "total": 136.7115106669953,
+        "mean": 13.671151066699531,
+        "p95": 56.742901749996236
+      },
+      "confusion": {
+        "advertisement": {
+          "advertisement": 1
+        },
+        "email": {
+          "email": 1
+        },
+        "form": {
+          "letter": 1
+        },
+        "letter": {
+          "letter": 1
+        },
+        "memo": {
+          "memo": 1
+        },
+        "news": {
+          "news": 1
+        },
+        "note": {
+          "note": 1
+        },
+        "report": {
+          "report": 1
+        },
+        "resume": {
+          "resume": 1
+        },
+        "scientific": {
+          "scientific": 1
+        }
+      }
+    },
+    "candidate": {
+      "cases": 10,
+      "correct": 7,
+      "accuracy": 0.7,
+      "errors": {
+        "invalid_json": 1,
+        "infrastructure:ValueError:datasource is not approved: document.txt": 1
+      },
+      "input_tokens": 75680,
+      "output_tokens": 1350,
+      "total_tokens": 77030,
+      "estimated_model_cost_usd": 0.0,
+      "latency_seconds": {
+        "total": 84.14791091500229,
+        "mean": 8.414791091500229,
+        "p95": 12.26840537499811
+      },
+      "confusion": {
+        "advertisement": {
+          "advertisement": 1
+        },
+        "email": {
+          "email": 1
+        },
+        "form": {
+          "form": 1
+        },
+        "letter": {
+          "letter": 1
+        },
+        "memo": {
+          "memo": 1
+        },
+        "news": {
+          "news": 1
+        },
+        "note": {
+          "note": 1
+        },
+        "report": {
+          "form": 1
+        },
+        "resume": {
+          "ERROR:invalid_json": 1
+        },
+        "scientific": {
+          "ERROR:infrastructure:ValueError:datasource is not approved: document.txt": 1
+        }
+      }
+    },
+    "delta": {
+      "accuracy_points": -0.20000000000000007,
+      "tokens": -263397,
+      "token_ratio": 0.22627464919057536,
+      "mean_latency_seconds": -5.256359975199302,
+      "mean_latency_ratio": 0.6155144545214739
+    }
+  },
+  "validation": null,
+  "failed_checks": [
+    "development_accuracy_regression",
+    "development_errors"
+  ],
+  "decision": "reject_before_validation"
+}

@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-09-02T05:07:53.414879+00:00",
+  "candidate": "candidate-003-minimal-tools",
+  "hypothesis": "Remove unused filesystem operations and the default subagent tool.",
+  "target_accuracy": 0.9,
+  "development": {
+    "baseline": {
+      "cases": 10,
+      "correct": 9,
+      "accuracy": 0.9,
+      "errors": {},
+      "input_tokens": 338122,
+      "output_tokens": 2305,
+      "total_tokens": 340427,
+      "estimated_model_cost_usd": 0.0,
+      "latency_seconds": {
+        "total": 136.7115106669953,
+        "mean": 13.671151066699531,
+        "p95": 56.742901749996236
+      },
+      "confusion": {
+        "advertisement": {
+          "advertisement": 1
+        },
+        "email": {
+          "email": 1
+        },
+        "form": {
+          "letter": 1
+        },
+        "letter": {
+          "letter": 1
+        },
+        "memo": {
+          "memo": 1
+        },
+        "news": {
+          "news": 1
+        },
+        "note": {
+          "note": 1
+        },
+        "report": {
+          "report": 1
+        },
+        "resume": {
+          "resume": 1
+        },
+        "scientific": {
+          "scientific": 1
+        }
+      }
+    },
+    "candidate": {
+      "cases": 10,
+      "correct": 8,
+      "accuracy": 0.8,
+      "errors": {},
+      "input_tokens": 52221,
+      "output_tokens": 946,
+      "total_tokens": 53167,
+      "estimated_model_cost_usd": 0.0,
+      "latency_seconds": {
+        "total": 140.5722450000103,
+        "mean": 14.05722450000103,
+        "p95": 31.21962079199875
+      },
+      "confusion": {
+        "advertisement": {
+          "advertisement": 1
+        },
+        "email": {
+          "letter": 1
+        },
+        "form": {
+          "letter": 1
+        },
+        "letter": {
+          "letter": 1
+        },
+        "memo": {
+          "memo": 1
+        },
+        "news": {
+          "news": 1
+        },
+        "note": {
+          "note": 1
+        },
+        "report": {
+          "report": 1
+        },
+        "resume": {
+          "resume": 1
+        },
+        "scientific": {
+          "scientific": 1
+        }
+      }
+    },
+    "delta": {
+      "accuracy_points": -0.09999999999999998,
+      "tokens": -287260,
+      "token_ratio": 0.15617738898501,
+      "mean_latency_seconds": 0.38607343330149924,
+      "mean_latency_ratio": 1.0282400093026478
+    }
+  },
+  "validation": null,
+  "failed_checks": [
+    "development_accuracy_regression"
+  ],
+  "decision": "reject_before_validation"
+}
