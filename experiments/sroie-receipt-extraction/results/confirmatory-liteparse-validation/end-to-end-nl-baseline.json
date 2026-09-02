@@ -1,0 +1,61 @@
+{
+  "schema_version": 2,
+  "publication_view": "aggregate_and_deidentified",
+  "raw_run_sha256": "893ee4ef78c2745ecb726d06275fe5cd7af520f02ff27412f87ddba61964b160",
+  "variant": "nl-baseline",
+  "mode": "end-to-end",
+  "sop": {
+    "path": "nl-baseline/SKILL.md",
+    "sha256": "97f773e09d2ad87bf495454de18b74fdb267980107dfe7a46daa056f8d1403a8",
+    "step_representations": {
+      "total": 7,
+      "english": 7,
+      "reference": 0,
+      "command": 0
+    },
+    "variant": "natural_language"
+  },
+  "invariants": {
+    "model": "qwen3:14b",
+    "model_digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+    "seed": 20260902,
+    "system_prompt_sha256": "8a95eea10f882943eb59d966c194a9ef6937c498e7351f28f2005e3db65d1e4e",
+    "harness_sha256": "d1eaae15ad31f3901a2e117b9c8f96654e035a80388ad333b861408eed4a1c48",
+    "scorer_sha256": "d1eaae15ad31f3901a2e117b9c8f96654e035a80388ad333b861408eed4a1c48",
+    "dataset_selection_sha256": "78faf7a62e7e1e63054be1d521aa52598fa2e59b5d2339c5bdae7b4471b71f63",
+    "datasource_snapshot_sha256": "b7d89dc713bd0591a4018459e59cb9ea6968bb281228cc671e37c8272a0089cc",
+    "selected_cases_sha256": "2512aeba1227c9223bb0c357468e691ede1c31969902b650983a3bb5a542043a",
+    "evaluation_split": "validation",
+    "execution_permissions": {
+      "network": "localhost_only_during_runs",
+      "filesystem": "dataset_read_only_and_result_write",
+      "paid_services": false
+    },
+    "ocr": {
+      "backend": "liteparse",
+      "version": "2.14.3",
+      "language": "eng",
+      "dpi": 300,
+      "workers": 2
+    }
+  },
+  "metrics": {
+    "cases": 100,
+    "field_f1": 0.3436382414973603,
+    "document_exact_match": 0.01,
+    "field_exact_match": 0.1775,
+    "input_tokens": 44282,
+    "output_tokens": 5486,
+    "total_tokens": 49768,
+    "estimated_model_cost_usd": 0.0,
+    "latency_seconds": {
+      "total": 287.64906220897683,
+      "mean": 2.876490622089768
+    },
+    "ocr_latency_seconds": 41.26195878897124,
+    "agent_latency_seconds": 246.3871034200056,
+    "sop_code_latency_seconds": 0.0,
+    "ocr_word_error_rate": 0.6758570955347878,
+    "peak_process_rss_bytes": 39272448
+  }
+}

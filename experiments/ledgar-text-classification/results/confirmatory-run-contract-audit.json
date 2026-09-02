@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "audit_timing": "post_run",
+  "scope_note": "harness-level realization of hybrid SOP routing; not autonomous DeepAgent execution",
+  "runtime_boundary": {
+    "model_endpoint": "http://127.0.0.1:11434",
+    "paid_services": false,
+    "model_options_are_embodied_in_harness_hash": true
+  },
+  "fixed_artifacts": {
+    "system_prompt_sha256": "928fd5136d76264ff1e8018dbc1806230d2c98a5d552bd0f91dff608e6fafdd1",
+    "evals_sha256": "e3cebc95e61c0fb7feb799ef99f15ee78e8dc9113cf0efa38f1b91dc5fb32422",
+    "selection_sha256": "ea6595493193419bb80b6c868b47ed24c63a438555af94e86c9e00a427f19823",
+    "scorer_sha256": "094c6645aa10f3d7128a58bcf19687c5ca5af1ed5b4773f771dbe3cb068c59d8",
+    "agent_harness_sha256": "094c6645aa10f3d7128a58bcf19687c5ca5af1ed5b4773f771dbe3cb068c59d8"
+  },
+  "allowed_hybrid_package": {
+    "hybrid/SKILL.md": "bae5dc5a878689973b03be0443960cf8086a106819a770fd18ca454d0aa321cc",
+    "hybrid/classify.py": "3ec37d6e8a0ccf6a9f43acb0f222f85b985b06659a09ff271dfac8cbee2a955c",
+    "pyproject.toml": "b1a747c7078fad0db81f55f46893fc690fe009f82a26b7378c03e90d471d2522"
+  },
+  "checks": [
+    {
+      "path": "results/confirmatory-test-hybrid.json",
+      "variant": "hybrid",
+      "fixed_invariants_match_current_files": true,
+      "sop_snapshot_matches_current_skill": true
+    },
+    {
+      "path": "results/confirmatory-test-nl.json",
+      "variant": "natural_language",
+      "fixed_invariants_match_current_files": true,
+      "sop_snapshot_matches_current_skill": true
+    },
+    {
+      "path": "results/confirmatory-validation-hybrid.json",
+      "variant": "hybrid",
+      "fixed_invariants_match_current_files": true,
+      "sop_snapshot_matches_current_skill": true
+    },
+    {
+      "path": "results/confirmatory-validation-nl.json",
+      "variant": "natural_language",
+      "fixed_invariants_match_current_files": true,
+      "sop_snapshot_matches_current_skill": true
+    }
+  ],
+  "paired_run_contracts_equal": true,
+  "passed": true
+}

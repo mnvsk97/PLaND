@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "audit_timing": "post_run",
+  "scope_note": "harness-level realization of hybrid SOP routing; not autonomous DeepAgent execution",
+  "runtime_boundary": {
+    "model_endpoint": "http://127.0.0.1:11434",
+    "paid_services": false,
+    "model_options_are_embodied_in_harness_hash": true
+  },
+  "fixed_artifacts": {
+    "system_prompt_sha256": "5a44109d9e9ff0d6e315dd283839bd09a7fe532ced2659dfa11e776ffe0474f5",
+    "evals_sha256": "873d4de9414525bf1cf417f47f17f3cb7235eb3d2932fc85aa26ad14c518cb37",
+    "selection_sha256": "352f3c1c42ee83653054cb14d067c43e6cb1c047f2909c29370847411ca49812",
+    "scorer_sha256": "094c6645aa10f3d7128a58bcf19687c5ca5af1ed5b4773f771dbe3cb068c59d8",
+    "agent_harness_sha256": "094c6645aa10f3d7128a58bcf19687c5ca5af1ed5b4773f771dbe3cb068c59d8"
+  },
+  "allowed_hybrid_package": {
+    "hybrid/SKILL.md": "6b48ce6370be4f3c97c80b23acb55a70fdfd1e93eb7ed56ba24acf92302e1caa",
+    "hybrid/classify.py": "8f74f7910d956daf511dbdd373fa687ca990989b33fecd377c5c4d7011cfb74e",
+    "pyproject.toml": "d6f25194fe2608641b94e89da626426b3370729d7d5e1e846872b46d6b11dced"
+  },
+  "checks": [
+    {
+      "path": "results/confirmatory-validation-hybrid.json",
+      "variant": "hybrid",
+      "fixed_invariants_match_current_files": true,
+      "sop_snapshot_matches_current_skill": true
+    },
+    {
+      "path": "results/confirmatory-validation-nl.json",
+      "variant": "natural_language",
+      "fixed_invariants_match_current_files": true,
+      "sop_snapshot_matches_current_skill": true
+    }
+  ],
+  "paired_run_contracts_equal": true,
+  "passed": true
+}

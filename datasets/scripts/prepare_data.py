@@ -23,7 +23,6 @@ from typing import Any, Iterable
 
 SCHEMA_VERSION = 2
 DEFAULT_SEED = 20260902
-SPLIT_COUNTS = {"development": 60, "validation": 20, "test": 20}
 EVAL_FIELDS = [
     "schema_version", "id", "benchmark", "task_type", "split",
     "input", "output", "reasoning", "metadata",
@@ -38,15 +37,18 @@ CFPB_API_URL = (
     "https://www.consumerfinance.gov/data-research/consumer-complaints/"
     "search/api/v1/"
 )
-CFPB_API_SAMPLE_SIZE = 10_000
-TAU_REVISION = "a2c024725189473d2d7cea3a5cfdbcc67478e41f"
-TAU_TASKS_URL = (
-    "https://raw.githubusercontent.com/sierra-research/tau2-bench/"
-    + TAU_REVISION + "/data/tau2/domains/retail/tasks.json"
-)
-TAU_POLICY_URL = (
-    "https://raw.githubusercontent.com/sierra-research/tau2-bench/"
-    + TAU_REVISION + "/data/tau2/domains/retail/policy.md"
+CFPB_PER_PRODUCT_SAMPLE_SIZE = 1_000
+CFPB_PRODUCTS = (
+    "Checking or savings account",
+    "Credit card",
+    "Credit reporting or other personal consumer reports",
+    "Debt collection",
+    "Money transfer, virtual currency, or money service",
+    "Mortgage",
+    "Payday loan, title loan, personal loan, or advance loan",
+    "Prepaid card",
+    "Student loan",
+    "Vehicle loan or lease",
 )
 SROIE_DATASET = "mp-02/sroie"
 SROIE_REVISION = "f845db1c2ccaf883550320fe450d1e723374be32"
@@ -128,6 +130,90 @@ def balanced_allocation(total: int, classes: int) -> dict[str, int]:
     return allocation
 
 
+def requested_splits(args: argparse.Namespace) -> dict[str, int]:
+    values = {
+        "development": getattr(args, "development_cases", None),
+        "validation": getattr(args, "validation_cases", None),
+        "test": getattr(args, "test_cases", None),
+    }
+    supplied = [value is not None for value in values.values()]
+    if any(supplied) and not all(supplied):
+        raise ValueError("development, validation, and test case counts must be supplied together")
+    if all(supplied):
+        if any(value < 1 for value in values.values()):
+            raise ValueError("every split must contain at least one case")
+        return values
+    return allocate(args.cases)
+
+
+def balanced_splits(split_counts: dict[str, int], classes: int) -> dict[str, int]:
+    if any(count % classes for count in split_counts.values()):
+        raise ValueError("each split count must be divisible by classes for balanced selection")
+    per_label = {split: count // classes for split, count in split_counts.items()}
+    if min(per_label.values()) < 1:
+        raise ValueError("each class needs at least one case in every split")
+    return per_label
+
+
+def deduplicate_text(records: Iterable[dict[str, Any]], text_key: str, id_key: str) -> list[dict[str, Any]]:
+    """Keep one stable source record for each normalized exact text."""
+    unique: dict[str, dict[str, Any]] = {}
+    for record in records:
+        normalized = " ".join(str(record[text_key]).split()).casefold()
+        content_hash = hashlib.sha256(normalized.encode()).hexdigest()
+        current = unique.get(content_hash)
+        if current is None or str(record[id_key]) < str(current[id_key]):
+            unique[content_hash] = record
+    return list(unique.values())
+
+
+def exclusion_manifest(paths: Iterable[Path]) -> tuple[set[str], set[str], list[dict[str, Any]]]:
+    """Load IDs and normalized contents that may not enter a new experiment."""
+    excluded_ids: set[str] = set()
+    excluded_contents: set[str] = set()
+    manifest = []
+    for root in paths:
+        evals = root / "evals.csv"
+        if not evals.is_file():
+            raise ValueError(f"excluded dataset has no evals.csv: {root}")
+        case_hashes = []
+        with evals.open(newline="", encoding="utf-8") as handle:
+            rows = list(csv.DictReader(handle))
+        for row in rows:
+            path = root / row["input"]
+            payload = json.loads(path.read_text(encoding="utf-8"))
+            content_hash = hashlib.sha256(normalized_case_content(payload).encode()).hexdigest()
+            excluded_ids.add(row["id"])
+            excluded_contents.add(content_hash)
+            case_hashes.append((row["input"], sha256(path)))
+        manifest.append({
+            "path": str(root), "evals_sha256": sha256(evals), "cases": len(rows),
+            "case_manifest_sha256": hashlib.sha256(compact(sorted(case_hashes)).encode()).hexdigest(),
+        })
+    return excluded_ids, excluded_contents, manifest
+
+
+def normalized_case_content(payload: dict[str, Any]) -> str:
+    for key in ("text", "narrative", "raw_email"):
+        if key in payload:
+            return " ".join(str(payload[key]).split()).casefold()
+    return compact(payload)
+
+
+def exclude_records(
+    records: Iterable[dict[str, Any]], text_key: str, id_key: str, paths: Iterable[Path]
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    ids, contents, manifest = exclusion_manifest(paths)
+    selected = []
+    for record in records:
+        content_hash = hashlib.sha256(
+            " ".join(str(record[text_key]).split()).casefold().encode()
+        ).hexdigest()
+        if str(record[id_key]) not in ids and content_hash not in contents:
+            selected.append(record)
+    return selected, manifest
+
+
 def write_case(root: Path, benchmark: str, identifier: str, payload: dict[str, Any]) -> str:
     safe_id = identifier.replace("/", "-").replace(" ", "-")
     relative = Path("data") / "cases" / f"{safe_id}.json"
@@ -160,13 +246,18 @@ def write_artifacts(
 
 def choose_balanced(
     records: Iterable[dict[str, Any]], label_key: str, id_key: str,
-    cases: int, classes: int, seed: int,
+    cases: int, classes: int, seed: int, split_counts: dict[str, int] | None = None,
 ) -> tuple[list[tuple[str, dict[str, Any]]], list[str]]:
     grouped: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for record in records:
         grouped[str(record[label_key])].append(record)
     labels = sorted(grouped, key=lambda label: (-len(grouped[label]), label))[:classes]
-    per_split = balanced_allocation(cases, classes)
+    if split_counts is None:
+        per_split = balanced_allocation(cases, classes)
+    else:
+        if sum(split_counts.values()) != cases:
+            raise ValueError("split counts must sum to cases")
+        per_split = balanced_splits(split_counts, classes)
     required = sum(per_split.values())
     if len(labels) != classes or any(len(grouped[label]) < required for label in labels):
         raise ValueError("not enough eligible examples to create the balanced subset")
@@ -177,6 +268,29 @@ def choose_balanced(
         for split, count in per_split.items():
             selected.extend((split, row) for row in ranked[cursor:cursor + count])
             cursor += count
+    selected.sort(key=lambda item: (item[0], str(item[1][label_key]), str(item[1][id_key])))
+    return selected, labels
+
+
+def choose_balanced_official_splits(
+    records: Iterable[dict[str, Any]], label_key: str, id_key: str,
+    source_split_key: str, split_counts: dict[str, int], classes: int, seed: int,
+    source_mapping: dict[str, str],
+) -> tuple[list[tuple[str, dict[str, Any]]], list[str]]:
+    """Select balanced cases while preserving official upstream boundaries."""
+    records = list(records)
+    grouped = Counter(str(record[label_key]) for record in records)
+    labels = sorted(grouped, key=lambda label: (-grouped[label], label))[:classes]
+    per_label = balanced_splits(split_counts, classes)
+    selected = []
+    for split, source_split in source_mapping.items():
+        for label in labels:
+            eligible = [row for row in records
+                        if str(row[label_key]) == label and str(row[source_split_key]) == source_split]
+            ranked = sorted(eligible, key=lambda row: stable_rank(seed, str(row[id_key])))
+            if len(ranked) < per_label[split]:
+                raise ValueError(f"not enough {source_split} examples for {label}: {len(ranked)}")
+            selected.extend((split, row) for row in ranked[:per_label[split]])
     selected.sort(key=lambda item: (item[0], str(item[1][label_key]), str(item[1][id_key])))
     return selected, labels
 
@@ -199,7 +313,14 @@ def prepare_ledgar(args: argparse.Namespace, root: Path) -> None:
                         "id": f"{upstream_split}-{line_number}", "text": item["input"],
                         "label": gold[0], "upstream_split": upstream_split,
                     })
-    selected, labels = choose_balanced(records, "label", "id", args.cases, args.classes, args.seed)
+    records = deduplicate_text(records, "text", "id")
+    records, exclusions = exclude_records(records, "text", "id", args.exclude_dataset)
+    split_counts = requested_splits(args)
+    cases = sum(split_counts.values())
+    selected, labels = choose_balanced_official_splits(
+        records, "label", "id", "upstream_split", split_counts, args.classes, args.seed,
+        {"development": "train", "validation": "validation", "test": "test"},
+    )
     rows = []
     for split, item in selected:
         input_path = write_case(root, "ledgar", item["id"], {"text": item["text"]})
@@ -212,7 +333,17 @@ def prepare_ledgar(args: argparse.Namespace, root: Path) -> None:
         })
     write_artifacts(root, rows, {
         "dataset": "lighteval/lexglue:ledgar", "revision": LEDGAR_REVISION,
-        "seed": args.seed, "selection_rule": "top labels by eligible count, then lowest seeded hashes",
+        "seed": args.seed,
+        "selection_rule": "top labels by eligible count; lowest seeded hashes within preserved official splits",
+        "source_split_mapping": {"development": "train", "validation": "validation", "test": "test"},
+        "requested_split_counts": split_counts,
+        "eligible_unique_by_label": dict(Counter(item["label"] for item in records)),
+        "eligible_unique_by_label_and_source_split": {
+            source_split: dict(Counter(item["label"] for item in records
+                                       if item["upstream_split"] == source_split))
+            for source_split in ("train", "validation", "test")
+        },
+        "excluded_datasets": exclusions,
         "labels": labels, "selected": [{"id": row["id"], "split": row["split"]} for row in rows],
     }, source_paths)
 
@@ -220,7 +351,11 @@ def prepare_ledgar(args: argparse.Namespace, root: Path) -> None:
 def iter_cfpb(source: Path) -> Iterable[dict[str, str]]:
     if source.suffix == ".json":
         payload = json.loads(source.read_text(encoding="utf-8"))
-        for hit in payload.get("hits", {}).get("hits", []):
+        hits = payload.get("hits", {}).get("hits", [])
+        if "by_product" in payload:
+            hits = [hit for product in payload["by_product"].values()
+                    for hit in product.get("hits", {}).get("hits", [])]
+        for hit in hits:
             item = hit.get("_source", {})
             yield {
                 "Consumer complaint narrative": item.get("complaint_what_happened", ""),
@@ -247,13 +382,18 @@ def iter_cfpb(source: Path) -> Iterable[dict[str, str]]:
 def prepare_cfpb(args: argparse.Namespace, root: Path) -> None:
     source = args.source if args.source else root / "sources" / "complaints-api.json"
     if not source.exists():
-        query = urllib.parse.urlencode({
-            "size": CFPB_API_SAMPLE_SIZE,
-            "from": 0,
-            "no_aggs": "true",
-            "has_narrative": "true",
-        })
-        fetch_json(f"{CFPB_API_URL}?{query}", source)
+        source.parent.mkdir(parents=True, exist_ok=True)
+        by_product = {}
+        for product in CFPB_PRODUCTS:
+            query = urllib.parse.urlencode({
+                "size": CFPB_PER_PRODUCT_SAMPLE_SIZE, "from": 0,
+                "no_aggs": "true", "has_narrative": "true", "product": product,
+            })
+            part = source.parent / f"cfpb-{hashlib.sha256(product.encode()).hexdigest()[:12]}.json"
+            fetch_json(f"{CFPB_API_URL}?{query}", part)
+            by_product[product] = json.loads(part.read_text(encoding="utf-8"))
+            part.unlink()
+        source.write_text(json.dumps({"by_product": by_product}, sort_keys=True) + "\n", encoding="utf-8")
     records = []
     for row in iter_cfpb(source):
         narrative = (row.get("Consumer complaint narrative") or "").strip()
@@ -261,7 +401,13 @@ def prepare_cfpb(args: argparse.Namespace, root: Path) -> None:
         identifier = (row.get("Complaint ID") or "").strip()
         if narrative and product and identifier:
             records.append({"id": identifier, "text": narrative, "label": product, "issue": row.get("Issue", "")})
-    selected, labels = choose_balanced(records, "label", "id", args.cases, args.classes, args.seed)
+    records = deduplicate_text(records, "text", "id")
+    records, exclusions = exclude_records(records, "text", "id", args.exclude_dataset)
+    split_counts = requested_splits(args)
+    cases = sum(split_counts.values())
+    selected, labels = choose_balanced(
+        records, "label", "id", cases, args.classes, args.seed, split_counts
+    )
     rows = []
     for split, item in selected:
         input_path = write_case(root, "cfpb", item["id"], {"narrative": item["text"]})
@@ -275,45 +421,14 @@ def prepare_cfpb(args: argparse.Namespace, root: Path) -> None:
     write_artifacts(root, rows, {
         "dataset": "CFPB Consumer Complaint Database", "download_url": CFPB_URL,
         "snapshot_api_url": CFPB_API_URL,
-        "snapshot_rule": f"latest {CFPB_API_SAMPLE_SIZE} public complaints with narratives",
+        "snapshot_rule": f"latest {CFPB_PER_PRODUCT_SAMPLE_SIZE} public narrative complaints per frozen product",
+        "frozen_products": list(CFPB_PRODUCTS),
         "seed": args.seed, "selection_rule": "top products by narrative count, then lowest seeded hashes",
+        "requested_split_counts": split_counts,
+        "eligible_unique_by_label": dict(Counter(item["label"] for item in records)),
+        "excluded_datasets": exclusions,
         "labels": labels, "selected": [{"id": row["id"], "split": row["split"]} for row in rows],
     }, [source])
-
-
-def prepare_tau(args: argparse.Namespace, root: Path) -> None:
-    source_dir = root / "sources"
-    tasks_path = args.source if args.source else source_dir / "tasks.json"
-    policy_path = args.policy_source if args.policy_source else source_dir / "policy.md"
-    if not tasks_path.exists():
-        fetch(TAU_TASKS_URL, tasks_path)
-    if not policy_path.exists():
-        fetch(TAU_POLICY_URL, policy_path)
-    tasks = json.loads(tasks_path.read_text(encoding="utf-8"))
-    counts = allocate(min(args.cases, len(tasks)))
-    ranked = sorted(tasks, key=lambda task: stable_rank(args.seed, str(task["id"])))[:sum(counts.values())]
-    rows, cursor = [], 0
-    for split, count in counts.items():
-        for task in ranked[cursor:cursor + count]:
-            identifier = f"retail-{task['id']}"
-            input_path = write_case(root, "tau3-retail", identifier, {
-                "domain": "retail", "task_id": str(task["id"]),
-                "policy_path": "../sources/policy.md", "user_scenario": task["user_scenario"],
-                "initial_state": task.get("initial_state"),
-            })
-            rows.append({
-                "schema_version": str(SCHEMA_VERSION), "id": identifier,
-                "benchmark": "tau3-retail", "task_type": "tool_workflow", "split": split,
-                "input": input_path, "output": compact(task["evaluation_criteria"]),
-                "reasoning": "Official outcome-based evaluation criteria; hidden from the agent.",
-                "metadata": compact({"upstream_task_id": str(task["id"])}),
-            })
-        cursor += count
-    write_artifacts(root, rows, {
-        "dataset": "sierra-research/tau2-bench retail", "revision": TAU_REVISION,
-        "seed": args.seed, "selection_rule": "lowest seeded task-id hashes",
-        "selected": [{"id": row["id"], "split": row["split"]} for row in rows],
-    }, [tasks_path, policy_path])
 
 
 def hf_rows(split: str) -> list[dict[str, Any]]:
@@ -335,56 +450,135 @@ def hf_rows(split: str) -> list[dict[str, Any]]:
         offset += len(payload["rows"])
 
 
+def select_sroie_splits(
+    train_rows: list[dict[str, Any]], test_rows: list[dict[str, Any]], seed: int,
+    development_cases: int, validation_cases: int, test_cases: int,
+) -> dict[str, list[dict[str, Any]]]:
+    if development_cases + validation_cases > len(train_rows):
+        raise ValueError("SROIE development and validation exceed official train capacity")
+    if test_cases > len(test_rows):
+        raise ValueError("SROIE test request exceeds official test capacity")
+    ranked_train = sorted(train_rows, key=lambda item: stable_rank(seed, sroie_source_id(item)))
+    ranked_test = sorted(test_rows, key=lambda item: stable_rank(seed, sroie_source_id(item)))
+    return {
+        "development": ranked_train[:development_cases],
+        "validation": ranked_train[development_cases:development_cases + validation_cases],
+        "test": ranked_test[:test_cases],
+    }
+
+
 def prepare_sroie(args: argparse.Namespace, root: Path) -> None:
+    prior_pilot_ids: set[str] = set()
+    prior_pilot_image_hashes: set[str] = set()
+    for path in args.exclude_selection:
+        prior = json.loads(path.read_text(encoding="utf-8"))
+        prior_pilot_ids.update(str(item["id"]) for item in prior.get("selected", []))
+        prior_root = path.parent
+        prior_evals = prior_root / "evals.csv"
+        if prior_evals.is_file():
+            with prior_evals.open(encoding="utf-8", newline="") as handle:
+                for row in csv.DictReader(handle):
+                    case_path = prior_root / row["input"]
+                    if not case_path.is_file():
+                        continue
+                    case = json.loads(case_path.read_text(encoding="utf-8"))
+                    image_path = prior_root / case.get("image", "")
+                    if image_path.is_file():
+                        prior_pilot_image_hashes.add(sha256(image_path))
     if args.source:
         payload = json.loads(args.source.read_text(encoding="utf-8"))
-        upstream = payload["rows"] if isinstance(payload, dict) else payload
+        if isinstance(payload, dict) and "splits" in payload:
+            train_rows = payload["splits"]["train"]
+            test_rows = payload["splits"]["test"]
+        else:
+            upstream = payload["rows"] if isinstance(payload, dict) else payload
+            train_rows = [item for item in upstream if item.get("upstream_split") == "train"]
+            test_rows = [item for item in upstream if item.get("upstream_split") == "test"]
+            if not train_rows or not test_rows:
+                raise ValueError("SROIE source snapshot must preserve official train/test splits")
         source_paths = [args.source]
     else:
-        upstream = hf_rows("train") + hf_rows("test")
+        train_rows, test_rows = hf_rows("train"), hf_rows("test")
         snapshot = root / "sources" / "rows.json"
         snapshot.parent.mkdir(parents=True, exist_ok=True)
         # Signed image URLs are transient, but source IDs, annotations, and the snapshot hash are retained.
-        snapshot.write_text(json.dumps({"rows": upstream}) + "\n", encoding="utf-8")
+        snapshot.write_text(json.dumps({"splits": {"train": train_rows, "test": test_rows}}) + "\n", encoding="utf-8")
         source_paths = [snapshot]
-    count = min(args.cases, len(upstream))
-    counts = allocate(count)
+    development_cases = args.development_cases if args.development_cases is not None else 100
+    validation_cases = args.validation_cases if args.validation_cases is not None else 100
+    requested_test = args.test_cases if args.test_cases is not None else len(test_rows)
     # Hugging Face row indexes restart at zero for every split. Including the
     # split prevents train/test collisions and overwritten images/case files.
-    ranked = sorted(upstream, key=lambda item: stable_rank(args.seed, sroie_source_id(item)))[:count]
+    selected_splits = select_sroie_splits(
+        train_rows, test_rows, args.seed, development_cases, validation_cases, requested_test
+    )
     tag_names = ["company", "date", "address", "total", "other"]
-    rows, cursor = [], 0
-    for split, split_count in counts.items():
-        for item in ranked[cursor:cursor + split_count]:
-            upstream_split = str(item.get("upstream_split", "source"))
-            identifier = f"receipt-{upstream_split}-{item['row_idx']}"
-            record = item["row"]
-            image_path = root / "data" / "images" / f"{identifier}.jpg"
-            fetch(record["image"]["src"], image_path)
-            fields: dict[str, list[str]] = defaultdict(list)
-            for word, tag in zip(record["words"], record["ner_tags"], strict=True):
-                if tag < 4:
-                    fields[tag_names[tag]].append(word)
-            expected = {key: " ".join(fields.get(key, [])) for key in tag_names[:4]}
-            input_path = write_case(root, "sroie", identifier, {
-                "image": image_path.relative_to(root).as_posix(),
-                "frozen_ocr": {"words": record["words"], "bboxes": record["bboxes"]},
-            })
-            rows.append({
-                "schema_version": str(SCHEMA_VERSION), "id": identifier, "benchmark": "sroie",
-                "task_type": "multimodal_extraction", "split": split, "input": input_path,
-                "output": compact(expected),
-                "reasoning": "Structured key fields derived from the dataset token annotations.",
-                "metadata": compact({
-                    "source_split": upstream_split,
-                    "source_row": item["row_idx"],
-                    "image_sha256": sha256(image_path),
-                }),
-            })
-        cursor += split_count
+    rows = []
+    exclusions: list[dict[str, str]] = []
+    seen_images: dict[str, str] = {}
+
+    def add_item(split: str, item: dict[str, Any]) -> bool:
+        upstream_split = str(item.get("upstream_split", "source"))
+        identifier = f"receipt-{upstream_split}-{item['row_idx']}"
+        if identifier in prior_pilot_ids:
+            exclusions.append({"id": identifier, "reason": "prior_pilot"})
+            return False
+        record = item["row"]
+        image_path = root / "data" / "images" / f"{identifier}.jpg"
+        fetch(record["image"]["src"], image_path)
+        image_hash = sha256(image_path)
+        if image_hash in prior_pilot_image_hashes:
+            image_path.unlink()
+            exclusions.append({"id": identifier, "reason": "prior_pilot_content"})
+            return False
+        if image_hash in seen_images:
+            image_path.unlink()
+            exclusions.append({"id": identifier, "reason": "duplicate_image",
+                               "duplicate_of": seen_images[image_hash]})
+            return False
+        seen_images[image_hash] = identifier
+        fields: dict[str, list[str]] = defaultdict(list)
+        for word, tag in zip(record["words"], record["ner_tags"], strict=True):
+            if tag < 4:
+                fields[tag_names[tag]].append(word)
+        expected = {key: " ".join(fields.get(key, [])) for key in tag_names[:4]}
+        input_path = write_case(root, "sroie", identifier, {
+            "image": image_path.relative_to(root).as_posix(),
+            "frozen_ocr": {"words": record["words"], "bboxes": record["bboxes"]},
+        })
+        rows.append({
+            "schema_version": str(SCHEMA_VERSION), "id": identifier, "benchmark": "sroie",
+            "task_type": "multimodal_extraction", "split": split, "input": input_path,
+            "output": compact(expected),
+            "reasoning": "Structured key fields derived from the dataset token annotations.",
+            "metadata": compact({"source_split": upstream_split, "source_row": item["row_idx"],
+                                 "image_sha256": image_hash}),
+        })
+        return True
+
+    # Reserve the official test set first. Exact duplicate images are retained
+    # once, and no train-derived development/validation case may overlap them.
+    for item in selected_splits["test"]:
+        add_item("test", item)
+    ranked_train = sorted(train_rows, key=lambda item: stable_rank(args.seed, sroie_source_id(item)))
+    train_needed = development_cases + validation_cases
+    accepted_train = 0
+    for item in ranked_train:
+        split = "development" if accepted_train < development_cases else "validation"
+        if add_item(split, item):
+            accepted_train += 1
+        if accepted_train == train_needed:
+            break
+    if accepted_train != train_needed:
+        raise ValueError("not enough unique SROIE train images after cross-split deduplication")
     write_artifacts(root, rows, {
         "dataset": SROIE_DATASET, "revision": SROIE_REVISION, "seed": args.seed,
-        "selection_rule": "lowest seeded source-row hashes",
+        "selection_rule": "deduplicate exact images; reserve official test; lowest seeded unique train hashes for development then validation",
+        "official_source_counts": {"train": len(train_rows), "test": len(test_rows)},
+        "requested_counts": {"development": development_cases, "validation": validation_cases, "test": requested_test},
+        "actual_counts": dict(Counter(row["split"] for row in rows)),
+        "exclusions": exclusions,
+        "prior_pilot_ids": sorted(prior_pilot_ids),
         "selected": [{"id": row["id"], "split": row["split"]} for row in rows],
     }, source_paths)
 
@@ -457,7 +651,10 @@ def prepare_spamassassin(args: argparse.Namespace, root: Path) -> None:
             fetch(f"{SPAMASSASSIN_BASE_URL}/{name}", path)
         archives.append(path)
     records = list(iter_spamassassin(archives))
-    selected, labels = choose_balanced(records, "label", "id", args.cases, 2, args.seed)
+    records, exclusions = exclude_records(records, "raw_email", "id", args.exclude_dataset)
+    split_counts = requested_splits(args)
+    cases = sum(split_counts.values())
+    selected, labels = choose_balanced(records, "label", "id", cases, 2, args.seed, split_counts)
     rows = []
     for split, item in selected:
         input_path = write_case(root, "spamassassin", item["id"], {"raw_email": item["raw_email"]})
@@ -478,6 +675,9 @@ def prepare_spamassassin(args: argparse.Namespace, root: Path) -> None:
         "archives": list(SPAMASSASSIN_ARCHIVES), "seed": args.seed,
         "sanitization": "remove X-Spam and equivalent filter headers and explicit subject markers",
         "selection_rule": "deduplicate sanitized messages, then lowest seeded hashes per label",
+        "requested_split_counts": split_counts,
+        "eligible_unique_by_label": dict(Counter(item["label"] for item in records)),
+        "excluded_datasets": exclusions,
         "labels": labels,
         "selected": [{"id": row["id"], "split": row["split"]} for row in rows],
     }, archives)
@@ -485,13 +685,18 @@ def prepare_spamassassin(args: argparse.Namespace, root: Path) -> None:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("dataset", choices=("ledgar", "cfpb", "tau-retail", "sroie", "spamassassin"))
+    parser.add_argument("dataset", choices=("ledgar", "cfpb", "sroie", "spamassassin"))
     parser.add_argument("--output", required=True, type=Path)
     parser.add_argument("--source", type=Path, help="Local source file or LEDGAR split directory")
-    parser.add_argument("--policy-source", type=Path, help="Local tau retail policy.md")
     parser.add_argument("--seed", type=int, default=DEFAULT_SEED)
     parser.add_argument("--cases", type=int, default=100)
+    parser.add_argument("--development-cases", type=int)
+    parser.add_argument("--validation-cases", type=int)
+    parser.add_argument("--test-cases", type=int)
+    parser.add_argument("--exclude-selection", action="append", default=[], type=Path)
     parser.add_argument("--classes", type=int, default=10)
+    parser.add_argument("--exclude-dataset", action="append", default=[], type=Path,
+                        help="Prepared dataset whose IDs and normalized contents must be excluded")
     return parser.parse_args()
 
 
@@ -502,12 +707,14 @@ def main() -> int:
     args.output.mkdir(parents=True)
     try:
         {"ledgar": prepare_ledgar, "cfpb": prepare_cfpb,
-         "tau-retail": prepare_tau, "sroie": prepare_sroie,
+         "sroie": prepare_sroie,
          "spamassassin": prepare_spamassassin}[args.dataset](args, args.output)
     except Exception:
         shutil.rmtree(args.output)
         raise
-    print(compact({"dataset": args.dataset, "output": str(args.output), "cases": args.cases}))
+    summary = json.loads((args.output / "dataset-summary.json").read_text(encoding="utf-8"))
+    print(compact({"dataset": args.dataset, "output": str(args.output),
+                   "cases": summary["cases"]}))
     return 0
 
 

@@ -6,20 +6,18 @@ endpoints. It does not call paid APIs.
 
 ## Benchmark categories used in the paper
 
-For the paper, we test PLaND across three categories rather than drawing a
+For the paper, we test PLaND across two active categories rather than drawing a
 conclusion from one kind of task:
 
 | Category | Datasets | What it tests |
 | --- | --- | --- |
 | Text classification | LEDGAR, CFPB complaints, and SpamAssassin email | Whether deterministic steps can reduce repeated language-model work while preserving semantic classification quality. |
-| Multi-step workflow | tau-retail | Whether a hybrid SOP can preserve policy compliance and correct tool-driven state changes. |
 | Multimodal workflow | SROIE, with the existing Tobacco/RVL subset as robustness validation | Whether the method still works when document images, OCR, extraction, and validation add another source of error. |
 
 These categories are the experimental scope selected for this paper. They are
-not intended to cover every possible agent workflow. Together they provide a
-text-only task, a policy-and-tools task, and a document-image task, allowing us
-to test whether the result generalizes across different sources of
-nondeterminism.
+not intended to cover every possible agent workflow. Together they provide
+text-only and document-image tasks, allowing us to test whether the result
+generalizes across semantic and perceptual sources of nondeterminism.
 
 ## Canonical case format
 
@@ -30,7 +28,7 @@ Every `evals.csv` contains these columns:
 | `schema_version` | Currently `2`. |
 | `id` | Stable case identifier within the benchmark. |
 | `benchmark` | Dataset and task name. |
-| `task_type` | `text_classification`, `tool_workflow`, or `multimodal_extraction`. |
+| `task_type` | `text_classification` or `multimodal_extraction`. |
 | `split` | `development`, `validation`, or `test`. |
 | `input` | Relative path to a UTF-8 JSON case file. |
 | `output` | Compact JSON containing only the expected answer. |
@@ -39,8 +37,8 @@ Every `evals.csv` contains these columns:
 
 The JSON file referenced by `input` is the complete runtime input. Labels,
 expected state, scorer data, and `reasoning` must not be exposed to the agent.
-This path-based representation keeps CSV quoting manageable and supports text,
-images, policies, and tool-workflow state through the same envelope.
+This path-based representation keeps CSV quoting manageable and supports text
+and images through the same envelope.
 
 Each prepared directory also contains:
 
@@ -59,11 +57,10 @@ python datasets/scripts/prepare_data.py ledgar \
 python datasets/scripts/prepare_data.py cfpb \
   --output tmp/enterprise-data/cfpb
 
-python datasets/scripts/prepare_data.py tau-retail \
-  --output tmp/enterprise-data/tau-retail
-
 python datasets/scripts/prepare_data.py sroie \
-  --output tmp/enterprise-data/sroie
+  --exclude-selection tmp/datasets/sroie/selection.json \
+  --development-cases 100 --validation-cases 100 --test-cases 347 \
+  --output tmp/paper-datasets/sroie-confirmatory
 
 python datasets/scripts/prepare_data.py spamassassin \
   --output tmp/enterprise-data/spamassassin
@@ -73,20 +70,80 @@ Use `--source` to prepare an already downloaded source without network access.
 The selector ranks cases by `SHA-256(seed, source id)`, so input ordering cannot
 change the subset. Output directories must not already exist.
 
-The default split is 60 development, 20 validation, and 20 test cases. LEDGAR
-and CFPB additionally use `--classes 10` and select a balanced subset. A class
-must have enough eligible examples for every split or preparation fails.
+The legacy/default 100-case preparation uses a 60/20/20 split. The confirmatory
+text design uses 100 development, 100 validation, and 1,000 untouched test
+cases for each active text dataset:
 
-CFPB preparation freezes a bounded response containing the latest 10,000
-public complaints with narratives from the official CFPB search API, then
-selects the balanced subset from that snapshot. This avoids downloading the
-roughly 1.4 GB mutable bulk export. Keep the API response in ignored local
+```bash
+for dataset in ledgar cfpb spamassassin; do
+  python datasets/scripts/prepare_data.py "$dataset" \
+    --output "tmp/confirmatory-datasets/$dataset" \
+    --exclude-dataset "tmp/paper-datasets/$dataset" \
+    --development-cases 100 --validation-cases 100 --test-cases 1000
+done
+```
+
+LEDGAR and CFPB use ten classes (10/10/100 cases per class); SpamAssassin uses
+two classes (50/50/500 per class). Exact normalized content is deduplicated
+before selection. Selection is global, deterministic, and disjoint, so the
+test set remains untouched until SOP candidate selection is complete.
+The exclusion is matched on both source ID and normalized content, preventing a
+pilot case from reappearing under another ID. Its eval hash and case-manifest
+hash are saved in the new selection manifest.
+
+LEDGAR additionally preserves the official LexGLUE boundaries: confirmatory
+development comes only from upstream `train`, validation only from upstream
+`validation`, and test only from upstream `test`. CFPB and SpamAssassin do not
+provide equivalent official benchmark splits, so their splits use the seeded,
+disjoint selection described above.
+
+CFPB preparation freezes 1,000 public narrative complaints for each of ten
+predeclared current product labels from the official CFPB search API, then
+deduplicates and selects from that snapshot. This avoids downloading the
+roughly 1.4 GB mutable bulk export and prevents recent high-volume products
+from crowding out lower-volume labels. Keep the API response in ignored local
 storage and retain its SHA-256 digest in `selection.json`.
 
 The paper's resource-bounded text experiments derive a second, predeclared
 20-case subset from each frozen 100-case snapshot: the two lowest seeded hashes
 per label, assigned to 12 development, four validation, and four test cases.
 The selector is `experiments/text-classification/scripts/select_paper_subset.py`.
+Those 20-case results are pilots and do not replace the confirmatory design.
+
+Audit and publish check-in-safe proof metadata without committing raw text:
+
+```bash
+python datasets/scripts/audit_prepared.py \
+  --dataset tmp/confirmatory-datasets/ledgar \
+  --repeat-dataset tmp/confirmatory-repeat/ledgar \
+  --output datasets/proofs/ledgar-confirmatory.json
+```
+
+The proof records counts, per-split balance, source/eval/selection/case hashes,
+ID overlap, normalized-content duplicates, structural label leakage, missing
+cases, pilot overlap, exclusion-manifest identity, upstream split integrity,
+and byte-identical repeat preparation. Equivalent proof files are kept
+for CFPB and SpamAssassin under `datasets/proofs/`.
+
+## Prepared confirmatory datasets
+
+The committed proof artifacts record the following frozen populations. A
+passing data audit establishes provenance, separation, and reproducibility; it
+does not mean that the NL-versus-hybrid model experiment has passed.
+
+| Dataset | Development | Validation | Untouched test | Audit status | Experiment status |
+| --- | ---: | ---: | ---: | --- | --- |
+| LEDGAR | 100 | 100 | 1,000 | Passed; byte-identical repeat | Validation passed; one-time test completed |
+| CFPB complaints | 100 | 100 | 1,000 | Passed; byte-identical repeat | Validation rejected; test remains untouched |
+| SpamAssassin | 100 | 100 | 1,000 | Passed; byte-identical repeat | Validation rejected; test remains untouched |
+| QS-OCR-Small / Tobacco3482 | 100 | 100 | 1,000 | Passed; byte-identical repeat | Baseline validation nonviable; test untouched |
+| SROIE | 100 | 100 | 300 | Passed; byte-identical repeat after removing three cross-ID pilot-image duplicates | Baseline validation nonviable; test untouched |
+| RVL-CDIP constrained mirror | 100 | 100 | 369 | Passed; repeat not recorded | Baseline validation nonviable; test untouched |
+
+SROIE uses all eligible official-test receipts after prior-pilot and exact-image
+exclusions. The RVL mirror cannot supply the requested 1,000-case test: its
+proof records a 631-case capacity shortfall. No case is moved across an
+official source split to fill either shortfall.
 
 SROIE saves both the source image and the dataset-provided OCR words. This
 supports two experiments with identical cases: frozen OCR and raw-image
@@ -96,6 +153,12 @@ SROIE row indexes restart independently in the upstream train and test splits.
 Prepared IDs therefore include the upstream split (for example,
 `receipt-train-12` and `receipt-test-12`) so cases and images cannot overwrite
 one another.
+
+For the confirmatory preparation, development and validation are disjoint
+selections from the official 626-receipt train split. Test contains every
+unique official test receipt not used by the pilot. Exact image duplicates and
+pilot IDs are recorded as exclusions rather than being moved between official
+splits. Audit it with `datasets/scripts/audit_sroie.py`.
 
 WorkArena is intentionally excluded: its code is public, but a prepared
 ServiceNow instance requires gated access. The existing Tobacco/RVL scripts
@@ -111,7 +174,6 @@ scores into one accuracy number.
 | LEDGAR | Contract-clause classification | macro F1 and accuracy | tokens, latency, estimated cost, resources |
 | CFPB | Complaint product routing | macro F1 and accuracy | tokens, latency, estimated cost, resources |
 | SpamAssassin | Raw-email spam or ham classification | spam F1, macro F1, and accuracy | tokens, latency, model calls, estimated cost |
-| tau-retail | Policy-constrained tool workflow | task success and final database state | tokens, latency, tool calls, estimated cost |
 | SROIE frozen OCR | Receipt field extraction with fixed OCR input | field F1 and exact match | tokens, agent latency, estimated cost |
 | SROIE end to end | Image-to-structured receipt processing | field F1 and exact match | OCR quality, OCR latency, agent latency, total latency |
 
@@ -122,12 +184,13 @@ For every dataset:
    every exclusion and use the next case in the precomputed seeded order.
 3. Freeze the model and digest, system prompt, harness, evaluation cases,
    expected outputs, scorer, datasource hashes, seed, and permissions.
-4. Measure the natural-language SOP baseline on the development, validation,
-   and test splits.
+4. Measure the natural-language SOP baseline on development and validation.
 5. Evolve only the SOP skill package using development feedback. Use validation
-   to accept or reject candidates; do not inspect test results while evolving.
-6. Run the accepted hybrid SOP once on the test split.
-7. Compare NL and hybrid runs using the same cases and report accuracy or task
+   to accept or reject candidates; do not inspect test inputs, predictions, or
+   expected outputs while evolving.
+6. Release the test split only after the paired validation gate passes. Run the
+   frozen natural-language and accepted hybrid SOPs once on the same test cases.
+7. Compare the paired runs and report accuracy or task
    success, tokens, latency, cost, resource usage, and SOP representation.
 
 The comparison is valid only when the frozen invariant hashes match. Accuracy
@@ -139,14 +202,6 @@ quality requirement and improves the selected expense objective.
 The runtime input is a case JSON file containing only the text. `output` holds
 the hidden label. Use stratified metrics because the full upstream datasets are
 not naturally balanced, even though the default prepared subset is balanced.
-
-### Tool workflow
-
-The tau-retail case exposes the policy, user scenario, and initial state. Its
-evaluation criteria remain in `output` and must never be included in the agent
-prompt. The tau environment and simulated tools are required to execute and
-score these cases; this preparation script only freezes task selection and
-inputs.
 
 ### Multimodal extraction
 

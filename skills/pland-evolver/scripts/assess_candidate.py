@@ -37,16 +37,29 @@ def load(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def evaluation_fingerprint(run: dict[str, Any]) -> str | None:
+    invariants = run.get("invariants", {})
+    values = {
+        value
+        for value in (
+            invariants.get("evaluation_sha256"),
+            invariants.get("evals_sha256"),
+            run.get("evals_sha256"),
+        )
+        if value
+    }
+    return next(iter(values)) if len(values) == 1 else None
+
+
 def comparable(left: dict[str, Any], right: dict[str, Any]) -> list[str]:
     failures = []
-    for field in ("model", "model_digest", "seed", "evals", "evals_sha256"):
+    for field in ("model", "model_digest", "seed", "evals"):
         if left.get(field) != right.get(field):
             failures.append(f"invariant_mismatch:{field}")
     required = (
         "system_prompt_sha256",
         "agent_harness_sha256",
         "datasource_snapshot_sha256",
-        "evaluation_sha256",
         "scorer_sha256",
     )
     left_invariants = left.get("invariants", {})
@@ -54,6 +67,10 @@ def comparable(left: dict[str, Any], right: dict[str, Any]) -> list[str]:
     for field in required:
         if not left_invariants.get(field) or left_invariants.get(field) != right_invariants.get(field):
             failures.append(f"invariant_mismatch:{field}")
+    left_evaluation = evaluation_fingerprint(left)
+    right_evaluation = evaluation_fingerprint(right)
+    if not left_evaluation or left_evaluation != right_evaluation:
+        failures.append("invariant_mismatch:evaluation_sha256")
     return failures
 
 
@@ -82,6 +99,8 @@ def objective_improved(
     baseline_value = objective_value(baseline, metric)
     candidate_value = objective_value(candidate, metric)
     if baseline_value == 0:
+        return candidate_value < baseline_value
+    if minimum_ratio == 0:
         return candidate_value < baseline_value
     return candidate_value <= baseline_value * (1 - minimum_ratio)
 
@@ -151,8 +170,12 @@ def assess(args: argparse.Namespace) -> dict[str, Any]:
         validation_checks.append("validation_sop_not_hybrid")
 
     validation_result: dict[str, Any] = {"candidate": candidate_validation["summary"]}
-    if args.baseline_validation is not None:
+    if args.baseline_validation is None:
+        validation_checks.append("missing_baseline_validation")
+    else:
         baseline_validation = load(args.baseline_validation)
+        if baseline_validation.get("split") != "validation":
+            validation_checks.append("invalid_baseline_validation_split")
         validation_checks.extend(comparable(candidate_validation, baseline_validation))
         latency_ratio = (
             candidate_validation["summary"]["latency_seconds"]["mean"]

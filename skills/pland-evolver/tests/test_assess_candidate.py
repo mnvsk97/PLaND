@@ -152,6 +152,57 @@ class AssessCandidateTests(unittest.TestCase):
             self.assertEqual(result["decision"], "reject_before_validation")
             self.assertIn("development_objective_not_improved", result["failed_checks"])
 
+    def test_rejects_equal_expense_when_minimum_is_zero(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            args = argparse.Namespace(
+                baseline_development=self.write(root, "base.json", run_payload("development", 0.9, 100)),
+                candidate_development=self.write(root, "candidate.json", run_payload("development", 1.0, 100)),
+                candidate_validation=None,
+                baseline_validation=None,
+                candidate="candidate",
+                hypothesis="equal expense is not improvement",
+                iteration=1,
+                max_iterations=10,
+                target_accuracy=0.9,
+                optimization_metric="total_tokens",
+                min_objective_improvement_ratio=0.0,
+                require_hybrid_sop=False,
+                max_validation_latency_ratio=2.0,
+            )
+            result = MODULE.assess(args)
+            self.assertEqual(result["decision"], "reject_before_validation")
+            self.assertIn("development_objective_not_improved", result["failed_checks"])
+
+    def test_rejects_final_acceptance_without_baseline_validation(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            args = argparse.Namespace(
+                baseline_development=self.write(root, "base-dev.json", run_payload("development", 0.9, 200)),
+                candidate_development=self.write(root, "candidate-dev.json", run_payload("development", 1.0, 100)),
+                candidate_validation=self.write(root, "candidate-val.json", run_payload("validation", 1.0, 90)),
+                baseline_validation=None,
+                candidate="candidate",
+                hypothesis="validation must be paired",
+                iteration=1,
+                max_iterations=10,
+                target_accuracy=0.9,
+                optimization_metric="total_tokens",
+                min_objective_improvement_ratio=0.0,
+                require_hybrid_sop=False,
+                max_validation_latency_ratio=2.0,
+            )
+            result = MODULE.assess(args)
+            self.assertEqual(result["decision"], "reject_after_validation")
+            self.assertIn("missing_baseline_validation", result["failed_checks"])
+
+    def test_accepts_evals_sha256_invariant_alias(self):
+        baseline = run_payload("development", 0.9, 200)
+        candidate = run_payload("development", 1.0, 100)
+        baseline["invariants"]["evals_sha256"] = baseline["invariants"].pop("evaluation_sha256")
+        candidate["invariants"]["evals_sha256"] = candidate["invariants"].pop("evaluation_sha256")
+        self.assertNotIn("invariant_mismatch:evaluation_sha256", MODULE.comparable(baseline, candidate))
+
     def test_rejects_changed_frozen_system_prompt(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

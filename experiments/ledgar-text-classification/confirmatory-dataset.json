@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "status": "confirmatory_validation_and_test_completed",
+  "design": {
+    "development": 100,
+    "validation": 100,
+    "test": 1000,
+    "test_policy": "released once after the frozen candidate passed the validation gate"
+  },
+  "selection_seed": 20260902,
+  "audit_proof": "datasets/proofs/ledgar-confirmatory.json",
+  "hashes": {
+    "evals_sha256": "e3cebc95e61c0fb7feb799ef99f15ee78e8dc9113cf0efa38f1b91dc5fb32422",
+    "selection_sha256": "ea6595493193419bb80b6c868b47ed24c63a438555af94e86c9e00a427f19823",
+    "case_manifest_sha256": "7c403f1895ddda3b4344acc8e663335d0e055d6b9813444aa6c78880dea5bdf4"
+  },
+  "sources": [
+    {
+      "path": "train.jsonl",
+      "sha256": "d715cde50f04e36401b76704d693cedc2697169dbcbc97c8c8519767edfe94ec",
+      "bytes": 75058429
+    },
+    {
+      "path": "validation.jsonl",
+      "sha256": "5890aaee646adf03ca9665c1207b2a1ec95f60007c3e8a86f36b753992786ce1",
+      "bytes": 12420569
+    },
+    {
+      "path": "test.jsonl",
+      "sha256": "d78bb9c8e149b169bfb4c2e910d21c6fea32968c11a5aff880f2ef6fb86bd86c",
+      "bytes": 12122831
+    }
+  ],
+  "verified_checks": {
+    "unique_ids": true,
+    "split_id_overlap_count": 0,
+    "content_duplicate_count": 0,
+    "runtime_label_leakage_count": 0,
+    "missing_case_count": 0,
+    "balanced_within_each_split": {
+      "development": true,
+      "test": true,
+      "validation": true
+    },
+    "selection_manifest_matches_evals": true,
+    "source_hashes_match": true,
+    "source_split_integrity": true,
+    "pilot_overlap_count": 0,
+    "exclusion_manifest_matches_pilot": true
+  },
+  "repeatability": {
+    "evals_sha256_match": true,
+    "selection_sha256_match": true,
+    "case_manifest_sha256_match": true
+  },
+  "exclusion_manifest": [
+    {
+      "path": "tmp/paper-datasets/ledgar",
+      "evals_sha256": "d976dfe254e7e3c28c11f70e870266c88ab8a91902cee1c64ced4454261417a1",
+      "cases": 20,
+      "case_manifest_sha256": "b2f7245130b8d36d8f0f99dcf5058633ab1a972eaa33c0728d0f4b78bb5d1107"
+    }
+  ],
+  "source_split_mapping": {
+    "development": "train",
+    "validation": "validation",
+    "test": "test"
+  },
+  "eligible_unique_by_label": {
+    "Governing Laws": 4162,
+    "Counterparts": 3236,
+    "Notices": 3228,
+    "Entire Agreements": 3056,
+    "Severability": 2461,
+    "Amendments": 1930,
+    "Survival": 1890,
+    "Assignments": 1694,
+    "Expenses": 1551,
+    "Terms": 1473
+  },
+  "balanced_capacity_at_this_snapshot": {
+    "limiting_label": "Terms",
+    "limiting_source_split": "test",
+    "limiting_unique_cases": 175,
+    "requested_cases_per_label": 120,
+    "maximum_whole_design_multiples": 1,
+    "maximum_same_ratio_balanced_splits": {
+      "development": 100,
+      "validation": 100,
+      "test": 1000
+    }
+  }
+}

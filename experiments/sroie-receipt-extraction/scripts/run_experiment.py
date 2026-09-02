@@ -14,6 +14,7 @@ import resource
 import shutil
 import statistics
 import subprocess
+import tempfile
 import time
 import urllib.request
 from collections import Counter
@@ -81,9 +82,17 @@ def sop_snapshot(path: Path) -> dict[str, Any]:
     }
 
 
-def select_rows(dataset: Path, cases: int) -> list[dict[str, str]]:
+def select_rows(dataset: Path, cases: int, split: str = "all",
+                limit: int | None = None) -> list[dict[str, str]]:
     with (dataset / "evals.csv").open(encoding="utf-8", newline="") as handle:
         rows = list(csv.DictReader(handle))
+    if split != "all":
+        available = sorted((row for row in rows if row["split"] == split),
+                           key=lambda row: row["id"])
+        chosen = available if limit is None else available[:limit]
+        if limit is not None and len(chosen) != limit:
+            raise RuntimeError(f"could not select {limit} {split} cases")
+        return chosen
     desired = {"development": round(cases * .6), "validation": round(cases * .2)}
     desired["test"] = cases - desired["development"] - desired["validation"]
     chosen = []
@@ -103,6 +112,46 @@ def tesseract_words(image: Path) -> tuple[list[str], float, str]:
     lines = list(csv.DictReader(result.stdout.splitlines(), delimiter="\t"))
     words = [line["text"].strip() for line in lines if line.get("text", "").strip()]
     return words, elapsed, result.stderr
+
+
+def liteparse_version() -> str:
+    result = subprocess.run(["lit", "--version"], check=True, text=True, capture_output=True)
+    match = re.search(r"\d+(?:\.\d+)+", result.stdout)
+    if not match:
+        raise RuntimeError(f"could not determine LiteParse version from: {result.stdout!r}")
+    return match.group(0)
+
+
+def liteparse_words(image: Path, ocr: dict[str, Any]) -> tuple[list[str], float, str]:
+    with tempfile.TemporaryDirectory(prefix="pland-liteparse-") as directory:
+        output = Path(directory) / "parsed.json"
+        command = [
+            "lit", "parse", str(image), "--format", "json",
+            "--ocr-language", str(ocr["language"]),
+            "--dpi", str(ocr["dpi"]),
+            "--num-workers", str(ocr["workers"]),
+            "--output", str(output),
+        ]
+        started = time.perf_counter()
+        result = subprocess.run(command, check=True, text=True, capture_output=True)
+        elapsed = time.perf_counter() - started
+        parsed = json.loads(output.read_text(encoding="utf-8"))
+    words = [
+        token
+        for page in parsed.get("pages", [])
+        for item in page.get("text_items", [])
+        for token in str(item.get("text", "")).split()
+        if token
+    ]
+    return words, elapsed, result.stderr
+
+
+def ocr_words(image: Path, ocr: dict[str, Any]) -> tuple[list[str], float, str]:
+    if ocr["backend"] == "liteparse":
+        return liteparse_words(image, ocr)
+    if ocr["backend"] == "tesseract":
+        return tesseract_words(image)
+    raise ValueError(f"unsupported OCR backend: {ocr['backend']}")
 
 
 def hybrid_candidates(words: list[str]) -> tuple[dict[str, Any], float]:
@@ -167,7 +216,7 @@ def run_variant(dataset: Path, rows: list[dict[str, str]], variant: str, mode: s
         frozen_words = [str(word) for word in case["frozen_ocr"]["words"]]
         ocr_latency, ocr_stderr = 0.0, ""
         if mode == "end-to-end":
-            words, ocr_latency, ocr_stderr = tesseract_words(dataset / case["image"])
+            words, ocr_latency, ocr_stderr = ocr_words(dataset / case["image"], config["ocr"])
         else:
             words = frozen_words
         code_latency = 0.0
@@ -213,11 +262,26 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--dataset", required=True, type=Path)
     parser.add_argument("--output", required=True, type=Path)
+    parser.add_argument("--split", choices=("all", "development", "validation", "test"),
+                        default="all")
+    parser.add_argument("--limit", type=int)
+    parser.add_argument("--mode", action="append", choices=("frozen-ocr", "end-to-end"))
+    parser.add_argument("--variant", action="append", choices=("nl-baseline", "hybrid"))
     args = parser.parse_args()
-    if not shutil.which("tesseract"):
-        raise SystemExit("tesseract is required")
+    if args.limit is not None and args.limit < 1:
+        raise SystemExit("--limit must be positive")
     config = json.loads((ROOT / "experiment.json").read_text(encoding="utf-8"))
-    rows = select_rows(args.dataset, config["cases"])
+    backend = config["ocr"]["backend"]
+    executable = "lit" if backend == "liteparse" else backend
+    if not shutil.which(executable):
+        raise SystemExit(f"{executable} is required for OCR backend {backend}")
+    if backend == "liteparse":
+        actual_version = liteparse_version()
+        if actual_version != config["ocr"]["version"]:
+            raise SystemExit(
+                f"LiteParse version mismatch: expected {config['ocr']['version']}, got {actual_version}"
+            )
+    rows = select_rows(args.dataset, config["cases"], args.split, args.limit)
     selection = json.loads((args.dataset / "selection.json").read_text(encoding="utf-8"))
     selected_manifest = [{"id": row["id"], "split": row["split"], "input_sha256": digest_file(args.dataset / row["input"]),
                           "output_sha256": digest_bytes(row["output"].encode())} for row in rows]
@@ -228,13 +292,17 @@ def main() -> int:
         "dataset_selection_sha256": digest_file(args.dataset / "selection.json"),
         "datasource_snapshot_sha256": selection["sources"][0]["sha256"],
         "selected_cases_sha256": digest_bytes(json.dumps(selected_manifest, sort_keys=True).encode()),
+        "evaluation_split": args.split,
         "execution_permissions": config["execution_permissions"],
+        "ocr": config["ocr"],
     }
     args.output.mkdir(parents=True, exist_ok=True)
     (args.output / "selected-cases.json").write_text(json.dumps(selected_manifest, indent=2) + "\n")
     all_runs: dict[str, Any] = {}
-    for mode in ("frozen-ocr", "end-to-end"):
-        for variant in ("nl-baseline", "hybrid"):
+    modes = args.mode or ["frozen-ocr", "end-to-end"]
+    variants = args.variant or ["nl-baseline", "hybrid"]
+    for mode in modes:
+        for variant in variants:
             key = f"{mode}-{variant}"
             result_path = args.output / f"{key}.json"
             if result_path.exists():
@@ -247,7 +315,17 @@ def main() -> int:
             all_runs[key] = result
             result_path.write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n")
     comparisons = {}
-    for mode in ("frozen-ocr", "end-to-end"):
+    for mode in modes:
+        for variant in ("nl-baseline", "hybrid"):
+            key = f"{mode}-{variant}"
+            result_path = args.output / f"{key}.json"
+            if key not in all_runs and result_path.exists():
+                result = json.loads(result_path.read_text(encoding="utf-8"))
+                if result.get("invariants") != invariants:
+                    raise RuntimeError(f"refusing to compare {key}: frozen invariants changed")
+                all_runs[key] = result
+        if f"{mode}-nl-baseline" not in all_runs or f"{mode}-hybrid" not in all_runs:
+            continue
         baseline = all_runs[f"{mode}-nl-baseline"]
         candidate = all_runs[f"{mode}-hybrid"]
         base_val = aggregate([case for case in baseline["cases"] if case["split"] == "validation"])
@@ -261,8 +339,9 @@ def main() -> int:
             "reason": "validation quality floor preserved and token objective improved" if accepted else "quality floor or token objective failed",
             "iteration": 1, "max_iterations": config["max_iterations"],
         }
-    (args.output / "comparison.json").write_text(json.dumps({"invariants": invariants, "modes": comparisons}, indent=2) + "\n")
-    print(json.dumps({mode: value["decision"] for mode, value in comparisons.items()}))
+    if comparisons:
+        (args.output / "comparison.json").write_text(json.dumps({"invariants": invariants, "modes": comparisons}, indent=2) + "\n")
+        print(json.dumps({mode: value["decision"] for mode, value in comparisons.items()}))
     return 0
 
 

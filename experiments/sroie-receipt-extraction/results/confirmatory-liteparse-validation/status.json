@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "decision": "stop_before_hybrid_and_test",
+  "reason": "natural-language end-to-end validation baseline was below the prespecified local field-F1 viability floor",
+  "validation_cases": 100,
+  "baseline_field_f1": 0.3436382414973603,
+  "minimum_viable_field_f1": 0.5,
+  "ocr_word_error_rate": 0.6758570955347878,
+  "hybrid_validation_run": false,
+  "test_released": false,
+  "test_cases_remaining_untouched": 300
+}

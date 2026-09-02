@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "decision": "stop_before_hybrid_and_test",
+  "reason": "natural-language DeepAgent validation baseline was below the prespecified local accuracy viability floor",
+  "validation_cases": 100,
+  "baseline_accuracy": 0.5,
+  "minimum_viable_accuracy": 0.8,
+  "baseline_macro_f1": 0.4723766837737426,
+  "baseline_total_tokens": 1072199,
+  "baseline_mean_latency_seconds": 9.925417104179942,
+  "invalid_label_outputs": 4,
+  "hybrid_validation_run": false,
+  "test_released": false,
+  "test_cases_remaining_untouched": 369
+}

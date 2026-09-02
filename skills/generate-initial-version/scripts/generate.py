@@ -4,13 +4,17 @@
 from __future__ import annotations
 
 import argparse
+import csv
 import hashlib
 import json
 import re
+from collections import Counter
 from pathlib import Path
+from typing import Any
 
 
 NAME_PATTERN = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
+REQUIRED_EVAL_COLUMNS = {"id", "input", "output"}
 
 
 def sha256(path: Path) -> str:
@@ -36,13 +40,119 @@ def source_manifest(root: Path) -> list[dict[str, object]]:
     return entries
 
 
+def json_type(value: Any) -> str:
+    if value is None:
+        return "null"
+    if isinstance(value, bool):
+        return "boolean"
+    if isinstance(value, int | float):
+        return "number"
+    if isinstance(value, str):
+        return "string"
+    if isinstance(value, list):
+        return "array"
+    return "object"
+
+
+def eval_profile(path: Path) -> dict[str, Any]:
+    """Extract task structure without retaining case IDs, answers, or reasoning."""
+    with path.open(encoding="utf-8", newline="") as handle:
+        reader = csv.DictReader(handle)
+        columns = reader.fieldnames or []
+        missing = sorted(REQUIRED_EVAL_COLUMNS - set(columns))
+        if missing:
+            raise ValueError(f"eval CSV is missing required columns: {', '.join(missing)}")
+        rows = list(reader)
+    if not rows:
+        raise ValueError("eval CSV contains no rows")
+
+    parsed_outputs = []
+    for index, row in enumerate(rows, start=2):
+        try:
+            parsed_outputs.append(json.loads(row["output"]))
+        except (json.JSONDecodeError, TypeError) as error:
+            raise ValueError(f"eval CSV row {index} has invalid JSON output") from error
+
+    objects = [value for value in parsed_outputs if isinstance(value, dict)]
+    output_keys = sorted({str(key) for value in objects for key in value})
+    output_types = {
+        key: sorted({json_type(value[key]) for value in objects if key in value})
+        for key in output_keys
+    }
+    labels = sorted({value["label"] for value in objects if isinstance(value.get("label"), str)})
+    classification = len(objects) == len(parsed_outputs) and all(
+        isinstance(value.get("label"), str) for value in objects
+    )
+    if classification:
+        task_kind = "classification"
+    elif len(objects) == len(parsed_outputs):
+        task_kind = "structured-output"
+    else:
+        task_kind = "free-form-output"
+
+    return {
+        "schema_version": 1,
+        "rows": len(rows),
+        "columns": columns,
+        "task_kind": task_kind,
+        "input_suffixes": sorted({Path(row["input"]).suffix or "<none>" for row in rows}),
+        "split_counts": dict(sorted(Counter(row.get("split") or "unspecified" for row in rows).items())),
+        "output": {
+            "json_type": "object" if len(objects) == len(parsed_outputs) else "mixed",
+            "keys": output_keys,
+            "types": output_types,
+            "labels": labels if classification else [],
+        },
+    }
+
+
+def concise_requirement(path: Path, limit: int = 240) -> str:
+    value = " ".join(path.read_text(encoding="utf-8", errors="replace").split())
+    value = value.replace("<!--", "").replace("-->", "").replace("`", "'")
+    if not value:
+        raise ValueError("requirements file is empty")
+    if len(value) <= limit:
+        return value
+    shortened = value[: limit - 1].rsplit(" ", 1)[0]
+    return (shortened or value[: limit - 1]) + "…"
+
+
 def write(path: Path, value: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(value, encoding="utf-8")
 
 
-def sop(workflow: str) -> str:
+def sop(
+    workflow: str,
+    requirement: str,
+    sources: list[dict[str, object]],
+    profile: dict[str, Any],
+) -> str:
     title = workflow.replace("-", " ").title()
+    source_suffixes = sorted({Path(str(item["path"])).suffix or "extensionless" for item in sources})
+    source_description = ", ".join(source_suffixes)
+    output = profile["output"]
+    if profile["task_kind"] == "classification":
+        labels = ", ".join(f"`{label}`" for label in output["labels"])
+        if len(output["labels"]) <= 32 and len(labels) <= 800:
+            decision_step = f"Classify the evidence into exactly one known bucket: {labels}."
+        else:
+            decision_step = (
+                f"Classify the evidence into exactly one of the {len(output['labels'])} "
+                "known buckets supplied with the request."
+            )
+        if output["keys"] == ["label"]:
+            result_step = 'Return exactly one JSON object shaped as `{"label":"<known bucket>"}`.'
+        else:
+            keys = ", ".join(f"`{key}`" for key in output["keys"])
+            result_step = f"Return exactly one JSON object with the required keys: {keys}."
+    elif profile["task_kind"] == "structured-output":
+        keys = ", ".join(f"`{key}`" for key in output["keys"])
+        decision_step = f"Derive the required structured fields from the evidence: {keys}."
+        result_step = f"Return exactly one JSON object with the required keys: {keys}."
+    else:
+        decision_step = "Apply the requirement to the evidence and derive the requested output."
+        result_step = "Return valid JSON matching the output form demonstrated by the evaluation schema."
     return f"""---
 name: {workflow}
 description: Execute the {workflow.replace('-', ' ')} workflow using the approved datasource collection. Use when a request requires this workflow.
@@ -50,10 +160,10 @@ description: Execute the {workflow.replace('-', ' ')} workflow using the approve
 
 # {title} SOP
 
-1. Identify the requested outcome and required output shape. <!-- pland:english -->
-2. Inspect the datasource manifest and retrieve only the evidence relevant to the request. <!-- pland:english -->
-3. Apply the requirements to the available evidence and produce the requested result. <!-- pland:english -->
-4. Check that the result satisfies the required output shape and constraints. <!-- pland:english -->
+1. Identify the requested item and follow this requirement: {requirement} <!-- pland:english -->
+2. Use the approved datasource tools to read only the relevant evidence; the source collection contains {source_description} files. <!-- pland:english -->
+3. {decision_step} <!-- pland:english -->
+4. {result_step} <!-- pland:english -->
 """
 
 
@@ -86,6 +196,7 @@ def main() -> int:
     parser.add_argument("--workflow", required=True)
     parser.add_argument("--requirements", required=True, type=Path)
     parser.add_argument("--sources", required=True, type=Path)
+    parser.add_argument("--evals", required=True, type=Path)
     parser.add_argument("--output", required=True, type=Path)
     parser.add_argument("--guidance", type=Path)
     parser.add_argument("--model-provider", choices=("generic", "ollama"), default="generic")
@@ -95,12 +206,15 @@ def main() -> int:
         raise SystemExit("--workflow must contain lowercase letters, numbers, and single hyphens")
     requirements = args.requirements.resolve()
     sources = args.sources.resolve()
+    evals = args.evals.resolve()
     output = args.output.resolve()
     guidance = args.guidance.resolve() if args.guidance else None
     if not requirements.is_file():
         raise SystemExit(f"requirements file not found: {requirements}")
     if not sources.is_dir():
         raise SystemExit(f"datasource directory not found: {sources}")
+    if not evals.is_file():
+        raise SystemExit(f"eval CSV not found: {evals}")
     if guidance and not guidance.is_file():
         raise SystemExit(f"guidance file not found: {guidance}")
     if output.exists():
@@ -108,6 +222,8 @@ def main() -> int:
 
     try:
         sources_data = source_manifest(sources)
+        profile = eval_profile(evals)
+        requirement = concise_requirement(requirements)
     except (OSError, ValueError) as error:
         raise SystemExit(str(error)) from error
 
@@ -154,7 +270,10 @@ def invoke_workflow(request: str):
 Use only the approved datasource collection and tools. The application invokes this agent through `invoke_workflow`, which explicitly loads the `{args.workflow}` SOP before the request. Return the required result without exposing internal reference answers or credentials.
 """,
     )
-    write(output / f"skills/{args.workflow}/SKILL.md", sop(args.workflow))
+    write(
+        output / f"skills/{args.workflow}/SKILL.md",
+        sop(args.workflow, requirement, sources_data, profile),
+    )
     write(
         output / "tools/datasources.py",
         '''import json
@@ -201,11 +320,19 @@ def read_datasource(relative_path: str) -> str:
         "schema_version": 1,
         "workflow": args.workflow,
         "requirements": {"path": str(requirements), "sha256": sha256(requirements)},
+        "evals": {"path": str(evals), "sha256": sha256(evals)},
+        "eval_profile": {
+            "path": "data/eval-profile.json",
+            "sha256": hashlib.sha256(
+                (json.dumps(profile, indent=2, sort_keys=True) + "\n").encode()
+            ).hexdigest(),
+        },
         "guidance": ({"path": str(guidance), "sha256": sha256(guidance)} if guidance else None),
         "model_provider": args.model_provider,
         "datasource_root": str(sources),
         "sources": sources_data,
     }
+    write(output / "data/eval-profile.json", json.dumps(profile, indent=2, sort_keys=True) + "\n")
     write(output / "data/manifest.json", json.dumps(manifest, indent=2) + "\n")
     write(
         output / "pyproject.toml",

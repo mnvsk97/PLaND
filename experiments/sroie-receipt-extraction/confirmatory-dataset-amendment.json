@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "amendment_timing": "post_validation_pre_test",
+  "reason": "A strengthened audit found three official-test images that were exact byte duplicates of images in the earlier pilot under different source identifiers.",
+  "action": "The three duplicate test images were removed before any confirmatory test release. The corrected preparation was generated twice from one pinned source snapshot and passed all integrity and repeatability checks.",
+  "validation_result_status": "retained",
+  "validation_equivalence": {
+    "cases": 100,
+    "pre_audit_evals_sha256": "39e62b840581883b710e3cf0f280fe8e183d3102f9c6106bc281a7093abefd05",
+    "corrected_evals_sha256": "0e1970fbf718243c22362ccfb2bec519ebd0ff275e581830f05ecf12662e8eab",
+    "validation_rows_cases_and_images_manifest_sha256": "7075e521c8ab8983699b1920c16068737d187fb94b95dbe87ef074e7377b9f86",
+    "byte_identical": true,
+    "note": "Only the unreleased test membership changed; every validation CSV row, case JSON file, and image byte remained identical."
+  },
+  "test_correction": {
+    "before": 303,
+    "after": 300,
+    "removed_exact_pilot_image_duplicates": 3,
+    "test_was_run_before_correction": false
+  },
+  "corrected_proof": "confirmatory-dataset-proof.json"
+}

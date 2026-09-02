@@ -2,8 +2,17 @@
 name = "pland-sroie-experiment"
 version = "0.1.0"
 requires-python = ">=3.11"
-dependencies = []
+dependencies = [
+  "liteparse==2.14.3",
+]
+
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = []
 
 [tool.pland]
 paid-services = false
-local-runtime = ["ollama", "tesseract"]
+local-runtime = ["ollama", "liteparse"]

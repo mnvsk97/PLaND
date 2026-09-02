@@ -22,6 +22,20 @@ def load(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def evaluation_fingerprint(run: dict[str, Any]) -> str | None:
+    invariants = run.get("invariants", {})
+    values = {
+        value
+        for value in (
+            invariants.get("evaluation_sha256"),
+            invariants.get("evals_sha256"),
+            run.get("evals_sha256"),
+        )
+        if value
+    }
+    return next(iter(values)) if len(values) == 1 else None
+
+
 def metrics(run: dict[str, Any]) -> dict[str, Any]:
     summary = run["summary"]
     latency = summary["latency_seconds"]
@@ -43,7 +57,7 @@ def metrics(run: dict[str, Any]) -> dict[str, Any]:
 
 def compare(natural: dict[str, Any], hybrid: dict[str, Any]) -> dict[str, Any]:
     mismatches = []
-    for field in ("model", "model_digest", "seed", "evals", "evals_sha256", "split"):
+    for field in ("model", "model_digest", "seed", "evals", "split"):
         if natural.get(field) != hybrid.get(field):
             mismatches.append(field)
     if mismatches:
@@ -52,7 +66,6 @@ def compare(natural: dict[str, Any], hybrid: dict[str, Any]) -> dict[str, Any]:
         "system_prompt_sha256",
         "agent_harness_sha256",
         "datasource_snapshot_sha256",
-        "evaluation_sha256",
         "scorer_sha256",
     )
     natural_invariants = natural.get("invariants", {})
@@ -65,6 +78,10 @@ def compare(natural: dict[str, Any], hybrid: dict[str, Any]) -> dict[str, Any]:
     ]
     if frozen_mismatches:
         raise ValueError("incomparable frozen invariants: " + ", ".join(frozen_mismatches))
+    natural_evaluation = evaluation_fingerprint(natural)
+    hybrid_evaluation = evaluation_fingerprint(hybrid)
+    if not natural_evaluation or natural_evaluation != hybrid_evaluation:
+        raise ValueError("incomparable frozen invariants: evaluation_sha256")
     if "sop" not in natural or "sop" not in hybrid:
         raise ValueError("both runs must contain an SOP snapshot")
     natural_steps = natural["sop"]["step_representations"]

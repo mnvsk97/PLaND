@@ -37,12 +37,39 @@ Across all 20 end-to-end cases, Tesseract WER was 0.871 and NL field F1 was only
 separately: OCR dominates the deployable pipeline on these low-resolution
 images.
 
+## LiteParse replication
+
+A separate replication used local LiteParse 2.14.3 with its bundled Tesseract
+OCR, English language data, 300 DPI, and two workers. It used the same 20
+receipts, model digest, seed, system prompt, SOPs, expected outputs, scorer, and
+execution permissions. The original Tesseract result files were not replaced;
+the LiteParse traces and metrics are stored under `results/liteparse/`.
+
+| OCR mode | SOP | All-case field F1 | Document exact | Tokens | Mean total latency | OCR WER |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| LiteParse end to end | NL baseline | 0.309 | 5% | 9,889 | 2.68 s | 0.715 |
+| LiteParse end to end | Hybrid candidate 002 | 0.297 | 5% | 8,696 | 2.57 s | 0.715 |
+
+Compared with the earlier direct-Tesseract NL run, LiteParse reduced OCR WER
+from 0.871 to 0.715 and raised all-case field F1 from 0.200 to 0.309. The
+LiteParse hybrid used 12.06% fewer tokens and had 4.31% lower mean total
+latency than the LiteParse NL baseline. On validation, however, the NL baseline
+field F1 was only 0.170, below the predeclared minimum viable value of 0.50.
+The hybrid validation field F1 was 0.173. It preserved relative quality and
+reduced validation tokens from 2,056 to 1,820, but the assessment correctly
+rejects the result as **not optimizable** because the baseline is not viable.
+
+This result proves that LiteParse can process the SROIE images and can improve
+the OCR signal without a paid service. It does not establish that the resulting
+end-to-end receipt extractor is accurate enough for deployment or SOP
+optimization.
+
 ## Relation to the existing Tobacco/RVL robustness experiment
 
 The existing 32-document RVL-CDIP/Tobacco-style run also used frozen local
 Tesseract OCR. Its strongest hybrid improved validation accuracy from 81.25%
 to 87.50%, reduced tokens by 34.36%, and reduced mean latency by 29.17%, but was
-rejected against its preregistered 90% accuracy floor. Both multimodal studies
+rejected against its predeclared 90% accuracy floor. Both multimodal studies
 therefore report useful efficiency signals but **no accepted hybrid**. SROIE
 additionally shows why OCR quality must be isolated before attributing changes
 to SOP evolution.

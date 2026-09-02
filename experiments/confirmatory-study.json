@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "protocol": "CONFIRMATORY_PROTOCOL.md",
+  "created_before_held_out_evaluation": true,
+  "model": "qwen3:14b",
+  "model_digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+  "seed": 20260902,
+  "maximum_iterations": 10,
+  "classification_accuracy_floor": 0.8,
+  "extraction_field_f1_floor": 0.5,
+  "noninferiority_margin": 0.02,
+  "minimum_token_reduction": 0.05,
+  "bootstrap_samples": 5000,
+  "bootstrap_seed": 20260902,
+  "classification_splits": {
+    "development": 100,
+    "validation": 100,
+    "test": 1000
+  },
+  "sroie_splits": {
+    "development": 100,
+    "validation": 100,
+    "test": 300,
+    "test_note": "Post-validation, pre-release audit amendment: all untouched official-test receipts after excluding prior-pilot IDs, three cross-ID pilot-image duplicates, and exact within-selection duplicates. Validation inputs remained byte-identical."
+  },
+  "rvl_cdip_mirror_splits": {
+    "development": 100,
+    "validation": 100,
+    "test": 369,
+    "test_note": "All usable untouched official-test images in the pinned 100-per-class mirror; 1,000 would require a multi-gigabyte full-dataset source."
+  },
+  "test_release_rule": "Run once only after frozen-invariant, relative-quality, token, and absolute-viability validation gates pass."
+}

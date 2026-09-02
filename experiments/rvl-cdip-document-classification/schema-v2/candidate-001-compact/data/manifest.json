@@ -2,12 +2,12 @@
   "schema_version": 1,
   "workflow": "document-classification",
   "requirements": {
-    "path": "/Users/saikrishna/dev/deterministic-skills/experiments/rvl-cdip-document-classification/requirements.md",
+    "path": "experiments/rvl-cdip-document-classification/requirements.md",
     "sha256": "7b0cb7e8a30b8e3122808cbc3f3b884066a76fa3c44d6d06dc533356d1436f32"
   },
   "guidance": null,
   "model_provider": "ollama",
-  "datasource_root": "/Users/saikrishna/dev/deterministic-skills/tmp/rvl-cdip-subset/documents",
+  "datasource_root": "tmp/rvl-cdip-subset/documents",
   "sources": [
     {
       "path": "advertisement/test-121.txt",

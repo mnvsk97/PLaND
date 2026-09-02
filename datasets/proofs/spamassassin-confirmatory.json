@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "dataset": "Apache SpamAssassin public mail corpus",
+  "counts": {
+    "total": 1200,
+    "by_split": {
+      "development": 100,
+      "test": 1000,
+      "validation": 100
+    },
+    "by_split_and_label": {
+      "development": {
+        "ham": 50,
+        "spam": 50
+      },
+      "test": {
+        "ham": 500,
+        "spam": 500
+      },
+      "validation": {
+        "ham": 50,
+        "spam": 50
+      }
+    }
+  },
+  "checks": {
+    "unique_ids": true,
+    "split_id_overlap_count": 0,
+    "content_duplicate_count": 0,
+    "runtime_label_leakage_count": 0,
+    "missing_case_count": 0,
+    "balanced_within_each_split": {
+      "development": true,
+      "test": true,
+      "validation": true
+    },
+    "selection_manifest_matches_evals": true,
+    "source_hashes_match": true,
+    "source_split_integrity": true,
+    "pilot_overlap_count": 0,
+    "exclusion_manifest_matches_pilot": true
+  },
+  "hashes": {
+    "evals_sha256": "702d52186d9cc73ea36589dd93bbb4e499f4aa630ead00abcb777e3c37fe0202",
+    "selection_sha256": "1d05472325e48b574b9d1c8d9e2233e5976bbbe08ce58822d7d12736481b91bb",
+    "case_manifest_sha256": "1a1c8e55d651a0bfbc7356529e9ccd8d22862b3d4dbfee27df2ac9b98a322f6a"
+  },
+  "sources": [
+    {
+      "path": "20030228_easy_ham.tar.bz2",
+      "sha256": "2b7b65904bcfcc31d2b5f51946f2d261370b257402cbbd62930b46ab83367438",
+      "bytes": 1612216
+    },
+    {
+      "path": "20030228_hard_ham.tar.bz2",
+      "sha256": "ce2ce67880643dbde65ea7f85bffbfe4417349c4bd80b6b0de56262ae6b0a9c9",
+      "bytes": 1029898
+    },
+    {
+      "path": "20030228_spam.tar.bz2",
+      "sha256": "c08debc32413804949a866be45ef78195cec2cbafd1da744ed76cdb860589743",
+      "bytes": 1183768
+    },
+    {
+      "path": "20030228_spam_2.tar.bz2",
+      "sha256": "40bc444c596ff3e71505ae334f115b16f9b946786ee68f09b921b6b99217fd00",
+      "bytes": 2059563
+    }
+  ],
+  "source_verification": [
+    {
+      "path": "20030228_easy_ham.tar.bz2",
+      "exists": true,
+      "sha256_match": true
+    },
+    {
+      "path": "20030228_hard_ham.tar.bz2",
+      "exists": true,
+      "sha256_match": true
+    },
+    {
+      "path": "20030228_spam.tar.bz2",
+      "exists": true,
+      "sha256_match": true
+    },
+    {
+      "path": "20030228_spam_2.tar.bz2",
+      "exists": true,
+      "sha256_match": true
+    }
+  ],
+  "eligible_unique_by_label": {
+    "ham": 2742,
+    "spam": 1889
+  },
+  "requested_split_counts": {
+    "development": 100,
+    "validation": 100,
+    "test": 1000
+  },
+  "source_split_mapping": null,
+  "eligible_unique_by_label_and_source_split": null,
+  "exclusion_manifest": [
+    {
+      "path": "tmp/paper-datasets/spamassassin",
+      "evals_sha256": "80a3f4c539f188823ca7f8532125079e0400a11fa16b1c6d6d504c4d78414c37",
+      "cases": 20,
+      "case_manifest_sha256": "eb83c516b72b73816daf669f366ebd801f935bd3037a363f41732dcaeec5d0ab"
+    }
+  ],
+  "failures": {
+    "overlaps": {
+      "development:test": [],
+      "development:validation": [],
+      "test:validation": []
+    },
+    "duplicates": {},
+    "leakage_ids": [],
+    "missing": []
+  },
+  "passed": true,
+  "repeatability": {
+    "evals_sha256_match": true,
+    "selection_sha256_match": true,
+    "case_manifest_sha256_match": true
+  }
+}

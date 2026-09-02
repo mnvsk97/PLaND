@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "dataset": "mp-02/sroie",
+  "counts": {
+    "total": 500,
+    "by_split": {
+      "test": 300,
+      "development": 100,
+      "validation": 100
+    },
+    "official_source": {
+      "train": 626,
+      "test": 347
+    }
+  },
+  "balance": "not applicable; SROIE is structured extraction without class labels",
+  "checks": {
+    "unique_ids": true,
+    "split_overlap_count": 0,
+    "missing_files": 0,
+    "image_hash_errors": 0,
+    "runtime_expected_output_leakage": 0,
+    "official_boundary_errors": 0,
+    "source_split_integrity": true,
+    "pilot_overlap_count": 0,
+    "pilot_image_overlap_count": 0,
+    "selection_manifest_matches_evals": true,
+    "source_snapshot_verified": true,
+    "duplicate_image_groups": 0,
+    "duplicate_frozen_ocr_groups": 0,
+    "repeatability": {
+      "evals": true,
+      "selection": true,
+      "summary": true,
+      "cases": true,
+      "images": true
+    }
+  },
+  "passed": true,
+  "hashes": {
+    "evals_sha256": "0e1970fbf718243c22362ccfb2bec519ebd0ff275e581830f05ecf12662e8eab",
+    "selection_sha256": "32ccafb72fc9d177000f38945e742feb060d69c55cdf95ad5119cbdb994e1e99",
+    "source_snapshot_sha256": "c6c85028bc48c8e80a741364c0a12f0d5738b41229087687f722374991365267",
+    "case_manifest_sha256": "c257b5fb788e11f2ea2ec9335dc8abdf83896218b6041751487e4139b6fcd003",
+    "image_manifest_sha256": "8597f1f521d1357ecbe96fdb59bb66302fa35aec23a0a8750a00d5efdfb6e9ea"
+  },
+  "selection": {
+    "seed": 20260902,
+    "rule": "deduplicate exact images; reserve official test; lowest seeded unique train hashes for development then validation",
+    "requested_counts": {
+      "development": 100,
+      "validation": 100,
+      "test": 347
+    }
+  },
+  "exclusions": {
+    "prior_pilot": 100,
+    "prior_pilot_content": 3,
+    "duplicate_image": 4
+  },
+  "failures": {
+    "missing": [],
+    "hash_errors": [],
+    "leakage": [],
+    "boundary_errors": [],
+    "pilot_overlap_ids": [],
+    "pilot_image_overlap_ids": []
+  }
+}

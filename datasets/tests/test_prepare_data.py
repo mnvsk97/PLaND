@@ -46,6 +46,17 @@ class PrepareDataTests(unittest.TestCase):
         self.assertEqual(MODULE.sroie_source_id(fixture_rows[1]), "test:0")
         self.assertNotEqual(*(MODULE.sroie_source_id(row) for row in fixture_rows))
 
+    def test_sroie_selection_preserves_official_boundaries_and_is_repeatable(self):
+        train = [{"row_idx": index, "upstream_split": "train"} for index in range(8)]
+        test = [{"row_idx": index, "upstream_split": "test"} for index in range(5)]
+        first = MODULE.select_sroie_splits(train, test, 7, 3, 2, 5)
+        second = MODULE.select_sroie_splits(list(reversed(train)), list(reversed(test)), 7, 3, 2, 5)
+        self.assertEqual(first, second)
+        self.assertTrue(all(item["upstream_split"] == "train" for item in first["development"] + first["validation"]))
+        self.assertTrue(all(item["upstream_split"] == "test" for item in first["test"]))
+        self.assertFalse({MODULE.sroie_source_id(item) for item in first["development"]} &
+                         {MODULE.sroie_source_id(item) for item in first["validation"]})
+
     def test_balanced_selection_is_order_independent(self):
         records = [
             {"id": f"{label}-{index}", "label": label}
@@ -58,37 +69,65 @@ class PrepareDataTests(unittest.TestCase):
         self.assertEqual(dict(__import__("collections").Counter(split for split, _ in first)),
                          {"development": 12, "validation": 3, "test": 3})
 
-    def test_tau_fixture_emits_canonical_schema_without_leaking_evals(self):
-        with tempfile.TemporaryDirectory() as temporary:
-            base = Path(temporary)
-            tasks = []
-            for index in range(10):
-                tasks.append({
-                    "id": str(index), "user_scenario": {"request": f"request {index}"},
-                    "initial_state": None,
-                    "evaluation_criteria": {"actions": [{"name": "lookup"}], "reward_basis": ["DB"]},
-                })
-            source = base / "tasks.json"
-            source.write_text(json.dumps(tasks), encoding="utf-8")
-            policy = base / "policy.md"
-            policy.write_text("Public retail policy.\n", encoding="utf-8")
-            output = base / "prepared"
-            args = SimpleNamespace(source=source, policy_source=policy, cases=10, seed=17)
-            output.mkdir()
-            MODULE.prepare_tau(args, output)
-            with (output / "evals.csv").open(newline="", encoding="utf-8") as handle:
-                rows = list(csv.DictReader(handle))
-            self.assertEqual(list(rows[0]), MODULE.EVAL_FIELDS)
-            self.assertEqual(len(rows), 10)
-            case = json.loads((output / rows[0]["input"]).read_text(encoding="utf-8"))
-            self.assertNotIn("evaluation_criteria", case)
-            self.assertIn("actions", json.loads(rows[0]["output"]))
-            self.assertEqual(json.loads((output / "dataset-summary.json").read_text())["by_split"],
-                             {"development": 6, "validation": 2, "test": 2})
-
     def test_case_count_must_balance_across_classes(self):
         with self.assertRaisesRegex(ValueError, "divisible"):
             MODULE.balanced_allocation(19, 3)
+
+    def test_confirmatory_split_counts_balance_each_class(self):
+        records = [
+            {"id": f"{label}-{index}", "label": label}
+            for label in ("a", "b") for index in range(600)
+        ]
+        selected, _ = MODULE.choose_balanced(
+            records, "label", "id", 1200, 2, 7,
+            {"development": 100, "validation": 100, "test": 1000},
+        )
+        counts = __import__("collections").Counter(
+            (split, row["label"]) for split, row in selected
+        )
+        self.assertEqual(counts[("development", "a")], 50)
+        self.assertEqual(counts[("validation", "b")], 50)
+        self.assertEqual(counts[("test", "a")], 500)
+
+    def test_text_deduplication_is_global_and_order_independent(self):
+        records = [
+            {"id": "b", "text": " Same   text ", "label": "x"},
+            {"id": "a", "text": "same text", "label": "x"},
+            {"id": "c", "text": "different", "label": "y"},
+        ]
+        first = MODULE.deduplicate_text(records, "text", "id")
+        second = MODULE.deduplicate_text(reversed(records), "text", "id")
+        self.assertEqual(sorted(row["id"] for row in first), ["a", "c"])
+        self.assertEqual(sorted(row["id"] for row in first), sorted(row["id"] for row in second))
+
+    def test_official_split_selection_preserves_boundaries(self):
+        records = [
+            {"id": f"{source}-{label}-{index}", "label": label, "upstream_split": source}
+            for source in ("train", "validation", "test")
+            for label in ("a", "b") for index in range(10)
+        ]
+        selected, _ = MODULE.choose_balanced_official_splits(
+            records, "label", "id", "upstream_split",
+            {"development": 4, "validation": 4, "test": 8}, 2, 7,
+            {"development": "train", "validation": "validation", "test": "test"},
+        )
+        mapping = {"development": "train", "validation": "validation", "test": "test"}
+        self.assertTrue(all(row["upstream_split"] == mapping[split] for split, row in selected))
+
+    def test_excluded_dataset_removes_ids_and_normalized_content(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary); (root / "data/cases").mkdir(parents=True)
+            (root / "data/cases/a.json").write_text(json.dumps({"text": "Pilot text"}))
+            with (root / "evals.csv").open("w", newline="") as handle:
+                writer = csv.DictWriter(handle, fieldnames=MODULE.EVAL_FIELDS); writer.writeheader()
+                writer.writerow({"schema_version":"2","id":"pilot-a","benchmark":"x",
+                                 "task_type":"text_classification","split":"test",
+                                 "input":"data/cases/a.json","output":"{}","reasoning":"","metadata":"{}"})
+            records = [{"id":"new-id","text":" pilot   TEXT ","label":"x"},
+                       {"id":"safe","text":"different","label":"x"}]
+            kept, manifest = MODULE.exclude_records(records, "text", "id", [root])
+            self.assertEqual([row["id"] for row in kept], ["safe"])
+            self.assertEqual(manifest[0]["cases"], 1)
 
     def test_cfpb_api_snapshot_is_read_as_canonical_rows(self):
         with tempfile.TemporaryDirectory() as temporary:
@@ -101,6 +140,14 @@ class PrepareDataTests(unittest.TestCase):
                 "Consumer complaint narrative": "I was charged twice.",
                 "Product": "Credit card", "Complaint ID": "123", "Issue": "Incorrect fee",
             }])
+
+    def test_cfpb_product_snapshot_is_read_as_canonical_rows(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            source = Path(temporary) / "complaints-api.json"
+            hit = {"_source": {"complaint_id": "321", "product": "Mortgage",
+                               "issue": "Payment", "complaint_what_happened": "Payment failed."}}
+            source.write_text(json.dumps({"by_product": {"Mortgage": {"hits": {"hits": [hit]}}}}))
+            self.assertEqual(next(iter(MODULE.iter_cfpb(source)))["Complaint ID"], "321")
 
 
 if __name__ == "__main__":

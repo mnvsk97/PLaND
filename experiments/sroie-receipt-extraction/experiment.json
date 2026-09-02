@@ -8,6 +8,13 @@
   "quality_floor": "baseline_validation_field_f1",
   "minimum_viable_baseline_field_f1": 0.5,
   "estimated_model_cost_usd": 0.0,
+  "ocr": {
+    "backend": "liteparse",
+    "version": "2.14.3",
+    "language": "eng",
+    "dpi": 300,
+    "workers": 2
+  },
   "execution_permissions": {
     "network": "localhost_only_during_runs",
     "filesystem": "dataset_read_only_and_result_write",

@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-09-02",
+  "host": {
+    "model_family": "MacBook Pro",
+    "chip": "Apple M5 Pro",
+    "cpu_cores": 18,
+    "memory_gib": 48
+  },
+  "runtime": {
+    "ollama_version": "0.33.0",
+    "model": "qwen3:14b",
+    "model_digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+    "tesseract_version": "5.5.3",
+    "liteparse_version": "2.14.3"
+  },
+  "privacy_note": "Device serial numbers and machine-specific identifiers are intentionally excluded."
+}

@@ -70,6 +70,20 @@ class CompareVariantsTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "system_prompt"):
             MODULE.compare(natural, hybrid)
 
+    def test_accepts_evaluation_hash_aliases(self):
+        natural = run(0, 0.9, 200, 2.0)
+        hybrid = run(1, 1.0, 100, 1.5)
+        natural["invariants"]["evals_sha256"] = natural["invariants"].pop("evaluation_sha256")
+        result = MODULE.compare(natural, hybrid)
+        self.assertEqual(result["delta_hybrid_minus_natural_language"]["total_tokens"], -100)
+
+    def test_rejects_conflicting_evaluation_hash_aliases(self):
+        natural = run(0, 0.9, 200, 2.0)
+        hybrid = run(1, 1.0, 100, 1.5)
+        hybrid["invariants"]["evals_sha256"] = "different"
+        with self.assertRaisesRegex(ValueError, "evaluation_sha256"):
+            MODULE.compare(natural, hybrid)
+
 
 if __name__ == "__main__":
     unittest.main()

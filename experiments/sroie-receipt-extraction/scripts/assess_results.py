@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Apply the preregistered quality and expense gates to completed runs."""
+"""Apply the prespecified local quality and expense gates to completed runs."""
 
 from __future__ import annotations
 

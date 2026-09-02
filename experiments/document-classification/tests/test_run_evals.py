@@ -1,4 +1,6 @@
+import argparse
 import importlib.util
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -18,6 +20,18 @@ class RunEvalsTests(unittest.TestCase):
         self.assertEqual(MODULE.parse_prediction('{"label":"presentation","confidence":0.8}', labels), ("presentation", 0.8, None))
         self.assertEqual(MODULE.parse_prediction('{"label":"other","confidence":0.8}', labels)[2], "invalid_label")
         self.assertEqual(MODULE.parse_prediction("email", labels)[2], "invalid_json")
+
+    def test_redact_trace_keeps_final_prediction_and_usage(self):
+        trace = [
+            {"content": "private document text", "usage": {"input_tokens": 3}, "tool_calls": []},
+            {"content": '{"label":"email","confidence":0.8}', "usage": {"output_tokens": 2}},
+        ]
+        result = MODULE.redact_trace(trace)
+        self.assertIsNone(result[0]["content"])
+        self.assertTrue(result[0]["content_redacted"])
+        self.assertEqual(result[0]["content_chars"], len("private document text"))
+        self.assertEqual(result[0]["usage"], {"input_tokens": 3})
+        self.assertEqual(result[-1]["content"], trace[-1]["content"])
 
     def test_aggregate(self):
         cases = [
@@ -81,6 +95,104 @@ class RunEvalsTests(unittest.TestCase):
             self.assertNotEqual(
                 first_invariants["agent_harness_sha256"], changed["agent_harness_sha256"]
             )
+
+    def test_effective_manifest_uses_external_content_hashes_and_stages_copy(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            agent = root / "source-agent"
+            (agent / "data").mkdir(parents=True)
+            (agent / "data" / "manifest.json").write_text(
+                '{"schema_version":1,"workflow":"test","datasource_root":"old","sources":[]}',
+                encoding="utf-8",
+            )
+            (agent / "agent.py").write_text("VALUE = 1\n", encoding="utf-8")
+            data = root / "dataset" / "documents"
+            data.mkdir(parents=True)
+            (data / "case.txt").write_text("confirmatory", encoding="utf-8")
+            rows = [{"input": "documents/case.txt"}]
+
+            manifest = MODULE.build_effective_manifest(agent, data, rows)
+            self.assertEqual(manifest["datasource_root"], data.resolve().as_posix())
+            self.assertEqual(manifest["sources"][0]["path"], "case.txt")
+            self.assertEqual(len(manifest["sources"][0]["sha256"]), 64)
+
+            staged = MODULE.stage_agent(agent, manifest, root / "staging")
+            staged_manifest = json.loads(
+                (staged / "data" / "manifest.json").read_text(encoding="utf-8")
+            )
+            self.assertEqual(staged_manifest, manifest)
+            self.assertEqual(
+                json.loads((agent / "data" / "manifest.json").read_text(encoding="utf-8"))[
+                    "datasource_root"
+                ],
+                "old",
+            )
+
+    def test_effective_manifest_rejects_path_escape(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            agent = root / "agent"
+            (agent / "data").mkdir(parents=True)
+            (agent / "data" / "manifest.json").write_text(
+                '{"schema_version":1,"sources":[]}', encoding="utf-8"
+            )
+            data = root / "dataset"
+            data.mkdir()
+            with self.assertRaisesRegex(ValueError, "unsafe datasource path"):
+                MODULE.build_effective_manifest(
+                    agent, data, [{"input": "documents/../secret.txt"}]
+                )
+
+    def test_resume_requires_same_contract_and_ordered_prefix(self):
+        expected = {
+            "agent": "agent",
+            "evals": "evals.csv",
+            "evals_sha256": "eval-hash",
+            "datasource_root": "/dataset",
+            "split": "test",
+            "model": "qwen3:14b",
+            "model_digest": "model-hash",
+            "seed": 42,
+            "invariants": {
+                "system_prompt_sha256": "prompt",
+                "agent_harness_sha256": "harness",
+                "datasource_snapshot_sha256": "data",
+                "evaluation_sha256": "eval-hash",
+                "scorer_sha256": "scorer",
+            },
+            "sop": {"sha256": "sop"},
+        }
+        previous = {**expected, "cases": [{"id": "a"}]}
+        self.assertEqual(MODULE.validate_resume(previous, expected, ["a", "b"]), previous["cases"])
+        previous["seed"] = 7
+        with self.assertRaisesRegex(ValueError, "seed"):
+            MODULE.validate_resume(previous, expected, ["a", "b"])
+
+    def test_run_payload_marks_partial_or_complete(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            evals = root / "evals.csv"
+            evals.write_text("id,input,output,reasoning,split\n", encoding="utf-8")
+            args = argparse.Namespace(
+                agent=Path("agent"),
+                evals=evals,
+                datasource_root=root,
+                split="validation",
+                model="qwen3:14b",
+                seed=42,
+            )
+            value = MODULE.run_payload(
+                args=args,
+                created_at="now",
+                model_digest="digest",
+                system_prompt={},
+                invariants={},
+                sop={},
+                cases=[],
+                complete=False,
+            )
+            self.assertFalse(value["complete"])
+            self.assertEqual(value["summary"]["cases"], 0)
 
 
 if __name__ == "__main__":

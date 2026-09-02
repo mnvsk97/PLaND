@@ -1,6 +1,6 @@
 ---
 name: generate-initial-version
-description: Generate the first runnable LangChain DeepAgent from requirements, datasource files, and optional generation guidance. Use when starting a PLaND workflow before evaluation or SOP evolution.
+description: Generate the first runnable LangChain DeepAgent from requirements, datasource files, an eval CSV, and optional generation guidance. Use when starting a PLaND workflow before evaluation or SOP evolution.
 metadata:
   project: pland
   version: "0.1.0"
@@ -12,7 +12,7 @@ Create a minimal DeepAgent with exactly one workflow-named SOP skill. Optimize t
 
 ## Generate
 
-Require a requirements file, datasource directory, workflow name, and output directory. Optional generation guidance may specify constraints that are not present in the requirements.
+Require a requirements file, datasource directory, eval CSV, workflow name, and output directory. The CSV must contain `id`, `input`, and JSON-encoded `output` columns; `split`, `reasoning`, and `metadata` may also be present. Optional generation guidance may specify constraints that are not present in the requirements.
 
 Resolve the script relative to this skill directory and run:
 
@@ -21,12 +21,13 @@ python3 scripts/generate.py \
   --workflow <workflow-name> \
   --requirements <requirements-file> \
   --sources <datasource-directory> \
+  --evals <evals.csv> \
   --output <agent-directory> \
   [--model-provider generic|ollama] \
   [--guidance <generation-guidance-file>]
 ```
 
-Then read the requirements, datasource manifest, and guidance. Replace the generated SOP's initial ordered steps with the shortest sufficient workflow. Each step must state one observable action or decision. Keep semantic judgment in English; references and command steps are introduced only when they reduce context or bypass model reasoning without changing behavior.
+The local generator derives the initial SOP from the concise requirement, datasource file types, and eval output schema. For classification it records the known label vocabulary; for structured output it records required keys and value types. It never copies per-case IDs, answers, or reasoning into the agent. Then read the requirements, datasource manifest, eval profile, and guidance and shorten or clarify the generated steps when necessary. Each step must state one observable action or decision. Keep semantic judgment in English; references and command steps are introduced only when they reduce context or bypass model reasoning without changing behavior.
 
 ## Generated contract
 
@@ -37,6 +38,7 @@ The project contains:
 - `skills/<workflow-name>/SKILL.md` as the only agent skill;
 - `tools/datasources.py` as a local deterministic tool;
 - `data/manifest.json` with source paths and hashes;
+- `data/eval-profile.json` with task structure but no case-level answers;
 - `pyproject.toml` with open-source runtime dependencies.
 
 `instructions.md` is the generated system prompt. Finalize it before baseline measurement; after the baseline begins, PLaND treats its exact content and SHA-256 hash as frozen experiment invariants.

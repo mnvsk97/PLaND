@@ -81,6 +81,13 @@ def macro_f1(cases: list[dict[str, Any]], labels: list[str]) -> float:
     return statistics.fmean(scores)
 
 
+def write_json_atomic(path: Path, payload: dict[str, Any]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_suffix(path.suffix + ".tmp")
+    temporary.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+    temporary.replace(path)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--dataset", required=True, type=Path)
@@ -91,20 +98,51 @@ def main() -> int:
     parser.add_argument("--model", default="qwen3:14b")
     parser.add_argument("--seed", type=int, default=20260902)
     parser.add_argument("--output", required=True, type=Path)
+    parser.add_argument("--resume", action="store_true",
+                        help="Resume from OUTPUT.partial.json when present")
+    parser.add_argument("--checkpoint-every", type=int, default=10)
+    parser.add_argument("--limit", type=int,
+                        help="Run only the first N selected cases for a smoke test")
     args = parser.parse_args()
     if args.output.exists():
         raise SystemExit(f"output exists: {args.output}")
+    if args.checkpoint_every < 1:
+        raise SystemExit("--checkpoint-every must be positive")
 
     with (args.dataset / "evals.csv").open(encoding="utf-8", newline="") as handle:
         all_rows = list(csv.DictReader(handle))
     rows = [row for row in all_rows if row["split"] == args.split]
+    if args.limit is not None:
+        if args.limit < 1:
+            raise SystemExit("--limit must be positive")
+        rows = rows[:args.limit]
     labels = sorted({json.loads(row["output"])["label"] for row in all_rows})
     system = args.system_prompt.read_text(encoding="utf-8")
     sop = args.sop.read_text(encoding="utf-8")
     classifier = load_classifier(args.classifier)
-    cases = []
+    partial_path = args.output.with_suffix(args.output.suffix + ".partial.json")
+    cases: list[dict[str, Any]] = []
+    if args.resume and partial_path.exists():
+        partial = json.loads(partial_path.read_text(encoding="utf-8"))
+        expected_resume = {
+            "dataset": str(args.dataset.resolve()),
+            "split": args.split,
+            "model": args.model,
+            "seed": args.seed,
+            "system_prompt_sha256": digest(args.system_prompt),
+            "sop_sha256": digest(args.sop),
+            "evals_sha256": digest(args.dataset / "evals.csv"),
+            "selection_sha256": digest(args.dataset / "selection.json"),
+            "classifier_sha256": digest(args.classifier) if args.classifier else None,
+        }
+        if partial.get("resume_contract") != expected_resume:
+            raise SystemExit("partial checkpoint does not match the requested run")
+        cases = partial.get("cases", [])
+    completed_ids = {case["id"] for case in cases}
     started_run = time.perf_counter()
     for row in rows:
+        if row["id"] in completed_ids:
+            continue
         payload = json.loads((args.dataset / row["input"]).read_text(encoding="utf-8"))
         text = payload.get("text") or payload.get("narrative") or payload.get("raw_email")
         if not isinstance(text, str) or not text.strip():
@@ -144,6 +182,22 @@ def main() -> int:
             "ollama_eval_ns": raw.get("eval_duration", 0),
         })
         print(json.dumps({"id": row["id"], "correct": actual == expected, "source": source}))
+        if len(cases) % args.checkpoint_every == 0:
+            write_json_atomic(partial_path, {
+                "schema_version": 1,
+                "resume_contract": {
+                    "dataset": str(args.dataset.resolve()),
+                    "split": args.split,
+                    "model": args.model,
+                    "seed": args.seed,
+                    "system_prompt_sha256": digest(args.system_prompt),
+                    "sop_sha256": digest(args.sop),
+                    "evals_sha256": digest(args.dataset / "evals.csv"),
+                    "selection_sha256": digest(args.dataset / "selection.json"),
+                    "classifier_sha256": digest(args.classifier) if args.classifier else None,
+                },
+                "cases": cases,
+            })
 
     latencies = [case["latency_seconds"] for case in cases]
     correct = sum(case["correct"] for case in cases)
@@ -177,8 +231,8 @@ def main() -> int:
         },
         "cases": cases,
     }
-    args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+    write_json_atomic(args.output, payload)
+    partial_path.unlink(missing_ok=True)
     print(json.dumps(payload["summary"], sort_keys=True))
     return 0
 

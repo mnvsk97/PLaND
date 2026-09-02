@@ -1,0 +1,105 @@
+{
+  "schema_version": 2,
+  "natural_language": {
+    "cases": 100,
+    "correct": 92,
+    "accuracy": 0.92,
+    "macro_f1": 0.9170927318295738,
+    "input_tokens": 35698,
+    "output_tokens": 1449,
+    "total_tokens": 37147,
+    "estimated_model_cost_usd": 0.0,
+    "model_calls": 100,
+    "command_calls": 0,
+    "latency_seconds": {
+      "total": 72.40057204696495,
+      "mean": 0.7240057204696495
+    },
+    "wall_seconds": 72.42163041599997,
+    "max_rss_bytes": 35913728
+  },
+  "hybrid": {
+    "cases": 100,
+    "correct": 93,
+    "accuracy": 0.93,
+    "macro_f1": 0.925689223057644,
+    "input_tokens": 20292,
+    "output_tokens": 812,
+    "total_tokens": 21104,
+    "estimated_model_cost_usd": 0.0,
+    "model_calls": 57,
+    "command_calls": 43,
+    "latency_seconds": {
+      "total": 41.1553632529758,
+      "mean": 0.411553632529758
+    },
+    "wall_seconds": 41.17592920899915,
+    "max_rss_bytes": 36257792
+  },
+  "delta_hybrid_minus_nl": {
+    "accuracy": 0.010000000000000009,
+    "macro_f1": 0.008596491228070158,
+    "total_tokens": -16043,
+    "token_reduction_fraction": 0.43187875198535547,
+    "mean_latency_seconds": -0.3124520879398915,
+    "model_calls": -43
+  },
+  "paired_statistics": {
+    "cases": 100,
+    "correctness_table": {
+      "both_correct": 91,
+      "natural_language_only": 1,
+      "hybrid_only": 2,
+      "both_wrong": 6
+    },
+    "natural_language_accuracy_wilson_95": [
+      0.8500189229905127,
+      0.9589065385156194
+    ],
+    "hybrid_accuracy_wilson_95": [
+      0.8625048526092651,
+      0.9656807389327273
+    ],
+    "accuracy_difference_bootstrap_95": [
+      -0.02,
+      0.05
+    ],
+    "token_reduction_bootstrap_95": [
+      0.3361475637444403,
+      0.5335307452994369
+    ],
+    "mcnemar_exact_p": 1.0,
+    "bootstrap_samples": 5000,
+    "bootstrap_seed": 20260902
+  },
+  "mechanism_decomposition": {
+    "command_routed_cases": 43,
+    "model_fallback_cases": 57,
+    "natural_language_tokens_on_command_routed_cases": 15644,
+    "hybrid_tokens_on_command_routed_cases": 0,
+    "natural_language_tokens_on_model_fallback_cases": 21503,
+    "hybrid_tokens_on_model_fallback_cases": 21104,
+    "tokens_saved_total": 16043,
+    "tokens_saved_by_bypassing_model_calls": 15644,
+    "tokens_saved_on_model_fallback_cases": 399,
+    "command_routed_hybrid_accuracy": 0.9767441860465116,
+    "natural_language_accuracy_on_same_command_routed_cases": 0.9767441860465116
+  },
+  "gate": {
+    "noninferiority_margin": 0.02,
+    "minimum_token_reduction": 0.05,
+    "minimum_accuracy": 0.8,
+    "quality_noninferior": true,
+    "token_objective_met": true,
+    "absolute_viability": true,
+    "relative_pass": true,
+    "test_release_pass": true
+  },
+  "invariants": {
+    "system_prompt_sha256": "928fd5136d76264ff1e8018dbc1806230d2c98a5d552bd0f91dff608e6fafdd1",
+    "evals_sha256": "e3cebc95e61c0fb7feb799ef99f15ee78e8dc9113cf0efa38f1b91dc5fb32422",
+    "selection_sha256": "ea6595493193419bb80b6c868b47ed24c63a438555af94e86c9e00a427f19823",
+    "scorer_sha256": "094c6645aa10f3d7128a58bcf19687c5ca5af1ed5b4773f771dbe3cb068c59d8",
+    "agent_harness_sha256": "094c6645aa10f3d7128a58bcf19687c5ca5af1ed5b4773f771dbe3cb068c59d8"
+  }
+}

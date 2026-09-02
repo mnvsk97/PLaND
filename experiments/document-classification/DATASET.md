@@ -23,6 +23,33 @@ reviewed for sensitive information. The repository stores only provenance,
 selection metadata, derived eval rows approved for the experiment, and code
 needed to reproduce the selection.
 
+## Confirmatory paper subset
+
+QS-OCR-Small and Tobacco3482 are one underlying dataset, not two independent
+benchmarks. The confirmatory selector excludes every earlier pilot ID and uses
+100 balanced development cases, 100 balanced validation cases, and 1,000
+proportionally allocated untouched test cases. The test cannot be balanced at
+100 per class because the corrected `scientific` class has only 88 eligible
+items after pilot exclusion. Runtime paths contain IDs only; label-named paths
+are forbidden because they expose the answer.
+
+```bash
+python experiments/document-classification/scripts/select_subset.py \
+  --corpus tmp/qs-ocr-small \
+  --audit tmp/tobacco3482-mistakes/tobacco3482_multi_labels.csv \
+  --exclude-selection tmp/document-classification-subset/selection.json \
+  --output tmp/paper-datasets/qs-ocr-confirmatory
+python datasets/scripts/audit_document_subset.py \
+  --dataset tmp/paper-datasets/qs-ocr-confirmatory \
+  --output experiments/document-classification/confirmatory-dataset-proof.json
+```
+
+The committed proof passes all recorded separation, source-hash, leakage,
+pilot-overlap, duplicate-content, and byte-repeat checks. The confirmatory NL
+baseline completed on all 100 validation documents at 70% accuracy (macro F1
+0.703), below the prespecified local 80% viability floor. The hybrid validation run
+was therefore skipped and all 1,000 test documents remain untouched.
+
 ## Purpose of the first subset
 
 The first run is a pipeline and evolution dry run, not a statistically strong
@@ -33,8 +60,8 @@ benchmark. It uses 20 documents: two examples from each of the 10 classes.
 | development | 1 | 10 | inspect traces and propose an SOP change |
 | validation | 1 | 10 | accept or reject the proposed change |
 
-There is no held-out split in this initial plumbing test. Later paper-grade
-experiments must use a larger separately frozen held-out set.
+There is no held-out split in this historical plumbing test. Its IDs are
+excluded from the confirmatory dataset.
 
 ## Deterministic selection procedure
 

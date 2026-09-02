@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "dataset": "jordyvl/rvl_cdip_100_examples_per_class",
+  "counts": {
+    "total": 569,
+    "by_split": {
+      "development": 100,
+      "validation": 100,
+      "test": 369
+    },
+    "by_split_and_class": {
+      "development": {
+        "advertisement": 6,
+        "budget": 6,
+        "email": 7,
+        "file folder": 6,
+        "form": 7,
+        "handwritten": 7,
+        "invoice": 6,
+        "letter": 7,
+        "memo": 6,
+        "news article": 6,
+        "presentation": 6,
+        "questionnaire": 6,
+        "resume": 6,
+        "scientific publication": 6,
+        "scientific report": 6,
+        "specification": 6
+      },
+      "test": {
+        "advertisement": 21,
+        "budget": 24,
+        "email": 24,
+        "file folder": 16,
+        "form": 24,
+        "handwritten": 21,
+        "invoice": 24,
+        "letter": 24,
+        "memo": 24,
+        "news article": 24,
+        "presentation": 23,
+        "questionnaire": 24,
+        "resume": 24,
+        "scientific publication": 24,
+        "scientific report": 24,
+        "specification": 24
+      },
+      "validation": {
+        "advertisement": 6,
+        "budget": 6,
+        "email": 7,
+        "file folder": 6,
+        "form": 7,
+        "handwritten": 7,
+        "invoice": 6,
+        "letter": 7,
+        "memo": 6,
+        "news article": 6,
+        "presentation": 6,
+        "questionnaire": 6,
+        "resume": 6,
+        "scientific publication": 6,
+        "scientific report": 6,
+        "specification": 6
+      }
+    }
+  },
+  "checks": {
+    "unique_ids": true,
+    "split_overlap_count": 0,
+    "duplicate_content_groups": 0,
+    "missing_inputs": 0,
+    "label_in_runtime_path": 0,
+    "source_hash_errors": 0,
+    "selection_source_bindings_match_inputs": true,
+    "selection_manifest_matches_evals": true,
+    "pilot_overlap_count": 0,
+    "pilot_content_overlap_count": 0,
+    "source_split_integrity": true,
+    "repeatability": null
+  },
+  "passed": true,
+  "hashes": {
+    "evals_sha256": "ea5dad2b0df1ab504678cd914dac97e63ecc53f2d61499806f37262dd4177db0",
+    "selection_sha256": "b8c9e1c03b8481654ddc7326f5932660997746fdadcecc95b259b7d01f9b9f93",
+    "summary_sha256": null,
+    "input_manifest_sha256": "033974e139a05d907261588e6e8e3859682bbc3bf9f09e9a320007d6f8c9fa41"
+  },
+  "source": {
+    "revision": "23c07577ae7d98d696806b794289926673929de6"
+  },
+  "capacity": {
+    "requested_counts": {
+      "development": 100,
+      "validation": 100,
+      "test": 1000
+    },
+    "available_source_counts": {
+      "train": 800,
+      "validation": 384,
+      "test": 384
+    },
+    "actual_counts": {
+      "development": 100,
+      "validation": 100,
+      "test": 369
+    },
+    "capacity_shortfall": {
+      "development": 0,
+      "validation": 0,
+      "test": 631
+    }
+  },
+  "exclusions": {
+    "empty_ocr": 25
+  },
+  "failures": {
+    "overlaps": {
+      "development:test": 0,
+      "development:validation": 0,
+      "test:validation": 0
+    },
+    "missing": [],
+    "path_leaks": [],
+    "source_hash_errors": [],
+    "source_binding_errors": [],
+    "pilot_overlap_ids": [],
+    "pilot_content_overlap_ids": [],
+    "source_split_errors": [],
+    "duplicate_groups": {}
+  }
+}

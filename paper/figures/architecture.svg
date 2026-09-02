@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="232" height="300" preserveAspectRatio="xMinYMin meet" viewBox="0 0 232 300" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="232" height="300"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-300)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="4" y="250" width="224" height="42" rx="8" ry="8" style="stroke: rgb(9%,19%,29%); stroke-linecap: butt; stroke-width: 1.2; fill: rgb(9%,19%,29%); fill-rule: evenodd;"/>
+			<text x="16" y="274" style="font-family: Helvetica-Bold; font-size: 9px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,548) scale(1,-1)">INPUTS</text>
+			<text x="16" y="257" style="font-family: Helvetica; font-size: 7.7px;fill: rgb(100%,100%,100%); stroke:none;" transform="translate(0,514) scale(1,-1)">Requirements  |  data sources  |  evals</text>
+			<path d="M 116,250 L 116,228 Z" style="stroke: rgb(9%,19%,29%); stroke-linecap: butt; stroke-width: 1.4;"/>
+			<polygon points="112 231, 120 231, 116 225" style="stroke: rgb(9%,19%,29%); stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,19%,29%); fill-rule: evenodd;"/>
+			<rect x="4" y="180" width="224" height="42" rx="8" ry="8" style="stroke: rgb(9%,19%,29%); stroke-linecap: butt; stroke-width: 1.2; fill: rgb(90%,94%,96%); fill-rule: evenodd;"/>
+			<text x="16" y="204" style="font-family: Helvetica-Bold; font-size: 9px;fill: rgb(9%,19%,29%); stroke:none;" transform="translate(0,408) scale(1,-1)">GENERATE ONCE</text>
+			<text x="16" y="187" style="font-family: Helvetica; font-size: 7.7px;fill: rgb(13%,13%,13%); stroke:none;" transform="translate(0,374) scale(1,-1)">Initial agent + natural-language SOP</text>
+			<path d="M 116,180 L 116,158 Z" style="stroke: rgb(9%,19%,29%); stroke-linecap: butt; stroke-width: 1.4;"/>
+			<polygon points="112 161, 120 161, 116 155" style="stroke: rgb(9%,19%,29%); stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,19%,29%); fill-rule: evenodd;"/>
+			<rect x="4" y="87" width="224" height="65" rx="8" ry="8" style="stroke: rgb(40%,44%,47%); stroke-linecap: butt; stroke-width: 1.2; fill: rgb(94%,95%,96%); fill-rule: evenodd;"/>
+			<text x="16" y="134" style="font-family: Helvetica-Bold; font-size: 9px;fill: rgb(22%,27%,30%); stroke:none;" transform="translate(0,268) scale(1,-1)">FROZEN AFTER BASELINE</text>
+			<text x="16" y="117" style="font-family: Helvetica; font-size: 7.7px;fill: rgb(13%,13%,13%); stroke:none;" transform="translate(0,234) scale(1,-1)">Model + system prompt + harness</text>
+			<text x="16" y="104" style="font-family: Helvetica; font-size: 7.7px;fill: rgb(13%,13%,13%); stroke:none;" transform="translate(0,208) scale(1,-1)">Data + scorer + seed + permissions</text>
+			<path d="M 116,87 L 116,65 Z" style="stroke: rgb(9%,19%,29%); stroke-linecap: butt; stroke-width: 1.4;"/>
+			<polygon points="112 68, 120 68, 116 62" style="stroke: rgb(9%,19%,29%); stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,19%,29%); fill-rule: evenodd;"/>
+			<rect x="4" y="4" width="224" height="55" rx="8" ry="8" style="stroke: rgb(64%,16%,16%); stroke-linecap: butt; stroke-width: 1.2; fill: rgb(100%,94%,90%); fill-rule: evenodd;"/>
+			<text x="16" y="41" style="font-family: Helvetica-Bold; font-size: 9px;fill: rgb(64%,16%,16%); stroke:none;" transform="translate(0,82) scale(1,-1)">EVOLVABLE SOP PACKAGE</text>
+			<text x="16" y="24" style="font-family: Helvetica; font-size: 7.7px;fill: rgb(13%,13%,13%); stroke:none;" transform="translate(0,48) scale(1,-1)">SKILL.md + direct references</text>
+			<text x="16" y="11" style="font-family: Helvetica; font-size: 7.7px;fill: rgb(13%,13%,13%); stroke:none;" transform="translate(0,22) scale(1,-1)">Tools + scripts + dependencies</text>
+		</g>
+	</g>
+</svg>

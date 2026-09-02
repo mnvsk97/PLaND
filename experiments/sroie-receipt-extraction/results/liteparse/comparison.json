@@ -1,0 +1,193 @@
+{
+  "invariants": {
+    "model": "qwen3:14b",
+    "model_digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+    "seed": 20260902,
+    "system_prompt_sha256": "8a95eea10f882943eb59d966c194a9ef6937c498e7351f28f2005e3db65d1e4e",
+    "harness_sha256": "a7debe2d9c9c07a3eec226520fa56def0d5f45e996d4efb7a4f1fcfb64d4d286",
+    "scorer_sha256": "a7debe2d9c9c07a3eec226520fa56def0d5f45e996d4efb7a4f1fcfb64d4d286",
+    "dataset_selection_sha256": "c249f8e7ca116ca090c2afdcd5d8c9771aaf30e185514f19db37979987ff5f02",
+    "datasource_snapshot_sha256": "5d9592ae4a01a39c40921841c4a482a2f0bb3163b56203ac4f256af4b23304cd",
+    "selected_cases_sha256": "203aff7424d46c952fa4b5ed269134f4e0b7214aebd521f7d57b0b8396913953",
+    "execution_permissions": {
+      "network": "localhost_only_during_runs",
+      "filesystem": "dataset_read_only_and_result_write",
+      "paid_services": false
+    },
+    "ocr": {
+      "backend": "liteparse",
+      "version": "2.14.3",
+      "language": "eng",
+      "dpi": 300,
+      "workers": 2
+    }
+  },
+  "modes": {
+    "frozen-ocr": {
+      "baseline": {
+        "cases": 20,
+        "field_f1": 0.8677008457708368,
+        "document_exact_match": 0.25,
+        "field_exact_match": 0.6125,
+        "input_tokens": 14399,
+        "output_tokens": 1896,
+        "total_tokens": 16295,
+        "estimated_model_cost_usd": 0.0,
+        "latency_seconds": {
+          "total": 85.88341437398776,
+          "mean": 4.294170718699388
+        },
+        "ocr_latency_seconds": 0.0,
+        "agent_latency_seconds": 85.88341437398776,
+        "sop_code_latency_seconds": 0.0,
+        "ocr_word_error_rate": 0.0,
+        "peak_process_rss_bytes": 36601856
+      },
+      "candidate": {
+        "cases": 20,
+        "field_f1": 0.8642663007906636,
+        "document_exact_match": 0.2,
+        "field_exact_match": 0.65,
+        "input_tokens": 13279,
+        "output_tokens": 1829,
+        "total_tokens": 15108,
+        "estimated_model_cost_usd": 0.0,
+        "latency_seconds": {
+          "total": 84.6635548749473,
+          "mean": 4.2331777437473646
+        },
+        "ocr_latency_seconds": 0.0,
+        "agent_latency_seconds": 83.72330275097192,
+        "sop_code_latency_seconds": 0.9402521239753696,
+        "ocr_word_error_rate": 0.0,
+        "peak_process_rss_bytes": 38256640
+      },
+      "validation_baseline": {
+        "cases": 4,
+        "field_f1": 0.7459366101184862,
+        "document_exact_match": 0.25,
+        "field_exact_match": 0.4375,
+        "input_tokens": 2942,
+        "output_tokens": 387,
+        "total_tokens": 3329,
+        "estimated_model_cost_usd": 0.0,
+        "latency_seconds": {
+          "total": 17.662875457994232,
+          "mean": 4.415718864498558
+        },
+        "ocr_latency_seconds": 0.0,
+        "agent_latency_seconds": 17.662875457994232,
+        "sop_code_latency_seconds": 0.0,
+        "ocr_word_error_rate": 0.0,
+        "peak_process_rss_bytes": 36536320
+      },
+      "validation_candidate": {
+        "cases": 4,
+        "field_f1": 0.7148874223602484,
+        "document_exact_match": 0.0,
+        "field_exact_match": 0.5625,
+        "input_tokens": 2718,
+        "output_tokens": 390,
+        "total_tokens": 3108,
+        "estimated_model_cost_usd": 0.0,
+        "latency_seconds": {
+          "total": 17.85110612399876,
+          "mean": 4.46277653099969
+        },
+        "ocr_latency_seconds": 0.0,
+        "agent_latency_seconds": 17.665408207001747,
+        "sop_code_latency_seconds": 0.18569791699701454,
+        "ocr_word_error_rate": 0.0,
+        "peak_process_rss_bytes": 38256640
+      },
+      "accepted": false,
+      "decision": "reject",
+      "reason": "quality floor or token objective failed",
+      "iteration": 1,
+      "max_iterations": 10
+    },
+    "end-to-end": {
+      "baseline": {
+        "cases": 20,
+        "field_f1": 0.30885814516634996,
+        "document_exact_match": 0.05,
+        "field_exact_match": 0.1625,
+        "input_tokens": 8841,
+        "output_tokens": 1048,
+        "total_tokens": 9889,
+        "estimated_model_cost_usd": 0.0,
+        "latency_seconds": {
+          "total": 53.64537278996431,
+          "mean": 2.682268639498216
+        },
+        "ocr_latency_seconds": 7.664729168973281,
+        "agent_latency_seconds": 45.98064362099103,
+        "sop_code_latency_seconds": 0.0,
+        "ocr_word_error_rate": 0.7150137672593477,
+        "peak_process_rss_bytes": 38256640
+      },
+      "candidate": {
+        "cases": 20,
+        "field_f1": 0.2967886212016647,
+        "document_exact_match": 0.05,
+        "field_exact_match": 0.15,
+        "input_tokens": 7721,
+        "output_tokens": 975,
+        "total_tokens": 8696,
+        "estimated_model_cost_usd": 0.0,
+        "latency_seconds": {
+          "total": 51.33519853899634,
+          "mean": 2.5667599269498167
+        },
+        "ocr_latency_seconds": 7.414193331984279,
+        "agent_latency_seconds": 43.29985120600031,
+        "sop_code_latency_seconds": 0.621154001011746,
+        "ocr_word_error_rate": 0.7150137672593477,
+        "peak_process_rss_bytes": 38256640
+      },
+      "validation_baseline": {
+        "cases": 4,
+        "field_f1": 0.17033890168970814,
+        "document_exact_match": 0.0,
+        "field_exact_match": 0.1875,
+        "input_tokens": 1834,
+        "output_tokens": 222,
+        "total_tokens": 2056,
+        "estimated_model_cost_usd": 0.0,
+        "latency_seconds": {
+          "total": 11.521182707991102,
+          "mean": 2.8802956769977754
+        },
+        "ocr_latency_seconds": 1.743663707995438,
+        "agent_latency_seconds": 9.777518999995664,
+        "sop_code_latency_seconds": 0.0,
+        "ocr_word_error_rate": 0.7583412374897904,
+        "peak_process_rss_bytes": 38256640
+      },
+      "validation_candidate": {
+        "cases": 4,
+        "field_f1": 0.17336309523809523,
+        "document_exact_match": 0.0,
+        "field_exact_match": 0.125,
+        "input_tokens": 1610,
+        "output_tokens": 210,
+        "total_tokens": 1820,
+        "estimated_model_cost_usd": 0.0,
+        "latency_seconds": {
+          "total": 11.155516122016707,
+          "mean": 2.7888790305041766
+        },
+        "ocr_latency_seconds": 1.7354121250027674,
+        "agent_latency_seconds": 9.296664165005495,
+        "sop_code_latency_seconds": 0.12343983200844377,
+        "ocr_word_error_rate": 0.7583412374897904,
+        "peak_process_rss_bytes": 38256640
+      },
+      "accepted": true,
+      "decision": "accept",
+      "reason": "validation quality floor preserved and token objective improved",
+      "iteration": 1,
+      "max_iterations": 10
+    }
+  }
+}

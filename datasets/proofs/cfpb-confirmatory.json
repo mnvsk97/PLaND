@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "dataset": "CFPB Consumer Complaint Database",
+  "counts": {
+    "total": 1200,
+    "by_split": {
+      "development": 100,
+      "test": 1000,
+      "validation": 100
+    },
+    "by_split_and_label": {
+      "development": {
+        "Checking or savings account": 10,
+        "Credit card": 10,
+        "Credit reporting or other personal consumer reports": 10,
+        "Debt collection": 10,
+        "Money transfer, virtual currency, or money service": 10,
+        "Mortgage": 10,
+        "Payday loan, title loan, personal loan, or advance loan": 10,
+        "Prepaid card": 10,
+        "Student loan": 10,
+        "Vehicle loan or lease": 10
+      },
+      "test": {
+        "Checking or savings account": 100,
+        "Credit card": 100,
+        "Credit reporting or other personal consumer reports": 100,
+        "Debt collection": 100,
+        "Money transfer, virtual currency, or money service": 100,
+        "Mortgage": 100,
+        "Payday loan, title loan, personal loan, or advance loan": 100,
+        "Prepaid card": 100,
+        "Student loan": 100,
+        "Vehicle loan or lease": 100
+      },
+      "validation": {
+        "Checking or savings account": 10,
+        "Credit card": 10,
+        "Credit reporting or other personal consumer reports": 10,
+        "Debt collection": 10,
+        "Money transfer, virtual currency, or money service": 10,
+        "Mortgage": 10,
+        "Payday loan, title loan, personal loan, or advance loan": 10,
+        "Prepaid card": 10,
+        "Student loan": 10,
+        "Vehicle loan or lease": 10
+      }
+    }
+  },
+  "checks": {
+    "unique_ids": true,
+    "split_id_overlap_count": 0,
+    "content_duplicate_count": 0,
+    "runtime_label_leakage_count": 0,
+    "missing_case_count": 0,
+    "balanced_within_each_split": {
+      "development": true,
+      "test": true,
+      "validation": true
+    },
+    "selection_manifest_matches_evals": true,
+    "source_hashes_match": true,
+    "source_split_integrity": true,
+    "pilot_overlap_count": 0,
+    "exclusion_manifest_matches_pilot": true
+  },
+  "hashes": {
+    "evals_sha256": "873d4de9414525bf1cf417f47f17f3cb7235eb3d2932fc85aa26ad14c518cb37",
+    "selection_sha256": "352f3c1c42ee83653054cb14d067c43e6cb1c047f2909c29370847411ca49812",
+    "case_manifest_sha256": "43540471b4ba79abcd957c584bc086131c5590b470fabde5839341acd09b1096"
+  },
+  "sources": [
+    {
+      "path": "complaints-api.json",
+      "sha256": "5ef90fe2a075b502bbff8add7372f275df313d6eb095800e6ec023e8192941b8",
+      "bytes": 19108164
+    }
+  ],
+  "source_verification": [
+    {
+      "path": "complaints-api.json",
+      "exists": true,
+      "sha256_match": true
+    }
+  ],
+  "eligible_unique_by_label": {
+    "Mortgage": 998,
+    "Checking or savings account": 997,
+    "Student loan": 997,
+    "Money transfer, virtual currency, or money service": 994,
+    "Vehicle loan or lease": 991,
+    "Prepaid card": 988,
+    "Payday loan, title loan, personal loan, or advance loan": 980,
+    "Credit card": 961,
+    "Debt collection": 709,
+    "Credit reporting or other personal consumer reports": 645
+  },
+  "requested_split_counts": {
+    "development": 100,
+    "validation": 100,
+    "test": 1000
+  },
+  "source_split_mapping": null,
+  "eligible_unique_by_label_and_source_split": null,
+  "exclusion_manifest": [
+    {
+      "path": "tmp/paper-datasets/cfpb",
+      "evals_sha256": "aeca1b7d3ffe689293cfecc75ca35cf6cc1175f477902875afb84361e441afed",
+      "cases": 20,
+      "case_manifest_sha256": "f5b1ceff95a4898f34feb8dab0efd961318a4221575c419b7b33085e0410f844"
+    }
+  ],
+  "failures": {
+    "overlaps": {
+      "development:test": [],
+      "development:validation": [],
+      "test:validation": []
+    },
+    "duplicates": {},
+    "leakage_ids": [],
+    "missing": []
+  },
+  "passed": true,
+  "repeatability": {
+    "evals_sha256_match": true,
+    "selection_sha256_match": true,
+    "case_manifest_sha256_match": true
+  }
+}

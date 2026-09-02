@@ -29,6 +29,7 @@ python3 skills/generate-initial-version/scripts/generate.py \
   --workflow document-classification \
   --requirements experiments/document-classification/requirements.md \
   --sources tmp/document-classification-subset/documents \
+  --evals tmp/document-classification-subset/evals.csv \
   --output <initial-agent-directory> \
   --model-provider ollama
 ```

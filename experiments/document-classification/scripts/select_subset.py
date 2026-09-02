@@ -61,7 +61,42 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--audit", required=True, type=Path)
     parser.add_argument("--output", required=True, type=Path)
     parser.add_argument("--seed", type=int, default=20260902)
+    parser.add_argument("--development-cases", type=int, default=100)
+    parser.add_argument("--validation-cases", type=int, default=100)
+    parser.add_argument("--test-cases", type=int, default=1000)
+    parser.add_argument("--exclude-selection", action="append", default=[], type=Path)
     return parser.parse_args()
+
+
+def proportional_allocation(capacities: dict[str, int], total: int) -> dict[str, int]:
+    """Allocate proportionally without exceeding any class capacity."""
+    if total > sum(capacities.values()):
+        raise ValueError("requested cases exceed remaining eligible capacity")
+    allocation = {label: 0 for label in capacities}
+    remaining = total
+    remaining_capacity = dict(capacities)
+    while remaining:
+        denominator = sum(remaining_capacity.values())
+        shares = {
+            label: remaining * capacity / denominator if denominator else 0
+            for label, capacity in remaining_capacity.items()
+        }
+        progress = 0
+        for label in sorted(capacities, key=lambda key: (-(shares[key] % 1), key)):
+            amount = min(remaining_capacity[label], int(shares[label]))
+            if amount:
+                allocation[label] += amount
+                remaining_capacity[label] -= amount
+                remaining -= amount
+                progress += amount
+        if not progress:
+            for label in sorted(remaining_capacity, key=lambda key: (-remaining_capacity[key], key)):
+                if remaining_capacity[label]:
+                    allocation[label] += 1
+                    remaining_capacity[label] -= 1
+                    remaining -= 1
+                    break
+    return allocation
 
 
 def main() -> int:
@@ -74,6 +109,10 @@ def main() -> int:
         for row in csv.DictReader(handle):
             audit_by_id[normalized_id(row["Filename"])] = row
 
+    prior_pilot_ids: set[str] = set()
+    for path in args.exclude_selection:
+        prior = json.loads(path.read_text(encoding="utf-8"))
+        prior_pilot_ids.update(str(item["id"]) for item in prior.get("selected", prior.get("records", [])))
     counts = Counter()
     eligible = defaultdict(list)
     for path in sorted(args.corpus.glob("*/*.txt")):
@@ -90,6 +129,9 @@ def main() -> int:
             counts["excluded_ambiguous"] += 1
             continue
         label = LABELS[corrected[0]]
+        if normalized_id(path.name) in prior_pilot_ids:
+            counts["excluded_prior_pilot"] += 1
+            continue
         eligible[label].append(path)
         counts["eligible"] += 1
 
@@ -100,24 +142,41 @@ def main() -> int:
     rng = random.Random(args.seed)
     ordered = {}
     selected = []
+    per_dev = args.development_cases // len(eligible)
+    per_val = args.validation_cases // len(eligible)
+    if args.development_cases % len(eligible) or args.validation_cases % len(eligible):
+        raise SystemExit("development and validation counts must be divisible by class count")
+    required_head = per_dev + per_val
+    if any(len(paths) < required_head for paths in eligible.values()):
+        raise SystemExit("insufficient class capacity for balanced development and validation")
+    test_allocation = proportional_allocation(
+        {label: len(paths) - required_head for label, paths in eligible.items()}, args.test_cases
+    )
     for label in sorted(eligible):
         candidates = sorted(eligible[label], key=lambda path: normalized_id(path.name))
         rng.shuffle(candidates)
         ordered[label] = [normalized_id(path.name) for path in candidates]
-        for index, source in enumerate(candidates[:2]):
-            split = "development" if index == 0 else "validation"
-            destination = Path("documents") / label / f"{normalized_id(source.name)}.txt"
-            selected.append(
-                {
-                    "id": normalized_id(source.name),
-                    "input": destination.as_posix(),
-                    "output": label,
-                    "reasoning": REASONS[label],
-                    "split": split,
-                    "source_sha256": sha256(source),
-                    "source": str(source.resolve()),
-                }
-            )
+        split_counts = {
+            "development": per_dev,
+            "validation": per_val,
+            "test": test_allocation[label],
+        }
+        cursor = 0
+        for split, split_count in split_counts.items():
+            for source in candidates[cursor:cursor + split_count]:
+                destination = Path("documents") / f"{normalized_id(source.name)}.txt"
+                selected.append(
+                    {
+                        "id": normalized_id(source.name),
+                        "input": destination.as_posix(),
+                        "output": label,
+                        "reasoning": REASONS[label],
+                        "split": split,
+                        "source_sha256": sha256(source),
+                        "source": str(source.resolve()),
+                    }
+                )
+            cursor += split_count
 
     args.output.mkdir(parents=True)
     for item in selected:
@@ -133,6 +192,8 @@ def main() -> int:
 
     selection = {
         "schema_version": 1,
+        "dataset": "QS-OCR-Small/Tobacco3482",
+        "source_release_sha256": "9fb802036a2d95159a2fcb7c7bcd35ccbcc6d590f1cf39e7229a4fa9ee608b76",
         "seed": args.seed,
         "corpus": str(args.corpus.resolve()),
         "audit": str(args.audit.resolve()),
@@ -140,9 +201,24 @@ def main() -> int:
         "ordered_candidate_ids": ordered,
         "selected": selected,
         "review_rejections": [],
+        "prior_pilot_ids": sorted(prior_pilot_ids),
+        "split_policy": {
+            "development": "balanced, 10 per corrected class",
+            "validation": "balanced, next 10 per corrected class",
+            "test": "proportional allocation from the untouched remainder",
+        },
     }
     (args.output / "selection.json").write_text(json.dumps(selection, indent=2) + "\n", encoding="utf-8")
-    summary = {"counts": dict(sorted(counts.items())), "eligible_by_class": {key: len(value) for key, value in sorted(eligible.items())}, "selected": len(selected)}
+    summary = {
+        "counts": dict(sorted(counts.items())),
+        "eligible_by_class": {key: len(value) for key, value in sorted(eligible.items())},
+        "selected": len(selected),
+        "selected_by_split": dict(Counter(item["split"] for item in selected)),
+        "selected_by_split_and_class": {
+            split: dict(Counter(item["output"] for item in selected if item["split"] == split))
+            for split in ("development", "validation", "test")
+        },
+    }
     (args.output / "dataset-summary.json").write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(summary, sort_keys=True))
     return 0

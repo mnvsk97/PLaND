@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "dataset": "QS-OCR-Small/Tobacco3482",
+  "counts": {
+    "total": 1200,
+    "by_split": {
+      "development": 100,
+      "validation": 100,
+      "test": 1000
+    },
+    "by_split_and_class": {
+      "development": {
+        "advertisement": 10,
+        "email": 10,
+        "form": 10,
+        "letter": 10,
+        "memo": 10,
+        "news": 10,
+        "note": 10,
+        "report": 10,
+        "resume": 10,
+        "scientific": 10
+      },
+      "test": {
+        "advertisement": 69,
+        "email": 221,
+        "form": 115,
+        "letter": 142,
+        "memo": 179,
+        "news": 65,
+        "note": 52,
+        "report": 91,
+        "resume": 39,
+        "scientific": 27
+      },
+      "validation": {
+        "advertisement": 10,
+        "email": 10,
+        "form": 10,
+        "letter": 10,
+        "memo": 10,
+        "news": 10,
+        "note": 10,
+        "report": 10,
+        "resume": 10,
+        "scientific": 10
+      }
+    }
+  },
+  "checks": {
+    "unique_ids": true,
+    "split_overlap_count": 0,
+    "duplicate_content_groups": 0,
+    "missing_inputs": 0,
+    "label_in_runtime_path": 0,
+    "source_hash_errors": 0,
+    "selection_source_bindings_match_inputs": true,
+    "selection_manifest_matches_evals": true,
+    "pilot_overlap_count": 0,
+    "pilot_content_overlap_count": 0,
+    "source_split_integrity": true,
+    "repeatability": {
+      "evals.csv": true,
+      "selection.json": true,
+      "dataset-summary.json": true,
+      "input_manifest": true
+    }
+  },
+  "passed": true,
+  "hashes": {
+    "evals_sha256": "97ab24e9db8f31e5b887c04c1a2631fb5c447a122ef9690af38f1b6d8484f296",
+    "selection_sha256": "05ca368ac5a92af0fcc0b5aea182be3f37c90ddad538f0e02338371bc931ec14",
+    "summary_sha256": "5b724f6f3fbdf9139a09ac4c0befec507ea73e7ba70173668af03d7b04c60b24",
+    "input_manifest_sha256": "7e399363eedd825ac7aaa0527bf7a86a6b6b0470b8b98d96cbaeb6b2e248bd92"
+  },
+  "source": {
+    "corpus": "tmp/qs-ocr-small",
+    "audit": "tmp/tobacco3482-mistakes/tobacco3482_multi_labels.csv",
+    "audit_sha256": "1bbe87ee7e8e1c2c54e67ca95c84025c13e09990089fa9c3e9a10059b66fb5e4",
+    "source_release_sha256": "9fb802036a2d95159a2fcb7c7bcd35ccbcc6d590f1cf39e7229a4fa9ee608b76"
+  },
+  "capacity": {},
+  "exclusions": {
+    "eligible": 2704,
+    "excluded_ambiguous": 730,
+    "excluded_empty": 26,
+    "excluded_prior_pilot": 20,
+    "excluded_unmatched": 2,
+    "ocr_documents": 3482
+  },
+  "failures": {
+    "overlaps": {
+      "development:test": 0,
+      "development:validation": 0,
+      "test:validation": 0
+    },
+    "missing": [],
+    "path_leaks": [],
+    "source_hash_errors": [],
+    "source_binding_errors": [],
+    "pilot_overlap_ids": [],
+    "pilot_content_overlap_ids": [],
+    "source_split_errors": [],
+    "duplicate_groups": {}
+  }
+}
