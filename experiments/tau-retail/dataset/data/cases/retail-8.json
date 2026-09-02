@@ -1,0 +1,16 @@
+{
+  "domain": "retail",
+  "task_id": "8",
+  "policy_path": "../sources/policy.md",
+  "user_scenario": {
+    "persona": null,
+    "instructions": {
+      "task_instructions": ".",
+      "domain": "retail",
+      "reason_for_call": "You want to exchange the water bottle and the desk lamp. You want to exchange the water bottle to a bigger one, and the desk lamp to a brighter one (prefer battery > USB > AC). If the agent asks for confirmation, only exchange the desk lamp.",
+      "known_info": "You are mei_kovacs_8020 living in zipcode 28236.",
+      "unknown_info": "You do not remember your email address"
+    }
+  },
+  "initial_state": null
+}

@@ -1,0 +1,16 @@
+{
+  "domain": "retail",
+  "task_id": "84",
+  "policy_path": "../sources/policy.md",
+  "user_scenario": {
+    "persona": null,
+    "instructions": {
+      "task_instructions": "You are messy, flexible, outgoing.",
+      "domain": "retail",
+      "reason_for_call": "You received two tablets and you only need one. You want to return the less expensive one and refund to credit card. But when the agent asks for confirmation, you change your mind and return the more expensive one and ask for a refund to gift card.",
+      "known_info": "You name is Chen Silva and your zip code is 46281.",
+      "unknown_info": "You do not remember your email address"
+    }
+  },
+  "initial_state": null
+}

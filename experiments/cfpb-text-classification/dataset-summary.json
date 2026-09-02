@@ -1,0 +1,20 @@
+{
+  "cases": 100,
+  "by_split": {
+    "development": 60,
+    "test": 20,
+    "validation": 20
+  },
+  "by_output": {
+    "{\"label\":\"Checking or savings account\"}": 10,
+    "{\"label\":\"Credit card\"}": 10,
+    "{\"label\":\"Credit reporting or other personal consumer reports\"}": 10,
+    "{\"label\":\"Debt collection\"}": 10,
+    "{\"label\":\"Money transfer, virtual currency, or money service\"}": 10,
+    "{\"label\":\"Mortgage\"}": 10,
+    "{\"label\":\"Payday loan, title loan, personal loan, or advance loan\"}": 10,
+    "{\"label\":\"Prepaid card\"}": 10,
+    "{\"label\":\"Student loan\"}": 10,
+    "{\"label\":\"Vehicle loan or lease\"}": 10
+  }
+}

@@ -1,0 +1,247 @@
+{
+  "schema_version": 1,
+  "note": "Aggregate metrics only; case traces remain in ignored local storage. Latency is concurrency-confounded and is not causal evidence.",
+  "splits": {
+    "development": {
+      "natural_language": {
+        "cases": 12,
+        "correct": 10,
+        "accuracy": 0.8333333333333334,
+        "macro_f1": 0.8,
+        "input_tokens": 4099,
+        "output_tokens": 176,
+        "total_tokens": 4275,
+        "estimated_model_cost_usd": 0.0,
+        "model_calls": 12,
+        "command_calls": 0,
+        "latency_seconds": {
+          "total": 254.96006745997875,
+          "mean": 21.246672288331563
+        },
+        "wall_seconds": 254.9659566670016,
+        "max_rss_bytes": 34340864
+      },
+      "hybrid": {
+        "cases": 12,
+        "correct": 10,
+        "accuracy": 0.8333333333333334,
+        "macro_f1": 0.8,
+        "input_tokens": 2077,
+        "output_tokens": 85,
+        "total_tokens": 2162,
+        "estimated_model_cost_usd": 0.0,
+        "model_calls": 6,
+        "command_calls": 6,
+        "latency_seconds": {
+          "total": 27.70083712500491,
+          "mean": 2.308403093750409
+        },
+        "wall_seconds": 27.70470850000129,
+        "max_rss_bytes": 34291712
+      },
+      "delta_hybrid_minus_nl": {
+        "accuracy": 0.0,
+        "macro_f1": 0.0,
+        "total_tokens": -2113,
+        "mean_latency_seconds": -18.938269194581153,
+        "model_calls": -6
+      },
+      "invariants": {
+        "system_prompt_sha256": "928fd5136d76264ff1e8018dbc1806230d2c98a5d552bd0f91dff608e6fafdd1",
+        "evals_sha256": "d976dfe254e7e3c28c11f70e870266c88ab8a91902cee1c64ced4454261417a1",
+        "selection_sha256": "6eea93a8f64895cd49c4313311163ef91dff06ca475e3d38bf483e777e29b06f",
+        "scorer_sha256": "035afda0cf344b20d5a83e3a0bdd2660e36e19ad46dc547f73858359eb35418f",
+        "agent_harness_sha256": "035afda0cf344b20d5a83e3a0bdd2660e36e19ad46dc547f73858359eb35418f"
+      },
+      "model": "qwen3:14b",
+      "model_digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+      "seed": 20260902,
+      "natural_language_sop": {
+        "sha256": "965f61f435c835e6412425f52045395e24f04edbe32f1fd7327d8c64aaaa9044",
+        "content": "---\nname: ledgar-contract-routing\ndescription: Classify a contract clause into one approved provision category.\n---\n\n# Contract routing SOP\n\n1. Read the complete contract clause. <!-- pland:english -->\n2. Identify the clause's main legal function rather than matching one isolated word. <!-- pland:english -->\n3. Compare that function with every allowed provision label. <!-- pland:english -->\n4. Select the single best label, using the most specific applicable function when several concepts appear. <!-- pland:english -->\n5. Return exactly `{\"label\":\"<allowed label>\",\"confidence\":<0 to 1>}`. <!-- pland:english -->\n",
+        "step_representations": {
+          "english": 5
+        }
+      },
+      "hybrid_sop": {
+        "sha256": "bae5dc5a878689973b03be0443960cf8086a106819a770fd18ca454d0aa321cc",
+        "content": "---\nname: ledgar-contract-routing\ndescription: Classify a contract clause into one approved provision category.\n---\n\n# Contract routing SOP\n\n1. Read the complete contract clause. <!-- pland:english -->\n2. Run `python classify.py` on the clause and allowed labels; accept only a high-confidence result. <!-- pland:command -->\n3. If the command abstains, identify the clause's main legal function and compare it with every allowed label. <!-- pland:english -->\n4. Return exactly `{\"label\":\"<allowed label>\",\"confidence\":<0 to 1>}`. <!-- pland:english -->\n",
+        "step_representations": {
+          "english": 3,
+          "command": 1
+        }
+      }
+    },
+    "validation": {
+      "natural_language": {
+        "cases": 4,
+        "correct": 4,
+        "accuracy": 1.0,
+        "macro_f1": 0.4,
+        "input_tokens": 1264,
+        "output_tokens": 60,
+        "total_tokens": 1324,
+        "estimated_model_cost_usd": 0.0,
+        "model_calls": 4,
+        "command_calls": 0,
+        "latency_seconds": {
+          "total": 70.92840258299839,
+          "mean": 17.732100645749597
+        },
+        "wall_seconds": 70.942751417002,
+        "max_rss_bytes": 34324480
+      },
+      "hybrid": {
+        "cases": 4,
+        "correct": 4,
+        "accuracy": 1.0,
+        "macro_f1": 0.4,
+        "input_tokens": 314,
+        "output_tokens": 14,
+        "total_tokens": 328,
+        "estimated_model_cost_usd": 0.0,
+        "model_calls": 1,
+        "command_calls": 3,
+        "latency_seconds": {
+          "total": 18.91732608399616,
+          "mean": 4.72933152099904
+        },
+        "wall_seconds": 18.92123070800153,
+        "max_rss_bytes": 34242560
+      },
+      "delta_hybrid_minus_nl": {
+        "accuracy": 0.0,
+        "macro_f1": 0.0,
+        "total_tokens": -996,
+        "mean_latency_seconds": -13.002769124750557,
+        "model_calls": -3
+      },
+      "invariants": {
+        "system_prompt_sha256": "928fd5136d76264ff1e8018dbc1806230d2c98a5d552bd0f91dff608e6fafdd1",
+        "evals_sha256": "d976dfe254e7e3c28c11f70e870266c88ab8a91902cee1c64ced4454261417a1",
+        "selection_sha256": "6eea93a8f64895cd49c4313311163ef91dff06ca475e3d38bf483e777e29b06f",
+        "scorer_sha256": "035afda0cf344b20d5a83e3a0bdd2660e36e19ad46dc547f73858359eb35418f",
+        "agent_harness_sha256": "035afda0cf344b20d5a83e3a0bdd2660e36e19ad46dc547f73858359eb35418f"
+      },
+      "model": "qwen3:14b",
+      "model_digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+      "seed": 20260902,
+      "natural_language_sop": {
+        "sha256": "965f61f435c835e6412425f52045395e24f04edbe32f1fd7327d8c64aaaa9044",
+        "content": "---\nname: ledgar-contract-routing\ndescription: Classify a contract clause into one approved provision category.\n---\n\n# Contract routing SOP\n\n1. Read the complete contract clause. <!-- pland:english -->\n2. Identify the clause's main legal function rather than matching one isolated word. <!-- pland:english -->\n3. Compare that function with every allowed provision label. <!-- pland:english -->\n4. Select the single best label, using the most specific applicable function when several concepts appear. <!-- pland:english -->\n5. Return exactly `{\"label\":\"<allowed label>\",\"confidence\":<0 to 1>}`. <!-- pland:english -->\n",
+        "step_representations": {
+          "english": 5
+        }
+      },
+      "hybrid_sop": {
+        "sha256": "bae5dc5a878689973b03be0443960cf8086a106819a770fd18ca454d0aa321cc",
+        "content": "---\nname: ledgar-contract-routing\ndescription: Classify a contract clause into one approved provision category.\n---\n\n# Contract routing SOP\n\n1. Read the complete contract clause. <!-- pland:english -->\n2. Run `python classify.py` on the clause and allowed labels; accept only a high-confidence result. <!-- pland:command -->\n3. If the command abstains, identify the clause's main legal function and compare it with every allowed label. <!-- pland:english -->\n4. Return exactly `{\"label\":\"<allowed label>\",\"confidence\":<0 to 1>}`. <!-- pland:english -->\n",
+        "step_representations": {
+          "english": 3,
+          "command": 1
+        }
+      }
+    },
+    "test": {
+      "natural_language": {
+        "cases": 4,
+        "correct": 3,
+        "accuracy": 0.75,
+        "macro_f1": 0.26666666666666666,
+        "input_tokens": 1330,
+        "output_tokens": 57,
+        "total_tokens": 1387,
+        "estimated_model_cost_usd": 0.0,
+        "model_calls": 4,
+        "command_calls": 0,
+        "latency_seconds": {
+          "total": 56.762474291994295,
+          "mean": 14.190618572998574
+        },
+        "wall_seconds": 56.77655270900141,
+        "max_rss_bytes": 34471936
+      },
+      "hybrid": {
+        "cases": 4,
+        "correct": 3,
+        "accuracy": 0.75,
+        "macro_f1": 0.26666666666666666,
+        "input_tokens": 656,
+        "output_tokens": 27,
+        "total_tokens": 683,
+        "estimated_model_cost_usd": 0.0,
+        "model_calls": 2,
+        "command_calls": 2,
+        "latency_seconds": {
+          "total": 36.23509654200461,
+          "mean": 9.058774135501153
+        },
+        "wall_seconds": 36.238624582998455,
+        "max_rss_bytes": 34226176
+      },
+      "delta_hybrid_minus_nl": {
+        "accuracy": 0.0,
+        "macro_f1": 0.0,
+        "total_tokens": -704,
+        "mean_latency_seconds": -5.131844437497421,
+        "model_calls": -2
+      },
+      "invariants": {
+        "system_prompt_sha256": "928fd5136d76264ff1e8018dbc1806230d2c98a5d552bd0f91dff608e6fafdd1",
+        "evals_sha256": "d976dfe254e7e3c28c11f70e870266c88ab8a91902cee1c64ced4454261417a1",
+        "selection_sha256": "6eea93a8f64895cd49c4313311163ef91dff06ca475e3d38bf483e777e29b06f",
+        "scorer_sha256": "035afda0cf344b20d5a83e3a0bdd2660e36e19ad46dc547f73858359eb35418f",
+        "agent_harness_sha256": "035afda0cf344b20d5a83e3a0bdd2660e36e19ad46dc547f73858359eb35418f"
+      },
+      "model": "qwen3:14b",
+      "model_digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+      "seed": 20260902,
+      "natural_language_sop": {
+        "sha256": "965f61f435c835e6412425f52045395e24f04edbe32f1fd7327d8c64aaaa9044",
+        "content": "---\nname: ledgar-contract-routing\ndescription: Classify a contract clause into one approved provision category.\n---\n\n# Contract routing SOP\n\n1. Read the complete contract clause. <!-- pland:english -->\n2. Identify the clause's main legal function rather than matching one isolated word. <!-- pland:english -->\n3. Compare that function with every allowed provision label. <!-- pland:english -->\n4. Select the single best label, using the most specific applicable function when several concepts appear. <!-- pland:english -->\n5. Return exactly `{\"label\":\"<allowed label>\",\"confidence\":<0 to 1>}`. <!-- pland:english -->\n",
+        "step_representations": {
+          "english": 5
+        }
+      },
+      "hybrid_sop": {
+        "sha256": "bae5dc5a878689973b03be0443960cf8086a106819a770fd18ca454d0aa321cc",
+        "content": "---\nname: ledgar-contract-routing\ndescription: Classify a contract clause into one approved provision category.\n---\n\n# Contract routing SOP\n\n1. Read the complete contract clause. <!-- pland:english -->\n2. Run `python classify.py` on the clause and allowed labels; accept only a high-confidence result. <!-- pland:command -->\n3. If the command abstains, identify the clause's main legal function and compare it with every allowed label. <!-- pland:english -->\n4. Return exactly `{\"label\":\"<allowed label>\",\"confidence\":<0 to 1>}`. <!-- pland:english -->\n",
+        "step_representations": {
+          "english": 3,
+          "command": 1
+        }
+      }
+    }
+  },
+  "overall": {
+    "natural_language": {
+      "cases": 20,
+      "correct": 17,
+      "accuracy": 0.85,
+      "macro_f1": 0.8133333333333332,
+      "input_tokens": 6693,
+      "output_tokens": 293,
+      "total_tokens": 6986,
+      "model_calls": 20,
+      "command_calls": 0
+    },
+    "hybrid": {
+      "cases": 20,
+      "correct": 17,
+      "accuracy": 0.85,
+      "macro_f1": 0.8133333333333332,
+      "input_tokens": 3047,
+      "output_tokens": 126,
+      "total_tokens": 3173,
+      "model_calls": 9,
+      "command_calls": 11
+    },
+    "delta_hybrid_minus_nl": {
+      "accuracy": 0.0,
+      "macro_f1": 0.0,
+      "total_tokens": -3813,
+      "total_token_ratio": 0.4541941024906957,
+      "model_calls": -11
+    }
+  }
+}

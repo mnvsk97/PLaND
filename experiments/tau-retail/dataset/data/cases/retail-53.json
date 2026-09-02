@@ -1,0 +1,16 @@
+{
+  "domain": "retail",
+  "task_id": "53",
+  "policy_path": "../sources/policy.md",
+  "user_scenario": {
+    "persona": null,
+    "instructions": {
+      "task_instructions": ".",
+      "domain": "retail",
+      "reason_for_call": "The bicycle you received was damaged during delivery, and you want to get a refund. You're quite frustrated because the bike was very expensive and you'd like to receive the refund as soon as possible. You want the refund to be credited to your original credit card.",
+      "known_info": "You are Sofia Li, residing in San Antonio, 78260.",
+      "unknown_info": "You do not remember your email address"
+    }
+  },
+  "initial_state": null
+}

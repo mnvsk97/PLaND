@@ -1,0 +1,16 @@
+{
+  "domain": "retail",
+  "task_id": "85",
+  "policy_path": "../sources/policy.md",
+  "user_scenario": {
+    "persona": null,
+    "instructions": {
+      "task_instructions": "You are shy, rigid.",
+      "domain": "retail",
+      "reason_for_call": "You want to exchange your Fleece Jacket for a large red Fleece Jacket with a half zipper",
+      "known_info": "You name is Yusuf Hernandez and your email is yusuf.hernandez8836@example.com.",
+      "unknown_info": null
+    }
+  },
+  "initial_state": null
+}

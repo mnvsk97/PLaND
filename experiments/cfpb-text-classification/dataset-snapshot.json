@@ -1,0 +1,430 @@
+{
+  "dataset": "CFPB Consumer Complaint Database",
+  "download_url": "https://files.consumerfinance.gov/ccdb/complaints.csv.zip",
+  "snapshot_api_url": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/",
+  "snapshot_rule": "latest 10000 public complaints with narratives",
+  "seed": 20260902,
+  "selection_rule": "top products by narrative count, then lowest seeded hashes",
+  "labels": [
+    "Credit reporting or other personal consumer reports",
+    "Debt collection",
+    "Credit card",
+    "Checking or savings account",
+    "Mortgage",
+    "Money transfer, virtual currency, or money service",
+    "Vehicle loan or lease",
+    "Student loan",
+    "Payday loan, title loan, personal loan, or advance loan",
+    "Prepaid card"
+  ],
+  "selected": [
+    {
+      "id": "9969938",
+      "split": "development"
+    },
+    {
+      "id": "9972542",
+      "split": "development"
+    },
+    {
+      "id": "9973616",
+      "split": "development"
+    },
+    {
+      "id": "9973691",
+      "split": "development"
+    },
+    {
+      "id": "9988342",
+      "split": "development"
+    },
+    {
+      "id": "9993609",
+      "split": "development"
+    },
+    {
+      "id": "9969410",
+      "split": "development"
+    },
+    {
+      "id": "9976017",
+      "split": "development"
+    },
+    {
+      "id": "9983333",
+      "split": "development"
+    },
+    {
+      "id": "9983923",
+      "split": "development"
+    },
+    {
+      "id": "9989945",
+      "split": "development"
+    },
+    {
+      "id": "9999322",
+      "split": "development"
+    },
+    {
+      "id": "9963799",
+      "split": "development"
+    },
+    {
+      "id": "9965031",
+      "split": "development"
+    },
+    {
+      "id": "9974335",
+      "split": "development"
+    },
+    {
+      "id": "9985632",
+      "split": "development"
+    },
+    {
+      "id": "9988164",
+      "split": "development"
+    },
+    {
+      "id": "9998300",
+      "split": "development"
+    },
+    {
+      "id": "9962304",
+      "split": "development"
+    },
+    {
+      "id": "9973590",
+      "split": "development"
+    },
+    {
+      "id": "9974682",
+      "split": "development"
+    },
+    {
+      "id": "9978941",
+      "split": "development"
+    },
+    {
+      "id": "9987531",
+      "split": "development"
+    },
+    {
+      "id": "9995715",
+      "split": "development"
+    },
+    {
+      "id": "9968964",
+      "split": "development"
+    },
+    {
+      "id": "9980911",
+      "split": "development"
+    },
+    {
+      "id": "9986713",
+      "split": "development"
+    },
+    {
+      "id": "9989546",
+      "split": "development"
+    },
+    {
+      "id": "9991634",
+      "split": "development"
+    },
+    {
+      "id": "9995575",
+      "split": "development"
+    },
+    {
+      "id": "9972491",
+      "split": "development"
+    },
+    {
+      "id": "9979451",
+      "split": "development"
+    },
+    {
+      "id": "9981738",
+      "split": "development"
+    },
+    {
+      "id": "9987320",
+      "split": "development"
+    },
+    {
+      "id": "9992311",
+      "split": "development"
+    },
+    {
+      "id": "9998324",
+      "split": "development"
+    },
+    {
+      "id": "9976835",
+      "split": "development"
+    },
+    {
+      "id": "9980819",
+      "split": "development"
+    },
+    {
+      "id": "9981952",
+      "split": "development"
+    },
+    {
+      "id": "9984954",
+      "split": "development"
+    },
+    {
+      "id": "9987936",
+      "split": "development"
+    },
+    {
+      "id": "9994520",
+      "split": "development"
+    },
+    {
+      "id": "9969317",
+      "split": "development"
+    },
+    {
+      "id": "9973962",
+      "split": "development"
+    },
+    {
+      "id": "9974066",
+      "split": "development"
+    },
+    {
+      "id": "9974142",
+      "split": "development"
+    },
+    {
+      "id": "9984782",
+      "split": "development"
+    },
+    {
+      "id": "9993019",
+      "split": "development"
+    },
+    {
+      "id": "9964566",
+      "split": "development"
+    },
+    {
+      "id": "9974055",
+      "split": "development"
+    },
+    {
+      "id": "9974876",
+      "split": "development"
+    },
+    {
+      "id": "9982696",
+      "split": "development"
+    },
+    {
+      "id": "9984337",
+      "split": "development"
+    },
+    {
+      "id": "9990782",
+      "split": "development"
+    },
+    {
+      "id": "9962434",
+      "split": "development"
+    },
+    {
+      "id": "9969770",
+      "split": "development"
+    },
+    {
+      "id": "9984140",
+      "split": "development"
+    },
+    {
+      "id": "9985029",
+      "split": "development"
+    },
+    {
+      "id": "9989020",
+      "split": "development"
+    },
+    {
+      "id": "9999056",
+      "split": "development"
+    },
+    {
+      "id": "9990227",
+      "split": "test"
+    },
+    {
+      "id": "9998317",
+      "split": "test"
+    },
+    {
+      "id": "9968707",
+      "split": "test"
+    },
+    {
+      "id": "9984695",
+      "split": "test"
+    },
+    {
+      "id": "9988255",
+      "split": "test"
+    },
+    {
+      "id": "9994935",
+      "split": "test"
+    },
+    {
+      "id": "9964600",
+      "split": "test"
+    },
+    {
+      "id": "9984288",
+      "split": "test"
+    },
+    {
+      "id": "9962586",
+      "split": "test"
+    },
+    {
+      "id": "9989368",
+      "split": "test"
+    },
+    {
+      "id": "9969062",
+      "split": "test"
+    },
+    {
+      "id": "9984642",
+      "split": "test"
+    },
+    {
+      "id": "9974808",
+      "split": "test"
+    },
+    {
+      "id": "9987834",
+      "split": "test"
+    },
+    {
+      "id": "9969337",
+      "split": "test"
+    },
+    {
+      "id": "9989357",
+      "split": "test"
+    },
+    {
+      "id": "9971491",
+      "split": "test"
+    },
+    {
+      "id": "9976466",
+      "split": "test"
+    },
+    {
+      "id": "9982267",
+      "split": "test"
+    },
+    {
+      "id": "9988601",
+      "split": "test"
+    },
+    {
+      "id": "9973953",
+      "split": "validation"
+    },
+    {
+      "id": "9982972",
+      "split": "validation"
+    },
+    {
+      "id": "9984068",
+      "split": "validation"
+    },
+    {
+      "id": "9985022",
+      "split": "validation"
+    },
+    {
+      "id": "9983385",
+      "split": "validation"
+    },
+    {
+      "id": "9990163",
+      "split": "validation"
+    },
+    {
+      "id": "9985287",
+      "split": "validation"
+    },
+    {
+      "id": "9997737",
+      "split": "validation"
+    },
+    {
+      "id": "9983914",
+      "split": "validation"
+    },
+    {
+      "id": "9994786",
+      "split": "validation"
+    },
+    {
+      "id": "9974363",
+      "split": "validation"
+    },
+    {
+      "id": "9976495",
+      "split": "validation"
+    },
+    {
+      "id": "9980832",
+      "split": "validation"
+    },
+    {
+      "id": "9992916",
+      "split": "validation"
+    },
+    {
+      "id": "9982435",
+      "split": "validation"
+    },
+    {
+      "id": "9984479",
+      "split": "validation"
+    },
+    {
+      "id": "9975887",
+      "split": "validation"
+    },
+    {
+      "id": "9994797",
+      "split": "validation"
+    },
+    {
+      "id": "9991691",
+      "split": "validation"
+    },
+    {
+      "id": "9993456",
+      "split": "validation"
+    }
+  ],
+  "schema_version": 2,
+  "sources": [
+    {
+      "path": "cfpb.json",
+      "sha256": "c73b6f76fa4e45841dd7cd3231eb08236c940d8e1f2c3e741942a0fd5a9a6c51",
+      "bytes": 16947756
+    }
+  ]
+}

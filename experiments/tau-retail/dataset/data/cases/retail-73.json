@@ -1,0 +1,16 @@
+{
+  "domain": "retail",
+  "task_id": "73",
+  "policy_path": "../sources/policy.md",
+  "user_scenario": {
+    "persona": null,
+    "instructions": {
+      "task_instructions": "You are polite, flexible, creative.",
+      "domain": "retail",
+      "reason_for_call": "You want to return everything you just bought except the coffee machine.",
+      "known_info": "You name is Fatima Wilson and your email is fatima.wilson5721@example.com.",
+      "unknown_info": null
+    }
+  },
+  "initial_state": null
+}

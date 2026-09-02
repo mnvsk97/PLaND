@@ -1,0 +1,16 @@
+{
+  "domain": "retail",
+  "task_id": "60",
+  "policy_path": "../sources/policy.md",
+  "user_scenario": {
+    "persona": null,
+    "instructions": {
+      "task_instructions": ".",
+      "domain": "retail",
+      "reason_for_call": "You want to change your wireless earbuds in order W5061109 to a blue colored one. Provide all details upfront in your very first message and ask the agent to resolve as soon as possible. You want the price to be the same or lower, which you want the agent to verify explicitly. If and only if the agent provides several options, you want the option without water resistance.",
+      "known_info": "You are Chen Johnson from Houston TX, 77004.",
+      "unknown_info": "You do not remember your email address"
+    }
+  },
+  "initial_state": null
+}

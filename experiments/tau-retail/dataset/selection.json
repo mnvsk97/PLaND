@@ -1,0 +1,421 @@
+{
+  "dataset": "sierra-research/tau2-bench retail",
+  "revision": "a2c024725189473d2d7cea3a5cfdbcc67478e41f",
+  "seed": 20260902,
+  "selection_rule": "lowest seeded task-id hashes",
+  "selected": [
+    {
+      "id": "retail-17",
+      "split": "development"
+    },
+    {
+      "id": "retail-98",
+      "split": "development"
+    },
+    {
+      "id": "retail-65",
+      "split": "development"
+    },
+    {
+      "id": "retail-50",
+      "split": "development"
+    },
+    {
+      "id": "retail-29",
+      "split": "development"
+    },
+    {
+      "id": "retail-107",
+      "split": "development"
+    },
+    {
+      "id": "retail-0",
+      "split": "development"
+    },
+    {
+      "id": "retail-45",
+      "split": "development"
+    },
+    {
+      "id": "retail-13",
+      "split": "development"
+    },
+    {
+      "id": "retail-83",
+      "split": "development"
+    },
+    {
+      "id": "retail-46",
+      "split": "development"
+    },
+    {
+      "id": "retail-42",
+      "split": "development"
+    },
+    {
+      "id": "retail-86",
+      "split": "development"
+    },
+    {
+      "id": "retail-85",
+      "split": "development"
+    },
+    {
+      "id": "retail-9",
+      "split": "development"
+    },
+    {
+      "id": "retail-21",
+      "split": "development"
+    },
+    {
+      "id": "retail-15",
+      "split": "development"
+    },
+    {
+      "id": "retail-61",
+      "split": "development"
+    },
+    {
+      "id": "retail-70",
+      "split": "development"
+    },
+    {
+      "id": "retail-11",
+      "split": "development"
+    },
+    {
+      "id": "retail-24",
+      "split": "development"
+    },
+    {
+      "id": "retail-5",
+      "split": "development"
+    },
+    {
+      "id": "retail-84",
+      "split": "development"
+    },
+    {
+      "id": "retail-33",
+      "split": "development"
+    },
+    {
+      "id": "retail-14",
+      "split": "development"
+    },
+    {
+      "id": "retail-110",
+      "split": "development"
+    },
+    {
+      "id": "retail-49",
+      "split": "development"
+    },
+    {
+      "id": "retail-25",
+      "split": "development"
+    },
+    {
+      "id": "retail-1",
+      "split": "development"
+    },
+    {
+      "id": "retail-77",
+      "split": "development"
+    },
+    {
+      "id": "retail-8",
+      "split": "development"
+    },
+    {
+      "id": "retail-10",
+      "split": "development"
+    },
+    {
+      "id": "retail-108",
+      "split": "development"
+    },
+    {
+      "id": "retail-47",
+      "split": "development"
+    },
+    {
+      "id": "retail-27",
+      "split": "development"
+    },
+    {
+      "id": "retail-52",
+      "split": "development"
+    },
+    {
+      "id": "retail-62",
+      "split": "development"
+    },
+    {
+      "id": "retail-74",
+      "split": "development"
+    },
+    {
+      "id": "retail-58",
+      "split": "development"
+    },
+    {
+      "id": "retail-111",
+      "split": "development"
+    },
+    {
+      "id": "retail-4",
+      "split": "development"
+    },
+    {
+      "id": "retail-104",
+      "split": "development"
+    },
+    {
+      "id": "retail-94",
+      "split": "development"
+    },
+    {
+      "id": "retail-26",
+      "split": "development"
+    },
+    {
+      "id": "retail-23",
+      "split": "development"
+    },
+    {
+      "id": "retail-109",
+      "split": "development"
+    },
+    {
+      "id": "retail-91",
+      "split": "development"
+    },
+    {
+      "id": "retail-20",
+      "split": "development"
+    },
+    {
+      "id": "retail-7",
+      "split": "development"
+    },
+    {
+      "id": "retail-73",
+      "split": "development"
+    },
+    {
+      "id": "retail-35",
+      "split": "development"
+    },
+    {
+      "id": "retail-54",
+      "split": "development"
+    },
+    {
+      "id": "retail-22",
+      "split": "development"
+    },
+    {
+      "id": "retail-71",
+      "split": "development"
+    },
+    {
+      "id": "retail-79",
+      "split": "development"
+    },
+    {
+      "id": "retail-44",
+      "split": "development"
+    },
+    {
+      "id": "retail-37",
+      "split": "development"
+    },
+    {
+      "id": "retail-80",
+      "split": "development"
+    },
+    {
+      "id": "retail-102",
+      "split": "development"
+    },
+    {
+      "id": "retail-57",
+      "split": "development"
+    },
+    {
+      "id": "retail-90",
+      "split": "validation"
+    },
+    {
+      "id": "retail-64",
+      "split": "validation"
+    },
+    {
+      "id": "retail-105",
+      "split": "validation"
+    },
+    {
+      "id": "retail-2",
+      "split": "validation"
+    },
+    {
+      "id": "retail-60",
+      "split": "validation"
+    },
+    {
+      "id": "retail-96",
+      "split": "validation"
+    },
+    {
+      "id": "retail-75",
+      "split": "validation"
+    },
+    {
+      "id": "retail-3",
+      "split": "validation"
+    },
+    {
+      "id": "retail-53",
+      "split": "validation"
+    },
+    {
+      "id": "retail-82",
+      "split": "validation"
+    },
+    {
+      "id": "retail-18",
+      "split": "validation"
+    },
+    {
+      "id": "retail-32",
+      "split": "validation"
+    },
+    {
+      "id": "retail-99",
+      "split": "validation"
+    },
+    {
+      "id": "retail-87",
+      "split": "validation"
+    },
+    {
+      "id": "retail-78",
+      "split": "validation"
+    },
+    {
+      "id": "retail-43",
+      "split": "validation"
+    },
+    {
+      "id": "retail-92",
+      "split": "validation"
+    },
+    {
+      "id": "retail-100",
+      "split": "validation"
+    },
+    {
+      "id": "retail-66",
+      "split": "validation"
+    },
+    {
+      "id": "retail-112",
+      "split": "validation"
+    },
+    {
+      "id": "retail-12",
+      "split": "test"
+    },
+    {
+      "id": "retail-36",
+      "split": "test"
+    },
+    {
+      "id": "retail-31",
+      "split": "test"
+    },
+    {
+      "id": "retail-48",
+      "split": "test"
+    },
+    {
+      "id": "retail-39",
+      "split": "test"
+    },
+    {
+      "id": "retail-41",
+      "split": "test"
+    },
+    {
+      "id": "retail-16",
+      "split": "test"
+    },
+    {
+      "id": "retail-88",
+      "split": "test"
+    },
+    {
+      "id": "retail-38",
+      "split": "test"
+    },
+    {
+      "id": "retail-19",
+      "split": "test"
+    },
+    {
+      "id": "retail-113",
+      "split": "test"
+    },
+    {
+      "id": "retail-101",
+      "split": "test"
+    },
+    {
+      "id": "retail-63",
+      "split": "test"
+    },
+    {
+      "id": "retail-89",
+      "split": "test"
+    },
+    {
+      "id": "retail-72",
+      "split": "test"
+    },
+    {
+      "id": "retail-106",
+      "split": "test"
+    },
+    {
+      "id": "retail-93",
+      "split": "test"
+    },
+    {
+      "id": "retail-68",
+      "split": "test"
+    },
+    {
+      "id": "retail-97",
+      "split": "test"
+    },
+    {
+      "id": "retail-55",
+      "split": "test"
+    }
+  ],
+  "schema_version": 2,
+  "sources": [
+    {
+      "path": "tasks.json",
+      "sha256": "8e03ebce7901bd6218e7a7dc3105faa9324091a68058f7fe61c65262868812e8",
+      "bytes": 345982
+    },
+    {
+      "path": "policy.md",
+      "sha256": "2c9652afbce57d6e087768d37cda64d31c53d50b3e3225cfdb791bac66466467",
+      "bytes": 6699
+    }
+  ]
+}

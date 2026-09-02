@@ -1,0 +1,16 @@
+{
+  "domain": "retail",
+  "task_id": "2",
+  "policy_path": "../sources/policy.md",
+  "user_scenario": {
+    "persona": null,
+    "instructions": {
+      "task_instructions": ".",
+      "domain": "retail",
+      "reason_for_call": "You want to know exactly how many tshirt options are available in the online store right now. You want to also return the cleaner, headphone, and smart watch.",
+      "known_info": "You are Yusuf Rossi in zip code 19122.",
+      "unknown_info": "You do not remember your email address"
+    }
+  },
+  "initial_state": null
+}

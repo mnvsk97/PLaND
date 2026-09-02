@@ -1,0 +1,16 @@
+{
+  "domain": "retail",
+  "task_id": "19",
+  "policy_path": "../sources/policy.md",
+  "user_scenario": {
+    "persona": null,
+    "instructions": {
+      "task_instructions": "You are in debt and sad today, but very brief.",
+      "domain": "retail",
+      "reason_for_call": "You want to return the water bottle, and exchange the pet bed and office chair to the cheapest version. Mention the two things together and you want to get both done. If and only if you can only do one of the two things, you prefer to do whatever saves you most money. Ask the agent how much money you can save in both options.",
+      "known_info": "You are Mei Davis in zipcode 80217.",
+      "unknown_info": "You do not remember your email address"
+    }
+  },
+  "initial_state": null
+}

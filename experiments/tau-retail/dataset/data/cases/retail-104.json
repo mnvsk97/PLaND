@@ -1,0 +1,16 @@
+{
+  "domain": "retail",
+  "task_id": "104",
+  "policy_path": "../sources/policy.md",
+  "user_scenario": {
+    "persona": null,
+    "instructions": {
+      "task_instructions": "You are busy, happy, outgoing, messy, optimistic. You like to say one thing at a time.",
+      "domain": "retail",
+      "reason_for_call": "You want to return all bookshelves and jigsaw puzzles you received in different orders. Make sure you mention at the beginning that you want to cancel these two things, and they are from different orders. You also want to return the backpack you received with the vacuum cleaner. You also want to change your pending order item to red, and change the address of the order to your default Chicago home (you won't reveal it for private reasons but it's in your profile). You want to get the tracking number of your cancelled order.",
+      "known_info": "You name is Lucas Brown and your email is lucas.brown9344@example.com.",
+      "unknown_info": null
+    }
+  },
+  "initial_state": null
+}

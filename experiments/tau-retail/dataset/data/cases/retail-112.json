@@ -1,0 +1,16 @@
+{
+  "domain": "retail",
+  "task_id": "112",
+  "policy_path": "../sources/policy.md",
+  "user_scenario": {
+    "persona": null,
+    "instructions": {
+      "task_instructions": "You are sad and cautious. You like to say things piecewise.",
+      "domain": "retail",
+      "reason_for_call": "You want to modify your laptop order to your NYC address (you don't want to reveal it yourself but the address should be in your orders profile). You also want to modify the laptop to item number 9844888101. You also want to change your watch for one with black dial color but keeping the leather strap.",
+      "known_info": "You name is Yara Silva and your zip code is 77159.",
+      "unknown_info": "You do not remember your email address"
+    }
+  },
+  "initial_state": null
+}

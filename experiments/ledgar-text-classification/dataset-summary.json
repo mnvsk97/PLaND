@@ -1,0 +1,20 @@
+{
+  "cases": 100,
+  "by_split": {
+    "development": 60,
+    "test": 20,
+    "validation": 20
+  },
+  "by_output": {
+    "{\"label\":\"Amendments\"}": 10,
+    "{\"label\":\"Assignments\"}": 10,
+    "{\"label\":\"Counterparts\"}": 10,
+    "{\"label\":\"Entire Agreements\"}": 10,
+    "{\"label\":\"Expenses\"}": 10,
+    "{\"label\":\"Governing Laws\"}": 10,
+    "{\"label\":\"Notices\"}": 10,
+    "{\"label\":\"Severability\"}": 10,
+    "{\"label\":\"Survival\"}": 10,
+    "{\"label\":\"Terms\"}": 10
+  }
+}

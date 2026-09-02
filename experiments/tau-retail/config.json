@@ -1,0 +1,20 @@
+{
+  "schema_version": 2,
+  "model": "ollama/qwen3:14b",
+  "ollama_digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+  "ollama_model_file_bytes": 9276198565,
+  "ollama_runtime_processor": "100% GPU",
+  "ollama_loaded_size_reported": "12 GB",
+  "tau_revision": "a2c024725189473d2d7cea3a5cfdbcc67478e41f",
+  "dataset_seed": 20260902,
+  "run_seed": 20260902,
+  "paper_subset": {"development": 12, "validation": 4, "test": 4},
+  "subset_rule": "first 12/4/4 rows within each frozen split in evals.csv order",
+  "max_evolution_iterations": 10,
+  "max_steps": 8,
+  "timeout_seconds": 60,
+  "max_concurrency": 3,
+  "evaluation": "environment final-state equality",
+  "estimated_api_cost_usd": 0,
+  "network_permissions": "loopback Ollama only during execution; dataset already frozen"
+}

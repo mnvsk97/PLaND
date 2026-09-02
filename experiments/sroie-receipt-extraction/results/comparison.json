@@ -1,0 +1,186 @@
+{
+  "invariants": {
+    "model": "qwen3:14b",
+    "model_digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+    "seed": 20260902,
+    "system_prompt_sha256": "8a95eea10f882943eb59d966c194a9ef6937c498e7351f28f2005e3db65d1e4e",
+    "harness_sha256": "9203e8b4136e033c2d8d27a256f9358ec3bb28677d006867873b28db269429be",
+    "scorer_sha256": "9203e8b4136e033c2d8d27a256f9358ec3bb28677d006867873b28db269429be",
+    "dataset_selection_sha256": "c249f8e7ca116ca090c2afdcd5d8c9771aaf30e185514f19db37979987ff5f02",
+    "datasource_snapshot_sha256": "5d9592ae4a01a39c40921841c4a482a2f0bb3163b56203ac4f256af4b23304cd",
+    "selected_cases_sha256": "203aff7424d46c952fa4b5ed269134f4e0b7214aebd521f7d57b0b8396913953",
+    "execution_permissions": {
+      "network": "localhost_only_during_runs",
+      "filesystem": "dataset_read_only_and_result_write",
+      "paid_services": false
+    }
+  },
+  "modes": {
+    "frozen-ocr": {
+      "baseline": {
+        "cases": 20,
+        "field_f1": 0.8677008457708368,
+        "document_exact_match": 0.25,
+        "field_exact_match": 0.6125,
+        "input_tokens": 14399,
+        "output_tokens": 1896,
+        "total_tokens": 16295,
+        "estimated_model_cost_usd": 0.0,
+        "latency_seconds": {
+          "total": 297.0431156239865,
+          "mean": 14.852155781199325
+        },
+        "ocr_latency_seconds": 0.0,
+        "agent_latency_seconds": 297.0431156239865,
+        "sop_code_latency_seconds": 0.0,
+        "ocr_word_error_rate": 0.0,
+        "peak_process_rss_bytes": 36503552
+      },
+      "candidate": {
+        "cases": 20,
+        "field_f1": 0.8642663007906636,
+        "document_exact_match": 0.2,
+        "field_exact_match": 0.65,
+        "input_tokens": 13279,
+        "output_tokens": 1830,
+        "total_tokens": 15109,
+        "estimated_model_cost_usd": 0.0,
+        "latency_seconds": {
+          "total": 279.189781832014,
+          "mean": 13.959489091600698
+        },
+        "ocr_latency_seconds": 0.0,
+        "agent_latency_seconds": 278.3263974559886,
+        "sop_code_latency_seconds": 0.8633843760253512,
+        "ocr_word_error_rate": 0.0,
+        "peak_process_rss_bytes": 37945344
+      },
+      "validation_baseline": {
+        "cases": 4,
+        "field_f1": 0.7459366101184862,
+        "document_exact_match": 0.25,
+        "field_exact_match": 0.4375,
+        "input_tokens": 2942,
+        "output_tokens": 387,
+        "total_tokens": 3329,
+        "estimated_model_cost_usd": 0.0,
+        "latency_seconds": {
+          "total": 137.09348079100164,
+          "mean": 34.27337019775041
+        },
+        "ocr_latency_seconds": 0.0,
+        "agent_latency_seconds": 137.09348079100164,
+        "sop_code_latency_seconds": 0.0,
+        "ocr_word_error_rate": 0.0,
+        "peak_process_rss_bytes": 36438016
+      },
+      "validation_candidate": {
+        "cases": 4,
+        "field_f1": 0.7148874223602484,
+        "document_exact_match": 0.0,
+        "field_exact_match": 0.5625,
+        "input_tokens": 2718,
+        "output_tokens": 390,
+        "total_tokens": 3108,
+        "estimated_model_cost_usd": 0.0,
+        "latency_seconds": {
+          "total": 45.92689154200343,
+          "mean": 11.481722885500858
+        },
+        "ocr_latency_seconds": 0.0,
+        "agent_latency_seconds": 45.76299045699852,
+        "sop_code_latency_seconds": 0.16390108500490896,
+        "ocr_word_error_rate": 0.0,
+        "peak_process_rss_bytes": 37896192
+      },
+      "accepted": false,
+      "decision": "reject",
+      "reason": "quality floor or token objective failed",
+      "iteration": 1,
+      "max_iterations": 10
+    },
+    "end-to-end": {
+      "baseline": {
+        "cases": 20,
+        "field_f1": 0.200008809072428,
+        "document_exact_match": 0.0,
+        "field_exact_match": 0.1375,
+        "input_tokens": 17771,
+        "output_tokens": 716,
+        "total_tokens": 18487,
+        "estimated_model_cost_usd": 0.0,
+        "latency_seconds": {
+          "total": 231.00350095698377,
+          "mean": 11.550175047849189
+        },
+        "ocr_latency_seconds": 2.626525496998511,
+        "agent_latency_seconds": 228.37697545998526,
+        "sop_code_latency_seconds": 0.0,
+        "ocr_word_error_rate": 0.870801587776208,
+        "peak_process_rss_bytes": 39747584
+      },
+      "candidate": {
+        "cases": 20,
+        "field_f1": 0.17841917321808626,
+        "document_exact_match": 0.0,
+        "field_exact_match": 0.1,
+        "input_tokens": 16651,
+        "output_tokens": 687,
+        "total_tokens": 17338,
+        "estimated_model_cost_usd": 0.0,
+        "latency_seconds": {
+          "total": 202.60203500202624,
+          "mean": 10.130101750101312
+        },
+        "ocr_latency_seconds": 2.3809698750119423,
+        "agent_latency_seconds": 199.5586251670029,
+        "sop_code_latency_seconds": 0.6624399600113975,
+        "ocr_word_error_rate": 0.870801587776208,
+        "peak_process_rss_bytes": 41713664
+      },
+      "validation_baseline": {
+        "cases": 4,
+        "field_f1": 0.0,
+        "document_exact_match": 0.0,
+        "field_exact_match": 0.0625,
+        "input_tokens": 9667,
+        "output_tokens": 56,
+        "total_tokens": 9723,
+        "estimated_model_cost_usd": 0.0,
+        "latency_seconds": {
+          "total": 62.317539667994424,
+          "mean": 15.579384916998606
+        },
+        "ocr_latency_seconds": 0.5518071249971399,
+        "agent_latency_seconds": 61.765732542997284,
+        "sop_code_latency_seconds": 0.0,
+        "ocr_word_error_rate": 1.0,
+        "peak_process_rss_bytes": 39567360
+      },
+      "validation_candidate": {
+        "cases": 4,
+        "field_f1": 0.0,
+        "document_exact_match": 0.0,
+        "field_exact_match": 0.0625,
+        "input_tokens": 9443,
+        "output_tokens": 56,
+        "total_tokens": 9499,
+        "estimated_model_cost_usd": 0.0,
+        "latency_seconds": {
+          "total": 43.31521012500161,
+          "mean": 10.828802531250403
+        },
+        "ocr_latency_seconds": 0.5178207499993732,
+        "agent_latency_seconds": 42.67359537500306,
+        "sop_code_latency_seconds": 0.1237939999991795,
+        "ocr_word_error_rate": 1.0,
+        "peak_process_rss_bytes": 41484288
+      },
+      "accepted": true,
+      "decision": "accept",
+      "reason": "validation quality floor preserved and token objective improved",
+      "iteration": 1,
+      "max_iterations": 10
+    }
+  }
+}

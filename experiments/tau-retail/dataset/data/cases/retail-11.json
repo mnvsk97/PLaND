@@ -1,0 +1,16 @@
+{
+  "domain": "retail",
+  "task_id": "11",
+  "policy_path": "../sources/policy.md",
+  "user_scenario": {
+    "persona": null,
+    "instructions": {
+      "task_instructions": "You are a mysterious person and do not want to reveal much about yourself or speak too many words at the same time.",
+      "domain": "retail",
+      "reason_for_call": "For some reason, you want to return all things ordered. You have two payment methods and two orders, and you want to refund each order to the other order's payment method. If not possible, you are angry and swear for a few times, then agree to return all things with the original payment method.",
+      "known_info": "You are mia_garcia_4516 (mia.garcia2723@example.com).",
+      "unknown_info": null
+    }
+  },
+  "initial_state": null
+}

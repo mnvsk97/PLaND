@@ -1,0 +1,16 @@
+{
+  "domain": "retail",
+  "task_id": "17",
+  "policy_path": "../sources/policy.md",
+  "user_scenario": {
+    "persona": null,
+    "instructions": {
+      "task_instructions": "You are a private person that does not want to reveal much about yourself.",
+      "domain": "retail",
+      "reason_for_call": "You want to change #W8665881 to be delivered to Suite 641 instead.",
+      "known_info": "You are Fatima Johnson in zipcode 78712.",
+      "unknown_info": "You do not remember your email address"
+    }
+  },
+  "initial_state": null
+}

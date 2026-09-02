@@ -1,0 +1,16 @@
+{
+  "domain": "retail",
+  "task_id": "65",
+  "policy_path": "../sources/policy.md",
+  "user_scenario": {
+    "persona": null,
+    "instructions": {
+      "task_instructions": ".",
+      "domain": "retail",
+      "reason_for_call": "You want to exchange the bookshelf from your most recent order for a camera that is closest but not more expensive than the price of the bookshelf.",
+      "known_info": "You are James Kovacs from San Jose CA, 95190.",
+      "unknown_info": "You do not remember your email address"
+    }
+  },
+  "initial_state": null
+}

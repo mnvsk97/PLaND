@@ -1,0 +1,16 @@
+{
+  "domain": "retail",
+  "task_id": "27",
+  "policy_path": "../sources/policy.md",
+  "user_scenario": {
+    "persona": null,
+    "instructions": {
+      "task_instructions": "You are a bit anxious and want to get things done quickly.",
+      "domain": "retail",
+      "reason_for_call": "From a recent order, you want to return the hose, backpack, and exchange the hiking boots to the exact same item but a waterproof variant. Make sure you mention the two requests at the same time, and if the agent says they can only do one, you prefer to do the exchange.",
+      "known_info": "You are Isabella Johansson, and you live in zipcode 32286.",
+      "unknown_info": "You do not remember your email address"
+    }
+  },
+  "initial_state": null
+}

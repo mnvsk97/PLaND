@@ -1,0 +1,16 @@
+{
+  "domain": "retail",
+  "task_id": "70",
+  "policy_path": "../sources/policy.md",
+  "user_scenario": {
+    "persona": null,
+    "instructions": {
+      "task_instructions": "You are impatient, confident, direct, messy.",
+      "domain": "retail",
+      "reason_for_call": "You recently received a helmet but you are not happy with it and want to exchange. The size is too small and you want medium, plus you want high ventilation. If multiple colors are available, you prefer blue. You do not want the  You prefer original payment to pay for the price difference, and you want to know how much you need to pay today.",
+      "known_info": "You name is Sofia Hernandez and your zip code is 98193.",
+      "unknown_info": "You do not remember your email address"
+    }
+  },
+  "initial_state": null
+}

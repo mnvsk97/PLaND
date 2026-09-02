@@ -1,0 +1,16 @@
+{
+  "domain": "retail",
+  "task_id": "88",
+  "policy_path": "../sources/policy.md",
+  "user_scenario": {
+    "persona": null,
+    "instructions": {
+      "task_instructions": "You are insecure, creative, direct, relaxing.",
+      "domain": "retail",
+      "reason_for_call": "You want to change the book shelf to 4 foot but with the same material and color. If it is not available, cancel the whole order and you will buy again. If the agent asks for the cancellation reason, you say you ordered by mistake.",
+      "known_info": "You name is Daiki Silva and your email is daiki.silva6295@example.com.",
+      "unknown_info": null
+    }
+  },
+  "initial_state": null
+}

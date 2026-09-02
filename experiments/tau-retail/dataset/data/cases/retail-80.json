@@ -1,0 +1,16 @@
+{
+  "domain": "retail",
+  "task_id": "80",
+  "policy_path": "../sources/policy.md",
+  "user_scenario": {
+    "persona": null,
+    "instructions": {
+      "task_instructions": "You are curious, patient, outgoing.  Try to make the conversation as confusing for the agent as possible.",
+      "domain": "retail",
+      "reason_for_call": "For #W7209932, exchange T-Shirt {'color': 'blue', 'size': 'S', 'material': 'polyester', 'style': 'v-neck'} to {'color': 'red', 'size': 'XXL', 'material': 'cotton', 'style': 'crew neck'}; Use the gift card.",
+      "known_info": "You name is Amelia Gonzalez and your email is amelia.gonzalez4271@example.com.",
+      "unknown_info": null
+    }
+  },
+  "initial_state": null
+}

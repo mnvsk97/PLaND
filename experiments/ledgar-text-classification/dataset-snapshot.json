@@ -1,0 +1,438 @@
+{
+  "dataset": "lighteval/lexglue:ledgar",
+  "revision": "0fb195adf1b8903c9a69fe707353ff03b54ee8a7",
+  "seed": 20260902,
+  "selection_rule": "top labels by eligible count, then lowest seeded hashes",
+  "labels": [
+    "Governing Laws",
+    "Counterparts",
+    "Notices",
+    "Entire Agreements",
+    "Severability",
+    "Survival",
+    "Amendments",
+    "Assignments",
+    "Expenses",
+    "Terms"
+  ],
+  "selected": [
+    {
+      "id": "test-9800",
+      "split": "development"
+    },
+    {
+      "id": "train-21301",
+      "split": "development"
+    },
+    {
+      "id": "train-25725",
+      "split": "development"
+    },
+    {
+      "id": "train-26974",
+      "split": "development"
+    },
+    {
+      "id": "validation-389",
+      "split": "development"
+    },
+    {
+      "id": "validation-9999",
+      "split": "development"
+    },
+    {
+      "id": "test-7627",
+      "split": "development"
+    },
+    {
+      "id": "train-10705",
+      "split": "development"
+    },
+    {
+      "id": "train-16937",
+      "split": "development"
+    },
+    {
+      "id": "train-37035",
+      "split": "development"
+    },
+    {
+      "id": "train-5547",
+      "split": "development"
+    },
+    {
+      "id": "validation-5190",
+      "split": "development"
+    },
+    {
+      "id": "test-2708",
+      "split": "development"
+    },
+    {
+      "id": "test-9793",
+      "split": "development"
+    },
+    {
+      "id": "train-1848",
+      "split": "development"
+    },
+    {
+      "id": "train-23153",
+      "split": "development"
+    },
+    {
+      "id": "train-2802",
+      "split": "development"
+    },
+    {
+      "id": "train-39877",
+      "split": "development"
+    },
+    {
+      "id": "train-14747",
+      "split": "development"
+    },
+    {
+      "id": "train-24901",
+      "split": "development"
+    },
+    {
+      "id": "train-28354",
+      "split": "development"
+    },
+    {
+      "id": "train-51426",
+      "split": "development"
+    },
+    {
+      "id": "train-59411",
+      "split": "development"
+    },
+    {
+      "id": "train-7503",
+      "split": "development"
+    },
+    {
+      "id": "test-2747",
+      "split": "development"
+    },
+    {
+      "id": "train-37773",
+      "split": "development"
+    },
+    {
+      "id": "train-38645",
+      "split": "development"
+    },
+    {
+      "id": "train-49423",
+      "split": "development"
+    },
+    {
+      "id": "validation-3891",
+      "split": "development"
+    },
+    {
+      "id": "validation-6464",
+      "split": "development"
+    },
+    {
+      "id": "test-7004",
+      "split": "development"
+    },
+    {
+      "id": "train-14321",
+      "split": "development"
+    },
+    {
+      "id": "train-36447",
+      "split": "development"
+    },
+    {
+      "id": "train-40519",
+      "split": "development"
+    },
+    {
+      "id": "train-44505",
+      "split": "development"
+    },
+    {
+      "id": "validation-3874",
+      "split": "development"
+    },
+    {
+      "id": "test-7816",
+      "split": "development"
+    },
+    {
+      "id": "train-11435",
+      "split": "development"
+    },
+    {
+      "id": "train-25462",
+      "split": "development"
+    },
+    {
+      "id": "train-58233",
+      "split": "development"
+    },
+    {
+      "id": "train-58917",
+      "split": "development"
+    },
+    {
+      "id": "validation-8018",
+      "split": "development"
+    },
+    {
+      "id": "test-5111",
+      "split": "development"
+    },
+    {
+      "id": "test-5310",
+      "split": "development"
+    },
+    {
+      "id": "train-30706",
+      "split": "development"
+    },
+    {
+      "id": "train-32591",
+      "split": "development"
+    },
+    {
+      "id": "train-5020",
+      "split": "development"
+    },
+    {
+      "id": "train-54109",
+      "split": "development"
+    },
+    {
+      "id": "test-8199",
+      "split": "development"
+    },
+    {
+      "id": "train-15578",
+      "split": "development"
+    },
+    {
+      "id": "train-21875",
+      "split": "development"
+    },
+    {
+      "id": "train-31348",
+      "split": "development"
+    },
+    {
+      "id": "train-42915",
+      "split": "development"
+    },
+    {
+      "id": "train-47841",
+      "split": "development"
+    },
+    {
+      "id": "test-9388",
+      "split": "development"
+    },
+    {
+      "id": "train-11710",
+      "split": "development"
+    },
+    {
+      "id": "train-19375",
+      "split": "development"
+    },
+    {
+      "id": "train-39338",
+      "split": "development"
+    },
+    {
+      "id": "train-47895",
+      "split": "development"
+    },
+    {
+      "id": "validation-1268",
+      "split": "development"
+    },
+    {
+      "id": "train-38915",
+      "split": "test"
+    },
+    {
+      "id": "validation-4278",
+      "split": "test"
+    },
+    {
+      "id": "train-19831",
+      "split": "test"
+    },
+    {
+      "id": "train-58972",
+      "split": "test"
+    },
+    {
+      "id": "train-12668",
+      "split": "test"
+    },
+    {
+      "id": "train-3062",
+      "split": "test"
+    },
+    {
+      "id": "train-28706",
+      "split": "test"
+    },
+    {
+      "id": "train-7674",
+      "split": "test"
+    },
+    {
+      "id": "train-36011",
+      "split": "test"
+    },
+    {
+      "id": "train-44271",
+      "split": "test"
+    },
+    {
+      "id": "train-24802",
+      "split": "test"
+    },
+    {
+      "id": "train-5981",
+      "split": "test"
+    },
+    {
+      "id": "test-2511",
+      "split": "test"
+    },
+    {
+      "id": "train-14835",
+      "split": "test"
+    },
+    {
+      "id": "train-7086",
+      "split": "test"
+    },
+    {
+      "id": "validation-8547",
+      "split": "test"
+    },
+    {
+      "id": "test-850",
+      "split": "test"
+    },
+    {
+      "id": "train-3961",
+      "split": "test"
+    },
+    {
+      "id": "test-2598",
+      "split": "test"
+    },
+    {
+      "id": "train-38523",
+      "split": "test"
+    },
+    {
+      "id": "train-27011",
+      "split": "validation"
+    },
+    {
+      "id": "train-702",
+      "split": "validation"
+    },
+    {
+      "id": "train-57706",
+      "split": "validation"
+    },
+    {
+      "id": "train-58553",
+      "split": "validation"
+    },
+    {
+      "id": "train-47833",
+      "split": "validation"
+    },
+    {
+      "id": "train-48490",
+      "split": "validation"
+    },
+    {
+      "id": "train-29237",
+      "split": "validation"
+    },
+    {
+      "id": "train-35493",
+      "split": "validation"
+    },
+    {
+      "id": "train-29235",
+      "split": "validation"
+    },
+    {
+      "id": "train-35338",
+      "split": "validation"
+    },
+    {
+      "id": "train-12535",
+      "split": "validation"
+    },
+    {
+      "id": "validation-6993",
+      "split": "validation"
+    },
+    {
+      "id": "test-1794",
+      "split": "validation"
+    },
+    {
+      "id": "train-24583",
+      "split": "validation"
+    },
+    {
+      "id": "test-6250",
+      "split": "validation"
+    },
+    {
+      "id": "train-50951",
+      "split": "validation"
+    },
+    {
+      "id": "train-38164",
+      "split": "validation"
+    },
+    {
+      "id": "train-8682",
+      "split": "validation"
+    },
+    {
+      "id": "train-33863",
+      "split": "validation"
+    },
+    {
+      "id": "train-58074",
+      "split": "validation"
+    }
+  ],
+  "schema_version": 2,
+  "sources": [
+    {
+      "path": "train.jsonl",
+      "sha256": "d715cde50f04e36401b76704d693cedc2697169dbcbc97c8c8519767edfe94ec",
+      "bytes": 75058429
+    },
+    {
+      "path": "validation.jsonl",
+      "sha256": "5890aaee646adf03ca9665c1207b2a1ec95f60007c3e8a86f36b753992786ce1",
+      "bytes": 12420569
+    },
+    {
+      "path": "test.jsonl",
+      "sha256": "d78bb9c8e149b169bfb4c2e910d21c6fea32968c11a5aff880f2ef6fb86bd86c",
+      "bytes": 12122831
+    }
+  ]
+}

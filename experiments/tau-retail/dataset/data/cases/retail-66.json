@@ -1,0 +1,16 @@
+{
+  "domain": "retail",
+  "task_id": "66",
+  "policy_path": "../sources/policy.md",
+  "user_scenario": {
+    "persona": null,
+    "instructions": {
+      "task_instructions": ".",
+      "domain": "retail",
+      "reason_for_call": "You want to change the luggage set in your order for a coat.  Your goal is to change the order. If there is no way to do that, return the item specifically. If there are any issues, cancel the entire order.",
+      "known_info": "You are Aarav Lee. You live in Phoenix, AZ 85025.",
+      "unknown_info": "You do not remember your email address"
+    }
+  },
+  "initial_state": null
+}

@@ -1,0 +1,16 @@
+{
+  "domain": "retail",
+  "task_id": "14",
+  "policy_path": "../sources/policy.md",
+  "user_scenario": {
+    "persona": null,
+    "instructions": {
+      "task_instructions": "You are into gaming but realized the importance of studying hard.",
+      "domain": "retail",
+      "reason_for_call": "You just quit gaming and want to cancel or return everything associated with it. (It's just a keyboard and a mouse, but do not reveal it to the agent). Original payment is preferred.",
+      "known_info": "You are mia_garcia_4516 with email mia.garcia2723@example.com",
+      "unknown_info": null
+    }
+  },
+  "initial_state": null
+}

@@ -1,0 +1,13 @@
+{
+  "benchmark": "CFPB Consumer Complaint Database",
+  "dataset_path": "tmp/paper-datasets/cfpb",
+  "frozen_parent_cases": 100,
+  "paper_cases": 20,
+  "splits": {"development": 12, "validation": 4, "test": 4},
+  "model": "qwen3:14b",
+  "seed": 20260902,
+  "max_iterations": 10,
+  "accuracy_floor": "natural-language baseline accuracy",
+  "objective": ["total_tokens", "mean_latency_seconds"],
+  "accepted_iteration": 1
+}

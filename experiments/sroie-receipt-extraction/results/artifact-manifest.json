@@ -1,0 +1,8 @@
+{
+  "nl_sop_sha256": "97f773e09d2ad87bf495454de18b74fdb267980107dfe7a46daa056f8d1403a8",
+  "hybrid_sop_sha256": "4457deb52768d8826b2139bbd49ce13c95d007e6043d6a0d9926bc6af60f0ff7",
+  "hybrid_script_sha256": "10eb4e4d1bc83b6a533566fb0ab01649e80891bbdf3197d08dd10db7e46e9040",
+  "system_prompt_sha256": "8a95eea10f882943eb59d966c194a9ef6937c498e7351f28f2005e3db65d1e4e",
+  "harness_and_scorer_sha256": "9203e8b4136e033c2d8d27a256f9358ec3bb28677d006867873b28db269429be",
+  "note": "Hashes identify the exact executable artifacts used for the completed candidate-002 comparison."
+}

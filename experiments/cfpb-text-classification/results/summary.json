@@ -1,0 +1,247 @@
+{
+  "schema_version": 1,
+  "note": "Aggregate metrics only; case traces remain in ignored local storage. Latency is concurrency-confounded and is not causal evidence.",
+  "splits": {
+    "development": {
+      "natural_language": {
+        "cases": 12,
+        "correct": 8,
+        "accuracy": 0.6666666666666666,
+        "macro_f1": 0.7,
+        "input_tokens": 7567,
+        "output_tokens": 199,
+        "total_tokens": 7766,
+        "estimated_model_cost_usd": 0.0,
+        "model_calls": 12,
+        "command_calls": 0,
+        "latency_seconds": {
+          "total": 256.10819850199914,
+          "mean": 21.342349875166594
+        },
+        "wall_seconds": 256.1141532499969,
+        "max_rss_bytes": 34439168
+      },
+      "hybrid": {
+        "cases": 12,
+        "correct": 8,
+        "accuracy": 0.6666666666666666,
+        "macro_f1": 0.7,
+        "input_tokens": 5183,
+        "output_tokens": 135,
+        "total_tokens": 5318,
+        "estimated_model_cost_usd": 0.0,
+        "model_calls": 8,
+        "command_calls": 4,
+        "latency_seconds": {
+          "total": 42.16797308099194,
+          "mean": 3.5139977567493283
+        },
+        "wall_seconds": 42.17321483300475,
+        "max_rss_bytes": 34357248
+      },
+      "delta_hybrid_minus_nl": {
+        "accuracy": 0.0,
+        "macro_f1": 0.0,
+        "total_tokens": -2448,
+        "mean_latency_seconds": -17.828352118417264,
+        "model_calls": -4
+      },
+      "invariants": {
+        "system_prompt_sha256": "5a44109d9e9ff0d6e315dd283839bd09a7fe532ced2659dfa11e776ffe0474f5",
+        "evals_sha256": "aeca1b7d3ffe689293cfecc75ca35cf6cc1175f477902875afb84361e441afed",
+        "selection_sha256": "ae818fe47699e7107c557fa5024d66e7eacaa7cb0bbddd586ec6955f8f9d45ab",
+        "scorer_sha256": "035afda0cf344b20d5a83e3a0bdd2660e36e19ad46dc547f73858359eb35418f",
+        "agent_harness_sha256": "035afda0cf344b20d5a83e3a0bdd2660e36e19ad46dc547f73858359eb35418f"
+      },
+      "model": "qwen3:14b",
+      "model_digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+      "seed": 20260902,
+      "natural_language_sop": {
+        "sha256": "85c7d9b4c375bb8921599fef0e59fc863b84cccbf800304f978e3c8bf90a9d2b",
+        "content": "---\nname: cfpb-complaint-routing\ndescription: Route a consumer complaint narrative to one approved financial product.\n---\n\n# Complaint routing SOP\n\n1. Read the complete consumer complaint narrative. <!-- pland:english -->\n2. Identify the financial product that is the primary subject of the problem. <!-- pland:english -->\n3. Distinguish the product from related institutions, payment methods, and incidental products mentioned in the narrative. <!-- pland:english -->\n4. Compare the primary product with every allowed label and select exactly one. <!-- pland:english -->\n5. Return exactly `{\"label\":\"<allowed label>\",\"confidence\":<0 to 1>}`. <!-- pland:english -->\n",
+        "step_representations": {
+          "english": 5
+        }
+      },
+      "hybrid_sop": {
+        "sha256": "6b48ce6370be4f3c97c80b23acb55a70fdfd1e93eb7ed56ba24acf92302e1caa",
+        "content": "---\nname: cfpb-complaint-routing\ndescription: Route a consumer complaint narrative to one approved financial product.\n---\n\n# Complaint routing SOP\n\n1. Read the complete consumer complaint narrative. <!-- pland:english -->\n2. Run `python classify.py` on the narrative and allowed labels; accept only a high-confidence result. <!-- pland:command -->\n3. If the command abstains, identify the primary financial product and distinguish it from incidental products. <!-- pland:english -->\n4. Return exactly `{\"label\":\"<allowed label>\",\"confidence\":<0 to 1>}`. <!-- pland:english -->\n",
+        "step_representations": {
+          "english": 3,
+          "command": 1
+        }
+      }
+    },
+    "validation": {
+      "natural_language": {
+        "cases": 4,
+        "correct": 2,
+        "accuracy": 0.5,
+        "macro_f1": 0.16666666666666666,
+        "input_tokens": 1883,
+        "output_tokens": 68,
+        "total_tokens": 1951,
+        "estimated_model_cost_usd": 0.0,
+        "model_calls": 4,
+        "command_calls": 0,
+        "latency_seconds": {
+          "total": 72.27397558400844,
+          "mean": 18.06849389600211
+        },
+        "wall_seconds": 72.28695291700569,
+        "max_rss_bytes": 34488320
+      },
+      "hybrid": {
+        "cases": 4,
+        "correct": 2,
+        "accuracy": 0.5,
+        "macro_f1": 0.16666666666666666,
+        "input_tokens": 510,
+        "output_tokens": 16,
+        "total_tokens": 526,
+        "estimated_model_cost_usd": 0.0,
+        "model_calls": 1,
+        "command_calls": 3,
+        "latency_seconds": {
+          "total": 18.553903624997474,
+          "mean": 4.638475906249369
+        },
+        "wall_seconds": 18.556872666995332,
+        "max_rss_bytes": 34258944
+      },
+      "delta_hybrid_minus_nl": {
+        "accuracy": 0.0,
+        "macro_f1": 0.0,
+        "total_tokens": -1425,
+        "mean_latency_seconds": -13.430017989752741,
+        "model_calls": -3
+      },
+      "invariants": {
+        "system_prompt_sha256": "5a44109d9e9ff0d6e315dd283839bd09a7fe532ced2659dfa11e776ffe0474f5",
+        "evals_sha256": "aeca1b7d3ffe689293cfecc75ca35cf6cc1175f477902875afb84361e441afed",
+        "selection_sha256": "ae818fe47699e7107c557fa5024d66e7eacaa7cb0bbddd586ec6955f8f9d45ab",
+        "scorer_sha256": "035afda0cf344b20d5a83e3a0bdd2660e36e19ad46dc547f73858359eb35418f",
+        "agent_harness_sha256": "035afda0cf344b20d5a83e3a0bdd2660e36e19ad46dc547f73858359eb35418f"
+      },
+      "model": "qwen3:14b",
+      "model_digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+      "seed": 20260902,
+      "natural_language_sop": {
+        "sha256": "85c7d9b4c375bb8921599fef0e59fc863b84cccbf800304f978e3c8bf90a9d2b",
+        "content": "---\nname: cfpb-complaint-routing\ndescription: Route a consumer complaint narrative to one approved financial product.\n---\n\n# Complaint routing SOP\n\n1. Read the complete consumer complaint narrative. <!-- pland:english -->\n2. Identify the financial product that is the primary subject of the problem. <!-- pland:english -->\n3. Distinguish the product from related institutions, payment methods, and incidental products mentioned in the narrative. <!-- pland:english -->\n4. Compare the primary product with every allowed label and select exactly one. <!-- pland:english -->\n5. Return exactly `{\"label\":\"<allowed label>\",\"confidence\":<0 to 1>}`. <!-- pland:english -->\n",
+        "step_representations": {
+          "english": 5
+        }
+      },
+      "hybrid_sop": {
+        "sha256": "6b48ce6370be4f3c97c80b23acb55a70fdfd1e93eb7ed56ba24acf92302e1caa",
+        "content": "---\nname: cfpb-complaint-routing\ndescription: Route a consumer complaint narrative to one approved financial product.\n---\n\n# Complaint routing SOP\n\n1. Read the complete consumer complaint narrative. <!-- pland:english -->\n2. Run `python classify.py` on the narrative and allowed labels; accept only a high-confidence result. <!-- pland:command -->\n3. If the command abstains, identify the primary financial product and distinguish it from incidental products. <!-- pland:english -->\n4. Return exactly `{\"label\":\"<allowed label>\",\"confidence\":<0 to 1>}`. <!-- pland:english -->\n",
+        "step_representations": {
+          "english": 3,
+          "command": 1
+        }
+      }
+    },
+    "test": {
+      "natural_language": {
+        "cases": 4,
+        "correct": 2,
+        "accuracy": 0.5,
+        "macro_f1": 0.2,
+        "input_tokens": 1934,
+        "output_tokens": 73,
+        "total_tokens": 2007,
+        "estimated_model_cost_usd": 0.0,
+        "model_calls": 4,
+        "command_calls": 0,
+        "latency_seconds": {
+          "total": 57.40584175099502,
+          "mean": 14.351460437748756
+        },
+        "wall_seconds": 57.419597625004826,
+        "max_rss_bytes": 34455552
+      },
+      "hybrid": {
+        "cases": 4,
+        "correct": 2,
+        "accuracy": 0.5,
+        "macro_f1": 0.2,
+        "input_tokens": 1579,
+        "output_tokens": 56,
+        "total_tokens": 1635,
+        "estimated_model_cost_usd": 0.0,
+        "model_calls": 3,
+        "command_calls": 1,
+        "latency_seconds": {
+          "total": 46.82804312499502,
+          "mean": 11.707010781248755
+        },
+        "wall_seconds": 46.83141104099923,
+        "max_rss_bytes": 34291712
+      },
+      "delta_hybrid_minus_nl": {
+        "accuracy": 0.0,
+        "macro_f1": 0.0,
+        "total_tokens": -372,
+        "mean_latency_seconds": -2.644449656500001,
+        "model_calls": -1
+      },
+      "invariants": {
+        "system_prompt_sha256": "5a44109d9e9ff0d6e315dd283839bd09a7fe532ced2659dfa11e776ffe0474f5",
+        "evals_sha256": "aeca1b7d3ffe689293cfecc75ca35cf6cc1175f477902875afb84361e441afed",
+        "selection_sha256": "ae818fe47699e7107c557fa5024d66e7eacaa7cb0bbddd586ec6955f8f9d45ab",
+        "scorer_sha256": "035afda0cf344b20d5a83e3a0bdd2660e36e19ad46dc547f73858359eb35418f",
+        "agent_harness_sha256": "035afda0cf344b20d5a83e3a0bdd2660e36e19ad46dc547f73858359eb35418f"
+      },
+      "model": "qwen3:14b",
+      "model_digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+      "seed": 20260902,
+      "natural_language_sop": {
+        "sha256": "85c7d9b4c375bb8921599fef0e59fc863b84cccbf800304f978e3c8bf90a9d2b",
+        "content": "---\nname: cfpb-complaint-routing\ndescription: Route a consumer complaint narrative to one approved financial product.\n---\n\n# Complaint routing SOP\n\n1. Read the complete consumer complaint narrative. <!-- pland:english -->\n2. Identify the financial product that is the primary subject of the problem. <!-- pland:english -->\n3. Distinguish the product from related institutions, payment methods, and incidental products mentioned in the narrative. <!-- pland:english -->\n4. Compare the primary product with every allowed label and select exactly one. <!-- pland:english -->\n5. Return exactly `{\"label\":\"<allowed label>\",\"confidence\":<0 to 1>}`. <!-- pland:english -->\n",
+        "step_representations": {
+          "english": 5
+        }
+      },
+      "hybrid_sop": {
+        "sha256": "6b48ce6370be4f3c97c80b23acb55a70fdfd1e93eb7ed56ba24acf92302e1caa",
+        "content": "---\nname: cfpb-complaint-routing\ndescription: Route a consumer complaint narrative to one approved financial product.\n---\n\n# Complaint routing SOP\n\n1. Read the complete consumer complaint narrative. <!-- pland:english -->\n2. Run `python classify.py` on the narrative and allowed labels; accept only a high-confidence result. <!-- pland:command -->\n3. If the command abstains, identify the primary financial product and distinguish it from incidental products. <!-- pland:english -->\n4. Return exactly `{\"label\":\"<allowed label>\",\"confidence\":<0 to 1>}`. <!-- pland:english -->\n",
+        "step_representations": {
+          "english": 3,
+          "command": 1
+        }
+      }
+    }
+  },
+  "overall": {
+    "natural_language": {
+      "cases": 20,
+      "correct": 12,
+      "accuracy": 0.6,
+      "macro_f1": 0.5833333333333333,
+      "input_tokens": 11384,
+      "output_tokens": 340,
+      "total_tokens": 11724,
+      "model_calls": 20,
+      "command_calls": 0
+    },
+    "hybrid": {
+      "cases": 20,
+      "correct": 12,
+      "accuracy": 0.6,
+      "macro_f1": 0.5833333333333333,
+      "input_tokens": 7272,
+      "output_tokens": 207,
+      "total_tokens": 7479,
+      "model_calls": 12,
+      "command_calls": 8
+    },
+    "delta_hybrid_minus_nl": {
+      "accuracy": 0.0,
+      "macro_f1": 0.0,
+      "total_tokens": -4245,
+      "total_token_ratio": 0.6379222108495394,
+      "model_calls": -8
+    }
+  }
+}

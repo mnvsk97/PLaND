@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "parent_selection_sha256": "115e717f90b4d1f2376a6504fa36d005287d7022cf7136868ef6eb931956f68d",
+  "seed": 20260902,
+  "rule": "lowest two SHA-256(seed:id) ranks per label; assigned 12/4/4",
+  "selected": [
+    {
+      "id": "9973691",
+      "split": "development"
+    },
+    {
+      "id": "9969410",
+      "split": "development"
+    },
+    {
+      "id": "9963799",
+      "split": "development"
+    },
+    {
+      "id": "9974682",
+      "split": "development"
+    },
+    {
+      "id": "9986713",
+      "split": "development"
+    },
+    {
+      "id": "9998324",
+      "split": "development"
+    },
+    {
+      "id": "9980819",
+      "split": "development"
+    },
+    {
+      "id": "9974066",
+      "split": "development"
+    },
+    {
+      "id": "9990782",
+      "split": "development"
+    },
+    {
+      "id": "9984140",
+      "split": "development"
+    },
+    {
+      "id": "9988342",
+      "split": "development"
+    },
+    {
+      "id": "9999322",
+      "split": "development"
+    },
+    {
+      "id": "9965031",
+      "split": "validation"
+    },
+    {
+      "id": "9978941",
+      "split": "validation"
+    },
+    {
+      "id": "9991634",
+      "split": "validation"
+    },
+    {
+      "id": "9972491",
+      "split": "validation"
+    },
+    {
+      "id": "9984954",
+      "split": "test"
+    },
+    {
+      "id": "9969317",
+      "split": "test"
+    },
+    {
+      "id": "9964566",
+      "split": "test"
+    },
+    {
+      "id": "9969770",
+      "split": "test"
+    }
+  ]
+}

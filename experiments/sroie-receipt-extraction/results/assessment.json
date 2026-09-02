@@ -1,0 +1,19 @@
+{
+  "minimum_viable_baseline_field_f1": 0.5,
+  "modes": {
+    "frozen-ocr": {
+      "accepted": false,
+      "baseline_viable": true,
+      "quality_preserved": false,
+      "expense_improved": true,
+      "reason": "candidate did not preserve the validation quality floor"
+    },
+    "end-to-end": {
+      "accepted": false,
+      "baseline_viable": false,
+      "quality_preserved": true,
+      "expense_improved": true,
+      "reason": "baseline below minimum viable quality; optimization result is not meaningful"
+    }
+  }
+}

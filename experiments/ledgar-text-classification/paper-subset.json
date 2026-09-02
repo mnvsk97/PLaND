@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "parent_selection_sha256": "1bc56d394ba7bbc39327540e895950895130dfe9239dfac1ed62737b5b21ef21",
+  "seed": 20260902,
+  "rule": "lowest two SHA-256(seed:id) ranks per label; assigned 12/4/4",
+  "selected": [
+    {
+      "id": "validation-9999",
+      "split": "development"
+    },
+    {
+      "id": "train-10705",
+      "split": "development"
+    },
+    {
+      "id": "train-39877",
+      "split": "development"
+    },
+    {
+      "id": "train-7503",
+      "split": "development"
+    },
+    {
+      "id": "train-37773",
+      "split": "development"
+    },
+    {
+      "id": "train-44505",
+      "split": "development"
+    },
+    {
+      "id": "validation-8018",
+      "split": "development"
+    },
+    {
+      "id": "test-5310",
+      "split": "development"
+    },
+    {
+      "id": "train-42915",
+      "split": "development"
+    },
+    {
+      "id": "validation-1268",
+      "split": "development"
+    },
+    {
+      "id": "validation-389",
+      "split": "development"
+    },
+    {
+      "id": "train-37035",
+      "split": "development"
+    },
+    {
+      "id": "train-1848",
+      "split": "validation"
+    },
+    {
+      "id": "train-14747",
+      "split": "validation"
+    },
+    {
+      "id": "train-38645",
+      "split": "validation"
+    },
+    {
+      "id": "train-14321",
+      "split": "validation"
+    },
+    {
+      "id": "test-7816",
+      "split": "test"
+    },
+    {
+      "id": "test-5111",
+      "split": "test"
+    },
+    {
+      "id": "test-8199",
+      "split": "test"
+    },
+    {
+      "id": "test-9388",
+      "split": "test"
+    }
+  ]
+}
