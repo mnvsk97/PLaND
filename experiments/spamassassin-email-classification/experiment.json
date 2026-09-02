@@ -1,0 +1,13 @@
+{
+  "workflow": "spamassassin-email-classification",
+  "model": "qwen3:14b",
+  "seed": 20260902,
+  "frozen_cases": 100,
+  "paper_cases": 20,
+  "paper_split": {"development": 12, "validation": 4, "test": 4},
+  "target_accuracy": 0.75,
+  "optimization_metric": "total_tokens",
+  "max_iterations": 10,
+  "estimated_model_cost_usd": 0.0,
+  "execution_permissions": "localhost Ollama only; dataset download during preparation only"
+}

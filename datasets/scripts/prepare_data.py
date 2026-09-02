@@ -11,6 +11,7 @@ import io
 import json
 import shutil
 import subprocess
+import tarfile
 import urllib.parse
 import urllib.error
 import urllib.request
@@ -49,6 +50,13 @@ TAU_POLICY_URL = (
 )
 SROIE_DATASET = "mp-02/sroie"
 SROIE_REVISION = "f845db1c2ccaf883550320fe450d1e723374be32"
+SPAMASSASSIN_BASE_URL = "https://spamassassin.apache.org/old/publiccorpus"
+SPAMASSASSIN_ARCHIVES = (
+    "20030228_easy_ham.tar.bz2",
+    "20030228_hard_ham.tar.bz2",
+    "20030228_spam.tar.bz2",
+    "20030228_spam_2.tar.bz2",
+)
 
 
 def sha256(path: Path) -> str:
@@ -381,9 +389,103 @@ def prepare_sroie(args: argparse.Namespace, root: Path) -> None:
     }, source_paths)
 
 
+def sanitize_email(raw: bytes) -> str:
+    """Remove corpus or filter annotations that directly reveal the label."""
+    text = raw.decode("utf-8", errors="replace").replace("\r\n", "\n")
+    lines = text.splitlines()
+    cleaned: list[str] = []
+    skipping = False
+    in_headers = True
+    for line in lines:
+        if in_headers and not line:
+            in_headers = False
+            skipping = False
+            cleaned.append("")
+            continue
+        if in_headers:
+            if line[:1].isspace() and skipping:
+                continue
+            name = line.partition(":")[0].strip().lower()
+            skipping = name.startswith("x-spam-") or name in {
+                "x-bogosity", "x-filtered-by", "x-mail-scanner",
+            }
+            if skipping:
+                continue
+            if name == "subject":
+                value = line.partition(":")[2]
+                value = value.replace("*****SPAM*****", "").replace("[SPAM]", "").strip()
+                line = f"Subject: {value}"
+        cleaned.append(line)
+    return "\n".join(cleaned).strip() + "\n"
+
+
+def iter_spamassassin(archives: Iterable[Path]) -> Iterable[dict[str, str]]:
+    seen: set[str] = set()
+    for archive_path in archives:
+        label = "ham" if "ham" in archive_path.name else "spam"
+        with tarfile.open(archive_path, "r:bz2") as archive:
+            for member in sorted(archive.getmembers(), key=lambda item: item.name):
+                if not member.isfile() or member.size == 0:
+                    continue
+                handle = archive.extractfile(member)
+                if handle is None:
+                    continue
+                raw = handle.read()
+                sanitized = sanitize_email(raw)
+                content_hash = hashlib.sha256(sanitized.encode()).hexdigest()
+                if content_hash in seen or not sanitized.strip():
+                    continue
+                seen.add(content_hash)
+                yield {
+                    "id": f"mail-{content_hash[:20]}",
+                    "label": label,
+                    "raw_email": sanitized,
+                    "archive": archive_path.name,
+                    "member": member.name,
+                    "content_sha256": content_hash,
+                }
+
+
+def prepare_spamassassin(args: argparse.Namespace, root: Path) -> None:
+    source_dir = args.source if args.source else root / "sources"
+    if args.source and not source_dir.is_dir():
+        raise ValueError("SpamAssassin --source must be a directory of corpus archives")
+    archives = []
+    for name in SPAMASSASSIN_ARCHIVES:
+        path = source_dir / name
+        if not path.exists():
+            fetch(f"{SPAMASSASSIN_BASE_URL}/{name}", path)
+        archives.append(path)
+    records = list(iter_spamassassin(archives))
+    selected, labels = choose_balanced(records, "label", "id", args.cases, 2, args.seed)
+    rows = []
+    for split, item in selected:
+        input_path = write_case(root, "spamassassin", item["id"], {"raw_email": item["raw_email"]})
+        rows.append({
+            "schema_version": str(SCHEMA_VERSION), "id": item["id"],
+            "benchmark": "spamassassin", "task_type": "text_classification",
+            "split": split, "input": input_path,
+            "output": compact({"label": item["label"]}),
+            "reasoning": "Hand-verified SpamAssassin public-corpus label.",
+            "metadata": compact({
+                "archive": item["archive"], "member": item["member"],
+                "sanitized_content_sha256": item["content_sha256"],
+            }),
+        })
+    write_artifacts(root, rows, {
+        "dataset": "Apache SpamAssassin public mail corpus",
+        "source_url": SPAMASSASSIN_BASE_URL,
+        "archives": list(SPAMASSASSIN_ARCHIVES), "seed": args.seed,
+        "sanitization": "remove X-Spam and equivalent filter headers and explicit subject markers",
+        "selection_rule": "deduplicate sanitized messages, then lowest seeded hashes per label",
+        "labels": labels,
+        "selected": [{"id": row["id"], "split": row["split"]} for row in rows],
+    }, archives)
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("dataset", choices=("ledgar", "cfpb", "tau-retail", "sroie"))
+    parser.add_argument("dataset", choices=("ledgar", "cfpb", "tau-retail", "sroie", "spamassassin"))
     parser.add_argument("--output", required=True, type=Path)
     parser.add_argument("--source", type=Path, help="Local source file or LEDGAR split directory")
     parser.add_argument("--policy-source", type=Path, help="Local tau retail policy.md")
@@ -400,7 +502,8 @@ def main() -> int:
     args.output.mkdir(parents=True)
     try:
         {"ledgar": prepare_ledgar, "cfpb": prepare_cfpb,
-         "tau-retail": prepare_tau, "sroie": prepare_sroie}[args.dataset](args, args.output)
+         "tau-retail": prepare_tau, "sroie": prepare_sroie,
+         "spamassassin": prepare_spamassassin}[args.dataset](args, args.output)
     except Exception:
         shutil.rmtree(args.output)
         raise

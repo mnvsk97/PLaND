@@ -1,0 +1,247 @@
+{
+  "schema_version": 1,
+  "note": "Aggregate metrics only; case traces remain in ignored local storage. Latency is concurrency-confounded and is not causal evidence.",
+  "splits": {
+    "development": {
+      "natural_language": {
+        "cases": 12,
+        "correct": 10,
+        "accuracy": 0.8333333333333334,
+        "macro_f1": 0.8285714285714285,
+        "input_tokens": 26952,
+        "output_tokens": 156,
+        "total_tokens": 27108,
+        "estimated_model_cost_usd": 0.0,
+        "model_calls": 12,
+        "command_calls": 0,
+        "latency_seconds": {
+          "total": 48.146244584997476,
+          "mean": 4.01218704874979
+        },
+        "wall_seconds": 48.15583450000122,
+        "max_rss_bytes": 34619392
+      },
+      "hybrid": {
+        "cases": 12,
+        "correct": 10,
+        "accuracy": 0.8333333333333334,
+        "macro_f1": 0.8285714285714285,
+        "input_tokens": 21112,
+        "output_tokens": 117,
+        "total_tokens": 21229,
+        "estimated_model_cost_usd": 0.0,
+        "model_calls": 9,
+        "command_calls": 3,
+        "latency_seconds": {
+          "total": 36.988960833979945,
+          "mean": 3.082413402831662
+        },
+        "wall_seconds": 37.010978416998114,
+        "max_rss_bytes": 36257792
+      },
+      "delta_hybrid_minus_nl": {
+        "accuracy": 0.0,
+        "macro_f1": 0.0,
+        "total_tokens": -5879,
+        "mean_latency_seconds": -0.9297736459181278,
+        "model_calls": -3
+      },
+      "invariants": {
+        "system_prompt_sha256": "c9b97a09c97ae4118c79e350388366cd006217e72c5a5b561cb563630653ef1f",
+        "evals_sha256": "80a3f4c539f188823ca7f8532125079e0400a11fa16b1c6d6d504c4d78414c37",
+        "selection_sha256": "c5e5879f7d61a1966a1f9312d93750f97f8fbd77232e38dc6d09aa43d2d7c0e1",
+        "scorer_sha256": "30ea732173abb31d440ead2ee1d8d7c6ed3a0343fa115d2573ef7da8b7ab3c9f",
+        "agent_harness_sha256": "30ea732173abb31d440ead2ee1d8d7c6ed3a0343fa115d2573ef7da8b7ab3c9f"
+      },
+      "model": "qwen3:14b",
+      "model_digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+      "seed": 20260902,
+      "natural_language_sop": {
+        "sha256": "d2cdab135f281ad33df35eec3f3e29569128766130c73a2f14658565d62b8bac",
+        "content": "---\nname: spamassassin-email-classification\ndescription: Classify a complete historical email as spam or ham.\n---\n\n# Email classification SOP\n\n1. Read the complete message, including headers, subject, plain text, and HTML content. <!-- pland:english -->\n2. Assess sender and routing context without assuming that one unusual header proves spam. <!-- pland:english -->\n3. Determine whether the message is unsolicited or deceptive, or instead legitimate correspondence or an expected newsletter. <!-- pland:english -->\n4. Select exactly one allowed label: `spam` or `ham`. <!-- pland:english -->\n5. Return exactly `{\"label\":\"<spam|ham>\",\"confidence\":<0 to 1>}`. <!-- pland:english -->\n",
+        "step_representations": {
+          "english": 5
+        }
+      },
+      "hybrid_sop": {
+        "sha256": "3f9edbe0b03fd5cc6d8ce2cb023cc4e7568969fa722bafdbe0aabb19ef0c2589",
+        "content": "---\nname: spamassassin-email-classification\ndescription: Classify a complete historical email as spam or ham.\n---\n\n# Email classification SOP\n\n1. Run `python hybrid/classify.py` to parse the RFC-822 message and resolve only high-precision spam patterns. <!-- pland:command -->\n2. If the command does not return a label, assess the complete headers and content for unsolicited or deceptive intent versus legitimate correspondence or an expected newsletter. <!-- pland:english -->\n3. Return exactly `{\"label\":\"<spam|ham>\",\"confidence\":<0 to 1>}`. <!-- pland:english -->\n",
+        "step_representations": {
+          "command": 1,
+          "english": 2
+        }
+      }
+    },
+    "validation": {
+      "natural_language": {
+        "cases": 4,
+        "correct": 4,
+        "accuracy": 1.0,
+        "macro_f1": 1.0,
+        "input_tokens": 18855,
+        "output_tokens": 51,
+        "total_tokens": 18906,
+        "estimated_model_cost_usd": 0.0,
+        "model_calls": 4,
+        "command_calls": 0,
+        "latency_seconds": {
+          "total": 44.30576733399357,
+          "mean": 11.076441833498393
+        },
+        "wall_seconds": 44.32127825000498,
+        "max_rss_bytes": 34406400
+      },
+      "hybrid": {
+        "cases": 4,
+        "correct": 4,
+        "accuracy": 1.0,
+        "macro_f1": 1.0,
+        "input_tokens": 18759,
+        "output_tokens": 51,
+        "total_tokens": 18810,
+        "estimated_model_cost_usd": 0.0,
+        "model_calls": 4,
+        "command_calls": 0,
+        "latency_seconds": {
+          "total": 44.43428274899634,
+          "mean": 11.108570687249085
+        },
+        "wall_seconds": 44.44954154200241,
+        "max_rss_bytes": 35422208
+      },
+      "delta_hybrid_minus_nl": {
+        "accuracy": 0.0,
+        "macro_f1": 0.0,
+        "total_tokens": -96,
+        "mean_latency_seconds": 0.03212885375069163,
+        "model_calls": 0
+      },
+      "invariants": {
+        "system_prompt_sha256": "c9b97a09c97ae4118c79e350388366cd006217e72c5a5b561cb563630653ef1f",
+        "evals_sha256": "80a3f4c539f188823ca7f8532125079e0400a11fa16b1c6d6d504c4d78414c37",
+        "selection_sha256": "c5e5879f7d61a1966a1f9312d93750f97f8fbd77232e38dc6d09aa43d2d7c0e1",
+        "scorer_sha256": "30ea732173abb31d440ead2ee1d8d7c6ed3a0343fa115d2573ef7da8b7ab3c9f",
+        "agent_harness_sha256": "30ea732173abb31d440ead2ee1d8d7c6ed3a0343fa115d2573ef7da8b7ab3c9f"
+      },
+      "model": "qwen3:14b",
+      "model_digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+      "seed": 20260902,
+      "natural_language_sop": {
+        "sha256": "d2cdab135f281ad33df35eec3f3e29569128766130c73a2f14658565d62b8bac",
+        "content": "---\nname: spamassassin-email-classification\ndescription: Classify a complete historical email as spam or ham.\n---\n\n# Email classification SOP\n\n1. Read the complete message, including headers, subject, plain text, and HTML content. <!-- pland:english -->\n2. Assess sender and routing context without assuming that one unusual header proves spam. <!-- pland:english -->\n3. Determine whether the message is unsolicited or deceptive, or instead legitimate correspondence or an expected newsletter. <!-- pland:english -->\n4. Select exactly one allowed label: `spam` or `ham`. <!-- pland:english -->\n5. Return exactly `{\"label\":\"<spam|ham>\",\"confidence\":<0 to 1>}`. <!-- pland:english -->\n",
+        "step_representations": {
+          "english": 5
+        }
+      },
+      "hybrid_sop": {
+        "sha256": "3f9edbe0b03fd5cc6d8ce2cb023cc4e7568969fa722bafdbe0aabb19ef0c2589",
+        "content": "---\nname: spamassassin-email-classification\ndescription: Classify a complete historical email as spam or ham.\n---\n\n# Email classification SOP\n\n1. Run `python hybrid/classify.py` to parse the RFC-822 message and resolve only high-precision spam patterns. <!-- pland:command -->\n2. If the command does not return a label, assess the complete headers and content for unsolicited or deceptive intent versus legitimate correspondence or an expected newsletter. <!-- pland:english -->\n3. Return exactly `{\"label\":\"<spam|ham>\",\"confidence\":<0 to 1>}`. <!-- pland:english -->\n",
+        "step_representations": {
+          "command": 1,
+          "english": 2
+        }
+      }
+    },
+    "test": {
+      "natural_language": {
+        "cases": 4,
+        "correct": 4,
+        "accuracy": 1.0,
+        "macro_f1": 1.0,
+        "input_tokens": 6184,
+        "output_tokens": 52,
+        "total_tokens": 6236,
+        "estimated_model_cost_usd": 0.0,
+        "model_calls": 4,
+        "command_calls": 0,
+        "latency_seconds": {
+          "total": 9.971203667002555,
+          "mean": 2.492800916750639
+        },
+        "wall_seconds": 9.985409916000208,
+        "max_rss_bytes": 34242560
+      },
+      "hybrid": {
+        "cases": 4,
+        "correct": 3,
+        "accuracy": 0.75,
+        "macro_f1": 0.7333333333333334,
+        "input_tokens": 4193,
+        "output_tokens": 38,
+        "total_tokens": 4231,
+        "estimated_model_cost_usd": 0.0,
+        "model_calls": 3,
+        "command_calls": 1,
+        "latency_seconds": {
+          "total": 6.8516497910095495,
+          "mean": 1.7129124477523874
+        },
+        "wall_seconds": 6.855064583993226,
+        "max_rss_bytes": 35094528
+      },
+      "delta_hybrid_minus_nl": {
+        "accuracy": -0.25,
+        "macro_f1": -0.2666666666666666,
+        "total_tokens": -2005,
+        "mean_latency_seconds": -0.7798884689982515,
+        "model_calls": -1
+      },
+      "invariants": {
+        "system_prompt_sha256": "c9b97a09c97ae4118c79e350388366cd006217e72c5a5b561cb563630653ef1f",
+        "evals_sha256": "80a3f4c539f188823ca7f8532125079e0400a11fa16b1c6d6d504c4d78414c37",
+        "selection_sha256": "c5e5879f7d61a1966a1f9312d93750f97f8fbd77232e38dc6d09aa43d2d7c0e1",
+        "scorer_sha256": "30ea732173abb31d440ead2ee1d8d7c6ed3a0343fa115d2573ef7da8b7ab3c9f",
+        "agent_harness_sha256": "30ea732173abb31d440ead2ee1d8d7c6ed3a0343fa115d2573ef7da8b7ab3c9f"
+      },
+      "model": "qwen3:14b",
+      "model_digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+      "seed": 20260902,
+      "natural_language_sop": {
+        "sha256": "d2cdab135f281ad33df35eec3f3e29569128766130c73a2f14658565d62b8bac",
+        "content": "---\nname: spamassassin-email-classification\ndescription: Classify a complete historical email as spam or ham.\n---\n\n# Email classification SOP\n\n1. Read the complete message, including headers, subject, plain text, and HTML content. <!-- pland:english -->\n2. Assess sender and routing context without assuming that one unusual header proves spam. <!-- pland:english -->\n3. Determine whether the message is unsolicited or deceptive, or instead legitimate correspondence or an expected newsletter. <!-- pland:english -->\n4. Select exactly one allowed label: `spam` or `ham`. <!-- pland:english -->\n5. Return exactly `{\"label\":\"<spam|ham>\",\"confidence\":<0 to 1>}`. <!-- pland:english -->\n",
+        "step_representations": {
+          "english": 5
+        }
+      },
+      "hybrid_sop": {
+        "sha256": "3f9edbe0b03fd5cc6d8ce2cb023cc4e7568969fa722bafdbe0aabb19ef0c2589",
+        "content": "---\nname: spamassassin-email-classification\ndescription: Classify a complete historical email as spam or ham.\n---\n\n# Email classification SOP\n\n1. Run `python hybrid/classify.py` to parse the RFC-822 message and resolve only high-precision spam patterns. <!-- pland:command -->\n2. If the command does not return a label, assess the complete headers and content for unsolicited or deceptive intent versus legitimate correspondence or an expected newsletter. <!-- pland:english -->\n3. Return exactly `{\"label\":\"<spam|ham>\",\"confidence\":<0 to 1>}`. <!-- pland:english -->\n",
+        "step_representations": {
+          "command": 1,
+          "english": 2
+        }
+      }
+    }
+  },
+  "overall": {
+    "natural_language": {
+      "cases": 20,
+      "correct": 18,
+      "accuracy": 0.9,
+      "macro_f1": 0.898989898989899,
+      "input_tokens": 51991,
+      "output_tokens": 259,
+      "total_tokens": 52250,
+      "model_calls": 20,
+      "command_calls": 0
+    },
+    "hybrid": {
+      "cases": 20,
+      "correct": 17,
+      "accuracy": 0.85,
+      "macro_f1": 0.8465473145780051,
+      "input_tokens": 44064,
+      "output_tokens": 206,
+      "total_tokens": 44270,
+      "model_calls": 16,
+      "command_calls": 4
+    },
+    "delta_hybrid_minus_nl": {
+      "accuracy": -0.050000000000000044,
+      "macro_f1": -0.05244258441189387,
+      "total_tokens": -7980,
+      "total_token_ratio": 0.8472727272727273,
+      "model_calls": -4
+    }
+  }
+}

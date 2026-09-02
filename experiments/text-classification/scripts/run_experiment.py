@@ -106,7 +106,9 @@ def main() -> int:
     started_run = time.perf_counter()
     for row in rows:
         payload = json.loads((args.dataset / row["input"]).read_text(encoding="utf-8"))
-        text = payload.get("text") or payload.get("narrative")
+        text = payload.get("text") or payload.get("narrative") or payload.get("raw_email")
+        if not isinstance(text, str) or not text.strip():
+            raise ValueError(f"case {row['id']} has no supported text input")
         expected = json.loads(row["output"])["label"]
         started = time.perf_counter()
         source = "model"

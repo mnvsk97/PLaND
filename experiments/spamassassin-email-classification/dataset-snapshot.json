@@ -1,0 +1,442 @@
+{
+  "dataset": "Apache SpamAssassin public mail corpus",
+  "source_url": "https://spamassassin.apache.org/old/publiccorpus",
+  "archives": [
+    "20030228_easy_ham.tar.bz2",
+    "20030228_hard_ham.tar.bz2",
+    "20030228_spam.tar.bz2",
+    "20030228_spam_2.tar.bz2"
+  ],
+  "seed": 20260902,
+  "sanitization": "remove X-Spam and equivalent filter headers and explicit subject markers",
+  "selection_rule": "deduplicate sanitized messages, then lowest seeded hashes per label",
+  "labels": [
+    "ham",
+    "spam"
+  ],
+  "selected": [
+    {
+      "id": "mail-0ba8a9b11fab15bf4b77",
+      "split": "development"
+    },
+    {
+      "id": "mail-0cfc7bbc16a6d96d84ca",
+      "split": "development"
+    },
+    {
+      "id": "mail-1184ff8710250b666b54",
+      "split": "development"
+    },
+    {
+      "id": "mail-20ff256811b2ade41ce9",
+      "split": "development"
+    },
+    {
+      "id": "mail-2362c16b5ccdbe754624",
+      "split": "development"
+    },
+    {
+      "id": "mail-27403c0d3b3f780f311d",
+      "split": "development"
+    },
+    {
+      "id": "mail-27f657ec4b9ef06adec8",
+      "split": "development"
+    },
+    {
+      "id": "mail-3071dce94053e85b6322",
+      "split": "development"
+    },
+    {
+      "id": "mail-3896a89d113440dac30b",
+      "split": "development"
+    },
+    {
+      "id": "mail-3de7883c6777cb59d13a",
+      "split": "development"
+    },
+    {
+      "id": "mail-416e607afbf4beec73df",
+      "split": "development"
+    },
+    {
+      "id": "mail-5e6a588cf3b634a2a279",
+      "split": "development"
+    },
+    {
+      "id": "mail-6904cc33872bf77b7a81",
+      "split": "development"
+    },
+    {
+      "id": "mail-6c416a32ae026045f374",
+      "split": "development"
+    },
+    {
+      "id": "mail-72ac59c8588e847292a0",
+      "split": "development"
+    },
+    {
+      "id": "mail-750f2aac993bda9e3f1b",
+      "split": "development"
+    },
+    {
+      "id": "mail-77655dc5d8c003fcf485",
+      "split": "development"
+    },
+    {
+      "id": "mail-93ba040713d82583a354",
+      "split": "development"
+    },
+    {
+      "id": "mail-9bccad70f8b23fe8cc12",
+      "split": "development"
+    },
+    {
+      "id": "mail-9cd7893e675f07ee8bd4",
+      "split": "development"
+    },
+    {
+      "id": "mail-9ff549e09b8da8febcdd",
+      "split": "development"
+    },
+    {
+      "id": "mail-a1bda7e8855ac4b97dd6",
+      "split": "development"
+    },
+    {
+      "id": "mail-aba133a6b64bd643372e",
+      "split": "development"
+    },
+    {
+      "id": "mail-bd2f5cc3a4ac3345be5e",
+      "split": "development"
+    },
+    {
+      "id": "mail-be211afb780658b48f2d",
+      "split": "development"
+    },
+    {
+      "id": "mail-c50d6d7fce64bc71e0c2",
+      "split": "development"
+    },
+    {
+      "id": "mail-d2e313e3f233e83612be",
+      "split": "development"
+    },
+    {
+      "id": "mail-dd676dab12011a0d776c",
+      "split": "development"
+    },
+    {
+      "id": "mail-e8a7afc7afb9256f8b56",
+      "split": "development"
+    },
+    {
+      "id": "mail-f63239317ccb263b8352",
+      "split": "development"
+    },
+    {
+      "id": "mail-09064cf9349dfd1ad4d9",
+      "split": "development"
+    },
+    {
+      "id": "mail-10a415e1cc827d846b9d",
+      "split": "development"
+    },
+    {
+      "id": "mail-36e5859ec171b68555b2",
+      "split": "development"
+    },
+    {
+      "id": "mail-3d5f651a69bdae2eb4d9",
+      "split": "development"
+    },
+    {
+      "id": "mail-40fed347b5c7b24e4f3d",
+      "split": "development"
+    },
+    {
+      "id": "mail-42eed5e3f8cb6df05b59",
+      "split": "development"
+    },
+    {
+      "id": "mail-43a56fd402aed1cfc7ea",
+      "split": "development"
+    },
+    {
+      "id": "mail-5578ebee22e5c9466095",
+      "split": "development"
+    },
+    {
+      "id": "mail-6a6021b0521309f24c83",
+      "split": "development"
+    },
+    {
+      "id": "mail-6f1f24ce915f71eef863",
+      "split": "development"
+    },
+    {
+      "id": "mail-771587342d63b77c52a5",
+      "split": "development"
+    },
+    {
+      "id": "mail-79b804b0441ef2e7b40d",
+      "split": "development"
+    },
+    {
+      "id": "mail-7e8099a8ff79e9083db4",
+      "split": "development"
+    },
+    {
+      "id": "mail-80ca8f9701cba7713628",
+      "split": "development"
+    },
+    {
+      "id": "mail-822cedd8a85a138a211d",
+      "split": "development"
+    },
+    {
+      "id": "mail-8ea451606c6772ec55f1",
+      "split": "development"
+    },
+    {
+      "id": "mail-941983ea6c3e52a606a7",
+      "split": "development"
+    },
+    {
+      "id": "mail-969490fb62843e3618ce",
+      "split": "development"
+    },
+    {
+      "id": "mail-9cb6fd0530fd849b053d",
+      "split": "development"
+    },
+    {
+      "id": "mail-abc4ed806b8ba0f501b6",
+      "split": "development"
+    },
+    {
+      "id": "mail-bb02ba6ff8396510d5a2",
+      "split": "development"
+    },
+    {
+      "id": "mail-bfd314dec9a3e935a694",
+      "split": "development"
+    },
+    {
+      "id": "mail-c045d243bf170d80baac",
+      "split": "development"
+    },
+    {
+      "id": "mail-c4a0e4f1215550b5de78",
+      "split": "development"
+    },
+    {
+      "id": "mail-c4b336139c32326fd9ae",
+      "split": "development"
+    },
+    {
+      "id": "mail-cb1fcb695cb650d7c10f",
+      "split": "development"
+    },
+    {
+      "id": "mail-e8e5a4c686cb98045ebb",
+      "split": "development"
+    },
+    {
+      "id": "mail-e91c574d61eea077dfba",
+      "split": "development"
+    },
+    {
+      "id": "mail-ec270abfb49a4f9a09ea",
+      "split": "development"
+    },
+    {
+      "id": "mail-f8a36fa747248a3efda5",
+      "split": "development"
+    },
+    {
+      "id": "mail-008347f04e0e5ac70a6c",
+      "split": "test"
+    },
+    {
+      "id": "mail-12018fa0c086ad606414",
+      "split": "test"
+    },
+    {
+      "id": "mail-1b99ca23e70c50962160",
+      "split": "test"
+    },
+    {
+      "id": "mail-399e8b7c7672b6026e7b",
+      "split": "test"
+    },
+    {
+      "id": "mail-4d477111bab9c0c974c6",
+      "split": "test"
+    },
+    {
+      "id": "mail-67336c6bb8c1c55c3d3f",
+      "split": "test"
+    },
+    {
+      "id": "mail-731feaab7a1cfdc9e538",
+      "split": "test"
+    },
+    {
+      "id": "mail-8b5717e6740627315e0b",
+      "split": "test"
+    },
+    {
+      "id": "mail-be4ff8286250add9e0d9",
+      "split": "test"
+    },
+    {
+      "id": "mail-fc4abd5b6429dd12ff1c",
+      "split": "test"
+    },
+    {
+      "id": "mail-19815c78a3942e10116f",
+      "split": "test"
+    },
+    {
+      "id": "mail-3593e4a6fb962efd098b",
+      "split": "test"
+    },
+    {
+      "id": "mail-4364ede61a28cc6105f0",
+      "split": "test"
+    },
+    {
+      "id": "mail-896c2967b194f0493c3c",
+      "split": "test"
+    },
+    {
+      "id": "mail-8fa08cb1e5744441bb81",
+      "split": "test"
+    },
+    {
+      "id": "mail-a178e212b1c10ed84209",
+      "split": "test"
+    },
+    {
+      "id": "mail-ab34bfee921454d00811",
+      "split": "test"
+    },
+    {
+      "id": "mail-ade023c360f27e435e6b",
+      "split": "test"
+    },
+    {
+      "id": "mail-d488c4dcbda1e5c996ca",
+      "split": "test"
+    },
+    {
+      "id": "mail-dd007e9c02ecddd73b56",
+      "split": "test"
+    },
+    {
+      "id": "mail-0f79feabc73534a22f85",
+      "split": "validation"
+    },
+    {
+      "id": "mail-39d87c952db07a9aa51a",
+      "split": "validation"
+    },
+    {
+      "id": "mail-63a7c4fc1cf9ab538882",
+      "split": "validation"
+    },
+    {
+      "id": "mail-7109c166befee36deaa8",
+      "split": "validation"
+    },
+    {
+      "id": "mail-7f4ff273dc8eb3d82a12",
+      "split": "validation"
+    },
+    {
+      "id": "mail-9481acdf91297b25de40",
+      "split": "validation"
+    },
+    {
+      "id": "mail-9dd464cc14c749501388",
+      "split": "validation"
+    },
+    {
+      "id": "mail-b0cea1a7cb9fbb0c0341",
+      "split": "validation"
+    },
+    {
+      "id": "mail-d7b039fda75a0f82f547",
+      "split": "validation"
+    },
+    {
+      "id": "mail-ed24af1808fa5e952ebb",
+      "split": "validation"
+    },
+    {
+      "id": "mail-10d425b9e5936750f04e",
+      "split": "validation"
+    },
+    {
+      "id": "mail-1e30d69546f6b045af3b",
+      "split": "validation"
+    },
+    {
+      "id": "mail-41a118a703404a04c39b",
+      "split": "validation"
+    },
+    {
+      "id": "mail-4cd229cf17e69003b63a",
+      "split": "validation"
+    },
+    {
+      "id": "mail-90324736e97e04d051e6",
+      "split": "validation"
+    },
+    {
+      "id": "mail-9e3a3a102d3a4073d7fd",
+      "split": "validation"
+    },
+    {
+      "id": "mail-bc482c0a300dc7f93f41",
+      "split": "validation"
+    },
+    {
+      "id": "mail-bf39ed798dccae0a3831",
+      "split": "validation"
+    },
+    {
+      "id": "mail-d9e506bc368f9bbfc12c",
+      "split": "validation"
+    },
+    {
+      "id": "mail-f3c7b11ded8e078e9b99",
+      "split": "validation"
+    }
+  ],
+  "schema_version": 2,
+  "sources": [
+    {
+      "path": "20030228_easy_ham.tar.bz2",
+      "sha256": "2b7b65904bcfcc31d2b5f51946f2d261370b257402cbbd62930b46ab83367438",
+      "bytes": 1612216
+    },
+    {
+      "path": "20030228_hard_ham.tar.bz2",
+      "sha256": "ce2ce67880643dbde65ea7f85bffbfe4417349c4bd80b6b0de56262ae6b0a9c9",
+      "bytes": 1029898
+    },
+    {
+      "path": "20030228_spam.tar.bz2",
+      "sha256": "c08debc32413804949a866be45ef78195cec2cbafd1da744ed76cdb860589743",
+      "bytes": 1183768
+    },
+    {
+      "path": "20030228_spam_2.tar.bz2",
+      "sha256": "40bc444c596ff3e71505ae334f115b16f9b946786ee68f09b921b6b99217fd00",
+      "bytes": 2059563
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "dataset_snapshot_sha256": "8e2f734e12314abea408d2532e7c32f2bca0cf6882916e385c3b8884a204f569",
+  "paper_subset_sha256": "c5e5879f7d61a1966a1f9312d93750f97f8fbd77232e38dc6d09aa43d2d7c0e1",
+  "system_prompt_sha256": "c9b97a09c97ae4118c79e350388366cd006217e72c5a5b561cb563630653ef1f",
+  "harness_and_scorer_sha256": "30ea732173abb31d440ead2ee1d8d7c6ed3a0343fa115d2573ef7da8b7ab3c9f",
+  "nl_sop_sha256": "d2cdab135f281ad33df35eec3f3e29569128766130c73a2f14658565d62b8bac",
+  "hybrid_sop_sha256": "3f9edbe0b03fd5cc6d8ce2cb023cc4e7568969fa722bafdbe0aabb19ef0c2589",
+  "hybrid_classifier_sha256": "c4d434380e56589562fce0d4e2b8b905dfd3f7ab803bcb55fdf8cc3193810de8",
+  "summary_sha256": "3c56857942822c62e69c2c11c53034e84fc904fd1c40e46986cdbca9d31757e5"
+}

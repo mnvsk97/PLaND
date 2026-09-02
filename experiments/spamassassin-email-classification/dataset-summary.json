@@ -1,0 +1,12 @@
+{
+  "cases": 100,
+  "by_split": {
+    "development": 60,
+    "test": 20,
+    "validation": 20
+  },
+  "by_output": {
+    "{\"label\":\"ham\"}": 50,
+    "{\"label\":\"spam\"}": 50
+  }
+}

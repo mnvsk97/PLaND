@@ -15,6 +15,20 @@ SPEC.loader.exec_module(MODULE)
 
 
 class PrepareDataTests(unittest.TestCase):
+    def test_spamassassin_sanitizer_removes_label_leaks_and_continuations(self):
+        raw = (
+            b"From: sender@example.com\r\n"
+            b"X-Spam-Status: Yes, score=9\r\n"
+            b" details that continue the label\r\n"
+            b"Subject: [SPAM] A normal subject\r\n\r\nBody text.\r\n"
+        )
+        cleaned = MODULE.sanitize_email(raw)
+        self.assertNotIn("X-Spam", cleaned)
+        self.assertNotIn("[SPAM]", cleaned)
+        self.assertNotIn("continue the label", cleaned)
+        self.assertIn("Subject: A normal subject", cleaned)
+        self.assertIn("Body text.", cleaned)
+
     def test_sroie_source_ids_include_upstream_split(self):
         fixture_rows = []
         for upstream_split in ("train", "test"):

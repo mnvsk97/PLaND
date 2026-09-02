@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "parent_selection_sha256": "8e2f734e12314abea408d2532e7c32f2bca0cf6882916e385c3b8884a204f569",
+  "seed": 20260902,
+  "rule": "lowest two SHA-256(seed:id) ranks per label; assigned 12/4/4",
+  "selected": [
+    {
+      "id": "mail-be211afb780658b48f2d",
+      "split": "development"
+    },
+    {
+      "id": "mail-0ba8a9b11fab15bf4b77",
+      "split": "development"
+    },
+    {
+      "id": "mail-5e6a588cf3b634a2a279",
+      "split": "development"
+    },
+    {
+      "id": "mail-416e607afbf4beec73df",
+      "split": "development"
+    },
+    {
+      "id": "mail-3896a89d113440dac30b",
+      "split": "development"
+    },
+    {
+      "id": "mail-6904cc33872bf77b7a81",
+      "split": "development"
+    },
+    {
+      "id": "mail-f8a36fa747248a3efda5",
+      "split": "development"
+    },
+    {
+      "id": "mail-9cb6fd0530fd849b053d",
+      "split": "development"
+    },
+    {
+      "id": "mail-5578ebee22e5c9466095",
+      "split": "development"
+    },
+    {
+      "id": "mail-3d5f651a69bdae2eb4d9",
+      "split": "development"
+    },
+    {
+      "id": "mail-e91c574d61eea077dfba",
+      "split": "development"
+    },
+    {
+      "id": "mail-8ea451606c6772ec55f1",
+      "split": "development"
+    },
+    {
+      "id": "mail-b0cea1a7cb9fbb0c0341",
+      "split": "validation"
+    },
+    {
+      "id": "mail-0f79feabc73534a22f85",
+      "split": "validation"
+    },
+    {
+      "id": "mail-bf39ed798dccae0a3831",
+      "split": "validation"
+    },
+    {
+      "id": "mail-41a118a703404a04c39b",
+      "split": "validation"
+    },
+    {
+      "id": "mail-67336c6bb8c1c55c3d3f",
+      "split": "test"
+    },
+    {
+      "id": "mail-399e8b7c7672b6026e7b",
+      "split": "test"
+    },
+    {
+      "id": "mail-8fa08cb1e5744441bb81",
+      "split": "test"
+    },
+    {
+      "id": "mail-dd007e9c02ecddd73b56",
+      "split": "test"
+    }
+  ]
+}

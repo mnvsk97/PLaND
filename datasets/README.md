@@ -11,7 +11,7 @@ conclusion from one kind of task:
 
 | Category | Datasets | What it tests |
 | --- | --- | --- |
-| Text classification | LEDGAR and CFPB complaints | Whether deterministic steps can reduce repeated language-model work while preserving semantic classification quality. |
+| Text classification | LEDGAR, CFPB complaints, and SpamAssassin email | Whether deterministic steps can reduce repeated language-model work while preserving semantic classification quality. |
 | Multi-step workflow | tau-retail | Whether a hybrid SOP can preserve policy compliance and correct tool-driven state changes. |
 | Multimodal workflow | SROIE, with the existing Tobacco/RVL subset as robustness validation | Whether the method still works when document images, OCR, extraction, and validation add another source of error. |
 
@@ -64,6 +64,9 @@ python datasets/scripts/prepare_data.py tau-retail \
 
 python datasets/scripts/prepare_data.py sroie \
   --output tmp/enterprise-data/sroie
+
+python datasets/scripts/prepare_data.py spamassassin \
+  --output tmp/enterprise-data/spamassassin
 ```
 
 Use `--source` to prepare an already downloaded source without network access.
@@ -107,6 +110,7 @@ scores into one accuracy number.
 | --- | --- | --- | --- |
 | LEDGAR | Contract-clause classification | macro F1 and accuracy | tokens, latency, estimated cost, resources |
 | CFPB | Complaint product routing | macro F1 and accuracy | tokens, latency, estimated cost, resources |
+| SpamAssassin | Raw-email spam or ham classification | spam F1, macro F1, and accuracy | tokens, latency, model calls, estimated cost |
 | tau-retail | Policy-constrained tool workflow | task success and final database state | tokens, latency, tool calls, estimated cost |
 | SROIE frozen OCR | Receipt field extraction with fixed OCR input | field F1 and exact match | tokens, agent latency, estimated cost |
 | SROIE end to end | Image-to-structured receipt processing | field F1 and exact match | OCR quality, OCR latency, agent latency, total latency |

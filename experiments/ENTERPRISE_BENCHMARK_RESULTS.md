@@ -17,6 +17,7 @@ is not committed.
 | --- | ---: | ---: | ---: | ---: | --- |
 | LEDGAR contract classification | 85% accuracy; 0.813 macro F1 | 85%; 0.813 | 6,986 | 3,173 (-54.6%) | Accepted |
 | CFPB complaint routing | 60% accuracy; 0.583 macro F1 | 60%; 0.583 | 11,724 | 7,479 (-36.2%) | Accepted |
+| SpamAssassin email classification | 90% accuracy; 0.899 macro F1 | 85%; 0.847 | 52,250 | 44,270 (-15.3%) | Meets 75% floor; held-out regression |
 | tau-retail tool workflow | 0% task success | 0% | 440,650 | 464,729 (+5.5%) | Feasibility failure |
 | SROIE frozen OCR | 0.868 field F1 | 0.864 | 16,295 | 15,109 (-7.3%) | Rejected on validation quality |
 | SROIE end to end | 0.200 field F1 | 0.178 | 18,487 | 17,338 (-6.2%) | Nonviable OCR baseline; rejected |
@@ -31,6 +32,11 @@ floor and was rejected.
 The LEDGAR and CFPB pilots support the narrow hypothesis that deterministic
 SOP steps can bypass some model calls while preserving measured classification
 quality. They do not establish that every workflow can be optimized this way.
+
+SpamAssassin is weaker evidence: it meets its preregistered absolute quality
+floor and reduces tokens, but hybrid accuracy is five points below NL overall
+and 25 points below NL on the four-case test. It is retained as a transparent
+threshold result rather than grouped with the equal-accuracy text results.
 
 The other experiments identify two important boundaries:
 
@@ -49,6 +55,7 @@ hardware performance.
 
 - `ledgar-text-classification/`
 - `cfpb-text-classification/`
+- `spamassassin-email-classification/`
 - `tau-retail/`
 - `sroie-receipt-extraction/`
 - `rvl-cdip-document-classification/schema-v2/`
