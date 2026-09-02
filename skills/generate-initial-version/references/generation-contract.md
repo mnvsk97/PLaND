@@ -9,3 +9,5 @@ The generated project may use approved VPC or API services later, but the initia
 Expose only tools required by the initial workflow. For a local classification-style workflow, skill reads and approved datasource reads are sufficient: disable the default general-purpose subagent and hide write, edit, delete, shell, search, and listing tools. Extra tools increase prompt size and create additional non-deterministic action paths even when the task never needs them.
 
 Use `references/` inside the generated SOP only when substantial details would otherwise inflate `SKILL.md`. Use `scripts/` only after PLaND evaluation evidence supports replacing a natural-language step.
+
+Do not add caching or parallel execution to the initial natural-language baseline unless the requirements already demand them. Record those as evolution opportunities instead. During later code generation, inspect for stable repeated computations that can use correctly invalidated caches and for two or more independent operations that can use bounded parallelism without changing semantics or result order.

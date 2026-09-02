@@ -1,0 +1,173 @@
+{
+  "schema_version": 1,
+  "workflow": "document-classification",
+  "requirements": {
+    "path": "/Users/saikrishna/dev/deterministic-skills/experiments/rvl-cdip-document-classification/requirements.md",
+    "sha256": "7b0cb7e8a30b8e3122808cbc3f3b884066a76fa3c44d6d06dc533356d1436f32"
+  },
+  "guidance": null,
+  "model_provider": "ollama",
+  "datasource_root": "/Users/saikrishna/dev/deterministic-skills/tmp/rvl-cdip-subset/documents",
+  "sources": [
+    {
+      "path": "advertisement/test-121.txt",
+      "bytes": 678,
+      "sha256": "b218e34dd2a6966ea17b2604ede0221c99b6efd2519464245fcdb1f842ea4e2c"
+    },
+    {
+      "path": "advertisement/validation-112.txt",
+      "bytes": 197,
+      "sha256": "eea29e26132a9bfb3f9bc7a9edc03ac3a36040789d066cc7fa11b314edd1dc71"
+    },
+    {
+      "path": "budget/test-259.txt",
+      "bytes": 836,
+      "sha256": "79f3e1867291e81265e862d82ca0820cb433f7c9226203752c6d74e705835829"
+    },
+    {
+      "path": "budget/validation-258.txt",
+      "bytes": 12,
+      "sha256": "4b36623d7c22b1803720f28d94258ccdfd6caeb23c916de4eeb847bc9dd41fab"
+    },
+    {
+      "path": "email/test-72.txt",
+      "bytes": 511,
+      "sha256": "c98975558e33665b451200e63a2805bf8bcc25a336589cffd64a263157d0a0a5"
+    },
+    {
+      "path": "email/validation-68.txt",
+      "bytes": 285,
+      "sha256": "9bd0fd9fd0fdf22fc8d14b397f7a2f9d1a22c26f262020a9040cc01ea8437923"
+    },
+    {
+      "path": "file-folder/test-202.txt",
+      "bytes": 24,
+      "sha256": "54a838459e4b4c74a1605954ee7988b088e0146614bdb9864709354c8e9ca1d2"
+    },
+    {
+      "path": "file-folder/validation-203.txt",
+      "bytes": 29,
+      "sha256": "8d12fd9f8cc50e80d698a806e6ce0c6a01c565bbd917c7d2a484129884cac897"
+    },
+    {
+      "path": "form/test-47.txt",
+      "bytes": 344,
+      "sha256": "6ceb66c4f27bb7efda3d9c60ac546c5bbebad60dfb06b2a74337e5b157206c47"
+    },
+    {
+      "path": "form/validation-36.txt",
+      "bytes": 1039,
+      "sha256": "43e7e493b5f538126cce7b6a6436f1e1126ca86aff9be79a62dd87b17d72eb04"
+    },
+    {
+      "path": "handwritten/test-84.txt",
+      "bytes": 183,
+      "sha256": "036909a697a9b11bf2758d97354f7da2cc4b56cdabda714698516df887f00bca"
+    },
+    {
+      "path": "handwritten/validation-92.txt",
+      "bytes": 197,
+      "sha256": "a7b7883490dfec816b53270ebb18e6de9dcbba0a91f075f23e3792b2ad59e2cb"
+    },
+    {
+      "path": "invoice/test-294.txt",
+      "bytes": 519,
+      "sha256": "b9642a085ae4dcf46b9845604d262d8b4e4f9717bf0d3a50ec39d034076ad37f"
+    },
+    {
+      "path": "invoice/validation-298.txt",
+      "bytes": 1563,
+      "sha256": "d90780a4e37648e1e1809a156ee51dc35e6c466540c5b1795250c8e6cd00fe1b"
+    },
+    {
+      "path": "letter/test-20.txt",
+      "bytes": 641,
+      "sha256": "e115197b4f5f01099f9437427fb1b17c625d36f23fbc18d46465195e2a20c298"
+    },
+    {
+      "path": "letter/validation-15.txt",
+      "bytes": 1987,
+      "sha256": "7a1d9039e4bbbd3091913c161a93dd2d723a7e75eaee4e5d6e82121a36e8c3a5"
+    },
+    {
+      "path": "memo/test-375.txt",
+      "bytes": 579,
+      "sha256": "8a831b6e89e9b0d333ce5f2947bdc4941a9a9194e7b4152110f5f13c2131d3c5"
+    },
+    {
+      "path": "memo/validation-393.txt",
+      "bytes": 1494,
+      "sha256": "99eb195a6cbf2d8e67daedf7a92bad7aed81880879e24f2dc3fada683d578633"
+    },
+    {
+      "path": "news-article/test-248.txt",
+      "bytes": 1128,
+      "sha256": "cba9556c38f473a95e9f47026f44e196c3d15b0f8c7c42a57e7cd81a506118c7"
+    },
+    {
+      "path": "news-article/validation-236.txt",
+      "bytes": 2389,
+      "sha256": "aecbc429bf0fbfeb3e6feaa562687a82d32e18f94d787f81e96de3cbe3a23efb"
+    },
+    {
+      "path": "presentation/test-323.txt",
+      "bytes": 1465,
+      "sha256": "069f5db5c6d8eca2880b37377bac1dec9f10fff96bd5fbe0e294c5077fbd544f"
+    },
+    {
+      "path": "presentation/validation-322.txt",
+      "bytes": 1072,
+      "sha256": "870219b94715a13d0303c8ab81e4427c47ec72a4bd0c053347b94a1ec39cb45f"
+    },
+    {
+      "path": "questionnaire/test-341.txt",
+      "bytes": 10,
+      "sha256": "227ce4b067f064cab3ea2bd7b11ebdfd3a8d64870a829588b30de6ab524f2958"
+    },
+    {
+      "path": "questionnaire/validation-326.txt",
+      "bytes": 976,
+      "sha256": "eae125b845ed6d075d3ad256f7a59fcaa126c16762d58bb58d0636ca9500540f"
+    },
+    {
+      "path": "resume/test-350.txt",
+      "bytes": 1213,
+      "sha256": "6da36afbacb5af1a594c485982039c1c8e529b77678a1501e856cd4d51e35c45"
+    },
+    {
+      "path": "resume/validation-360.txt",
+      "bytes": 4027,
+      "sha256": "b477f4c0726b73c00b91adff5b77a72848dbf3c9215303b9b2307be5c5c5f54e"
+    },
+    {
+      "path": "scientific-publication/test-170.txt",
+      "bytes": 1946,
+      "sha256": "1f94bef1a9577f3e6c48d09e65117a7eda04afc54caefc0f58d029e97c303083"
+    },
+    {
+      "path": "scientific-publication/validation-163.txt",
+      "bytes": 1892,
+      "sha256": "82e692118e79ef604c97531a24d8f5870fc09223d51d0458bd6c028e5636203e"
+    },
+    {
+      "path": "scientific-report/test-138.txt",
+      "bytes": 105,
+      "sha256": "05d866315106d33b9242606ba7509ffe667632c9726118148ac4748cd02f73ac"
+    },
+    {
+      "path": "scientific-report/validation-132.txt",
+      "bytes": 198,
+      "sha256": "ff2e8dc1e72504bb05598d10a18143deca85a385b8708b736a8f962a7a0faf6a"
+    },
+    {
+      "path": "specification/test-178.txt",
+      "bytes": 1752,
+      "sha256": "1f5d24cd63769b9fb12e9f16927f90faf2ac5a513d28b461048bf39475a8a3c4"
+    },
+    {
+      "path": "specification/validation-195.txt",
+      "bytes": 1800,
+      "sha256": "d91049977da41f068258e56129d1bd46585b37b37aa580b6a98ef9620f6035eb"
+    }
+  ]
+}

@@ -13,9 +13,11 @@ SPEC.loader.exec_module(MODULE)
 
 class RunEvalsTests(unittest.TestCase):
     def test_parse_prediction(self):
-        self.assertEqual(MODULE.parse_prediction('{"label":"email","confidence":0.8}'), ("email", 0.8, None))
-        self.assertEqual(MODULE.parse_prediction('{"label":"other","confidence":0.8}')[2], "invalid_label")
-        self.assertEqual(MODULE.parse_prediction("email")[2], "invalid_json")
+        labels = {"email", "presentation"}
+        self.assertEqual(MODULE.parse_prediction('{"label":"email","confidence":0.8}', labels), ("email", 0.8, None))
+        self.assertEqual(MODULE.parse_prediction('{"label":"presentation","confidence":0.8}', labels), ("presentation", 0.8, None))
+        self.assertEqual(MODULE.parse_prediction('{"label":"other","confidence":0.8}', labels)[2], "invalid_label")
+        self.assertEqual(MODULE.parse_prediction("email", labels)[2], "invalid_json")
 
     def test_aggregate(self):
         cases = [

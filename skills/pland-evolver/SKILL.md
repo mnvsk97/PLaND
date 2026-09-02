@@ -29,7 +29,7 @@ Freeze the generated system prompt before baseline measurement. Keep the runtime
 1. Run every development eval from an isolated initial state. Store the output, trace, latency, tokens, cost, errors, and an immutable SOP snapshot containing its text, SHA-256 hash, and English/reference/command step counts.
 2. Score actual output against expected output with the task's deterministic scorer where possible. Separate infrastructure failures from agent failures.
 3. Treat `target_accuracy` as a floor, not the optimization objective. Continue while a bounded change may reduce the configured expense metric without dropping below that floor.
-4. Stop if the candidate-attempt count has reached `max_iterations`. If capacity remains, increment the one-based iteration, cluster failures and unnecessary expense, and propose one bounded change inside the workflow SOP package.
+4. Stop if the candidate-attempt count has reached `max_iterations`. If capacity remains, increment the one-based iteration, cluster failures and unnecessary expense, and propose one bounded change inside the workflow SOP package. When generating a code candidate, explicitly inspect whether stable work can be cached and whether two or more independent operations can run in parallel.
 5. For each SOP step, retain one representation: a direct English instruction, a one-level relative reference, or an explicit Python/Bash command.
 6. Replace an English step with a command only when the operation is mechanical, stable, locally testable, and cheaper or more reliable than model interpretation. Never hide an LLM call inside a deterministic command.
 7. Rerun the same development and validation protocol. Accept the candidate only if it meets the accuracy guardrail and configured cost, latency, dependency, network, and security policies; otherwise restore the prior accepted version.
@@ -80,7 +80,7 @@ Read [run contract](references/run-contract.md) when implementing the harness or
 
 Do not change `instructions.md`, the system prompt, runtime model, agent harness, eval inputs, expected outputs, scorer boundary, datasource snapshot, seed, target accuracy, held-out data, or execution permissions. Candidate evaluation must reject a missing or changed frozen-invariant fingerprint. Do not introduce a new paid product or metered service without explicit authorization. Approved VPC and API endpoints may be used only when already permitted by the frozen network policy.
 
-Generated code must minimize total expense across model tokens, wall-clock time, CPU, memory, storage, network, and service charges. Prefer the standard library, single-pass processing, bounded work, and reuse of already-computed results. A command is not an improvement unless its end-to-end measurements justify its maintenance and execution cost.
+Generated code must minimize total expense across model tokens, wall-clock time, CPU, memory, storage, network, and service charges. Prefer the standard library, single-pass processing, bounded work, and reuse of already-computed results. Consider content-addressed caching for stable repeated computations. Consider bounded parallel execution when at least two operations are independent, concurrency cannot change semantics, and deterministic result ordering is restored before downstream use. Do not add caching or parallelism by default: record why each is safe, its invalidation or concurrency bound, and its measured end-to-end benefit. A command is not an improvement unless its end-to-end measurements justify its maintenance and execution cost.
 
 ## Stop
 

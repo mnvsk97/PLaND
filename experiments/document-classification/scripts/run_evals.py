@@ -21,10 +21,6 @@ from pathlib import Path
 from typing import Any
 
 
-CANONICAL_LABELS = {
-    "advertisement", "email", "form", "letter", "memo",
-    "news", "note", "report", "resume", "scientific",
-}
 STEP_PATTERN = re.compile(r"^\s*\d+[.)]\s+(.+)$")
 REPRESENTATION_PATTERN = re.compile(r"<!--\s*pland:(english|reference|command)\s*-->")
 
@@ -163,7 +159,7 @@ def serialize_message(message: Any) -> dict[str, Any]:
     }
 
 
-def parse_prediction(content: Any) -> tuple[str | None, float | None, str | None]:
+def parse_prediction(content: Any, allowed_labels: set[str]) -> tuple[str | None, float | None, str | None]:
     if not isinstance(content, str):
         return None, None, "non_text_output"
     try:
@@ -174,7 +170,7 @@ def parse_prediction(content: Any) -> tuple[str | None, float | None, str | None
         return None, None, "invalid_schema"
     label = value.get("label")
     confidence = value.get("confidence")
-    if label not in CANONICAL_LABELS:
+    if label not in allowed_labels:
         return None, None, "invalid_label"
     if isinstance(confidence, bool) or not isinstance(confidence, (int, float)) or not 0 <= confidence <= 1:
         return None, None, "invalid_confidence"
@@ -227,6 +223,8 @@ def main() -> int:
         rows = [row for row in csv.DictReader(handle) if row.get("split") == args.split]
     if not rows:
         raise SystemExit(f"no eval rows for split: {args.split}")
+    with args.evals.open(encoding="utf-8", newline="") as handle:
+        allowed_labels = {row["output"] for row in csv.DictReader(handle)}
 
     cases = []
     for row in rows:
@@ -238,7 +236,7 @@ def main() -> int:
             latency = time.perf_counter() - started
             trace = [serialize_message(message) for message in result["messages"]]
             final = trace[-1]["content"] if trace else None
-            actual, confidence, error = parse_prediction(final)
+            actual, confidence, error = parse_prediction(final, allowed_labels)
         except Exception as exception:  # Preserve case-level infrastructure evidence.
             latency = time.perf_counter() - started
             trace = []

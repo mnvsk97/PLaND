@@ -27,7 +27,10 @@ Do not place an LLM, embedding, OCR, search, or other metered model call inside 
 - Read each input only as often as necessary; stream large inputs instead of loading them fully when practical.
 - Avoid repeated parsing, subprocess startup, network round trips, and serialization.
 - Batch compatible operations when it reduces cost without obscuring step-level evidence.
-- Cache only stable, reusable results; key caches by relevant inputs and versions, and define invalidation.
+- Before writing a candidate, identify repeated stable computations that could be cached. Cache only when reuse is plausible and measured savings exceed lookup, storage, and invalidation costs.
+- Key caches by every input that can affect the result, including content hashes, script or schema versions, and relevant configuration. Define invalidation, size bounds, storage location, and behavior after corrupt or partial writes.
+- Before writing a candidate, identify whether two or more operations are independent and could run concurrently. Parallelize only when this preserves semantics, permissions, reproducibility, and error handling.
+- Bound workers and queued work. Avoid parallelism for tiny tasks or shared bottlenecks, and restore deterministic output order before downstream use.
 - Bound input sizes, loops, concurrency, retries, timeouts, output sizes, and temporary storage.
 - Use explicit data structures and deterministic ordering where output order matters.
 - Return machine-readable output when another step consumes the result.
@@ -59,6 +62,8 @@ Before accepting a command step, record:
 - development and validation accuracy;
 - tokens, latency, CPU or memory when material, network calls, and estimated total cost;
 - comparison with the prior accepted SOP;
+- caching decision, cache key and invalidation policy when used;
+- parallelism decision, independence argument and concurrency bound when used;
 - accept or reject decision.
 
 Passing unit checks is necessary but insufficient. Accept only when the complete hybrid agent satisfies the task-quality guardrail and offers a justified accuracy, expense, latency, variance, or reliability improvement.

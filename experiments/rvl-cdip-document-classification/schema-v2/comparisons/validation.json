@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-09-02T07:00:08.020480+00:00",
+  "comparison": "natural_language_vs_hybrid",
+  "invariants": {
+    "model": "qwen3:14b",
+    "model_digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+    "seed": 42,
+    "evals": "tmp/rvl-cdip-subset/evals.csv",
+    "evals_sha256": "a655da273cb05ca3fc2e118d056b8e0bd2db7a5290fa87c6d7ace519cf20c254",
+    "split": "validation",
+    "system_prompt_sha256": "f1130b2d68da4e653cea43bba48dcc893d1d6cee2619819d7f288cab821a6070",
+    "agent_harness_sha256": "81c40d5160d582238521e34ad5257435fc99590c2c966543f5f780e4c2ee0a69",
+    "datasource_snapshot_sha256": "a6dcb5950ef92ce47f789658b287ff79b17f4e8a561cc8f404afe9088adf4fac",
+    "evaluation_sha256": "a655da273cb05ca3fc2e118d056b8e0bd2db7a5290fa87c6d7ace519cf20c254",
+    "scorer_sha256": "8bf84b435d75ed0f901f01584e7726edf13cd8fd03b211e73706ebafd0d13022"
+  },
+  "natural_language": {
+    "sop": {
+      "path": "skills/document-classification/SKILL.md",
+      "sha256": "3eb50f2c20b9fc19e81f061c4441519f73de50ed01483aab31b0a86555eb3cc1",
+      "content": "---\nname: document-classification\ndescription: Execute the document classification workflow using the approved datasource collection. Use when a request requires this workflow.\n---\n\n# Document Classification SOP\n\n1. Read the requested approved OCR document with `read_datasource`. <!-- pland:english -->\n2. Identify its purpose, audience, structure, headings, fields, and writing style while allowing for OCR errors. <!-- pland:english -->\n3. Choose the strongest structural class: `email` has electronic message headers; `form` has fields to complete; `questionnaire` is organized as questions; `invoice` requests itemized payment; `budget` presents planned financial amounts; `presentation` contains slide-like titles or fragments; `file folder` is a sparse cover, tab, or routing sheet; and `handwritten` is predominantly informal handwritten text. <!-- pland:english -->\n4. If no structural class dominates, choose the best content class: `advertisement` promotes something; `letter` is addressed correspondence; `memo` is internal organizational correspondence; `news article` is journalistic; `resume` summarizes a person's qualifications; `specification` states technical requirements; `scientific publication` presents scholarly research; and `scientific report` records technical findings or status without publication structure. <!-- pland:english -->\n5. Return only `{\"label\":\"<label>\",\"confidence\":<number from 0 through 1>}` using one allowed label. <!-- pland:english -->\n",
+      "step_representations": {
+        "total": 5,
+        "english": 5,
+        "reference": 0,
+        "command": 0
+      },
+      "variant": "natural_language",
+      "explicitly_annotated_steps": 5
+    },
+    "metrics": {
+      "accuracy": 0.8125,
+      "correct": 13,
+      "cases": 16,
+      "input_tokens": 147265,
+      "output_tokens": 2219,
+      "total_tokens": 149484,
+      "estimated_model_cost_usd": 0.0,
+      "latency_seconds": {
+        "total": 124.81239845700475,
+        "mean": 7.800774903562797,
+        "p95": 12.500325041000906
+      }
+    }
+  },
+  "hybrid": {
+    "sop": {
+      "path": "skills/document-classification/SKILL.md",
+      "sha256": "0288b855d38a23f2fff6a843326365a5639d5e14b71567716339d305f197f53d",
+      "content": "---\nname: document-classification\ndescription: Execute the document classification workflow using the approved datasource collection. Use when a request requires this workflow.\n---\n\n# Document Classification SOP\n\n1. Run `python scripts/trim_document.py --file <requested relative path>` through `compact_datasource` and use its text. <!-- pland:command -->\n2. Identify the document's purpose, audience, structure, headings, fields, and writing style while allowing for OCR errors. <!-- pland:english -->\n3. Choose the strongest structural class: `email` has electronic message headers; `form` has fields to complete; `questionnaire` is organized as questions; `invoice` requests itemized payment; `budget` presents planned financial amounts; `presentation` contains slide-like titles or fragments; `file folder` is a sparse cover, tab, or routing sheet; and `handwritten` is predominantly informal handwritten text. <!-- pland:english -->\n4. If no structural class dominates, choose the best content class: `advertisement` promotes something; `letter` is addressed correspondence; `memo` is internal organizational correspondence; `news article` is journalistic; `resume` summarizes a person's qualifications; `specification` states technical requirements; `scientific publication` presents scholarly research; and `scientific report` records technical findings or status without publication structure. <!-- pland:english -->\n5. If the apparent type is not an allowed label, map it to the closest allowed class by purpose and structure; for example, a press release or press statement is usually a `news article` or `presentation`, never a new label. Return only `{\"label\":\"<label>\",\"confidence\":<number from 0 through 1>}` using one of the 16 labels named above. <!-- pland:english -->\n",
+      "step_representations": {
+        "total": 5,
+        "english": 4,
+        "reference": 0,
+        "command": 1
+      },
+      "variant": "hybrid",
+      "explicitly_annotated_steps": 5
+    },
+    "metrics": {
+      "accuracy": 0.875,
+      "correct": 14,
+      "cases": 16,
+      "input_tokens": 96538,
+      "output_tokens": 1577,
+      "total_tokens": 98115,
+      "estimated_model_cost_usd": 0.0,
+      "latency_seconds": {
+        "total": 88.4065204960134,
+        "mean": 5.5254075310008375,
+        "p95": 8.900325458002044
+      }
+    }
+  },
+  "delta_hybrid_minus_natural_language": {
+    "accuracy_points": 0.0625,
+    "input_tokens": -50727,
+    "output_tokens": -642,
+    "total_tokens": -51369,
+    "total_token_ratio": 0.6563578710765031,
+    "estimated_model_cost_usd": 0.0,
+    "mean_latency_seconds": -2.275367372561959,
+    "mean_latency_ratio": 0.708315212181966
+  }
+}

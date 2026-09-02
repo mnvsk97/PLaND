@@ -1,0 +1,171 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-09-02T06:51:11.709726+00:00",
+  "candidate": "candidate-001-compact",
+  "hypothesis": "bounded OCR compaction reduces model context while preserving semantic evidence",
+  "iteration": 1,
+  "max_iterations": 10,
+  "target_accuracy": 0.9,
+  "optimization_metric": "total_tokens",
+  "min_objective_improvement_ratio": 0.05,
+  "require_hybrid_sop": true,
+  "frozen_invariants": {
+    "system_prompt_sha256": "f1130b2d68da4e653cea43bba48dcc893d1d6cee2619819d7f288cab821a6070",
+    "agent_harness_sha256": "81c40d5160d582238521e34ad5257435fc99590c2c966543f5f780e4c2ee0a69",
+    "datasource_snapshot_sha256": "a6dcb5950ef92ce47f789658b287ff79b17f4e8a561cc8f404afe9088adf4fac",
+    "evaluation_sha256": "a655da273cb05ca3fc2e118d056b8e0bd2db7a5290fa87c6d7ace519cf20c254",
+    "scorer_sha256": "8bf84b435d75ed0f901f01584e7726edf13cd8fd03b211e73706ebafd0d13022"
+  },
+  "system_prompt": {
+    "path": "instructions.md",
+    "sha256": "f1130b2d68da4e653cea43bba48dcc893d1d6cee2619819d7f288cab821a6070",
+    "content": "# Document Classification agent\n\nUse only the approved datasource collection and tools. The application invokes this agent through `invoke_workflow`, which explicitly loads the `document-classification` SOP before the request. Return the required result without exposing internal reference answers or credentials.\n"
+  },
+  "development": {
+    "baseline": {
+      "cases": 16,
+      "correct": 14,
+      "accuracy": 0.875,
+      "errors": {
+        "infrastructure:ValueError:datasource is not approved: specification-validation-195.txt": 1
+      },
+      "input_tokens": 139693,
+      "output_tokens": 2127,
+      "total_tokens": 141820,
+      "estimated_model_cost_usd": 0.0,
+      "latency_seconds": {
+        "total": 126.5817444999775,
+        "mean": 7.911359031248594,
+        "p95": 12.75754404199688
+      },
+      "confusion": {
+        "advertisement": {
+          "advertisement": 1
+        },
+        "budget": {
+          "budget": 1
+        },
+        "email": {
+          "email": 1
+        },
+        "file folder": {
+          "file folder": 1
+        },
+        "form": {
+          "form": 1
+        },
+        "handwritten": {
+          "handwritten": 1
+        },
+        "invoice": {
+          "invoice": 1
+        },
+        "letter": {
+          "letter": 1
+        },
+        "memo": {
+          "memo": 1
+        },
+        "news article": {
+          "news article": 1
+        },
+        "presentation": {
+          "news article": 1
+        },
+        "questionnaire": {
+          "questionnaire": 1
+        },
+        "resume": {
+          "resume": 1
+        },
+        "scientific publication": {
+          "scientific publication": 1
+        },
+        "scientific report": {
+          "scientific report": 1
+        },
+        "specification": {
+          "ERROR:infrastructure:ValueError:datasource is not approved: specification-validation-195.txt": 1
+        }
+      }
+    },
+    "candidate": {
+      "cases": 16,
+      "correct": 14,
+      "accuracy": 0.875,
+      "errors": {},
+      "input_tokens": 158396,
+      "output_tokens": 2193,
+      "total_tokens": 160589,
+      "estimated_model_cost_usd": 0.0,
+      "latency_seconds": {
+        "total": 144.38783425099246,
+        "mean": 9.024239640687028,
+        "p95": 17.150174916998367
+      },
+      "confusion": {
+        "advertisement": {
+          "advertisement": 1
+        },
+        "budget": {
+          "file folder": 1
+        },
+        "email": {
+          "email": 1
+        },
+        "file folder": {
+          "file folder": 1
+        },
+        "form": {
+          "form": 1
+        },
+        "handwritten": {
+          "handwritten": 1
+        },
+        "invoice": {
+          "invoice": 1
+        },
+        "letter": {
+          "letter": 1
+        },
+        "memo": {
+          "memo": 1
+        },
+        "news article": {
+          "news article": 1
+        },
+        "presentation": {
+          "letter": 1
+        },
+        "questionnaire": {
+          "questionnaire": 1
+        },
+        "resume": {
+          "resume": 1
+        },
+        "scientific publication": {
+          "scientific publication": 1
+        },
+        "scientific report": {
+          "scientific report": 1
+        },
+        "specification": {
+          "specification": 1
+        }
+      }
+    },
+    "delta": {
+      "accuracy_points": 0.0,
+      "tokens": 18769,
+      "token_ratio": 1.1323438161049217,
+      "mean_latency_seconds": 1.1128806094384345,
+      "mean_latency_ratio": 1.1406687024369309
+    }
+  },
+  "validation": null,
+  "failed_checks": [
+    "development_below_accuracy_floor",
+    "development_objective_not_improved"
+  ],
+  "decision": "reject_before_validation"
+}
