@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-09-02T05:43:46.796502+00:00",
+  "candidate": "candidate-001-compact",
+  "hypothesis": "Deterministically compact long OCR text while preserving semantic classification",
+  "iteration": 1,
+  "max_iterations": 10,
+  "target_accuracy": 0.9,
+  "optimization_metric": "total_tokens",
+  "min_objective_improvement_ratio": 0.05,
+  "require_hybrid_sop": true,
+  "frozen_invariants": {
+    "system_prompt_sha256": "f1130b2d68da4e653cea43bba48dcc893d1d6cee2619819d7f288cab821a6070",
+    "agent_harness_sha256": "81c40d5160d582238521e34ad5257435fc99590c2c966543f5f780e4c2ee0a69",
+    "datasource_snapshot_sha256": "f1e68585ac34292a4013cc20429e4f23ae6388bff1232af897e54c3df04875fb",
+    "evaluation_sha256": "22598bb0e56d1efd042b3279e5006ce3a801f065479f74beedfbad5202bca24c",
+    "scorer_sha256": "3e6d5f4a1967cc5d0a96a7c0fcef9fea15f2649df0afc4ddb23dd656aaeb3fc5"
+  },
+  "system_prompt": {
+    "path": "instructions.md",
+    "sha256": "f1130b2d68da4e653cea43bba48dcc893d1d6cee2619819d7f288cab821a6070",
+    "content": "# Document Classification agent\n\nUse only the approved datasource collection and tools. The application invokes this agent through `invoke_workflow`, which explicitly loads the `document-classification` SOP before the request. Return the required result without exposing internal reference answers or credentials.\n"
+  },
+  "development": {
+    "baseline": {
+      "cases": 10,
+      "correct": 10,
+      "accuracy": 1.0,
+      "errors": {},
+      "input_tokens": 109825,
+      "output_tokens": 1627,
+      "total_tokens": 111452,
+      "estimated_model_cost_usd": 0.0,
+      "latency_seconds": {
+        "total": 104.32383741398371,
+        "mean": 10.432383741398372,
+        "p95": 24.78142291599943
+      },
+      "confusion": {
+        "advertisement": {
+          "advertisement": 1
+        },
+        "email": {
+          "email": 1
+        },
+        "form": {
+          "form": 1
+        },
+        "letter": {
+          "letter": 1
+        },
+        "memo": {
+          "memo": 1
+        },
+        "news": {
+          "news": 1
+        },
+        "note": {
+          "note": 1
+        },
+        "report": {
+          "report": 1
+        },
+        "resume": {
+          "resume": 1
+        },
+        "scientific": {
+          "scientific": 1
+        }
+      }
+    },
+    "candidate": {
+      "cases": 10,
+      "correct": 10,
+      "accuracy": 1.0,
+      "errors": {},
+      "input_tokens": 89442,
+      "output_tokens": 1488,
+      "total_tokens": 90930,
+      "estimated_model_cost_usd": 0.0,
+      "latency_seconds": {
+        "total": 88.67481012700591,
+        "mean": 8.86748101270059,
+        "p95": 10.556516707998526
+      },
+      "confusion": {
+        "advertisement": {
+          "advertisement": 1
+        },
+        "email": {
+          "email": 1
+        },
+        "form": {
+          "form": 1
+        },
+        "letter": {
+          "letter": 1
+        },
+        "memo": {
+          "memo": 1
+        },
+        "news": {
+          "news": 1
+        },
+        "note": {
+          "note": 1
+        },
+        "report": {
+          "report": 1
+        },
+        "resume": {
+          "resume": 1
+        },
+        "scientific": {
+          "scientific": 1
+        }
+      }
+    },
+    "delta": {
+      "accuracy_points": 0.0,
+      "tokens": -20522,
+      "token_ratio": 0.8158669202885547,
+      "mean_latency_seconds": -1.5649027286977812,
+      "mean_latency_ratio": 0.8499956704537386
+    }
+  },
+  "validation": {
+    "candidate": {
+      "cases": 10,
+      "correct": 10,
+      "accuracy": 1.0,
+      "errors": {},
+      "input_tokens": 88500,
+      "output_tokens": 1442,
+      "total_tokens": 89942,
+      "estimated_model_cost_usd": 0.0,
+      "latency_seconds": {
+        "total": 89.7547185410076,
+        "mean": 8.97547185410076,
+        "p95": 10.941235499994946
+      },
+      "confusion": {
+        "advertisement": {
+          "advertisement": 1
+        },
+        "email": {
+          "email": 1
+        },
+        "form": {
+          "form": 1
+        },
+        "letter": {
+          "letter": 1
+        },
+        "memo": {
+          "memo": 1
+        },
+        "news": {
+          "news": 1
+        },
+        "note": {
+          "note": 1
+        },
+        "report": {
+          "report": 1
+        },
+        "resume": {
+          "resume": 1
+        },
+        "scientific": {
+          "scientific": 1
+        }
+      }
+    },
+    "baseline": {
+      "cases": 10,
+      "correct": 10,
+      "accuracy": 1.0,
+      "errors": {},
+      "input_tokens": 115645,
+      "output_tokens": 1614,
+      "total_tokens": 117259,
+      "estimated_model_cost_usd": 0.0,
+      "latency_seconds": {
+        "total": 116.80836079300207,
+        "mean": 11.680836079300207,
+        "p95": 24.7422539170002
+      },
+      "confusion": {
+        "advertisement": {
+          "advertisement": 1
+        },
+        "email": {
+          "email": 1
+        },
+        "form": {
+          "form": 1
+        },
+        "letter": {
+          "letter": 1
+        },
+        "memo": {
+          "memo": 1
+        },
+        "news": {
+          "news": 1
+        },
+        "note": {
+          "note": 1
+        },
+        "report": {
+          "report": 1
+        },
+        "resume": {
+          "resume": 1
+        },
+        "scientific": {
+          "scientific": 1
+        }
+      }
+    },
+    "delta": {
+      "accuracy_points": 0.0,
+      "tokens": -27317,
+      "token_ratio": 0.7670370717812706,
+      "mean_latency_seconds": -2.705364225199446,
+      "mean_latency_ratio": 0.7683929295101003
+    }
+  },
+  "failed_checks": [],
+  "decision": "accept"
+}

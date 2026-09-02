@@ -43,11 +43,28 @@ def metrics(run: dict[str, Any]) -> dict[str, Any]:
 
 def compare(natural: dict[str, Any], hybrid: dict[str, Any]) -> dict[str, Any]:
     mismatches = []
-    for field in ("model", "model_digest", "seed", "evals", "split"):
+    for field in ("model", "model_digest", "seed", "evals", "evals_sha256", "split"):
         if natural.get(field) != hybrid.get(field):
             mismatches.append(field)
     if mismatches:
         raise ValueError("incomparable run invariants: " + ", ".join(mismatches))
+    frozen_fields = (
+        "system_prompt_sha256",
+        "agent_harness_sha256",
+        "datasource_snapshot_sha256",
+        "evaluation_sha256",
+        "scorer_sha256",
+    )
+    natural_invariants = natural.get("invariants", {})
+    hybrid_invariants = hybrid.get("invariants", {})
+    frozen_mismatches = [
+        field
+        for field in frozen_fields
+        if not natural_invariants.get(field)
+        or natural_invariants.get(field) != hybrid_invariants.get(field)
+    ]
+    if frozen_mismatches:
+        raise ValueError("incomparable frozen invariants: " + ", ".join(frozen_mismatches))
     if "sop" not in natural or "sop" not in hybrid:
         raise ValueError("both runs must contain an SOP snapshot")
     natural_steps = natural["sop"]["step_representations"]
@@ -65,7 +82,10 @@ def compare(natural: dict[str, Any], hybrid: dict[str, Any]) -> dict[str, Any]:
         "schema_version": 1,
         "created_at": datetime.now(UTC).isoformat(),
         "comparison": "natural_language_vs_hybrid",
-        "invariants": {field: natural.get(field) for field in ("model", "model_digest", "seed", "evals", "split")},
+        "invariants": {
+            **{field: natural.get(field) for field in ("model", "model_digest", "seed", "evals", "evals_sha256", "split")},
+            **natural_invariants,
+        },
         "natural_language": {"sop": natural["sop"], "metrics": natural_metrics},
         "hybrid": {"sop": hybrid["sop"], "metrics": hybrid_metrics},
         "delta_hybrid_minus_natural_language": {

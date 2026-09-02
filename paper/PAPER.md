@@ -3,6 +3,12 @@
 **[Author 1]**, **[Author 2]**
 *[Affiliations and corresponding-author details to be supplied]*
 
+> **Draft status:** The repository now contains a later frozen-system-prompt
+> schema-v2 experiment with an accepted command-bearing hybrid SOP. The results
+> below describe the earlier constrained-agent experiment and should be revised
+> from `experiments/document-classification/schema-v2/RESULTS.md` before author
+> review or submission.
+
 ## Abstract
 
 Agent skills package procedural knowledge as natural-language instructions,

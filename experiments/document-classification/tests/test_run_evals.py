@@ -48,6 +48,38 @@ class RunEvalsTests(unittest.TestCase):
             self.assertEqual(result["variant"], "hybrid")
             self.assertEqual(len(result["sha256"]), 64)
 
+    def test_frozen_invariants_ignore_only_sop_tool_wiring(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "data").mkdir()
+            (root / "instructions.md").write_text("Frozen prompt", encoding="utf-8")
+            (root / "data" / "manifest.json").write_text(
+                '{"sources":[{"path":"doc.txt","sha256":"abc"}]}', encoding="utf-8"
+            )
+            evals = root / "evals.csv"
+            evals.write_text("input,output,reasoning\ndoc.txt,email,test\n", encoding="utf-8")
+            first = (
+                "from tools.datasources import read_datasource\n"
+                "agent = create_deep_agent(model=MODEL, tools=[read_datasource], skills=['/skills/'])\n"
+            )
+            second = (
+                "from tools.datasources import compact_datasource\n"
+                "agent = create_deep_agent(model=MODEL, tools=[compact_datasource], skills=['/skills/'])\n"
+            )
+            (root / "agent.py").write_text(first, encoding="utf-8")
+            _, first_invariants = MODULE.frozen_invariants(root, evals)
+            (root / "agent.py").write_text(second, encoding="utf-8")
+            _, second_invariants = MODULE.frozen_invariants(root, evals)
+            self.assertEqual(
+                first_invariants["agent_harness_sha256"],
+                second_invariants["agent_harness_sha256"],
+            )
+            (root / "agent.py").write_text(second.replace("'/skills/'", "'/changed/'"), encoding="utf-8")
+            _, changed = MODULE.frozen_invariants(root, evals)
+            self.assertNotEqual(
+                first_invariants["agent_harness_sha256"], changed["agent_harness_sha256"]
+            )
+
 
 if __name__ == "__main__":
     unittest.main()

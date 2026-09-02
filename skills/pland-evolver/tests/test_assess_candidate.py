@@ -19,6 +19,14 @@ def run_payload(split, accuracy, tokens=100, latency=1.0, errors=None):
         "model_digest": "digest",
         "seed": 42,
         "evals": "/evals.csv",
+        "evals_sha256": "eval-hash",
+        "invariants": {
+            "system_prompt_sha256": "prompt-hash",
+            "agent_harness_sha256": "harness-hash",
+            "datasource_snapshot_sha256": "data-hash",
+            "evaluation_sha256": "eval-hash",
+            "scorer_sha256": "scorer-hash",
+        },
         "split": split,
         "summary": {
             "accuracy": accuracy,
@@ -48,11 +56,14 @@ class AssessCandidateTests(unittest.TestCase):
                 iteration=1,
                 max_iterations=10,
                 target_accuracy=0.9,
+                optimization_metric="total_tokens",
+                min_objective_improvement_ratio=0.0,
+                require_hybrid_sop=False,
                 max_validation_latency_ratio=2.0,
             )
             result = MODULE.assess(args)
             self.assertEqual(result["decision"], "reject_before_validation")
-            self.assertIn("development_accuracy_regression", result["failed_checks"])
+            self.assertIn("development_below_accuracy_floor", result["failed_checks"])
 
     def test_accepts_quality_preserving_token_reduction(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -67,6 +78,9 @@ class AssessCandidateTests(unittest.TestCase):
                 iteration=1,
                 max_iterations=10,
                 target_accuracy=0.9,
+                optimization_metric="total_tokens",
+                min_objective_improvement_ratio=0.0,
+                require_hybrid_sop=False,
                 max_validation_latency_ratio=2.0,
             )
             result = MODULE.assess(args)
@@ -86,11 +100,82 @@ class AssessCandidateTests(unittest.TestCase):
                 iteration=11,
                 max_iterations=10,
                 target_accuracy=0.9,
+                optimization_metric="total_tokens",
+                min_objective_improvement_ratio=0.0,
+                require_hybrid_sop=False,
                 max_validation_latency_ratio=2.0,
             )
             result = MODULE.assess(args)
             self.assertEqual(result["decision"], "stop_iteration_limit")
             self.assertIn("iteration_limit_exceeded", result["failed_checks"])
+
+    def test_accuracy_is_a_floor_while_tokens_optimize(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            args = argparse.Namespace(
+                baseline_development=self.write(root, "base.json", run_payload("development", 1.0, 200)),
+                candidate_development=self.write(root, "candidate.json", run_payload("development", 0.9, 100)),
+                candidate_validation=None,
+                baseline_validation=None,
+                candidate="candidate",
+                hypothesis="reduce tokens above floor",
+                iteration=1,
+                max_iterations=10,
+                target_accuracy=0.9,
+                optimization_metric="total_tokens",
+                min_objective_improvement_ratio=0.1,
+                require_hybrid_sop=False,
+                max_validation_latency_ratio=2.0,
+            )
+            result = MODULE.assess(args)
+            self.assertEqual(result["decision"], "eligible_for_validation")
+
+    def test_rejects_candidate_without_objective_improvement(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            args = argparse.Namespace(
+                baseline_development=self.write(root, "base.json", run_payload("development", 0.9, 100)),
+                candidate_development=self.write(root, "candidate.json", run_payload("development", 1.0, 120)),
+                candidate_validation=None,
+                baseline_validation=None,
+                candidate="candidate",
+                hypothesis="more expensive",
+                iteration=1,
+                max_iterations=10,
+                target_accuracy=0.9,
+                optimization_metric="total_tokens",
+                min_objective_improvement_ratio=0.0,
+                require_hybrid_sop=False,
+                max_validation_latency_ratio=2.0,
+            )
+            result = MODULE.assess(args)
+            self.assertEqual(result["decision"], "reject_before_validation")
+            self.assertIn("development_objective_not_improved", result["failed_checks"])
+
+    def test_rejects_changed_frozen_system_prompt(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            baseline = run_payload("development", 0.9, 200)
+            candidate = run_payload("development", 1.0, 100)
+            candidate["invariants"]["system_prompt_sha256"] = "changed"
+            args = argparse.Namespace(
+                baseline_development=self.write(root, "base.json", baseline),
+                candidate_development=self.write(root, "candidate.json", candidate),
+                candidate_validation=None,
+                baseline_validation=None,
+                candidate="candidate",
+                hypothesis="changed prompt",
+                iteration=1,
+                max_iterations=10,
+                target_accuracy=0.9,
+                optimization_metric="total_tokens",
+                min_objective_improvement_ratio=0.0,
+                require_hybrid_sop=False,
+                max_validation_latency_ratio=2.0,
+            )
+            result = MODULE.assess(args)
+            self.assertEqual(result["decision"], "reject_before_validation")
+            self.assertIn("invariant_mismatch:system_prompt_sha256", result["failed_checks"])
 
 
 if __name__ == "__main__":

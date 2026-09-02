@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-09-02T05:42:38.307104+00:00",
+  "comparison": "natural_language_vs_hybrid",
+  "invariants": {
+    "model": "qwen3:14b",
+    "model_digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+    "seed": 42,
+    "evals": "tmp/document-classification-subset/evals.csv",
+    "evals_sha256": "22598bb0e56d1efd042b3279e5006ce3a801f065479f74beedfbad5202bca24c",
+    "split": "validation",
+    "system_prompt_sha256": "f1130b2d68da4e653cea43bba48dcc893d1d6cee2619819d7f288cab821a6070",
+    "agent_harness_sha256": "81c40d5160d582238521e34ad5257435fc99590c2c966543f5f780e4c2ee0a69",
+    "datasource_snapshot_sha256": "f1e68585ac34292a4013cc20429e4f23ae6388bff1232af897e54c3df04875fb",
+    "evaluation_sha256": "22598bb0e56d1efd042b3279e5006ce3a801f065479f74beedfbad5202bca24c",
+    "scorer_sha256": "3e6d5f4a1967cc5d0a96a7c0fcef9fea15f2649df0afc4ddb23dd656aaeb3fc5"
+  },
+  "natural_language": {
+    "sop": {
+      "path": "skills/document-classification/SKILL.md",
+      "sha256": "b81302feacf3ef70ab15b9d5fd512f85dfa417c9e93174831dc26aa15ae9510d",
+      "content": "---\nname: document-classification\ndescription: Execute the document classification workflow using the approved datasource collection. Use when a request requires this workflow.\n---\n\n# Document Classification SOP\n\n1. Read the requested approved OCR document with `read_datasource`. <!-- pland:english -->\n2. Identify the document's purpose and structural cues from its OCR text. <!-- pland:english -->\n3. Apply these precedence rules: electronic headers such as `From:`, `Sent:`, `To:`, and `Subject:` make an `email`; a cover sheet, questionnaire, application, or fillable template is a `form`; use `letter` only when neither of those stronger structures applies. <!-- pland:english -->\n4. Otherwise choose the single best label from `advertisement`, `memo`, `news`, `note`, `report`, `resume`, or `scientific`. <!-- pland:english -->\n5. Return only `{\"label\":\"<label>\",\"confidence\":<number from 0 through 1>}`. <!-- pland:english -->\n",
+      "step_representations": {
+        "total": 5,
+        "english": 5,
+        "reference": 0,
+        "command": 0
+      },
+      "variant": "natural_language",
+      "explicitly_annotated_steps": 5
+    },
+    "metrics": {
+      "accuracy": 1.0,
+      "correct": 10,
+      "cases": 10,
+      "input_tokens": 115645,
+      "output_tokens": 1614,
+      "total_tokens": 117259,
+      "estimated_model_cost_usd": 0.0,
+      "latency_seconds": {
+        "total": 116.80836079300207,
+        "mean": 11.680836079300207,
+        "p95": 24.7422539170002
+      }
+    }
+  },
+  "hybrid": {
+    "sop": {
+      "path": "skills/document-classification/SKILL.md",
+      "sha256": "4e125f31235090b5b6d4a15770495489c9191d5006435af2d1aa64910edaa6d3",
+      "content": "---\nname: document-classification\ndescription: Execute the document classification workflow using the approved datasource collection. Use when a request requires this workflow.\n---\n\n# Document Classification SOP\n\n1. Execute the approved compact-document command through `compact_datasource`: `python3 scripts/compact_document.py --file <relative-path>`. <!-- pland:command -->\n2. Identify the document's purpose and structural cues from the returned OCR excerpt and metadata. <!-- pland:english -->\n3. Apply these precedence rules: electronic headers such as `From:`, `Sent:`, `To:`, and `Subject:` make an `email`; a cover sheet, questionnaire, application, or fillable template is a `form`; use `letter` only when neither of those stronger structures applies. <!-- pland:english -->\n4. Otherwise choose the single best label from `advertisement`, `memo`, `news`, `note`, `report`, `resume`, or `scientific`. <!-- pland:english -->\n5. Return only `{\"label\":\"<label>\",\"confidence\":<number from 0 through 1>}`. <!-- pland:english -->\n",
+      "step_representations": {
+        "total": 5,
+        "english": 4,
+        "reference": 0,
+        "command": 1
+      },
+      "variant": "hybrid",
+      "explicitly_annotated_steps": 5
+    },
+    "metrics": {
+      "accuracy": 1.0,
+      "correct": 10,
+      "cases": 10,
+      "input_tokens": 88500,
+      "output_tokens": 1442,
+      "total_tokens": 89942,
+      "estimated_model_cost_usd": 0.0,
+      "latency_seconds": {
+        "total": 89.7547185410076,
+        "mean": 8.97547185410076,
+        "p95": 10.941235499994946
+      }
+    }
+  },
+  "delta_hybrid_minus_natural_language": {
+    "accuracy_points": 0.0,
+    "input_tokens": -27145,
+    "output_tokens": -172,
+    "total_tokens": -27317,
+    "total_token_ratio": 0.7670370717812706,
+    "estimated_model_cost_usd": 0.0,
+    "mean_latency_seconds": -2.705364225199446,
+    "mean_latency_ratio": 0.7683929295101003
+  }
+}

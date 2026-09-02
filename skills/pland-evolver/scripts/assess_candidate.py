@@ -21,6 +21,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--iteration", type=int, default=1, help="One-based candidate iteration")
     parser.add_argument("--max-iterations", type=int, default=10)
     parser.add_argument("--target-accuracy", required=True, type=float)
+    parser.add_argument(
+        "--optimization-metric",
+        choices=("total_tokens", "mean_latency_seconds", "estimated_model_cost_usd"),
+        default="total_tokens",
+    )
+    parser.add_argument("--min-objective-improvement-ratio", type=float, default=0.0)
+    parser.add_argument("--require-hybrid-sop", action="store_true")
     parser.add_argument("--max-validation-latency-ratio", type=float, default=2.0)
     parser.add_argument("--output", required=True, type=Path)
     return parser.parse_args()
@@ -32,8 +39,20 @@ def load(path: Path) -> dict[str, Any]:
 
 def comparable(left: dict[str, Any], right: dict[str, Any]) -> list[str]:
     failures = []
-    for field in ("model", "model_digest", "seed", "evals"):
+    for field in ("model", "model_digest", "seed", "evals", "evals_sha256"):
         if left.get(field) != right.get(field):
+            failures.append(f"invariant_mismatch:{field}")
+    required = (
+        "system_prompt_sha256",
+        "agent_harness_sha256",
+        "datasource_snapshot_sha256",
+        "evaluation_sha256",
+        "scorer_sha256",
+    )
+    left_invariants = left.get("invariants", {})
+    right_invariants = right.get("invariants", {})
+    for field in required:
+        if not left_invariants.get(field) or left_invariants.get(field) != right_invariants.get(field):
             failures.append(f"invariant_mismatch:{field}")
     return failures
 
@@ -50,18 +69,43 @@ def metric_delta(candidate: dict[str, Any], baseline: dict[str, Any]) -> dict[st
     }
 
 
+def objective_value(run: dict[str, Any], metric: str) -> float:
+    summary = run["summary"]
+    if metric == "mean_latency_seconds":
+        return float(summary["latency_seconds"]["mean"])
+    return float(summary[metric])
+
+
+def objective_improved(
+    candidate: dict[str, Any], baseline: dict[str, Any], metric: str, minimum_ratio: float
+) -> bool:
+    baseline_value = objective_value(baseline, metric)
+    candidate_value = objective_value(candidate, metric)
+    if baseline_value == 0:
+        return candidate_value < baseline_value
+    return candidate_value <= baseline_value * (1 - minimum_ratio)
+
+
 def assess(args: argparse.Namespace) -> dict[str, Any]:
     baseline_development = load(args.baseline_development)
     candidate_development = load(args.candidate_development)
     checks = comparable(baseline_development, candidate_development)
     if baseline_development.get("split") != "development" or candidate_development.get("split") != "development":
         checks.append("invalid_development_split")
-    baseline_accuracy = baseline_development["summary"]["accuracy"]
     candidate_accuracy = candidate_development["summary"]["accuracy"]
-    if candidate_accuracy < baseline_accuracy:
-        checks.append("development_accuracy_regression")
+    if candidate_accuracy < args.target_accuracy:
+        checks.append("development_below_accuracy_floor")
     if candidate_development["summary"].get("errors"):
         checks.append("development_errors")
+    if not objective_improved(
+        candidate_development,
+        baseline_development,
+        args.optimization_metric,
+        args.min_objective_improvement_ratio,
+    ):
+        checks.append("development_objective_not_improved")
+    if args.require_hybrid_sop and candidate_development.get("sop", {}).get("variant") != "hybrid":
+        checks.append("development_sop_not_hybrid")
 
     result: dict[str, Any] = {
         "schema_version": 1,
@@ -71,6 +115,11 @@ def assess(args: argparse.Namespace) -> dict[str, Any]:
         "iteration": args.iteration,
         "max_iterations": args.max_iterations,
         "target_accuracy": args.target_accuracy,
+        "optimization_metric": args.optimization_metric,
+        "min_objective_improvement_ratio": args.min_objective_improvement_ratio,
+        "require_hybrid_sop": args.require_hybrid_sop,
+        "frozen_invariants": baseline_development.get("invariants"),
+        "system_prompt": baseline_development.get("system_prompt"),
         "development": {
             "baseline": baseline_development["summary"],
             "candidate": candidate_development["summary"],
@@ -98,6 +147,8 @@ def assess(args: argparse.Namespace) -> dict[str, Any]:
         validation_checks.append("validation_below_target")
     if candidate_validation["summary"].get("errors"):
         validation_checks.append("validation_errors")
+    if args.require_hybrid_sop and candidate_validation.get("sop", {}).get("variant") != "hybrid":
+        validation_checks.append("validation_sop_not_hybrid")
 
     validation_result: dict[str, Any] = {"candidate": candidate_validation["summary"]}
     if args.baseline_validation is not None:
@@ -111,6 +162,13 @@ def assess(args: argparse.Namespace) -> dict[str, Any]:
             validation_checks.append("validation_latency_guardrail")
         if candidate_validation["summary"]["total_tokens"] > baseline_validation["summary"]["total_tokens"]:
             validation_checks.append("validation_token_regression")
+        if not objective_improved(
+            candidate_validation,
+            baseline_validation,
+            args.optimization_metric,
+            args.min_objective_improvement_ratio,
+        ):
+            validation_checks.append("validation_objective_not_improved")
         validation_result["baseline"] = baseline_validation["summary"]
         validation_result["delta"] = metric_delta(candidate_validation, baseline_validation)
 
@@ -130,6 +188,8 @@ def main() -> int:
         raise SystemExit("--iteration must be positive")
     if args.max_iterations <= 0:
         raise SystemExit("--max-iterations must be positive")
+    if not 0 <= args.min_objective_improvement_ratio < 1:
+        raise SystemExit("--min-objective-improvement-ratio must be between 0 and 1")
     if args.output.exists():
         raise SystemExit(f"output already exists: {args.output}")
     result = assess(args)

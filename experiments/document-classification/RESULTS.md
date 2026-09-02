@@ -1,5 +1,9 @@
 # Document classification experiment results
 
+> Follow-up: a frozen-system-prompt schema-v2 experiment subsequently accepted
+> a genuinely hybrid SOP with 100% validation accuracy, 23.30% fewer tokens,
+> and 23.16% lower mean latency. See [`schema-v2/RESULTS.md`](schema-v2/RESULTS.md).
+
 ## Fixed conditions
 
 - Dataset: QS-OCR-Small v1.0 with the Tobacco3482 audit annotations.
@@ -61,7 +65,7 @@ The accepted agent:
 The model, dataset, expected outputs, scorer, seed, and datasource manifest did
 not change.
 
-## SOP representation status
+## SOP representation status in this original run
 
 The initial SOP has four explicitly marked English steps. The accepted SOP has
 five explicitly marked English steps and no command step. The accepted system

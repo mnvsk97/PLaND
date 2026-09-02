@@ -34,7 +34,7 @@ Inputs:
 
 For each eval, run the agent from isolated state and store its output, complete trace, latency, tokens, cost, and errors. Score actual output against expected output. The runtime agent never receives that row's expected output or reasoning.
 
-When validation accuracy is below the target, use development traces and scorer feedback to propose one bounded change. Allowed changes are the system prompt, single SOP skill and references, tools and scripts, and approved dependencies. Keep the model, evaluation truth, scorer, datasource snapshot, held-out set, target, and permissions fixed.
+Use development traces and scorer feedback to propose one bounded change inside the workflow SOP package. Allowed changes are `SKILL.md`, its directly referenced instruction files, tools and Python/Bash scripts directly invoked by the SOP, and approved dependencies required by those scripts. Generate the system prompt once and freeze it after baseline measurement. Keep the model, system prompt, agent harness, evaluation truth, scorer, datasource snapshot, seed, held-out set, target, and execution permissions fixed.
 
 Each SOP step has one representation:
 
@@ -44,7 +44,7 @@ Each SOP step has one representation:
 
 One deterministic step initially maps to one focused script. Code steps bypass unnecessary model reasoning while English steps preserve semantic flexibility. Never hide an LLM call inside a deterministic command.
 
-Accept a candidate only when validation evidence satisfies the accuracy guardrail and configured cost, latency, dependency, network, and security policies. Stop successfully when `validation_accuracy >= target_accuracy`; also enforce iteration, cost, time, and no-improvement limits. Run held-out data once for final reporting.
+Treat target accuracy as a quality floor. Accept a candidate only when validation evidence stays above that floor, improves the configured primary expense objective, and satisfies cost, latency, dependency, network, and security guardrails. Accuracy alone does not stop optimization. Enforce iteration, cost, time, and no-improvement limits, then run held-out data once for final reporting.
 
 ## Shared constraints
 

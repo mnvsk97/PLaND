@@ -16,7 +16,15 @@ def run(command_steps, accuracy, tokens, latency):
         "model_digest": "digest",
         "seed": 42,
         "evals": "/evals.csv",
+        "evals_sha256": "eval-hash",
         "split": "validation",
+        "invariants": {
+            "system_prompt_sha256": "prompt-hash",
+            "agent_harness_sha256": "harness-hash",
+            "datasource_snapshot_sha256": "data-hash",
+            "evaluation_sha256": "eval-hash",
+            "scorer_sha256": "scorer-hash",
+        },
         "sop": {
             "sha256": "hash",
             "content": "SOP",
@@ -53,6 +61,13 @@ class CompareVariantsTests(unittest.TestCase):
         hybrid = run(1, 1.0, 100, 1.5)
         hybrid["seed"] = 7
         with self.assertRaisesRegex(ValueError, "seed"):
+            MODULE.compare(natural, hybrid)
+
+    def test_rejects_changed_system_prompt(self):
+        natural = run(0, 0.9, 200, 2.0)
+        hybrid = run(1, 1.0, 100, 1.5)
+        hybrid["invariants"]["system_prompt_sha256"] = "changed"
+        with self.assertRaisesRegex(ValueError, "system_prompt"):
             MODULE.compare(natural, hybrid)
 
 

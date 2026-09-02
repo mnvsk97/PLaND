@@ -39,6 +39,8 @@ The project contains:
 - `data/manifest.json` with source paths and hashes;
 - `pyproject.toml` with open-source runtime dependencies.
 
+`instructions.md` is the generated system prompt. Finalize it before baseline measurement; after the baseline begins, PLaND treats its exact content and SHA-256 hash as frozen experiment invariants.
+
 The model is supplied through `PLAND_MODEL`. Use `--model-provider ollama` only when local Ollama is an explicit requirement; it adds the open-source `langchain-ollama` integration, deterministic local-model settings, disables the unnecessary default subagent, and hides filesystem tools outside the generated read-only workflow. Otherwise retain the provider-neutral default. Datasources remain in place unless the user explicitly requests copying. Do not store credentials.
 
 Read [generation contract](references/generation-contract.md) when modifying the skeleton or deciding what belongs in the system prompt versus the SOP.

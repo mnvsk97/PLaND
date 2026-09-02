@@ -5,6 +5,10 @@ validation cases. It does not contain a third held-out split. Read
 [`DATASET.md`](DATASET.md) before using the data and [`RESULTS.md`](RESULTS.md)
 before interpreting the measurements.
 
+The completed frozen-prompt NL-versus-hybrid follow-up is documented in
+[`schema-v2/RESULTS.md`](schema-v2/RESULTS.md). Its safe machine-readable
+development and validation comparisons are stored under `schema-v2/comparisons/`.
+
 ## Runtime
 
 - Ollama 0.33.0
