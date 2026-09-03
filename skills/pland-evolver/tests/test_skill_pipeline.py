@@ -67,9 +67,9 @@ class SkillPipelineTests(unittest.TestCase):
 
             candidate_sop = root / "candidate-SKILL.md"
             candidate_sop_text = sop_text.replace(
-                "2. Use the approved datasource tools to read only the relevant evidence; "
+                "2. [S02] Use the approved datasource tools to read only the relevant evidence; "
                 "the source collection contains .txt files. <!-- pland:english -->",
-                "2. Run `python scripts/route.py` for stable routing and use its result when "
+                "2. [S02] Run `python scripts/route.py` for stable routing and use its result when "
                 "it returns a known bucket. <!-- pland:command -->",
             )
             self.assertNotEqual(candidate_sop_text, sop_text)
@@ -95,6 +95,13 @@ class SkillPipelineTests(unittest.TestCase):
                 invariants["evaluation_sha256" if candidate else "evals_sha256"] = digest(evals)
                 return {
                     **shared,
+                    "experiment_id": "pipeline-fixture",
+                    "run_id": f"{'candidate' if candidate else 'baseline'}-{split}",
+                    "candidate_id": "candidate-001" if candidate else "baseline",
+                    "attempt": 1 if candidate else 0,
+                    "sop_sha256": digest(candidate_sop) if candidate else digest(agent / "skills/support-routing/SKILL.md"),
+                    "skill_content_sha256": "a" * 64 if candidate else "b" * 64,
+                    "frozen_manifest_sha256": "c" * 64,
                     "split": split,
                     "invariants": invariants,
                     "sop": {

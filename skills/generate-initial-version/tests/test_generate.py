@@ -57,11 +57,42 @@ class GenerateTests(unittest.TestCase):
             self.assertIn("`contract`, `invoice`", sop)
             self.assertNotIn("case-1", sop)
             self.assertNotIn("gold", sop)
+            self.assertEqual(sop.count("<!-- pland:english -->"), 4)
+            self.assertNotIn("<!-- pland:command -->", sop)
+            self.assertNotIn("<!-- pland:reference -->", sop)
+            for step in range(1, 5):
+                self.assertIn(f"[S{step:02d}]", sop)
             project = tomllib.loads((output / "pyproject.toml").read_text(encoding="utf-8"))
             self.assertEqual(project["project"]["dependencies"], ["deepagents"])
             tool_source = (output / "tools/datasources.py").read_text(encoding="utf-8")
             self.assertIn("def read_datasource(relative_path: str)", tool_source)
             self.assertEqual(json.loads((output / "data/manifest.json").read_text())["model_provider"], "generic")
+
+    def test_equivalent_generation_is_deterministic_and_answer_free(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            requirements = root / "requirements.md"
+            requirements.write_text("Classify the supplied document.", encoding="utf-8")
+            sources = root / "sources"
+            sources.mkdir()
+            (sources / "example.txt").write_text("example", encoding="utf-8")
+            evals = self.write_evals(root)
+            outputs = [root / "agent-a", root / "agent-b"]
+            for output in outputs:
+                subprocess.run(
+                    [sys.executable, SCRIPT, "--workflow", "document-classifier",
+                     "--requirements", requirements, "--sources", sources,
+                     "--evals", evals, "--output", output],
+                    check=True,
+                )
+            for relative in ("skills/document-classifier/SKILL.md", "data/eval-profile.json", "pyproject.toml"):
+                self.assertEqual((outputs[0] / relative).read_bytes(), (outputs[1] / relative).read_bytes())
+            generated = "\n".join(
+                path.read_text(encoding="utf-8")
+                for path in outputs[0].rglob("*") if path.is_file()
+            )
+            self.assertNotIn("case-1", generated)
+            self.assertNotIn("gold", generated)
 
     def test_generates_ollama_agent_with_declared_integration(self):
         with tempfile.TemporaryDirectory() as directory:

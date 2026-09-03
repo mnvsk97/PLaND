@@ -160,10 +160,10 @@ description: Execute the {workflow.replace('-', ' ')} workflow using the approve
 
 # {title} SOP
 
-1. Identify the requested item and follow this requirement: {requirement} <!-- pland:english -->
-2. Use the approved datasource tools to read only the relevant evidence; the source collection contains {source_description} files. <!-- pland:english -->
-3. {decision_step} <!-- pland:english -->
-4. {result_step} <!-- pland:english -->
+1. [S01] Identify the requested item and follow this requirement: {requirement} <!-- pland:english -->
+2. [S02] Use the approved datasource tools to read only the relevant evidence; the source collection contains {source_description} files. <!-- pland:english -->
+3. [S03] {decision_step} <!-- pland:english -->
+4. [S04] {result_step} <!-- pland:english -->
 """
 
 

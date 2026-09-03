@@ -21,7 +21,7 @@ agent = create_deep_agent(
 )
 ```
 
-The initial project contains `agent.py`, `instructions.md`, `pyproject.toml`, a datasource manifest and tool, and exactly one `skills/<workflow>/SKILL.md`. The SOP begins as the shortest sufficient ordered list of natural-language actions and decisions. The generator does not create scripts, additional skills, subagents, memory, or graphs without an initial requirement for them.
+The initial project contains `agent.py`, `instructions.md`, `pyproject.toml`, a datasource manifest and tool, and exactly one `skills/<workflow>/SKILL.md`. The SOP begins as the shortest sufficient ordered list of English actions and decisions. Every step has a stable identifier and an English representation marker. The generator does not create scripts, additional skills, subagents, memory, or graphs without an initial requirement for them.
 
 ## 2. `pland-evolver`
 
@@ -30,11 +30,13 @@ Inputs:
 - the generated agent;
 - labeled evals with `input`, `output`, and `reasoning`;
 - a configured runner;
-- a target validation accuracy and resource limits.
+- a natural-language success contract, a named primary quality floor, and resource limits.
 
-For each eval, run the agent from isolated state and store its output, complete trace, latency, tokens, cost, and errors. Score actual output against expected output. The runtime agent never receives that row's expected output or reasoning.
+For each eval, run the agent from isolated state and store its output, complete trace, latency, tokens, cost, and errors. A task-local scorer translates the supplied natural-language success contract into one primary quality value and optional supporting metrics. It may evaluate labels, structured output, tool use, or final state; the generator and evolver do not encode those task types. The runtime agent never receives that row's expected output or reasoning.
 
-Use development traces and scorer feedback to propose one bounded change inside the workflow SOP package. Allowed changes are `SKILL.md`, its directly referenced instruction files, tools and Python/Bash scripts directly invoked by the SOP, and approved dependencies required by those scripts. Generate the system prompt once and freeze it after baseline measurement. Keep the model, system prompt, agent harness, evaluation truth, scorer, datasource snapshot, seed, held-out set, target, and execution permissions fixed.
+Use development traces and scorer feedback to propose one bounded change inside the workflow SOP package. Allowed changes are `SKILL.md`, its directly referenced instruction files, tools and Python/Bash scripts directly invoked by the SOP, and approved dependencies required by those scripts. Generate the system prompt once, finalize the comparison contract, and freeze it before baseline measurement. Keep the model, system prompt, agent harness, evaluation truth, scorer, datasource snapshot, seed, held-out set, target, and execution permissions fixed.
+
+Check baseline viability before expense optimization. A nonviable baseline stops the comparison; repairing the setup requires a newly frozen experiment. Derive preconditions, guards, and English fallback inside the workflow skill from requirements, policies, tool schemas, and traces. PLaND itself never hardcodes dataset or domain rules.
 
 Each SOP step has one representation:
 
@@ -44,7 +46,7 @@ Each SOP step has one representation:
 
 One deterministic step initially maps to one focused script. Code steps bypass unnecessary model reasoning while English steps preserve semantic flexibility. Never hide an LLM call inside a deterministic command.
 
-Treat target accuracy as a quality floor. Accept a candidate only when validation evidence stays above that floor, improves the configured primary expense objective, and satisfies cost, latency, dependency, network, and security guardrails. Accuracy alone does not stop optimization. Enforce iteration, cost, time, and no-improvement limits, then run held-out data once for final reporting.
+Treat the task's named quality value as a floor. Accept a candidate only when validation evidence stays above that floor, improves the configured primary expense objective, and satisfies cost, latency, dependency, network, and security guardrails. Quality alone does not stop optimization. Enforce iteration, cost, time, and no-improvement limits, then run held-out data once for final reporting.
 
 ## Shared constraints
 

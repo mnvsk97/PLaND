@@ -4,7 +4,7 @@
 
 ## Abstract
 
-Language-model agents often repeat simple work because every step of a standard operating procedure is written in natural language. We present Path to Least Non Determinism (PLaND), an evaluation-driven methodology that keeps judgment in natural language but moves stable work into references, Python, or Bash. The initial system prompt is generated once and frozen after baseline measurement. The model, prompt, harness, data, answers, scorer, seed, and permissions then remain unchanged; only the workflow skill package may evolve. We prepared development, validation, and untouched test partitions and used a prespecified local release gate before opening each test set. On a balanced top-10 single-label LEDGAR subset, the hybrid passed validation and was evaluated once on 1,000 untouched cases. Accuracy changed from 93.5% to 92.7%, a paired difference of -0.8 percentage points with a bootstrap 95% confidence interval from -1.6 to 0.0 points. Tokens fell from 376,088 to 225,573, a 40.0% reduction, and sequential per-case harness latency fell from 0.764 to 0.455 seconds. The hybrid bypassed 411 of 1,000 model calls. On CFPB complaint routing, tokens fell by 41.8%, but accuracy fell from 79% to 72%; the candidate failed both the quality and viability gates. SpamAssassin failed the relative gates, while QS-OCR, SROIE, and an RVL-CDIP mirror failed baseline viability. Their tests remained untouched. These results show the intended behavior of the method: accept measurable savings only when a frozen quality contract is met, and preserve failures as evidence. The current study measures model-mediated work, not run-to-run stochastic variance.
+Language-model agents often repeat simple work because every step of a standard operating procedure is written in natural language. We present Path to Least Non Determinism (PLaND), an evaluation-driven methodology that keeps judgment in natural language but moves stable work into references, Python, or Bash. Before measurement, the experiment fixes the model, prompt, harness, data, answers, scorer, seed, permissions, and acceptance rule; only the workflow skill package may then evolve. We prepared development, validation, and untouched test partitions and used a prespecified local release gate before opening each test set. On a balanced top-10 single-label LEDGAR subset, the hybrid passed validation and was evaluated once on 1,000 untouched cases. Accuracy changed from 93.5% to 92.7%, a paired difference of -0.8 percentage points with a bootstrap 95% confidence interval from -1.6 to 0.0 points. Tokens fell from 376,088 to 225,573, a 40.0% reduction, and sequential per-case harness latency fell from 0.764 to 0.455 seconds. The hybrid bypassed 411 of 1,000 model calls. On CFPB complaint routing, tokens fell by 41.8%, but accuracy fell from 79% to 72%; the candidate failed both the quality and viability gates. SpamAssassin failed the relative gates, while QS-OCR, SROIE, and an RVL-CDIP mirror failed baseline viability. Their tests remained untouched. These results show the intended behavior of the method: accept measurable savings only when a frozen quality contract is met, and preserve failures as evidence. The current study measures model-mediated work, not run-to-run stochastic variance.
 
 **Keywords:** agent skills, deterministic workflows, language-model agents, evaluation, token efficiency, workflow optimization, document processing
 
@@ -38,9 +38,11 @@ The study does not yet answer whether hybrid SOPs reduce run-to-run output varia
 
 PLaND uses two skills. `generate-initial-version` reads requirements, approved data sources, and evaluation examples. It creates an initial DeepAgent skeleton and a natural-language workflow SOP. It also generates the system prompt once. `pland-evolver` then studies development traces and proposes bounded changes inside that SOP package.
 
+Users may describe a new task, its success criteria, restrictions, data, and tools in natural language. Task-local runner and scorer files translate that description into executable evaluation and one primary quality measure; PLaND itself does not assume classification, extraction, a particular output form, or a particular environment. Those generated files are reviewed and frozen before measurement.
+
 <!-- architecture-diagram -->
 
-**Figure 1. Frozen experimental boundary.** The initial agent is generated once. After baseline measurement, only the workflow SOP package may evolve.
+**Figure 1. Frozen experimental boundary.** The initial agent is generated once. For new studies the comparison boundary is finalized before measurement; only the workflow SOP package may evolve afterward.
 
 Every marked SOP step has one of three forms:
 
@@ -49,6 +51,8 @@ Every marked SOP step has one of three forms:
 3. **Command:** a direct Python or Bash invocation for bounded and testable work.
 
 The skill is the unit of capability, the SOP step is the unit of analysis, and a script is the unit of compilation. A hybrid skill may contain all three forms.
+
+Each initial English step has a stable identifier that is preserved when its representation changes. A script counts as a command only when the evaluated runtime invokes it and uses its result for the step; generating text for later model interpretation remains a reference transformation.
 
 For an SOP with N marked steps, we record the model-mediated step share:
 
@@ -70,7 +74,7 @@ The path is not mandatory. A workflow should stop in the open-ended or hybrid fo
 
 ### Frozen controls and allowed changes
 
-After the natural-language baseline is measured, the following items are frozen:
+For new studies, after the English baseline and evaluation contract are finalized but before measurement, the following items are frozen:
 
 - model name and model digest;
 - system prompt;
@@ -83,6 +87,8 @@ After the natural-language baseline is measured, the following items are frozen:
 
 PLaND may modify only the workflow SOP skill package: `SKILL.md`, its directly referenced instructions, tools and Python or Bash scripts directly invoked by the SOP, and approved dependencies required by those scripts. Candidate checks compare hashes and settings and reject any change outside this boundary.
 
+`SKILL.md` remains the SOP source of truth. The comparison also hashes its directly referenced instructions, invoked scripts, and approved dependencies because those files can change behavior. Saved traces identify the run, candidate, case, and frozen comparison so records from different evaluations cannot be mixed. A baseline must first meet its task-quality and normal-completion requirements; otherwise optimization stops and a repaired setup begins a new comparison.
+
 Generated code must use local or free dependencies unless the workflow explicitly approves another service. Network access may be allowed through a fixed allowlist, including private or VPC services, but the endpoints and permissions must remain unchanged across candidates. The code-generation guidance also asks the evolver to inspect safe caching opportunities and independent steps that could run in parallel. Caching and parallelism are accepted only when observable behavior and experimental isolation remain unchanged.
 
 ### Bounded evolution loop
@@ -92,6 +98,8 @@ Generated code must use local or free dependencies unless the workflow explicitl
 **Figure 3. One bounded PLaND iteration.** A candidate is accepted only when the frozen invariants, quality gate, and selected expense objective all pass.
 
 The maximum number of candidate iterations is configurable and was set to 10 for this study. Each run saves the exact SOP and its hash, step representations, outputs, errors, traces, model and command calls, tokens, latency, cost estimate, memory, quality metrics, and the acceptance decision.
+
+The current experiments test bounded candidate selection, not continual operation. Runtime guards, escape to an English fallback, canary monitoring, and automatic demotion are future safeguards; they were not used to obtain the results below.
 
 ### Dataset preparation
 
@@ -268,7 +276,7 @@ Inference energy changes with hardware, model, batching, utilization, and output
 
 ### Limitations
 
-This study has several limits. First, the confirmatory claim currently rests on one 1,000-case LEDGAR test and one local model. Second, most cases were run once, so the study does not directly measure behavioral variance. Third, latency can move with warm-up, caching, thermal state, and other work on the same computer. Fourth, the selected 2-point non-inferiority margin is an engineering decision, not a universal standard. Fifth, author-designed candidate rules may not transfer to another domain. Sixth, dataset labels may contain errors. Seventh, a pinned RVL mirror could not provide the full requested 1,000-case test, and SROIE had only 300 eligible untouched test cases. Eighth, direct paid model cost was zero in this local setup, so tokens and latency are the main expense measures. Ninth, the positive text-classification result uses harness-level routing rather than autonomous DeepAgent command interpretation; an end-to-end DeepAgent comparison remains future work. Tenth, some reproducibility fields absent from the original text-run payloads were checked in a clearly labeled post-run artifact audit rather than enforced as first-class runtime fields. Eleventh, the current experiments do not compare against a shorter-natural-language SOP, a fully deterministic workflow, or a no-skill baseline. Finally, a maximum of 10 iterations cannot prove that the globally best workflow was found.
+This study has several limits. First, the confirmatory claim rests on one 1,000-case LEDGAR test and one local model. Second, most cases were run once, so the study does not directly measure behavioral variance. Third, latency can move with warm-up, caching, thermal state, and other work on the same computer. Fourth, the selected 2-point non-inferiority margin is an engineering decision, not a universal standard. Fifth, author-designed candidate rules may not transfer to another domain, and dataset labels may contain errors. Sixth, a pinned RVL mirror could not provide the requested 1,000-case test, and SROIE had only 300 eligible untouched test cases. Seventh, direct paid model cost was zero, so tokens and latency are the main expense measures. Eighth, the positive text-classification result uses harness-level routing rather than autonomous DeepAgent command interpretation. Ninth, some reproducibility fields absent from the original run payloads were checked in a post-run artifact audit. Finally, the study does not test continual monitoring, runtime rollback, shorter-natural-language and no-skill baselines, or whether a maximum of 10 iterations finds the globally best workflow.
 
 Future work should repeat each condition K times with paired seeds and runtime controls. For categorical output, case-level disagreement can be measured as:
 
@@ -280,7 +288,7 @@ The repeated study should report mean disagreement, pairwise output agreement, t
 
 ## Conclusion
 
-PLaND is a controlled methodology for moving suitable agent work from natural language into tested code. It generates an initial agent and system prompt once, measures a natural-language baseline, freezes everything outside the SOP package, and keeps a candidate only when quality remains acceptable and a chosen expense improves.
+PLaND is a controlled methodology for moving suitable agent work from natural language into tested code. It generates an initial agent and system prompt, freezes the comparison before measurement, measures an English baseline, and keeps a candidate only when quality remains acceptable and a chosen expense improves.
 
 The 1,000-case balanced top-10 single-label LEDGAR subset provides the strongest evidence so far. The hybrid stayed inside a two-point quality margin, reduced tokens by 40.0%, reduced measured sequential harness latency by 40.4%, and replaced 411 model calls with command calls. This does not estimate performance on the complete multi-label LEDGAR benchmark or on production class prevalence. The CFPB experiment provides an equally important counterexample: a 41.8% token reduction was rejected because accuracy fell too far and the baseline missed the viability floor.
 

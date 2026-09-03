@@ -27,7 +27,7 @@ python3 scripts/generate.py \
   [--guidance <generation-guidance-file>]
 ```
 
-The local generator derives the initial SOP from the concise requirement, datasource file types, and eval output schema. For classification it records the known label vocabulary; for structured output it records required keys and value types. It never copies per-case IDs, answers, or reasoning into the agent. Then read the requirements, datasource manifest, eval profile, and guidance and shorten or clarify the generated steps when necessary. Each step must state one observable action or decision. Keep semantic judgment in English; references and command steps are introduced only when they reduce context or bypass model reasoning without changing behavior.
+The user describes the task, success criteria, restrictions, approved data sources, and available tools in natural language and supplies examples when available. The generator translates that material into the initial agent and task-local evaluation files; the user should not need to author Python or Bash. Present the interpreted task contract for confirmation before baseline measurement, especially when success depends on state changes, action ordering, or semantic judgment. The local scaffold derives an initial SOP from the concise requirement, datasource file types, and eval output structure without treating classification as the default task. It never copies per-case IDs, answers, or reasoning into the agent. Then read the requirements, datasource manifest, eval profile, and guidance and shorten or clarify the generated steps when necessary. The baseline SOP must remain entirely English. Each numbered step has a stable identifier such as `[S01]`, states one observable action or decision, and ends with `<!-- pland:english -->`. Preserve an identifier when wording or representation later changes; never reuse a retired identifier. Only the evolver may introduce reference or command steps after trace evidence exists, and it must retain the original English instruction as the fallback.
 
 ## Generated contract
 
@@ -37,6 +37,7 @@ The project contains:
 - `instructions.md` for compact always-on behavior;
 - `skills/<workflow-name>/SKILL.md` as the only agent skill;
 - `tools/datasources.py` as a local deterministic tool;
+- task-local runner and scorer files generated or adapted from the confirmed natural-language success contract;
 - `data/manifest.json` with source paths and hashes;
 - `data/eval-profile.json` with task structure but no case-level answers;
 - `pyproject.toml` with open-source runtime dependencies.
@@ -57,3 +58,4 @@ Before handing off:
 4. Confirm every imported non-standard library is declared in `pyproject.toml`.
 5. Confirm `invoke_workflow` explicitly loads the one SOP before handling a request.
 6. Confirm the agent can be imported once dependencies and `PLAND_MODEL` are available.
+7. Confirm the generated runner and scorer implement the user-approved success contract without exposing expected answers to the runtime agent.

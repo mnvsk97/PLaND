@@ -11,7 +11,15 @@ SPEC.loader.exec_module(MODULE)
 
 
 def run(command_steps, accuracy, tokens, latency):
+    digest = "a" * 64
     return {
+        "experiment_id": "experiment",
+        "run_id": "baseline-run" if command_steps == 0 else "candidate-run",
+        "candidate_id": "baseline" if command_steps == 0 else "candidate-001",
+        "attempt": 0 if command_steps == 0 else 1,
+        "sop_sha256": digest,
+        "skill_content_sha256": digest,
+        "frozen_manifest_sha256": digest,
         "model": "model",
         "model_digest": "digest",
         "seed": 42,
@@ -26,7 +34,7 @@ def run(command_steps, accuracy, tokens, latency):
             "scorer_sha256": "scorer-hash",
         },
         "sop": {
-            "sha256": "hash",
+            "sha256": digest,
             "content": "SOP",
             "step_representations": {"total": 3, "english": 3 - command_steps, "reference": 0, "command": command_steps},
         },
@@ -53,8 +61,12 @@ class CompareVariantsTests(unittest.TestCase):
         self.assertEqual(delta["mean_latency_seconds"], -0.5)
 
     def test_rejects_non_hybrid_comparison(self):
+        candidate = run(0, 1.0, 100, 1.5)
+        candidate["candidate_id"] = "candidate-001"
+        candidate["run_id"] = "candidate-run"
+        candidate["attempt"] = 1
         with self.assertRaisesRegex(ValueError, "at least one command"):
-            MODULE.compare(run(0, 0.9, 200, 2.0), run(0, 1.0, 100, 1.5))
+            MODULE.compare(run(0, 0.9, 200, 2.0), candidate)
 
     def test_rejects_incomparable_runs(self):
         natural = run(0, 0.9, 200, 2.0)
@@ -83,6 +95,36 @@ class CompareVariantsTests(unittest.TestCase):
         hybrid["invariants"]["evals_sha256"] = "different"
         with self.assertRaisesRegex(ValueError, "evaluation_sha256"):
             MODULE.compare(natural, hybrid)
+
+    def test_aligns_cases_by_id_and_rejects_duplicates(self):
+        natural = run(0, 0.9, 200, 2.0)
+        hybrid = run(1, 1.0, 100, 1.5)
+        natural["cases"] = [{"id": "a"}, {"id": "b"}]
+        hybrid["cases"] = [{"id": "b"}, {"id": "a"}]
+        MODULE.compare(natural, hybrid)
+        hybrid["cases"] = [{"id": "a"}, {"id": "a"}]
+        with self.assertRaisesRegex(ValueError, "duplicate"):
+            MODULE.compare(natural, hybrid)
+
+    def test_determinisation_charges_fallback_model_work(self):
+        natural = run(0, 0.9, 200, 2.0)
+        hybrid = run(1, 1.0, 100, 1.5)
+        natural["summary"]["model_tokens"] = 200
+        hybrid["summary"]["model_tokens"] = 80
+        hybrid["summary"]["fallback_model_tokens"] = 20
+        result = MODULE.compare(natural, hybrid)
+        self.assertEqual(result["cost_weighted_determinisation"]["rate"], 0.5)
+
+    def test_compares_generic_workflow_quality_without_accuracy(self):
+        natural = run(0, 0.8, 200, 2.0)
+        hybrid = run(1, 0.9, 100, 1.5)
+        for payload, value in ((natural, 0.8), (hybrid, 0.9)):
+            payload["quality_metric"] = "final_state_success"
+            payload["summary"]["quality"] = value
+            del payload["summary"]["accuracy"]
+        result = MODULE.compare(natural, hybrid)
+        self.assertAlmostEqual(result["delta_hybrid_minus_natural_language"]["quality"], 0.1)
+        self.assertNotIn("accuracy_points", result["delta_hybrid_minus_natural_language"])
 
 
 if __name__ == "__main__":

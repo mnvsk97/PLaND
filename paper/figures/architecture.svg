@@ -21,7 +21,7 @@
 			<path d="M 116,180 L 116,158 Z" style="stroke: rgb(9%,19%,29%); stroke-linecap: butt; stroke-width: 1.4;"/>
 			<polygon points="112 161, 120 161, 116 155" style="stroke: rgb(9%,19%,29%); stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,19%,29%); fill-rule: evenodd;"/>
 			<rect x="4" y="87" width="224" height="65" rx="8" ry="8" style="stroke: rgb(40%,44%,47%); stroke-linecap: butt; stroke-width: 1.2; fill: rgb(94%,95%,96%); fill-rule: evenodd;"/>
-			<text x="16" y="134" style="font-family: Helvetica-Bold; font-size: 9px;fill: rgb(22%,27%,30%); stroke:none;" transform="translate(0,268) scale(1,-1)">FROZEN AFTER BASELINE</text>
+			<text x="16" y="134" style="font-family: Helvetica-Bold; font-size: 9px;fill: rgb(22%,27%,30%); stroke:none;" transform="translate(0,268) scale(1,-1)">FROZEN BEFORE MEASUREMENT</text>
 			<text x="16" y="117" style="font-family: Helvetica; font-size: 7.7px;fill: rgb(13%,13%,13%); stroke:none;" transform="translate(0,234) scale(1,-1)">Model + system prompt + harness</text>
 			<text x="16" y="104" style="font-family: Helvetica; font-size: 7.7px;fill: rgb(13%,13%,13%); stroke:none;" transform="translate(0,208) scale(1,-1)">Data + scorer + seed + permissions</text>
 			<path d="M 116,87 L 116,65 Z" style="stroke: rgb(9%,19%,29%); stroke-linecap: butt; stroke-width: 1.4;"/>

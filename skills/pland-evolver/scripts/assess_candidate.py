@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 from datetime import UTC, datetime
 from pathlib import Path
@@ -20,7 +21,14 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--hypothesis", required=True)
     parser.add_argument("--iteration", type=int, default=1, help="One-based candidate iteration")
     parser.add_argument("--max-iterations", type=int, default=10)
-    parser.add_argument("--target-accuracy", required=True, type=float)
+    quality_target = parser.add_mutually_exclusive_group(required=True)
+    quality_target.add_argument("--target-quality", type=float)
+    quality_target.add_argument(
+        "--target-accuracy", type=float,
+        help="Backward-compatible alias for --target-quality",
+    )
+    parser.add_argument("--minimum-baseline-quality", type=float)
+    parser.add_argument("--non-inferiority-margin", type=float)
     parser.add_argument(
         "--optimization-metric",
         choices=("total_tokens", "mean_latency_seconds", "estimated_model_cost_usd"),
@@ -37,6 +45,24 @@ def load(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def skill_content_evidence(skill_root: Path, relative_paths: list[str]) -> dict[str, Any]:
+    """Hash the explicitly execution-relevant skill files in stable path order."""
+    root = skill_root.resolve()
+    files = []
+    for relative in sorted(set(relative_paths)):
+        normalized = Path(relative).as_posix().lstrip("/")
+        path = (root / normalized).resolve()
+        if path != root and root not in path.parents:
+            raise ValueError(f"skill content escapes root: {relative}")
+        if not path.is_file():
+            raise ValueError(f"skill content file not found: {relative}")
+        files.append({"path": normalized, "sha256": hashlib.sha256(path.read_bytes()).hexdigest()})
+    if "SKILL.md" not in {item["path"] for item in files}:
+        raise ValueError("skill content must include SKILL.md")
+    canonical = json.dumps(files, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    return {"files": files, "sha256": hashlib.sha256(canonical).hexdigest()}
+
+
 def evaluation_fingerprint(run: dict[str, Any]) -> str | None:
     invariants = run.get("invariants", {})
     values = {
@@ -49,6 +75,53 @@ def evaluation_fingerprint(run: dict[str, Any]) -> str | None:
         if value
     }
     return next(iter(values)) if len(values) == 1 else None
+
+
+def quality(run: dict[str, Any]) -> float:
+    summary = run["summary"]
+    value = summary.get("quality")
+    if value is None:
+        value = summary.get("accuracy")
+    if value is None:
+        raise ValueError("run summary must contain quality")
+    return float(value)
+
+
+def quality_metric(run: dict[str, Any]) -> str:
+    return str(run.get("quality_metric") or run["summary"].get("quality_metric") or "accuracy")
+
+
+def target_quality(args: argparse.Namespace) -> float:
+    value = getattr(args, "target_quality", None)
+    if value is None:
+        value = getattr(args, "target_accuracy", None)
+    if value is None:
+        raise ValueError("a target quality is required")
+    return float(value)
+
+
+def case_ids(run: dict[str, Any]) -> list[str] | None:
+    cases = run.get("cases")
+    if cases is None:
+        return None
+    ids = [str(case.get("id", "")) for case in cases]
+    if not all(ids) or len(ids) != len(set(ids)):
+        return []
+    return sorted(ids)
+
+
+def identity_failures(run: dict[str, Any], expected_candidate: str | None = None) -> list[str]:
+    failures = []
+    for field in ("experiment_id", "run_id", "candidate_id", "attempt"):
+        if run.get(field) in (None, ""):
+            failures.append(f"missing_identity:{field}")
+    if expected_candidate is not None and run.get("candidate_id") != expected_candidate:
+        failures.append("candidate_identity_mismatch")
+    for field in ("sop_sha256", "skill_content_sha256", "frozen_manifest_sha256"):
+        value = run.get(field) or run.get("sop", {}).get(field.removeprefix("sop_"))
+        if not isinstance(value, str) or len(value) != 64 or any(c not in "0123456789abcdef" for c in value):
+            failures.append(f"invalid_full_hash:{field}")
+    return failures
 
 
 def comparable(left: dict[str, Any], right: dict[str, Any]) -> list[str]:
@@ -71,19 +144,29 @@ def comparable(left: dict[str, Any], right: dict[str, Any]) -> list[str]:
     right_evaluation = evaluation_fingerprint(right)
     if not left_evaluation or left_evaluation != right_evaluation:
         failures.append("invariant_mismatch:evaluation_sha256")
+    if quality_metric(left) != quality_metric(right):
+        failures.append("invariant_mismatch:quality_metric")
+    left_ids, right_ids = case_ids(left), case_ids(right)
+    if left_ids == [] or right_ids == []:
+        failures.append("invalid_case_ids")
+    elif left_ids is not None and right_ids is not None and left_ids != right_ids:
+        failures.append("case_id_mismatch")
     return failures
 
 
 def metric_delta(candidate: dict[str, Any], baseline: dict[str, Any]) -> dict[str, float]:
     candidate_summary = candidate["summary"]
     baseline_summary = baseline["summary"]
-    return {
-        "accuracy_points": candidate_summary["accuracy"] - baseline_summary["accuracy"],
+    result = {
+        "quality": quality(candidate) - quality(baseline),
         "tokens": candidate_summary["total_tokens"] - baseline_summary["total_tokens"],
         "token_ratio": candidate_summary["total_tokens"] / baseline_summary["total_tokens"] if baseline_summary["total_tokens"] else 0.0,
         "mean_latency_seconds": candidate_summary["latency_seconds"]["mean"] - baseline_summary["latency_seconds"]["mean"],
         "mean_latency_ratio": candidate_summary["latency_seconds"]["mean"] / baseline_summary["latency_seconds"]["mean"] if baseline_summary["latency_seconds"]["mean"] else 0.0,
     }
+    if "accuracy" in candidate_summary and "accuracy" in baseline_summary:
+        result["accuracy_points"] = candidate_summary["accuracy"] - baseline_summary["accuracy"]
+    return result
 
 
 def objective_value(run: dict[str, Any], metric: str) -> float:
@@ -108,12 +191,20 @@ def objective_improved(
 def assess(args: argparse.Namespace) -> dict[str, Any]:
     baseline_development = load(args.baseline_development)
     candidate_development = load(args.candidate_development)
-    checks = comparable(baseline_development, candidate_development)
+    checks = identity_failures(baseline_development, "baseline")
+    checks.extend(identity_failures(candidate_development, args.candidate))
+    checks.extend(comparable(baseline_development, candidate_development))
     if baseline_development.get("split") != "development" or candidate_development.get("split") != "development":
         checks.append("invalid_development_split")
-    candidate_accuracy = candidate_development["summary"]["accuracy"]
-    if candidate_accuracy < args.target_accuracy:
-        checks.append("development_below_accuracy_floor")
+    required_quality = target_quality(args)
+    baseline_floor = getattr(args, "minimum_baseline_quality", None)
+    if baseline_floor is None:
+        baseline_floor = required_quality
+    if quality(baseline_development) < baseline_floor or baseline_development["summary"].get("normal_completion_rate", 1.0) <= 0:
+        checks.append("baseline_nonviable")
+    candidate_quality = quality(candidate_development)
+    if candidate_quality < required_quality:
+        checks.append("development_below_quality_floor")
     if candidate_development["summary"].get("errors"):
         checks.append("development_errors")
     if not objective_improved(
@@ -133,7 +224,8 @@ def assess(args: argparse.Namespace) -> dict[str, Any]:
         "hypothesis": args.hypothesis,
         "iteration": args.iteration,
         "max_iterations": args.max_iterations,
-        "target_accuracy": args.target_accuracy,
+        "target_quality": required_quality,
+        "quality_metric": quality_metric(baseline_development),
         "optimization_metric": args.optimization_metric,
         "min_objective_improvement_ratio": args.min_objective_improvement_ratio,
         "require_hybrid_sop": args.require_hybrid_sop,
@@ -147,6 +239,9 @@ def assess(args: argparse.Namespace) -> dict[str, Any]:
         "validation": None,
         "failed_checks": checks,
     }
+    if "baseline_nonviable" in checks:
+        result["decision"] = "baseline_nonviable"
+        return result
     if args.iteration > args.max_iterations:
         result["failed_checks"].append("iteration_limit_exceeded")
         result["decision"] = "stop_iteration_limit"
@@ -159,10 +254,11 @@ def assess(args: argparse.Namespace) -> dict[str, Any]:
         return result
 
     candidate_validation = load(args.candidate_validation)
-    validation_checks = comparable(candidate_development, candidate_validation)
+    validation_checks = identity_failures(candidate_validation, args.candidate)
+    validation_checks.extend(comparable(candidate_development, candidate_validation))
     if candidate_validation.get("split") != "validation":
         validation_checks.append("invalid_validation_split")
-    if candidate_validation["summary"]["accuracy"] < args.target_accuracy:
+    if quality(candidate_validation) < required_quality:
         validation_checks.append("validation_below_target")
     if candidate_validation["summary"].get("errors"):
         validation_checks.append("validation_errors")
@@ -174,9 +270,13 @@ def assess(args: argparse.Namespace) -> dict[str, Any]:
         validation_checks.append("missing_baseline_validation")
     else:
         baseline_validation = load(args.baseline_validation)
+        validation_checks.extend(identity_failures(baseline_validation, "baseline"))
         if baseline_validation.get("split") != "validation":
             validation_checks.append("invalid_baseline_validation_split")
         validation_checks.extend(comparable(candidate_validation, baseline_validation))
+        margin = getattr(args, "non_inferiority_margin", None)
+        if margin is not None and quality(candidate_validation) - quality(baseline_validation) < -margin:
+            validation_checks.append("validation_non_inferiority_failure")
         latency_ratio = (
             candidate_validation["summary"]["latency_seconds"]["mean"]
             / baseline_validation["summary"]["latency_seconds"]["mean"]
@@ -203,8 +303,16 @@ def assess(args: argparse.Namespace) -> dict[str, Any]:
 
 def main() -> int:
     args = parse_args()
-    if not 0 <= args.target_accuracy <= 1:
-        raise SystemExit("--target-accuracy must be between 0 and 1")
+    try:
+        required_quality = target_quality(args)
+    except ValueError as error:
+        raise SystemExit(str(error)) from error
+    if not 0 <= required_quality <= 1:
+        raise SystemExit("--target-quality must be between 0 and 1")
+    if args.minimum_baseline_quality is not None and not 0 <= args.minimum_baseline_quality <= 1:
+        raise SystemExit("--minimum-baseline-quality must be between 0 and 1")
+    if args.non_inferiority_margin is not None and not 0 <= args.non_inferiority_margin <= 1:
+        raise SystemExit("--non-inferiority-margin must be between 0 and 1")
     if args.max_validation_latency_ratio <= 0:
         raise SystemExit("--max-validation-latency-ratio must be positive")
     if args.iteration <= 0:

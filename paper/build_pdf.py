@@ -64,7 +64,7 @@ def architecture_diagram() -> Drawing:
         ["Initial agent + natural-language SOP"], title_color=NAVY)
     arrow(180, 152)
     box(87, 65, colors.HexColor("#F2F4F5"), colors.HexColor("#66717A"),
-        "FROZEN AFTER BASELINE",
+        "FROZEN BEFORE MEASUREMENT",
         ["Model + system prompt + harness", "Data + scorer + seed + permissions"],
         title_color=colors.HexColor("#39464F"))
     arrow(87, 59)
@@ -93,13 +93,13 @@ def evolution_diagram() -> Drawing:
         drawing.add(Polygon([x - 4, bottom + 9, x + 4, bottom + 9, x, bottom + 3],
                             fillColor=NAVY, strokeColor=NAVY))
 
-    process(269, "1. RUN BASELINE", "Natural-language SOP")
+    process(269, "1. RUN BASELINE", "English SOP; check viability")
     down(269, 244)
     process(201, "2. MEASURE", "Save traces, quality, tokens, time")
     down(201, 176)
     process(133, "3. CHANGE ONE STEP", "English -> reference or command")
     down(133, 108)
-    process(65, "4. TEST AND EVALUATE", "Same frozen model, prompt, and data")
+    process(65, "4. TEST AND EVALUATE", "Development mines; validation promotes")
     down(65, 43)
 
     drawing.add(Polygon([116, 43, 171, 22, 116, 1, 61, 22],

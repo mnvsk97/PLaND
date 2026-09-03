@@ -17,7 +17,7 @@ Require:
 - the generated agent directory;
 - `evals.csv` with `input`, `output`, and `reasoning`; `id` is optional;
 - a runner command that invokes the agent;
-- `target_accuracy` as a quality floor;
+- a primary quality measure and `target_quality` floor supplied by the task's scorer;
 - `optimization_metric`: `total_tokens`, `mean_latency_seconds`, or `estimated_model_cost_usd`;
 - minimum objective improvement ratio;
 - `max_iterations` (default: `10`), plus maximum cost and elapsed time.
@@ -28,7 +28,7 @@ Freeze the generated system prompt before baseline measurement. Keep the runtime
 
 1. Run every development eval from an isolated initial state. Store the output, trace, latency, tokens, cost, errors, and an immutable SOP snapshot containing its text, SHA-256 hash, and English/reference/command step counts.
 2. Score actual output against expected output with the task's deterministic scorer where possible. Separate infrastructure failures from agent failures.
-3. Treat `target_accuracy` as a floor, not the optimization objective. Continue while a bounded change may reduce the configured expense metric without dropping below that floor.
+3. Check baseline viability before expense optimization using the configured task-quality measure and normal-completion requirement. If it fails, stop with `baseline_nonviable`; repairing the model, harness, tool interface, perception layer, evaluator, or execution budget requires a newly frozen baseline.
 4. Stop if the candidate-attempt count has reached `max_iterations`. If capacity remains, increment the one-based iteration, cluster failures and unnecessary expense, and propose one bounded change inside the workflow SOP package. When generating a code candidate, explicitly inspect whether stable work can be cached and whether two or more independent operations can run in parallel.
 5. For each SOP step, retain one representation: a direct English instruction, a one-level relative reference, or an explicit Python/Bash command.
 6. Replace an English step with a command only when the operation is mechanical, stable, locally testable, and cheaper or more reliable than model interpretation. Never hide an LLM call inside a deterministic command.
@@ -47,7 +47,9 @@ python3 scripts/assess_candidate.py \
   --hypothesis <bounded-hypothesis> \
   --iteration <one-based-iteration> \
   [--max-iterations <positive-integer, default 10>] \
-  --target-accuracy <0-to-1> \
+  --target-quality <0-to-1> \
+  [--minimum-baseline-quality <0-to-1>] \
+  [--non-inferiority-margin <0-to-1>] \
   [--optimization-metric total_tokens|mean_latency_seconds|estimated_model_cost_usd] \
   [--min-objective-improvement-ratio <0-to-less-than-1>] \
   [--require-hybrid-sop] \
@@ -68,7 +70,9 @@ python3 scripts/compare_variants.py \
 
 The comparison refuses mismatched model, digest, seed, eval file, split, system-prompt hash, agent-harness hash, datasource snapshot, or scorer hash. It must retain both SOP snapshots and both absolute metric sets—not only deltas—including accuracy, correct/case counts, input/output/total tokens, estimated model cost, total/mean/p95 latency, and representation counts.
 
-End each numbered SOP step with one machine-readable representation marker: `<!-- pland:english -->`, `<!-- pland:reference -->`, or `<!-- pland:command -->`. A hybrid SOP has at least one command step and at least one non-command step. The evaluation runner must save the marked SOP content and hash before invoking any eval case.
+Keep each stable baseline step identifier and end every numbered SOP step with one machine-readable representation marker: `<!-- pland:english -->`, `<!-- pland:reference -->`, or `<!-- pland:command -->`. A script counts as a command step only when the evaluated runtime invokes it and its result performs, controls, validates, or replaces that step. A script that only produces text for later model interpretation is a reference transformation. A hybrid SOP has at least one command step and at least one non-command step. Save the marked SOP content and full SHA-256 before any eval case.
+
+Every command candidate retains its original English instruction as fallback. Derive preconditions and output guards from the supplied requirements, policy, tool schemas, and development traces; never embed benchmark- or domain-specific rules in PLaND itself. Escape to English when a precondition, execution, required verification, or guard fails. Record the step ID, escape reason, model work, and command work. Generated tool arguments require provenance from runtime input, an earlier tool result, or deterministic derivation. A guard is enforced only when runtime execution passes through it; otherwise keep the step English.
 
 Read [run contract](references/run-contract.md) when implementing the harness or deciding whether a candidate is valid. Read [code policy](references/code-policy.md) before generating or accepting Python, Bash, dependencies, or network behavior.
 
@@ -78,10 +82,12 @@ Read [run contract](references/run-contract.md) when implementing the harness or
 - tools and Python/Bash scripts directly invoked by that SOP;
 - `pyproject.toml` for approved open-source dependencies.
 
-Do not change `instructions.md`, the system prompt, runtime model, agent harness, eval inputs, expected outputs, scorer boundary, datasource snapshot, seed, target accuracy, held-out data, or execution permissions. Candidate evaluation must reject a missing or changed frozen-invariant fingerprint. Do not introduce a new paid product or metered service without explicit authorization. Approved VPC and API endpoints may be used only when already permitted by the frozen network policy.
+Do not change `instructions.md`, the system prompt, runtime model, agent harness, eval inputs, expected outputs, scorer boundary, datasource snapshot, seed, target quality, held-out data, or execution permissions. Candidate evaluation must reject a missing or changed frozen-invariant fingerprint. Do not introduce a new paid product or metered service without explicit authorization. Approved VPC and API endpoints may be used only when already permitted by the frozen network policy.
 
 Generated code must minimize total expense across model tokens, wall-clock time, CPU, memory, storage, network, and service charges. Prefer the standard library, single-pass processing, bounded work, and reuse of already-computed results. Consider content-addressed caching for stable repeated computations. Consider bounded parallel execution when at least two operations are independent, concurrency cannot change semantics, and deterministic result ordering is restored before downstream use. Do not add caching or parallelism by default: record why each is safe, its invalidation or concurrency bound, and its measured end-to-end benefit. A command is not an improvement unless its end-to-end measurements justify its maintenance and execution cost.
 
 ## Stop
 
-Success requires `validation_accuracy >= target_accuracy`, a strictly lower value for the configured expense objective when its minimum improvement is zero (or the configured proportional reduction otherwise), and saved NL-versus-hybrid comparison artifacts when hybrid evolution is required. Final acceptance requires the matching baseline-validation artifact; candidate validation alone is insufficient. Accuracy at or above the floor alone does not stop optimization. Otherwise stop after `max_iterations` candidate attempts (default `10`), or earlier at the configured cost, time, or no-improvement limit. Reaching a limit is not success: return the best accepted version and the stop reason. Report success only from comparable runs, then publish the final held-out accuracy, cost, latency, token usage, variance, and English/reference/command step counts for both the initial and evolved SOP.
+Success requires validation quality at or above `target_quality`, a strictly lower value for the configured expense objective when its minimum improvement is zero (or the configured proportional reduction otherwise), and saved NL-versus-hybrid comparison artifacts when hybrid evolution is required. The task supplies the scorer and names the primary quality measure; PLaND does not assume accuracy, labels, extracted fields, final-state shape, or output type. Final acceptance requires the matching baseline-validation artifact; candidate validation alone is insufficient. Quality at or above the floor alone does not stop optimization. Otherwise stop after `max_iterations` candidate attempts (default `10`), or earlier at the configured cost, time, or no-improvement limit. Reaching a limit is not success: return the best accepted version and the stop reason. Report success only from comparable runs, then publish the final held-out quality, cost, latency, token usage, variance, and English/reference/command step counts for both the initial and evolved SOP.
+
+Canary monitoring is optional and prospective; never repartition completed frozen data to manufacture it. Canary evidence is unavailable to candidate mining and may restore only a previously validated complete SOP, not create an unvalidated mixture through step-by-step demotion. Keep deployed and last-validation-tested identities distinct. Continual monitoring remains proposed unless an actual monitor and evidence exist.

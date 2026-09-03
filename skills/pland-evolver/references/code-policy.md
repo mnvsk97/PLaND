@@ -1,6 +1,6 @@
 # Code policy
 
-Apply this policy to every generated or modified Python or Bash command step.
+Apply this policy equally to every generated or modified Python command, Bash command, or directly invoked executable.
 
 ## Minimize total expense
 
@@ -35,6 +35,8 @@ Do not place an LLM, embedding, OCR, search, or other metered model call inside 
 - Use explicit data structures and deterministic ordering where output order matters.
 - Return machine-readable output when another step consumes the result.
 - Fail early with actionable errors and nonzero exit codes; do not silently fall back to expensive work.
+- Document accepted inputs, outputs, dependencies, filesystem scope, network destinations, credentials, timeout, failure behavior, side effects, staging, and whether repeated execution is safe.
+- Run preconditions before execution. Run output guards before committing safely staged effects; never describe irreversible effects as discardable or automatically reversible.
 - Keep one clear responsibility per script during evolution. Compose adjacent accepted scripts only after measurements support it.
 
 ## Network and services
