@@ -57,7 +57,10 @@ The replication used Ollama 0.33.0, `qwen3:14b`, 4,096-token requests, no
 thinking, temperature 0, an exact JSON schema, and two workers. Keep the model
 digest fixed within a comparison.
 
-On macOS with the Homebrew service:
+<details>
+<summary>On macOS with the Homebrew service</summary>
+
+<br>
 
 ```bash
 ollama pull qwen3:14b
@@ -69,7 +72,14 @@ launchctl setenv OLLAMA_KEEP_ALIVE -1
 brew services restart ollama
 ```
 
-On Linux, add this with `systemctl edit ollama.service`, then run
+</details>
+
+<details>
+<summary>On Linux</summary>
+
+<br>
+
+Add this with `systemctl edit ollama.service`, then run
 `sudo systemctl daemon-reload && sudo systemctl restart ollama`:
 
 ```ini
@@ -80,6 +90,8 @@ Environment="OLLAMA_NUM_PARALLEL=2"
 Environment="OLLAMA_MAX_LOADED_MODELS=1"
 Environment="OLLAMA_KEEP_ALIVE=-1"
 ```
+
+</details>
 
 Preload and verify:
 
