@@ -3,7 +3,7 @@ name: pland-evolver
 description: Improve a generated DeepAgent by evaluating its single SOP skill and replacing eligible English steps with verified Python or Bash commands. Use after generate-initial-version when labeled evals and an accuracy target are available.
 metadata:
   project: pland
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # PLaND Evolver
@@ -18,6 +18,8 @@ Require:
 - `evals.csv` with `input`, `output`, and `reasoning`; `id` is optional;
 - a runner command that invokes the agent;
 - a primary quality measure and `target_quality` floor supplied by the task's scorer;
+- a task-supplied quality policy defining any baseline-relative, uncertainty,
+  slice, route, or structural guardrails required in addition to the floor;
 - `optimization_metric`: `total_tokens`, `mean_latency_seconds`, or `estimated_model_cost_usd`;
 - minimum objective improvement ratio;
 - `max_iterations` (default: `10`), plus maximum cost and elapsed time.
@@ -29,11 +31,29 @@ Freeze the generated system prompt before baseline measurement. Keep the runtime
 1. Run every development eval from an isolated initial state. Store the output, trace, latency, tokens, cost, errors, and an immutable SOP snapshot containing its text, SHA-256 hash, and English/reference/command step counts.
 2. Score actual output against expected output with the task's deterministic scorer where possible. Separate infrastructure failures from agent failures.
 3. Check baseline viability before expense optimization using the configured task-quality measure and normal-completion requirement. If it fails, stop with `baseline_nonviable`; repairing the model, harness, tool interface, perception layer, evaluator, or execution budget requires a newly frozen baseline.
-4. Stop if the candidate-attempt count has reached `max_iterations`. If capacity remains, increment the one-based iteration, cluster failures and unnecessary expense, and propose one bounded change inside the workflow SOP package. When generating a code candidate, explicitly inspect whether stable work can be cached and whether two or more independent operations can run in parallel.
+4. Stop if the candidate-attempt count has reached `max_iterations`. If capacity remains, increment the one-based iteration, cluster development failures and unnecessary expense, and propose one bounded change inside the workflow SOP package. Never mine validation or held-out cases for candidate rules. When generating a code candidate, explicitly inspect whether stable work can be cached and whether two or more independent operations can run in parallel.
 5. For each SOP step, retain one representation: a direct English instruction, a one-level relative reference, or an explicit Python/Bash command.
 6. Replace an English step with a command only when the operation is mechanical, stable, locally testable, and cheaper or more reliable than model interpretation. Never hide an LLM call inside a deterministic command.
-7. Rerun the same development and validation protocol. A final acceptance requires both candidate and baseline validation runs on the same frozen eval set. Accept the candidate only if it meets the accuracy guardrail and configured cost, latency, dependency, network, and security policies; otherwise restore the prior accepted version.
-8. Record the hypothesis, diff, metrics, and accept/reject decision. For every accepted hybrid candidate, save a separate NL-versus-hybrid comparison artifact; console output alone is insufficient.
+7. Preserve the complete accepted English path as the command's fallback. Do
+   not shorten or rewrite that path in the same candidate that introduces a
+   command; evaluate any later instruction compression as its own bounded
+   change.
+8. Rerun the same development and validation protocol. A final acceptance requires both candidate and baseline validation runs on the same frozen eval set. Accept the candidate only if it meets the primary quality floor, every task-supplied guardrail, and configured cost, latency, dependency, network, and security policies; otherwise restore the prior accepted version.
+9. Record the hypothesis, diff, metrics, and accept/reject decision. For every accepted hybrid candidate, save a separate NL-versus-hybrid comparison artifact; console output alone is insufficient.
+
+## Generic and task-local boundaries
+
+Keep this skill independent of datasets, labels, domains, and benchmark-specific
+thresholds. The task-local scorer owns the quality measure and optional
+guardrails such as confidence-interval bounds, slice degradation, command-route
+precision, schema validity, or final-state invariants. The evolver consumes only
+their recorded values and pass/fail decisions.
+
+An unchanged rerun is a replication, not another evolution iteration. Lock the
+candidate before replications begin. Replications measure variability and may
+confirm acceptance or rejection, but their cases and outcomes cannot be used to
+edit that candidate. Once any held-out result is opened, stop evolving and
+report the result.
 
 After producing comparable run JSON files, resolve the script relative to this skill and run:
 
@@ -88,6 +108,6 @@ Generated code must minimize total expense across model tokens, wall-clock time,
 
 ## Stop
 
-Success requires validation quality at or above `target_quality`, a strictly lower value for the configured expense objective when its minimum improvement is zero (or the configured proportional reduction otherwise), and saved NL-versus-hybrid comparison artifacts when hybrid evolution is required. The task supplies the scorer and names the primary quality measure; PLaND does not assume accuracy, labels, extracted fields, final-state shape, or output type. Final acceptance requires the matching baseline-validation artifact; candidate validation alone is insufficient. Quality at or above the floor alone does not stop optimization. Otherwise stop after `max_iterations` candidate attempts (default `10`), or earlier at the configured cost, time, or no-improvement limit. Reaching a limit is not success: return the best accepted version and the stop reason. Report success only from comparable runs, then publish the final held-out quality, cost, latency, token usage, variance, and English/reference/command step counts for both the initial and evolved SOP.
+Success requires validation quality at or above `target_quality`, every enabled task-local guardrail to pass, a strictly lower value for the configured expense objective when its minimum improvement is zero (or the configured proportional reduction otherwise), and saved NL-versus-hybrid comparison artifacts when hybrid evolution is required. The task supplies the scorer and names the primary quality measure; PLaND does not assume accuracy, labels, extracted fields, final-state shape, output type, or which secondary guardrails apply. Final acceptance requires the matching baseline-validation artifact; candidate validation alone is insufficient. Quality at or above the floor alone does not stop optimization. Otherwise stop after `max_iterations` candidate attempts (default `10`), or earlier at the configured cost, time, or no-improvement limit. Reaching a limit is not success: return the best accepted version and the stop reason. Report success only from comparable runs, then publish the final held-out quality, cost, latency, token usage, variance, and English/reference/command step counts for both the initial and evolved SOP.
 
 Canary monitoring is optional and prospective; never repartition completed frozen data to manufacture it. Canary evidence is unavailable to candidate mining and may restore only a previously validated complete SOP, not create an unvalidated mixture through step-by-step demotion. Keep deployed and last-validation-tested identities distinct. Continual monitoring remains proposed unless an actual monitor and evidence exist.

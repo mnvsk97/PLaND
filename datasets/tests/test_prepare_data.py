@@ -114,6 +114,20 @@ class PrepareDataTests(unittest.TestCase):
         mapping = {"development": "train", "validation": "validation", "test": "test"}
         self.assertTrue(all(row["upstream_split"] == mapping[split] for split, row in selected))
 
+    def test_frozen_labels_prevent_task_drift_after_exclusion(self):
+        records = [
+            {"id": f"{label}-{index}", "label": label}
+            for label, size in (("original-a", 8), ("original-b", 8), ("new-top", 20))
+            for index in range(size)
+        ]
+        selected, labels = MODULE.choose_balanced(
+            records, "label", "id", 12, 2, 7,
+            {"development": 4, "validation": 4, "test": 4},
+            ["original-a", "original-b"],
+        )
+        self.assertEqual(labels, ["original-a", "original-b"])
+        self.assertEqual({row["label"] for _, row in selected}, set(labels))
+
     def test_excluded_dataset_removes_ids_and_normalized_content(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary); (root / "data/cases").mkdir(parents=True)

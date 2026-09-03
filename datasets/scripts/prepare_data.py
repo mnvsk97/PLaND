@@ -247,11 +247,16 @@ def write_artifacts(
 def choose_balanced(
     records: Iterable[dict[str, Any]], label_key: str, id_key: str,
     cases: int, classes: int, seed: int, split_counts: dict[str, int] | None = None,
+    frozen_labels: list[str] | None = None,
 ) -> tuple[list[tuple[str, dict[str, Any]]], list[str]]:
     grouped: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for record in records:
         grouped[str(record[label_key])].append(record)
-    labels = sorted(grouped, key=lambda label: (-len(grouped[label]), label))[:classes]
+    labels = list(frozen_labels) if frozen_labels is not None else sorted(
+        grouped, key=lambda label: (-len(grouped[label]), label)
+    )[:classes]
+    if len(labels) != classes or len(labels) != len(set(labels)):
+        raise ValueError("frozen labels must contain exactly the configured number of unique classes")
     if split_counts is None:
         per_split = balanced_allocation(cases, classes)
     else:
@@ -275,12 +280,16 @@ def choose_balanced(
 def choose_balanced_official_splits(
     records: Iterable[dict[str, Any]], label_key: str, id_key: str,
     source_split_key: str, split_counts: dict[str, int], classes: int, seed: int,
-    source_mapping: dict[str, str],
+    source_mapping: dict[str, str], frozen_labels: list[str] | None = None,
 ) -> tuple[list[tuple[str, dict[str, Any]]], list[str]]:
     """Select balanced cases while preserving official upstream boundaries."""
     records = list(records)
     grouped = Counter(str(record[label_key]) for record in records)
-    labels = sorted(grouped, key=lambda label: (-grouped[label], label))[:classes]
+    labels = list(frozen_labels) if frozen_labels is not None else sorted(
+        grouped, key=lambda label: (-grouped[label], label)
+    )[:classes]
+    if len(labels) != classes or len(labels) != len(set(labels)):
+        raise ValueError("frozen labels must contain exactly the configured number of unique classes")
     per_label = balanced_splits(split_counts, classes)
     selected = []
     for split, source_split in source_mapping.items():
@@ -320,6 +329,7 @@ def prepare_ledgar(args: argparse.Namespace, root: Path) -> None:
     selected, labels = choose_balanced_official_splits(
         records, "label", "id", "upstream_split", split_counts, args.classes, args.seed,
         {"development": "train", "validation": "validation", "test": "test"},
+        frozen_labels(args),
     )
     rows = []
     for split, item in selected:
@@ -406,7 +416,8 @@ def prepare_cfpb(args: argparse.Namespace, root: Path) -> None:
     split_counts = requested_splits(args)
     cases = sum(split_counts.values())
     selected, labels = choose_balanced(
-        records, "label", "id", cases, args.classes, args.seed, split_counts
+        records, "label", "id", cases, args.classes, args.seed, split_counts,
+        frozen_labels(args),
     )
     rows = []
     for split, item in selected:
@@ -654,7 +665,9 @@ def prepare_spamassassin(args: argparse.Namespace, root: Path) -> None:
     records, exclusions = exclude_records(records, "raw_email", "id", args.exclude_dataset)
     split_counts = requested_splits(args)
     cases = sum(split_counts.values())
-    selected, labels = choose_balanced(records, "label", "id", cases, 2, args.seed, split_counts)
+    selected, labels = choose_balanced(
+        records, "label", "id", cases, 2, args.seed, split_counts, frozen_labels(args)
+    )
     rows = []
     for split, item in selected:
         input_path = write_case(root, "spamassassin", item["id"], {"raw_email": item["raw_email"]})
@@ -695,9 +708,24 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--test-cases", type=int)
     parser.add_argument("--exclude-selection", action="append", default=[], type=Path)
     parser.add_argument("--classes", type=int, default=10)
+    parser.add_argument(
+        "--labels-from", type=Path,
+        help="Selection JSON whose ordered labels define the frozen task label set",
+    )
     parser.add_argument("--exclude-dataset", action="append", default=[], type=Path,
                         help="Prepared dataset whose IDs and normalized contents must be excluded")
     return parser.parse_args()
+
+
+def frozen_labels(args: argparse.Namespace) -> list[str] | None:
+    path = getattr(args, "labels_from", None)
+    if path is None:
+        return None
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    labels = payload.get("labels")
+    if not isinstance(labels, list) or not all(isinstance(label, str) and label for label in labels):
+        raise ValueError("--labels-from must contain a non-empty string labels array")
+    return labels
 
 
 def main() -> int:
