@@ -1,11 +1,18 @@
 # PLaND paper build
 
-`PAPER.md` is the source. Build all checked-in formats with the bundled
-workspace Python:
+`PAPER.md` is the source. From the repository root, install Python dependencies
+and build all formats:
 
 ```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install ./paper
 python paper/build_all.py
 ```
+
+Python 3.11+ is required. LibreOffice (`soffice` on `PATH`) is required for the
+HTML conversion; on macOS it can be installed with `brew install --cask
+libreoffice`.
 
 Outputs use one basename under `output/paper/`:
 

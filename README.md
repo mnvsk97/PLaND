@@ -22,6 +22,35 @@ nonviable.
 - [`paper/PAPER.md`](paper/PAPER.md): manuscript source.
 - [`output/paper`](output/paper/): generated MD, PDF, DOCX, and HTML.
 
+## Quick start
+
+Prerequisites: Git, Python 3.11+, and [Ollama](https://ollama.com/download).
+LibreOffice is required only when rebuilding every paper format.
+
+```bash
+git clone https://github.com/mnvsk97/PLaND.git
+cd PLaND
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install ./paper
+python -m unittest discover -s skills/pland-evolver/tests -v
+```
+
+Prepare the same LEDGAR pilot-exclusion and confirmatory selections used by the
+study, then use the validation commands below:
+
+```bash
+python datasets/scripts/prepare_data.py ledgar \
+  --output tmp/paper-datasets/ledgar
+python datasets/scripts/prepare_data.py ledgar \
+  --output tmp/confirmatory-datasets/ledgar \
+  --exclude-dataset tmp/paper-datasets/ledgar \
+  --development-cases 100 --validation-cases 100 --test-cases 1000
+```
+
+Preparation downloads public data. Use `--source PATH` for an existing local
+copy. Dataset rules and proof commands are in [`datasets/README.md`](datasets/README.md).
+
 ## Optimized Ollama and Qwen setup
 
 The replication used Ollama 0.33.0, `qwen3:14b`, 4,096-token requests, no
