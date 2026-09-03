@@ -61,6 +61,23 @@ class CompareTests(unittest.TestCase):
         self.assertEqual(summary["command_calls"], 0)
         self.assertEqual(summary["macro_f1"], 1 / 3)
 
+    def test_recall_by_label_and_command_precision(self):
+        cases = [
+            {"expected": "a", "actual": "a", "correct": True, "source": "command"},
+            {"expected": "a", "actual": "b", "correct": False, "source": "command"},
+            {"expected": "b", "actual": "b", "correct": True, "source": "model"},
+        ]
+        self.assertEqual(MODULE.recall_by_label(cases), {"a": 0.5, "b": 1.0})
+        self.assertEqual(MODULE.command_precision(cases), 0.5)
+
+    def test_command_precision_requires_command_cases(self):
+        self.assertIsNone(MODULE.command_precision([
+            {"expected": "a", "actual": "a", "correct": True, "source": "model"}
+        ]))
+
+    def test_rate_threshold_tolerates_binary_float_equality(self):
+        self.assertTrue(MODULE.meets_lower_bound(-0.020000000000000018, -0.02))
+
 
 if __name__ == "__main__":
     unittest.main()

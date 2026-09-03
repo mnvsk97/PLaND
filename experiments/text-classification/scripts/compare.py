@@ -94,6 +94,27 @@ def token_reduction(pairs: list[tuple[dict[str, Any], dict[str, Any]]]) -> float
     return (natural_language - hybrid) / natural_language if natural_language else 0.0
 
 
+def recall_by_label(cases: list[dict[str, Any]]) -> dict[str, float]:
+    labels = sorted({str(case["expected"]) for case in cases})
+    return {
+        label: (
+            sum(case["correct"] for case in cases if str(case["expected"]) == label)
+            / sum(str(case["expected"]) == label for case in cases)
+        )
+        for label in labels
+    }
+
+
+def command_precision(cases: list[dict[str, Any]]) -> float | None:
+    routed = [case for case in cases if case.get("source") == "command"]
+    return sum(case["correct"] for case in routed) / len(routed) if routed else None
+
+
+def meets_lower_bound(value: float, lower_bound: float) -> bool:
+    """Compare rates without rejecting equality because of binary float noise."""
+    return value >= lower_bound - 1e-12
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--nl", required=True, type=Path)
@@ -104,11 +125,19 @@ def main() -> int:
     parser.add_argument("--noninferiority-margin", type=float, default=0.02)
     parser.add_argument("--minimum-token-reduction", type=float, default=0.05)
     parser.add_argument("--minimum-accuracy", type=float, default=0.8)
+    parser.add_argument("--require-no-accuracy-regression", action="store_true")
+    parser.add_argument("--minimum-accuracy-difference-lower-bound", type=float)
+    parser.add_argument("--max-per-label-recall-drop", type=float)
+    parser.add_argument("--minimum-command-precision", type=float)
     args = parser.parse_args()
     if args.output.exists():
         raise SystemExit(f"output exists: {args.output}")
     if args.bootstrap_samples < 1:
         raise SystemExit("--bootstrap-samples must be positive")
+    for name in ("max_per_label_recall_drop", "minimum_command_precision"):
+        value = getattr(args, name)
+        if value is not None and not 0 <= value <= 1:
+            raise SystemExit(f"--{name.replace('_', '-')} must be between 0 and 1")
 
     nl, hybrid = (json.loads(path.read_text()) for path in (args.nl, args.hybrid))
     for key in ("split", "model", "model_digest", "seed"):
@@ -147,6 +176,11 @@ def main() -> int:
         pairs, token_reduction, args.bootstrap_samples, args.bootstrap_seed + 1,
     )
     observed_token_reduction = token_reduction(pairs)
+    nl_recall = recall_by_label([nl_case for nl_case, _ in pairs])
+    hybrid_recall = recall_by_label([hybrid_case for _, hybrid_case in pairs])
+    recall_deltas = {label: hybrid_recall[label] - nl_recall[label] for label in nl_recall}
+    worst_recall_label = min(recall_deltas, key=recall_deltas.get)
+    routed_command_precision = command_precision([hybrid_case for _, hybrid_case in pairs])
     command_pairs = [(nl_case, hybrid_case) for nl_case, hybrid_case in pairs
                      if hybrid_case.get("source") == "command"]
     fallback_pairs = [(nl_case, hybrid_case) for nl_case, hybrid_case in pairs
@@ -164,7 +198,26 @@ def main() -> int:
         ),
         "absolute_viability": min(n_summary["accuracy"], h_summary["accuracy"]) >= args.minimum_accuracy,
     }
+    if args.require_no_accuracy_regression:
+        decision["no_observed_accuracy_regression"] = h_summary["accuracy"] >= n_summary["accuracy"]
+    if args.minimum_accuracy_difference_lower_bound is not None:
+        decision["paired_lower_bound_met"] = (
+            meets_lower_bound(accuracy_ci[0], args.minimum_accuracy_difference_lower_bound)
+        )
+    if args.max_per_label_recall_drop is not None:
+        decision["per_label_recall_guardrail_met"] = (
+            meets_lower_bound(recall_deltas[worst_recall_label], -args.max_per_label_recall_drop)
+        )
+    if args.minimum_command_precision is not None:
+        decision["command_precision_guardrail_met"] = (
+            routed_command_precision is not None
+            and meets_lower_bound(routed_command_precision, args.minimum_command_precision)
+        )
     decision["relative_pass"] = decision["quality_noninferior"] and decision["token_objective_met"]
+    decision["relative_pass"] = decision["relative_pass"] and all(
+        value for key, value in decision.items()
+        if key.endswith("_met") or key == "no_observed_accuracy_regression"
+    )
     decision["test_release_pass"] = decision["relative_pass"] and decision["absolute_viability"]
     result = {
         "schema_version": 2,
@@ -218,11 +271,23 @@ def main() -> int:
                 sum(nl_case["correct"] for nl_case, _ in command_pairs) / len(command_pairs)
                 if command_pairs else None
             ),
+            "command_routed_hybrid_precision": routed_command_precision,
+        },
+        "per_label_recall": {
+            "natural_language": nl_recall,
+            "hybrid": hybrid_recall,
+            "delta_hybrid_minus_nl": recall_deltas,
+            "worst_label": worst_recall_label,
+            "worst_delta": recall_deltas[worst_recall_label],
         },
         "gate": {
             "noninferiority_margin": args.noninferiority_margin,
             "minimum_token_reduction": args.minimum_token_reduction,
             "minimum_accuracy": args.minimum_accuracy,
+            "require_no_accuracy_regression": args.require_no_accuracy_regression,
+            "minimum_accuracy_difference_lower_bound": args.minimum_accuracy_difference_lower_bound,
+            "max_per_label_recall_drop": args.max_per_label_recall_drop,
+            "minimum_command_precision": args.minimum_command_precision,
             **decision,
         },
         "variant_hashes": {
