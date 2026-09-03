@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
 """Build the PLaND SAS Publishers submission manuscript from Markdown.
 
-The generated DOCX follows the publisher's author instructions: A4, one-inch
-margins, one column, Times New Roman 10 point, single spacing, unshaded tables,
-and JPEG figures with captions below. The Markdown remains the source of truth.
+The generated DOCX follows the published journal article format: A4, compact
+Times New Roman typography, full-width front matter, two-column body text,
+spanning tables/figures, running headers, and bordered footers. The Markdown
+remains the source of truth.
 """
 
 from __future__ import annotations
 
 import argparse
+import copy
 import html
 import re
 import shutil
@@ -27,16 +29,16 @@ from PIL import Image
 
 
 FONT = "Times New Roman"
-CONTENT_WIDTH_DXA = 9026  # A4 width minus two one-inch margins.
+CONTENT_WIDTH_DXA = 9890  # A4 width minus two 0.7-inch margins.
 FIGURE_MARKERS = {
     "<!-- architecture-diagram -->": "architecture",
     "<!-- evolution-path-diagram -->": "evolution-path",
     "<!-- evolution-diagram -->": "evolution-loop",
 }
 FIGURE_WIDTHS = {
-    "architecture": 4.45,
+    "architecture": 3.20,
     "evolution-path": 5.00,
-    "evolution-loop": 4.25,
+    "evolution-loop": 2.75,
 }
 REQUIRED_SECTIONS = (
     "Abstract",
@@ -49,7 +51,7 @@ REQUIRED_SECTIONS = (
 )
 
 
-def set_run_font(run, *, size: float = 10, bold: bool | None = None,
+def set_run_font(run, *, size: float = 9, bold: bool | None = None,
                  italic: bool | None = None) -> None:
     run.font.name = FONT
     run._element.get_or_add_rPr().rFonts.set(qn("w:ascii"), FONT)
@@ -175,7 +177,51 @@ def set_table_borders(table) -> None:
             borders.append(node)
         node.set(qn("w:val"), "single")
         node.set(qn("w:sz"), "4")
-        node.set(qn("w:color"), "808080")
+        node.set(qn("w:color"), "557030")
+
+
+def set_paragraph_rule(paragraph, color: str = "557030") -> None:
+    properties = paragraph._p.get_or_add_pPr()
+    borders = OxmlElement("w:pBdr")
+    bottom = OxmlElement("w:bottom")
+    bottom.set(qn("w:val"), "single")
+    bottom.set(qn("w:sz"), "6")
+    bottom.set(qn("w:color"), color)
+    borders.append(bottom)
+    properties.append(borders)
+
+
+def shade_paragraph(paragraph, fill: str) -> None:
+    properties = paragraph._p.get_or_add_pPr()
+    shading = OxmlElement("w:shd")
+    shading.set(qn("w:fill"), fill)
+    properties.append(shading)
+
+
+def set_columns(section, count: int) -> None:
+    properties = section._sectPr
+    columns = properties.find(qn("w:cols"))
+    if columns is None:
+        columns = OxmlElement("w:cols")
+        properties.append(columns)
+    columns.set(qn("w:num"), str(count))
+    columns.set(qn("w:space"), "340")
+
+
+def add_continuous_section(document: Document, columns: int):
+    section = document.add_section(WD_SECTION.CONTINUOUS)
+    section.page_width = Mm(210)
+    section.page_height = Mm(297)
+    section.top_margin = Inches(0.7)
+    section.bottom_margin = Inches(0.65)
+    section.left_margin = Inches(0.7)
+    section.right_margin = Inches(0.7)
+    section.header_distance = Inches(0.32)
+    section.footer_distance = Inches(0.3)
+    section.header.is_linked_to_previous = True
+    section.footer.is_linked_to_previous = True
+    set_columns(section, columns)
+    return section
 
 
 def set_repeat_table_header(row) -> None:
@@ -238,7 +284,7 @@ def add_table(document: Document, rows: list[list[str]]) -> None:
                 paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
             add_inline(paragraph, value)
             for run in paragraph.runs:
-                set_run_font(run, size=10, bold=(row_index == 0))
+                set_run_font(run, size=8.2, bold=(row_index == 0))
     spacer = document.add_paragraph()
     set_paragraph_spacing(spacer, after=2)
 
@@ -318,7 +364,7 @@ def configure_styles(document: Document) -> None:
     normal._element.get_or_add_rPr().rFonts.set(qn("w:ascii"), FONT)
     normal._element.get_or_add_rPr().rFonts.set(qn("w:hAnsi"), FONT)
     normal._element.get_or_add_rPr().rFonts.set(qn("w:eastAsia"), FONT)
-    normal.font.size = Pt(10)
+    normal.font.size = Pt(9)
     normal.font.color.rgb = RGBColor(0, 0, 0)
     normal.paragraph_format.space_before = Pt(0)
     normal.paragraph_format.space_after = Pt(4)
@@ -330,9 +376,9 @@ def configure_styles(document: Document) -> None:
         style._element.get_or_add_rPr().rFonts.set(qn("w:ascii"), FONT)
         style._element.get_or_add_rPr().rFonts.set(qn("w:hAnsi"), FONT)
         style._element.get_or_add_rPr().rFonts.set(qn("w:eastAsia"), FONT)
-        style.font.size = Pt(10)
+        style.font.size = Pt(10.5 if style_name == "Heading 1" else 9.2)
         style.font.bold = True
-        style.font.color.rgb = RGBColor(0, 0, 0)
+        style.font.color.rgb = RGBColor(0, 112, 192) if style_name == "Heading 1" else RGBColor(0, 0, 0)
         style.paragraph_format.space_before = Pt(before)
         style.paragraph_format.space_after = Pt(after)
         style.paragraph_format.line_spacing = 1.0
@@ -341,7 +387,7 @@ def configure_styles(document: Document) -> None:
     for style_name in ("List Bullet", "List Number"):
         style = document.styles[style_name]
         style.font.name = FONT
-        style.font.size = Pt(10)
+        style.font.size = Pt(9)
         style.paragraph_format.left_indent = Inches(0.25)
         style.paragraph_format.first_line_indent = Inches(-0.18)
         style.paragraph_format.space_after = Pt(2)
@@ -353,16 +399,43 @@ def configure_document(document: Document) -> None:
     section.start_type = WD_SECTION.NEW_PAGE
     section.page_width = Mm(210)
     section.page_height = Mm(297)
-    section.top_margin = Inches(1)
-    section.bottom_margin = Inches(1)
-    section.left_margin = Inches(1)
-    section.right_margin = Inches(1)
-    section.header_distance = Inches(0.45)
-    section.footer_distance = Inches(0.45)
+    section.top_margin = Inches(0.7)
+    section.bottom_margin = Inches(0.65)
+    section.left_margin = Inches(0.7)
+    section.right_margin = Inches(0.7)
+    section.header_distance = Inches(0.32)
+    section.footer_distance = Inches(0.3)
+    section.different_first_page_header_footer = True
+    set_columns(section, 1)
 
-    footer = section.footer.paragraphs[0]
-    footer.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    set_paragraph_spacing(footer, after=0)
+    header = section.header.paragraphs[0]
+    header.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+    set_paragraph_spacing(header, after=0)
+    set_run_font(header.add_run("Maddipatla Naga Venkata Sai Krishna & Asit Kumar Sahoo, Sch J Eng Tech"), size=7)
+    set_paragraph_rule(header)
+
+    first_header = section.first_page_header.paragraphs[0]
+    set_paragraph_spacing(first_header, after=0)
+
+    footer = section.footer
+    base = footer.paragraphs[0]
+    base._element.getparent().remove(base._element)
+    table = footer.add_table(rows=1, cols=2, width=Inches(6.86))
+    table.alignment = WD_TABLE_ALIGNMENT.CENTER
+    table.autofit = False
+    set_table_borders(table)
+    set_cell_width(table.cell(0, 0), 8070)
+    set_cell_width(table.cell(0, 1), 1820)
+    left = table.cell(0, 0).paragraphs[0]
+    set_paragraph_spacing(left, after=0)
+    set_run_font(left.add_run("PLaND | Submission manuscript"), size=7)
+    right_cell = table.cell(0, 1)
+    shading = OxmlElement("w:shd")
+    shading.set(qn("w:fill"), "DCE8C6")
+    right_cell._tc.get_or_add_tcPr().append(shading)
+    page = right_cell.paragraphs[0]
+    page.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    set_paragraph_spacing(page, after=0)
     begin = OxmlElement("w:fldChar")
     begin.set(qn("w:fldCharType"), "begin")
     instruction = OxmlElement("w:instrText")
@@ -374,10 +447,14 @@ def configure_document(document: Document) -> None:
     text.text = "1"
     end = OxmlElement("w:fldChar")
     end.set(qn("w:fldCharType"), "end")
-    run = footer.add_run()
-    set_run_font(run, size=10)
+    run = page.add_run()
+    set_run_font(run, size=7)
     for element in (begin, instruction, separate, text, end):
         run._r.append(element)
+    first_footer = section.first_page_footer
+    first_base = first_footer.paragraphs[0]
+    first_base._element.getparent().remove(first_base._element)
+    first_footer._element.append(copy.deepcopy(table._tbl))
 
 
 def validate_source(markdown: str, *, allow_pending: bool) -> None:
@@ -411,7 +488,8 @@ def flush_body(document: Document, lines: list[str], *, reference: bool = False)
     text = " ".join(line.strip() for line in lines)
     paragraph = document.add_paragraph()
     set_paragraph_spacing(paragraph, after=1 if reference else 4)
-    paragraph.alignment = WD_ALIGN_PARAGRAPH.LEFT
+    paragraph.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
+    paragraph.paragraph_format.first_line_indent = Inches(0.2)
     if reference:
         paragraph.paragraph_format.left_indent = Inches(0.22)
         paragraph.paragraph_format.first_line_indent = Inches(-0.22)
@@ -428,12 +506,23 @@ def build(markdown: str, destination: Path, figures_dir: Path) -> None:
     document.core_properties.keywords = "agent skills, deterministic workflows, evaluation"
     document.core_properties.author = "Maddipatla Naga Venkata Sai Krishna; Asit Kumar Sahoo"
 
+    masthead = document.add_paragraph()
+    set_paragraph_spacing(masthead, after=0, keep_with_next=True)
+    set_run_font(masthead.add_run("Scholars Journal of Engineering and Technology"), size=18)
+    masthead.runs[0].font.color.rgb = RGBColor(0, 74, 147)
+    detail = document.add_paragraph()
+    set_paragraph_spacing(detail, after=8, keep_with_next=True)
+    set_run_font(detail.add_run("Abbreviated Key Title: Sch J Eng Tech\nJournal homepage: https://saspublishers.com/journal/sjet/home"), size=7.5)
+    set_paragraph_rule(detail)
+
     lines = markdown.splitlines()
     body: list[str] = []
     in_code = False
     code_lines: list[str] = []
     in_references = False
     first_heading = True
+    columns_started = False
+    span_kind = None
     index = 0
 
     while index < len(lines):
@@ -462,6 +551,9 @@ def build(markdown: str, destination: Path, figures_dir: Path) -> None:
 
         if stripped in FIGURE_MARKERS:
             flush_body(document, body, reference=in_references)
+            if columns_started:
+                add_continuous_section(document, 1)
+                span_kind = "figure"
             add_figure(document, figures_dir, FIGURE_MARKERS[stripped])
             index += 1
             continue
@@ -483,6 +575,9 @@ def build(markdown: str, destination: Path, figures_dir: Path) -> None:
                     continue
                 parsed_rows.append(cells)
             add_table(document, parsed_rows)
+            if columns_started and span_kind == "table":
+                add_continuous_section(document, 2)
+                span_kind = None
             continue
 
         list_match = re.match(r"^(\d+)\.\s+(.+)$", raw)
@@ -518,10 +613,12 @@ def build(markdown: str, destination: Path, figures_dir: Path) -> None:
         if raw.startswith("# "):
             flush_body(document, body, reference=in_references)
             paragraph = document.add_paragraph()
-            paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
-            set_paragraph_spacing(paragraph, before=0, after=7, keep_with_next=True)
+            paragraph.alignment = WD_ALIGN_PARAGRAPH.LEFT
+            set_paragraph_spacing(paragraph, before=0, after=3, keep_with_next=True)
             run = paragraph.add_run(raw[2:])
-            set_run_font(run, size=14, bold=True)
+            set_run_font(run, size=16, bold=False)
+            run.font.color.rgb = RGBColor(0, 74, 147)
+            set_paragraph_rule(paragraph, "D21F26")
             index += 1
             continue
 
@@ -531,8 +628,11 @@ def build(markdown: str, destination: Path, figures_dir: Path) -> None:
             paragraph = document.add_paragraph(style="Heading 1")
             if heading_text == "Abstract":
                 paragraph.alignment = WD_ALIGN_PARAGRAPH.LEFT
-            run = paragraph.add_run(heading_text)
+            run = paragraph.add_run(heading_text.upper())
             set_run_font(run, bold=True)
+            if heading_text == "Abstract":
+                shade_paragraph(paragraph, "002060")
+                run.font.color.rgb = RGBColor(255, 255, 255)
             in_references = heading_text == "References"
             first_heading = False
             index += 1
@@ -549,13 +649,13 @@ def build(markdown: str, destination: Path, figures_dir: Path) -> None:
         if first_heading and stripped.startswith("**Maddipatla Naga Venkata Sai Krishna**"):
             flush_body(document, body)
             paragraph = document.add_paragraph()
-            paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
+            paragraph.alignment = WD_ALIGN_PARAGRAPH.LEFT
             set_paragraph_spacing(paragraph, after=3, keep_with_next=True)
             add_inline(paragraph, stripped)
             index += 1
             continue
 
-        if first_heading and stripped.startswith("*Author affiliations"):
+        if first_heading and (stripped.startswith("*Author affiliations") or stripped.startswith("*Affiliations")):
             flush_body(document, body)
             paragraph = document.add_paragraph()
             paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
@@ -571,14 +671,33 @@ def build(markdown: str, destination: Path, figures_dir: Path) -> None:
             paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
             set_paragraph_spacing(paragraph, after=6, keep_with_next=False)
             add_inline(paragraph, stripped)
+            if columns_started and span_kind == "figure":
+                add_continuous_section(document, 2)
+                span_kind = None
             index += 1
             continue
 
         if stripped.startswith("**Table "):
             flush_body(document, body, reference=in_references)
+            if columns_started:
+                add_continuous_section(document, 1)
+                span_kind = "table"
             paragraph = document.add_paragraph()
             set_paragraph_spacing(paragraph, before=4, after=2, keep_with_next=True)
             add_inline(paragraph, stripped)
+            index += 1
+            continue
+
+        if stripped.startswith("**Keywords:**"):
+            flush_body(document, body, reference=in_references)
+            paragraph = document.add_paragraph()
+            paragraph.paragraph_format.first_line_indent = Inches(0)
+            set_paragraph_spacing(paragraph, after=4)
+            shade_paragraph(paragraph, "F1F5E8")
+            set_paragraph_rule(paragraph)
+            add_inline(paragraph, stripped)
+            add_continuous_section(document, 2)
+            columns_started = True
             index += 1
             continue
 

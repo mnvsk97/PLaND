@@ -62,9 +62,9 @@ repeat preparation.
 
 | Dataset | Development / validation / test | Audit | Experiment |
 | --- | ---: | --- | --- |
-| LEDGAR | 100 / 100 / 1,000 | Passed; identical repeat | Validation passed; test completed once |
-| CFPB | 100 / 100 / 1,000 | Passed; identical repeat | Validation rejected; test untouched |
-| SpamAssassin | 100 / 100 / 1,000 | Passed; identical repeat | Validation rejected; test untouched |
+| LEDGAR | 100 / 100 / 1,000 | Passed; identical repeat | Validation passed; test plus three optimized replications |
+| CFPB | 100 / 100 / 1,000 | Passed; identical repeat | Validation rejection repeated three times; test untouched |
+| SpamAssassin | 100 / 100 / 1,000 | Passed; identical repeat | Validation rejection repeated three times; test untouched |
 | QS-OCR/Tobacco3482 | 100 / 100 / 1,000 | Passed; identical repeat | Baseline nonviable |
 | SROIE | 100 / 100 / 300 | Passed after duplicate exclusions | Baseline nonviable |
 | RVL-CDIP mirror | 100 / 100 / 369 | Passed; repeat not recorded | Baseline nonviable |
@@ -89,6 +89,11 @@ Use accuracy/macro F1 for classification and field F1/exact match for SROIE.
 Never combine those metrics into one score. Frozen-OCR and end-to-end SROIE
 runs are separate conditions; OCR engine, version, configuration, and output
 hash are invariants.
+
+The three-seed text variance study reuses these exact prepared snapshots; its
+cross-run summary is `experiments/variance-study/summary.json`, and every run
+records the `evals.csv` and `selection.json` SHA-256 values. Raw source records
+remain in ignored `tmp/` and are not present in committed result JSON.
 
 Run dataset tests with:
 

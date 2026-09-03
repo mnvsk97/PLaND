@@ -5,11 +5,12 @@ steps from natural language into references, Python, or Bash while retaining
 model judgment. Freeze the evaluation contract, change only the skill package,
 and accept a candidate only when quality and expense gates pass.
 
-On the 1,000-case LEDGAR test, the accepted hybrid stayed within the two-point
-quality margin, reduced tokens 40.02%, and replaced 411 model calls with
-commands. Call bypass produced 97.24% of the saving. CFPB and SpamAssassin
-saved tokens but failed quality gates; three document-image baselines were
-nonviable.
+Across three new 1,000-case LEDGAR replications, the accepted hybrid passed the
+quality and efficiency gates every time, held accuracy at 92.9% versus 93.7%
+NL, reduced tokens by 40.02%, and replaced 411 model calls with commands. Both
+variants had zero label disagreement across the three seeds. CFPB and
+SpamAssassin reproduced their quality-gate rejections; three document-image
+baselines remain nonviable feasibility cases.
 
 ## Repository map
 
@@ -19,6 +20,8 @@ nonviable.
   changes.
 - [`datasets`](datasets/): preparation, proofs, hashes, and audits.
 - [`experiments`](experiments/): runners, SOPs, decisions, and results.
+- [`experiments/variance-study`](experiments/variance-study/): three-seed
+  commands, manifests, aggregation code, and cross-run results.
 - [`paper/PAPER.md`](paper/PAPER.md): manuscript source.
 - [`output/paper`](output/paper/): generated MD, PDF, DOCX, and HTML.
 

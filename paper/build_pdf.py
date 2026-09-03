@@ -17,6 +17,7 @@ from reportlab.graphics import renderSVG
 from reportlab.platypus import (
     BaseDocTemplate,
     Frame,
+    FrameBreak,
     KeepTogether,
     ListFlowable,
     ListItem,
@@ -29,9 +30,11 @@ from reportlab.platypus import (
 )
 
 
-NAVY = colors.HexColor("#18324B")
-RED = colors.HexColor("#A52A2A")
-PALE = colors.HexColor("#EEF2F4")
+NAVY = colors.HexColor("#004A93")
+RED = colors.HexColor("#D21F26")
+PALE = colors.HexColor("#F1F5E8")
+GREEN = colors.HexColor("#557030")
+BLUE = colors.HexColor("#0070C0")
 TEXT = colors.HexColor("#222222")
 
 
@@ -175,12 +178,13 @@ def inline(value: str) -> str:
 def styles():
     base = getSampleStyleSheet()
     return {
-        "title": ParagraphStyle("Title", parent=base["Title"], fontName="Helvetica-Bold", fontSize=19, leading=23, textColor=NAVY, alignment=TA_CENTER, spaceAfter=8),
-        "authors": ParagraphStyle("Authors", parent=base["Normal"], fontName="Helvetica", fontSize=9.5, leading=12, alignment=TA_CENTER, textColor=TEXT, spaceAfter=12),
-        "h1": ParagraphStyle("H1", parent=base["Heading1"], fontName="Helvetica-Bold", fontSize=12.5, leading=15, textColor=NAVY, spaceBefore=10, spaceAfter=5, keepWithNext=True),
-        "h2": ParagraphStyle("H2", parent=base["Heading2"], fontName="Helvetica-Bold", fontSize=10.5, leading=13, textColor=RED, spaceBefore=8, spaceAfter=4, keepWithNext=True),
-        "body": ParagraphStyle("Body", parent=base["BodyText"], fontName="Times-Roman", fontSize=9.3, leading=12.2, alignment=TA_JUSTIFY, textColor=TEXT, spaceAfter=5),
-        "abstract": ParagraphStyle("Abstract", parent=base["BodyText"], fontName="Times-Italic", fontSize=9.1, leading=12, alignment=TA_JUSTIFY, leftIndent=8*mm, rightIndent=8*mm, spaceAfter=7),
+        "title": ParagraphStyle("Title", parent=base["Title"], fontName="Times-Roman", fontSize=17, leading=20, textColor=NAVY, alignment=0, spaceAfter=3, borderColor=RED, borderWidth=0, borderPadding=0),
+        "authors": ParagraphStyle("Authors", parent=base["Normal"], fontName="Times-Roman", fontSize=9.2, leading=11, alignment=0, textColor=TEXT, spaceAfter=7, borderColor=RED, borderWidth=0, borderPadding=0),
+        "h1": ParagraphStyle("H1", parent=base["Heading1"], fontName="Times-Roman", fontSize=11.5, leading=13.5, textColor=BLUE, spaceBefore=7, spaceAfter=3, keepWithNext=True),
+        "h2": ParagraphStyle("H2", parent=base["Heading2"], fontName="Times-Roman", fontSize=9.8, leading=11.5, textColor=TEXT, spaceBefore=6, spaceAfter=2, keepWithNext=True),
+        "body": ParagraphStyle("Body", parent=base["BodyText"], fontName="Times-Roman", fontSize=8.6, leading=10.4, alignment=TA_JUSTIFY, firstLineIndent=5*mm, textColor=TEXT, spaceAfter=3),
+        "abstract": ParagraphStyle("Abstract", parent=base["BodyText"], fontName="Times-Roman", fontSize=8.7, leading=10.5, alignment=TA_JUSTIFY, backColor=PALE, borderColor=GREEN, borderWidth=0.5, borderPadding=5, spaceAfter=4),
+        "keywords": ParagraphStyle("Keywords", parent=base["BodyText"], fontName="Times-Roman", fontSize=8.5, leading=10, alignment=TA_JUSTIFY, backColor=PALE, borderColor=GREEN, borderWidth=0.5, borderPadding=5, spaceAfter=2),
         "quote": ParagraphStyle("Quote", parent=base["BodyText"], fontName="Times-Italic", fontSize=9.3, leading=12.2, leftIndent=8*mm, rightIndent=5*mm, borderColor=RED, borderWidth=0.8, borderPadding=5, spaceAfter=6),
         "code": ParagraphStyle("Code", parent=base["Code"], fontName="Courier", fontSize=7.7, leading=10, backColor=PALE, borderPadding=5, spaceAfter=6),
         "list": ParagraphStyle("List", parent=base["BodyText"], fontName="Times-Roman", fontSize=9.2, leading=11.8, leftIndent=3*mm),
@@ -289,6 +293,11 @@ def parse(markdown: str):
             story.append(Paragraph(inline(line[2:]), st["title"])); seen_title = True
         elif seen_title and (line.startswith("**Maddipatla Naga Venkata Sai Krishna") or line.startswith("*Author affiliations") or line.startswith("*Affiliations")):
             flush_paragraph(); flush_list(); story.append(Paragraph(inline(line.replace("**", "").strip("*")), st["authors"]))
+        elif line.startswith("**Keywords:**"):
+            flush_paragraph(); flush_list()
+            story.append(Paragraph(inline(line), st["keywords"]))
+            story.append(FrameBreak())
+            abstract_mode = False
         elif line.startswith("## "):
             flush_paragraph(); flush_list(); abstract_mode = line[3:].strip() == "Abstract"
             heading = Paragraph(inline(line[3:]), st["h1"])
@@ -328,11 +337,30 @@ def parse(markdown: str):
 def decorate(canvas, doc):
     canvas.saveState()
     width, height = A4
-    canvas.setStrokeColor(RED); canvas.setLineWidth(0.8)
-    canvas.line(19*mm, height-15*mm, width-19*mm, height-15*mm)
-    canvas.setFont("Helvetica", 7.5); canvas.setFillColor(colors.HexColor("#66717A"))
-    canvas.drawString(19*mm, 11*mm, "PLaND — Revised Manuscript")
-    canvas.drawRightString(width-19*mm, 11*mm, f"{doc.page}")
+    if doc.page == 1:
+        canvas.setFillColor(NAVY)
+        canvas.setFont("Times-Roman", 16)
+        canvas.drawString(19*mm, height-14*mm, "Scholars Journal of Engineering and Technology")
+        canvas.setFont("Times-Roman", 7.2)
+        canvas.setFillColor(TEXT)
+        canvas.drawString(19*mm, height-18*mm, "Abbreviated Key Title: Sch J Eng Tech")
+        canvas.drawString(19*mm, height-21.5*mm, "Journal homepage: https://saspublishers.com/journal/sjet/home")
+    else:
+        canvas.setFont("Times-Roman", 6.8)
+        canvas.setFillColor(TEXT)
+        canvas.drawRightString(width-19*mm, height-12.5*mm,
+                               "Maddipatla Naga Venkata Sai Krishna & Asit Kumar Sahoo, Sch J Eng Tech")
+    canvas.setStrokeColor(GREEN); canvas.setLineWidth(0.7)
+    canvas.line(19*mm, height-24*mm if doc.page == 1 else height-14*mm,
+                width-19*mm, height-24*mm if doc.page == 1 else height-14*mm)
+    canvas.setStrokeColor(GREEN); canvas.setLineWidth(0.5)
+    canvas.rect(19*mm, 8.5*mm, width-38*mm, 5*mm, stroke=1, fill=0)
+    canvas.setFillColor(TEXT); canvas.setFont("Times-Roman", 6.6)
+    canvas.drawString(21*mm, 10.2*mm, "PLaND | Submission manuscript")
+    canvas.setFillColor(colors.HexColor("#DCE8C6"))
+    canvas.rect(width-33*mm, 8.5*mm, 14*mm, 5*mm, stroke=1, fill=1)
+    canvas.setFillColor(TEXT)
+    canvas.drawCentredString(width-26*mm, 10.2*mm, f"{doc.page}")
     canvas.restoreState()
 
 
@@ -345,14 +373,24 @@ def main() -> int:
     renderSVG.drawToFile(architecture_diagram(), str(figure_path))
     renderSVG.drawToFile(evolution_diagram(), str(source.parent / "figures" / "evolution-loop.svg"))
     renderSVG.drawToFile(evolution_path_diagram(), str(source.parent / "figures" / "evolution-path.svg"))
-    doc = BaseDocTemplate(str(destination), pagesize=A4, leftMargin=18*mm, rightMargin=18*mm, topMargin=20*mm, bottomMargin=18*mm, title="PLaND - Path to Least Non Determinism")
-    first_frame = Frame(doc.leftMargin, doc.bottomMargin, doc.width, doc.height, id="front-matter")
+    doc = BaseDocTemplate(str(destination), pagesize=A4, leftMargin=19*mm, rightMargin=19*mm, topMargin=27*mm, bottomMargin=16*mm, title="PLaND - Path to Least Non Determinism")
     gutter = 6 * mm
     column_width = (doc.width - gutter) / 2
+    # Keep the complete front matter (including keywords) in the full-width
+    # frame. This mirrors the published SJET first page and ensures the body
+    # begins in the lower-left column rather than skipping to the right.
+    first_top_height = 100 * mm
+    first_lower_height = doc.height - first_top_height - 4*mm
+    first_frame = Frame(doc.leftMargin, doc.bottomMargin + first_lower_height + 4*mm,
+                        doc.width, first_top_height, id="front-matter")
+    first_left = Frame(doc.leftMargin, doc.bottomMargin, column_width,
+                       first_lower_height, id="first-left-column")
+    first_right = Frame(doc.leftMargin + column_width + gutter, doc.bottomMargin,
+                        column_width, first_lower_height, id="first-right-column")
     left_frame = Frame(doc.leftMargin, doc.bottomMargin, column_width, doc.height, id="left-column")
     right_frame = Frame(doc.leftMargin + column_width + gutter, doc.bottomMargin, column_width, doc.height, id="right-column")
     doc.addPageTemplates([
-        PageTemplate(id="front", frames=[first_frame], onPage=decorate, autoNextPageTemplate="columns"),
+        PageTemplate(id="front", frames=[first_frame, first_left, first_right], onPage=decorate, autoNextPageTemplate="columns"),
         PageTemplate(id="columns", frames=[left_frame, right_frame], onPage=decorate),
     ])
     doc.build(parse(source.read_text(encoding="utf-8")))

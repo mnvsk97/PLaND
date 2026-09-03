@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "evidence_reference": "same Git commit as manuscript",
+  "external_submission_performed": false,
+  "artifacts": {
+    "PLAND_PAPER.md": {
+      "bytes": 18875,
+      "sha256": "c21d584b25613e3eebe28849b53155dc2d6f404e6c167e3f10d62712be770abc"
+    },
+    "PLAND_PAPER.pdf": {
+      "bytes": 31604,
+      "sha256": "5b3c424d7c076a405e5ccc65038ba755a6108b12ba45d6ea8e26d4573a8b5d18"
+    },
+    "PLAND_PAPER.docx": {
+      "bytes": 549734,
+      "sha256": "48b0f45073f7993c4e4b901e5f94bde9914e4d570554e1c4fdb62af91e331df8"
+    },
+    "PLAND_PAPER.html": {
+      "bytes": 985734,
+      "sha256": "c737bb383911c1b5fa89423646594bba61b4497c783fcbb31dd4d3689d43c4d0"
+    },
+    "PLAND_SJET_COVER_LETTER.docx": {
+      "bytes": 39171,
+      "sha256": "e07673d46a8cc1b6dd35631ccc47a6d0f9ee07d11252eb5c239861a85c2366e3"
+    },
+    "PLAND_SJET_COVER_LETTER.pdf": {
+      "bytes": 76401,
+      "sha256": "2f127bffe6b648a95af1d3173d6bb32e1222c3e58995965408167487f4161d6b"
+    }
+  }
+}

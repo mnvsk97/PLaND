@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-09-03T08:05:22.724385+00:00",
+  "algorithm": "sha256",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 2804,
+      "sha256": "ac585da45b1d0f4dcdcc73d78fe8569c75961f931d26f79363f84ac50f79bd9c"
+    },
+    {
+      "path": "aggregate.py",
+      "bytes": 14437,
+      "sha256": "d1cade189e8ab2ea13658693d5d40a249ca3ccb7ad79f060374195fd171e2f74"
+    },
+    {
+      "path": "preflight.json",
+      "bytes": 3526,
+      "sha256": "61e0463f0ba665369914129a2895f16380ab30d4644a91fc85d46a26409d0cb1"
+    },
+    {
+      "path": "run_variance_study.py",
+      "bytes": 9434,
+      "sha256": "e9da738ae48b2a7b517561f68a17ce1d291c52f257e5768d2f87db46bdb835a3"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 34747,
+      "sha256": "58b8a7051bb04058b079900429d3203ce39ef3d979ed23a61d2bd4440e0f9140"
+    },
+    {
+      "path": "tests/test_aggregate.py",
+      "bytes": 1423,
+      "sha256": "a689f2d4fa414a3458c9854c07b57cd6b21c922876a2e6516547bb3d6f72aac5"
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "runs": [
+    {
+      "label": "cfpb:validation:seed-20260903:nl",
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/text-classification/scripts/run_experiment.py --dataset /Users/saikrishna/dev/deterministic-skills/tmp/confirmatory-datasets/cfpb --split validation --system-prompt /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/system-prompt.md --sop /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/nl/SKILL.md --model qwen3:14b --seed 20260903 --workers 2 --num-ctx 4096 --num-predict 128 --keep-alive -1 --checkpoint-every 10 --resume --output /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/results/variance-study-20260903/seed-20260903-nl.json",
+      "started_at": "2026-09-03T06:32:02.356202+00:00",
+      "status": "complete",
+      "finished_at": "2026-09-03T06:33:42.090240+00:00",
+      "exit_code": 0,
+      "log_sha256": "c8b66181fcc1b2b8fd90a90206f98e40177add1294462750cd7b9e6756aaf74d"
+    },
+    {
+      "label": "cfpb:validation:seed-20260903:hybrid",
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/text-classification/scripts/run_experiment.py --dataset /Users/saikrishna/dev/deterministic-skills/tmp/confirmatory-datasets/cfpb --split validation --system-prompt /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/system-prompt.md --sop /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/hybrid/SKILL.md --model qwen3:14b --seed 20260903 --workers 2 --num-ctx 4096 --num-predict 128 --keep-alive -1 --checkpoint-every 10 --resume --output /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/results/variance-study-20260903/seed-20260903-hybrid.json --classifier /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/hybrid/classify.py",
+      "started_at": "2026-09-03T06:33:42.091081+00:00",
+      "status": "complete",
+      "finished_at": "2026-09-03T06:34:37.647582+00:00",
+      "exit_code": 0,
+      "log_sha256": "132c03c332a24ccc54750119a9ccf4dc868effa0754ae789f25055ca3d97d7ae"
+    },
+    {
+      "label": "cfpb:validation:seed-20260903:comparison",
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/text-classification/scripts/compare.py --nl /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/results/variance-study-20260903/seed-20260903-nl.json --hybrid /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/results/variance-study-20260903/seed-20260903-hybrid.json --bootstrap-samples 5000 --bootstrap-seed 20260903 --minimum-accuracy 0.80 --noninferiority-margin 0.02 --minimum-token-reduction 0.05 --output /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/results/variance-study-20260903/seed-20260903-comparison.json",
+      "started_at": "2026-09-03T06:34:37.648388+00:00",
+      "status": "complete",
+      "finished_at": "2026-09-03T06:34:37.828927+00:00",
+      "exit_code": 0,
+      "log_sha256": "5f31cfa1cb24259b74c5ea01742592bcfc2c088302d54d6e0aa7feac0b2fba47"
+    },
+    {
+      "label": "cfpb:validation:seed-20260904:hybrid",
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/text-classification/scripts/run_experiment.py --dataset /Users/saikrishna/dev/deterministic-skills/tmp/confirmatory-datasets/cfpb --split validation --system-prompt /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/system-prompt.md --sop /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/hybrid/SKILL.md --model qwen3:14b --seed 20260904 --workers 2 --num-ctx 4096 --num-predict 128 --keep-alive -1 --checkpoint-every 10 --resume --output /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/results/variance-study-20260903/seed-20260904-hybrid.json --classifier /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/hybrid/classify.py",
+      "started_at": "2026-09-03T07:14:49.354679+00:00",
+      "status": "complete",
+      "log": "seed-20260904-hybrid.log",
+      "finished_at": "2026-09-03T07:15:57.593729+00:00",
+      "exit_code": 0,
+      "log_sha256": "df87101f39c542e8055a06858b07d8746a32814b6ee1c9fb9d860c7c255b3e10"
+    },
+    {
+      "label": "cfpb:validation:seed-20260904:nl",
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/text-classification/scripts/run_experiment.py --dataset /Users/saikrishna/dev/deterministic-skills/tmp/confirmatory-datasets/cfpb --split validation --system-prompt /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/system-prompt.md --sop /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/nl/SKILL.md --model qwen3:14b --seed 20260904 --workers 2 --num-ctx 4096 --num-predict 128 --keep-alive -1 --checkpoint-every 10 --resume --output /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/results/variance-study-20260903/seed-20260904-nl.json",
+      "started_at": "2026-09-03T07:15:57.594690+00:00",
+      "status": "complete",
+      "log": "seed-20260904-nl.log",
+      "finished_at": "2026-09-03T07:17:49.792533+00:00",
+      "exit_code": 0,
+      "log_sha256": "bd5a9c541319baf6792b86caeada628fc30e2a57d9fd439cadfe6723cf82a648"
+    },
+    {
+      "label": "cfpb:validation:seed-20260904:comparison",
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/text-classification/scripts/compare.py --nl /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/results/variance-study-20260903/seed-20260904-nl.json --hybrid /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/results/variance-study-20260903/seed-20260904-hybrid.json --bootstrap-samples 5000 --bootstrap-seed 20260904 --minimum-accuracy 0.80 --noninferiority-margin 0.02 --minimum-token-reduction 0.05 --output /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/results/variance-study-20260903/seed-20260904-comparison.json",
+      "started_at": "2026-09-03T07:17:49.793708+00:00",
+      "status": "complete",
+      "log": "seed-20260904-comparison.log",
+      "finished_at": "2026-09-03T07:17:49.979290+00:00",
+      "exit_code": 0,
+      "log_sha256": "63ca70eb495aebe069a0371c5837b91847a253fdd9b325872215c80debd151dc"
+    },
+    {
+      "label": "cfpb:validation:seed-20260905:nl",
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/text-classification/scripts/run_experiment.py --dataset /Users/saikrishna/dev/deterministic-skills/tmp/confirmatory-datasets/cfpb --split validation --system-prompt /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/system-prompt.md --sop /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/nl/SKILL.md --model qwen3:14b --seed 20260905 --workers 2 --num-ctx 4096 --num-predict 128 --keep-alive -1 --checkpoint-every 10 --resume --output /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/results/variance-study-20260903/seed-20260905-nl.json",
+      "started_at": "2026-09-03T07:49:59.610222+00:00",
+      "status": "complete",
+      "log": "seed-20260905-nl.log",
+      "finished_at": "2026-09-03T07:51:51.513313+00:00",
+      "exit_code": 0,
+      "log_sha256": "0d2da13117c070c79cfcc3dcf655ef040c8d402aa826b6a46efe0705aa635dd5"
+    },
+    {
+      "label": "cfpb:validation:seed-20260905:hybrid",
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/text-classification/scripts/run_experiment.py --dataset /Users/saikrishna/dev/deterministic-skills/tmp/confirmatory-datasets/cfpb --split validation --system-prompt /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/system-prompt.md --sop /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/hybrid/SKILL.md --model qwen3:14b --seed 20260905 --workers 2 --num-ctx 4096 --num-predict 128 --keep-alive -1 --checkpoint-every 10 --resume --output /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/results/variance-study-20260903/seed-20260905-hybrid.json --classifier /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/hybrid/classify.py",
+      "started_at": "2026-09-03T07:51:51.514459+00:00",
+      "status": "complete",
+      "log": "seed-20260905-hybrid.log",
+      "finished_at": "2026-09-03T07:52:54.415052+00:00",
+      "exit_code": 0,
+      "log_sha256": "4c910d9c5f2a0f05434a56f14c4fdc1112f4ed8f3553bd71f4112cfe9d97d914"
+    },
+    {
+      "label": "cfpb:validation:seed-20260905:comparison",
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/text-classification/scripts/compare.py --nl /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/results/variance-study-20260903/seed-20260905-nl.json --hybrid /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/results/variance-study-20260903/seed-20260905-hybrid.json --bootstrap-samples 5000 --bootstrap-seed 20260905 --minimum-accuracy 0.80 --noninferiority-margin 0.02 --minimum-token-reduction 0.05 --output /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/results/variance-study-20260903/seed-20260905-comparison.json",
+      "started_at": "2026-09-03T07:52:54.416277+00:00",
+      "status": "complete",
+      "log": "seed-20260905-comparison.log",
+      "finished_at": "2026-09-03T07:52:54.586318+00:00",
+      "exit_code": 0,
+      "log_sha256": "3994e1c488f22b59eccbebcef167e8a8075f35d4b9459ec20fcda25d4fbb93f6"
+    }
+  ]
+}

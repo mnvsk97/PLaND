@@ -1,0 +1,82 @@
+{
+  "created_at": "2026-09-03T06:15:37.655198+00:00",
+  "git_head": "adab734b96cf861432ea03cd0403fcee840b6425",
+  "git_status_before": "?? experiments/variance-study/",
+  "model": "qwen3:14b",
+  "model_digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+  "ollama_version": "ollama version is 0.33.0",
+  "ollama_ps": "NAME         ID              SIZE     PROCESSOR    CONTEXT    UNTIL   \nqwen3:14b    bdbd181c33f2    10 GB    100% GPU     4096       Forever",
+  "runtime": {
+    "temperature": 0,
+    "think": false,
+    "stream": false,
+    "num_ctx": 4096,
+    "num_predict": 128,
+    "keep_alive": -1,
+    "workers": 2,
+    "ollama_flash_attention": "1",
+    "ollama_kv_cache_type": "q8_0",
+    "ollama_num_parallel": "2",
+    "ollama_max_loaded_models": "1",
+    "ollama_keep_alive": "-1"
+  },
+  "seeds": [
+    20260903,
+    20260904,
+    20260905
+  ],
+  "order": {
+    "20260903": [
+      "nl",
+      "hybrid"
+    ],
+    "20260904": [
+      "hybrid",
+      "nl"
+    ],
+    "20260905": [
+      "nl",
+      "hybrid"
+    ]
+  },
+  "frozen_artifacts": {
+    "ledgar": {
+      "dataset_path": "/Users/saikrishna/dev/deterministic-skills/tmp/confirmatory-datasets/ledgar",
+      "split": "test",
+      "dataset_hashes": {
+        "evals_sha256": "e3cebc95e61c0fb7feb799ef99f15ee78e8dc9113cf0efa38f1b91dc5fb32422",
+        "selection_sha256": "ea6595493193419bb80b6c868b47ed24c63a438555af94e86c9e00a427f19823"
+      },
+      "system_prompt_sha256": "928fd5136d76264ff1e8018dbc1806230d2c98a5d552bd0f91dff608e6fafdd1",
+      "nl_sop_sha256": "965f61f435c835e6412425f52045395e24f04edbe32f1fd7327d8c64aaaa9044",
+      "hybrid_sop_sha256": "bae5dc5a878689973b03be0443960cf8086a106819a770fd18ca454d0aa321cc",
+      "classifier_sha256": "3ec37d6e8a0ccf6a9f43acb0f222f85b985b06659a09ff271dfac8cbee2a955c"
+    },
+    "cfpb": {
+      "dataset_path": "/Users/saikrishna/dev/deterministic-skills/tmp/confirmatory-datasets/cfpb",
+      "split": "validation",
+      "dataset_hashes": {
+        "evals_sha256": "873d4de9414525bf1cf417f47f17f3cb7235eb3d2932fc85aa26ad14c518cb37",
+        "selection_sha256": "352f3c1c42ee83653054cb14d067c43e6cb1c047f2909c29370847411ca49812"
+      },
+      "system_prompt_sha256": "5a44109d9e9ff0d6e315dd283839bd09a7fe532ced2659dfa11e776ffe0474f5",
+      "nl_sop_sha256": "85c7d9b4c375bb8921599fef0e59fc863b84cccbf800304f978e3c8bf90a9d2b",
+      "hybrid_sop_sha256": "6b48ce6370be4f3c97c80b23acb55a70fdfd1e93eb7ed56ba24acf92302e1caa",
+      "classifier_sha256": "8f74f7910d956daf511dbdd373fa687ca990989b33fecd377c5c4d7011cfb74e"
+    },
+    "spamassassin": {
+      "dataset_path": "/Users/saikrishna/dev/deterministic-skills/tmp/confirmatory-datasets/spamassassin",
+      "split": "validation",
+      "dataset_hashes": {
+        "evals_sha256": "702d52186d9cc73ea36589dd93bbb4e499f4aa630ead00abcb777e3c37fe0202",
+        "selection_sha256": "1d05472325e48b574b9d1c8d9e2233e5976bbbe08ce58822d7d12736481b91bb"
+      },
+      "system_prompt_sha256": "c9b97a09c97ae4118c79e350388366cd006217e72c5a5b561cb563630653ef1f",
+      "nl_sop_sha256": "d2cdab135f281ad33df35eec3f3e29569128766130c73a2f14658565d62b8bac",
+      "hybrid_sop_sha256": "3f9edbe0b03fd5cc6d8ce2cb023cc4e7568969fa722bafdbe0aabb19ef0c2589",
+      "classifier_sha256": "c4d434380e56589562fce0d4e2b8b905dfd3f7ab803bcb55fdf8cc3193810de8"
+    }
+  },
+  "harness_sha256": "26ab4ca8103f76e2e0380999feb1fdf52a7ce81c213b96f98ce92fe24c10f672",
+  "comparison_sha256": "ec20f65cb44f57998bbc12afc031d4f9a2c137822b41b8f3f8e59ef13cc3c9c1"
+}

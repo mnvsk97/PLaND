@@ -24,3 +24,17 @@ unreleased. See `results/confirmatory-validation-*.json` and
 
 The earlier four-case held-out pilot fell from 100% to 75% accuracy. It is
 retained in `RESULTS.md` as exploratory evidence, not generalization.
+
+## Three-run variance study
+
+All three optimized validation replications produced 88% NL and 85% hybrid
+accuracy, zero within-variant label disagreement, and the same five paired
+NL/hybrid prediction disagreements. NL used 188,384 tokens and 100 model calls
+per run; hybrid used a mean 178,880.67 tokens (sample SD 0.58; range
+178,880-178,881) and 97 calls, about a 5.04% reduction. All three pairs passed
+absolute viability and the efficiency gate but failed non-inferiority; the test
+remains untouched. The three stable command cases and 97 model-fallback cases
+each had zero cross-run label disagreement.
+
+Artifacts and checksums are in `results/variance-study-20260903/`; aggregate
+statistics and the result-content audit are in `../variance-study/summary.json`.

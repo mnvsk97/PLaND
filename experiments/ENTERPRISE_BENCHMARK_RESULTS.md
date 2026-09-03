@@ -43,6 +43,32 @@ LEDGAR again bypassed 411 model calls within the quality margin. This is
 reproducibility evidence, not a new untouched test. Parallel wall time measures
 throughput and cannot be compared directly with sequential timing.
 
+## Three-seed optimized variance study
+
+Three new paired runs used seeds `20260903`, `20260904`, and `20260905`, with
+NL/hybrid order reversed for the middle seed. The original sequential run is
+not pooled with these two-worker replications.
+
+| Workflow | NL accuracy mean (SD; range) | Hybrid accuracy mean (SD; range) | NL -> hybrid tokens, mean | Cross-run label disagreement | Gate outcome |
+| --- | ---: | ---: | ---: | ---: | --- |
+| LEDGAR test | 93.7% (0; 93.7-93.7) | 92.9% (0; 92.9-92.9) | 376,090 -> 225,575.33 | 0 NL; 0 hybrid | 3/3 pass |
+| CFPB validation | 78.0% (0; 78.0-78.0) | 71.0% (0; 71.0-71.0) | 58,372 -> 33,120 | 0 NL; 0 hybrid | 0/3; reject quality/viability |
+| SpamAssassin validation | 88.0% (0; 88.0-88.0) | 85.0% (0; 85.0-85.0) | 188,384 -> 178,880.67 | 0 NL; 0 hybrid | 0/3; reject quality |
+
+Model-call distributions were also invariant: LEDGAR 1,000 -> 589, CFPB
+100 -> 58, and SpamAssassin 100 -> 97. Routing never changed across seeds.
+Within stable command/model-fallback strata, every dataset had zero cross-run
+label disagreement. The paired NL/hybrid disagreements were 17 LEDGAR cases,
+10 CFPB cases, and five SpamAssassin cases in each run. Zero observed variation
+under this one temperature-zero runtime does not show that the hybrid reduces
+variance relative to NL; both variants were at the same zero-disagreement
+floor. With only three runs, results are descriptive and do not establish
+significance or generalize beyond the frozen model, data, and machine.
+
+The machine-readable analysis is `variance-study/summary.json`. Exact commands,
+timestamps, logs, per-case safe traces, comparisons, and SHA-256 manifests are
+under each text experiment's `results/variance-study-20260903/` directory.
+
 ## Interpretation and artifacts
 
 LEDGAR supports a narrow quality-gated call-bypass claim. Token savings alone

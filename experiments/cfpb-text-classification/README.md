@@ -21,3 +21,16 @@ The optimized replication reached 78% versus 71% accuracy and reduced tokens
 See `results/confirmatory-validation-*.json` and
 `results/replication-20260902-validation-comparison.json`. The earlier
 20-case result is exploratory and does not override this rejection.
+
+## Three-run variance study
+
+All three optimized validation replications produced 78% NL and 71% hybrid
+accuracy, zero within-variant label disagreement, and the same ten paired
+NL/hybrid prediction disagreements. NL used 58,372 tokens and 100 model calls;
+hybrid used 33,120 tokens and 58 calls in every run, a 43.26% reduction. All
+three pairs failed non-inferiority and absolute viability while passing the
+efficiency gate, so the test remains untouched. Stable command-routed (42) and
+model-fallback (58) cases each had zero cross-run label disagreement.
+
+Artifacts and checksums are in `results/variance-study-20260903/`; aggregate
+statistics and the result-content audit are in `../variance-study/summary.json`.

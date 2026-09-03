@@ -48,3 +48,19 @@ Original confirmatory runs were sequential. The optimized replication uses two
 parallel requests, so its wall time measures throughput and is not directly
 comparable. Local Ollama has no per-call service charge; tokens and calls remain
 portable expense proxies. Setup and commands are in [`../README.md`](../README.md).
+
+## Three-run variance extension
+
+The 2026-09-03 variance study repeats the frozen optimized text runtime with
+seeds `20260903`, `20260904`, and `20260905`. The same seed is used within each
+NL/hybrid pair. Order is NL then hybrid for the first and third seeds and hybrid
+then NL for the second. LEDGAR uses the already-opened 1,000-case test split;
+CFPB and SpamAssassin remain on their 100-case validation splits. Every LEDGAR
+evaluation is a replication, not an untouched test.
+
+The original sequential result and the optimized runs are reported separately,
+not pooled. Three runs support descriptive means, sample standard deviations,
+ranges, case-level agreement, and pairwise disagreement, but not a significance
+or general-model claim. The exact commands, environment, hashes, checkpoints,
+logs, raw safe result payloads, comparisons, and manifests are mapped in
+[`variance-study/README.md`](variance-study/README.md).

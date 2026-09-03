@@ -31,3 +31,20 @@ Artifacts are `results/confirmatory-*.json` and
 `results/replication-20260902-*.json`. Raw clauses and traces stay under
 ignored `tmp/`. Latency is machine- and concurrency-specific; token and call
 counts remain paired.
+
+## Three-run variance study
+
+Three new optimized replications with seeds `20260903`-`20260905` each produced
+93.7% NL and 92.9% hybrid accuracy. Sample SD and range were zero for both
+variants, with zero label disagreement within either variant across runs.
+Every pair passed absolute viability, non-inferiority, and efficiency gates.
+NL used exactly 376,090 tokens and 1,000 model calls per run; hybrid used a mean
+225,575.33 tokens (sample SD 0.58; range 225,575-225,576) and 589 calls. The
+17 NL/hybrid label disagreements were identical in each pair. Command routing
+(411 cases) and model fallback (589) were stable and each stratum had zero
+cross-run label disagreement.
+
+These repeated test evaluations are replications, not untouched tests, and are
+not pooled with the sequential run. Exact commands, logs, raw result JSON,
+comparisons, and checksums are in `results/variance-study-20260903/`; the
+cross-study analysis is `../variance-study/summary.json`.

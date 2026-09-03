@@ -1,0 +1,91 @@
+{
+  "runs": [
+    {
+      "label": "ledgar:test:seed-20260903:nl",
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/text-classification/scripts/run_experiment.py --dataset /Users/saikrishna/dev/deterministic-skills/tmp/confirmatory-datasets/ledgar --split test --system-prompt /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/system-prompt.md --sop /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/nl/SKILL.md --model qwen3:14b --seed 20260903 --workers 2 --num-ctx 4096 --num-predict 128 --keep-alive -1 --checkpoint-every 10 --resume --output /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/results/variance-study-20260903/seed-20260903-nl.json",
+      "started_at": "2026-09-03T06:15:37.728562+00:00",
+      "status": "complete",
+      "finished_at": "2026-09-03T06:25:36.923634+00:00",
+      "exit_code": 0,
+      "log_sha256": "ed4d100b6bf24d7f60a994c7434479d0769ac9628d62652a423d137bd2a5ac17"
+    },
+    {
+      "label": "ledgar:test:seed-20260903:hybrid",
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/text-classification/scripts/run_experiment.py --dataset /Users/saikrishna/dev/deterministic-skills/tmp/confirmatory-datasets/ledgar --split test --system-prompt /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/system-prompt.md --sop /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/hybrid/SKILL.md --model qwen3:14b --seed 20260903 --workers 2 --num-ctx 4096 --num-predict 128 --keep-alive -1 --checkpoint-every 10 --resume --output /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/results/variance-study-20260903/seed-20260903-hybrid.json --classifier /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/hybrid/classify.py",
+      "started_at": "2026-09-03T06:25:36.924828+00:00",
+      "status": "complete",
+      "finished_at": "2026-09-03T06:32:00.986913+00:00",
+      "exit_code": 0,
+      "log_sha256": "6b9f14c36908991cf61182c9b33d38f6b3c662da2bec49ebef1f9584df1742c7"
+    },
+    {
+      "label": "ledgar:test:seed-20260903:comparison",
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/text-classification/scripts/compare.py --nl /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/results/variance-study-20260903/seed-20260903-nl.json --hybrid /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/results/variance-study-20260903/seed-20260903-hybrid.json --bootstrap-samples 5000 --bootstrap-seed 20260903 --minimum-accuracy 0.80 --noninferiority-margin 0.02 --minimum-token-reduction 0.05 --output /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/results/variance-study-20260903/seed-20260903-comparison.json",
+      "started_at": "2026-09-03T06:32:00.987822+00:00",
+      "status": "complete",
+      "finished_at": "2026-09-03T06:32:02.355355+00:00",
+      "exit_code": 0,
+      "log_sha256": "3386404d2f2aa1ad00d295947dbb45c24b58855f9c431b95dd9a47b362c8fcd8"
+    },
+    {
+      "label": "ledgar:test:seed-20260904:hybrid",
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/text-classification/scripts/run_experiment.py --dataset /Users/saikrishna/dev/deterministic-skills/tmp/confirmatory-datasets/ledgar --split test --system-prompt /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/system-prompt.md --sop /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/hybrid/SKILL.md --model qwen3:14b --seed 20260904 --workers 2 --num-ctx 4096 --num-predict 128 --keep-alive -1 --checkpoint-every 10 --resume --output /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/results/variance-study-20260903/seed-20260904-hybrid.json --classifier /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/hybrid/classify.py",
+      "started_at": "2026-09-03T06:53:23.154568+00:00",
+      "status": "complete",
+      "log": "seed-20260904-hybrid.log",
+      "finished_at": "2026-09-03T07:01:48.092615+00:00",
+      "exit_code": 0,
+      "log_sha256": "780a77a64d8fa9f1349359d304889a7c43d66c2aaf4ebc77c0e19443ee367e9c"
+    },
+    {
+      "label": "ledgar:test:seed-20260904:nl",
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/text-classification/scripts/run_experiment.py --dataset /Users/saikrishna/dev/deterministic-skills/tmp/confirmatory-datasets/ledgar --split test --system-prompt /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/system-prompt.md --sop /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/nl/SKILL.md --model qwen3:14b --seed 20260904 --workers 2 --num-ctx 4096 --num-predict 128 --keep-alive -1 --checkpoint-every 10 --resume --output /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/results/variance-study-20260903/seed-20260904-nl.json",
+      "started_at": "2026-09-03T07:01:48.093589+00:00",
+      "status": "complete",
+      "log": "seed-20260904-nl.log",
+      "finished_at": "2026-09-03T07:14:48.068695+00:00",
+      "exit_code": 0,
+      "log_sha256": "2fed19b222e8f0ab046efda0b8ab32a892931cf5adf739e6259556b47131cf1c"
+    },
+    {
+      "label": "ledgar:test:seed-20260904:comparison",
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/text-classification/scripts/compare.py --nl /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/results/variance-study-20260903/seed-20260904-nl.json --hybrid /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/results/variance-study-20260903/seed-20260904-hybrid.json --bootstrap-samples 5000 --bootstrap-seed 20260904 --minimum-accuracy 0.80 --noninferiority-margin 0.02 --minimum-token-reduction 0.05 --output /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/results/variance-study-20260903/seed-20260904-comparison.json",
+      "started_at": "2026-09-03T07:14:48.069638+00:00",
+      "status": "complete",
+      "log": "seed-20260904-comparison.log",
+      "finished_at": "2026-09-03T07:14:49.353939+00:00",
+      "exit_code": 0,
+      "log_sha256": "486d89b835d9fe8e8b082c05a3431c8b52fdff3acc4866b0068a0feb62fb2762"
+    },
+    {
+      "label": "ledgar:test:seed-20260905:nl",
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/text-classification/scripts/run_experiment.py --dataset /Users/saikrishna/dev/deterministic-skills/tmp/confirmatory-datasets/ledgar --split test --system-prompt /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/system-prompt.md --sop /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/nl/SKILL.md --model qwen3:14b --seed 20260905 --workers 2 --num-ctx 4096 --num-predict 128 --keep-alive -1 --checkpoint-every 10 --resume --output /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/results/variance-study-20260903/seed-20260905-nl.json",
+      "started_at": "2026-09-03T07:29:32.006436+00:00",
+      "status": "complete",
+      "log": "seed-20260905-nl.log",
+      "finished_at": "2026-09-03T07:42:20.794230+00:00",
+      "exit_code": 0,
+      "log_sha256": "a54dd5007b5cbb9b0e71c801f13102021f153acf8a63c6a869a331e0d516c277"
+    },
+    {
+      "label": "ledgar:test:seed-20260905:hybrid",
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/text-classification/scripts/run_experiment.py --dataset /Users/saikrishna/dev/deterministic-skills/tmp/confirmatory-datasets/ledgar --split test --system-prompt /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/system-prompt.md --sop /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/hybrid/SKILL.md --model qwen3:14b --seed 20260905 --workers 2 --num-ctx 4096 --num-predict 128 --keep-alive -1 --checkpoint-every 10 --resume --output /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/results/variance-study-20260903/seed-20260905-hybrid.json --classifier /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/hybrid/classify.py",
+      "started_at": "2026-09-03T07:42:20.795147+00:00",
+      "status": "complete",
+      "log": "seed-20260905-hybrid.log",
+      "finished_at": "2026-09-03T07:49:58.305757+00:00",
+      "exit_code": 0,
+      "log_sha256": "4213568aff1351f5f2725b8bdc3e2e5c340a4ed69af9bc2d0da92fdd6c1038c6"
+    },
+    {
+      "label": "ledgar:test:seed-20260905:comparison",
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/text-classification/scripts/compare.py --nl /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/results/variance-study-20260903/seed-20260905-nl.json --hybrid /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/results/variance-study-20260903/seed-20260905-hybrid.json --bootstrap-samples 5000 --bootstrap-seed 20260905 --minimum-accuracy 0.80 --noninferiority-margin 0.02 --minimum-token-reduction 0.05 --output /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/results/variance-study-20260903/seed-20260905-comparison.json",
+      "started_at": "2026-09-03T07:49:58.306680+00:00",
+      "status": "complete",
+      "log": "seed-20260905-comparison.log",
+      "finished_at": "2026-09-03T07:49:59.609503+00:00",
+      "exit_code": 0,
+      "log_sha256": "7e3caf9afc96a766c3b91217f62c1de707a195e39a0b0e0d92c607ff6efa1dea"
+    }
+  ]
+}
