@@ -63,7 +63,10 @@ paired bootstrap 95% intervals for the accuracy difference and token reduction,
 and an exact McNemar test. Bootstrap calculations use 5,000 resamples and seed
 `20260902`.
 
-Latency is recorded from sequential local runs. It describes the measured host
-and is not generalized as a cloud-service latency claim. Local Ollama has zero
-direct per-call service cost; tokens and model calls are retained so readers can
-map the result to their own pricing and energy assumptions.
+Original confirmatory latency is recorded from sequential local runs. The
+post-change replication uses two parallel requests and stores the full runtime
+configuration; its wall time measures throughput and is not compared directly
+with sequential latency. Local Ollama has zero direct per-call service cost;
+tokens and model calls are retained so readers can map the result to their own
+pricing and energy assumptions. Copy-paste Ollama configuration and execution
+instructions are in the repository `README.md`.

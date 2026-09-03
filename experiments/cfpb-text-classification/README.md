@@ -33,3 +33,8 @@ therefore remains untouched and no confirmatory test claim is made.
 Saved validation artifacts are
 `results/confirmatory-validation-{nl,hybrid,comparison}.json`. The earlier
 20-case result remains exploratory and does not override this rejection.
+
+The optimized 2026-09-02 replication reached 78% NL and 71% hybrid accuracy
+while reducing tokens by 43.26%. It again failed non-inferiority and the 80%
+viability requirement; the test remains unreleased. See
+`results/replication-20260902-validation-comparison.json`.

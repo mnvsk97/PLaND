@@ -126,7 +126,9 @@ def identity_failures(run: dict[str, Any], expected_candidate: str | None = None
 
 def comparable(left: dict[str, Any], right: dict[str, Any]) -> list[str]:
     failures = []
-    for field in ("model", "model_digest", "seed", "evals"):
+    for field in ("model", "model_digest", "seed", "evals", "runtime"):
+        if field == "runtime" and field not in left and field not in right:
+            continue
         if left.get(field) != right.get(field):
             failures.append(f"invariant_mismatch:{field}")
     required = (

@@ -40,3 +40,13 @@ single-machine measurement, not a hardware-independent estimate.
 
 Saved artifacts are `results/confirmatory-validation-{nl,hybrid,comparison}.json`
 and `results/confirmatory-test-{nl,hybrid,comparison}.json`.
+
+## Optimized post-change replication
+
+With the strengthened runtime contract and optimized Ollama settings documented
+in the repository root README, validation was 93% NL versus 94% hybrid with a
+43.19% token reduction. The repeated 1,000-case test was 93.7% versus 92.9%
+with a 40.02% reduction and the same 411 model calls bypassed. Because the test
+cases had already been evaluated, this is replication evidence rather than a
+new untouched confirmatory test. Aggregate comparisons are stored as
+`results/replication-20260902-*.json`.

@@ -15,6 +15,7 @@ import statistics
 import time
 import urllib.request
 from collections import Counter
+from concurrent.futures import ThreadPoolExecutor
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
@@ -27,13 +28,37 @@ def digest(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def ollama(model: str, system: str, prompt: str, seed: int) -> tuple[dict[str, Any], dict[str, Any]]:
+def ollama(
+    model: str,
+    system: str,
+    prompt: str,
+    seed: int,
+    labels: list[str],
+    num_ctx: int,
+    num_predict: int,
+    keep_alive: int,
+) -> tuple[dict[str, Any], dict[str, Any]]:
+    schema = {
+        "type": "object",
+        "properties": {
+            "label": {"type": "string", "enum": labels},
+            "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+        },
+        "required": ["label", "confidence"],
+        "additionalProperties": False,
+    }
     body = json.dumps({
         "model": model,
         "stream": False,
         "think": False,
-        "format": "json",
-        "options": {"temperature": 0, "seed": seed, "num_predict": 128},
+        "keep_alive": keep_alive,
+        "format": schema,
+        "options": {
+            "temperature": 0,
+            "seed": seed,
+            "num_ctx": num_ctx,
+            "num_predict": num_predict,
+        },
         "messages": [{"role": "system", "content": system}, {"role": "user", "content": prompt}],
     }).encode()
     request = urllib.request.Request(
@@ -47,6 +72,22 @@ def ollama(model: str, system: str, prompt: str, seed: int) -> tuple[dict[str, A
     except (KeyError, json.JSONDecodeError, TypeError):
         prediction = {}
     return prediction, raw
+
+
+def runtime_contract(args: argparse.Namespace) -> dict[str, Any]:
+    return {
+        "think": False,
+        "stream": False,
+        "temperature": 0,
+        "num_ctx": args.num_ctx,
+        "num_predict": args.num_predict,
+        "keep_alive": args.keep_alive,
+        "workers": args.workers,
+        "ollama_flash_attention": os.environ.get("OLLAMA_FLASH_ATTENTION"),
+        "ollama_kv_cache_type": os.environ.get("OLLAMA_KV_CACHE_TYPE"),
+        "ollama_num_parallel": os.environ.get("OLLAMA_NUM_PARALLEL"),
+        "ollama_max_loaded_models": os.environ.get("OLLAMA_MAX_LOADED_MODELS"),
+    }
 
 
 def model_digest(model: str) -> str | None:
@@ -101,6 +142,10 @@ def main() -> int:
     parser.add_argument("--resume", action="store_true",
                         help="Resume from OUTPUT.partial.json when present")
     parser.add_argument("--checkpoint-every", type=int, default=10)
+    parser.add_argument("--workers", type=int, default=1)
+    parser.add_argument("--num-ctx", type=int, default=4096)
+    parser.add_argument("--num-predict", type=int, default=128)
+    parser.add_argument("--keep-alive", type=int, default=-1)
     parser.add_argument("--limit", type=int,
                         help="Run only the first N selected cases for a smoke test")
     args = parser.parse_args()
@@ -108,6 +153,8 @@ def main() -> int:
         raise SystemExit(f"output exists: {args.output}")
     if args.checkpoint_every < 1:
         raise SystemExit("--checkpoint-every must be positive")
+    if args.workers < 1 or args.num_ctx < 1 or args.num_predict < 1:
+        raise SystemExit("--workers, --num-ctx, and --num-predict must be positive")
 
     with (args.dataset / "evals.csv").open(encoding="utf-8", newline="") as handle:
         all_rows = list(csv.DictReader(handle))
@@ -134,15 +181,15 @@ def main() -> int:
             "evals_sha256": digest(args.dataset / "evals.csv"),
             "selection_sha256": digest(args.dataset / "selection.json"),
             "classifier_sha256": digest(args.classifier) if args.classifier else None,
+            "runtime": runtime_contract(args),
         }
         if partial.get("resume_contract") != expected_resume:
             raise SystemExit("partial checkpoint does not match the requested run")
         cases = partial.get("cases", [])
     completed_ids = {case["id"] for case in cases}
     started_run = time.perf_counter()
-    for row in rows:
-        if row["id"] in completed_ids:
-            continue
+
+    def run_case(row: dict[str, str]) -> dict[str, Any]:
         payload = json.loads((args.dataset / row["input"]).read_text(encoding="utf-8"))
         text = payload.get("text") or payload.get("narrative") or payload.get("raw_email")
         if not isinstance(text, str) or not text.strip():
@@ -163,12 +210,15 @@ def main() -> int:
                 f"Classify this document:\n{text}\n\n"
                 "Return exactly one JSON object with label and confidence."
             )
-            value, raw = ollama(args.model, system, prompt, args.seed)
+            value, raw = ollama(
+                args.model, system, prompt, args.seed, labels,
+                args.num_ctx, args.num_predict, args.keep_alive,
+            )
             actual = value.get("label") if value.get("label") in labels else None
             confidence = value.get("confidence")
             parse_error = None if actual is not None and isinstance(confidence, (int, float)) else "invalid_prediction_schema"
         elapsed = time.perf_counter() - started
-        cases.append({
+        return {
             "id": row["id"], "expected": expected, "actual": actual,
             "correct": actual == expected, "source": source, "confidence": confidence,
             "parse_error": parse_error,
@@ -180,24 +230,32 @@ def main() -> int:
             "ollama_load_ns": raw.get("load_duration", 0),
             "ollama_prompt_ns": raw.get("prompt_eval_duration", 0),
             "ollama_eval_ns": raw.get("eval_duration", 0),
-        })
-        print(json.dumps({"id": row["id"], "correct": actual == expected, "source": source}))
-        if len(cases) % args.checkpoint_every == 0:
-            write_json_atomic(partial_path, {
-                "schema_version": 1,
-                "resume_contract": {
-                    "dataset": str(args.dataset.resolve()),
-                    "split": args.split,
-                    "model": args.model,
-                    "seed": args.seed,
-                    "system_prompt_sha256": digest(args.system_prompt),
-                    "sop_sha256": digest(args.sop),
-                    "evals_sha256": digest(args.dataset / "evals.csv"),
-                    "selection_sha256": digest(args.dataset / "selection.json"),
-                    "classifier_sha256": digest(args.classifier) if args.classifier else None,
-                },
-                "cases": cases,
-            })
+        }
+
+    pending_rows = [row for row in rows if row["id"] not in completed_ids]
+    with ThreadPoolExecutor(max_workers=args.workers) as executor:
+        for row, case in zip(pending_rows, executor.map(run_case, pending_rows), strict=True):
+            cases.append(case)
+            actual = case["actual"]
+            expected = case["expected"]
+            print(json.dumps({"id": row["id"], "correct": actual == expected, "source": case["source"]}))
+            if len(cases) % args.checkpoint_every == 0:
+                write_json_atomic(partial_path, {
+                    "schema_version": 1,
+                    "resume_contract": {
+                        "dataset": str(args.dataset.resolve()),
+                        "split": args.split,
+                        "model": args.model,
+                        "seed": args.seed,
+                        "system_prompt_sha256": digest(args.system_prompt),
+                        "sop_sha256": digest(args.sop),
+                        "evals_sha256": digest(args.dataset / "evals.csv"),
+                        "selection_sha256": digest(args.dataset / "selection.json"),
+                        "classifier_sha256": digest(args.classifier) if args.classifier else None,
+                        "runtime": runtime_contract(args),
+                    },
+                    "cases": cases,
+                })
 
     latencies = [case["latency_seconds"] for case in cases]
     correct = sum(case["correct"] for case in cases)
@@ -207,6 +265,7 @@ def main() -> int:
         "dataset": args.dataset.name, "split": args.split, "model": args.model,
         "model_digest": model_digest(args.model),
         "seed": args.seed,
+        "runtime": runtime_contract(args),
         "invariants": {
             "system_prompt_sha256": digest(args.system_prompt),
             "evals_sha256": digest(args.dataset / "evals.csv"),
@@ -214,8 +273,12 @@ def main() -> int:
             "scorer_sha256": digest(Path(__file__)),
             "agent_harness_sha256": digest(Path(__file__)),
         },
-        "sop": {"sha256": digest(args.sop), "content": sop,
-                "step_representations": dict(representations)},
+        "sop": {
+            "sha256": digest(args.sop),
+            "classifier_sha256": digest(args.classifier) if args.classifier else None,
+            "content": sop,
+            "step_representations": dict(representations),
+        },
         "summary": {
             "cases": len(cases), "correct": correct, "accuracy": correct / len(cases),
             "macro_f1": macro_f1(cases, labels),

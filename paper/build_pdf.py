@@ -100,32 +100,28 @@ def evolution_diagram() -> Drawing:
     process(133, "3. CHANGE ONE STEP", "English -> reference or command")
     down(133, 108)
     process(65, "4. TEST AND EVALUATE", "Development mines; validation promotes")
-    down(65, 43)
+    down(65, 59)
 
-    drawing.add(Polygon([116, 43, 171, 22, 116, 1, 61, 22],
+    drawing.add(Polygon([116, 59, 171, 38, 116, 17, 61, 38],
                         fillColor=colors.HexColor("#FFF1E8"), strokeColor=RED,
                         strokeWidth=1.2))
-    drawing.add(String(88, 19, "PASS GATES?", fontName="Helvetica-Bold",
+    drawing.add(String(88, 35, "PASS GATES?", fontName="Helvetica-Bold",
                        fontSize=7.5, fillColor=RED))
 
-    drawing.add(Line(171, 22, 221, 22, strokeColor=colors.HexColor("#2E7D32"),
+    drawing.add(Line(171, 38, 221, 38, strokeColor=colors.HexColor("#2E7D32"),
                      strokeWidth=1.3))
-    drawing.add(Polygon([218, 26, 226, 22, 218, 18],
+    drawing.add(Polygon([218, 42, 226, 38, 218, 34],
                         fillColor=colors.HexColor("#2E7D32"),
                         strokeColor=colors.HexColor("#2E7D32")))
-    drawing.add(String(181, 31, "YES", fontName="Helvetica-Bold", fontSize=7,
-                       fillColor=colors.HexColor("#2E7D32")))
-    drawing.add(String(180, 5, "ACCEPT", fontName="Helvetica-Bold", fontSize=8,
+    drawing.add(String(181, 47, "YES", fontName="Helvetica-Bold", fontSize=7,
                        fillColor=colors.HexColor("#2E7D32")))
 
-    drawing.add(Line(61, 22, 12, 22, strokeColor=RED, strokeWidth=1.3))
-    drawing.add(Line(12, 22, 12, 154, strokeColor=RED, strokeWidth=1.3))
+    drawing.add(Line(61, 38, 12, 38, strokeColor=RED, strokeWidth=1.3))
+    drawing.add(Line(12, 38, 12, 154, strokeColor=RED, strokeWidth=1.3))
     drawing.add(Line(12, 154, 27, 154, strokeColor=RED, strokeWidth=1.3))
     drawing.add(Polygon([23, 158, 31, 154, 23, 150], fillColor=RED,
                         strokeColor=RED))
-    drawing.add(String(15, 31, "NO", fontName="Helvetica-Bold", fontSize=7,
-                       fillColor=RED))
-    drawing.add(String(17, 8, "REJECT", fontName="Helvetica-Bold", fontSize=7.5,
+    drawing.add(String(15, 47, "NO", fontName="Helvetica-Bold", fontSize=7,
                        fillColor=RED))
     drawing.add(String(17, 142, "NEXT", fontName="Helvetica-Bold", fontSize=6.7,
                        fillColor=RED))
@@ -189,6 +185,7 @@ def styles():
         "code": ParagraphStyle("Code", parent=base["Code"], fontName="Courier", fontSize=7.7, leading=10, backColor=PALE, borderPadding=5, spaceAfter=6),
         "list": ParagraphStyle("List", parent=base["BodyText"], fontName="Times-Roman", fontSize=9.2, leading=11.8, leftIndent=3*mm),
         "table": ParagraphStyle("Table", parent=base["BodyText"], fontName="Helvetica", fontSize=7.4, leading=9),
+        "table_caption": ParagraphStyle("TableCaption", parent=base["BodyText"], fontName="Times-Bold", fontSize=9.3, leading=12.2, textColor=TEXT, spaceAfter=2, keepWithNext=True),
     }
 
 
@@ -231,6 +228,8 @@ def parse(markdown: str):
     code: list[str] = []
     abstract_mode = False
     seen_title = False
+    pending_table_caption = None
+    pending_table_heading = None
 
     def flush_paragraph():
         nonlocal paragraph
@@ -264,7 +263,15 @@ def parse(markdown: str):
             flush_paragraph(); flush_list(); block = []
             while i < len(lines) and lines[i].startswith("|"):
                 block.append(lines[i]); i += 1
-            story.extend([Spacer(1, 2), KeepTogether([markdown_table(block, st)]), Spacer(1, 6)])
+            table_group = []
+            if pending_table_heading is not None:
+                table_group.append(pending_table_heading)
+                pending_table_heading = None
+            if pending_table_caption is not None:
+                table_group.extend([pending_table_caption, Spacer(1, 2)])
+                pending_table_caption = None
+            table_group.append(markdown_table(block, st))
+            story.extend([KeepTogether(table_group), Spacer(1, 6)])
             continue
         if line.strip() == "<!-- architecture-diagram -->":
             flush_paragraph(); flush_list()
@@ -284,10 +291,17 @@ def parse(markdown: str):
             flush_paragraph(); flush_list(); story.append(Paragraph(inline(line.replace("**", "").strip("*")), st["authors"]))
         elif line.startswith("## "):
             flush_paragraph(); flush_list(); abstract_mode = line[3:].strip() == "Abstract"
-            story.append(Paragraph(inline(line[3:]), st["h1"]))
+            heading = Paragraph(inline(line[3:]), st["h1"])
+            if line[3:].strip() == "Results":
+                pending_table_heading = heading
+            else:
+                story.append(heading)
         elif line.startswith("### "):
             flush_paragraph(); flush_list(); abstract_mode = False
             story.append(Paragraph(inline(line[4:]), st["h2"]))
+        elif line.startswith("**Table "):
+            flush_paragraph(); flush_list()
+            pending_table_caption = Paragraph(inline(line), st["table_caption"])
         elif line.startswith("> "):
             flush_paragraph(); flush_list(); block = []
             while i < len(lines) and lines[i].startswith("> "):

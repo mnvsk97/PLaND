@@ -1,5 +1,8 @@
 # PLaND datasets
 
+Repository-level setup, optimized Ollama instructions, paired run commands, and
+paper artifacts are documented in [`../README.md`](../README.md).
+
 This directory prepares frozen, reviewable evaluation subsets for PLaND. The
 preparation code uses only the Python standard library and public download
 endpoints. It does not call paid APIs.

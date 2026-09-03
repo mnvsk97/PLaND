@@ -28,20 +28,18 @@
 			<rect x="27" y="65" width="178" height="43" rx="7" ry="7" style="stroke: rgb(9%,19%,29%); stroke-linecap: butt; stroke-width: 1.1; fill: rgb(90%,94%,96%); fill-rule: evenodd;"/>
 			<text x="40" y="91" style="font-family: Helvetica-Bold; font-size: 8.4px;fill: rgb(9%,19%,29%); stroke:none;" transform="translate(0,182) scale(1,-1)">4. TEST AND EVALUATE</text>
 			<text x="40" y="77" style="font-family: Helvetica; font-size: 7.2px;fill: rgb(13%,13%,13%); stroke:none;" transform="translate(0,154) scale(1,-1)">Development mines; validation promotes</text>
-			<path d="M 116,65 L 116,49 Z" style="stroke: rgb(9%,19%,29%); stroke-linecap: butt; stroke-width: 1.3;"/>
-			<polygon points="112 52, 120 52, 116 46" style="stroke: rgb(9%,19%,29%); stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,19%,29%); fill-rule: evenodd;"/>
-			<polygon points="116 43, 171 22, 116 1, 61 22" style="stroke: rgb(64%,16%,16%); stroke-linecap: butt; stroke-width: 1.2; fill: rgb(100%,94%,90%); fill-rule: evenodd;"/>
-			<text x="88" y="19" style="font-family: Helvetica-Bold; font-size: 7.5px;fill: rgb(64%,16%,16%); stroke:none;" transform="translate(0,38) scale(1,-1)">PASS GATES?</text>
-			<path d="M 171,22 L 221,22 Z" style="stroke: rgb(18%,49%,19%); stroke-linecap: butt; stroke-width: 1.3;"/>
-			<polygon points="218 26, 226 22, 218 18" style="stroke: rgb(18%,49%,19%); stroke-linecap: butt; stroke-width: 1; fill: rgb(18%,49%,19%); fill-rule: evenodd;"/>
-			<text x="181" y="31" style="font-family: Helvetica-Bold; font-size: 7px;fill: rgb(18%,49%,19%); stroke:none;" transform="translate(0,62) scale(1,-1)">YES</text>
-			<text x="180" y="5" style="font-family: Helvetica-Bold; font-size: 8px;fill: rgb(18%,49%,19%); stroke:none;" transform="translate(0,10) scale(1,-1)">ACCEPT</text>
-			<path d="M 61,22 L 12,22 Z" style="stroke: rgb(64%,16%,16%); stroke-linecap: butt; stroke-width: 1.3;"/>
-			<path d="M 12,22 L 12,154 Z" style="stroke: rgb(64%,16%,16%); stroke-linecap: butt; stroke-width: 1.3;"/>
+			<path d="M 116,65 L 116,65 Z" style="stroke: rgb(9%,19%,29%); stroke-linecap: butt; stroke-width: 1.3;"/>
+			<polygon points="112 68, 120 68, 116 62" style="stroke: rgb(9%,19%,29%); stroke-linecap: butt; stroke-width: 1; fill: rgb(9%,19%,29%); fill-rule: evenodd;"/>
+			<polygon points="116 59, 171 38, 116 17, 61 38" style="stroke: rgb(64%,16%,16%); stroke-linecap: butt; stroke-width: 1.2; fill: rgb(100%,94%,90%); fill-rule: evenodd;"/>
+			<text x="88" y="35" style="font-family: Helvetica-Bold; font-size: 7.5px;fill: rgb(64%,16%,16%); stroke:none;" transform="translate(0,70) scale(1,-1)">PASS GATES?</text>
+			<path d="M 171,38 L 221,38 Z" style="stroke: rgb(18%,49%,19%); stroke-linecap: butt; stroke-width: 1.3;"/>
+			<polygon points="218 42, 226 38, 218 34" style="stroke: rgb(18%,49%,19%); stroke-linecap: butt; stroke-width: 1; fill: rgb(18%,49%,19%); fill-rule: evenodd;"/>
+			<text x="181" y="47" style="font-family: Helvetica-Bold; font-size: 7px;fill: rgb(18%,49%,19%); stroke:none;" transform="translate(0,94) scale(1,-1)">YES</text>
+			<path d="M 61,38 L 12,38 Z" style="stroke: rgb(64%,16%,16%); stroke-linecap: butt; stroke-width: 1.3;"/>
+			<path d="M 12,38 L 12,154 Z" style="stroke: rgb(64%,16%,16%); stroke-linecap: butt; stroke-width: 1.3;"/>
 			<path d="M 12,154 L 27,154 Z" style="stroke: rgb(64%,16%,16%); stroke-linecap: butt; stroke-width: 1.3;"/>
 			<polygon points="23 158, 31 154, 23 150" style="stroke: rgb(64%,16%,16%); stroke-linecap: butt; stroke-width: 1; fill: rgb(64%,16%,16%); fill-rule: evenodd;"/>
-			<text x="15" y="31" style="font-family: Helvetica-Bold; font-size: 7px;fill: rgb(64%,16%,16%); stroke:none;" transform="translate(0,62) scale(1,-1)">NO</text>
-			<text x="17" y="8" style="font-family: Helvetica-Bold; font-size: 7.5px;fill: rgb(64%,16%,16%); stroke:none;" transform="translate(0,16) scale(1,-1)">REJECT</text>
+			<text x="15" y="47" style="font-family: Helvetica-Bold; font-size: 7px;fill: rgb(64%,16%,16%); stroke:none;" transform="translate(0,94) scale(1,-1)">NO</text>
 			<text x="17" y="142" style="font-family: Helvetica-Bold; font-size: 6.7px;fill: rgb(64%,16%,16%); stroke:none;" transform="translate(0,284) scale(1,-1)">NEXT</text>
 		</g>
 	</g>

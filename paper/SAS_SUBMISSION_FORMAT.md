@@ -27,15 +27,16 @@ corresponding-author contact details.
 
 ## Reproducible build
 
-`PAPER.md` is the source of truth. Build the submission DOCX with the bundled
-workspace Python after marking the document operation as required by the
-document-artifact workflow:
+`PAPER.md` is the source of truth. Build the complete Markdown, PDF, DOCX, and
+HTML bundle with the bundled workspace Python:
 
 ```bash
-python paper/build_manuscript.py \
-  paper/PAPER.md \
-  output/docx/PLAND_SAS_SUBMISSION.docx
+python paper/build_all.py
 ```
+
+The four files use the same basename in `output/paper/`. See `paper/README.md`
+for the output contract and command options. To build only the journal
+submission DOCX, run `paper/build_manuscript.py` directly as before.
 
 The builder validates the required section order, the 300-word abstract limit,
 the 5-10 keyword requirement, and unresolved result markers. It prepares the

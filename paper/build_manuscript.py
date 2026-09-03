@@ -36,7 +36,7 @@ FIGURE_MARKERS = {
 FIGURE_WIDTHS = {
     "architecture": 4.45,
     "evolution-path": 5.00,
-    "evolution-loop": 5.15,
+    "evolution-loop": 4.25,
 }
 REQUIRED_SECTIONS = (
     "Abstract",
@@ -292,6 +292,10 @@ def prepare_jpeg(figures_dir: Path, name: str) -> Path:
                 rgb.paste(image.convert("RGBA"), mask=image.getchannel("A"))
             else:
                 rgb.paste(image.convert("RGB"))
+            if name == "evolution-loop":
+                padded = Image.new("RGB", (rgb.width, rgb.height + 48), "white")
+                padded.paste(rgb, (0, 0))
+                rgb = padded
             jpg.parent.mkdir(parents=True, exist_ok=True)
             rgb.save(jpg, "JPEG", quality=95, dpi=(300, 300), optimize=True)
     return jpg
@@ -301,7 +305,7 @@ def add_figure(document: Document, figures_dir: Path, name: str) -> None:
     image = prepare_jpeg(figures_dir, name)
     paragraph = document.add_paragraph()
     paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    set_paragraph_spacing(paragraph, before=3, after=2, keep_with_next=True)
+    set_paragraph_spacing(paragraph, before=3, after=6, keep_with_next=True)
     shape = paragraph.add_run().add_picture(
         str(image), width=Inches(FIGURE_WIDTHS.get(name, 5.15))
     )
@@ -384,8 +388,6 @@ def validate_source(markdown: str, *, allow_pending: bool) -> None:
     required_positions = [headings.index(name) for name in REQUIRED_SECTIONS]
     if required_positions != sorted(required_positions):
         raise ValueError("Required manuscript sections are not in SAS research-article order")
-    if re.search(r"\btau(?:-bench)?\b", markdown, flags=re.IGNORECASE):
-        raise ValueError("Removed workflow name still appears in the manuscript")
     if not allow_pending and "RESULT_PENDING:" in markdown:
         raise ValueError(
             "Unresolved RESULT_PENDING markers remain. Insert saved results or pass "

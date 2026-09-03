@@ -6,6 +6,28 @@ prepared-only datasets. All completed model runs used local Ollama
 scorers, expected outputs, data snapshots, and execution permissions. Evolution
 was restricted to the permitted SOP skill package.
 
+## Optimized post-change replication
+
+On 2026-09-02, the text-classification validations and the LEDGAR test were
+repeated with the same `qwen3:14b` digest using a 4,096-token context, exact
+JSON schema, thinking disabled, model preloading, Flash Attention, q8_0 KV
+cache, and two parallel requests. Runtime settings were added to the frozen
+comparison contract. These runs evaluate the existing experiment skills under
+the strengthened contract; they do not regenerate or re-evolve every skill.
+
+| Workflow and split | NL accuracy | Hybrid accuracy | Token reduction | Decision |
+| --- | ---: | ---: | ---: | --- |
+| LEDGAR validation (100) | 93% | 94% | 43.19% | Pass |
+| LEDGAR test replication (1,000) | 93.7% | 92.9% | 40.02% | Pass |
+| CFPB validation (100) | 78% | 71% | 43.26% | Reject |
+| SpamAssassin validation (100) | 88% | 84% | 5.04% | Reject |
+
+The LEDGAR replication again reduced model calls from 1,000 to 589 while the
+paired accuracy-difference interval remained within the two-point margin. The
+test cases were no longer untouched, so this is reproducibility evidence and
+does not replace the original confirmatory release. Parallel wall time measures
+collection throughput and is not directly comparable with sequential latency.
+
 ## Confirmatory results
 
 The confirmatory gate requires both NL and hybrid accuracy of at least 80%, a
@@ -92,7 +114,10 @@ used; tokens, model calls, latency, and memory are the measured expense proxies.
 ## Detailed artifacts
 
 - `ledgar-text-classification/results/confirmatory-*.json`
+- `ledgar-text-classification/results/replication-20260902-*.json`
 - `cfpb-text-classification/results/confirmatory-validation-*.json`
+- `cfpb-text-classification/results/replication-20260902-*.json`
+- `spamassassin-email-classification/results/replication-20260902-*.json`
 - `datasets/proofs/*-confirmatory.json`
 - `document-classification/confirmatory-dataset-proof.json`
 - `sroie-receipt-extraction/confirmatory-dataset-proof.json`

@@ -75,6 +75,14 @@ class CompareVariantsTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "seed"):
             MODULE.compare(natural, hybrid)
 
+    def test_rejects_changed_runtime_settings(self):
+        natural = run(0, 0.9, 200, 2.0)
+        hybrid = run(1, 1.0, 100, 1.5)
+        natural["runtime"] = {"num_ctx": 4096, "workers": 2}
+        hybrid["runtime"] = {"num_ctx": 8192, "workers": 2}
+        with self.assertRaisesRegex(ValueError, "runtime"):
+            MODULE.compare(natural, hybrid)
+
     def test_rejects_changed_system_prompt(self):
         natural = run(0, 0.9, 200, 2.0)
         hybrid = run(1, 1.0, 100, 1.5)

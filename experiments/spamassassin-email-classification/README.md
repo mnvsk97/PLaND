@@ -32,6 +32,11 @@ the token-reduction interval was `[1.02%, 8.50%]`. The candidate failed the
 two-point non-inferiority gate and the minimum `5%` token-reduction gate, so the
 1,000-case test was not released. See `results/confirmatory-validation-*.json`.
 
+The optimized 2026-09-02 replication reached 88% NL and 84% hybrid accuracy
+with a 5.04% token reduction. The token objective passed narrowly, but quality
+did not; the test remains unreleased. See
+`results/replication-20260902-validation-comparison.json`.
+
 ## Pilot result
 
 Candidate 001 preserved development accuracy (`83.3%`) and validation accuracy

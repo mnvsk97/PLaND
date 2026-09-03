@@ -103,7 +103,7 @@ def main() -> int:
     parser.add_argument("--bootstrap-seed", type=int, default=20260902)
     parser.add_argument("--noninferiority-margin", type=float, default=0.02)
     parser.add_argument("--minimum-token-reduction", type=float, default=0.05)
-    parser.add_argument("--minimum-accuracy", type=float, default=0.0)
+    parser.add_argument("--minimum-accuracy", type=float, default=0.8)
     args = parser.parse_args()
     if args.output.exists():
         raise SystemExit(f"output exists: {args.output}")
@@ -114,6 +114,8 @@ def main() -> int:
     for key in ("split", "model", "model_digest", "seed"):
         if nl.get(key) != hybrid.get(key):
             raise SystemExit(f"invariant mismatch: {key}")
+    if nl.get("runtime") != hybrid.get("runtime"):
+        raise SystemExit("invariant mismatch: runtime")
     for key in ("dataset", "evals_sha256"):
         if key in nl or key in hybrid:
             if nl.get(key) != hybrid.get(key):
@@ -223,7 +225,17 @@ def main() -> int:
             "minimum_accuracy": args.minimum_accuracy,
             **decision,
         },
-        "invariants": nl["invariants"],
+        "variant_hashes": {
+            "natural_language": {
+                "sop_sha256": nl["sop"]["sha256"],
+                "classifier_sha256": nl["sop"].get("classifier_sha256"),
+            },
+            "hybrid": {
+                "sop_sha256": hybrid["sop"]["sha256"],
+                "classifier_sha256": hybrid["sop"].get("classifier_sha256"),
+            },
+        },
+        "invariants": {**nl["invariants"], "runtime": nl.get("runtime")},
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(result, indent=2) + "\n")

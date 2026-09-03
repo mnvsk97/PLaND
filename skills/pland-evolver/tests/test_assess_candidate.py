@@ -289,6 +289,13 @@ class AssessCandidateTests(unittest.TestCase):
         candidate["invariants"]["evals_sha256"] = candidate["invariants"].pop("evaluation_sha256")
         self.assertNotIn("invariant_mismatch:evaluation_sha256", MODULE.comparable(baseline, candidate))
 
+    def test_rejects_changed_runtime_settings(self):
+        baseline = run_payload("development", 0.9, 200)
+        candidate = run_payload("development", 1.0, 100, candidate_id="candidate")
+        baseline["runtime"] = {"num_ctx": 4096, "workers": 2}
+        candidate["runtime"] = {"num_ctx": 8192, "workers": 2}
+        self.assertIn("invariant_mismatch:runtime", MODULE.comparable(baseline, candidate))
+
     def test_rejects_changed_frozen_system_prompt(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

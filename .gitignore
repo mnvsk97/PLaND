@@ -3,7 +3,13 @@ __pycache__/
 *.py[cod]
 .venv/
 tmp/
-/output/
+/output/*
+!/output/paper/
+/output/paper/*
+!/output/paper/PLAND_PAPER.md
+!/output/paper/PLAND_PAPER.pdf
+!/output/paper/PLAND_PAPER.docx
+!/output/paper/PLAND_PAPER.html
 
 # Local Codex workspace placeholders, not project source.
 /AGENTS.md

@@ -68,7 +68,9 @@ def metrics(run: dict[str, Any]) -> dict[str, Any]:
 
 def compare(natural: dict[str, Any], hybrid: dict[str, Any]) -> dict[str, Any]:
     mismatches = []
-    for field in ("model", "model_digest", "seed", "evals", "split"):
+    for field in ("model", "model_digest", "seed", "evals", "split", "runtime"):
+        if field == "runtime" and field not in natural and field not in hybrid:
+            continue
         if natural.get(field) != hybrid.get(field):
             mismatches.append(field)
     if mismatches:
@@ -145,7 +147,7 @@ def compare(natural: dict[str, Any], hybrid: dict[str, Any]) -> dict[str, Any]:
         "created_at": datetime.now(UTC).isoformat(),
         "comparison": "natural_language_vs_hybrid",
         "invariants": {
-            **{field: natural.get(field) for field in ("model", "model_digest", "seed", "evals", "evals_sha256", "split")},
+            **{field: natural.get(field) for field in ("model", "model_digest", "seed", "evals", "evals_sha256", "split", "runtime")},
             **natural_invariants,
         },
         "natural_language": {"sop": natural["sop"], "metrics": natural_metrics},
