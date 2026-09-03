@@ -1,46 +1,26 @@
 # SpamAssassin email-classification experiment
 
-This experiment classifies complete RFC-822 messages as `spam` or `ham`.
-Preparation removes corpus and filter headers that directly reveal the label,
-deduplicates sanitized messages, and freezes 100 balanced cases (`60/20/20`).
-The paper comparison uses a predeclared balanced 20-case subset (`12/4/4`).
+Classifies RFC-822 messages as `spam` or `ham`. Preparation removes headers
+that reveal labels, deduplicates sanitized content, and freezes balanced splits
+of 100 development, 100 validation, and 1,000 test emails. Pilot IDs/content are
+excluded; see `confirmatory-dataset.json` and
+`datasets/proofs/spamassassin-confirmatory.json`.
 
-The system prompt, Ollama model and digest, seed, eval CSV, selection, scorer,
-harness, and execution permissions are frozen across variants. Evolution may
-change only the SOP and its directly invoked classifier. Rules must be authored
-from development evidence only. Validation determines acceptance; test is run
-once afterward.
+The evaluation contract is frozen; only the SOP and classifier may change from
+development evidence. Because the corpus is from 2002-2003, results test the
+PLaND mechanism, not current production phishing performance.
 
-The corpus is from 2002-2003. Results test the PLaND mechanism on historical
-email and must not be presented as production performance on current phishing,
-malware, or business-email compromise.
+## Results
 
-## Confirmatory dataset
+Validation rejected the candidate: accuracy fell from 90% to 86% with a paired
+interval of [-9, +1] points, while tokens fell 4.08% with interval [1.02%,
+8.50%]. It failed quality and minimum token-reduction gates, so test remained
+untouched.
 
-The prepared confirmatory design supersedes the pilot for inference:
-100 development, 100 validation, and 1,000 untouched emails, with equal spam
-and ham counts in every split. `confirmatory-dataset.json` records immutable
-hashes and links to `datasets/proofs/spamassassin-confirmatory.json`. The data
-audit passed, including a byte-identical repeat preparation.
-All pilot IDs and normalized sanitized-message contents are excluded from every
-new split.
-
-The 100-case validation comparison is complete. NL accuracy was `90%` and
-hybrid accuracy was `86%`; tokens fell from `238,077` to `228,359` (`4.08%`).
-The paired accuracy-difference interval was `[-9, +1]` percentage points and
-the token-reduction interval was `[1.02%, 8.50%]`. The candidate failed the
-two-point non-inferiority gate and the minimum `5%` token-reduction gate, so the
-1,000-case test was not released. See `results/confirmatory-validation-*.json`.
-
-The optimized 2026-09-02 replication reached 88% NL and 84% hybrid accuracy
-with a 5.04% token reduction. The token objective passed narrowly, but quality
-did not; the test remains unreleased. See
+The optimized replication reached 88% versus 84% accuracy and 5.04% token
+reduction. The token gate passed narrowly, but quality did not; test remains
+unreleased. See `results/confirmatory-validation-*.json` and
 `results/replication-20260902-validation-comparison.json`.
 
-## Pilot result
-
-Candidate 001 preserved development accuracy (`83.3%`) and validation accuracy
-(`100%`) while reducing tokens. On the one-time held-out test, however, accuracy
-was `100%` for NL and `75%` for hybrid. The hybrid exactly meets the
-predeclared `75%` floor, but the four-case test is too small to treat that
-threshold result as strong evidence of generalization. See `RESULTS.md`.
+The earlier four-case held-out pilot fell from 100% to 75% accuracy. It is
+retained in `RESULTS.md` as exploratory evidence, not generalization.
