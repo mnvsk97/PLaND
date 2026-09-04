@@ -3,6 +3,17 @@
 This record covers `output/paper/PLAND_SUBMISSION_READY_FINAL.pdf`, the approved
 nine-page submission manuscript.
 
+The approved composition is reproducible from the committed frozen inputs
+`paper/final_submission/reviewed-base.pdf` and
+`paper/final_submission/replacement-page-2.pdf`. The command
+`python paper/build_final_submission.py` validates both input hashes and
+reassembles the nine pages. Repeated builds with the locked dependency version
+are byte-identical; `--check` compares every rebuilt page's media box and
+content stream with the committed final without modifying it. The builder also
+pins `paper/FINAL_TABLES.md`; `paper/generate_tables.py --check` regenerates
+that snapshot from the committed evidence, so evidence drift or an unreflected
+table change fails verification.
+
 ## Editorial and visual scope
 
 - The manuscript preserves the reviewed source PDF except for Figure 1 and its

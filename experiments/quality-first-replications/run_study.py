@@ -157,9 +157,22 @@ def run_logged(command: list[str], log: Path, ledger: Path, label: str) -> None:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--dataset-root", required=True, type=Path)
+    parser.add_argument(
+        "--output-root",
+        type=Path,
+        help=(
+            "write a fresh mirror of experiment result directories under this root; "
+            "the default preserves the original committed result locations"
+        ),
+    )
     args = parser.parse_args()
     metadata = preflight(args.dataset_root)
-    central = ROOT / "experiments/quality-first-replications"
+    reproduction_root = args.output_root.resolve() if args.output_root else None
+    central = (
+        reproduction_root / "quality-first-replications"
+        if reproduction_root
+        else ROOT / "experiments/quality-first-replications"
+    )
     preflight_path = central / "preflight.json"
     if preflight_path.exists():
         prior = json.loads(preflight_path.read_text(encoding="utf-8"))
@@ -185,7 +198,11 @@ def main() -> int:
         order = ("quality-first", "nl") if seed == SEEDS[1] else ("nl", "quality-first")
         for short, experiment_name in DATASETS.items():
             experiment = ROOT / "experiments" / experiment_name
-            output_dir = experiment / "results" / STUDY
+            output_dir = (
+                reproduction_root / experiment_name / "results" / STUDY
+                if reproduction_root
+                else experiment / "results" / STUDY
+            )
             output_dir.mkdir(parents=True, exist_ok=True)
             ledger = output_dir / "run-ledger.json"
             dataset = args.dataset_root / short

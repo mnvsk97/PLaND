@@ -27,17 +27,21 @@ baselines remain nonviable feasibility cases.
 
 ## Quick start
 
-Prerequisites: Git, Python 3.11+, and [Ollama](https://ollama.com/download).
-LibreOffice is required only when rebuilding every paper format.
+Prerequisites: Git, Python 3.11--3.14, [uv](https://docs.astral.sh/uv/), and
+[Ollama](https://ollama.com/download). LibreOffice is required only when
+rebuilding every paper format. The root `uv.lock` pins the complete Python
+environment used by the tests, paper builders, and experiment runners.
 
 ```bash
 git clone https://github.com/mnvsk97/PLaND.git
 cd PLaND
-python3 -m venv .venv
-source .venv/bin/activate
-python -m pip install ./paper
-python -m unittest discover -s skills/pland-evolver/tests -v
+make setup
+make verify
 ```
+
+`make verify` is offline: it runs every tracked unit-test suite, checks the
+committed evidence and paper/arXiv manifests, and validates the final-paper
+recipe without invoking Ollama or rewriting checked-in outputs.
 
 Prepare the same LEDGAR pilot-exclusion and confirmatory selections used by the
 study, then use the validation commands below:
@@ -142,14 +146,21 @@ Do not open a test split unless validation passes. Runs retain runtime settings,
 artifact hashes, usage, timing, outputs, and checkpoints; comparisons preserve
 variant SOP hashes and reject runtime mismatches.
 
-## Tests and paper
+## Tests, paper, and full experiment reproduction
 
 ```bash
-python -m unittest discover -s skills/generate-initial-version/tests -v
-python -m unittest discover -s skills/pland-evolver/tests -v
-python -m unittest discover -s experiments/text-classification/tests -v
-python paper/build_all.py
+make verify
+make reproduce-paper
+
+# Requires both prepared dataset roots and the frozen Ollama model/runtime.
+make reproduce-experiments \
+  CONFIRMATORY_DATASET_ROOT=tmp/confirmatory-datasets \
+  QUALITY_FIRST_DATASET_ROOT=tmp/quality-first-datasets
 ```
+
+Full experiment reproduction writes new runs and aggregate summaries under
+ignored `tmp/reproduction-runs/`; it never treats the committed result files as
+new runs. Override `REPRODUCTION_ROOT` to choose another empty destination.
 
 See [`paper/README.md`](paper/README.md) and the latest
 [`recollection`](experiments/RECOLLECTION_2026-09-02.md). Raw licensed or

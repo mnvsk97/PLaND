@@ -58,6 +58,35 @@ Proofs cover counts, balance, source and case hashes, missing files, duplicate
 IDs/content, label leakage, pilot overlap, exclusions, split integrity, and
 repeat preparation.
 
+## Locked sources and quality-first reconstruction
+
+[`sources.lock.json`](sources.lock.json) records the exact source revisions,
+file sizes, SHA-256 values, upstream-terms links, and redistribution boundary.
+It covers every paper dataset, including QS-OCR/Tobacco3482, SROIE, and the
+RVL-CDIP sampling mirror. Raw records remain outside Git under `tmp/`. A hash mismatch is a different
+dataset condition and must not be presented as an exact reproduction.
+
+The later quality-first validation datasets are rebuilt with one command. It
+verifies the frozen raw bytes, verifies each original 1,200-case confirmatory
+selection, freezes the same labels, excludes prior IDs and normalized content,
+and checks the resulting `evals.csv` and `selection.json` hashes:
+
+```bash
+python datasets/scripts/prepare_quality_first.py \
+  --source-root tmp/source-snapshots \
+  --confirmatory-root tmp/confirmatory-datasets \
+  --output tmp/quality-first-datasets
+```
+
+The source root must contain the paths listed in `sources.lock.json`. LEDGAR
+and SpamAssassin files can be downloaded from their locked URLs. The CFPB API
+is mutable, so exact reproduction requires the frozen `complaints-api.json`
+snapshot with the recorded hash; a fresh API response is intentionally
+rejected. Use `--check-inputs-only` to validate source custody and the prior
+selection without creating outputs. The command creates all three datasets in
+a staging directory and publishes the output only after every expected hash
+matches.
+
 ## Confirmatory populations
 
 | Dataset | Development / validation / test | Audit | Experiment |

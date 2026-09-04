@@ -1,16 +1,15 @@
 # PLaND paper build
 
-`PAPER.md` is the source. From the repository root, install Python dependencies
-and build all formats:
+`PAPER.md` is the editable repository manuscript source. From the repository
+root, install the locked Python environment and build all formats:
 
 ```bash
-python3 -m venv .venv
-source .venv/bin/activate
-python -m pip install ./paper
-python paper/build_all.py
+make setup
+make reproduce-paper
 ```
 
-Python 3.11+ is required. LibreOffice (`soffice` on `PATH`) is required for the
+The root `.python-version` and `uv.lock` select the exact Python and package
+versions. LibreOffice (`soffice` on `PATH`) is required for the
 HTML conversion; on macOS it can be installed with `brew install --cask
 libreoffice`.
 
@@ -25,6 +24,16 @@ The approved submission artifact is
 `output/paper/PLAND_SUBMISSION_READY_FINAL.pdf`. It preserves Asit's reviewed
 nine-page typesetting and replaces Figure 1 on page 2 with representative
 numbered excerpts from the actual LEDGAR natural-language and hybrid SOPs.
+Rebuild that exact page composition from the frozen reviewed base and approved
+replacement page with:
+
+```bash
+python paper/build_final_submission.py
+```
+
+Use `python paper/build_final_submission.py --check` for a non-mutating,
+page-by-page content verification against the committed final PDF. The builder
+checks the SHA-256 hashes of both frozen inputs before assembling any output.
 The `PLAND_PAPER.*` files remain the repository-generated editable/source
 bundle. Run the checks recorded in `FINAL_ALIGNMENT.md` before replacing the
 approved PDF.

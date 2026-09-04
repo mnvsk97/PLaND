@@ -93,17 +93,34 @@ def main() -> int:
     html = output_dir / f"{PAPER_BASENAME}.html"
 
     shutil.copy2(source, markdown)
-    run([sys.executable, str(Path(__file__).with_name("build_pdf.py")), str(source), str(pdf)])
+    # Both builders refresh derived figure files. Stage the source and figures
+    # so a reproduction build never changes the checked-in source tree merely
+    # because conversion tools emit different JPEG metadata.
+    with tempfile.TemporaryDirectory(prefix="pland-paper-source-") as directory:
+        staged_root = Path(directory)
+        staged_source = staged_root / source.name
+        staged_figures = staged_root / "figures"
+        shutil.copy2(source, staged_source)
+        shutil.copytree(source.parent / "figures", staged_figures)
 
-    docx_command = [
-        sys.executable,
-        str(Path(__file__).with_name("build_manuscript.py")),
-        str(source),
-        str(docx),
-    ]
-    if args.allow_pending_results:
-        docx_command.append("--allow-pending-results")
-    run(docx_command)
+        run([
+            sys.executable,
+            str(Path(__file__).with_name("build_pdf.py")),
+            str(staged_source),
+            str(pdf),
+        ])
+
+        docx_command = [
+            sys.executable,
+            str(Path(__file__).with_name("build_manuscript.py")),
+            str(staged_source),
+            str(docx),
+            "--figures-dir",
+            str(staged_figures),
+        ]
+        if args.allow_pending_results:
+            docx_command.append("--allow-pending-results")
+        run(docx_command)
     convert_docx_to_html(docx, html)
 
     for artifact in (markdown, pdf, docx, html):

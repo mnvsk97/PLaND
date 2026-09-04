@@ -1,0 +1,147 @@
+{
+  "schema_version": 1,
+  "policy": {
+    "raw_data_tracked_in_git": false,
+    "redistribution": "Raw benchmark records are not redistributed by this repository. Obtain them under the upstream terms and verify every byte against this lock before preparation.",
+    "generated_data_location": "tmp/",
+    "hash_algorithm": "sha256"
+  },
+  "sources": {
+    "ledgar": {
+      "dataset": "lighteval/lexglue:ledgar",
+      "revision": "0fb195adf1b8903c9a69fe707353ff03b54ee8a7",
+      "terms": "https://huggingface.co/datasets/lighteval/lexglue",
+      "redistribute_raw": false,
+      "files": [
+        {
+          "path": "ledgar/train.jsonl",
+          "url": "https://huggingface.co/datasets/lighteval/lexglue/resolve/0fb195adf1b8903c9a69fe707353ff03b54ee8a7/ledgar/train.jsonl",
+          "bytes": 75058429,
+          "sha256": "d715cde50f04e36401b76704d693cedc2697169dbcbc97c8c8519767edfe94ec"
+        },
+        {
+          "path": "ledgar/validation.jsonl",
+          "url": "https://huggingface.co/datasets/lighteval/lexglue/resolve/0fb195adf1b8903c9a69fe707353ff03b54ee8a7/ledgar/validation.jsonl",
+          "bytes": 12420569,
+          "sha256": "5890aaee646adf03ca9665c1207b2a1ec95f60007c3e8a86f36b753992786ce1"
+        },
+        {
+          "path": "ledgar/test.jsonl",
+          "url": "https://huggingface.co/datasets/lighteval/lexglue/resolve/0fb195adf1b8903c9a69fe707353ff03b54ee8a7/ledgar/test.jsonl",
+          "bytes": 12122831,
+          "sha256": "d78bb9c8e149b169bfb4c2e910d21c6fea32968c11a5aff880f2ef6fb86bd86c"
+        }
+      ]
+    },
+    "cfpb": {
+      "dataset": "CFPB Consumer Complaint Database",
+      "snapshot_api": "https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/",
+      "terms": "https://www.consumerfinance.gov/data-research/consumer-complaints/",
+      "redistribute_raw": false,
+      "snapshot_note": "The API is live and mutable. Exact reproduction requires the frozen local snapshot with this hash; a new API response is a new dataset condition.",
+      "files": [
+        {
+          "path": "cfpb/complaints-api.json",
+          "bytes": 19108164,
+          "sha256": "5ef90fe2a075b502bbff8add7372f275df313d6eb095800e6ec023e8192941b8"
+        }
+      ]
+    },
+    "spamassassin": {
+      "dataset": "Apache SpamAssassin public mail corpus",
+      "terms": "https://spamassassin.apache.org/old/publiccorpus/",
+      "redistribute_raw": false,
+      "files": [
+        {
+          "path": "spamassassin/20030228_easy_ham.tar.bz2",
+          "url": "https://spamassassin.apache.org/old/publiccorpus/20030228_easy_ham.tar.bz2",
+          "bytes": 1612216,
+          "sha256": "2b7b65904bcfcc31d2b5f51946f2d261370b257402cbbd62930b46ab83367438"
+        },
+        {
+          "path": "spamassassin/20030228_hard_ham.tar.bz2",
+          "url": "https://spamassassin.apache.org/old/publiccorpus/20030228_hard_ham.tar.bz2",
+          "bytes": 1029898,
+          "sha256": "ce2ce67880643dbde65ea7f85bffbfe4417349c4bd80b6b0de56262ae6b0a9c9"
+        },
+        {
+          "path": "spamassassin/20030228_spam.tar.bz2",
+          "url": "https://spamassassin.apache.org/old/publiccorpus/20030228_spam.tar.bz2",
+          "bytes": 1183768,
+          "sha256": "c08debc32413804949a866be45ef78195cec2cbafd1da744ed76cdb860589743"
+        },
+        {
+          "path": "spamassassin/20030228_spam_2.tar.bz2",
+          "url": "https://spamassassin.apache.org/old/publiccorpus/20030228_spam_2.tar.bz2",
+          "bytes": 2059563,
+          "sha256": "40bc444c596ff3e71505ae334f115b16f9b946786ee68f09b921b6b99217fd00"
+        }
+      ]
+    },
+    "sroie": {
+      "dataset": "mp-02/sroie",
+      "revision": "f845db1c2ccaf883550320fe450d1e723374be32",
+      "terms": "https://huggingface.co/datasets/mp-02/sroie",
+      "redistribute_raw": false,
+      "snapshot": {
+        "path": "sroie/rows.json",
+        "sha256": "c6c85028bc48c8e80a741364c0a12f0d5738b41229087687f722374991365267"
+      }
+    },
+    "qs_ocr_tobacco3482": {
+      "dataset": "QS-OCR-Small v1.0 with Tobacco3482 label audit",
+      "terms": "https://github.com/QuickSign/ocrized-text-dataset",
+      "redistribute_raw": false,
+      "files": [
+        {
+          "path": "qs-ocr/QS-OCR-small.tar.gz",
+          "url": "https://github.com/QuickSign/ocrized-text-dataset/releases/download/v1.0/QS-OCR-small.tar.gz",
+          "bytes": 2461826,
+          "sha256": "9fb802036a2d95159a2fcb7c7bcd35ccbcc6d590f1cf39e7229a4fa9ee608b76"
+        },
+        {
+          "path": "qs-ocr/tobacco3482_multi_labels.csv",
+          "url": "https://raw.githubusercontent.com/gordon-lim/tobacco3482-mistakes/81cc09446eee924fd1cc5530b0830a818a425c97/tobacco3482_multi_labels.csv",
+          "revision": "81cc09446eee924fd1cc5530b0830a818a425c97",
+          "sha256": "1bbe87ee7e8e1c2c54e67ca95c84025c13e09990089fa9c3e9a10059b66fb5e4"
+        }
+      ]
+    },
+    "rvl_cdip_mirror": {
+      "dataset": "jordyvl/rvl_cdip_100_examples_per_class",
+      "revision": "23c07577ae7d98d696806b794289926673929de6",
+      "terms": "https://huggingface.co/datasets/jordyvl/rvl_cdip_100_examples_per_class",
+      "redistribute_raw": false,
+      "snapshot_note": "Exact preparation requires this mirror revision and the per-image hashes retained in the committed selection proof."
+    }
+  },
+  "preparations": {
+    "quality_first_validation_20260903": {
+      "script": "datasets/scripts/prepare_quality_first.py",
+      "seed": 20260906,
+      "exclude_prior_cases": 1200,
+      "prior_selection_root_argument": "--confirmatory-root",
+      "raw_source_root_argument": "--source-root",
+      "datasets": {
+        "ledgar": {
+          "splits": {"development": 500, "validation": 500, "test": 750},
+          "prior_evals_sha256": "e3cebc95e61c0fb7feb799ef99f15ee78e8dc9113cf0efa38f1b91dc5fb32422",
+          "expected_evals_sha256": "beb488b30465118a07c0fcd7da299573f88f4665c1c547e389baaee6df66f31d",
+          "expected_selection_sha256": "55173c8f4f267dffa7fa2b72beaf5567bcc60e6d8d14cd92758d8592368ccfbf"
+        },
+        "cfpb": {
+          "splits": {"development": 500, "validation": 500, "test": 1000},
+          "prior_evals_sha256": "873d4de9414525bf1cf417f47f17f3cb7235eb3d2932fc85aa26ad14c518cb37",
+          "expected_evals_sha256": "34182bc6925562f3ff9965db8d9181294edb908f734daf72871877e54eefa28f",
+          "expected_selection_sha256": "87ce8ac04d02c12806e21bda03c7a79329ff8ce539e5b3d914e4d2c2df48d30e"
+        },
+        "spamassassin": {
+          "splits": {"development": 500, "validation": 500, "test": 1000},
+          "prior_evals_sha256": "702d52186d9cc73ea36589dd93bbb4e499f4aa630ead00abcb777e3c37fe0202",
+          "expected_evals_sha256": "5cfad8716c566d70b17d11aee87d017b46db5706507fde22efb87ac91eb1b2e2",
+          "expected_selection_sha256": "fe217df5650067b7e8fc6fa77da3a553eb20633478e10d773f0ac4554aa7f441"
+        }
+      }
+    }
+  }
+}
