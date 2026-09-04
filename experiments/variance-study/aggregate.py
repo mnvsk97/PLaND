@@ -73,11 +73,16 @@ def stability(runs: list[dict[str, Any]], identifiers: list[str]) -> dict[str, A
     }
 
 
-def aggregate_dataset(directory: Path) -> dict[str, Any]:
+def aggregate_dataset(
+    directory: Path,
+    *,
+    seeds: tuple[int, ...] = SEEDS,
+    candidate_variant: str = "hybrid",
+) -> dict[str, Any]:
     runs = {
         variant: [json.loads((directory / f"seed-{seed}-{variant}.json").read_text(encoding="utf-8"))
-                  for seed in SEEDS]
-        for variant in ("nl", "hybrid")
+                  for seed in seeds]
+        for variant in ("nl", candidate_variant)
     }
     identifiers = sorted(case_map(runs["nl"][0]))
     reference = runs["nl"][0]
@@ -88,8 +93,9 @@ def aggregate_dataset(directory: Path) -> dict[str, Any]:
             for key in ("dataset", "split", "model", "model_digest", "runtime", "invariants"):
                 if run.get(key) != reference.get(key):
                     raise ValueError(f"frozen contract differs across runs: {key}")
-    for index, seed in enumerate(SEEDS):
-        if runs["nl"][index].get("seed") != seed or runs["hybrid"][index].get("seed") != seed:
+    for index, seed in enumerate(seeds):
+        if (runs["nl"][index].get("seed") != seed
+                or runs[candidate_variant][index].get("seed") != seed):
             raise ValueError(f"paired seed mismatch: {seed}")
     for variant, variant_runs in runs.items():
         sop_contract = variant_runs[0]["sop"]
@@ -111,23 +117,24 @@ def aggregate_dataset(directory: Path) -> dict[str, Any]:
             "prediction_stability": stability(variant_runs, identifiers),
         }
 
-    hybrid_maps = [case_map(run) for run in runs["hybrid"]]
-    route_signatures = {identifier: tuple(mapping[identifier]["source"] for mapping in hybrid_maps)
+    candidate_maps = [case_map(run) for run in runs[candidate_variant]]
+    route_signatures = {identifier: tuple(mapping[identifier]["source"] for mapping in candidate_maps)
                         for identifier in identifiers}
     route_counts = Counter(route_signatures.values())
     strata = {}
     for label, wanted in (("deterministic_command", ("command",) * 3),
                           ("model_fallback", ("model",) * 3)):
         selected = [identifier for identifier, signature in route_signatures.items() if signature == wanted]
-        strata[label] = stability(runs["hybrid"], selected) if selected else {"cases": 0}
+        strata[label] = stability(runs[candidate_variant], selected) if selected else {"cases": 0}
     unstable_routes = [identifier for identifier, signature in route_signatures.items()
                        if len(set(signature)) > 1]
 
     paired = []
     comparisons = []
-    for index, seed in enumerate(SEEDS):
-        nl_map, hybrid_map = case_map(runs["nl"][index]), case_map(runs["hybrid"][index])
-        count = sum(nl_map[identifier].get("actual") != hybrid_map[identifier].get("actual")
+    for index, seed in enumerate(seeds):
+        nl_map = case_map(runs["nl"][index])
+        candidate_map = case_map(runs[candidate_variant][index])
+        count = sum(nl_map[identifier].get("actual") != candidate_map[identifier].get("actual")
                     for identifier in identifiers)
         paired.append({"seed": seed, "prediction_disagreement_cases": count,
                        "prediction_disagreement_fraction": count / len(identifiers)})
@@ -138,7 +145,7 @@ def aggregate_dataset(directory: Path) -> dict[str, Any]:
                             "token_reduction_bootstrap_95": comparison["paired_statistics"]["token_reduction_bootstrap_95"],
                             "token_reduction_fraction": comparison["delta_hybrid_minus_nl"]["token_reduction_fraction"]})
     return {
-        "cases_per_run": len(identifiers), "seeds": list(SEEDS),
+        "cases_per_run": len(identifiers), "seeds": list(seeds),
         "frozen_contract_verified": True,
         "frozen_contract": {key: reference.get(key) for key in
                             ("dataset", "split", "model", "model_digest", "runtime", "invariants")},
@@ -146,8 +153,8 @@ def aggregate_dataset(directory: Path) -> dict[str, Any]:
                                      if key != "content"}
                            for variant, variant_runs in runs.items()},
         "variants": variants,
-        "paired_nl_hybrid_prediction_disagreement": paired,
-        "hybrid_route_stability": {
+        f"paired_nl_{candidate_variant}_prediction_disagreement": paired,
+        f"{candidate_variant}_route_stability": {
             "signature_counts": {"/".join(key): value for key, value in sorted(route_counts.items())},
             "unstable_route_cases": len(unstable_routes), "unstable_route_case_ids": unstable_routes,
             "prediction_disagreement_by_stable_route": strata,
@@ -187,12 +194,17 @@ def write_recursive_manifest(directory: Path) -> None:
     manifest_path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
 
 
-def write_readme(directory: Path, result: dict[str, Any]) -> None:
+def write_readme(
+    directory: Path,
+    result: dict[str, Any],
+    candidate_variant: str,
+    runner_path: str,
+) -> None:
     path = directory / "README.md"
     if path.exists():
         raise FileExistsError(path)
     nl = result["variants"]["nl"]
-    hybrid = result["variants"]["hybrid"]
+    candidate = result["variants"][candidate_variant]
     lines = [
         f"# {directory.parents[1].name} three-run variance evidence",
         "",
@@ -206,18 +218,18 @@ def write_readme(directory: Path, result: dict[str, Any]) -> None:
         f"- Seeds: {', '.join(str(seed) for seed in result['seeds'])}",
         f"- NL accuracy mean (sample SD; range): {nl['accuracy']['mean']:.4f} "
         f"({nl['accuracy']['sample_sd']:.4f}; {nl['accuracy']['min']:.4f}-{nl['accuracy']['max']:.4f})",
-        f"- Hybrid accuracy mean (sample SD; range): {hybrid['accuracy']['mean']:.4f} "
-        f"({hybrid['accuracy']['sample_sd']:.4f}; {hybrid['accuracy']['min']:.4f}-{hybrid['accuracy']['max']:.4f})",
+        f"- {candidate_variant} accuracy mean (sample SD; range): {candidate['accuracy']['mean']:.4f} "
+        f"({candidate['accuracy']['sample_sd']:.4f}; {candidate['accuracy']['min']:.4f}-{candidate['accuracy']['max']:.4f})",
         "",
         "With only three seeds, these values characterize the observed frozen condition;",
         "they do not support a significance or broad generalization claim.",
         "",
         "## Reproduce and inspect",
         "",
-        "Run `experiments/variance-study/run_variance_study.py` using the exact command in",
-        "`experiments/variance-study/README.md`. `run-ledger.json` records each expanded",
+        f"Run `{runner_path}` using the exact command in its adjacent `README.md`.",
+        "`run-ledger.json` records each expanded",
         "command, order, start/end timestamp, exit status, and log checksum. Each",
-        "`seed-*-nl.json` or `seed-*-hybrid.json` stores per-case prediction, correctness,",
+        f"`seed-*-nl.json` or `seed-*-{candidate_variant}.json` stores per-case prediction, correctness,",
         "tokens, latency, and routing source. Each paired comparison applies the frozen",
         "absolute viability, non-inferiority, and efficiency gates.",
         "",
@@ -266,10 +278,16 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", required=True, type=Path)
     parser.add_argument("--study-dir", action="append", required=True, type=Path)
+    parser.add_argument("--seeds", nargs="+", type=int, default=list(SEEDS))
+    parser.add_argument("--candidate-variant", default="hybrid")
+    parser.add_argument(
+        "--runner-path",
+        default="experiments/variance-study/run_variance_study.py",
+    )
     parser.add_argument("--write-manifests", action="store_true")
     args = parser.parse_args()
     result = {"schema_version": 1, "created_at": datetime.now(UTC).isoformat(),
-              "study_design": {"replications": 3, "seeds": list(SEEDS),
+              "study_design": {"replications": len(args.seeds), "seeds": args.seeds,
                                "uncertainty_note": "Three runs describe observed variability; they do not establish statistical significance or generalize beyond the frozen model, data, and runtime."},
               "datasets": {}}
     for directory in args.study_dir:
@@ -277,11 +295,20 @@ def main() -> int:
         safety = audit_safe_results(directory)
         if not safety["passed"]:
             raise ValueError(f"unsafe result payload: {safety}")
-        dataset_result = {**aggregate_dataset(directory), "content_safety_audit": safety,
+        dataset_result = {**aggregate_dataset(
+                              directory,
+                              seeds=tuple(args.seeds),
+                              candidate_variant=args.candidate_variant,
+                          ), "content_safety_audit": safety,
                           "artifact_directory": str(directory.resolve().relative_to(Path.cwd().resolve()))}
         result["datasets"][dataset] = dataset_result
         if args.write_manifests:
-            write_readme(directory, dataset_result)
+            write_readme(
+                directory,
+                dataset_result,
+                args.candidate_variant,
+                args.runner_path,
+            )
             write_manifest(directory)
     if args.output.exists():
         raise FileExistsError(args.output)

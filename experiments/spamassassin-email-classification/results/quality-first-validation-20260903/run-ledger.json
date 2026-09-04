@@ -1,0 +1,94 @@
+{
+  "runs": [
+    {
+      "label": "spamassassin:validation:seed-20260906:nl",
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/text-classification/scripts/run_experiment.py --dataset tmp/quality-first-datasets/spamassassin --split validation --system-prompt /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/spamassassin-email-classification/system-prompt.md --sop /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/spamassassin-email-classification/nl/SKILL.md --model qwen3:14b --seed 20260906 --workers 2 --num-ctx 4096 --num-predict 128 --keep-alive -1 --checkpoint-every 10 --resume --output /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/spamassassin-email-classification/results/quality-first-validation-20260903/seed-20260906-nl.json",
+      "started_at": "2026-09-03T19:14:45.955796+00:00",
+      "status": "complete",
+      "log": "seed-20260906-nl.log",
+      "finished_at": "2026-09-03T19:40:11.495314+00:00",
+      "exit_code": 0,
+      "log_sha256": "7fc67ccd9710dde75c465a6a8d2ff4979e9f516b7ed2b9902085658571ff4e2e"
+    },
+    {
+      "label": "spamassassin:validation:seed-20260906:quality-first",
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/text-classification/scripts/run_experiment.py --dataset tmp/quality-first-datasets/spamassassin --split validation --system-prompt /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/spamassassin-email-classification/system-prompt.md --sop /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/spamassassin-email-classification/quality-first/SKILL.md --model qwen3:14b --seed 20260906 --workers 2 --num-ctx 4096 --num-predict 128 --keep-alive -1 --checkpoint-every 10 --resume --output /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/spamassassin-email-classification/results/quality-first-validation-20260903/seed-20260906-quality-first.json --classifier /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/spamassassin-email-classification/quality-first/classify.py",
+      "started_at": "2026-09-03T19:40:11.496457+00:00",
+      "status": "complete",
+      "log": "seed-20260906-quality-first.log",
+      "finished_at": "2026-09-04T00:33:49.782342+00:00",
+      "exit_code": 0,
+      "log_sha256": "360600d43d627a4ec5aaa09f7f80f0e86607d80ffa21a42760dc25dbf107506c"
+    },
+    {
+      "label": "spamassassin:validation:seed-20260906:comparison",
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/text-classification/scripts/compare.py --nl /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/spamassassin-email-classification/results/quality-first-validation-20260903/seed-20260906-nl.json --hybrid /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/spamassassin-email-classification/results/quality-first-validation-20260903/seed-20260906-quality-first.json --bootstrap-samples 5000 --bootstrap-seed 20260906 --minimum-accuracy 0.80 --noninferiority-margin 0.005 --minimum-accuracy-difference-lower-bound -0.005 --minimum-token-reduction 0.05 --require-no-accuracy-regression --max-per-label-recall-drop 0.02 --minimum-command-precision 0.99 --output /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/spamassassin-email-classification/results/quality-first-validation-20260903/seed-20260906-comparison.json",
+      "started_at": "2026-09-04T00:33:49.789765+00:00",
+      "status": "complete",
+      "log": "seed-20260906-comparison.log",
+      "finished_at": "2026-09-04T00:33:50.571056+00:00",
+      "exit_code": 0,
+      "log_sha256": "ec2d7368bc6db9c988fa48b96ada58e600f8afcf012b2eb28cab90cc5e58b735"
+    },
+    {
+      "label": "spamassassin:validation:seed-20260907:quality-first",
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/text-classification/scripts/run_experiment.py --dataset tmp/quality-first-datasets/spamassassin --split validation --system-prompt /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/spamassassin-email-classification/system-prompt.md --sop /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/spamassassin-email-classification/quality-first/SKILL.md --model qwen3:14b --seed 20260907 --workers 2 --num-ctx 4096 --num-predict 128 --keep-alive -1 --checkpoint-every 10 --resume --output /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/spamassassin-email-classification/results/quality-first-validation-20260903/seed-20260907-quality-first.json --classifier /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/spamassassin-email-classification/quality-first/classify.py",
+      "started_at": "2026-09-04T01:10:28.659947+00:00",
+      "status": "complete",
+      "log": "seed-20260907-quality-first.log",
+      "finished_at": "2026-09-04T01:37:20.458194+00:00",
+      "exit_code": 0,
+      "log_sha256": "1201cefd024d8c11cf560c1518e1bd38c86c2f320746069e410200feb48cd839"
+    },
+    {
+      "label": "spamassassin:validation:seed-20260907:nl",
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/text-classification/scripts/run_experiment.py --dataset tmp/quality-first-datasets/spamassassin --split validation --system-prompt /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/spamassassin-email-classification/system-prompt.md --sop /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/spamassassin-email-classification/nl/SKILL.md --model qwen3:14b --seed 20260907 --workers 2 --num-ctx 4096 --num-predict 128 --keep-alive -1 --checkpoint-every 10 --resume --output /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/spamassassin-email-classification/results/quality-first-validation-20260903/seed-20260907-nl.json",
+      "started_at": "2026-09-04T01:37:20.459449+00:00",
+      "status": "complete",
+      "log": "seed-20260907-nl.log",
+      "finished_at": "2026-09-04T02:04:41.921277+00:00",
+      "exit_code": 0,
+      "log_sha256": "b8b846c7ef378e928109ac770b4f951344c26f5e7b04498a733461756f81584f"
+    },
+    {
+      "label": "spamassassin:validation:seed-20260907:comparison",
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/text-classification/scripts/compare.py --nl /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/spamassassin-email-classification/results/quality-first-validation-20260903/seed-20260907-nl.json --hybrid /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/spamassassin-email-classification/results/quality-first-validation-20260903/seed-20260907-quality-first.json --bootstrap-samples 5000 --bootstrap-seed 20260907 --minimum-accuracy 0.80 --noninferiority-margin 0.005 --minimum-accuracy-difference-lower-bound -0.005 --minimum-token-reduction 0.05 --require-no-accuracy-regression --max-per-label-recall-drop 0.02 --minimum-command-precision 0.99 --output /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/spamassassin-email-classification/results/quality-first-validation-20260903/seed-20260907-comparison.json",
+      "started_at": "2026-09-04T02:04:41.922449+00:00",
+      "status": "complete",
+      "log": "seed-20260907-comparison.log",
+      "finished_at": "2026-09-04T02:04:42.607769+00:00",
+      "exit_code": 0,
+      "log_sha256": "21ee4b58b1f1fb4accc63131982a0e1a9ae32dee6480fd3a3ccff16de77ed640"
+    },
+    {
+      "label": "spamassassin:validation:seed-20260908:nl",
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/text-classification/scripts/run_experiment.py --dataset tmp/quality-first-datasets/spamassassin --split validation --system-prompt /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/spamassassin-email-classification/system-prompt.md --sop /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/spamassassin-email-classification/nl/SKILL.md --model qwen3:14b --seed 20260908 --workers 2 --num-ctx 4096 --num-predict 128 --keep-alive -1 --checkpoint-every 10 --resume --output /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/spamassassin-email-classification/results/quality-first-validation-20260903/seed-20260908-nl.json",
+      "started_at": "2026-09-04T02:38:08.877838+00:00",
+      "status": "complete",
+      "log": "seed-20260908-nl.log",
+      "finished_at": "2026-09-04T03:04:22.901106+00:00",
+      "exit_code": 0,
+      "log_sha256": "b7d9326f40ef421dc0ac3cab591f575a02840b97f5be3f28e24080a632a77e98"
+    },
+    {
+      "label": "spamassassin:validation:seed-20260908:quality-first",
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/text-classification/scripts/run_experiment.py --dataset tmp/quality-first-datasets/spamassassin --split validation --system-prompt /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/spamassassin-email-classification/system-prompt.md --sop /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/spamassassin-email-classification/quality-first/SKILL.md --model qwen3:14b --seed 20260908 --workers 2 --num-ctx 4096 --num-predict 128 --keep-alive -1 --checkpoint-every 10 --resume --output /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/spamassassin-email-classification/results/quality-first-validation-20260903/seed-20260908-quality-first.json --classifier /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/spamassassin-email-classification/quality-first/classify.py",
+      "started_at": "2026-09-04T03:04:22.902608+00:00",
+      "status": "complete",
+      "log": "seed-20260908-quality-first.log",
+      "finished_at": "2026-09-04T03:29:33.099736+00:00",
+      "exit_code": 0,
+      "log_sha256": "2d73578ab2b0df73454632bb959f7ed995ded29e6b24b8d6575a5b80a6fdbee2"
+    },
+    {
+      "label": "spamassassin:validation:seed-20260908:comparison",
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/text-classification/scripts/compare.py --nl /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/spamassassin-email-classification/results/quality-first-validation-20260903/seed-20260908-nl.json --hybrid /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/spamassassin-email-classification/results/quality-first-validation-20260903/seed-20260908-quality-first.json --bootstrap-samples 5000 --bootstrap-seed 20260908 --minimum-accuracy 0.80 --noninferiority-margin 0.005 --minimum-accuracy-difference-lower-bound -0.005 --minimum-token-reduction 0.05 --require-no-accuracy-regression --max-per-label-recall-drop 0.02 --minimum-command-precision 0.99 --output /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/spamassassin-email-classification/results/quality-first-validation-20260903/seed-20260908-comparison.json",
+      "started_at": "2026-09-04T03:29:33.100948+00:00",
+      "status": "complete",
+      "log": "seed-20260908-comparison.log",
+      "finished_at": "2026-09-04T03:29:33.771334+00:00",
+      "exit_code": 0,
+      "log_sha256": "0646e582a645e04f347d4cd13f2dbefe9b1ec4cf03113b288fc0523bd971618e"
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "created_at": "2026-09-03T18:45:16.310224+00:00",
+  "git_head": "8348776b4d8f6d01ca6c62e34ef778f686ee3784",
+  "git_status_before": "",
+  "model": "qwen3:14b",
+  "model_digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+  "runtime": {
+    "temperature": 0,
+    "think": false,
+    "stream": false,
+    "num_ctx": 4096,
+    "num_predict": 128,
+    "keep_alive": -1,
+    "workers": 2,
+    "ollama_flash_attention": "1",
+    "ollama_kv_cache_type": "q8_0",
+    "ollama_num_parallel": "2",
+    "ollama_max_loaded_models": "1",
+    "ollama_keep_alive": "-1"
+  },
+  "split": "validation",
+  "seeds": [
+    20260906,
+    20260907,
+    20260908
+  ],
+  "order": {
+    "20260906": [
+      "nl",
+      "quality-first"
+    ],
+    "20260907": [
+      "quality-first",
+      "nl"
+    ],
+    "20260908": [
+      "nl",
+      "quality-first"
+    ]
+  },
+  "gates": {
+    "minimum_accuracy": 0.8,
+    "noninferiority_margin": 0.005,
+    "minimum_accuracy_difference_lower_bound": -0.005,
+    "require_no_accuracy_regression": true,
+    "max_per_label_recall_drop": 0.02,
+    "minimum_command_precision": 0.99,
+    "minimum_token_reduction": 0.05
+  },
+  "frozen_artifacts": {
+    "ledgar": {
+      "dataset_path": "/Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/tmp/quality-first-datasets/ledgar",
+      "evals_sha256": "beb488b30465118a07c0fcd7da299573f88f4665c1c547e389baaee6df66f31d",
+      "selection_sha256": "55173c8f4f267dffa7fa2b72beaf5567bcc60e6d8d14cd92758d8592368ccfbf",
+      "system_prompt_sha256": "928fd5136d76264ff1e8018dbc1806230d2c98a5d552bd0f91dff608e6fafdd1",
+      "natural_language_sop_sha256": "965f61f435c835e6412425f52045395e24f04edbe32f1fd7327d8c64aaaa9044",
+      "quality_first_sop_sha256": "8d9adc2a8a0b06c5bd372c9303d4c2879208f9584e4b5d86c621e53f21d9430a",
+      "quality_first_classifier_sha256": "7ccb07ea31e867964779b93deda9f8689a6ce87c2c779caaaf96beed54637b83"
+    },
+    "cfpb": {
+      "dataset_path": "/Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/tmp/quality-first-datasets/cfpb",
+      "evals_sha256": "34182bc6925562f3ff9965db8d9181294edb908f734daf72871877e54eefa28f",
+      "selection_sha256": "87ce8ac04d02c12806e21bda03c7a79329ff8ce539e5b3d914e4d2c2df48d30e",
+      "system_prompt_sha256": "5a44109d9e9ff0d6e315dd283839bd09a7fe532ced2659dfa11e776ffe0474f5",
+      "natural_language_sop_sha256": "85c7d9b4c375bb8921599fef0e59fc863b84cccbf800304f978e3c8bf90a9d2b",
+      "quality_first_sop_sha256": "fc38770893aab14c8503946784de6d601fd8a4f7d08e093c8a38685835158c34",
+      "quality_first_classifier_sha256": "b64e68211bbb31003d03c780c89de76a899cdd36bffe7f3158e9564eee4c5328"
+    },
+    "spamassassin": {
+      "dataset_path": "/Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/tmp/quality-first-datasets/spamassassin",
+      "evals_sha256": "5cfad8716c566d70b17d11aee87d017b46db5706507fde22efb87ac91eb1b2e2",
+      "selection_sha256": "fe217df5650067b7e8fc6fa77da3a553eb20633478e10d773f0ac4554aa7f441",
+      "system_prompt_sha256": "c9b97a09c97ae4118c79e350388366cd006217e72c5a5b561cb563630653ef1f",
+      "natural_language_sop_sha256": "d2cdab135f281ad33df35eec3f3e29569128766130c73a2f14658565d62b8bac",
+      "quality_first_sop_sha256": "1aff4ea73f77ab0000036bd43455221e13ca6681673e913d44f5295100c3db1d",
+      "quality_first_classifier_sha256": "9416c59d6830ed2291d204326fe5574d76639c179988c574b9176c2235c2a752"
+    }
+  },
+  "harness_sha256": "26ab4ca8103f76e2e0380999feb1fdf52a7ce81c213b96f98ce92fe24c10f672",
+  "comparison_sha256": "ab9c7faa3b514e9e9ffe45a85e9cffb474ccd3d33c9db4d3ff1bf3c8701d8a63"
+}

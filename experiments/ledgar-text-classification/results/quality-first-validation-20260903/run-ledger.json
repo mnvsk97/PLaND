@@ -1,0 +1,94 @@
+{
+  "runs": [
+    {
+      "label": "ledgar:validation:seed-20260906:nl",
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/text-classification/scripts/run_experiment.py --dataset tmp/quality-first-datasets/ledgar --split validation --system-prompt /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/system-prompt.md --sop /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/nl/SKILL.md --model qwen3:14b --seed 20260906 --workers 2 --num-ctx 4096 --num-predict 128 --keep-alive -1 --checkpoint-every 10 --resume --output /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/results/quality-first-validation-20260903/seed-20260906-nl.json",
+      "started_at": "2026-09-03T18:45:16.338200+00:00",
+      "status": "complete",
+      "log": "seed-20260906-nl.log",
+      "finished_at": "2026-09-03T18:51:05.736181+00:00",
+      "exit_code": 0,
+      "log_sha256": "617494a819e5eb480afe25d66c6477e5ff6c8f717d45b30371c610124d9891ee"
+    },
+    {
+      "label": "ledgar:validation:seed-20260906:quality-first",
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/text-classification/scripts/run_experiment.py --dataset tmp/quality-first-datasets/ledgar --split validation --system-prompt /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/system-prompt.md --sop /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/quality-first/SKILL.md --model qwen3:14b --seed 20260906 --workers 2 --num-ctx 4096 --num-predict 128 --keep-alive -1 --checkpoint-every 10 --resume --output /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/results/quality-first-validation-20260903/seed-20260906-quality-first.json --classifier /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/quality-first/classify.py",
+      "started_at": "2026-09-03T18:51:05.737101+00:00",
+      "status": "complete",
+      "log": "seed-20260906-quality-first.log",
+      "finished_at": "2026-09-03T18:56:08.082941+00:00",
+      "exit_code": 0,
+      "log_sha256": "a5998abb858d19102dcf87bd4dd9c0d06d252feb9faa89f95fe4c3942f7af86d"
+    },
+    {
+      "label": "ledgar:validation:seed-20260906:comparison",
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/text-classification/scripts/compare.py --nl /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/results/quality-first-validation-20260903/seed-20260906-nl.json --hybrid /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/results/quality-first-validation-20260903/seed-20260906-quality-first.json --bootstrap-samples 5000 --bootstrap-seed 20260906 --minimum-accuracy 0.80 --noninferiority-margin 0.005 --minimum-accuracy-difference-lower-bound -0.005 --minimum-token-reduction 0.05 --require-no-accuracy-regression --max-per-label-recall-drop 0.02 --minimum-command-precision 0.99 --output /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/results/quality-first-validation-20260903/seed-20260906-comparison.json",
+      "started_at": "2026-09-03T18:56:08.084333+00:00",
+      "status": "complete",
+      "log": "seed-20260906-comparison.log",
+      "finished_at": "2026-09-03T18:56:08.755448+00:00",
+      "exit_code": 0,
+      "log_sha256": "ecaa6961099d9e734b8b5dd0b9f0aed3950505bfc0df0506073e3ae8b2d99972"
+    },
+    {
+      "label": "ledgar:validation:seed-20260907:quality-first",
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/text-classification/scripts/run_experiment.py --dataset tmp/quality-first-datasets/ledgar --split validation --system-prompt /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/system-prompt.md --sop /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/quality-first/SKILL.md --model qwen3:14b --seed 20260907 --workers 2 --num-ctx 4096 --num-predict 128 --keep-alive -1 --checkpoint-every 10 --resume --output /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/results/quality-first-validation-20260903/seed-20260907-quality-first.json --classifier /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/quality-first/classify.py",
+      "started_at": "2026-09-04T00:33:50.571700+00:00",
+      "status": "complete",
+      "log": "seed-20260907-quality-first.log",
+      "finished_at": "2026-09-04T00:43:40.589551+00:00",
+      "exit_code": 0,
+      "log_sha256": "702faa097c448fdd3e6dc8a326dbb22f21a2fdadeed196977648f664c7603f04"
+    },
+    {
+      "label": "ledgar:validation:seed-20260907:nl",
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/text-classification/scripts/run_experiment.py --dataset tmp/quality-first-datasets/ledgar --split validation --system-prompt /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/system-prompt.md --sop /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/nl/SKILL.md --model qwen3:14b --seed 20260907 --workers 2 --num-ctx 4096 --num-predict 128 --keep-alive -1 --checkpoint-every 10 --resume --output /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/results/quality-first-validation-20260903/seed-20260907-nl.json",
+      "started_at": "2026-09-04T00:43:40.590461+00:00",
+      "status": "complete",
+      "log": "seed-20260907-nl.log",
+      "finished_at": "2026-09-04T00:50:32.730919+00:00",
+      "exit_code": 0,
+      "log_sha256": "50bf24e8f4e1fef1ecf5b00a992a6da0ae3b62a08433844bbe40b0cc3671b4d2"
+    },
+    {
+      "label": "ledgar:validation:seed-20260907:comparison",
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/text-classification/scripts/compare.py --nl /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/results/quality-first-validation-20260903/seed-20260907-nl.json --hybrid /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/results/quality-first-validation-20260903/seed-20260907-quality-first.json --bootstrap-samples 5000 --bootstrap-seed 20260907 --minimum-accuracy 0.80 --noninferiority-margin 0.005 --minimum-accuracy-difference-lower-bound -0.005 --minimum-token-reduction 0.05 --require-no-accuracy-regression --max-per-label-recall-drop 0.02 --minimum-command-precision 0.99 --output /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/results/quality-first-validation-20260903/seed-20260907-comparison.json",
+      "started_at": "2026-09-04T00:50:32.732143+00:00",
+      "status": "complete",
+      "log": "seed-20260907-comparison.log",
+      "finished_at": "2026-09-04T00:50:33.402522+00:00",
+      "exit_code": 0,
+      "log_sha256": "d0a97163a54ee5feb3a9a8270a54c653a6e425c3e1636e62d4d6e57efacc1ece"
+    },
+    {
+      "label": "ledgar:validation:seed-20260908:nl",
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/text-classification/scripts/run_experiment.py --dataset tmp/quality-first-datasets/ledgar --split validation --system-prompt /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/system-prompt.md --sop /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/nl/SKILL.md --model qwen3:14b --seed 20260908 --workers 2 --num-ctx 4096 --num-predict 128 --keep-alive -1 --checkpoint-every 10 --resume --output /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/results/quality-first-validation-20260903/seed-20260908-nl.json",
+      "started_at": "2026-09-04T02:04:42.608480+00:00",
+      "status": "complete",
+      "log": "seed-20260908-nl.log",
+      "finished_at": "2026-09-04T02:11:44.251526+00:00",
+      "exit_code": 0,
+      "log_sha256": "9617e7743f192ad5ee22ae2fe0bf53faccea48bde8a9fab3aa3d8ed5fefa7f5d"
+    },
+    {
+      "label": "ledgar:validation:seed-20260908:quality-first",
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/text-classification/scripts/run_experiment.py --dataset tmp/quality-first-datasets/ledgar --split validation --system-prompt /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/system-prompt.md --sop /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/quality-first/SKILL.md --model qwen3:14b --seed 20260908 --workers 2 --num-ctx 4096 --num-predict 128 --keep-alive -1 --checkpoint-every 10 --resume --output /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/results/quality-first-validation-20260903/seed-20260908-quality-first.json --classifier /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/quality-first/classify.py",
+      "started_at": "2026-09-04T02:11:44.252691+00:00",
+      "status": "complete",
+      "log": "seed-20260908-quality-first.log",
+      "finished_at": "2026-09-04T02:17:41.454431+00:00",
+      "exit_code": 0,
+      "log_sha256": "f2694afb2264a7df4db28631f00b7499dc51083bfc0a52e9c1d1667f0c882de1"
+    },
+    {
+      "label": "ledgar:validation:seed-20260908:comparison",
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/text-classification/scripts/compare.py --nl /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/results/quality-first-validation-20260903/seed-20260908-nl.json --hybrid /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/results/quality-first-validation-20260903/seed-20260908-quality-first.json --bootstrap-samples 5000 --bootstrap-seed 20260908 --minimum-accuracy 0.80 --noninferiority-margin 0.005 --minimum-accuracy-difference-lower-bound -0.005 --minimum-token-reduction 0.05 --require-no-accuracy-regression --max-per-label-recall-drop 0.02 --minimum-command-precision 0.99 --output /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/ledgar-text-classification/results/quality-first-validation-20260903/seed-20260908-comparison.json",
+      "started_at": "2026-09-04T02:17:41.455409+00:00",
+      "status": "complete",
+      "log": "seed-20260908-comparison.log",
+      "finished_at": "2026-09-04T02:17:42.294193+00:00",
+      "exit_code": 0,
+      "log_sha256": "2d867267eccded0c92db2978cf4c7902858c8014bad709e3a79abfb62e45081f"
+    }
+  ]
+}

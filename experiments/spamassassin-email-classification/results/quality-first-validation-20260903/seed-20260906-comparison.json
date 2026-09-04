@@ -1,0 +1,153 @@
+{
+  "schema_version": 2,
+  "natural_language": {
+    "cases": 500,
+    "correct": 451,
+    "accuracy": 0.902,
+    "macro_f1": 0.9011997177134792,
+    "input_tokens": 836858,
+    "output_tokens": 6735,
+    "total_tokens": 843593,
+    "estimated_model_cost_usd": 0.0,
+    "model_calls": 500,
+    "command_calls": 0,
+    "latency_seconds": {
+      "total": 3047.056569623048,
+      "mean": 6.094113139246096
+    },
+    "wall_seconds": 1525.4793466660049,
+    "max_rss_bytes": 44138496
+  },
+  "hybrid": {
+    "cases": 500,
+    "correct": 445,
+    "accuracy": 0.89,
+    "macro_f1": 0.8888435280659985,
+    "input_tokens": 841873,
+    "output_tokens": 6712,
+    "total_tokens": 848585,
+    "estimated_model_cost_usd": 0.0,
+    "model_calls": 497,
+    "command_calls": 3,
+    "latency_seconds": {
+      "total": 4880.6341479709445,
+      "mean": 9.761268295941889
+    },
+    "wall_seconds": 2443.2990322080004,
+    "max_rss_bytes": 48513024
+  },
+  "delta_hybrid_minus_nl": {
+    "accuracy": -0.01200000000000001,
+    "macro_f1": -0.012356189647480642,
+    "total_tokens": 4992,
+    "token_reduction_fraction": -0.005917545546252755,
+    "mean_latency_seconds": 3.6671551566957934,
+    "model_calls": -3
+  },
+  "paired_statistics": {
+    "cases": 500,
+    "correctness_table": {
+      "both_correct": 445,
+      "natural_language_only": 6,
+      "hybrid_only": 0,
+      "both_wrong": 49
+    },
+    "natural_language_accuracy_wilson_95": [
+      0.8727939491335183,
+      0.9250760811353939
+    ],
+    "hybrid_accuracy_wilson_95": [
+      0.8595444295965924,
+      0.9145085848433969
+    ],
+    "accuracy_difference_bootstrap_95": [
+      -0.022,
+      -0.004
+    ],
+    "token_reduction_bootstrap_95": [
+      -0.01602233120764724,
+      0.0060283271494483695
+    ],
+    "mcnemar_exact_p": 0.03125,
+    "bootstrap_samples": 5000,
+    "bootstrap_seed": 20260906
+  },
+  "mechanism_decomposition": {
+    "command_routed_cases": 3,
+    "model_fallback_cases": 497,
+    "natural_language_tokens_on_command_routed_cases": 6384,
+    "hybrid_tokens_on_command_routed_cases": 0,
+    "natural_language_tokens_on_model_fallback_cases": 837209,
+    "hybrid_tokens_on_model_fallback_cases": 848585,
+    "tokens_saved_total": -4992,
+    "tokens_saved_by_bypassing_model_calls": 6384,
+    "tokens_saved_on_model_fallback_cases": -11376,
+    "command_routed_hybrid_accuracy": 1.0,
+    "natural_language_accuracy_on_same_command_routed_cases": 1.0,
+    "command_routed_hybrid_precision": 1.0
+  },
+  "per_label_recall": {
+    "natural_language": {
+      "ham": 0.812,
+      "spam": 0.992
+    },
+    "hybrid": {
+      "ham": 0.788,
+      "spam": 0.992
+    },
+    "delta_hybrid_minus_nl": {
+      "ham": -0.02400000000000002,
+      "spam": 0.0
+    },
+    "worst_label": "ham",
+    "worst_delta": -0.02400000000000002
+  },
+  "gate": {
+    "noninferiority_margin": 0.005,
+    "minimum_token_reduction": 0.05,
+    "minimum_accuracy": 0.8,
+    "require_no_accuracy_regression": true,
+    "minimum_accuracy_difference_lower_bound": -0.005,
+    "max_per_label_recall_drop": 0.02,
+    "minimum_command_precision": 0.99,
+    "quality_noninferior": false,
+    "token_objective_met": false,
+    "absolute_viability": true,
+    "no_observed_accuracy_regression": false,
+    "paired_lower_bound_met": false,
+    "per_label_recall_guardrail_met": false,
+    "command_precision_guardrail_met": true,
+    "relative_pass": false,
+    "test_release_pass": false
+  },
+  "variant_hashes": {
+    "natural_language": {
+      "sop_sha256": "d2cdab135f281ad33df35eec3f3e29569128766130c73a2f14658565d62b8bac",
+      "classifier_sha256": null
+    },
+    "hybrid": {
+      "sop_sha256": "1aff4ea73f77ab0000036bd43455221e13ca6681673e913d44f5295100c3db1d",
+      "classifier_sha256": "9416c59d6830ed2291d204326fe5574d76639c179988c574b9176c2235c2a752"
+    }
+  },
+  "invariants": {
+    "system_prompt_sha256": "c9b97a09c97ae4118c79e350388366cd006217e72c5a5b561cb563630653ef1f",
+    "evals_sha256": "5cfad8716c566d70b17d11aee87d017b46db5706507fde22efb87ac91eb1b2e2",
+    "selection_sha256": "fe217df5650067b7e8fc6fa77da3a553eb20633478e10d773f0ac4554aa7f441",
+    "scorer_sha256": "26ab4ca8103f76e2e0380999feb1fdf52a7ce81c213b96f98ce92fe24c10f672",
+    "agent_harness_sha256": "26ab4ca8103f76e2e0380999feb1fdf52a7ce81c213b96f98ce92fe24c10f672",
+    "runtime": {
+      "think": false,
+      "stream": false,
+      "temperature": 0,
+      "num_ctx": 4096,
+      "num_predict": 128,
+      "keep_alive": -1,
+      "workers": 2,
+      "ollama_flash_attention": "1",
+      "ollama_kv_cache_type": "q8_0",
+      "ollama_num_parallel": "2",
+      "ollama_max_loaded_models": "1"
+    }
+  }
+}

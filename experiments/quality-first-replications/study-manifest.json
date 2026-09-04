@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-09-04T03:31:20.505438+00:00",
+  "algorithm": "sha256",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 2994,
+      "sha256": "b0e8ad854c5d3cf350d7bbcd94e73a9ace5734895e84f12756f1261f064dd6e9"
+    },
+    {
+      "path": "preflight.json",
+      "bytes": 3597,
+      "sha256": "f3ae42f20781314e57d3ade71fb044da4a101131555d37d2ff848a107f282af9"
+    },
+    {
+      "path": "run_study.py",
+      "bytes": 9727,
+      "sha256": "c4397e5980f0ec7596aa01c0db7156de9449b1f0f95cbdd36bdc815b08837bcf"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 38588,
+      "sha256": "b2114d6ecb158ae6470920b11f083b81a8586761ec0ff866dfe944171ee8fb0a"
+    }
+  ]
+}

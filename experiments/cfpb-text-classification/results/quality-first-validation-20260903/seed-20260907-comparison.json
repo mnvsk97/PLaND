@@ -1,0 +1,177 @@
+{
+  "schema_version": 2,
+  "natural_language": {
+    "cases": 500,
+    "correct": 374,
+    "accuracy": 0.748,
+    "macro_f1": 0.7488054958137185,
+    "input_tokens": 290553,
+    "output_tokens": 8413,
+    "total_tokens": 298966,
+    "estimated_model_cost_usd": 0.0,
+    "model_calls": 500,
+    "command_calls": 0,
+    "latency_seconds": {
+      "total": 1192.8020841239413,
+      "mean": 2.3856041682478826
+    },
+    "wall_seconds": 597.062814375,
+    "max_rss_bytes": 43171840
+  },
+  "hybrid": {
+    "cases": 500,
+    "correct": 369,
+    "accuracy": 0.738,
+    "macro_f1": 0.7387399165960836,
+    "input_tokens": 297360,
+    "output_tokens": 8319,
+    "total_tokens": 305679,
+    "estimated_model_cost_usd": 0.0,
+    "model_calls": 488,
+    "command_calls": 12,
+    "latency_seconds": {
+      "total": 1192.239840366994,
+      "mean": 2.384479680733988
+    },
+    "wall_seconds": 597.3793787500035,
+    "max_rss_bytes": 42975232
+  },
+  "delta_hybrid_minus_nl": {
+    "accuracy": -0.010000000000000009,
+    "macro_f1": -0.010065579217634846,
+    "total_tokens": 6713,
+    "token_reduction_fraction": -0.02245405832101309,
+    "mean_latency_seconds": -0.0011244875138944899,
+    "model_calls": -12
+  },
+  "paired_statistics": {
+    "cases": 500,
+    "correctness_table": {
+      "both_correct": 366,
+      "natural_language_only": 8,
+      "hybrid_only": 3,
+      "both_wrong": 123
+    },
+    "natural_language_accuracy_wilson_95": [
+      0.7081521755124419,
+      0.7840661516186281
+    ],
+    "hybrid_accuracy_wilson_95": [
+      0.6977470833575388,
+      0.7746237305827623
+    ],
+    "accuracy_difference_bootstrap_95": [
+      -0.024,
+      0.002
+    ],
+    "token_reduction_bootstrap_95": [
+      -0.043245913606447126,
+      0.0026108471645953945
+    ],
+    "mcnemar_exact_p": 0.2265625,
+    "bootstrap_samples": 5000,
+    "bootstrap_seed": 20260907
+  },
+  "mechanism_decomposition": {
+    "command_routed_cases": 12,
+    "model_fallback_cases": 488,
+    "natural_language_tokens_on_command_routed_cases": 9963,
+    "hybrid_tokens_on_command_routed_cases": 0,
+    "natural_language_tokens_on_model_fallback_cases": 289003,
+    "hybrid_tokens_on_model_fallback_cases": 305679,
+    "tokens_saved_total": -6713,
+    "tokens_saved_by_bypassing_model_calls": 9963,
+    "tokens_saved_on_model_fallback_cases": -16676,
+    "command_routed_hybrid_accuracy": 1.0,
+    "natural_language_accuracy_on_same_command_routed_cases": 0.9166666666666666,
+    "command_routed_hybrid_precision": 1.0
+  },
+  "per_label_recall": {
+    "natural_language": {
+      "Checking or savings account": 0.82,
+      "Credit card": 0.7,
+      "Credit reporting or other personal consumer reports": 0.92,
+      "Debt collection": 0.52,
+      "Money transfer, virtual currency, or money service": 0.76,
+      "Mortgage": 0.9,
+      "Payday loan, title loan, personal loan, or advance loan": 0.68,
+      "Prepaid card": 0.52,
+      "Student loan": 0.88,
+      "Vehicle loan or lease": 0.78
+    },
+    "hybrid": {
+      "Checking or savings account": 0.76,
+      "Credit card": 0.72,
+      "Credit reporting or other personal consumer reports": 0.9,
+      "Debt collection": 0.5,
+      "Money transfer, virtual currency, or money service": 0.78,
+      "Mortgage": 0.9,
+      "Payday loan, title loan, personal loan, or advance loan": 0.66,
+      "Prepaid card": 0.54,
+      "Student loan": 0.84,
+      "Vehicle loan or lease": 0.78
+    },
+    "delta_hybrid_minus_nl": {
+      "Checking or savings account": -0.05999999999999994,
+      "Credit card": 0.020000000000000018,
+      "Credit reporting or other personal consumer reports": -0.020000000000000018,
+      "Debt collection": -0.020000000000000018,
+      "Money transfer, virtual currency, or money service": 0.020000000000000018,
+      "Mortgage": 0.0,
+      "Payday loan, title loan, personal loan, or advance loan": -0.020000000000000018,
+      "Prepaid card": 0.020000000000000018,
+      "Student loan": -0.040000000000000036,
+      "Vehicle loan or lease": 0.0
+    },
+    "worst_label": "Checking or savings account",
+    "worst_delta": -0.05999999999999994
+  },
+  "gate": {
+    "noninferiority_margin": 0.005,
+    "minimum_token_reduction": 0.05,
+    "minimum_accuracy": 0.8,
+    "require_no_accuracy_regression": true,
+    "minimum_accuracy_difference_lower_bound": -0.005,
+    "max_per_label_recall_drop": 0.02,
+    "minimum_command_precision": 0.99,
+    "quality_noninferior": false,
+    "token_objective_met": false,
+    "absolute_viability": false,
+    "no_observed_accuracy_regression": false,
+    "paired_lower_bound_met": false,
+    "per_label_recall_guardrail_met": false,
+    "command_precision_guardrail_met": true,
+    "relative_pass": false,
+    "test_release_pass": false
+  },
+  "variant_hashes": {
+    "natural_language": {
+      "sop_sha256": "85c7d9b4c375bb8921599fef0e59fc863b84cccbf800304f978e3c8bf90a9d2b",
+      "classifier_sha256": null
+    },
+    "hybrid": {
+      "sop_sha256": "fc38770893aab14c8503946784de6d601fd8a4f7d08e093c8a38685835158c34",
+      "classifier_sha256": "b64e68211bbb31003d03c780c89de76a899cdd36bffe7f3158e9564eee4c5328"
+    }
+  },
+  "invariants": {
+    "system_prompt_sha256": "5a44109d9e9ff0d6e315dd283839bd09a7fe532ced2659dfa11e776ffe0474f5",
+    "evals_sha256": "34182bc6925562f3ff9965db8d9181294edb908f734daf72871877e54eefa28f",
+    "selection_sha256": "87ce8ac04d02c12806e21bda03c7a79329ff8ce539e5b3d914e4d2c2df48d30e",
+    "scorer_sha256": "26ab4ca8103f76e2e0380999feb1fdf52a7ce81c213b96f98ce92fe24c10f672",
+    "agent_harness_sha256": "26ab4ca8103f76e2e0380999feb1fdf52a7ce81c213b96f98ce92fe24c10f672",
+    "runtime": {
+      "think": false,
+      "stream": false,
+      "temperature": 0,
+      "num_ctx": 4096,
+      "num_predict": 128,
+      "keep_alive": -1,
+      "workers": 2,
+      "ollama_flash_attention": "1",
+      "ollama_kv_cache_type": "q8_0",
+      "ollama_num_parallel": "2",
+      "ollama_max_loaded_models": "1"
+    }
+  }
+}

@@ -1,0 +1,1191 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-09-04T03:30:01.121273+00:00",
+  "study_design": {
+    "replications": 3,
+    "seeds": [
+      20260906,
+      20260907,
+      20260908
+    ],
+    "uncertainty_note": "Three runs describe observed variability; they do not establish statistical significance or generalize beyond the frozen model, data, and runtime."
+  },
+  "datasets": {
+    "ledgar-text-classification": {
+      "cases_per_run": 500,
+      "seeds": [
+        20260906,
+        20260907,
+        20260908
+      ],
+      "frozen_contract_verified": true,
+      "frozen_contract": {
+        "dataset": "ledgar",
+        "split": "validation",
+        "model": "qwen3:14b",
+        "model_digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+        "runtime": {
+          "think": false,
+          "stream": false,
+          "temperature": 0,
+          "num_ctx": 4096,
+          "num_predict": 128,
+          "keep_alive": -1,
+          "workers": 2,
+          "ollama_flash_attention": "1",
+          "ollama_kv_cache_type": "q8_0",
+          "ollama_num_parallel": "2",
+          "ollama_max_loaded_models": "1"
+        },
+        "invariants": {
+          "system_prompt_sha256": "928fd5136d76264ff1e8018dbc1806230d2c98a5d552bd0f91dff608e6fafdd1",
+          "evals_sha256": "beb488b30465118a07c0fcd7da299573f88f4665c1c547e389baaee6df66f31d",
+          "selection_sha256": "55173c8f4f267dffa7fa2b72beaf5567bcc60e6d8d14cd92758d8592368ccfbf",
+          "scorer_sha256": "26ab4ca8103f76e2e0380999feb1fdf52a7ce81c213b96f98ce92fe24c10f672",
+          "agent_harness_sha256": "26ab4ca8103f76e2e0380999feb1fdf52a7ce81c213b96f98ce92fe24c10f672"
+        }
+      },
+      "variant_hashes": {
+        "nl": {
+          "sha256": "965f61f435c835e6412425f52045395e24f04edbe32f1fd7327d8c64aaaa9044",
+          "classifier_sha256": null,
+          "step_representations": {
+            "english": 5
+          }
+        },
+        "quality-first": {
+          "sha256": "8d9adc2a8a0b06c5bd372c9303d4c2879208f9584e4b5d86c621e53f21d9430a",
+          "classifier_sha256": "7ccb07ea31e867964779b93deda9f8689a6ce87c2c779caaaf96beed54637b83",
+          "step_representations": {
+            "english": 5,
+            "command": 1
+          }
+        }
+      },
+      "variants": {
+        "nl": {
+          "accuracy": {
+            "values": [
+              0.936,
+              0.936,
+              0.936
+            ],
+            "mean": 0.936,
+            "sample_sd": 0.0,
+            "min": 0.936,
+            "max": 0.936,
+            "range": 0.0
+          },
+          "total_tokens": {
+            "values": [
+              188946,
+              188946,
+              188946
+            ],
+            "mean": 188946.0,
+            "sample_sd": 0.0,
+            "min": 188946,
+            "max": 188946,
+            "range": 0
+          },
+          "model_calls": {
+            "values": [
+              500,
+              500,
+              500
+            ],
+            "mean": 500.0,
+            "sample_sd": 0.0,
+            "min": 500,
+            "max": 500,
+            "range": 0
+          },
+          "per_case_tokens": {
+            "min": 275,
+            "median": 347.0,
+            "mean": 377.892,
+            "p95": 552.3999999999996,
+            "max": 857
+          },
+          "per_case_latency_seconds": {
+            "min": 0.940999375001411,
+            "median": 1.526660499504942,
+            "mean": 1.575721772646643,
+            "p95": 2.093253091702354,
+            "max": 3.2813173750037095
+          },
+          "prediction_stability": {
+            "cases": 500,
+            "all_runs_agree_cases": 500,
+            "any_disagreement_cases": 0,
+            "any_disagreement_fraction": 0.0,
+            "disagreement_case_ids": [],
+            "pairwise": [
+              {
+                "left_seed": 20260906,
+                "right_seed": 20260907,
+                "disagreement_cases": 0,
+                "disagreement_fraction": 0.0
+              },
+              {
+                "left_seed": 20260906,
+                "right_seed": 20260908,
+                "disagreement_cases": 0,
+                "disagreement_fraction": 0.0
+              },
+              {
+                "left_seed": 20260907,
+                "right_seed": 20260908,
+                "disagreement_cases": 0,
+                "disagreement_fraction": 0.0
+              }
+            ]
+          }
+        },
+        "quality-first": {
+          "accuracy": {
+            "values": [
+              0.928,
+              0.928,
+              0.928
+            ],
+            "mean": 0.928,
+            "sample_sd": 0.0,
+            "min": 0.928,
+            "max": 0.928,
+            "range": 0.0
+          },
+          "total_tokens": {
+            "values": [
+              173150,
+              173150,
+              173150
+            ],
+            "mean": 173150.0,
+            "sample_sd": 0.0,
+            "min": 173150,
+            "max": 173150,
+            "range": 0
+          },
+          "model_calls": {
+            "values": [
+              418,
+              418,
+              418
+            ],
+            "mean": 418.0,
+            "sample_sd": 0.0,
+            "min": 418,
+            "max": 418,
+            "range": 0
+          },
+          "per_case_tokens": {
+            "min": 0,
+            "median": 369.0,
+            "mean": 346.3,
+            "p95": 575.1499999999999,
+            "max": 891
+          },
+          "per_case_latency_seconds": {
+            "min": 4.624998837243766e-06,
+            "median": 1.52182424950297,
+            "mean": 1.6634288579219962,
+            "p95": 4.068870115252139,
+            "max": 7.7017521250018035
+          },
+          "prediction_stability": {
+            "cases": 500,
+            "all_runs_agree_cases": 500,
+            "any_disagreement_cases": 0,
+            "any_disagreement_fraction": 0.0,
+            "disagreement_case_ids": [],
+            "pairwise": [
+              {
+                "left_seed": 20260906,
+                "right_seed": 20260907,
+                "disagreement_cases": 0,
+                "disagreement_fraction": 0.0
+              },
+              {
+                "left_seed": 20260906,
+                "right_seed": 20260908,
+                "disagreement_cases": 0,
+                "disagreement_fraction": 0.0
+              },
+              {
+                "left_seed": 20260907,
+                "right_seed": 20260908,
+                "disagreement_cases": 0,
+                "disagreement_fraction": 0.0
+              }
+            ]
+          }
+        }
+      },
+      "paired_nl_quality-first_prediction_disagreement": [
+        {
+          "seed": 20260906,
+          "prediction_disagreement_cases": 5,
+          "prediction_disagreement_fraction": 0.01
+        },
+        {
+          "seed": 20260907,
+          "prediction_disagreement_cases": 5,
+          "prediction_disagreement_fraction": 0.01
+        },
+        {
+          "seed": 20260908,
+          "prediction_disagreement_cases": 5,
+          "prediction_disagreement_fraction": 0.01
+        }
+      ],
+      "quality-first_route_stability": {
+        "signature_counts": {
+          "command/command/command": 82,
+          "model/model/model": 418
+        },
+        "unstable_route_cases": 0,
+        "unstable_route_case_ids": [],
+        "prediction_disagreement_by_stable_route": {
+          "deterministic_command": {
+            "cases": 82,
+            "all_runs_agree_cases": 82,
+            "any_disagreement_cases": 0,
+            "any_disagreement_fraction": 0.0,
+            "disagreement_case_ids": [],
+            "pairwise": [
+              {
+                "left_seed": 20260906,
+                "right_seed": 20260907,
+                "disagreement_cases": 0,
+                "disagreement_fraction": 0.0
+              },
+              {
+                "left_seed": 20260906,
+                "right_seed": 20260908,
+                "disagreement_cases": 0,
+                "disagreement_fraction": 0.0
+              },
+              {
+                "left_seed": 20260907,
+                "right_seed": 20260908,
+                "disagreement_cases": 0,
+                "disagreement_fraction": 0.0
+              }
+            ]
+          },
+          "model_fallback": {
+            "cases": 418,
+            "all_runs_agree_cases": 418,
+            "any_disagreement_cases": 0,
+            "any_disagreement_fraction": 0.0,
+            "disagreement_case_ids": [],
+            "pairwise": [
+              {
+                "left_seed": 20260906,
+                "right_seed": 20260907,
+                "disagreement_cases": 0,
+                "disagreement_fraction": 0.0
+              },
+              {
+                "left_seed": 20260906,
+                "right_seed": 20260908,
+                "disagreement_cases": 0,
+                "disagreement_fraction": 0.0
+              },
+              {
+                "left_seed": 20260907,
+                "right_seed": 20260908,
+                "disagreement_cases": 0,
+                "disagreement_fraction": 0.0
+              }
+            ]
+          }
+        }
+      },
+      "per_run_gates": [
+        {
+          "seed": 20260906,
+          "gate": {
+            "noninferiority_margin": 0.005,
+            "minimum_token_reduction": 0.05,
+            "minimum_accuracy": 0.8,
+            "require_no_accuracy_regression": true,
+            "minimum_accuracy_difference_lower_bound": -0.005,
+            "max_per_label_recall_drop": 0.02,
+            "minimum_command_precision": 0.99,
+            "quality_noninferior": false,
+            "token_objective_met": true,
+            "absolute_viability": true,
+            "no_observed_accuracy_regression": false,
+            "paired_lower_bound_met": false,
+            "per_label_recall_guardrail_met": false,
+            "command_precision_guardrail_met": false,
+            "relative_pass": false,
+            "test_release_pass": false
+          },
+          "accuracy_difference_bootstrap_95": [
+            -0.016,
+            -0.002
+          ],
+          "token_reduction_bootstrap_95": [
+            0.048387327088498175,
+            0.11901565025424476
+          ],
+          "token_reduction_fraction": 0.083600605463995
+        },
+        {
+          "seed": 20260907,
+          "gate": {
+            "noninferiority_margin": 0.005,
+            "minimum_token_reduction": 0.05,
+            "minimum_accuracy": 0.8,
+            "require_no_accuracy_regression": true,
+            "minimum_accuracy_difference_lower_bound": -0.005,
+            "max_per_label_recall_drop": 0.02,
+            "minimum_command_precision": 0.99,
+            "quality_noninferior": false,
+            "token_objective_met": true,
+            "absolute_viability": true,
+            "no_observed_accuracy_regression": false,
+            "paired_lower_bound_met": false,
+            "per_label_recall_guardrail_met": false,
+            "command_precision_guardrail_met": false,
+            "relative_pass": false,
+            "test_release_pass": false
+          },
+          "accuracy_difference_bootstrap_95": [
+            -0.016,
+            -0.002
+          ],
+          "token_reduction_bootstrap_95": [
+            0.04905900317074138,
+            0.11949971102040674
+          ],
+          "token_reduction_fraction": 0.083600605463995
+        },
+        {
+          "seed": 20260908,
+          "gate": {
+            "noninferiority_margin": 0.005,
+            "minimum_token_reduction": 0.05,
+            "minimum_accuracy": 0.8,
+            "require_no_accuracy_regression": true,
+            "minimum_accuracy_difference_lower_bound": -0.005,
+            "max_per_label_recall_drop": 0.02,
+            "minimum_command_precision": 0.99,
+            "quality_noninferior": false,
+            "token_objective_met": true,
+            "absolute_viability": true,
+            "no_observed_accuracy_regression": false,
+            "paired_lower_bound_met": false,
+            "per_label_recall_guardrail_met": false,
+            "command_precision_guardrail_met": false,
+            "relative_pass": false,
+            "test_release_pass": false
+          },
+          "accuracy_difference_bootstrap_95": [
+            -0.016,
+            -0.002
+          ],
+          "token_reduction_bootstrap_95": [
+            0.04914460439260006,
+            0.118794131382187
+          ],
+          "token_reduction_fraction": 0.083600605463995
+        }
+      ],
+      "content_safety_audit": {
+        "passed": true,
+        "forbidden_source_content_keys": [],
+        "secret_pattern_findings": [],
+        "note": "Run payloads contain identifiers, expected/predicted labels, metrics, routing, SOP snapshots, and model response labels; prepared source records remain outside Git. The audit checks forbidden source-content keys and common credential patterns, but cannot prove absence of every possible secret format."
+      },
+      "artifact_directory": "experiments/ledgar-text-classification/results/quality-first-validation-20260903"
+    },
+    "cfpb-text-classification": {
+      "cases_per_run": 500,
+      "seeds": [
+        20260906,
+        20260907,
+        20260908
+      ],
+      "frozen_contract_verified": true,
+      "frozen_contract": {
+        "dataset": "cfpb",
+        "split": "validation",
+        "model": "qwen3:14b",
+        "model_digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+        "runtime": {
+          "think": false,
+          "stream": false,
+          "temperature": 0,
+          "num_ctx": 4096,
+          "num_predict": 128,
+          "keep_alive": -1,
+          "workers": 2,
+          "ollama_flash_attention": "1",
+          "ollama_kv_cache_type": "q8_0",
+          "ollama_num_parallel": "2",
+          "ollama_max_loaded_models": "1"
+        },
+        "invariants": {
+          "system_prompt_sha256": "5a44109d9e9ff0d6e315dd283839bd09a7fe532ced2659dfa11e776ffe0474f5",
+          "evals_sha256": "34182bc6925562f3ff9965db8d9181294edb908f734daf72871877e54eefa28f",
+          "selection_sha256": "87ce8ac04d02c12806e21bda03c7a79329ff8ce539e5b3d914e4d2c2df48d30e",
+          "scorer_sha256": "26ab4ca8103f76e2e0380999feb1fdf52a7ce81c213b96f98ce92fe24c10f672",
+          "agent_harness_sha256": "26ab4ca8103f76e2e0380999feb1fdf52a7ce81c213b96f98ce92fe24c10f672"
+        }
+      },
+      "variant_hashes": {
+        "nl": {
+          "sha256": "85c7d9b4c375bb8921599fef0e59fc863b84cccbf800304f978e3c8bf90a9d2b",
+          "classifier_sha256": null,
+          "step_representations": {
+            "english": 5
+          }
+        },
+        "quality-first": {
+          "sha256": "fc38770893aab14c8503946784de6d601fd8a4f7d08e093c8a38685835158c34",
+          "classifier_sha256": "b64e68211bbb31003d03c780c89de76a899cdd36bffe7f3158e9564eee4c5328",
+          "step_representations": {
+            "english": 5,
+            "command": 1
+          }
+        }
+      },
+      "variants": {
+        "nl": {
+          "accuracy": {
+            "values": [
+              0.748,
+              0.748,
+              0.748
+            ],
+            "mean": 0.7479999999999999,
+            "sample_sd": 0.0,
+            "min": 0.748,
+            "max": 0.748,
+            "range": 0.0
+          },
+          "total_tokens": {
+            "values": [
+              298966,
+              298966,
+              298966
+            ],
+            "mean": 298966.0,
+            "sample_sd": 0.0,
+            "min": 298966,
+            "max": 298966,
+            "range": 0
+          },
+          "model_calls": {
+            "values": [
+              500,
+              500,
+              500
+            ],
+            "mean": 500.0,
+            "sample_sd": 0.0,
+            "min": 500,
+            "max": 500,
+            "range": 0
+          },
+          "per_case_tokens": {
+            "min": 318,
+            "median": 499.5,
+            "mean": 597.932,
+            "p95": 1155.249999999998,
+            "max": 3717
+          },
+          "per_case_latency_seconds": {
+            "min": 1.0293258750025416,
+            "median": 2.1235411664965795,
+            "mean": 2.3849617056225396,
+            "p95": 4.097262185101862,
+            "max": 9.215036291003344
+          },
+          "prediction_stability": {
+            "cases": 500,
+            "all_runs_agree_cases": 500,
+            "any_disagreement_cases": 0,
+            "any_disagreement_fraction": 0.0,
+            "disagreement_case_ids": [],
+            "pairwise": [
+              {
+                "left_seed": 20260906,
+                "right_seed": 20260907,
+                "disagreement_cases": 0,
+                "disagreement_fraction": 0.0
+              },
+              {
+                "left_seed": 20260906,
+                "right_seed": 20260908,
+                "disagreement_cases": 0,
+                "disagreement_fraction": 0.0
+              },
+              {
+                "left_seed": 20260907,
+                "right_seed": 20260908,
+                "disagreement_cases": 0,
+                "disagreement_fraction": 0.0
+              }
+            ]
+          }
+        },
+        "quality-first": {
+          "accuracy": {
+            "values": [
+              0.738,
+              0.738,
+              0.738
+            ],
+            "mean": 0.738,
+            "sample_sd": 0.0,
+            "min": 0.738,
+            "max": 0.738,
+            "range": 0.0
+          },
+          "total_tokens": {
+            "values": [
+              305679,
+              305679,
+              305679
+            ],
+            "mean": 305679.0,
+            "sample_sd": 0.0,
+            "min": 305679,
+            "max": 305679,
+            "range": 0
+          },
+          "model_calls": {
+            "values": [
+              488,
+              488,
+              488
+            ],
+            "mean": 488.0,
+            "sample_sd": 0.0,
+            "min": 488,
+            "max": 488,
+            "range": 0
+          },
+          "per_case_tokens": {
+            "min": 0,
+            "median": 526.0,
+            "mean": 611.358,
+            "p95": 1162.1,
+            "max": 3751
+          },
+          "per_case_latency_seconds": {
+            "min": 3.208399721188471e-05,
+            "median": 2.112407812499441,
+            "mean": 2.323650219387336,
+            "p95": 3.993358854497637,
+            "max": 8.805750500003342
+          },
+          "prediction_stability": {
+            "cases": 500,
+            "all_runs_agree_cases": 500,
+            "any_disagreement_cases": 0,
+            "any_disagreement_fraction": 0.0,
+            "disagreement_case_ids": [],
+            "pairwise": [
+              {
+                "left_seed": 20260906,
+                "right_seed": 20260907,
+                "disagreement_cases": 0,
+                "disagreement_fraction": 0.0
+              },
+              {
+                "left_seed": 20260906,
+                "right_seed": 20260908,
+                "disagreement_cases": 0,
+                "disagreement_fraction": 0.0
+              },
+              {
+                "left_seed": 20260907,
+                "right_seed": 20260908,
+                "disagreement_cases": 0,
+                "disagreement_fraction": 0.0
+              }
+            ]
+          }
+        }
+      },
+      "paired_nl_quality-first_prediction_disagreement": [
+        {
+          "seed": 20260906,
+          "prediction_disagreement_cases": 15,
+          "prediction_disagreement_fraction": 0.03
+        },
+        {
+          "seed": 20260907,
+          "prediction_disagreement_cases": 15,
+          "prediction_disagreement_fraction": 0.03
+        },
+        {
+          "seed": 20260908,
+          "prediction_disagreement_cases": 15,
+          "prediction_disagreement_fraction": 0.03
+        }
+      ],
+      "quality-first_route_stability": {
+        "signature_counts": {
+          "command/command/command": 12,
+          "model/model/model": 488
+        },
+        "unstable_route_cases": 0,
+        "unstable_route_case_ids": [],
+        "prediction_disagreement_by_stable_route": {
+          "deterministic_command": {
+            "cases": 12,
+            "all_runs_agree_cases": 12,
+            "any_disagreement_cases": 0,
+            "any_disagreement_fraction": 0.0,
+            "disagreement_case_ids": [],
+            "pairwise": [
+              {
+                "left_seed": 20260906,
+                "right_seed": 20260907,
+                "disagreement_cases": 0,
+                "disagreement_fraction": 0.0
+              },
+              {
+                "left_seed": 20260906,
+                "right_seed": 20260908,
+                "disagreement_cases": 0,
+                "disagreement_fraction": 0.0
+              },
+              {
+                "left_seed": 20260907,
+                "right_seed": 20260908,
+                "disagreement_cases": 0,
+                "disagreement_fraction": 0.0
+              }
+            ]
+          },
+          "model_fallback": {
+            "cases": 488,
+            "all_runs_agree_cases": 488,
+            "any_disagreement_cases": 0,
+            "any_disagreement_fraction": 0.0,
+            "disagreement_case_ids": [],
+            "pairwise": [
+              {
+                "left_seed": 20260906,
+                "right_seed": 20260907,
+                "disagreement_cases": 0,
+                "disagreement_fraction": 0.0
+              },
+              {
+                "left_seed": 20260906,
+                "right_seed": 20260908,
+                "disagreement_cases": 0,
+                "disagreement_fraction": 0.0
+              },
+              {
+                "left_seed": 20260907,
+                "right_seed": 20260908,
+                "disagreement_cases": 0,
+                "disagreement_fraction": 0.0
+              }
+            ]
+          }
+        }
+      },
+      "per_run_gates": [
+        {
+          "seed": 20260906,
+          "gate": {
+            "noninferiority_margin": 0.005,
+            "minimum_token_reduction": 0.05,
+            "minimum_accuracy": 0.8,
+            "require_no_accuracy_regression": true,
+            "minimum_accuracy_difference_lower_bound": -0.005,
+            "max_per_label_recall_drop": 0.02,
+            "minimum_command_precision": 0.99,
+            "quality_noninferior": false,
+            "token_objective_met": false,
+            "absolute_viability": false,
+            "no_observed_accuracy_regression": false,
+            "paired_lower_bound_met": false,
+            "per_label_recall_guardrail_met": false,
+            "command_precision_guardrail_met": true,
+            "relative_pass": false,
+            "test_release_pass": false
+          },
+          "accuracy_difference_bootstrap_95": [
+            -0.024,
+            0.002
+          ],
+          "token_reduction_bootstrap_95": [
+            -0.04277855706223113,
+            0.0018561173836421602
+          ],
+          "token_reduction_fraction": -0.02245405832101309
+        },
+        {
+          "seed": 20260907,
+          "gate": {
+            "noninferiority_margin": 0.005,
+            "minimum_token_reduction": 0.05,
+            "minimum_accuracy": 0.8,
+            "require_no_accuracy_regression": true,
+            "minimum_accuracy_difference_lower_bound": -0.005,
+            "max_per_label_recall_drop": 0.02,
+            "minimum_command_precision": 0.99,
+            "quality_noninferior": false,
+            "token_objective_met": false,
+            "absolute_viability": false,
+            "no_observed_accuracy_regression": false,
+            "paired_lower_bound_met": false,
+            "per_label_recall_guardrail_met": false,
+            "command_precision_guardrail_met": true,
+            "relative_pass": false,
+            "test_release_pass": false
+          },
+          "accuracy_difference_bootstrap_95": [
+            -0.024,
+            0.002
+          ],
+          "token_reduction_bootstrap_95": [
+            -0.043245913606447126,
+            0.0026108471645953945
+          ],
+          "token_reduction_fraction": -0.02245405832101309
+        },
+        {
+          "seed": 20260908,
+          "gate": {
+            "noninferiority_margin": 0.005,
+            "minimum_token_reduction": 0.05,
+            "minimum_accuracy": 0.8,
+            "require_no_accuracy_regression": true,
+            "minimum_accuracy_difference_lower_bound": -0.005,
+            "max_per_label_recall_drop": 0.02,
+            "minimum_command_precision": 0.99,
+            "quality_noninferior": false,
+            "token_objective_met": false,
+            "absolute_viability": false,
+            "no_observed_accuracy_regression": false,
+            "paired_lower_bound_met": false,
+            "per_label_recall_guardrail_met": false,
+            "command_precision_guardrail_met": true,
+            "relative_pass": false,
+            "test_release_pass": false
+          },
+          "accuracy_difference_bootstrap_95": [
+            -0.024,
+            0.002
+          ],
+          "token_reduction_bootstrap_95": [
+            -0.04250305877519589,
+            0.0012669871632331514
+          ],
+          "token_reduction_fraction": -0.02245405832101309
+        }
+      ],
+      "content_safety_audit": {
+        "passed": true,
+        "forbidden_source_content_keys": [],
+        "secret_pattern_findings": [],
+        "note": "Run payloads contain identifiers, expected/predicted labels, metrics, routing, SOP snapshots, and model response labels; prepared source records remain outside Git. The audit checks forbidden source-content keys and common credential patterns, but cannot prove absence of every possible secret format."
+      },
+      "artifact_directory": "experiments/cfpb-text-classification/results/quality-first-validation-20260903"
+    },
+    "spamassassin-email-classification": {
+      "cases_per_run": 500,
+      "seeds": [
+        20260906,
+        20260907,
+        20260908
+      ],
+      "frozen_contract_verified": true,
+      "frozen_contract": {
+        "dataset": "spamassassin",
+        "split": "validation",
+        "model": "qwen3:14b",
+        "model_digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",
+        "runtime": {
+          "think": false,
+          "stream": false,
+          "temperature": 0,
+          "num_ctx": 4096,
+          "num_predict": 128,
+          "keep_alive": -1,
+          "workers": 2,
+          "ollama_flash_attention": "1",
+          "ollama_kv_cache_type": "q8_0",
+          "ollama_num_parallel": "2",
+          "ollama_max_loaded_models": "1"
+        },
+        "invariants": {
+          "system_prompt_sha256": "c9b97a09c97ae4118c79e350388366cd006217e72c5a5b561cb563630653ef1f",
+          "evals_sha256": "5cfad8716c566d70b17d11aee87d017b46db5706507fde22efb87ac91eb1b2e2",
+          "selection_sha256": "fe217df5650067b7e8fc6fa77da3a553eb20633478e10d773f0ac4554aa7f441",
+          "scorer_sha256": "26ab4ca8103f76e2e0380999feb1fdf52a7ce81c213b96f98ce92fe24c10f672",
+          "agent_harness_sha256": "26ab4ca8103f76e2e0380999feb1fdf52a7ce81c213b96f98ce92fe24c10f672"
+        }
+      },
+      "variant_hashes": {
+        "nl": {
+          "sha256": "d2cdab135f281ad33df35eec3f3e29569128766130c73a2f14658565d62b8bac",
+          "classifier_sha256": null,
+          "step_representations": {
+            "english": 5
+          }
+        },
+        "quality-first": {
+          "sha256": "1aff4ea73f77ab0000036bd43455221e13ca6681673e913d44f5295100c3db1d",
+          "classifier_sha256": "9416c59d6830ed2291d204326fe5574d76639c179988c574b9176c2235c2a752",
+          "step_representations": {
+            "command": 1,
+            "english": 5
+          }
+        }
+      },
+      "variants": {
+        "nl": {
+          "accuracy": {
+            "values": [
+              0.902,
+              0.902,
+              0.902
+            ],
+            "mean": 0.902,
+            "sample_sd": 0.0,
+            "min": 0.902,
+            "max": 0.902,
+            "range": 0.0
+          },
+          "total_tokens": {
+            "values": [
+              843593,
+              843593,
+              843593
+            ],
+            "mean": 843593.0,
+            "sample_sd": 0.0,
+            "min": 843593,
+            "max": 843593,
+            "range": 0
+          },
+          "model_calls": {
+            "values": [
+              500,
+              500,
+              500
+            ],
+            "mean": 500.0,
+            "sample_sd": 0.0,
+            "min": 500,
+            "max": 500,
+            "range": 0
+          },
+          "per_case_tokens": {
+            "min": 551,
+            "median": 1611.5,
+            "mean": 1687.186,
+            "p95": 3024.5499999999993,
+            "max": 4102
+          },
+          "per_case_latency_seconds": {
+            "min": 2.318043667000893,
+            "median": 6.104636833999393,
+            "mean": 6.313439827302102,
+            "p95": 9.92588658575114,
+            "max": 15.573923042000388
+          },
+          "prediction_stability": {
+            "cases": 500,
+            "all_runs_agree_cases": 500,
+            "any_disagreement_cases": 0,
+            "any_disagreement_fraction": 0.0,
+            "disagreement_case_ids": [],
+            "pairwise": [
+              {
+                "left_seed": 20260906,
+                "right_seed": 20260907,
+                "disagreement_cases": 0,
+                "disagreement_fraction": 0.0
+              },
+              {
+                "left_seed": 20260906,
+                "right_seed": 20260908,
+                "disagreement_cases": 0,
+                "disagreement_fraction": 0.0
+              },
+              {
+                "left_seed": 20260907,
+                "right_seed": 20260908,
+                "disagreement_cases": 0,
+                "disagreement_fraction": 0.0
+              }
+            ]
+          }
+        },
+        "quality-first": {
+          "accuracy": {
+            "values": [
+              0.89,
+              0.89,
+              0.89
+            ],
+            "mean": 0.89,
+            "sample_sd": 0.0,
+            "min": 0.89,
+            "max": 0.89,
+            "range": 0.0
+          },
+          "total_tokens": {
+            "values": [
+              848585,
+              848585,
+              848585
+            ],
+            "mean": 848585.0,
+            "sample_sd": 0.0,
+            "min": 848585,
+            "max": 848585,
+            "range": 0
+          },
+          "model_calls": {
+            "values": [
+              497,
+              497,
+              497
+            ],
+            "mean": 497.0,
+            "sample_sd": 0.0,
+            "min": 497,
+            "max": 497,
+            "range": 0
+          },
+          "per_case_tokens": {
+            "min": 0,
+            "median": 1636.0,
+            "mean": 1697.17,
+            "p95": 2933.749999999999,
+            "max": 4088
+          },
+          "per_case_latency_seconds": {
+            "min": 0.0010079589992528781,
+            "median": 6.417053916498844,
+            "mean": 7.411234095089938,
+            "p95": 15.89669145564476,
+            "max": 58.92727887500223
+          },
+          "prediction_stability": {
+            "cases": 500,
+            "all_runs_agree_cases": 500,
+            "any_disagreement_cases": 0,
+            "any_disagreement_fraction": 0.0,
+            "disagreement_case_ids": [],
+            "pairwise": [
+              {
+                "left_seed": 20260906,
+                "right_seed": 20260907,
+                "disagreement_cases": 0,
+                "disagreement_fraction": 0.0
+              },
+              {
+                "left_seed": 20260906,
+                "right_seed": 20260908,
+                "disagreement_cases": 0,
+                "disagreement_fraction": 0.0
+              },
+              {
+                "left_seed": 20260907,
+                "right_seed": 20260908,
+                "disagreement_cases": 0,
+                "disagreement_fraction": 0.0
+              }
+            ]
+          }
+        }
+      },
+      "paired_nl_quality-first_prediction_disagreement": [
+        {
+          "seed": 20260906,
+          "prediction_disagreement_cases": 6,
+          "prediction_disagreement_fraction": 0.012
+        },
+        {
+          "seed": 20260907,
+          "prediction_disagreement_cases": 6,
+          "prediction_disagreement_fraction": 0.012
+        },
+        {
+          "seed": 20260908,
+          "prediction_disagreement_cases": 6,
+          "prediction_disagreement_fraction": 0.012
+        }
+      ],
+      "quality-first_route_stability": {
+        "signature_counts": {
+          "command/command/command": 3,
+          "model/model/model": 497
+        },
+        "unstable_route_cases": 0,
+        "unstable_route_case_ids": [],
+        "prediction_disagreement_by_stable_route": {
+          "deterministic_command": {
+            "cases": 3,
+            "all_runs_agree_cases": 3,
+            "any_disagreement_cases": 0,
+            "any_disagreement_fraction": 0.0,
+            "disagreement_case_ids": [],
+            "pairwise": [
+              {
+                "left_seed": 20260906,
+                "right_seed": 20260907,
+                "disagreement_cases": 0,
+                "disagreement_fraction": 0.0
+              },
+              {
+                "left_seed": 20260906,
+                "right_seed": 20260908,
+                "disagreement_cases": 0,
+                "disagreement_fraction": 0.0
+              },
+              {
+                "left_seed": 20260907,
+                "right_seed": 20260908,
+                "disagreement_cases": 0,
+                "disagreement_fraction": 0.0
+              }
+            ]
+          },
+          "model_fallback": {
+            "cases": 497,
+            "all_runs_agree_cases": 497,
+            "any_disagreement_cases": 0,
+            "any_disagreement_fraction": 0.0,
+            "disagreement_case_ids": [],
+            "pairwise": [
+              {
+                "left_seed": 20260906,
+                "right_seed": 20260907,
+                "disagreement_cases": 0,
+                "disagreement_fraction": 0.0
+              },
+              {
+                "left_seed": 20260906,
+                "right_seed": 20260908,
+                "disagreement_cases": 0,
+                "disagreement_fraction": 0.0
+              },
+              {
+                "left_seed": 20260907,
+                "right_seed": 20260908,
+                "disagreement_cases": 0,
+                "disagreement_fraction": 0.0
+              }
+            ]
+          }
+        }
+      },
+      "per_run_gates": [
+        {
+          "seed": 20260906,
+          "gate": {
+            "noninferiority_margin": 0.005,
+            "minimum_token_reduction": 0.05,
+            "minimum_accuracy": 0.8,
+            "require_no_accuracy_regression": true,
+            "minimum_accuracy_difference_lower_bound": -0.005,
+            "max_per_label_recall_drop": 0.02,
+            "minimum_command_precision": 0.99,
+            "quality_noninferior": false,
+            "token_objective_met": false,
+            "absolute_viability": true,
+            "no_observed_accuracy_regression": false,
+            "paired_lower_bound_met": false,
+            "per_label_recall_guardrail_met": false,
+            "command_precision_guardrail_met": true,
+            "relative_pass": false,
+            "test_release_pass": false
+          },
+          "accuracy_difference_bootstrap_95": [
+            -0.022,
+            -0.004
+          ],
+          "token_reduction_bootstrap_95": [
+            -0.01602233120764724,
+            0.0060283271494483695
+          ],
+          "token_reduction_fraction": -0.005917545546252755
+        },
+        {
+          "seed": 20260907,
+          "gate": {
+            "noninferiority_margin": 0.005,
+            "minimum_token_reduction": 0.05,
+            "minimum_accuracy": 0.8,
+            "require_no_accuracy_regression": true,
+            "minimum_accuracy_difference_lower_bound": -0.005,
+            "max_per_label_recall_drop": 0.02,
+            "minimum_command_precision": 0.99,
+            "quality_noninferior": false,
+            "token_objective_met": false,
+            "absolute_viability": true,
+            "no_observed_accuracy_regression": false,
+            "paired_lower_bound_met": false,
+            "per_label_recall_guardrail_met": false,
+            "command_precision_guardrail_met": true,
+            "relative_pass": false,
+            "test_release_pass": false
+          },
+          "accuracy_difference_bootstrap_95": [
+            -0.022,
+            -0.004
+          ],
+          "token_reduction_bootstrap_95": [
+            -0.015906553399814966,
+            0.0063401044973790425
+          ],
+          "token_reduction_fraction": -0.005917545546252755
+        },
+        {
+          "seed": 20260908,
+          "gate": {
+            "noninferiority_margin": 0.005,
+            "minimum_token_reduction": 0.05,
+            "minimum_accuracy": 0.8,
+            "require_no_accuracy_regression": true,
+            "minimum_accuracy_difference_lower_bound": -0.005,
+            "max_per_label_recall_drop": 0.02,
+            "minimum_command_precision": 0.99,
+            "quality_noninferior": false,
+            "token_objective_met": false,
+            "absolute_viability": true,
+            "no_observed_accuracy_regression": false,
+            "paired_lower_bound_met": false,
+            "per_label_recall_guardrail_met": false,
+            "command_precision_guardrail_met": true,
+            "relative_pass": false,
+            "test_release_pass": false
+          },
+          "accuracy_difference_bootstrap_95": [
+            -0.022,
+            -0.004
+          ],
+          "token_reduction_bootstrap_95": [
+            -0.016063905521994378,
+            0.006417246157589144
+          ],
+          "token_reduction_fraction": -0.005917545546252755
+        }
+      ],
+      "content_safety_audit": {
+        "passed": true,
+        "forbidden_source_content_keys": [],
+        "secret_pattern_findings": [],
+        "note": "Run payloads contain identifiers, expected/predicted labels, metrics, routing, SOP snapshots, and model response labels; prepared source records remain outside Git. The audit checks forbidden source-content keys and common credential patterns, but cannot prove absence of every possible secret format."
+      },
+      "artifact_directory": "experiments/spamassassin-email-classification/results/quality-first-validation-20260903"
+    }
+  }
+}

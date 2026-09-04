@@ -32,6 +32,12 @@ class AggregateTests(unittest.TestCase):
         self.assertEqual(result["median"], 3)
         self.assertEqual(result["p95"], 4.8)
 
+    def test_default_candidate_name_remains_backward_compatible(self):
+        self.assertEqual(
+            MODULE.aggregate_dataset.__kwdefaults__["candidate_variant"],
+            "hybrid",
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

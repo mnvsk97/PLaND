@@ -1,0 +1,94 @@
+{
+  "runs": [
+    {
+      "label": "cfpb:validation:seed-20260906:nl",
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/text-classification/scripts/run_experiment.py --dataset tmp/quality-first-datasets/cfpb --split validation --system-prompt /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/system-prompt.md --sop /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/nl/SKILL.md --model qwen3:14b --seed 20260906 --workers 2 --num-ctx 4096 --num-predict 128 --keep-alive -1 --checkpoint-every 10 --resume --output /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/results/quality-first-validation-20260903/seed-20260906-nl.json",
+      "started_at": "2026-09-03T18:56:08.756122+00:00",
+      "status": "complete",
+      "log": "seed-20260906-nl.log",
+      "finished_at": "2026-09-03T19:05:31.590009+00:00",
+      "exit_code": 0,
+      "log_sha256": "3bcb370d730ba67e8314fb59670432c1ad6a65a0a22c0835cd642ed8dc61baad"
+    },
+    {
+      "label": "cfpb:validation:seed-20260906:quality-first",
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/text-classification/scripts/run_experiment.py --dataset tmp/quality-first-datasets/cfpb --split validation --system-prompt /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/system-prompt.md --sop /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/quality-first/SKILL.md --model qwen3:14b --seed 20260906 --workers 2 --num-ctx 4096 --num-predict 128 --keep-alive -1 --checkpoint-every 10 --resume --output /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/results/quality-first-validation-20260903/seed-20260906-quality-first.json --classifier /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/quality-first/classify.py",
+      "started_at": "2026-09-03T19:05:31.590857+00:00",
+      "status": "complete",
+      "log": "seed-20260906-quality-first.log",
+      "finished_at": "2026-09-03T19:14:45.294201+00:00",
+      "exit_code": 0,
+      "log_sha256": "d4115cdea55b27138e5226db12fbfa60f63cbf20d9bbfa49a0bda3862a7c6ec2"
+    },
+    {
+      "label": "cfpb:validation:seed-20260906:comparison",
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/text-classification/scripts/compare.py --nl /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/results/quality-first-validation-20260903/seed-20260906-nl.json --hybrid /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/results/quality-first-validation-20260903/seed-20260906-quality-first.json --bootstrap-samples 5000 --bootstrap-seed 20260906 --minimum-accuracy 0.80 --noninferiority-margin 0.005 --minimum-accuracy-difference-lower-bound -0.005 --minimum-token-reduction 0.05 --require-no-accuracy-regression --max-per-label-recall-drop 0.02 --minimum-command-precision 0.99 --output /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/results/quality-first-validation-20260903/seed-20260906-comparison.json",
+      "started_at": "2026-09-03T19:14:45.295350+00:00",
+      "status": "complete",
+      "log": "seed-20260906-comparison.log",
+      "finished_at": "2026-09-03T19:14:45.955231+00:00",
+      "exit_code": 0,
+      "log_sha256": "7aeb39a0e450c9ef74f6c520a16e9b9a35ee424dc76a391e7aa9a9c4a2fde285"
+    },
+    {
+      "label": "cfpb:validation:seed-20260907:quality-first",
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/text-classification/scripts/run_experiment.py --dataset tmp/quality-first-datasets/cfpb --split validation --system-prompt /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/system-prompt.md --sop /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/quality-first/SKILL.md --model qwen3:14b --seed 20260907 --workers 2 --num-ctx 4096 --num-predict 128 --keep-alive -1 --checkpoint-every 10 --resume --output /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/results/quality-first-validation-20260903/seed-20260907-quality-first.json --classifier /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/quality-first/classify.py",
+      "started_at": "2026-09-04T00:50:33.403153+00:00",
+      "status": "complete",
+      "log": "seed-20260907-quality-first.log",
+      "finished_at": "2026-09-04T01:00:30.842978+00:00",
+      "exit_code": 0,
+      "log_sha256": "46a10dd068fc042211597084f7925c3ea95ce1b4321308c62629fc1d4b2fac09"
+    },
+    {
+      "label": "cfpb:validation:seed-20260907:nl",
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/text-classification/scripts/run_experiment.py --dataset tmp/quality-first-datasets/cfpb --split validation --system-prompt /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/system-prompt.md --sop /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/nl/SKILL.md --model qwen3:14b --seed 20260907 --workers 2 --num-ctx 4096 --num-predict 128 --keep-alive -1 --checkpoint-every 10 --resume --output /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/results/quality-first-validation-20260903/seed-20260907-nl.json",
+      "started_at": "2026-09-04T01:00:30.843922+00:00",
+      "status": "complete",
+      "log": "seed-20260907-nl.log",
+      "finished_at": "2026-09-04T01:10:27.991123+00:00",
+      "exit_code": 0,
+      "log_sha256": "c98a96152988f94bf97af9076e9b0d36fc8ee2122d40af605445dceb6f7a5624"
+    },
+    {
+      "label": "cfpb:validation:seed-20260907:comparison",
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/text-classification/scripts/compare.py --nl /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/results/quality-first-validation-20260903/seed-20260907-nl.json --hybrid /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/results/quality-first-validation-20260903/seed-20260907-quality-first.json --bootstrap-samples 5000 --bootstrap-seed 20260907 --minimum-accuracy 0.80 --noninferiority-margin 0.005 --minimum-accuracy-difference-lower-bound -0.005 --minimum-token-reduction 0.05 --require-no-accuracy-regression --max-per-label-recall-drop 0.02 --minimum-command-precision 0.99 --output /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/results/quality-first-validation-20260903/seed-20260907-comparison.json",
+      "started_at": "2026-09-04T01:10:27.992278+00:00",
+      "status": "complete",
+      "log": "seed-20260907-comparison.log",
+      "finished_at": "2026-09-04T01:10:28.659320+00:00",
+      "exit_code": 0,
+      "log_sha256": "4c5b3375601566f0869c02263a39000768240e4327a8fb321403798c96615ef9"
+    },
+    {
+      "label": "cfpb:validation:seed-20260908:nl",
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/text-classification/scripts/run_experiment.py --dataset tmp/quality-first-datasets/cfpb --split validation --system-prompt /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/system-prompt.md --sop /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/nl/SKILL.md --model qwen3:14b --seed 20260908 --workers 2 --num-ctx 4096 --num-predict 128 --keep-alive -1 --checkpoint-every 10 --resume --output /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/results/quality-first-validation-20260903/seed-20260908-nl.json",
+      "started_at": "2026-09-04T02:17:42.295121+00:00",
+      "status": "complete",
+      "log": "seed-20260908-nl.log",
+      "finished_at": "2026-09-04T02:28:13.700636+00:00",
+      "exit_code": 0,
+      "log_sha256": "c888aac8561fae9346f4d80c693872c8ff935832d1c166763ee483bdec0d5483"
+    },
+    {
+      "label": "cfpb:validation:seed-20260908:quality-first",
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/text-classification/scripts/run_experiment.py --dataset tmp/quality-first-datasets/cfpb --split validation --system-prompt /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/system-prompt.md --sop /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/quality-first/SKILL.md --model qwen3:14b --seed 20260908 --workers 2 --num-ctx 4096 --num-predict 128 --keep-alive -1 --checkpoint-every 10 --resume --output /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/results/quality-first-validation-20260903/seed-20260908-quality-first.json --classifier /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/quality-first/classify.py",
+      "started_at": "2026-09-04T02:28:13.701941+00:00",
+      "status": "complete",
+      "log": "seed-20260908-quality-first.log",
+      "finished_at": "2026-09-04T02:38:08.221361+00:00",
+      "exit_code": 0,
+      "log_sha256": "2e9d0a6c74edc59102f88b141421a0fd997c3d58efcea0e83ef9a77c62521364"
+    },
+    {
+      "label": "cfpb:validation:seed-20260908:comparison",
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/text-classification/scripts/compare.py --nl /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/results/quality-first-validation-20260903/seed-20260908-nl.json --hybrid /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/results/quality-first-validation-20260903/seed-20260908-quality-first.json --bootstrap-samples 5000 --bootstrap-seed 20260908 --minimum-accuracy 0.80 --noninferiority-margin 0.005 --minimum-accuracy-difference-lower-bound -0.005 --minimum-token-reduction 0.05 --require-no-accuracy-regression --max-per-label-recall-drop 0.02 --minimum-command-precision 0.99 --output /Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/experiments/cfpb-text-classification/results/quality-first-validation-20260903/seed-20260908-comparison.json",
+      "started_at": "2026-09-04T02:38:08.222887+00:00",
+      "status": "complete",
+      "log": "seed-20260908-comparison.log",
+      "finished_at": "2026-09-04T02:38:08.877197+00:00",
+      "exit_code": 0,
+      "log_sha256": "54e33155c9f7243c2e638ad3aa5c419e05359afaa824f44c0c83cb32316b519f"
+    }
+  ]
+}
