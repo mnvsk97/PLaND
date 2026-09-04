@@ -38,11 +38,12 @@ The `PLAND_PAPER.*` files remain the repository-generated editable/source
 bundle. Run the checks recorded in `FINAL_ALIGNMENT.md` before replacing the
 approved PDF.
 
-The paper builders follow the published SJET visual authority at
-https://saspublishers.com/article/21609/: A4 pages, full-width first-page front
-matter, a two-column journal body, blue headings, spanning figures/tables,
-running headers, and bordered footers. Publication-only DOI, issue, dates, and
-page metadata are intentionally omitted until assigned.
+The editable `PLAND_PAPER.docx` follows the publisher's initial-submission
+instructions: Microsoft Word, A4, one-inch margins, Times New Roman 10 pt,
+single spacing, and a single-column body. The separately preserved
+`PLAND_SUBMISSION_READY_FINAL.pdf` follows the published SJET visual authority
+at https://saspublishers.com/article/21609/. Publication-only DOI, issue,
+dates, and page metadata are intentionally omitted until assigned.
 
 Build the prepared-only cover letter from the same repository state as the
 manuscript and experiment evidence:
