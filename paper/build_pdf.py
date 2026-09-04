@@ -132,19 +132,19 @@ def evolution_diagram() -> Drawing:
 
 
 def evolution_path_diagram() -> Drawing:
-    """Build the typical PLaND progression from open-ended to graph-based."""
+    """Show actual LEDGAR NL/hybrid excerpts and the graph-based target."""
     width, height = 232, 250
     drawing = Drawing(width, height)
 
-    def stage(y, h, fill, stroke, title, subtitle, note):
+    def box(y, h, fill, stroke, title):
         drawing.add(Rect(8, y, width - 16, h, rx=8, ry=8, fillColor=fill,
                          strokeColor=stroke, strokeWidth=1.2))
         drawing.add(String(20, y + h - 18, title, fontName="Helvetica-Bold",
-                           fontSize=8.6, fillColor=stroke))
-        drawing.add(String(20, y + h - 34, subtitle, fontName="Helvetica",
-                           fontSize=7.5, fillColor=TEXT))
-        drawing.add(String(20, y + 10, note, fontName="Helvetica-Oblique",
-                           fontSize=6.8, fillColor=colors.HexColor("#59636B")))
+                           fontSize=8.2, fillColor=stroke))
+
+    def line(x, y, value, size=7.0, font="Helvetica", color=TEXT):
+        drawing.add(String(x, y, value, fontName=font, fontSize=size,
+                           fillColor=color))
 
     def down(top, bottom):
         x = width / 2
@@ -152,17 +152,32 @@ def evolution_path_diagram() -> Drawing:
         drawing.add(Polygon([x - 4, bottom + 9, x + 4, bottom + 9, x, bottom + 3],
                             fillColor=NAVY, strokeColor=NAVY))
 
-    stage(181, 61, colors.HexColor("#E8F1F7"), NAVY,
-          "1. OPEN-ENDED AGENT", "DeepAgents: broad reasoning and tool use",
-          "Useful when the path is not yet known")
-    down(181, 157)
-    stage(88, 69, colors.HexColor("#FFF1E8"), RED,
-          "2. HYBRID WORKFLOW", "Code for stable work + model judgment",
-          "The normal PLaND target")
-    down(88, 64)
-    stage(3, 61, colors.HexColor("#EDF6ED"), colors.HexColor("#2E7D32"),
-          "3. MOSTLY DETERMINISTIC GRAPH", "LangGraph steps + intelligence where needed",
-          "Most structured endpoint when evidence supports it")
+    muted = colors.HexColor("#59636B")
+    box(161, 84, colors.HexColor("#E8F1F7"), NAVY,
+        "1. NATURAL-LANGUAGE SOP")
+    line(20, 214, "Actual LEDGAR excerpt", 6.2, "Helvetica-Oblique", muted)
+    line(20, 202, "1. Read the complete contract clause.", 6.4)
+    line(20, 190, "2. Identify the clause's main legal function...", 6.4)
+    line(20, 178, "3. Compare that function with every allowed label.", 6.4)
+    line(20, 166, "4. Select the single best label...", 6.4)
+
+    down(161, 149)
+    box(58, 91, colors.HexColor("#FFF1E8"), RED,
+        "2. HYBRID SOP")
+    line(20, 118, "Actual LEDGAR excerpt", 6.2, "Helvetica-Oblique", muted)
+    line(20, 106, "1. Read the complete contract clause.", 6.4)
+    line(20, 94, "2. Run `python classify.py` on the clause and labels;", 6.4,
+         "Helvetica-Bold", colors.HexColor("#2E7D32"))
+    line(27, 82, "accept only a high-confidence result.", 6.4,
+         "Helvetica-Bold", colors.HexColor("#2E7D32"))
+    line(20, 70, "3. If the command abstains, use the NL steps.", 6.4)
+
+    down(58, 46)
+    green = colors.HexColor("#2E7D32")
+    box(3, 43, colors.HexColor("#EDF6ED"), green,
+        "3. GRAPH-BASED SOP - MATURE TARGET")
+    line(20, 11, "Stable nodes in code; a few semantic nodes use the model.",
+         6.2, "Helvetica-Oblique", muted)
     return drawing
 
 

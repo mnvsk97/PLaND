@@ -21,6 +21,14 @@ Outputs use one basename under `output/paper/`:
 - `PLAND_PAPER.docx`: editable submission copy
 - `PLAND_PAPER.html`: browser copy
 
+The approved submission artifact is
+`output/paper/PLAND_SUBMISSION_READY_FINAL.pdf`. It preserves Asit's reviewed
+nine-page typesetting and replaces Figure 1 on page 2 with representative
+numbered excerpts from the actual LEDGAR natural-language and hybrid SOPs.
+The `PLAND_PAPER.*` files remain the repository-generated editable/source
+bundle. Run the checks recorded in `FINAL_ALIGNMENT.md` before replacing the
+approved PDF.
+
 The paper builders follow the published SJET visual authority at
 https://saspublishers.com/article/21609/: A4 pages, full-width first-page front
 matter, a two-column journal body, blue headings, spanning figures/tables,
@@ -49,5 +57,5 @@ Rebuild and commit these files after changing the source, figures, or builders.
 Use `--source` or `--output-dir` to override paths. The draft-only
 `--allow-pending-results` flag must not be used for submission.
 
-The public repository is https://github.com/mnvsk97/PLaND. Keep the PDF at five
-A4 pages including references and visually inspect every page.
+The public repository is https://github.com/mnvsk97/PLaND. Preserve the approved
+submission PDF at nine A4 pages and visually inspect every page.

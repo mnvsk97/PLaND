@@ -4,20 +4,24 @@
   "external_submission_performed": false,
   "artifacts": {
     "PLAND_PAPER.md": {
-      "bytes": 18875,
-      "sha256": "c21d584b25613e3eebe28849b53155dc2d6f404e6c167e3f10d62712be770abc"
+      "bytes": 20181,
+      "sha256": "91e181d13fad6f5ab86c04661ef5019c61faa9138af84dc4d02c4f4def3493aa"
     },
     "PLAND_PAPER.pdf": {
-      "bytes": 31604,
-      "sha256": "5b3c424d7c076a405e5ccc65038ba755a6108b12ba45d6ea8e26d4573a8b5d18"
+      "bytes": 33735,
+      "sha256": "d0ba2a67ebcef96e53f6c61ed195a79cba9533d3b99a2abbd2c3a8654d4104a0"
     },
     "PLAND_PAPER.docx": {
-      "bytes": 549734,
-      "sha256": "48b0f45073f7993c4e4b901e5f94bde9914e4d570554e1c4fdb62af91e331df8"
+      "bytes": 888021,
+      "sha256": "403b1dde107866c8aa4a3da4fb05c67357cfdd4e60c80b59bf9b99fea8007b6f"
     },
     "PLAND_PAPER.html": {
-      "bytes": 985734,
-      "sha256": "c737bb383911c1b5fa89423646594bba61b4497c783fcbb31dd4d3689d43c4d0"
+      "bytes": 1560774,
+      "sha256": "a0d6dbd522f831083371b933e4c2ec1ac706b53e914dafc0c7c0815e2d1b1b4b"
+    },
+    "PLAND_SUBMISSION_READY_FINAL.pdf": {
+      "bytes": 223325,
+      "sha256": "5e399d191bdb235b92801fd69b6683c3fec1ebd857ef0558f09b927ba577bf26"
     },
     "PLAND_SJET_COVER_LETTER.docx": {
       "bytes": 39171,

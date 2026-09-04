@@ -10,8 +10,8 @@
     },
     {
       "path": "aggregate.py",
-      "bytes": 14437,
-      "sha256": "d1cade189e8ab2ea13658693d5d40a249ca3ccb7ad79f060374195fd171e2f74"
+      "bytes": 15287,
+      "sha256": "0801b998262447897876b8aed3fd14d575df0efb0362575452f14486cff633d2"
     },
     {
       "path": "preflight.json",
@@ -30,8 +30,8 @@
     },
     {
       "path": "tests/test_aggregate.py",
-      "bytes": 1423,
-      "sha256": "a689f2d4fa414a3458c9854c07b57cd6b21c922876a2e6516547bb3d6f72aac5"
+      "bytes": 1627,
+      "sha256": "af97f96a3c56547928cd9e2a57e897c7706d73c53dd13c42e0b8699f4339906f"
     }
   ]
 }

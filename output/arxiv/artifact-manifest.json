@@ -4,20 +4,20 @@
   "external_submission_performed": false,
   "source_archive": {
     "path": "PLAND_ARXIV_SOURCE.tar.gz",
-    "bytes": 751354,
-    "sha256": "541ca3a71cc24798f54c26e7434a5e71ff2ad47b8f418216a789585ccb92a930"
+    "bytes": 846647,
+    "sha256": "c9db313e7d144e4ab341b080f218d61d68f54c9faef41497076f9b50f746ded3"
   },
   "compiled_preview": {
     "path": "PLAND_ARXIV_PREVIEW.pdf",
-    "bytes": 742947,
-    "sha256": "00add23f8dedb83f00b59d1e53984a00abad14a8df3f5a2fa224b9f8a4c62355"
+    "bytes": 1173724,
+    "sha256": "a7e1cdc6ceb4268323afb53cdbb7aeb0864f230a4a3da53ebd931c82e1869138"
   },
   "source_files": {
     "README.md": "54cd5ba1b78c3ba6a4764896aef19573563b89a2e931d25add27c83d9335e26d",
     "architecture.jpg": "94e32ba132becdd70644aa1a834c4c37f665862debd6139bfb8490f8918db167",
     "evolution-loop.jpg": "38aab5892cf49fc9a83dce9e0fd36c5747e8309f3a1a0ea2018e5679d0ddb1b3",
-    "evolution-path.jpg": "0b447f0fe30a67d9a99254256163ba64b84998bfbf38f192d1be8bad61d5221f",
-    "main.tex": "f41a4de6e7cf888879e3ace5e88fd6f2b0d6abbafe02503dc446527d36a53091",
+    "evolution-path.jpg": "ae45bc07c85891c21259eb73d742527ee5aff49b3f2091569dfa0109c7d59cc6",
+    "main.tex": "90aec2bfe16579b364b418571c2945b4f3c407d81d434200e487eb74b78333b9",
     "metadata.json": "271e446953cb6ee87c4e8973ecd6ceb8ac39eef1714221a32d13c19b22c0fb6e"
   }
 }
