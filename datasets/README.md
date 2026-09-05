@@ -22,24 +22,52 @@ hashes, and selected records), `dataset-summary.json`, and immutable inputs in
 
 ## Prepare and audit
 
-The confirmatory text design uses 100 development, 100 validation, and 1,000
-test cases:
+Create the earlier pilot selections before the confirmatory selections because
+the latter exclude every pilot ID and normalized content. LEDGAR and
+SpamAssassin can be fetched by the preparer. The confirmatory design uses 100
+development, 100 validation, and 1,000 test cases:
 
 ```bash
-for dataset in ledgar cfpb spamassassin; do
+for dataset in ledgar spamassassin; do
+  python datasets/scripts/prepare_data.py "$dataset" \
+    --output "tmp/paper-datasets/$dataset"
   python datasets/scripts/prepare_data.py "$dataset" \
     --output "tmp/confirmatory-datasets/$dataset" \
     --exclude-dataset "tmp/paper-datasets/$dataset" \
     --development-cases 100 --validation-cases 100 --test-cases 1000
 done
+```
+
+CFPB's upstream API is live and mutable. Exact reconstruction therefore
+requires the local snapshot whose hash appears in `sources.lock.json`:
+
+```bash
+python datasets/scripts/prepare_data.py cfpb \
+  --source tmp/source-snapshots/cfpb/complaints-api.json \
+  --output tmp/paper-datasets/cfpb
+python datasets/scripts/prepare_data.py cfpb \
+  --source tmp/source-snapshots/cfpb/complaints-api.json \
+  --output tmp/confirmatory-datasets/cfpb \
+  --exclude-dataset tmp/paper-datasets/cfpb \
+  --development-cases 100 --validation-cases 100 --test-cases 1000
+```
+
+SROIE exact reconstruction similarly requires the frozen rows snapshot:
+
+```bash
+python datasets/scripts/prepare_data.py sroie \
+  --source tmp/source-snapshots/sroie/rows.json \
+  --output tmp/datasets/sroie
 
 python datasets/scripts/prepare_data.py sroie \
+  --source tmp/source-snapshots/sroie/rows.json \
   --exclude-selection tmp/datasets/sroie/selection.json \
   --development-cases 100 --validation-cases 100 --test-cases 347 \
   --output tmp/paper-datasets/sroie-confirmatory
 ```
 
-Use `--source` for an existing local download. Selection ranks cases by
+Without either frozen snapshot, a current download is a new dataset condition,
+not an exact reproduction. Selection ranks cases by
 `SHA-256(seed, source id)`, deduplicates normalized content, and excludes pilot
 IDs and content. Output directories must not exist. LEDGAR preserves official
 LexGLUE splits; CFPB and SpamAssassin use seeded disjoint splits because they
