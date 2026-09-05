@@ -1,12 +1,12 @@
 # PLaND
 
-Path to Least Non-Determinism (PLaND) is a methodology for replacing stable
-model-mediated SOP steps with deterministic references or scripts while
-preserving measured quality.
+Path to Least Non-Determinism (PLaND) is a methodology for moving suitable
+model-mediated SOP decisions into executable code, subject to measured quality
+requirements.
 
 ## Paper
 
-The submitted paper is available in four formats:
+The manuscript is available in four matching formats:
 
 - [PDF](paper/PLaND.pdf)
 - [Word](paper/PLaND.docx)
@@ -14,6 +14,8 @@ The submitted paper is available in four formats:
 - [Markdown](paper/PLaND.md)
 
 The three figures used by the paper are in [`paper/figures/`](paper/figures/).
+The [revision record](paper/REVISION_NOTES.md) maps the annotated and live-discussion
+feedback to revised sections and documents the ten review passes.
 
 ## Repository structure
 
@@ -30,14 +32,15 @@ PLaND/
 
 | Experiment | Paper result |
 |---|---|
-| LEDGAR | Hybrid passed the original validation and 1,000-case test gates; test tokens fell 40.02% |
+| LEDGAR | One 1,000-clause evaluation; hybrid passed the criteria and tokens fell 40.02% |
 | CFPB | Hybrid rejected on validation |
 | SpamAssassin | Hybrid rejected on validation |
-| QS-OCR/Tobacco3482 | Natural-language baseline was below the viability floor |
-| SROIE | End-to-end extraction baseline was below the viability floor |
-| RVL-CDIP mirror | Natural-language baseline was below the viability floor |
-| Three-seed replications | LEDGAR passed 3/3; CFPB and SpamAssassin were rejected 3/3 |
-| Fresh quality-first validation | LEDGAR, CFPB, and SpamAssassin candidates were all rejected |
+| Three additional paired runs per dataset | Appendix A: LEDGAR passed 3/3; CFPB and SpamAssassin were rejected 3/3 |
+
+The main paper reports one comparison protocol on these three datasets.
+The earlier LEDGAR selection check is disclosed in the methods, not presented as a second result. Repeated runs
+reuse the same cases and are reported separately, not as new unseen tests.
+Other historical experiments remain archived but are outside the paper's scope.
 
 The corresponding code and machine-readable results are under:
 
@@ -47,11 +50,7 @@ experiments/
 ├── ledgar-text-classification/
 ├── cfpb-text-classification/
 ├── spamassassin-email-classification/
-├── document-classification/
-├── sroie-receipt-extraction/
-├── rvl-cdip-document-classification/
 ├── variance-study/
-├── quality-first-replications/
 └── text-classification/          shared text runner and scorer
 ```
 
@@ -78,8 +77,7 @@ under `reproduce/` because they exist only to run and verify the experiments.
 | Verify the committed code, results, manifests, and paper files | Fully reproducible from a clean clone |
 | Rerun LEDGAR and SpamAssassin on the locked public source files | Reproducible when the recorded Ollama model digest is available |
 | Exactly rerun CFPB | Requires the frozen `complaints-api.json` snapshot, which is not redistributed |
-| Exactly rerun SROIE | Requires the frozen `rows.json` snapshot, which is not redistributed |
-| Rerun with current CFPB, SROIE, or model data | Supported, but must be reported as a new experimental condition |
+| Rerun with current CFPB or model data | Supported, but must be reported as a new experimental condition |
 
 Therefore, the public repository is sufficient to verify all reported evidence,
 but it is not sufficient by itself to regenerate every historical number. Exact
@@ -94,8 +92,8 @@ are recorded in [`datasets/sources.lock.json`](datasets/sources.lock.json).
 Preparation and audit commands are in [`datasets/README.md`](datasets/README.md).
 
 Raw benchmark records are not committed. LEDGAR and SpamAssassin can be rebuilt
-from the locked public files. Exact CFPB and SROIE reconstruction requires the
-frozen local snapshots recorded by the source lock; using current upstream data
+from the locked public files. Exact CFPB reconstruction requires the
+frozen local snapshot recorded by the source lock; using current upstream data
 is a new experimental condition.
 
 ## Reproduce the repeated text studies
@@ -123,15 +121,8 @@ reproduce/.venv/bin/python experiments/variance-study/run_variance_study.py \
   --output-root tmp/reproduction-runs/variance
 ```
 
-Run the fresh quality-first study:
-
-```bash
-reproduce/.venv/bin/python experiments/quality-first-replications/run_study.py \
-  --dataset-root tmp/quality-first-datasets \
-  --output-root tmp/reproduction-runs/quality-first
-```
-
-Commands for the original text comparisons and the document baselines are in
-the README or dataset protocol inside each experiment directory. Always compare
+Commands for the original text comparisons are in the README or dataset
+protocol inside each retained experiment directory. Historical experiments
+outside the paper retain their own instructions. Always compare
 dataset hashes, model digest, SOP hashes, prompts, runtime settings, and split
 before comparing a new run with the committed result.

@@ -22,10 +22,14 @@ EVIDENCE_MANIFESTS = (
     "experiments/spamassassin-email-classification/results/quality-first-validation-20260903/manifest.json",
 )
 PAPER_FILES = {
-    "paper/PLaND.md": ("b509c020ca23066129871c6e212897a58dabddabb03be60f6649c5738cde1078", 25963),
-    "paper/PLaND.pdf": ("d69795b5d282d1ecdfa2a2d73b13a9468e7f47a18f7eb6f0307cbfbf1c8cde63", 223877),
-    "paper/PLaND.docx": ("3947660ccb6a4e64338992f744ca13a5902f82bf7ab91f3098363b9271a7834d", 888423),
-    "paper/PLaND.html": ("1816e6429cffeda1f61ea8cf561b2ff87ae677f7886217f3f1b81ab10ff77c02", 1584436),
+    "paper/PLaND.docx": ("ede72b8323722ccd56ef4447c687bc27f63eed4a8cec655d1f690e7241f1a1c7", 309501),
+    "paper/PLaND.html": ("ff37ec71dbed96cb90b47e8ed1f4ece4ab7755a8425bcc728165e132560f6403", 57516),
+    "paper/PLaND.md": ("873a59429a33dd781d3d6b671e51442782b543498db05db3fda30cc0f966442b", 35168),
+    "paper/PLaND.pdf": ("86d219d71357de6243d7b6db7e03676669273549c7f33124872468792e307494", 593969),
+    "paper/REVISION_NOTES.md": ("298978efc935b26c592286e9d766cd7048f11edfdd96e599aac75e3af2ea049a", 18360),
+    "paper/audit_paper.py": ("02d6514a6f8ce33fad05277d68de9b66037c8141ea628afaa829830ee13fdd24", 8949),
+    "paper/build_artifacts.cjs": ("4bbfdcb0ec58dbb5715d2ca4849dcf7d73e4827c82316b207789672ab4b51d08", 3629),
+    "paper/build_manuscript.py": ("ac9c3b02945d81d867f1a1dcf5249d801e6c1243cb430bf60b9f65324a79b322", 29548),
     "paper/figures/architecture.svg": ("ef074c760719982e9b0279adcbab0f8d65b050ca4a8998b4e92253c687be844c", 4005),
     "paper/figures/evolution-loop.svg": ("84311cb74abd9a27dfb89880247e8a114fc443159263796b9266fa70f70897f6", 5506),
     "paper/figures/evolution-path.svg": ("1be052aa9d5fd73309a1914fb73b2259e839bc01d05a04ede88c8802d4827b88", 4462),
