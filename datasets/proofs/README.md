@@ -7,12 +7,12 @@ contract clauses, email bodies, receipt fields, or document images.
 
 | Dataset | Development | Validation | Untouched test | Pilot overlap | Proof status | Proof file |
 | --- | ---: | ---: | ---: | ---: | --- | --- |
-| LEDGAR | 100 | 100 | 1,000 | 0 | Pass, repeated byte-identically | `proofs/ledgar-confirmatory.json` |
-| CFPB complaints | 100 | 100 | 1,000 | 0 | Pass, repeated byte-identically | `proofs/cfpb-confirmatory.json` |
-| SpamAssassin | 100 | 100 | 1,000 | 0 | Pass, repeated byte-identically | `proofs/spamassassin-confirmatory.json` |
-| QS-OCR/Tobacco3482 | 100 | 100 | 1,000 | 0 | Pass, repeated byte-identically | `../experiments/document-classification/confirmatory-dataset-proof.json` |
-| SROIE | 100 | 100 | 300 | 0 | Pass, repeated byte-identically | `../experiments/sroie-receipt-extraction/confirmatory-dataset-proof.json` |
-| RVL-CDIP mirror | 100 | 100 | 369 | 0 | Pass; network repeat unavailable | `../experiments/rvl-cdip-document-classification/confirmatory-dataset-proof.json` |
+| LEDGAR | 100 | 100 | 1,000 | 0 | Pass, repeated byte-identically | `ledgar-confirmatory.json` |
+| CFPB complaints | 100 | 100 | 1,000 | 0 | Pass, repeated byte-identically | `cfpb-confirmatory.json` |
+| SpamAssassin | 100 | 100 | 1,000 | 0 | Pass, repeated byte-identically | `spamassassin-confirmatory.json` |
+| QS-OCR/Tobacco3482 | 100 | 100 | 1,000 | 0 | Pass, repeated byte-identically | `../../experiments/document-classification/confirmatory-dataset-proof.json` |
+| SROIE | 100 | 100 | 300 | 0 | Pass, repeated byte-identically | `../../experiments/sroie-receipt-extraction/confirmatory-dataset-proof.json` |
+| RVL-CDIP mirror | 100 | 100 | 369 | 0 | Pass; network repeat unavailable | `../../experiments/rvl-cdip-document-classification/confirmatory-dataset-proof.json` |
 
 The 1,000-case target is met for every retained source with enough immediately
 available, usable, disjoint test cases. SROIE publishes 347 official test
@@ -26,7 +26,7 @@ normalized or exact-content duplicates, expected-output leakage into runtime
 inputs or paths, pilot overlap, source hashes, selection-manifest consistency,
 and official split integrity where the source defines official splits.
 
-Rebuild commands and source URLs are documented in `README.md`. Independent
+Rebuild commands and source URLs are documented in [`../README.md`](../README.md). Independent
 repeat preparation was completed for every dataset except RVL-CDIP, whose
 second download was rate-limited by the host. Its deterministic selector is
 covered by unit tests, and the missing network repeat remains `null` in the

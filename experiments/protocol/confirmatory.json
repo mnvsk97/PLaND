@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "protocol": "CONFIRMATORY_PROTOCOL.md",
+  "protocol": "confirmatory.md",
   "created_before_held_out_evaluation": true,
   "model": "qwen3:14b",
   "model_digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8",

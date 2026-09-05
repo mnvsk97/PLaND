@@ -21,6 +21,15 @@ EVIDENCE_MANIFESTS = (
     "experiments/cfpb-text-classification/results/quality-first-validation-20260903/manifest.json",
     "experiments/spamassassin-email-classification/results/quality-first-validation-20260903/manifest.json",
 )
+PAPER_FILES = {
+    "paper/PLaND.md": ("b509c020ca23066129871c6e212897a58dabddabb03be60f6649c5738cde1078", 25963),
+    "paper/PLaND.pdf": ("d69795b5d282d1ecdfa2a2d73b13a9468e7f47a18f7eb6f0307cbfbf1c8cde63", 223877),
+    "paper/PLaND.docx": ("3947660ccb6a4e64338992f744ca13a5902f82bf7ab91f3098363b9271a7834d", 888423),
+    "paper/PLaND.html": ("1816e6429cffeda1f61ea8cf561b2ff87ae677f7886217f3f1b81ab10ff77c02", 1584436),
+    "paper/figures/architecture.svg": ("ef074c760719982e9b0279adcbab0f8d65b050ca4a8998b4e92253c687be844c", 4005),
+    "paper/figures/evolution-loop.svg": ("84311cb74abd9a27dfb89880247e8a114fc443159263796b9266fa70f70897f6", 5506),
+    "paper/figures/evolution-path.svg": ("1be052aa9d5fd73309a1914fb73b2259e839bc01d05a04ede88c8802d4827b88", 4462),
+}
 
 
 def sha256(path: Path) -> str:
@@ -51,31 +60,14 @@ def check_file_list_manifest(relative: str) -> int:
     return len(entries)
 
 
-def check_paper_manifest() -> int:
-    manifest = ROOT / "output/paper/artifact-manifest.json"
-    payload = json.loads(manifest.read_text(encoding="utf-8"))
-    for name, entry in payload["artifacts"].items():
-        check_file(manifest.parent / name, entry["sha256"], entry.get("bytes"))
-    return len(payload["artifacts"])
-
-
-def check_arxiv_manifest() -> int:
-    manifest = ROOT / "output/arxiv/artifact-manifest.json"
-    payload = json.loads(manifest.read_text(encoding="utf-8"))
-    count = 0
-    for key in ("source_archive", "compiled_preview"):
-        entry = payload[key]
-        check_file(manifest.parent / entry["path"], entry["sha256"], entry.get("bytes"))
-        count += 1
-    source_dir = manifest.parent / "PLAND_ARXIV_SOURCE"
-    for name, expected_hash in payload["source_files"].items():
-        check_file(source_dir / name, expected_hash)
-        count += 1
-    return count
+def check_paper_files() -> int:
+    for relative, (expected_hash, expected_bytes) in PAPER_FILES.items():
+        check_file(ROOT / relative, expected_hash, expected_bytes)
+    return len(PAPER_FILES)
 
 
 def test_directories() -> list[Path]:
-    roots = (ROOT / "datasets", ROOT / "experiments", ROOT / "paper", ROOT / "skills")
+    roots = (ROOT / "datasets", ROOT / "experiments", ROOT / "skills")
     return sorted({path.parent for root in roots for path in root.rglob("test_*.py")})
 
 
@@ -95,27 +87,12 @@ def run_tests() -> int:
 def main() -> int:
     test_directories = run_tests()
     evidence_files = sum(check_file_list_manifest(path) for path in EVIDENCE_MANIFESTS)
-    artifact_files = check_paper_manifest() + check_arxiv_manifest()
-
-    source = ROOT / "paper/PAPER.md"
-    generated = ROOT / "output/paper/PLAND_PAPER.md"
-    if source.read_bytes() != generated.read_bytes():
-        raise RuntimeError("output/paper/PLAND_PAPER.md differs from paper/PAPER.md")
-
-    subprocess.run(
-        [sys.executable, str(ROOT / "paper/generate_tables.py"), "--check"],
-        cwd=ROOT,
-        check=True,
-    )
-
-    final_builder = ROOT / "paper/build_final_submission.py"
-    if final_builder.is_file():
-        subprocess.run([sys.executable, str(final_builder), "--check"], cwd=ROOT, check=True)
+    paper_files = check_paper_files()
 
     print(
         f"PASS: {test_directories} test directories; "
         f"{len(EVIDENCE_MANIFESTS)} evidence manifests ({evidence_files} files); "
-        f"paper/arXiv manifests ({artifact_files} files)",
+        f"{paper_files} paper files",
         flush=True,
     )
     return 0

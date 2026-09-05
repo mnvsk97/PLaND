@@ -4,19 +4,6 @@ __pycache__/
 *.egg-info/
 .venv/
 tmp/
-/output/*
-!/output/paper/
-/output/paper/*
-!/output/paper/PLAND_PAPER.md
-!/output/paper/PLAND_PAPER.pdf
-!/output/paper/PLAND_PAPER.docx
-!/output/paper/PLAND_PAPER.html
-!/output/paper/PLAND_SUBMISSION_READY_FINAL.pdf
-!/output/paper/PLAND_SJET_COVER_LETTER.docx
-!/output/paper/PLAND_SJET_COVER_LETTER.pdf
-!/output/paper/artifact-manifest.json
-!/output/arxiv/
-!/output/arxiv/**
 
 # Local Codex workspace placeholders, not project source.
 /AGENTS.md

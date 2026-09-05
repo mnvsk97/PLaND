@@ -47,7 +47,8 @@ Use 5,000 resamples with seed `20260902`.
 Original confirmatory runs were sequential. The optimized replication uses two
 parallel requests, so its wall time measures throughput and is not directly
 comparable. Local Ollama has no per-call service charge; tokens and calls remain
-portable expense proxies. Setup and commands are in [`../README.md`](../README.md).
+portable expense proxies. Setup and commands are in the repository
+[`README.md`](../../README.md).
 
 ## Three-run variance extension
 
@@ -63,4 +64,4 @@ not pooled. Three runs support descriptive means, sample standard deviations,
 ranges, case-level agreement, and pairwise disagreement, but not a significance
 or general-model claim. The exact commands, environment, hashes, checkpoints,
 logs, raw safe result payloads, comparisons, and manifests are mapped in
-[`variance-study/README.md`](variance-study/README.md).
+[`variance-study/README.md`](../variance-study/README.md).

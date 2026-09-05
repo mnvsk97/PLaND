@@ -4,14 +4,9 @@ version = "0.1.0"
 description = "Locked environment for reproducing and verifying the PLaND repository"
 requires-python = ">=3.11,<3.15"
 dependencies = [
-  "cairosvg>=2.7,<3",
   "deepagents==0.7.12",
   "langchain-ollama==1.1.0",
   "liteparse==2.14.3",
-  "pillow>=10,<13",
-  "pypdf==6.10.0",
-  "python-docx>=1.1,<2",
-  "reportlab>=4,<5",
 ]
 
 [build-system]
