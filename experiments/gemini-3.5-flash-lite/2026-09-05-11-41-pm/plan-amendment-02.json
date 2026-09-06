@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "study_id": "gemini-3.5-flash-lite-2026-09-05-11-41-pm-amendment-02",
+  "protocol": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/protocol-amendment-02.md",
+  "base_plan": {
+    "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/plan-amendment-01.json",
+    "sha256": "80aca6f662d0310092171b7adf052c841033cc59fcb962401552e049a268df73"
+  },
+  "datasets": [
+    "spamassassin"
+  ],
+  "splits": {
+    "development": 500,
+    "selection": 1000,
+    "final_test": 500
+  },
+  "model": {
+    "name": "google/gemini-3.5-flash-lite",
+    "identity": {
+      "kind": "hosted",
+      "provider": "openrouter",
+      "endpoint": "google-ai-studio",
+      "model": "google/gemini-3.5-flash-lite",
+      "configuration_sha256": "d703b8e16a3dc88aa1ac6a47171414c3873ee8f064db5bb911c5d67252fd9c4d",
+      "weight_digest": null
+    }
+  },
+  "limits": {
+    "baseline_attempts": 10,
+    "candidate_attempts": 10
+  },
+  "acceptance": {
+    "quality_metric": "accuracy",
+    "quality_floor": 0.8,
+    "noninferiority_margin": 0.02,
+    "minimum_token_reduction": 0.05,
+    "bootstrap_samples": 5000,
+    "bootstrap_seed": 20260902,
+    "token_interval_lower_bound_must_be_positive": true,
+    "execution_errors_allowed": 0
+  },
+  "seeds": {
+    "dataset": 20260902,
+    "inference": 20260902,
+    "repeats": [
+      20260903,
+      20260904,
+      20260905
+    ]
+  },
+  "runtime": {
+    "backend": "deepagent",
+    "deepagents_version": "0.7.12",
+    "transport": "openai-compatible-chat-completions",
+    "reasoning_effort": "low",
+    "workers": 8,
+    "max_completion_tokens": 1024,
+    "request_timeout_seconds": 300,
+    "temperature": null,
+    "stream": false,
+    "max_retries": 0,
+    "allow_provider_fallbacks": false,
+    "require_parameters": true,
+    "rate_limit_policy": {
+      "retry_until_available": true,
+      "honor_retry_after": true,
+      "fallback_backoff": "exponential_with_case_jitter",
+      "maximum_delay_seconds": 300,
+      "rate_limits_are_run_failures": false
+    }
+  },
+  "repeats": {
+    "paired_executions": 3,
+    "arms": [
+      "baseline",
+      "hybrid"
+    ],
+    "splits": [
+      "development",
+      "selection",
+      "final_test"
+    ],
+    "planned_case_evaluations_per_dataset": 12000,
+    "final_test_requires_selection_accept": true
+  },
+  "candidate_policy": {
+    "development_attempt_limit": 10,
+    "stop_at_first_ready": true,
+    "selection_candidates": 1,
+    "development_inputs_only": true,
+    "preserve_rejected_attempts": true,
+    "selection_reject_is_terminal": true,
+    "exhausted_outcome": "candidate_nonviable",
+    "final_test_requires_selection_accept": true
+  },
+  "sampling": {
+    "spamassassin": {
+      "mode": "balanced_new_study_splits",
+      "base_dataset": "tmp/gemini-3.5-flash-lite/2026-09-06-12-59-am/datasets/spamassassin",
+      "reserve_dataset": "tmp/gemini-3.5-flash-lite/2026-09-06-12-59-am/datasets/spamassassin-reserve",
+      "replacement_policy": "next seeded eligible same-label case after a terminal PROHIBITED_CONTENT provider block",
+      "blocked_case_ids": [
+        "mail-3125dcdc7726abc1c128",
+        "mail-449598896e25273135c3"
+      ],
+      "selection_size": 1000,
+      "selection_per_label": 500,
+      "restart_all_selection_pairs_after_replacement": true,
+      "screen_new_replacement_before_selection": true,
+      "preserve_superseded_partial_runs": true
+    },
+    "exclude_every_previously_opened_id_and_normalized_content": true
+  },
+  "paper": {
+    "source": "paper/PLaND.md",
+    "claim_boundary": "paper/PLaND.pdf"
+  },
+  "order": [
+    "spamassassin"
+  ],
+  "final_release": "selection accept only",
+  "amendment": {
+    "number": 2,
+    "authorized_on": "2026-09-06",
+    "user_instruction": "For every blocked content, add another one that passes through; do not decrease the dataset size.",
+    "effective_after_commit": "dd136cd3",
+    "compatibility_screen": "experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/results/selection-provider-block-screen.json",
+    "unchanged": [
+      "development cases and evidence",
+      "final-test cases",
+      "baseline SOP",
+      "candidate-01 package",
+      "model and endpoint",
+      "runtime and workers",
+      "repeat seeds and arm order",
+      "acceptance gates"
+    ]
+  }
+}
