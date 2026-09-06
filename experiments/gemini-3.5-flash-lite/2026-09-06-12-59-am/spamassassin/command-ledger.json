@@ -1,0 +1,961 @@
+{
+  "schema_version": 1,
+  "events": [
+    {
+      "name": "prepare-unopened-spamassassin-reserve-01",
+      "stage": "prepare",
+      "attempt": 1,
+      "status": "complete",
+      "command": [
+        "reproduce/.venv/bin/python",
+        "datasets/scripts/prepare_data.py",
+        "spamassassin",
+        "--output",
+        "tmp/gemini-3.5-flash-lite/2026-09-06-12-59-am/datasets/spamassassin-reserve",
+        "--source",
+        "tmp/enterprise-datasets/spamassassin/sources",
+        "--labels-from",
+        "tmp/confirmatory-datasets/spamassassin/selection.json",
+        "--exclude-dataset",
+        "tmp/gemini-3.5-flash-lite/2026-09-05-11-41-pm/datasets/spamassassin-prior-opened",
+        "--exclude-dataset",
+        "tmp/gemini-3.5-flash-lite/2026-09-05-11-41-pm/datasets/spamassassin",
+        "--seed",
+        "20260902",
+        "--development-cases",
+        "20",
+        "--validation-cases",
+        "40",
+        "--test-cases",
+        "20"
+      ],
+      "cwd": "/Users/saikrishna/dev/deterministic-skills",
+      "started_at": "2026-09-06T08:00:43.734848+00:00",
+      "plan_sha256": "80aca6f662d0310092171b7adf052c841033cc59fcb962401552e049a268df73",
+      "protocol_sha256": "073b9fe271030f6d32a40cb69c1f12e2b719691f1cd5cd2f09bde60eb6e2b656",
+      "inputs": [
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/tmp/enterprise-datasets/spamassassin/sources",
+          "kind": "directory",
+          "files": 4,
+          "bytes": 5885445,
+          "sha256": "090062d6e0f209c6defc1325224ed116fa119017625344e08da31183d303dd03"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/datasets/sources.lock.json",
+          "kind": "file",
+          "bytes": 3608,
+          "sha256": "146a4f2ddaaf3fd9c3df965ca6eab085ec53ffb2eb3df649be2e2c6e15a3bab8"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/datasets/scripts/prepare_data.py",
+          "kind": "file",
+          "bytes": 27735,
+          "sha256": "f665a0c547be5ecc21a064eb00209301264ff4b3068c649fdba7ddd8506da9b7"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/tmp/confirmatory-datasets/spamassassin/selection.json",
+          "kind": "file",
+          "bytes": 94193,
+          "sha256": "1d05472325e48b574b9d1c8d9e2233e5976bbbe08ce58822d7d12736481b91bb"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/tmp/gemini-3.5-flash-lite/2026-09-05-11-41-pm/datasets/spamassassin-prior-opened",
+          "kind": "directory",
+          "files": 1,
+          "bytes": 261163,
+          "sha256": "6b104cbbd0b2b58b45dd8ec73433cb6750fa87189bf18a0d9bf5e79c796c3599"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/tmp/gemini-3.5-flash-lite/2026-09-05-11-41-pm/datasets/spamassassin",
+          "kind": "directory",
+          "files": 2004,
+          "bytes": 13841517,
+          "sha256": "f15eaae3abb801ae80705d4c3e6c53ae259baf0207a6c6f97109b57dc7c5db8d"
+        }
+      ],
+      "declared_outputs": [
+        "/Users/saikrishna/dev/deterministic-skills/tmp/gemini-3.5-flash-lite/2026-09-06-12-59-am/datasets/spamassassin-reserve"
+      ],
+      "stdout": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/logs/prepare-prepare-unopened-spamassassin-reserve-01-attempt-1.stdout.log",
+      "stderr": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/logs/prepare-prepare-unopened-spamassassin-reserve-01-attempt-1.stderr.log",
+      "finished_at": "2026-09-06T08:00:47.871320+00:00",
+      "exit_code": 0,
+      "outputs": [
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/tmp/gemini-3.5-flash-lite/2026-09-06-12-59-am/datasets/spamassassin-reserve",
+          "kind": "directory",
+          "files": 83,
+          "bytes": 793723,
+          "sha256": "7c68151326f4bce49d14273356791884f713a00be5b64ce4f4ea843dab93f8eb"
+        }
+      ]
+    },
+    {
+      "name": "build-amended-spamassassin-dataset-01",
+      "stage": "prepare",
+      "attempt": 1,
+      "status": "complete",
+      "command": [
+        "reproduce/.venv/bin/python",
+        "experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/operations/build_amended_dataset.py",
+        "--base-dataset",
+        "tmp/gemini-3.5-flash-lite/2026-09-05-11-41-pm/datasets/spamassassin",
+        "--reserve-dataset",
+        "tmp/gemini-3.5-flash-lite/2026-09-06-12-59-am/datasets/spamassassin-reserve",
+        "--blocked-case-id",
+        "mail-3125dcdc7726abc1c128",
+        "--output",
+        "tmp/gemini-3.5-flash-lite/2026-09-06-12-59-am/datasets/spamassassin"
+      ],
+      "cwd": "/Users/saikrishna/dev/deterministic-skills",
+      "started_at": "2026-09-06T08:00:56.655361+00:00",
+      "plan_sha256": "80aca6f662d0310092171b7adf052c841033cc59fcb962401552e049a268df73",
+      "protocol_sha256": "073b9fe271030f6d32a40cb69c1f12e2b719691f1cd5cd2f09bde60eb6e2b656",
+      "inputs": [
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/plan-amendment-01.json",
+          "kind": "file",
+          "bytes": 3945,
+          "sha256": "80aca6f662d0310092171b7adf052c841033cc59fcb962401552e049a268df73"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/protocol-amendment-01.md",
+          "kind": "file",
+          "bytes": 1346,
+          "sha256": "073b9fe271030f6d32a40cb69c1f12e2b719691f1cd5cd2f09bde60eb6e2b656"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/operations/build_amended_dataset.py",
+          "kind": "file",
+          "bytes": 5853,
+          "sha256": "59928c501770dfb2fb049cfc3c284071775f4a656188e0f47fe9fd790d921c60"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/tmp/gemini-3.5-flash-lite/2026-09-05-11-41-pm/datasets/spamassassin",
+          "kind": "directory",
+          "files": 2004,
+          "bytes": 13841517,
+          "sha256": "f15eaae3abb801ae80705d4c3e6c53ae259baf0207a6c6f97109b57dc7c5db8d"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/tmp/gemini-3.5-flash-lite/2026-09-06-12-59-am/datasets/spamassassin-reserve",
+          "kind": "directory",
+          "files": 83,
+          "bytes": 793723,
+          "sha256": "7c68151326f4bce49d14273356791884f713a00be5b64ce4f4ea843dab93f8eb"
+        }
+      ],
+      "declared_outputs": [
+        "/Users/saikrishna/dev/deterministic-skills/tmp/gemini-3.5-flash-lite/2026-09-06-12-59-am/datasets/spamassassin"
+      ],
+      "stdout": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/logs/prepare-build-amended-spamassassin-dataset-01-attempt-1.stdout.log",
+      "stderr": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/logs/prepare-build-amended-spamassassin-dataset-01-attempt-1.stderr.log",
+      "finished_at": "2026-09-06T08:00:57.118321+00:00",
+      "exit_code": 0,
+      "outputs": [
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/tmp/gemini-3.5-flash-lite/2026-09-06-12-59-am/datasets/spamassassin",
+          "kind": "directory",
+          "files": 2006,
+          "bytes": 13847824,
+          "sha256": "f90f4f92bf5378c25c751603ca967eff0d8567b0100af38ee67e929d908710dd"
+        }
+      ]
+    },
+    {
+      "name": "audit-amended-spamassassin-dataset-01",
+      "stage": "prepare",
+      "attempt": 1,
+      "status": "complete",
+      "command": [
+        "reproduce/.venv/bin/python",
+        "experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/operations/audit_amended_dataset.py",
+        "--base",
+        "tmp/gemini-3.5-flash-lite/2026-09-05-11-41-pm/datasets/spamassassin",
+        "--amended",
+        "tmp/gemini-3.5-flash-lite/2026-09-06-12-59-am/datasets/spamassassin",
+        "--prior-opened",
+        "tmp/gemini-3.5-flash-lite/2026-09-05-11-41-pm/datasets/spamassassin-prior-opened",
+        "--blocked-case-id",
+        "mail-3125dcdc7726abc1c128",
+        "--output",
+        "experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/results/dataset-amendment-audit.json"
+      ],
+      "cwd": "/Users/saikrishna/dev/deterministic-skills",
+      "started_at": "2026-09-06T08:01:30.216128+00:00",
+      "plan_sha256": "80aca6f662d0310092171b7adf052c841033cc59fcb962401552e049a268df73",
+      "protocol_sha256": "073b9fe271030f6d32a40cb69c1f12e2b719691f1cd5cd2f09bde60eb6e2b656",
+      "inputs": [
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/operations/audit_amended_dataset.py",
+          "kind": "file",
+          "bytes": 4163,
+          "sha256": "6c02011a6b66e0b31191ae7e79830b974930ba8e2615fe5f3e743b01e477972c"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/tmp/gemini-3.5-flash-lite/2026-09-05-11-41-pm/datasets/spamassassin",
+          "kind": "directory",
+          "files": 2004,
+          "bytes": 13841517,
+          "sha256": "f15eaae3abb801ae80705d4c3e6c53ae259baf0207a6c6f97109b57dc7c5db8d"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/tmp/gemini-3.5-flash-lite/2026-09-06-12-59-am/datasets/spamassassin",
+          "kind": "directory",
+          "files": 2006,
+          "bytes": 13847824,
+          "sha256": "f90f4f92bf5378c25c751603ca967eff0d8567b0100af38ee67e929d908710dd"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/tmp/gemini-3.5-flash-lite/2026-09-05-11-41-pm/datasets/spamassassin-prior-opened",
+          "kind": "directory",
+          "files": 1,
+          "bytes": 261163,
+          "sha256": "6b104cbbd0b2b58b45dd8ec73433cb6750fa87189bf18a0d9bf5e79c796c3599"
+        }
+      ],
+      "declared_outputs": [
+        "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/results/dataset-amendment-audit.json"
+      ],
+      "stdout": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/logs/prepare-audit-amended-spamassassin-dataset-01-attempt-1.stdout.log",
+      "stderr": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/logs/prepare-audit-amended-spamassassin-dataset-01-attempt-1.stderr.log",
+      "finished_at": "2026-09-06T08:01:30.442788+00:00",
+      "exit_code": 0,
+      "outputs": [
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/results/dataset-amendment-audit.json",
+          "kind": "file",
+          "bytes": 952,
+          "sha256": "4125a78543a9ae9a00735503b4177c61471119344848711790c65955d1f40149"
+        }
+      ]
+    },
+    {
+      "name": "carry-forward-baseline-package",
+      "stage": "prepare",
+      "attempt": 1,
+      "status": "complete",
+      "command": [
+        "reproduce/.venv/bin/python",
+        "experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/operations/carry_forward_frozen_packages.py",
+        "--source",
+        "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/spamassassin/packages/baseline-01",
+        "--output",
+        "experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/packages/baseline-01"
+      ],
+      "cwd": "/Users/saikrishna/dev/deterministic-skills",
+      "started_at": "2026-09-06T08:02:05.998915+00:00",
+      "plan_sha256": "80aca6f662d0310092171b7adf052c841033cc59fcb962401552e049a268df73",
+      "protocol_sha256": "073b9fe271030f6d32a40cb69c1f12e2b719691f1cd5cd2f09bde60eb6e2b656",
+      "inputs": [
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/spamassassin/packages/baseline-01",
+          "kind": "directory",
+          "files": 9,
+          "bytes": 349713,
+          "sha256": "5e605ccae21ed2f15420703fc8bf26344225c8465110a4a79f942c9ba3be9097"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/operations/carry_forward_frozen_packages.py",
+          "kind": "file",
+          "bytes": 1288,
+          "sha256": "4b179804b4aa29bd303d5aedd1f710ac6d5f83ca5c2aff262ecd966a615bfc63"
+        }
+      ],
+      "declared_outputs": [
+        "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/packages/baseline-01"
+      ],
+      "stdout": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/logs/prepare-carry-forward-baseline-package-attempt-1.stdout.log",
+      "stderr": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/logs/prepare-carry-forward-baseline-package-attempt-1.stderr.log",
+      "finished_at": "2026-09-06T08:02:06.037244+00:00",
+      "exit_code": 0,
+      "outputs": [
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/packages/baseline-01",
+          "kind": "directory",
+          "files": 9,
+          "bytes": 349713,
+          "sha256": "5e605ccae21ed2f15420703fc8bf26344225c8465110a4a79f942c9ba3be9097"
+        }
+      ]
+    },
+    {
+      "name": "carry-forward-candidate-package",
+      "stage": "prepare",
+      "attempt": 1,
+      "status": "complete",
+      "command": [
+        "reproduce/.venv/bin/python",
+        "experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/operations/carry_forward_frozen_packages.py",
+        "--source",
+        "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/spamassassin/packages/candidate-01",
+        "--output",
+        "experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/packages/candidate-01"
+      ],
+      "cwd": "/Users/saikrishna/dev/deterministic-skills",
+      "started_at": "2026-09-06T08:02:13.746003+00:00",
+      "plan_sha256": "80aca6f662d0310092171b7adf052c841033cc59fcb962401552e049a268df73",
+      "protocol_sha256": "073b9fe271030f6d32a40cb69c1f12e2b719691f1cd5cd2f09bde60eb6e2b656",
+      "inputs": [
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/spamassassin/packages/candidate-01",
+          "kind": "directory",
+          "files": 11,
+          "bytes": 351471,
+          "sha256": "49caf50bf7ca1bd6b14a32becfbb82a1d56d9ffcb655333ae857ef86f670712e"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/operations/carry_forward_frozen_packages.py",
+          "kind": "file",
+          "bytes": 1288,
+          "sha256": "4b179804b4aa29bd303d5aedd1f710ac6d5f83ca5c2aff262ecd966a615bfc63"
+        }
+      ],
+      "declared_outputs": [
+        "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/packages/candidate-01"
+      ],
+      "stdout": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/logs/prepare-carry-forward-candidate-package-attempt-1.stdout.log",
+      "stderr": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/logs/prepare-carry-forward-candidate-package-attempt-1.stderr.log",
+      "finished_at": "2026-09-06T08:02:13.786203+00:00",
+      "exit_code": 0,
+      "outputs": [
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/packages/candidate-01",
+          "kind": "directory",
+          "files": 11,
+          "bytes": 351471,
+          "sha256": "49caf50bf7ca1bd6b14a32becfbb82a1d56d9ffcb655333ae857ef86f670712e"
+        }
+      ]
+    },
+    {
+      "name": "audit-development-carry-forward",
+      "stage": "prepare",
+      "attempt": 1,
+      "status": "complete",
+      "command": [
+        "reproduce/.venv/bin/python",
+        "experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/operations/audit_development_carry_forward.py",
+        "--base-dataset",
+        "tmp/gemini-3.5-flash-lite/2026-09-05-11-41-pm/datasets/spamassassin",
+        "--amended-dataset",
+        "tmp/gemini-3.5-flash-lite/2026-09-06-12-59-am/datasets/spamassassin",
+        "--prior-run",
+        "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/spamassassin",
+        "--current-run",
+        "experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin",
+        "--output",
+        "experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/results/development-carry-forward-audit.json"
+      ],
+      "cwd": "/Users/saikrishna/dev/deterministic-skills",
+      "started_at": "2026-09-06T08:02:26.060475+00:00",
+      "plan_sha256": "80aca6f662d0310092171b7adf052c841033cc59fcb962401552e049a268df73",
+      "protocol_sha256": "073b9fe271030f6d32a40cb69c1f12e2b719691f1cd5cd2f09bde60eb6e2b656",
+      "inputs": [
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/tmp/gemini-3.5-flash-lite/2026-09-05-11-41-pm/datasets/spamassassin",
+          "kind": "directory",
+          "files": 2004,
+          "bytes": 13841517,
+          "sha256": "f15eaae3abb801ae80705d4c3e6c53ae259baf0207a6c6f97109b57dc7c5db8d"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/tmp/gemini-3.5-flash-lite/2026-09-06-12-59-am/datasets/spamassassin",
+          "kind": "directory",
+          "files": 2006,
+          "bytes": 13847824,
+          "sha256": "f90f4f92bf5378c25c751603ca967eff0d8567b0100af38ee67e929d908710dd"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/spamassassin",
+          "kind": "directory",
+          "files": 5512,
+          "bytes": 55105131,
+          "sha256": "8ab57349504fcc9336cf6708d7b32d1c3eeffb77308f0777f485905480e2ae44"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/packages",
+          "kind": "directory",
+          "files": 20,
+          "bytes": 701184,
+          "sha256": "eb2d3f9415c01d4422b6754e92c37a4bb915f35640f6d5b3cf009705233e7331"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/operations/audit_development_carry_forward.py",
+          "kind": "file",
+          "bytes": 3631,
+          "sha256": "e174dec0c301b15983ef82111ad72d096a45f1ba2ab52ba767a611fabe6bae80"
+        }
+      ],
+      "declared_outputs": [
+        "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/results/development-carry-forward-audit.json"
+      ],
+      "stdout": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/logs/prepare-audit-development-carry-forward-attempt-1.stdout.log",
+      "stderr": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/logs/prepare-audit-development-carry-forward-attempt-1.stderr.log",
+      "finished_at": "2026-09-06T08:02:26.169756+00:00",
+      "exit_code": 0,
+      "outputs": [
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/results/development-carry-forward-audit.json",
+          "kind": "file",
+          "bytes": 2090,
+          "sha256": "1b809b2e2900cca7a521ac37ac5783b189815a4116e056e05ca9c43a974c9a1b"
+        }
+      ]
+    },
+    {
+      "name": "verify-carried-baseline-readiness",
+      "stage": "baseline-development",
+      "attempt": 1,
+      "status": "complete",
+      "command": [
+        "reproduce/.venv/bin/python",
+        "experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/operations/audit_development_carry_forward.py",
+        "--base-dataset",
+        "tmp/gemini-3.5-flash-lite/2026-09-05-11-41-pm/datasets/spamassassin",
+        "--amended-dataset",
+        "tmp/gemini-3.5-flash-lite/2026-09-06-12-59-am/datasets/spamassassin",
+        "--prior-run",
+        "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/spamassassin",
+        "--current-run",
+        "experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin",
+        "--output",
+        "experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/results/baseline-carry-forward-decision.json"
+      ],
+      "cwd": "/Users/saikrishna/dev/deterministic-skills",
+      "started_at": "2026-09-06T08:02:49.096214+00:00",
+      "plan_sha256": "80aca6f662d0310092171b7adf052c841033cc59fcb962401552e049a268df73",
+      "protocol_sha256": "073b9fe271030f6d32a40cb69c1f12e2b719691f1cd5cd2f09bde60eb6e2b656",
+      "inputs": [
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/tmp/gemini-3.5-flash-lite/2026-09-05-11-41-pm/datasets/spamassassin",
+          "kind": "directory",
+          "files": 2004,
+          "bytes": 13841517,
+          "sha256": "f15eaae3abb801ae80705d4c3e6c53ae259baf0207a6c6f97109b57dc7c5db8d"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/tmp/gemini-3.5-flash-lite/2026-09-06-12-59-am/datasets/spamassassin",
+          "kind": "directory",
+          "files": 2006,
+          "bytes": 13847824,
+          "sha256": "f90f4f92bf5378c25c751603ca967eff0d8567b0100af38ee67e929d908710dd"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/spamassassin",
+          "kind": "directory",
+          "files": 5512,
+          "bytes": 55105131,
+          "sha256": "8ab57349504fcc9336cf6708d7b32d1c3eeffb77308f0777f485905480e2ae44"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/packages",
+          "kind": "directory",
+          "files": 20,
+          "bytes": 701184,
+          "sha256": "eb2d3f9415c01d4422b6754e92c37a4bb915f35640f6d5b3cf009705233e7331"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/operations/audit_development_carry_forward.py",
+          "kind": "file",
+          "bytes": 3631,
+          "sha256": "e174dec0c301b15983ef82111ad72d096a45f1ba2ab52ba767a611fabe6bae80"
+        }
+      ],
+      "declared_outputs": [
+        "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/results/baseline-carry-forward-decision.json"
+      ],
+      "stdout": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/logs/baseline-development-verify-carried-baseline-readiness-attempt-1.stdout.log",
+      "stderr": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/logs/baseline-development-verify-carried-baseline-readiness-attempt-1.stderr.log",
+      "finished_at": "2026-09-06T08:02:49.207006+00:00",
+      "exit_code": 0,
+      "outputs": [
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/results/baseline-carry-forward-decision.json",
+          "kind": "file",
+          "bytes": 2090,
+          "sha256": "1b809b2e2900cca7a521ac37ac5783b189815a4116e056e05ca9c43a974c9a1b"
+        }
+      ]
+    },
+    {
+      "name": "verify-carried-candidate-readiness",
+      "stage": "candidate-development",
+      "attempt": 1,
+      "status": "complete",
+      "command": [
+        "reproduce/.venv/bin/python",
+        "experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/operations/audit_development_carry_forward.py",
+        "--base-dataset",
+        "tmp/gemini-3.5-flash-lite/2026-09-05-11-41-pm/datasets/spamassassin",
+        "--amended-dataset",
+        "tmp/gemini-3.5-flash-lite/2026-09-06-12-59-am/datasets/spamassassin",
+        "--prior-run",
+        "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/spamassassin",
+        "--current-run",
+        "experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin",
+        "--output",
+        "experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/results/candidate-carry-forward-decision.json"
+      ],
+      "cwd": "/Users/saikrishna/dev/deterministic-skills",
+      "started_at": "2026-09-06T08:03:05.182195+00:00",
+      "plan_sha256": "80aca6f662d0310092171b7adf052c841033cc59fcb962401552e049a268df73",
+      "protocol_sha256": "073b9fe271030f6d32a40cb69c1f12e2b719691f1cd5cd2f09bde60eb6e2b656",
+      "inputs": [
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/tmp/gemini-3.5-flash-lite/2026-09-05-11-41-pm/datasets/spamassassin",
+          "kind": "directory",
+          "files": 2004,
+          "bytes": 13841517,
+          "sha256": "f15eaae3abb801ae80705d4c3e6c53ae259baf0207a6c6f97109b57dc7c5db8d"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/tmp/gemini-3.5-flash-lite/2026-09-06-12-59-am/datasets/spamassassin",
+          "kind": "directory",
+          "files": 2006,
+          "bytes": 13847824,
+          "sha256": "f90f4f92bf5378c25c751603ca967eff0d8567b0100af38ee67e929d908710dd"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/spamassassin",
+          "kind": "directory",
+          "files": 5512,
+          "bytes": 55105131,
+          "sha256": "8ab57349504fcc9336cf6708d7b32d1c3eeffb77308f0777f485905480e2ae44"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/packages",
+          "kind": "directory",
+          "files": 20,
+          "bytes": 701184,
+          "sha256": "eb2d3f9415c01d4422b6754e92c37a4bb915f35640f6d5b3cf009705233e7331"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/operations/audit_development_carry_forward.py",
+          "kind": "file",
+          "bytes": 3631,
+          "sha256": "e174dec0c301b15983ef82111ad72d096a45f1ba2ab52ba767a611fabe6bae80"
+        }
+      ],
+      "declared_outputs": [
+        "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/results/candidate-carry-forward-decision.json"
+      ],
+      "stdout": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/logs/candidate-development-verify-carried-candidate-readiness-attempt-1.stdout.log",
+      "stderr": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/logs/candidate-development-verify-carried-candidate-readiness-attempt-1.stderr.log",
+      "finished_at": "2026-09-06T08:03:05.290822+00:00",
+      "exit_code": 0,
+      "outputs": [
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/results/candidate-carry-forward-decision.json",
+          "kind": "file",
+          "bytes": 2090,
+          "sha256": "1b809b2e2900cca7a521ac37ac5783b189815a4116e056e05ca9c43a974c9a1b"
+        }
+      ]
+    },
+    {
+      "name": "selection-repeat-20260903-baseline-preflight",
+      "stage": "selection",
+      "attempt": 1,
+      "status": "complete",
+      "command": [
+        "/Users/saikrishna/dev/deterministic-skills/reproduce/.venv/bin/python",
+        "/Users/saikrishna/dev/deterministic-skills/experiments/collection/scripts/run_experiment.py",
+        "--dataset",
+        "/Users/saikrishna/dev/deterministic-skills/tmp/gemini-3.5-flash-lite/2026-09-06-12-59-am/datasets/spamassassin",
+        "--split",
+        "validation",
+        "--system-prompt",
+        "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/packages/baseline-01/instructions.md",
+        "--sop",
+        "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/packages/baseline-01/skills/spamassassin-classification/SKILL.md",
+        "--max-completion-tokens",
+        "1024",
+        "--request-timeout",
+        "300",
+        "--seed",
+        "20260903",
+        "--experiment-id",
+        "gemini-3.5-flash-lite-2026-09-05-11-41-pm-amendment-01-spamassassin",
+        "--candidate-id",
+        "baseline",
+        "--attempt",
+        "1",
+        "--workers",
+        "8",
+        "--run-id",
+        "selection-repeat-20260903-baseline-preflight",
+        "--preflight-only",
+        "--output",
+        "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/results/selection-repeat-20260903-baseline-preflight.json"
+      ],
+      "cwd": "/Users/saikrishna/dev/deterministic-skills",
+      "started_at": "2026-09-06T08:04:21.540327+00:00",
+      "plan_sha256": "80aca6f662d0310092171b7adf052c841033cc59fcb962401552e049a268df73",
+      "protocol_sha256": "073b9fe271030f6d32a40cb69c1f12e2b719691f1cd5cd2f09bde60eb6e2b656",
+      "inputs": [
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/tmp/gemini-3.5-flash-lite/2026-09-06-12-59-am/datasets/spamassassin",
+          "kind": "directory",
+          "files": 2006,
+          "bytes": 13847824,
+          "sha256": "f90f4f92bf5378c25c751603ca967eff0d8567b0100af38ee67e929d908710dd"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/packages/baseline-01",
+          "kind": "directory",
+          "files": 9,
+          "bytes": 349713,
+          "sha256": "5e605ccae21ed2f15420703fc8bf26344225c8465110a4a79f942c9ba3be9097"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/packages/baseline-01",
+          "kind": "directory",
+          "files": 9,
+          "bytes": 349713,
+          "sha256": "5e605ccae21ed2f15420703fc8bf26344225c8465110a4a79f942c9ba3be9097"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/collection/scripts/run_experiment.py",
+          "kind": "file",
+          "bytes": 27074,
+          "sha256": "03f83e70d463b7903d93fd0e0019aec14535f6817b1fce0ad19dc7f585cdab84"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/collection/scripts/hosted_execution.py",
+          "kind": "file",
+          "bytes": 9803,
+          "sha256": "ee6247ed7f66d4df342117fbc379e0104c5a65a454b5d095a1947bfbbaeca9ad"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/collection/scripts/deepagent_execution.py",
+          "kind": "file",
+          "bytes": 3334,
+          "sha256": "cd068521cb5aa11fe09a30fd0f8be3a002205885274d4488eb175bd1d60e24b9"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/reproduce/uv.lock",
+          "kind": "file",
+          "bytes": 368803,
+          "sha256": "2ad625654eef9a2cacbea1f6bee0ec452066e12f1e6ee96b93cfd3655bcfdbf7"
+        }
+      ],
+      "declared_outputs": [
+        "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/results/selection-repeat-20260903-baseline-preflight.json"
+      ],
+      "stdout": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/logs/selection-selection-repeat-20260903-baseline-preflight-attempt-1.stdout.log",
+      "stderr": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/logs/selection-selection-repeat-20260903-baseline-preflight-attempt-1.stderr.log",
+      "finished_at": "2026-09-06T08:04:21.682522+00:00",
+      "exit_code": 0,
+      "outputs": [
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/results/selection-repeat-20260903-baseline-preflight.json",
+          "kind": "file",
+          "bytes": 3147,
+          "sha256": "6bc3fbc6d181bf038a995852ba5ef5e98143bd0498502ca59f8244974c3c45db"
+        }
+      ]
+    },
+    {
+      "name": "selection-repeat-20260903-baseline",
+      "stage": "selection",
+      "attempt": 1,
+      "status": "failed",
+      "command": [
+        "/Users/saikrishna/dev/deterministic-skills/reproduce/.venv/bin/python",
+        "/Users/saikrishna/dev/deterministic-skills/experiments/collection/scripts/run_experiment.py",
+        "--dataset",
+        "/Users/saikrishna/dev/deterministic-skills/tmp/gemini-3.5-flash-lite/2026-09-06-12-59-am/datasets/spamassassin",
+        "--split",
+        "validation",
+        "--system-prompt",
+        "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/packages/baseline-01/instructions.md",
+        "--sop",
+        "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/packages/baseline-01/skills/spamassassin-classification/SKILL.md",
+        "--max-completion-tokens",
+        "1024",
+        "--request-timeout",
+        "300",
+        "--seed",
+        "20260903",
+        "--experiment-id",
+        "gemini-3.5-flash-lite-2026-09-05-11-41-pm-amendment-01-spamassassin",
+        "--candidate-id",
+        "baseline",
+        "--attempt",
+        "1",
+        "--workers",
+        "8",
+        "--run-id",
+        "selection-repeat-20260903-baseline",
+        "--checkpoint-every",
+        "10",
+        "--output",
+        "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/results/selection-repeat-20260903-baseline.json"
+      ],
+      "cwd": "/Users/saikrishna/dev/deterministic-skills",
+      "started_at": "2026-09-06T08:04:21.822531+00:00",
+      "plan_sha256": "80aca6f662d0310092171b7adf052c841033cc59fcb962401552e049a268df73",
+      "protocol_sha256": "073b9fe271030f6d32a40cb69c1f12e2b719691f1cd5cd2f09bde60eb6e2b656",
+      "inputs": [
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/tmp/gemini-3.5-flash-lite/2026-09-06-12-59-am/datasets/spamassassin",
+          "kind": "directory",
+          "files": 2006,
+          "bytes": 13847824,
+          "sha256": "f90f4f92bf5378c25c751603ca967eff0d8567b0100af38ee67e929d908710dd"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/packages/baseline-01",
+          "kind": "directory",
+          "files": 9,
+          "bytes": 349713,
+          "sha256": "5e605ccae21ed2f15420703fc8bf26344225c8465110a4a79f942c9ba3be9097"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/packages/baseline-01",
+          "kind": "directory",
+          "files": 9,
+          "bytes": 349713,
+          "sha256": "5e605ccae21ed2f15420703fc8bf26344225c8465110a4a79f942c9ba3be9097"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/collection/scripts/run_experiment.py",
+          "kind": "file",
+          "bytes": 27074,
+          "sha256": "03f83e70d463b7903d93fd0e0019aec14535f6817b1fce0ad19dc7f585cdab84"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/collection/scripts/hosted_execution.py",
+          "kind": "file",
+          "bytes": 9803,
+          "sha256": "ee6247ed7f66d4df342117fbc379e0104c5a65a454b5d095a1947bfbbaeca9ad"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/collection/scripts/deepagent_execution.py",
+          "kind": "file",
+          "bytes": 3334,
+          "sha256": "cd068521cb5aa11fe09a30fd0f8be3a002205885274d4488eb175bd1d60e24b9"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/reproduce/uv.lock",
+          "kind": "file",
+          "bytes": 368803,
+          "sha256": "2ad625654eef9a2cacbea1f6bee0ec452066e12f1e6ee96b93cfd3655bcfdbf7"
+        }
+      ],
+      "declared_outputs": [
+        "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/results/selection-repeat-20260903-baseline.json"
+      ],
+      "stdout": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/logs/selection-selection-repeat-20260903-baseline-attempt-1.stdout.log",
+      "stderr": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/logs/selection-selection-repeat-20260903-baseline-attempt-1.stderr.log",
+      "finished_at": "2026-09-06T08:05:12.148202+00:00",
+      "exit_code": 1,
+      "outputs": []
+    },
+    {
+      "name": "screen-remaining-selection-provider-blocks",
+      "stage": "selection",
+      "attempt": 1,
+      "status": "complete",
+      "command": [
+        "reproduce/.venv/bin/python",
+        "experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/operations/screen_provider_blocks.py",
+        "--dataset",
+        "tmp/gemini-3.5-flash-lite/2026-09-06-12-59-am/datasets/spamassassin",
+        "--existing-partial",
+        "experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/results/selection-repeat-20260903-baseline.json.partial.json",
+        "--system-prompt",
+        "experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/packages/baseline-01/instructions.md",
+        "--sop",
+        "experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/packages/baseline-01/skills/spamassassin-classification/SKILL.md",
+        "--workers",
+        "8",
+        "--output",
+        "experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/results/selection-provider-block-screen.json"
+      ],
+      "cwd": "/Users/saikrishna/dev/deterministic-skills",
+      "started_at": "2026-09-06T08:06:33.062372+00:00",
+      "plan_sha256": "80aca6f662d0310092171b7adf052c841033cc59fcb962401552e049a268df73",
+      "protocol_sha256": "073b9fe271030f6d32a40cb69c1f12e2b719691f1cd5cd2f09bde60eb6e2b656",
+      "inputs": [
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/tmp/gemini-3.5-flash-lite/2026-09-06-12-59-am/datasets/spamassassin",
+          "kind": "directory",
+          "files": 2006,
+          "bytes": 13847824,
+          "sha256": "f90f4f92bf5378c25c751603ca967eff0d8567b0100af38ee67e929d908710dd"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/results/selection-repeat-20260903-baseline.json.partial.json",
+          "kind": "file",
+          "bytes": 3706553,
+          "sha256": "9a27d5b921268ec98c15810038e14b083f9a961cf30da3fc222a0ce1822eb4d4"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/packages/baseline-01/instructions.md",
+          "kind": "file",
+          "bytes": 322,
+          "sha256": "eed23baceeaeaa6d3b52ce5f3adfe84cea01e7bb091f0881d75d5e364d6385dd"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/packages/baseline-01/skills/spamassassin-classification/SKILL.md",
+          "kind": "file",
+          "bytes": 905,
+          "sha256": "b3c9ec9c8b7af3ccf5d9aeaee0d7080a3a28e8e7b48bb4864177e16764914f98"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/operations/screen_provider_blocks.py",
+          "kind": "file",
+          "bytes": 7246,
+          "sha256": "2e46f4dad796ee0312dfd9398066730f24688cedffb5725b4131c99f2925b7e6"
+        }
+      ],
+      "declared_outputs": [
+        "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/results/selection-provider-block-screen.json"
+      ],
+      "stdout": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/logs/selection-screen-remaining-selection-provider-blocks-attempt-1.stdout.log",
+      "stderr": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/logs/selection-screen-remaining-selection-provider-blocks-attempt-1.stderr.log",
+      "finished_at": "2026-09-06T08:07:00.472963+00:00",
+      "exit_code": 0,
+      "outputs": [
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/results/selection-provider-block-screen.json",
+          "kind": "file",
+          "bytes": 308,
+          "sha256": "abff56a2580209865e04acb725c1e98322bedd70fba60966c9923c6e1f2134d9"
+        }
+      ]
+    },
+    {
+      "name": "assess-superseded-selection-amendment-01",
+      "stage": "selection",
+      "attempt": 1,
+      "status": "complete",
+      "command": [
+        "reproduce/.venv/bin/python",
+        "experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/operations/assess_superseded_selection.py",
+        "--partial",
+        "experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/results/selection-repeat-20260903-baseline.json.partial.json",
+        "--attempts",
+        "experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/results/selection-repeat-20260903-baseline.json.attempts",
+        "--screen",
+        "experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/results/selection-provider-block-screen.json",
+        "--output",
+        "experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/results/selection-superseded-assessment.json"
+      ],
+      "cwd": "/Users/saikrishna/dev/deterministic-skills",
+      "started_at": "2026-09-06T08:08:00.927575+00:00",
+      "plan_sha256": "80aca6f662d0310092171b7adf052c841033cc59fcb962401552e049a268df73",
+      "protocol_sha256": "073b9fe271030f6d32a40cb69c1f12e2b719691f1cd5cd2f09bde60eb6e2b656",
+      "inputs": [
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/results/selection-repeat-20260903-baseline.json.partial.json",
+          "kind": "file",
+          "bytes": 3706553,
+          "sha256": "9a27d5b921268ec98c15810038e14b083f9a961cf30da3fc222a0ce1822eb4d4"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/results/selection-repeat-20260903-baseline.json.attempts",
+          "kind": "directory",
+          "files": 644,
+          "bytes": 3722377,
+          "sha256": "e8da2c255014cd6624ea2984c478ab56852582113ac4eeb8ad503786cb8ad3fa"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/results/selection-provider-block-screen.json",
+          "kind": "file",
+          "bytes": 308,
+          "sha256": "abff56a2580209865e04acb725c1e98322bedd70fba60966c9923c6e1f2134d9"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/operations/assess_superseded_selection.py",
+          "kind": "file",
+          "bytes": 2291,
+          "sha256": "049c7173384a0e31b7cc2724acc2403a9592faef053d38af99038d483d841831"
+        }
+      ],
+      "declared_outputs": [
+        "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/results/selection-superseded-assessment.json"
+      ],
+      "stdout": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/logs/selection-assess-superseded-selection-amendment-01-attempt-1.stdout.log",
+      "stderr": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/logs/selection-assess-superseded-selection-amendment-01-attempt-1.stderr.log",
+      "finished_at": "2026-09-06T08:08:00.989990+00:00",
+      "exit_code": 0,
+      "outputs": [
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/results/selection-superseded-assessment.json",
+          "kind": "file",
+          "bytes": 562,
+          "sha256": "a9ed6780ed247c125df0837f17bc592a94f5355d95bb344a94aaec6790a8420a"
+        }
+      ]
+    },
+    {
+      "name": "audit-superseded-amendment-01-lineage",
+      "stage": "package-evidence",
+      "attempt": 1,
+      "status": "complete",
+      "command": [
+        "reproduce/.venv/bin/python",
+        "experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/operations/audit_superseded_lineage.py",
+        "--run-dir",
+        "experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin",
+        "--output",
+        "experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/results/collection-audit.json"
+      ],
+      "cwd": "/Users/saikrishna/dev/deterministic-skills",
+      "started_at": "2026-09-06T08:08:16.777485+00:00",
+      "plan_sha256": "80aca6f662d0310092171b7adf052c841033cc59fcb962401552e049a268df73",
+      "protocol_sha256": "073b9fe271030f6d32a40cb69c1f12e2b719691f1cd5cd2f09bde60eb6e2b656",
+      "inputs": [
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/collection-state.json",
+          "kind": "file",
+          "bytes": 2638,
+          "sha256": "8c3003545b343c3a4c98952fc1ef6c08db0cc4603d17a3077026ae256b30cfd9"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/results/dataset-amendment-audit.json",
+          "kind": "file",
+          "bytes": 952,
+          "sha256": "4125a78543a9ae9a00735503b4177c61471119344848711790c65955d1f40149"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/results/development-carry-forward-audit.json",
+          "kind": "file",
+          "bytes": 2090,
+          "sha256": "1b809b2e2900cca7a521ac37ac5783b189815a4116e056e05ca9c43a974c9a1b"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/results/selection-superseded-assessment.json",
+          "kind": "file",
+          "bytes": 562,
+          "sha256": "a9ed6780ed247c125df0837f17bc592a94f5355d95bb344a94aaec6790a8420a"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/operations/audit_superseded_lineage.py",
+          "kind": "file",
+          "bytes": 2125,
+          "sha256": "8839719d713ab9c8b50dcd50fff0ee25d2ff5de9d58f76c354ab5c4ac02e07c9"
+        }
+      ],
+      "declared_outputs": [
+        "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/results/collection-audit.json"
+      ],
+      "stdout": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/logs/package-evidence-audit-superseded-amendment-01-lineage-attempt-1.stdout.log",
+      "stderr": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/logs/package-evidence-audit-superseded-amendment-01-lineage-attempt-1.stderr.log",
+      "finished_at": "2026-09-06T08:08:16.817600+00:00",
+      "exit_code": 0,
+      "outputs": [
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-12-59-am/spamassassin/results/collection-audit.json",
+          "kind": "file",
+          "bytes": 452,
+          "sha256": "5b72c1d13c1a85ffbb16d63c5ab31743b47d6ac41177c6076370aacfa819ce94"
+        }
+      ]
+    }
+  ]
+}

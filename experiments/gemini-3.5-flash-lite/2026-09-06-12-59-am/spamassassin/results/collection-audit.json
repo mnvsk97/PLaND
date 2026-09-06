@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "outcome": "superseded_by_amendment_02",
+  "decisions": {
+    "baseline-development": "ready",
+    "candidate-development": "ready",
+    "selection": "reject"
+  },
+  "checks": {
+    "dataset_audit": true,
+    "development_carry_forward": true,
+    "baseline_ready": true,
+    "candidate_ready": true,
+    "selection_rejected": true,
+    "superseded_disposition": true,
+    "final_test_unopened": true
+  },
+  "passed": true
+}

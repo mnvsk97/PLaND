@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "source_run": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/spamassassin",
+  "candidate": "candidate-01",
+  "runs": [
+    {
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/spamassassin/results/development-repeat-20260903-baseline.json",
+      "seed": 20260903,
+      "arm": "baseline",
+      "cases": 500,
+      "accuracy": 0.986,
+      "errors": {}
+    },
+    {
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/spamassassin/results/development-repeat-20260903-hybrid.json",
+      "seed": 20260903,
+      "arm": "hybrid",
+      "cases": 500,
+      "accuracy": 0.986,
+      "errors": {}
+    },
+    {
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/spamassassin/results/development-repeat-20260904-baseline.json",
+      "seed": 20260904,
+      "arm": "baseline",
+      "cases": 500,
+      "accuracy": 0.992,
+      "errors": {}
+    },
+    {
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/spamassassin/results/development-repeat-20260904-hybrid.json",
+      "seed": 20260904,
+      "arm": "hybrid",
+      "cases": 500,
+      "accuracy": 0.988,
+      "errors": {}
+    },
+    {
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/spamassassin/results/development-repeat-20260905-baseline.json",
+      "seed": 20260905,
+      "arm": "baseline",
+      "cases": 500,
+      "accuracy": 0.988,
+      "errors": {}
+    },
+    {
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/spamassassin/results/development-repeat-20260905-hybrid.json",
+      "seed": 20260905,
+      "arm": "hybrid",
+      "cases": 500,
+      "accuracy": 0.986,
+      "errors": {}
+    }
+  ],
+  "package_checks": {
+    "baseline-01": true,
+    "candidate-01": true
+  },
+  "checks": {
+    "development_rows_identical": true,
+    "development_case_bytes_identical": true,
+    "prior_candidate_gate_ready": true,
+    "six_complete_error_free_runs": true,
+    "packages_byte_identical": true
+  },
+  "baseline_decision": "ready",
+  "candidate_decision": "ready",
+  "passed": true
+}

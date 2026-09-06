@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "split": "validation",
+  "cases": 1000,
+  "previously_completed": 636,
+  "screened": 364,
+  "workers": 8,
+  "blocked_case_ids": [
+    "mail-449598896e25273135c3"
+  ],
+  "blocked_count": 1,
+  "other_terminal_errors": [],
+  "rate_limits_retried_not_failed": true,
+  "passed": true
+}
