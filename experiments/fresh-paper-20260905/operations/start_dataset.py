@@ -5,12 +5,12 @@ import json
 import os
 import sys
 from pathlib import Path
-from operate import BASE,ROOT,PYTHON,CONTROLLER,RUNNER,controlled,call,baseline_gate
+from operate import BASE,ROOT,PYTHON,CONTROLLER,RUNNER,controlled,call,baseline_gate,plan_path
 
 ds=sys.argv[1]
 assert ds in {'cfpb','spamassassin'}, 'LEDGAR is already complete; do not resume its invalid reservation'
-plan_path=ROOT/f'experiments/protocol/fresh-paper-{ds}.json'
-plan=json.loads(plan_path.read_text())
+active_plan=plan_path(ds)
+plan=json.loads(active_plan.read_text())
 os.environ.update(plan['runtime']['environment'])
 os.environ['PYTHONUNBUFFERED']='1'
 os.environ['PYTHONDONTWRITEBYTECODE']='1'
@@ -18,8 +18,8 @@ dataset=BASE/'datasets'/ds
 directory=BASE/'runs'/ds
 packages=BASE/'packages'/ds
 prepare=ROOT/'datasets/scripts/prepare_fresh_collection.py'
-controlled(ds,'prepare','prepare-fresh-'+ds,[PYTHON,prepare,'--plan',plan_path,'--output',dataset],
-           [plan_path,prepare,ROOT/'datasets/sources.lock.json'],[dataset])
+controlled(ds,'prepare','prepare-fresh-'+ds,[PYTHON,prepare,'--plan',active_plan,'--output',dataset],
+           [active_plan,prepare,ROOT/'datasets/sources.lock.json'],[dataset])
 controlled(ds,'prepare','generate-english-baseline',[PYTHON,OPS/'build_baseline.py','--dataset',dataset,'--output',packages],
            [OPS/'build_baseline.py',ROOT/'skills/generate-initial-version/scripts/generate.py'],[packages])
 sources={'cfpb':Path('/Users/saikrishna/dev/deterministic-skills/tmp/confirmatory-datasets/cfpb/sources'),
@@ -47,16 +47,4 @@ state=json.loads((directory/'collection-state.json').read_text())
 if state['decisions']['baseline-development'][-1]['value']!='ready':
     print('Baseline requires development-only refinement. No candidate or selection launched.')
     sys.exit(0)
-candidate=BASE/'candidates'/ds/'candidate-01'
-sop=package/f'skills/{ds}-classification/SKILL.md'
-controlled(ds,'candidate-development','construct-candidate-01',[PYTHON,OPS/'build_candidate.py',
-           '--dataset',dataset,'--baseline',sop,'--baseline-run',out,'--output',candidate],
-           [OPS/'build_candidate.py',out,sop],[candidate])
-script=ROOT/'skills/pland-evolver/scripts/sop_contract.py'
-controlled(ds,'candidate-development','verify-candidate-contract',[PYTHON,script,'--baseline-sop',sop,
-           '--candidate-sop',candidate/'SKILL.md','--output',directory/'candidate-contract.json'],
-           [script,candidate],[directory/'candidate-contract.json'])
-controlled(ds,'candidate-development','candidate-unit-checks',[PYTHON,OPS/'check_candidate.py',
-           candidate/'classify.py',directory/'candidate-checks.json'],
-           [OPS/'check_candidate.py',candidate/'classify.py'],[directory/'candidate-checks.json'])
-call([PYTHON,OPS/'finish_dataset.py',ds])
+call([PYTHON,OPS/'continue_ready.py',ds])

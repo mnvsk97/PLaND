@@ -344,6 +344,11 @@ def create_manifest(args: argparse.Namespace) -> int:
     files: dict[str, dict[str, Any]] = {}
     for item in (state["plan"], state["protocol"]):
         files[item["path"]] = artifact(Path(item["path"]))
+    for amendment in state.get('amendments', []):
+        for key in ['original_plan','original_protocol','amended_plan','amended_protocol','authorization']:
+            item=amendment[key]
+            assert artifact(Path(item['path']))['sha256']==item['sha256']
+            files[item['path']]=item
     for path in (run_dir / "collection-state.json", run_dir / "command-ledger.json"):
         files[str(path.resolve())] = artifact(path)
     for event in ledger["events"]:

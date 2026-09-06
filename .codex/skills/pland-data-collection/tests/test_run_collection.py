@@ -93,6 +93,34 @@ class CollectionControllerTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "requires exactly 500 development"):
             MODULE.validate_plan(plan, wrong, self.root)
 
+    def test_candidate_retry_is_development_only_and_stops_at_first_ready(self) -> None:
+        state, ledger = MODULE.load_state(self.run_dir)
+        state['limits']['candidate_attempts']=10
+        state['decisions']['baseline-development']=[{'value':'ready'}]
+        state['decisions']['candidate-development']=[{'value':'refine'}]*9
+        MODULE.require_stage_access(state,ledger,'candidate-development',starting_command=True)
+        with self.assertRaisesRegex(ValueError,'candidate must be ready'):
+            MODULE.require_stage_access(state,ledger,'selection',starting_command=True)
+        state['decisions']['candidate-development'].append({'value':'ready'})
+        MODULE.require_stage_access(state,ledger,'selection',starting_command=True)
+        with self.assertRaisesRegex(ValueError,'terminal or frozen'):
+            MODULE.require_stage_access(state,ledger,'candidate-development',starting_command=True)
+        state['decisions']['selection']=[{'value':'reject'}]
+        with self.assertRaisesRegex(ValueError,'after selection opens'):
+            MODULE.require_stage_access(state,ledger,'candidate-development',starting_command=True)
+        with self.assertRaisesRegex(ValueError,'selection must be accepted'):
+            MODULE.require_stage_access(state,ledger,'final-test',starting_command=True)
+
+    def test_candidate_nonviable_keeps_heldout_closed_and_allows_packaging(self) -> None:
+        state,ledger=MODULE.load_state(self.run_dir)
+        state['limits']['candidate_attempts']=10
+        state['decisions']['baseline-development']=[{'value':'ready'}]
+        state['decisions']['candidate-development']=[{'value':'refine'}]*9+[{'value':'nonviable'}]
+        MODULE.require_stage_access(state,ledger,'package-evidence')
+        for stage in ['candidate-development','selection','final-test']:
+            with self.assertRaises(ValueError):
+                MODULE.require_stage_access(state,ledger,stage,starting_command=True)
+
     def test_final_test_is_gated_and_completed_commands_resume(self) -> None:
         with self.assertRaisesRegex(ValueError, "selection must be accepted"):
             self.run_fixture("final-test", "too-early")

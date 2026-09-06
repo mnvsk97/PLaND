@@ -25,14 +25,17 @@ shutil.copytree(BASE/'runs'/a.dataset/'logs',output/'logs')
 for name in ['generated']+sorted(p.name for p in (BASE/'packages'/a.dataset).glob('baseline-*')):
     source=BASE/'packages'/a.dataset/name
     if source.exists(): shutil.copytree(source,output/'packages'/name,ignore=shutil.ignore_patterns('__pycache__','*.pyc'))
-candidate=BASE/'candidates'/a.dataset/'candidate-01'
 for source in sorted((BASE/'refinements'/a.dataset).glob('baseline-*')):
     shutil.copytree(source,output/'packages'/source.name,ignore=shutil.ignore_patterns('__pycache__','*.pyc'))
-if candidate.exists(): shutil.copytree(candidate,output/'packages/candidate-01',ignore=shutil.ignore_patterns('__pycache__','*.pyc'))
+for candidate in sorted((BASE/'candidates'/a.dataset).glob('candidate-*')):
+    shutil.copytree(candidate,output/'packages'/candidate.name,ignore=shutil.ignore_patterns('__pycache__','*.pyc'))
 for path in (BASE/'packages'/a.dataset).glob('*.json'): copy(path,output/'construction'/path.name)
 for path in OPS.glob('*.py'): copy(path,output/'operations'/path.name)
 for path in OPS.glob('*.json'): copy(path,output/'operations'/path.name)
 for path in [ROOT/f'experiments/protocol/fresh-paper-{a.dataset}.json',ROOT/'experiments/protocol/fresh-paper-collection.md',ROOT/'experiments/protocol/continuation-runtime-disclosure.json',
+             ROOT/f'experiments/protocol/fresh-paper-{a.dataset}-amended-20260906.json',
+             ROOT/'experiments/protocol/candidate-budget-amendment-20260906.json',
+             ROOT/'experiments/protocol/candidate-budget-amendment-20260906.md',
              BASE/'datasets'/a.dataset/'freshness-receipt.json',BASE/'datasets'/a.dataset/'selection.json']:
     copy(path,output/'protocol'/path.name)
 for path in ['experiments/text-classification/scripts/run_experiment.py','experiments/text-classification/scripts/deepagent_execution.py',

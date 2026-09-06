@@ -14,6 +14,7 @@ p.add_argument('--dataset', type=Path, required=True)
 p.add_argument('--baseline', type=Path, required=True)
 p.add_argument('--baseline-run', type=Path, required=True)
 p.add_argument('--output', type=Path, required=True)
+p.add_argument('--candidate-id', default='candidate-01')
 a = p.parse_args()
 if a.output.exists(): raise ValueError('Candidate already exists; never generate a replacement')
 run = json.loads(a.baseline_run.read_text())
@@ -78,7 +79,7 @@ replacement = ('3. [S03] Execute `python classify.py` through its `classify(text
                f'   Fallback [S03]: {original} <!-- pland:fallback -->')
 (a.output/'SKILL.md').write_text(baseline.replace(line,replacement))
 (a.output/'construction.json').write_text(json.dumps({
- 'candidate_id':'candidate-01', 'methodology_skill':'pland-evolver',
+ 'candidate_id':a.candidate_id, 'methodology_skill':'pland-evolver',
  'orchestrator_model':'gpt-6-astra','reasoning':'high',
  'hypothesis':'Frequent label-specific phrases that reproduced correct development decisions can bypass some Qwen calls; all ambiguous inputs retain exact English fallback.',
  'baseline_run_sha256':hashlib.sha256(a.baseline_run.read_bytes()).hexdigest(),

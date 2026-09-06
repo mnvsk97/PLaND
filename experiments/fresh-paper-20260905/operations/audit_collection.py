@@ -15,8 +15,8 @@ p.add_argument('--output', required=True, type=Path)
 a = p.parse_args()
 ROOT = Path.cwd()
 directory = ROOT/'tmp/fresh-paper-continuation-20260905/runs'/a.dataset
-plan = json.loads((ROOT/f'experiments/protocol/fresh-paper-{a.dataset}.json').read_text())
 state = json.loads((directory/'collection-state.json').read_text())
+plan = json.loads(Path(state['plan']['path']).read_text())
 ledger = json.loads((directory/'command-ledger.json').read_text())
 def sha(path): return hashlib.sha256(path.read_bytes()).hexdigest()
 for field in ['plan','protocol']:
@@ -93,20 +93,21 @@ elif selection:
     assert len([r for r in runs.values() if r['split']=='validation'])==8
 else:
     assert (state['decisions']['baseline-development'][-1]['value']=='nonviable'
-            or state['decisions']['candidate-development'][-1]['value']=='reject')
+            or state['decisions']['candidate-development'][-1]['value'] in {'reject','nonviable'})
 spec=importlib.util.spec_from_file_location('compare',ROOT/'experiments/text-classification/scripts/compare.py')
 compare=importlib.util.module_from_spec(spec);spec.loader.exec_module(compare)
 verified=[]
 for path in sorted(directory.glob('*-comparison.json')):
     if path.name.endswith('-sop-comparison.json'): continue
     saved=json.loads(path.read_text())
-    split,seed,_=path.stem.split('-'); seed=int(seed)
+    parts=path.stem.split('-');split=parts[0];seed=int(parts[1])
+    suffix='-'+'-'.join(parts[2:-1]) if len(parts)>3 else ''
     baseline = directory/f'{split}-{seed}-baseline.json'
     if split=='development':
         pointer=directory/'chosen-baseline.json'
         baseline=Path(json.loads(pointer.read_text())['run']) if pointer.exists() else directory/'baseline-development-01.json'
     n=json.loads(baseline.read_text())
-    h=json.loads((directory/f'{split}-{seed}-hybrid.json').read_text())
+    h=json.loads((directory/f'{split}-{seed}-hybrid{suffix}.json').read_text())
     assert n['invariants']==h['invariants'] and n['runtime']==h['runtime']
     nc={c['id']:c for c in n['cases']};hc={c['id']:c for c in h['cases']}
     assert nc.keys()==hc.keys()

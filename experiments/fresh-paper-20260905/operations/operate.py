@@ -43,6 +43,15 @@ def baseline(ds):
     return {'attempt': 1, 'package': str(BASE/'packages'/ds/'baseline-01'),
             'run': str(BASE/'runs'/ds/'baseline-development-01.json')}
 
+def candidate_info(ds):
+    pointer=BASE/'runs'/ds/'chosen-candidate.json'
+    if pointer.exists(): return json.loads(pointer.read_text())
+    return {'attempt':1,'candidate_id':'candidate-01','package':str(BASE/'candidates'/ds/'candidate-01')}
+
+def dev_suffix(ds):
+    n=candidate_info(ds)['attempt']
+    return '' if n==1 else f'-candidate-{n:02}'
+
 def model(ds, stage, variant, seed, name=None):
     plan = json.loads(plan_path(ds).read_text())
     os.environ.update(plan['runtime']['environment'])
@@ -51,37 +60,41 @@ def model(ds, stage, variant, seed, name=None):
     info = baseline(ds)
     package = Path(info['package'])
     sop = package/f'skills/{ds}-classification/SKILL.md'
-    out = BASE/'runs'/ds/f'{split}-{seed}-{variant}.json'
+    suffix=dev_suffix(ds) if split=='development' else ''
+    out = BASE/'runs'/ds/f'{split}-{seed}-{variant}{suffix}.json'
+    ci=candidate_info(ds)
     argv = [PYTHON, RUNNER, '--dataset', BASE/'datasets'/ds, '--split', split,
             '--system-prompt', package/'instructions.md', '--sop', sop,
             '--execution-backend', 'deepagent', '--model', plan['model']['name'],
             '--seed', str(seed), '--workers', '2', '--num-ctx', '16384', '--num-predict', '128',
-            '--keep-alive', '-1', '--candidate-id', 'baseline' if variant == 'baseline' else 'candidate-01',
+            '--keep-alive', '-1', '--candidate-id', 'baseline' if variant == 'baseline' else ci['candidate_id'],
+            '--attempt', str(baseline(ds)['attempt'] if variant=='baseline' else ci['attempt']),
             '--experiment-id', plan['study_id'], '--output', out, '--resume']
     inputs = [sop, package/'instructions.md', RUNNER, RUNNER.with_name('deepagent_execution.py'),
               BASE/'datasets'/ds/'evals.csv', BASE/'datasets'/ds/'freshness-receipt.json']
     if variant == 'hybrid':
-        candidate = BASE/'candidates'/ds/'candidate-01'
+        candidate = Path(ci['package'])
         argv[argv.index('--sop')+1] = candidate/'SKILL.md'
         argv += ['--classifier', candidate/'classify.py', '--baseline-sop', sop, '--command-step-id', 'S03']
         inputs += [candidate]
-    controlled(ds, stage, name or f'{split}-{seed}-{variant}', argv, inputs, [out])
+    controlled(ds, stage, name or f'{split}-{seed}-{variant}{suffix}', argv, inputs, [out])
     return out
 
 def compare(ds, stage, seed):
     split = {'candidate-development':'development','selection':'validation','final-test':'test'}[stage]
     directory = BASE/'runs'/ds
     nl = Path(baseline(ds)['run']) if split == 'development' else directory/f'{split}-{seed}-baseline.json'
-    hybrid = directory/f'{split}-{seed}-hybrid.json'
-    out = directory/f'{split}-{seed}-comparison.json'
+    suffix=dev_suffix(ds) if split=='development' else ''
+    hybrid = directory/f'{split}-{seed}-hybrid{suffix}.json'
+    out = directory/f'{split}-{seed}{suffix}-comparison.json'
     script = ROOT/'experiments/text-classification/scripts/compare.py'
-    controlled(ds, stage, f'{split}-{seed}-comparison', [PYTHON, script, '--nl', nl, '--hybrid', hybrid,
+    controlled(ds, stage, f'{split}-{seed}{suffix}-comparison', [PYTHON, script, '--nl', nl, '--hybrid', hybrid,
                '--output', out, '--bootstrap-samples', '5000', '--bootstrap-seed', '20260902',
                '--noninferiority-margin', '0.02', '--minimum-token-reduction', '0.05', '--minimum-accuracy', '0.8'],
                [nl, hybrid, script], [out])
-    generic = directory/f'{split}-{seed}-sop-comparison.json'
+    generic = directory/f'{split}-{seed}{suffix}-sop-comparison.json'
     script = ROOT/'skills/pland-evolver/scripts/compare_variants.py'
-    controlled(ds, stage, f'{split}-{seed}-sop-comparison', [PYTHON, script,
+    controlled(ds, stage, f'{split}-{seed}{suffix}-sop-comparison', [PYTHON, script,
                '--natural-language-run', nl, '--hybrid-run', hybrid, '--output', generic],
                [nl, hybrid, script], [generic])
     return out
@@ -100,12 +113,14 @@ def baseline_gate(ds):
 
 def candidate_gate(ds, stage):
     directory = BASE/'runs'/ds
-    dev = directory/'development-20260902-hybrid.json'
+    ci=candidate_info(ds);limit=json.loads(plan_path(ds).read_text())['limits']['candidate_attempts']
+    dev = directory/f'development-20260902-hybrid{dev_suffix(ds)}.json'
     script = ROOT/'skills/pland-evolver/scripts/assess_candidate.py'
-    out = directory/f'{stage}-assessment.json'
+    suffix=dev_suffix(ds) if stage=='candidate-development' else ''
+    out = directory/f'{stage}{suffix}-assessment.json'
     argv = [PYTHON, script, '--baseline-development', baseline(ds)['run'], '--candidate-development', dev,
-            '--candidate', 'candidate-01', '--hypothesis', 'Conservative development-derived lexical routes reduce model work with exact English fallback.',
-            '--iteration', '1', '--max-iterations', '1', '--target-quality', '0.8',
+            '--candidate', ci['candidate_id'], '--hypothesis', 'Conservative development-derived lexical routes reduce model work with exact English fallback.',
+            '--iteration', str(ci['attempt']), '--max-iterations', str(limit), '--target-quality', '0.8',
             '--minimum-baseline-quality', '0.8', '--optimization-metric', 'total_tokens',
             '--min-objective-improvement-ratio', '0', '--require-hybrid-sop',
             '--max-validation-latency-ratio', 'inf', '--output', out]
@@ -114,10 +129,11 @@ def candidate_gate(ds, stage):
         n, h = directory/'validation-20260902-baseline.json', directory/'validation-20260902-hybrid.json'
         argv += ['--baseline-validation', n, '--candidate-validation', h, '--non-inferiority-margin', '0.02']
         inputs += [n,h]
-    controlled(ds, stage, f'{stage}-assessment', argv, inputs, [out])
+    controlled(ds, stage, f'{stage}{suffix}-assessment', argv, inputs, [out])
     result = json.loads(out.read_text())
     if stage == 'candidate-development':
-        decision(ds, stage, 'ready' if result['decision'] == 'eligible_for_validation' else 'reject', out)
+        decision(ds, stage, 'ready' if result['decision'] == 'eligible_for_validation' else
+                 ('refine' if ci['attempt']<limit else 'nonviable'), out)
     else:
         comp = json.loads((directory/'validation-20260902-comparison.json').read_text())
         # Release combines the generic SOP contract with every approved paired statistical gate.
