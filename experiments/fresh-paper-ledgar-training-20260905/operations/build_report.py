@@ -184,6 +184,40 @@ lines+=['','### Repeatability paragraph','',
  '## Remaining questions','',
  'The statistical outcomes are fixed. Any future candidate revision requires a new development process and unused evaluation evidence.','']
 a.output.parent.mkdir(parents=True,exist_ok=True)
+item=summary['datasets']['ledgar']
+evidence=ROOT/summary['evidence_root']/'ledgar'
+manifest=evidence/'case-evidence-manifest.json'
+summary['case_evidence_manifest']={'path':str(manifest.relative_to(ROOT)),
+                                 'sha256':hashlib.sha256(manifest.read_bytes()).hexdigest()}
+lines+=['## Detailed paper statistics and provenance','',
+        f"Frozen run commit: `{item['git_head']}`. Immutable case-evidence manifest: `"+
+        summary['case_evidence_manifest']['path']+'`, SHA-256 `'+summary['case_evidence_manifest']['sha256']+'`.','',
+        'The earlier collection was invalidated because its exclusion list missed 18 previously used pilot cases. '
+        'Its complete sample was quarantined; no predictions or generated rules from it enter this report. '
+        'The restart used a newly generated English package and a candidate constructed only from the new development traces. '
+        'The frozen plan contains a descriptive label-manifest path typo; the actual recorded preparer command used the existing confirmatory label manifest. '
+        'The exact path, hash and unchanged ten-label vocabulary are recorded in `protocol/path-resolution.json`.','']
+data=item['data_audit']
+lines+=['| Data fingerprint | SHA-256 |','| --- | --- |']
+for key,value in data['hashes'].items(): lines.append(f'| {key} | `{value}` |')
+for source in data['sources']: lines.append(f"| Source {source['path']} | `{source['sha256']}` |")
+lines+=['',f"Candidate skill-content SHA-256: `{item['candidate_skill_content_sha256']}`.",'']
+c=item['comparison']
+if c:
+    n,h,s=c['natural_language'],c['hybrid'],c['paired_statistics']
+    lines+=['| Main statistic | Baseline | Hybrid |','| --- | ---: | ---: |',
+            f"| Correct / cases | {n['correct']} / {n['cases']} | {h['correct']} / {h['cases']} |",
+            f"| Macro F1 | {n['macro_f1']:.6f} | {h['macro_f1']:.6f} |",
+            f"| Accuracy Wilson 95% CI | {interval(s['natural_language_accuracy_wilson_95'])} | {interval(s['hybrid_accuracy_wilson_95'])} |",
+            f"| Input tokens | {n['input_tokens']:,} | {h['input_tokens']:,} |",
+            f"| Output tokens | {n['output_tokens']:,} | {h['output_tokens']:,} |",
+            f"| Command attempts | {item['main_baseline']['command_calls']} | {item['main_hybrid']['command_calls']} |",
+            '',f"Exact paired McNemar p-value: {s['mcnemar_exact_p']:.8g}. Correctness table: `{s['correctness_table']}`.",'',
+            '| Label | Baseline recall | Hybrid recall | Difference (pp) |','| --- | ---: | ---: | ---: |']
+    recalls=c['per_label_recall']
+    for label,value in sorted(recalls['natural_language'].items()):
+        lines.append(f"| {label} | {percent(value)} | {percent(recalls['hybrid'][label])} | {100*recalls['delta_hybrid_minus_nl'][label]:+.2f} |")
+lines+=['','CFPB and SpamAssassin: not run in this approved phase. Main manuscript and PDF integration: deferred; this report does not claim the existing paper contains these numbers.','']
 if a.output.exists(): raise ValueError('Report exists; preserve its previous revision')
 a.output.write_text('\n'.join(lines))
 summary['report_sha256']=hashlib.sha256(a.output.read_bytes()).hexdigest()

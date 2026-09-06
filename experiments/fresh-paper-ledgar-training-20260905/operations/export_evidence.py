@@ -37,6 +37,18 @@ for path in ['experiments/text-classification/scripts/run_experiment.py','experi
              'skills/pland-evolver/scripts/compare_variants.py','skills/pland-evolver/scripts/sop_contract.py',
              '.codex/skills/pland-data-collection/scripts/run_collection.py','reproduce/uv.lock']:
     copy(ROOT/path,output/'implementation'/Path(path).name)
+label_source=Path('/Users/saikrishna/dev/deterministic-skills/tmp/confirmatory-datasets/ledgar/selection.json')
+frozen_plan=json.loads((ROOT/'experiments/protocol/fresh-paper-ledgar-training.json').read_text())
+selection=json.loads((BASE/'datasets'/a.dataset/'selection.json').read_text())
+assert selection['labels']==json.loads(label_source.read_text())['labels']
+(output/'protocol/path-resolution.json').write_text(json.dumps({
+    'field':'sampling.labels_from',
+    'frozen_plan_reference':frozen_plan['sampling']['labels_from'],
+    'resolved_actual_input':str(label_source),
+    'resolved_sha256':hashlib.sha256(label_source.read_bytes()).hexdigest(),
+    'labels':selection['labels'],
+    'note':'The descriptive reference path in the frozen plan was absent. The recorded preparer argv used the existing confirmatory selection manifest, preserving the exact same ten labels. No plan bytes, labels, outputs or sampling settings were changed.'
+},indent=2)+'\n')
 (output/'README.md').write_text(f'''# {a.dataset} fresh collection evidence
 
 The approved split is 500 development / 1,000 selection / 500 final test.
@@ -59,5 +71,6 @@ for path in sorted(output.rglob('*')):
     if path.is_file(): files.append({'path':str(path.relative_to(output)), 'bytes':path.stat().st_size,
                                     'sha256':hashlib.sha256(path.read_bytes()).hexdigest()})
 receipt={'dataset':a.dataset,'export':str(output),'files':files,'raw_benchmark_inputs_exported':False}
+(output/'case-evidence-manifest.json').write_text(json.dumps({'schema_version':1,'files':files},indent=2)+'\n')
 a.receipt.write_text(json.dumps(receipt,indent=2)+'\n')
 print(json.dumps({'export':str(output),'files':len(files)}))
