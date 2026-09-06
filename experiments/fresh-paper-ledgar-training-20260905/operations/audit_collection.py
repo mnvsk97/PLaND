@@ -135,6 +135,7 @@ for path in sorted(directory.glob('*-comparison.json')):
     assert saved['hybrid']['total_tokens']==sum(c['total_tokens'] for c in h['cases'])
     verified.append(path.name)
 result={'status':'PASS','dataset':a.dataset,'dataset_audit_passed':True,'runs':runs,
+        'transport_protocol_deviation':json.loads((directory/'runtime-audit.json').read_text())['transport_audit'],
         'ledger_artifact_hashes_reverified':len(checked_artifacts),'prepared_data_reaudited':True,
         'entire_earliest_pilot_excluded':{'cases':len(earliest_ids),'evals_sha256':sha(earliest)},
         'statistically_recomputed_comparisons':verified,'final_test_release_verified':bool(tests),
