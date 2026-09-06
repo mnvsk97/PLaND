@@ -31,6 +31,7 @@ for source in sorted((BASE/'refinements'/a.dataset).glob('baseline-*')):
 if candidate.exists(): shutil.copytree(candidate,output/'packages/candidate-01',ignore=shutil.ignore_patterns('__pycache__','*.pyc'))
 for path in (BASE/'packages'/a.dataset).glob('*.json'): copy(path,output/'construction'/path.name)
 for path in OPS.glob('*.py'): copy(path,output/'operations'/path.name)
+for path in OPS.glob('*.json'): copy(path,output/'operations'/path.name)
 for path in [ROOT/f'experiments/protocol/fresh-paper-{a.dataset}.json',ROOT/'experiments/protocol/fresh-paper-collection.md',ROOT/'experiments/protocol/ledgar-transport-disposition.json',
              BASE/'datasets'/a.dataset/'freshness-receipt.json',BASE/'datasets'/a.dataset/'selection.json']:
     copy(path,output/'protocol'/path.name)
