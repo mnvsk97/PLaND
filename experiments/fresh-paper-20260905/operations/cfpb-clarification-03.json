@@ -1,0 +1,6 @@
+{
+  "based_on_run": "baseline-development-02.json",
+  "step_id": "S01",
+  "reason": "Attempt 2 improved development accuracy to 76.8% but still confused complaints addressed to product providers or collectors with complaints addressed to credit bureaus. Clarify the task's product-versus-issue distinction at the start of the English SOP.",
+  "instruction": "Identify the requested item and classify the supplied consumer complaint by its financial PRODUCT, not by its issue, remedy, or quoted law. First identify the company or service being complained about and its relationship to the consumer: original lender, debt collector, credit bureau, deposit bank, card provider, or money service. A request that a lender remove its own loan from a credit report is still a complaint about that loan product; a request that a collector remove a collection account is Debt collection. Reserve Credit reporting or other personal consumer reports for a complaint about the bureau or reporting service itself, or a reporting-only narrative with no identifiable product or collector. Use product context and provider identity throughout the narrative, including headings and salutations; do not let generic FCRA, privacy, identity-theft, or report-deletion language override an identifiable product."
+}
