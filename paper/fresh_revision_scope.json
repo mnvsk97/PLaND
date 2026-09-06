@@ -1,0 +1,38 @@
+{
+  "approved_paper_commit": "966806e",
+  "instruction": "Preserve the existing paper; make only changes required by the fresh collection.",
+  "unchanged_sections": [
+    "1 Introduction",
+    "2.3 Quality and expense",
+    "5.2 What token savings measure",
+    "Acknowledgements and Disclosures"
+  ],
+  "unchanged_figures": [
+    "paper/figures/evolution-path.png",
+    "paper/figures/architecture.png",
+    "paper/figures/evolution-loop.png"
+  ],
+  "permitted_local_updates": [
+    "Numerical results and their interpretation",
+    "Actual stages reached and unopened stages",
+    "500 development, 1000 selection, 500 reserved final-test split sizes",
+    "New LEDGAR study splits drawn from previously unused official training rows",
+    "Baseline readiness and construction provenance",
+    "Exact English fallback and matched-rule semantics",
+    "DeepAgent and two-worker runtime used in all fresh comparisons",
+    "Repeatability measurements and limitations",
+    "Evidence paths and reproduction details",
+    "Caption clarification of non-probabilistic rule matching"
+  ],
+  "section_sha256": {
+    "1 Introduction": "516887e6eae0682d8e2ba3eda85f6a41b5314e741cbb7bf9f14819c678962083",
+    "2.3 Quality and expense": "061ee510a815a0d5ac7cf0a91c1df8649c92606a5721ae04ec7238862ba94bc7",
+    "5.2 What token savings measure": "91c449ce5c2b9774f9e4ea9a850917b2a0007beb152d7bd2c9f87734438da4b9",
+    "Acknowledgements and Disclosures": "cf9f933950272f29d41856a29792fc8b73cae00fad7f417e6f2ae67ba456c367"
+  },
+  "figure_sha256": {
+    "paper/figures/evolution-path.png": "4aa5da539f5544a4b9f25d607afec9922d323894f7668b88b129a932d6b3b18a",
+    "paper/figures/architecture.png": "03ef8522429f5ab3577314464e7a2938662a8d9080bd0abd050a7b495a6f126e",
+    "paper/figures/evolution-loop.png": "1dd668c6ab572510e28e1233dbc612bff5f5691a5d0e4d749228f220b87ccad2"
+  }
+}

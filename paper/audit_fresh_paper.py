@@ -2,6 +2,7 @@
 import hashlib
 import importlib.util
 import json
+import re
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -10,6 +11,15 @@ def read(path):
     return json.loads(path.read_text())
 
 def verify(md):
+    scope=read(ROOT/'paper/fresh_revision_scope.json')
+    for name,digest in scope['section_sha256'].items():
+        match=re.search(r'^#{2,3} '+re.escape(name)+r'\n',md,re.M)
+        assert match, name
+        after=md[match.end():];end=re.search(r'^#{2,3} ',after,re.M)
+        body=after[:end.start()] if end else after
+        assert hashlib.sha256(body.encode()).hexdigest()==digest, ('unnecessary section change',name)
+    for name,digest in scope['figure_sha256'].items():
+        assert hashlib.sha256((ROOT/name).read_bytes()).hexdigest()==digest, ('figure changed',name)
     from audit_fresh_collection import audit
     report=ROOT/'paper/FRESH_COLLECTION_REPORT.md'
     audit(report)
