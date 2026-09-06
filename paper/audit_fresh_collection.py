@@ -42,6 +42,13 @@ def audit(report):
                 assert disposition==summary['transport_disposition'] and disposition['decision']=='accept_with_disclosure'
             assert 'Disclosed transport deviation' in text and 'HTTP `stream: true`' in text
         stage=item['reported_stage']
+        for attempt in item.get('baseline_history',[]):
+            run=json.loads((directory/attempt['file']).read_text())
+            assert attempt['attempt']==run['attempt'] and attempt['sop_sha256']==run['sop_sha256']
+            for key in ['accuracy','correct','cases','total_tokens']:
+                assert attempt[key]==run['summary'][key]
+            assert f"{attempt['total_tokens']:,}" in text
+            assert f"{100*attempt['accuracy']:.1f}%" in text
         comp=directory/f'{stage}-20260902-comparison.json'
         if comp.exists():
             comparison=json.loads(comp.read_text())

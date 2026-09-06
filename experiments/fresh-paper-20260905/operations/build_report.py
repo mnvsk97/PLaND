@@ -23,6 +23,13 @@ for ds,name in names.items():
     audit=read(directory/'collection-audit.json');assert audit['status']=='PASS'
     selected=read(directory/'chosen-baseline.json') if (directory/'chosen-baseline.json').exists() else {'run':str(directory/'baseline-development-01.json'),'attempt':1}
     baseline=read(Path(selected['run']))
+    baseline_history=[]
+    for path in sorted(directory.glob('baseline-development-[0-9][0-9].json')):
+        run=read(path)
+        baseline_history.append({'file':path.name,'attempt':run['attempt'],
+            'accuracy':run['summary']['accuracy'],'correct':run['summary']['correct'],
+            'cases':run['summary']['cases'],'total_tokens':run['summary']['total_tokens'],
+            'sop_sha256':run['sop_sha256']})
     selection=read(directory/'selection-release.json') if (directory/'selection-release.json').exists() else None
     stage='test' if selection and selection['decision']=='accept' else 'validation' if selection else 'development'
     comp_path=directory/f'{stage}-20260902-comparison.json'
@@ -55,6 +62,7 @@ for ds,name in names.items():
         'runtime_disclosure':read(ROOT/'experiments/protocol/continuation-runtime-disclosure.json') if ds!='ledgar' else None,
         'selection_comparison':read(directory/'validation-20260902-comparison.json') if selection else None,
         'baseline_development':baseline['summary'],'baseline_attempt':selected['attempt'],
+        'baseline_history':baseline_history,
         'baseline_sop_sha256':baseline['sop_sha256'],'candidate_sop_sha256':h['sop_sha256'] if h else None,
         'candidate_skill_content_sha256':h['skill_content_sha256'] if h else None,
         'main_baseline':n['summary'],'main_hybrid':h['summary'] if h else None,
@@ -120,6 +128,11 @@ lines+=['','## Baseline readiness and candidate provenance','',
  '| --- | ---: | ---: | ---: | --- | --- |']
 for item in summary['datasets'].values():
     lines.append(f"| {item['name']} | {item['baseline_attempt']}/10 | {percent(item['baseline_development']['accuracy'])} | {len(item['construction']['rules']) if item['construction'] else 0} | `{item['baseline_sop_sha256']}` | `{item['candidate_sop_sha256'] or 'not created'}` |")
+lines += ['', '| Dataset | English attempt | Development correct / cases | Accuracy | Model tokens |',
+          '| --- | ---: | --- | ---: | ---: |']
+for item in summary['datasets'].values():
+    for attempt in item['baseline_history']:
+        lines.append(f"| {item['name']} | {attempt['attempt']} | {attempt['correct']} / {attempt['cases']} | {percent(attempt['accuracy'],1)} | {attempt['total_tokens']:,} |")
 lines+=['','The host used the two PLaND skills to generate the English scaffold and construct one candidate after baseline readiness. '
  'Each candidate uses frequent 4–6-word phrases observed in at least eight development cases, with one label and correct baseline decisions on those cases. '
  'At most three complementary phrases per label are retained. Matching multiple labels, absent matches, invalid inputs, and failed output checks abstain. '
