@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-09-06T07:48:34.577408+00:00",
+  "candidate": "candidate-01",
+  "hypothesis": "Frozen repeat of SpamAssassin candidate-01 after development eligibility.",
+  "iteration": 1,
+  "max_iterations": 10,
+  "target_quality": 0.8,
+  "quality_metric": "accuracy",
+  "optimization_metric": "total_tokens",
+  "min_objective_improvement_ratio": 0.05,
+  "require_hybrid_sop": true,
+  "frozen_invariants": {
+    "system_prompt_sha256": "eed23baceeaeaa6d3b52ce5f3adfe84cea01e7bb091f0881d75d5e364d6385dd",
+    "evals_sha256": "6dfefbcfbfd2ea068e3b07da48361b1743f855f0fd2964ec34bfefd347d6593b",
+    "selection_sha256": "0404336ed9c12f94b18316e8b80f1bdbd68793513ac68d701cca9fe16073c98e",
+    "datasource_snapshot_sha256": "66bdf2a38ba1dd9d6c58000ebac0a3a93b062b58cf6d8cda0f80485709d4d09a",
+    "scorer_sha256": "03f83e70d463b7903d93fd0e0019aec14535f6817b1fce0ad19dc7f585cdab84",
+    "agent_harness_sha256": "7e3cd3303385b7c9079a8888a24594a6fb8b24eaab16c103d6d3ccfe628850ae",
+    "baseline_sop_sha256": "b3c9ec9c8b7af3ccf5d9aeaee0d7080a3a28e8e7b48bb4864177e16764914f98",
+    "baseline_sop_contract_sha256": "a027f88f15f1330cc94c5236dbc59888630db1d1c7987ded2c1a6fb03d308d57",
+    "hosted_adapter_sha256": "ee6247ed7f66d4df342117fbc379e0104c5a65a454b5d095a1947bfbbaeca9ad",
+    "evaluation_sha256": "6dfefbcfbfd2ea068e3b07da48361b1743f855f0fd2964ec34bfefd347d6593b"
+  },
+  "system_prompt": null,
+  "development": {
+    "baseline": {
+      "cases": 500,
+      "correct": 493,
+      "accuracy": 0.986,
+      "macro_f1": 0.985998599859986,
+      "input_tokens": 1361528,
+      "output_tokens": 4246,
+      "total_tokens": 1365774,
+      "estimated_model_cost_usd": 0.38398879,
+      "model_calls": 500,
+      "model_tokens": 1365774,
+      "command_calls": 0,
+      "command_resolved_cases": 0,
+      "fallback_model_calls": 0,
+      "fallback_model_tokens": 0,
+      "normal_completion_rate": 1.0,
+      "errors": {},
+      "latency_seconds": {
+        "total": 281.06158162429347,
+        "mean": 0.5621231632485869
+      },
+      "wall_seconds": 35.82240333399386,
+      "max_rss_bytes": 228343808,
+      "reasoning_tokens": 245,
+      "cached_input_tokens": 129943,
+      "service_cost_usd": 0.38398879
+    },
+    "candidate": {
+      "cases": 500,
+      "correct": 493,
+      "accuracy": 0.986,
+      "macro_f1": 0.985998599859986,
+      "input_tokens": 928251,
+      "output_tokens": 2561,
+      "total_tokens": 930812,
+      "estimated_model_cost_usd": 0.25417043,
+      "model_calls": 313,
+      "model_tokens": 930812,
+      "command_calls": 500,
+      "command_resolved_cases": 187,
+      "fallback_model_calls": 313,
+      "fallback_model_tokens": 930812,
+      "normal_completion_rate": 1.0,
+      "errors": {},
+      "latency_seconds": {
+        "total": 182.40971559184254,
+        "mean": 0.3648194311836851
+      },
+      "wall_seconds": 23.256218916998478,
+      "max_rss_bytes": 220725248,
+      "reasoning_tokens": 41,
+      "cached_input_tokens": 113731,
+      "service_cost_usd": 0.25417043
+    },
+    "delta": {
+      "quality": 0.0,
+      "tokens": -434962,
+      "token_ratio": 0.6815271047772179,
+      "mean_latency_seconds": -0.19730373206490182,
+      "mean_latency_ratio": 0.6490026653150949,
+      "accuracy_points": 0.0
+    }
+  },
+  "validation": null,
+  "failed_checks": [],
+  "decision": "eligible_for_validation"
+}

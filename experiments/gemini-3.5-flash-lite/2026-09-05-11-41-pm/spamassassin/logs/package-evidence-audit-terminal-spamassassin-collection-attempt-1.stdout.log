@@ -1,0 +1,1 @@
+{"dataset": "spamassassin", "collection_outcome": "failed_selection_provider_block", "development_runs": 6, "preserved_failures": 5, "final_test_unopened": true, "passed": true}

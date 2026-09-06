@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "status": "ready_for_model_run",
+  "model_invoked": false,
+  "cases_inspected": 500,
+  "split": "development",
+  "model": "google/gemini-3.5-flash-lite",
+  "seed": 20260905,
+  "experiment_id": "gemini-3.5-flash-lite-2026-09-05-11-41-pm-spamassassin",
+  "run_id": "development-repeat-20260905-hybrid-preflight",
+  "candidate_id": "candidate-01",
+  "attempt": 1,
+  "sop_sha256": "08e44ddbec25cfc4424b7798d8afa14bf729a2256eada5516c66ef6e7df0b6fc",
+  "skill_content_sha256": "07237c532a2314c44ddfc902e5133281bb09344b383df9a2aa540a8e917c2b2a",
+  "frozen_manifest_sha256": "0de27578e13f8953bdaef817562296163136b36dcfba0688d5b19f0a87abcd71",
+  "invariants": {
+    "system_prompt_sha256": "eed23baceeaeaa6d3b52ce5f3adfe84cea01e7bb091f0881d75d5e364d6385dd",
+    "evals_sha256": "6dfefbcfbfd2ea068e3b07da48361b1743f855f0fd2964ec34bfefd347d6593b",
+    "selection_sha256": "0404336ed9c12f94b18316e8b80f1bdbd68793513ac68d701cca9fe16073c98e",
+    "datasource_snapshot_sha256": "66bdf2a38ba1dd9d6c58000ebac0a3a93b062b58cf6d8cda0f80485709d4d09a",
+    "scorer_sha256": "03f83e70d463b7903d93fd0e0019aec14535f6817b1fce0ad19dc7f585cdab84",
+    "agent_harness_sha256": "7e3cd3303385b7c9079a8888a24594a6fb8b24eaab16c103d6d3ccfe628850ae",
+    "baseline_sop_sha256": "b3c9ec9c8b7af3ccf5d9aeaee0d7080a3a28e8e7b48bb4864177e16764914f98",
+    "baseline_sop_contract_sha256": "a027f88f15f1330cc94c5236dbc59888630db1d1c7987ded2c1a6fb03d308d57",
+    "hosted_adapter_sha256": "ee6247ed7f66d4df342117fbc379e0104c5a65a454b5d095a1947bfbbaeca9ad",
+    "evaluation_sha256": "6dfefbcfbfd2ea068e3b07da48361b1743f855f0fd2964ec34bfefd347d6593b"
+  },
+  "sop_contract": {
+    "valid": true,
+    "baseline_contract_sha256": "a027f88f15f1330cc94c5236dbc59888630db1d1c7987ded2c1a6fb03d308d57",
+    "baseline_sop_sha256": "b3c9ec9c8b7af3ccf5d9aeaee0d7080a3a28e8e7b48bb4864177e16764914f98",
+    "candidate_sop_sha256": "08e44ddbec25cfc4424b7798d8afa14bf729a2256eada5516c66ef6e7df0b6fc",
+    "command_fallback_links": [
+      {
+        "command_step_id": "S03",
+        "fallback_step_id": "S03",
+        "fallback_instruction": "Classify the evidence into exactly one known bucket: `ham`, `spam`.",
+        "fallback_instruction_sha256": "2ef81f3278b58a28816bcb8fe77469dba2a9f0177091ef1aceed9e23a0a16696"
+      }
+    ]
+  },
+  "runtime": {
+    "max_completion_tokens": 1024,
+    "timeout_seconds": 300,
+    "model_provider": "openrouter",
+    "model": "google/gemini-3.5-flash-lite",
+    "base_url": "https://openrouter.ai/api/v1",
+    "stream": false,
+    "seed_supported": false,
+    "provider_endpoint": "google-ai-studio",
+    "reasoning_effort": "low",
+    "extra_body": {
+      "reasoning": {
+        "effort": "low"
+      },
+      "provider": {
+        "only": [
+          "google-ai-studio"
+        ],
+        "allow_fallbacks": false,
+        "require_parameters": true
+      }
+    },
+    "temperature": null,
+    "allow_fallbacks": false,
+    "require_parameters": true,
+    "max_retries": 0,
+    "token_metric": "provider_prompt_plus_completion_including_reasoning",
+    "weight_digest_available": false,
+    "execution_backend": "deepagent",
+    "workers": 8
+  },
+  "model_identity": {
+    "kind": "hosted",
+    "provider": "openrouter",
+    "model": "google/gemini-3.5-flash-lite",
+    "endpoint": "google-ai-studio",
+    "weight_digest": null,
+    "configuration_sha256": "d703b8e16a3dc88aa1ac6a47171414c3873ee8f064db5bb911c5d67252fd9c4d"
+  }
+}

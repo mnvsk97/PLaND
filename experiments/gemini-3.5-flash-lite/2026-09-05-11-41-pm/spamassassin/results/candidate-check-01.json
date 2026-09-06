@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "split": "development",
+  "cases": 500,
+  "resolved": 187,
+  "coverage": 0.374,
+  "correct": 187,
+  "precision": 1.0,
+  "abstained": 313,
+  "rule_outcomes": [
+    {
+      "label": "ham",
+      "rule": "(?im)^in-reply-to\\s*:",
+      "correct": true,
+      "cases": 93
+    },
+    {
+      "label": "ham",
+      "rule": "(?im)^references\\s*:",
+      "correct": true,
+      "cases": 26
+    },
+    {
+      "label": "spam",
+      "rule": "\\bremoved from\\b",
+      "correct": true,
+      "cases": 61
+    },
+    {
+      "label": "spam",
+      "rule": "\\bviagra\\b",
+      "correct": true,
+      "cases": 7
+    }
+  ]
+}

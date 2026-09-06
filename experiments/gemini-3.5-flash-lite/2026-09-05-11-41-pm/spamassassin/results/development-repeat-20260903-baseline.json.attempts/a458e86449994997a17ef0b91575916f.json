@@ -1,0 +1,178 @@
+{
+  "case_id": "mail-8e35fc139f96682fe7ca",
+  "started_at": "2026-09-06T07:44:19.775533+00:00",
+  "frozen_manifest_sha256": "cc6ddd9f23472d89f04d9f2d4e303d874beb70ffeb2771a093bba343ce6ef599",
+  "status": "completed",
+  "case": {
+    "id": "mail-8e35fc139f96682fe7ca",
+    "expected": "ham",
+    "actual": "ham",
+    "correct": true,
+    "source": "model",
+    "matched_rule": null,
+    "parse_error": null,
+    "raw_message_content": "{\"label\": \"ham\"}",
+    "latency_seconds": 0.8074845829978585,
+    "input_tokens": 2028,
+    "output_tokens": 44,
+    "total_tokens": 2072,
+    "model_calls": 1,
+    "model_done_reason": "stop",
+    "deepagent_trace": [
+      {
+        "type": "ai",
+        "content": "{\"label\": \"ham\"}",
+        "tool_calls": [],
+        "usage_metadata": {
+          "input_tokens": 2028,
+          "output_tokens": 44,
+          "total_tokens": 2072,
+          "input_token_details": {
+            "audio": 0,
+            "cache_read": 0,
+            "cache_creation": 0
+          },
+          "output_token_details": {
+            "audio": 0,
+            "reasoning": 38
+          }
+        },
+        "response_metadata": {
+          "token_usage": {
+            "completion_tokens": 44,
+            "prompt_tokens": 2028,
+            "total_tokens": 2072,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 38,
+              "rejected_prediction_tokens": null,
+              "text_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cache_write_tokens": 0,
+              "cached_tokens": 0,
+              "image_tokens": null,
+              "text_tokens": null,
+              "video_tokens": 0
+            },
+            "cost": 0.0007184,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0.0007184,
+              "upstream_inference_prompt_cost": 0.0006084,
+              "upstream_inference_completions_cost": 0.00011
+            }
+          },
+          "model_provider": "openai",
+          "model_name": "google/gemini-3.5-flash-lite",
+          "system_fingerprint": null,
+          "id": "gen-1788680659-keiRAvviP17db5S0hRhW",
+          "service_tier": "default",
+          "finish_reason": "stop",
+          "logprobs": null,
+          "hosted": {
+            "id": "gen-1788680659-keiRAvviP17db5S0hRhW",
+            "model": "google/gemini-3.5-flash-lite",
+            "provider": "Google AI Studio",
+            "created": 1788680659,
+            "system_fingerprint": null,
+            "usage": {
+              "completion_tokens": 44,
+              "prompt_tokens": 2028,
+              "total_tokens": 2072,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": null,
+                "audio_tokens": 0,
+                "reasoning_tokens": 38,
+                "rejected_prediction_tokens": null,
+                "text_tokens": null,
+                "image_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cache_write_tokens": 0,
+                "cached_tokens": 0,
+                "image_tokens": null,
+                "text_tokens": null,
+                "video_tokens": 0
+              },
+              "cost": 0.0007184,
+              "is_byok": false,
+              "cost_details": {
+                "upstream_inference_cost": 0.0007184,
+                "upstream_inference_prompt_cost": 0.0006084,
+                "upstream_inference_completions_cost": 0.00011
+              }
+            },
+            "finish_reason": "stop",
+            "refusal": null
+          }
+        },
+        "reasoning_details": [
+          {
+            "type": "reasoning.text",
+            "signature": "EqoCCqcCARFNMg8floSKN3Ui+NKUGNBPWh6rETTIPHmwHASboiWmIuuMh2Ej+ZQS0b2OtKbiA5LMHfOUcZ5+6pl4azdFZK2gioA/16putKou+ElU/d83tH4/NPJgfzZrFS6xlDWKE0RWwEQtO1wWlRCKO203fDV0lI5I4uEp0A+MgJiOGL9Eu3FoedBscVrOsn0qYW8UWJcHhVvP4QHB11ECOGa+ZF49rDu4IOq0NBn80t4O+2ZB64fyc2YBPskb4Tbw0Y1YTVtb+r81424Bhj0jkA6Qnx0fSE34sXHO4gnrCG7aH1HzzyfbJskRVHVqVYgrbSwLD9JTzdy/275BBFsfDjK+QbgryRztUKkhiSUOPvo9DJi+XS5fttGGK7q0vg99tpPw2HzXpU3LPw==",
+            "format": "google-gemini-v1",
+            "index": 0
+          }
+        ]
+      }
+    ],
+    "step_trace": {
+      "command_step_id": null,
+      "fallback_step_id": null,
+      "fallback_instruction_sha256": null,
+      "escape_reason": null,
+      "command_work": false,
+      "model_work": true,
+      "command_error": null
+    },
+    "reasoning_tokens": 38,
+    "cached_input_tokens": 0,
+    "service_cost_usd": 0.0007184,
+    "request_receipts": [
+      {
+        "id": "gen-1788680659-keiRAvviP17db5S0hRhW",
+        "model": "google/gemini-3.5-flash-lite",
+        "provider": "Google AI Studio",
+        "created": 1788680659,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 44,
+          "prompt_tokens": 2028,
+          "total_tokens": 2072,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": null,
+            "audio_tokens": 0,
+            "reasoning_tokens": 38,
+            "rejected_prediction_tokens": null,
+            "text_tokens": null,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "image_tokens": null,
+            "text_tokens": null,
+            "video_tokens": 0
+          },
+          "cost": 0.0007184,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.0007184,
+            "upstream_inference_prompt_cost": 0.0006084,
+            "upstream_inference_completions_cost": 0.00011
+          }
+        },
+        "finish_reason": "stop",
+        "refusal": null
+      }
+    ]
+  },
+  "rate_limit_retries": [],
+  "ended_at": "2026-09-06T07:44:20.583223+00:00"
+}

@@ -1,0 +1,10 @@
+{
+  "case_id": "mail-28ac03807580b31e997d",
+  "started_at": "2026-09-06T07:47:06.297713+00:00",
+  "frozen_manifest_sha256": "0de27578e13f8953bdaef817562296163136b36dcfba0688d5b19f0a87abcd71",
+  "status": "failed",
+  "error_type": "OpenAIConnectionError",
+  "status_code": null,
+  "billing_status": "unknown",
+  "ended_at": "2026-09-06T07:47:06.323492+00:00"
+}

@@ -1,0 +1,10 @@
+{
+  "case_id": "mail-3125dcdc7726abc1c128",
+  "started_at": "2026-09-06T07:50:44.356478+00:00",
+  "frozen_manifest_sha256": "cc6ddd9f23472d89f04d9f2d4e303d874beb70ffeb2771a093bba343ce6ef599",
+  "status": "failed",
+  "error_type": "TypeError",
+  "status_code": null,
+  "billing_status": "unknown",
+  "ended_at": "2026-09-06T07:50:44.565723+00:00"
+}

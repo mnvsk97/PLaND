@@ -1,0 +1,22 @@
+Traceback (most recent call last):
+  File "/Users/saikrishna/dev/deterministic-skills/experiments/collection/scripts/run_experiment.py", line 563, in <module>
+    raise SystemExit(main())
+                     ~~~~^^
+  File "/Users/saikrishna/dev/deterministic-skills/experiments/collection/scripts/run_experiment.py", line 474, in main
+    for case in results:
+                ^^^^^^^
+  File "/Users/saikrishna/dev/deterministic-skills/experiments/collection/scripts/run_experiment.py", line 466, in completed
+    yield future.result()
+          ~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 447, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/_base.py", line 396, in __get_result
+    raise self._exception
+  File "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/concurrent/futures/thread.py", line 73, in run
+    return fn(*args, **kwargs)
+  File "/Users/saikrishna/dev/deterministic-skills/experiments/collection/scripts/run_experiment.py", line 439, in recorded_case
+    raise RuntimeError(f"hosted-model case failed; inspect receipt {receipt}") from None
+RuntimeError: hosted-model case failed; inspect receipt /Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/spamassassin/results/selection-repeat-20260903-baseline.json.attempts/00732b32f23d48bfb4bab4d249134dfc.json

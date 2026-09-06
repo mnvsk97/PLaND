@@ -1,0 +1,164 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-09-06T07:48:34.677487+00:00",
+  "comparison": "natural_language_vs_hybrid",
+  "invariants": {
+    "model": "google/gemini-3.5-flash-lite",
+    "model_digest": null,
+    "seed": 20260904,
+    "evals": "/Users/saikrishna/dev/deterministic-skills/tmp/gemini-3.5-flash-lite/2026-09-05-11-41-pm/datasets/spamassassin/evals.csv",
+    "evals_sha256": "6dfefbcfbfd2ea068e3b07da48361b1743f855f0fd2964ec34bfefd347d6593b",
+    "split": "development",
+    "runtime": {
+      "max_completion_tokens": 1024,
+      "timeout_seconds": 300,
+      "model_provider": "openrouter",
+      "model": "google/gemini-3.5-flash-lite",
+      "base_url": "https://openrouter.ai/api/v1",
+      "stream": false,
+      "seed_supported": false,
+      "provider_endpoint": "google-ai-studio",
+      "reasoning_effort": "low",
+      "extra_body": {
+        "reasoning": {
+          "effort": "low"
+        },
+        "provider": {
+          "only": [
+            "google-ai-studio"
+          ],
+          "allow_fallbacks": false,
+          "require_parameters": true
+        }
+      },
+      "temperature": null,
+      "allow_fallbacks": false,
+      "require_parameters": true,
+      "max_retries": 0,
+      "token_metric": "provider_prompt_plus_completion_including_reasoning",
+      "weight_digest_available": false,
+      "execution_backend": "deepagent",
+      "workers": 8
+    },
+    "system_prompt_sha256": "eed23baceeaeaa6d3b52ce5f3adfe84cea01e7bb091f0881d75d5e364d6385dd",
+    "selection_sha256": "0404336ed9c12f94b18316e8b80f1bdbd68793513ac68d701cca9fe16073c98e",
+    "datasource_snapshot_sha256": "66bdf2a38ba1dd9d6c58000ebac0a3a93b062b58cf6d8cda0f80485709d4d09a",
+    "scorer_sha256": "03f83e70d463b7903d93fd0e0019aec14535f6817b1fce0ad19dc7f585cdab84",
+    "agent_harness_sha256": "7e3cd3303385b7c9079a8888a24594a6fb8b24eaab16c103d6d3ccfe628850ae",
+    "baseline_sop_sha256": "b3c9ec9c8b7af3ccf5d9aeaee0d7080a3a28e8e7b48bb4864177e16764914f98",
+    "baseline_sop_contract_sha256": "a027f88f15f1330cc94c5236dbc59888630db1d1c7987ded2c1a6fb03d308d57",
+    "hosted_adapter_sha256": "ee6247ed7f66d4df342117fbc379e0104c5a65a454b5d095a1947bfbbaeca9ad",
+    "evaluation_sha256": "6dfefbcfbfd2ea068e3b07da48361b1743f855f0fd2964ec34bfefd347d6593b"
+  },
+  "natural_language": {
+    "sop": {
+      "variant": "natural_language",
+      "sha256": "b3c9ec9c8b7af3ccf5d9aeaee0d7080a3a28e8e7b48bb4864177e16764914f98",
+      "classifier_sha256": null,
+      "content": "---\nname: spamassassin-classification\ndescription: Execute the spamassassin classification workflow using the approved datasource collection. Use when a request requires this workflow.\n---\n\n# Spamassassin Classification SOP\n\n1. [S01] Identify the requested item and follow this requirement: Classify one email as 'spam' when it is unsolicited bulk, fraudulent, or promotional abuse, otherwise as 'ham'. Use the complete sanitized email content and ordinary email intent cues. Return only a JSON object with the selected label; do\u2026 <!-- pland:english -->\n2. [S02] Use the approved datasource tools to read only the relevant evidence; the source collection contains .json files. <!-- pland:english -->\n3. [S03] Classify the evidence into exactly one known bucket: `ham`, `spam`. <!-- pland:english -->\n4. [S04] Return exactly one JSON object shaped as `{\"label\":\"<known bucket>\"}`. <!-- pland:english -->\n",
+      "step_representations": {
+        "english": 4
+      },
+      "contract": {
+        "valid": true,
+        "baseline_contract_sha256": "a027f88f15f1330cc94c5236dbc59888630db1d1c7987ded2c1a6fb03d308d57",
+        "baseline_sop_sha256": "b3c9ec9c8b7af3ccf5d9aeaee0d7080a3a28e8e7b48bb4864177e16764914f98",
+        "candidate_sop_sha256": "b3c9ec9c8b7af3ccf5d9aeaee0d7080a3a28e8e7b48bb4864177e16764914f98",
+        "command_fallback_links": []
+      }
+    },
+    "metrics": {
+      "quality": 0.992,
+      "quality_metric": "accuracy",
+      "correct": 496,
+      "cases": 500,
+      "input_tokens": 1361528,
+      "output_tokens": 4183,
+      "total_tokens": 1365711,
+      "estimated_model_cost_usd": 0.37943704,
+      "errors": {},
+      "normal_completion_rate": 1.0,
+      "escape_count": 0,
+      "escape_rate": 0.0,
+      "latency_seconds": {
+        "total": 280.73386313658557,
+        "mean": 0.5614677262731711,
+        "p95": null
+      },
+      "accuracy": 0.992
+    }
+  },
+  "hybrid": {
+    "sop": {
+      "variant": "hybrid",
+      "sha256": "08e44ddbec25cfc4424b7798d8afa14bf729a2256eada5516c66ef6e7df0b6fc",
+      "classifier_sha256": "99498926e339d0f2867e78d365c9ddb60f41d02db4fd69ad041e5efb7218863a",
+      "content": "---\nname: spamassassin-classification\ndescription: Execute the spamassassin classification workflow using the approved datasource collection. Use when a request requires this workflow.\n---\n\n# Spamassassin Classification SOP\n\n1. [S01] Identify the requested item and follow this requirement: Classify one email as 'spam' when it is unsolicited bulk, fraudulent, or promotional abuse, otherwise as 'ham'. Use the complete sanitized email content and ordinary email intent cues. Return only a JSON object with the selected label; do\u2026 <!-- pland:english -->\n2. [S02] Use the approved datasource tools to read only the relevant evidence; the source collection contains .json files. <!-- pland:english -->\n3. [S03] Run the bounded local `classify.py` rules; accept only a supplied label with a named matching rule. Abstain on every unmatched email so the exact English fallback handles it. <!-- pland:command fallback=S03 -->\n   Fallback [S03]: Classify the evidence into exactly one known bucket: `ham`, `spam`. <!-- pland:fallback -->\n4. [S04] Return exactly one JSON object shaped as `{\"label\":\"<known bucket>\"}`. <!-- pland:english -->\n",
+      "step_representations": {
+        "english": 3,
+        "command": 1
+      },
+      "contract": {
+        "valid": true,
+        "baseline_contract_sha256": "a027f88f15f1330cc94c5236dbc59888630db1d1c7987ded2c1a6fb03d308d57",
+        "baseline_sop_sha256": "b3c9ec9c8b7af3ccf5d9aeaee0d7080a3a28e8e7b48bb4864177e16764914f98",
+        "candidate_sop_sha256": "08e44ddbec25cfc4424b7798d8afa14bf729a2256eada5516c66ef6e7df0b6fc",
+        "command_fallback_links": [
+          {
+            "command_step_id": "S03",
+            "fallback_step_id": "S03",
+            "fallback_instruction": "Classify the evidence into exactly one known bucket: `ham`, `spam`.",
+            "fallback_instruction_sha256": "2ef81f3278b58a28816bcb8fe77469dba2a9f0177091ef1aceed9e23a0a16696"
+          }
+        ]
+      }
+    },
+    "metrics": {
+      "quality": 0.988,
+      "quality_metric": "accuracy",
+      "correct": 494,
+      "cases": 500,
+      "input_tokens": 928251,
+      "output_tokens": 2575,
+      "total_tokens": 930826,
+      "estimated_model_cost_usd": 0.25420543,
+      "errors": {},
+      "normal_completion_rate": 1.0,
+      "escape_count": 0,
+      "escape_rate": 0.0,
+      "latency_seconds": {
+        "total": 182.34633012200356,
+        "mean": 0.36469266024400715,
+        "p95": null
+      },
+      "accuracy": 0.988
+    }
+  },
+  "identity": {
+    "experiment_id": "gemini-3.5-flash-lite-2026-09-05-11-41-pm-spamassassin",
+    "baseline_run_id": "development-repeat-20260904-baseline",
+    "candidate_run_id": "development-repeat-20260904-hybrid",
+    "candidate_id": "candidate-01",
+    "baseline_sop_sha256": "b3c9ec9c8b7af3ccf5d9aeaee0d7080a3a28e8e7b48bb4864177e16764914f98",
+    "candidate_sop_sha256": "08e44ddbec25cfc4424b7798d8afa14bf729a2256eada5516c66ef6e7df0b6fc",
+    "baseline_skill_content_sha256": "b761489f78de1cce1bf9dd6e1d87aa8cd475826a83e05290d71e70cd33029c4a",
+    "candidate_skill_content_sha256": "07237c532a2314c44ddfc902e5133281bb09344b383df9a2aa540a8e917c2b2a"
+  },
+  "cost_weighted_determinisation": {
+    "baseline_model_tokens": 1365711,
+    "candidate_model_tokens": 930826,
+    "fallback_model_tokens": 930826,
+    "rate": 0.0
+  },
+  "delta_hybrid_minus_natural_language": {
+    "quality": -0.0040000000000000036,
+    "input_tokens": -433277,
+    "output_tokens": -1608,
+    "total_tokens": -434885,
+    "total_token_ratio": 0.6815687945692757,
+    "estimated_model_cost_usd": -0.12523161,
+    "mean_latency_seconds": -0.19677506602916395,
+    "mean_latency_ratio": 0.6495345024810439,
+    "accuracy_points": -0.0040000000000000036
+  }
+}

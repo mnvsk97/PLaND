@@ -1,0 +1,1 @@
+{"by_split": {"development": 500, "test": 500, "validation": 1000}, "by_split_and_label": {"development": {"ham": 250, "spam": 250}, "test": {"ham": 250, "spam": 250}, "validation": {"ham": 500, "spam": 500}}, "passed": true, "total": 2000}

@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-09-06T07:37:13.104744+00:00",
+  "attempt": 1,
+  "max_attempts": 10,
+  "minimum_quality": 0.8,
+  "observed_quality": 0.99,
+  "run": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/spamassassin/results/baseline-development-01.json",
+  "sop_sha256": "b3c9ec9c8b7af3ccf5d9aeaee0d7080a3a28e8e7b48bb4864177e16764914f98",
+  "decision": "ready_to_freeze"
+}

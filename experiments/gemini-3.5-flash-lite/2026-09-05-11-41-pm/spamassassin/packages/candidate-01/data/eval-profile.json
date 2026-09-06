@@ -1,0 +1,39 @@
+{
+  "columns": [
+    "schema_version",
+    "id",
+    "benchmark",
+    "task_type",
+    "split",
+    "input",
+    "output",
+    "reasoning",
+    "metadata"
+  ],
+  "input_suffixes": [
+    ".json"
+  ],
+  "output": {
+    "json_type": "object",
+    "keys": [
+      "label"
+    ],
+    "labels": [
+      "ham",
+      "spam"
+    ],
+    "types": {
+      "label": [
+        "string"
+      ]
+    }
+  },
+  "rows": 2000,
+  "schema_version": 1,
+  "split_counts": {
+    "development": 500,
+    "test": 500,
+    "validation": 1000
+  },
+  "task_kind": "classification"
+}

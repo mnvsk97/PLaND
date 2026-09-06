@@ -1,0 +1,6 @@
+{
+  "schema_version": 1,
+  "source": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/spamassassin/results/selection-repeat-20260903-baseline.json.attempts/abe8af3d30de456aa4e60c6a0aead3a9.json",
+  "preserved_as": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/spamassassin/interrupted-runs/selection-repeat-20260903-baseline/attempt-1-failed-receipt.json",
+  "reason": "Transient TypeError interrupted hosted execution; preserve failed receipt and resume frozen checkpoint."
+}

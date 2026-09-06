@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "stage": "selection",
+  "candidate": "candidate-01",
+  "split": "validation",
+  "seed": 20260903,
+  "arm": "baseline",
+  "case_id": "mail-3125dcdc7726abc1c128",
+  "completed_cases_before_terminal_failure": 612,
+  "failed_attempts": 3,
+  "checks": {
+    "selection_split": true,
+    "seed_20260903": true,
+    "baseline_arm": true,
+    "partial_cases_preserved": true,
+    "three_failed_attempts_preserved": true,
+    "same_case_failed_each_attempt": true,
+    "not_rate_limited": true,
+    "terminal_provider_block": true
+  },
+  "gates": {
+    "absolute_viability": "not_computable",
+    "paired_noninferiority": "not_computable",
+    "token_reduction": "not_computable",
+    "paired_no_errors": false
+  },
+  "decision": "reject",
+  "final_test_release": false,
+  "reason": "The frozen hosted provider terminally blocked one required selection case on three attempts; complete paired scoring and the no-errors release gate cannot pass without changing the reviewed runtime or data."
+}

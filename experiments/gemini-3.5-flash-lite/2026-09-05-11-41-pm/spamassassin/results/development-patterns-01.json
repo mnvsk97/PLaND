@@ -1,0 +1,3511 @@
+{
+  "schema_version": 1,
+  "split": "development",
+  "cases": 500,
+  "label_counts": {
+    "ham": 250,
+    "spam": 250
+  },
+  "candidates": [
+    {
+      "phrase": "0 1 by jmason",
+      "label": "ham",
+      "support": 169,
+      "total": 171,
+      "precision": 0.9883040935672515
+    },
+    {
+      "phrase": "1 by jmason org",
+      "label": "ham",
+      "support": 169,
+      "total": 171,
+      "precision": 0.9883040935672515
+    },
+    {
+      "phrase": "by jmason org postfix",
+      "label": "ham",
+      "support": 169,
+      "total": 171,
+      "precision": 0.9883040935672515
+    },
+    {
+      "phrase": "jmason org postfix with",
+      "label": "ham",
+      "support": 169,
+      "total": 171,
+      "precision": 0.9883040935672515
+    },
+    {
+      "phrase": "1 by jmason",
+      "label": "ham",
+      "support": 169,
+      "total": 171,
+      "precision": 0.9883040935672515
+    },
+    {
+      "phrase": "by jmason org",
+      "label": "ham",
+      "support": 169,
+      "total": 171,
+      "precision": 0.9883040935672515
+    },
+    {
+      "phrase": "jmason org postfix",
+      "label": "ham",
+      "support": 169,
+      "total": 171,
+      "precision": 0.9883040935672515
+    },
+    {
+      "phrase": "by jmason",
+      "label": "ham",
+      "support": 169,
+      "total": 171,
+      "precision": 0.9883040935672515
+    },
+    {
+      "phrase": "to yyyy localhost spamassassin",
+      "label": "ham",
+      "support": 168,
+      "total": 170,
+      "precision": 0.9882352941176471
+    },
+    {
+      "phrase": "yyyy localhost spamassassin taint",
+      "label": "ham",
+      "support": 168,
+      "total": 170,
+      "precision": 0.9882352941176471
+    },
+    {
+      "phrase": "yyyy localhost spamassassin",
+      "label": "ham",
+      "support": 168,
+      "total": 170,
+      "precision": 0.9882352941176471
+    },
+    {
+      "phrase": "in reply to",
+      "label": "ham",
+      "support": 93,
+      "total": 93,
+      "precision": 1.0
+    },
+    {
+      "phrase": "in reply",
+      "label": "ham",
+      "support": 93,
+      "total": 93,
+      "precision": 1.0
+    },
+    {
+      "phrase": "removed",
+      "label": "spam",
+      "support": 88,
+      "total": 91,
+      "precision": 0.967032967032967
+    },
+    {
+      "phrase": "213",
+      "label": "spam",
+      "support": 84,
+      "total": 88,
+      "precision": 0.9545454545454546
+    },
+    {
+      "phrase": "for jm netnoteinc com",
+      "label": "spam",
+      "support": 83,
+      "total": 83,
+      "precision": 1.0
+    },
+    {
+      "phrase": "for jm netnoteinc",
+      "label": "spam",
+      "support": 83,
+      "total": 83,
+      "precision": 1.0
+    },
+    {
+      "phrase": "jm netnoteinc com",
+      "label": "spam",
+      "support": 83,
+      "total": 83,
+      "precision": 1.0
+    },
+    {
+      "phrase": "be removed",
+      "label": "spam",
+      "support": 83,
+      "total": 84,
+      "precision": 0.9880952380952381
+    },
+    {
+      "phrase": "jm netnoteinc",
+      "label": "spam",
+      "support": 83,
+      "total": 83,
+      "precision": 1.0
+    },
+    {
+      "phrase": "org delivered to",
+      "label": "ham",
+      "support": 82,
+      "total": 84,
+      "precision": 0.9761904761904762
+    },
+    {
+      "phrase": "org delivered",
+      "label": "ham",
+      "support": 82,
+      "total": 84,
+      "precision": 0.9761904761904762
+    },
+    {
+      "phrase": "to be removed",
+      "label": "spam",
+      "support": 81,
+      "total": 82,
+      "precision": 0.9878048780487805
+    },
+    {
+      "phrase": "wrote",
+      "label": "ham",
+      "support": 80,
+      "total": 82,
+      "precision": 0.975609756097561
+    },
+    {
+      "phrase": "org delivered to yyyy",
+      "label": "ham",
+      "support": 79,
+      "total": 79,
+      "precision": 1.0
+    },
+    {
+      "phrase": "140",
+      "label": "spam",
+      "support": 78,
+      "total": 82,
+      "precision": 0.9512195121951219
+    },
+    {
+      "phrase": "org to",
+      "label": "ham",
+      "support": 77,
+      "total": 79,
+      "precision": 0.9746835443037974
+    },
+    {
+      "phrase": "keywords",
+      "label": "spam",
+      "support": 76,
+      "total": 79,
+      "precision": 0.9620253164556962
+    },
+    {
+      "phrase": "org localhost",
+      "label": "ham",
+      "support": 75,
+      "total": 78,
+      "precision": 0.9615384615384616
+    },
+    {
+      "phrase": "url http",
+      "label": "ham",
+      "support": 73,
+      "total": 74,
+      "precision": 0.9864864864864865
+    },
+    {
+      "phrase": "spamassassin taint org delivered",
+      "label": "ham",
+      "support": 72,
+      "total": 73,
+      "precision": 0.9863013698630136
+    },
+    {
+      "phrase": "taint org delivered to",
+      "label": "ham",
+      "support": 72,
+      "total": 74,
+      "precision": 0.972972972972973
+    },
+    {
+      "phrase": "taint org delivered",
+      "label": "ham",
+      "support": 72,
+      "total": 74,
+      "precision": 0.972972972972973
+    },
+    {
+      "phrase": "com 213",
+      "label": "spam",
+      "support": 72,
+      "total": 72,
+      "precision": 1.0
+    },
+    {
+      "phrase": "140 by",
+      "label": "spam",
+      "support": 71,
+      "total": 72,
+      "precision": 0.9861111111111112
+    },
+    {
+      "phrase": "x keywords",
+      "label": "spam",
+      "support": 71,
+      "total": 73,
+      "precision": 0.9726027397260274
+    },
+    {
+      "phrase": "oct 2002",
+      "label": "ham",
+      "support": 70,
+      "total": 70,
+      "precision": 1.0
+    },
+    {
+      "phrase": "oct",
+      "label": "ham",
+      "support": 70,
+      "total": 70,
+      "precision": 1.0
+    },
+    {
+      "phrase": "references",
+      "label": "ham",
+      "support": 70,
+      "total": 73,
+      "precision": 0.958904109589041
+    },
+    {
+      "phrase": "105 180",
+      "label": "spam",
+      "support": 69,
+      "total": 69,
+      "precision": 1.0
+    },
+    {
+      "phrase": "105 180 140 by",
+      "label": "spam",
+      "support": 68,
+      "total": 68,
+      "precision": 1.0
+    },
+    {
+      "phrase": "213 105 180 140",
+      "label": "spam",
+      "support": 68,
+      "total": 68,
+      "precision": 1.0
+    },
+    {
+      "phrase": "by mandark labs netnoteinc",
+      "label": "spam",
+      "support": 68,
+      "total": 70,
+      "precision": 0.9714285714285714
+    },
+    {
+      "phrase": "com 213 105 180",
+      "label": "spam",
+      "support": 68,
+      "total": 68,
+      "precision": 1.0
+    },
+    {
+      "phrase": "from mandark labs netnoteinc",
+      "label": "spam",
+      "support": 68,
+      "total": 69,
+      "precision": 0.9855072463768116
+    },
+    {
+      "phrase": "labs netnoteinc com 213",
+      "label": "spam",
+      "support": 68,
+      "total": 68,
+      "precision": 1.0
+    },
+    {
+      "phrase": "labs netnoteinc com 8",
+      "label": "spam",
+      "support": 68,
+      "total": 70,
+      "precision": 0.9714285714285714
+    },
+    {
+      "phrase": "mandark labs netnoteinc com",
+      "label": "spam",
+      "support": 68,
+      "total": 70,
+      "precision": 0.9714285714285714
+    },
+    {
+      "phrase": "netnoteinc com 213 105",
+      "label": "spam",
+      "support": 68,
+      "total": 68,
+      "precision": 1.0
+    },
+    {
+      "phrase": "netnoteinc com 8 11",
+      "label": "spam",
+      "support": 68,
+      "total": 70,
+      "precision": 0.9714285714285714
+    },
+    {
+      "phrase": "received from mandark labs",
+      "label": "spam",
+      "support": 68,
+      "total": 69,
+      "precision": 0.9855072463768116
+    },
+    {
+      "phrase": "105 180 140",
+      "label": "spam",
+      "support": 68,
+      "total": 68,
+      "precision": 1.0
+    },
+    {
+      "phrase": "180 140 by",
+      "label": "spam",
+      "support": 68,
+      "total": 68,
+      "precision": 1.0
+    },
+    {
+      "phrase": "213 105 180",
+      "label": "spam",
+      "support": 68,
+      "total": 68,
+      "precision": 1.0
+    },
+    {
+      "phrase": "by mandark labs",
+      "label": "spam",
+      "support": 68,
+      "total": 70,
+      "precision": 0.9714285714285714
+    },
+    {
+      "phrase": "com 213 105",
+      "label": "spam",
+      "support": 68,
+      "total": 68,
+      "precision": 1.0
+    },
+    {
+      "phrase": "from mandark labs",
+      "label": "spam",
+      "support": 68,
+      "total": 69,
+      "precision": 0.9855072463768116
+    },
+    {
+      "phrase": "mandark labs netnoteinc",
+      "label": "spam",
+      "support": 68,
+      "total": 70,
+      "precision": 0.9714285714285714
+    },
+    {
+      "phrase": "netnoteinc com 213",
+      "label": "spam",
+      "support": 68,
+      "total": 68,
+      "precision": 1.0
+    },
+    {
+      "phrase": "netnoteinc com 8",
+      "label": "spam",
+      "support": 68,
+      "total": 70,
+      "precision": 0.9714285714285714
+    },
+    {
+      "phrase": "received from mandark",
+      "label": "spam",
+      "support": 68,
+      "total": 69,
+      "precision": 0.9855072463768116
+    },
+    {
+      "phrase": "180 140",
+      "label": "spam",
+      "support": 68,
+      "total": 68,
+      "precision": 1.0
+    },
+    {
+      "phrase": "213 105",
+      "label": "spam",
+      "support": 68,
+      "total": 68,
+      "precision": 1.0
+    },
+    {
+      "phrase": "by mandark",
+      "label": "spam",
+      "support": 68,
+      "total": 70,
+      "precision": 0.9714285714285714
+    },
+    {
+      "phrase": "from mandark",
+      "label": "spam",
+      "support": 68,
+      "total": 69,
+      "precision": 0.9855072463768116
+    },
+    {
+      "phrase": "mandark labs",
+      "label": "spam",
+      "support": 68,
+      "total": 70,
+      "precision": 0.9714285714285714
+    },
+    {
+      "phrase": "mandark",
+      "label": "spam",
+      "support": 68,
+      "total": 70,
+      "precision": 0.9714285714285714
+    },
+    {
+      "phrase": "jun",
+      "label": "spam",
+      "support": 67,
+      "total": 67,
+      "precision": 1.0
+    },
+    {
+      "phrase": "center font",
+      "label": "spam",
+      "support": 66,
+      "total": 68,
+      "precision": 0.9705882352941176
+    },
+    {
+      "phrase": "href 3d",
+      "label": "spam",
+      "support": 66,
+      "total": 69,
+      "precision": 0.9565217391304348
+    },
+    {
+      "phrase": "org localhost 127 0",
+      "label": "ham",
+      "support": 65,
+      "total": 68,
+      "precision": 0.9558823529411765
+    },
+    {
+      "phrase": "org localhost 127",
+      "label": "ham",
+      "support": 65,
+      "total": 68,
+      "precision": 0.9558823529411765
+    },
+    {
+      "phrase": "0000 content type text",
+      "label": "ham",
+      "support": 64,
+      "total": 65,
+      "precision": 0.9846153846153847
+    },
+    {
+      "phrase": "0000 content type",
+      "label": "ham",
+      "support": 64,
+      "total": 66,
+      "precision": 0.9696969696969697
+    },
+    {
+      "phrase": "2002 received",
+      "label": "spam",
+      "support": 63,
+      "total": 63,
+      "precision": 1.0
+    },
+    {
+      "phrase": "mon jun",
+      "label": "spam",
+      "support": 63,
+      "total": 63,
+      "precision": 1.0
+    },
+    {
+      "phrase": "mon jun 24 17",
+      "label": "spam",
+      "support": 62,
+      "total": 62,
+      "precision": 1.0
+    },
+    {
+      "phrase": "2002 received from",
+      "label": "spam",
+      "support": 62,
+      "total": 62,
+      "precision": 1.0
+    },
+    {
+      "phrase": "a href 3d",
+      "label": "spam",
+      "support": 62,
+      "total": 65,
+      "precision": 0.9538461538461539
+    },
+    {
+      "phrase": "jun 24 17",
+      "label": "spam",
+      "support": 62,
+      "total": 62,
+      "precision": 1.0
+    },
+    {
+      "phrase": "mon jun 24",
+      "label": "spam",
+      "support": 62,
+      "total": 62,
+      "precision": 1.0
+    },
+    {
+      "phrase": "24 17",
+      "label": "spam",
+      "support": 62,
+      "total": 63,
+      "precision": 0.9841269841269841
+    },
+    {
+      "phrase": "jun 24",
+      "label": "spam",
+      "support": 62,
+      "total": 62,
+      "precision": 1.0
+    },
+    {
+      "phrase": "removed from",
+      "label": "spam",
+      "support": 62,
+      "total": 62,
+      "precision": 1.0
+    },
+    {
+      "phrase": "bgcolor 3d",
+      "label": "spam",
+      "support": 61,
+      "total": 64,
+      "precision": 0.953125
+    },
+    {
+      "phrase": "http equiv",
+      "label": "spam",
+      "support": 61,
+      "total": 63,
+      "precision": 0.9682539682539683
+    },
+    {
+      "phrase": "equiv",
+      "label": "spam",
+      "support": 61,
+      "total": 63,
+      "precision": 0.9682539682539683
+    },
+    {
+      "phrase": "0 1 by dogma",
+      "label": "ham",
+      "support": 60,
+      "total": 62,
+      "precision": 0.967741935483871
+    },
+    {
+      "phrase": "1 by dogma slashnull",
+      "label": "ham",
+      "support": 60,
+      "total": 63,
+      "precision": 0.9523809523809523
+    },
+    {
+      "phrase": "2002 return path rssfeeds",
+      "label": "ham",
+      "support": 60,
+      "total": 60,
+      "precision": 1.0
+    },
+    {
+      "phrase": "dogma slashnull org localhost",
+      "label": "ham",
+      "support": 60,
+      "total": 62,
+      "precision": 0.967741935483871
+    },
+    {
+      "phrase": "dogma slashnull org to",
+      "label": "ham",
+      "support": 60,
+      "total": 60,
+      "precision": 1.0
+    },
+    {
+      "phrase": "encoding utf 8 url",
+      "label": "ham",
+      "support": 60,
+      "total": 60,
+      "precision": 1.0
+    },
+    {
+      "phrase": "path rssfeeds spamassassin taint",
+      "label": "ham",
+      "support": 60,
+      "total": 60,
+      "precision": 1.0
+    },
+    {
+      "phrase": "plain encoding utf 8",
+      "label": "ham",
+      "support": 60,
+      "total": 60,
+      "precision": 1.0
+    },
+    {
+      "phrase": "return path rssfeeds spamassassin",
+      "label": "ham",
+      "support": 60,
+      "total": 60,
+      "precision": 1.0
+    },
+    {
+      "phrase": "rssfeeds spamassassin taint org",
+      "label": "ham",
+      "support": 60,
+      "total": 60,
+      "precision": 1.0
+    },
+    {
+      "phrase": "slashnull org localhost 127",
+      "label": "ham",
+      "support": 60,
+      "total": 62,
+      "precision": 0.967741935483871
+    },
+    {
+      "phrase": "text plain encoding utf",
+      "label": "ham",
+      "support": 60,
+      "total": 60,
+      "precision": 1.0
+    },
+    {
+      "phrase": "type text plain encoding",
+      "label": "ham",
+      "support": 60,
+      "total": 60,
+      "precision": 1.0
+    },
+    {
+      "phrase": "utf 8 url http",
+      "label": "ham",
+      "support": 60,
+      "total": 60,
+      "precision": 1.0
+    },
+    {
+      "phrase": "1 by dogma",
+      "label": "ham",
+      "support": 60,
+      "total": 63,
+      "precision": 0.9523809523809523
+    },
+    {
+      "phrase": "8 url http",
+      "label": "ham",
+      "support": 60,
+      "total": 60,
+      "precision": 1.0
+    },
+    {
+      "phrase": "encoding utf 8",
+      "label": "ham",
+      "support": 60,
+      "total": 60,
+      "precision": 1.0
+    },
+    {
+      "phrase": "path rssfeeds spamassassin",
+      "label": "ham",
+      "support": 60,
+      "total": 60,
+      "precision": 1.0
+    },
+    {
+      "phrase": "plain encoding utf",
+      "label": "ham",
+      "support": 60,
+      "total": 60,
+      "precision": 1.0
+    },
+    {
+      "phrase": "return path rssfeeds",
+      "label": "ham",
+      "support": 60,
+      "total": 60,
+      "precision": 1.0
+    },
+    {
+      "phrase": "rssfeeds spamassassin taint",
+      "label": "ham",
+      "support": 60,
+      "total": 60,
+      "precision": 1.0
+    },
+    {
+      "phrase": "slashnull org localhost",
+      "label": "ham",
+      "support": 60,
+      "total": 62,
+      "precision": 0.967741935483871
+    },
+    {
+      "phrase": "slashnull org to",
+      "label": "ham",
+      "support": 60,
+      "total": 60,
+      "precision": 1.0
+    },
+    {
+      "phrase": "text plain encoding",
+      "label": "ham",
+      "support": 60,
+      "total": 60,
+      "precision": 1.0
+    },
+    {
+      "phrase": "utf 8 url",
+      "label": "ham",
+      "support": 60,
+      "total": 60,
+      "precision": 1.0
+    },
+    {
+      "phrase": "8 url",
+      "label": "ham",
+      "support": 60,
+      "total": 60,
+      "precision": 1.0
+    },
+    {
+      "phrase": "encoding utf",
+      "label": "ham",
+      "support": 60,
+      "total": 60,
+      "precision": 1.0
+    },
+    {
+      "phrase": "from rssfeeds",
+      "label": "ham",
+      "support": 60,
+      "total": 60,
+      "precision": 1.0
+    },
+    {
+      "phrase": "path rssfeeds",
+      "label": "ham",
+      "support": 60,
+      "total": 60,
+      "precision": 1.0
+    },
+    {
+      "phrase": "plain encoding",
+      "label": "ham",
+      "support": 60,
+      "total": 60,
+      "precision": 1.0
+    },
+    {
+      "phrase": "rssfeeds spamassassin",
+      "label": "ham",
+      "support": 60,
+      "total": 60,
+      "precision": 1.0
+    },
+    {
+      "phrase": "utf 8",
+      "label": "ham",
+      "support": 60,
+      "total": 60,
+      "precision": 1.0
+    },
+    {
+      "phrase": "rssfeeds",
+      "label": "ham",
+      "support": 60,
+      "total": 60,
+      "precision": 1.0
+    },
+    {
+      "phrase": "utf",
+      "label": "ham",
+      "support": 60,
+      "total": 60,
+      "precision": 1.0
+    },
+    {
+      "phrase": "140 by dogma slashnull",
+      "label": "spam",
+      "support": 59,
+      "total": 59,
+      "precision": 1.0
+    },
+    {
+      "phrase": "140 by dogma",
+      "label": "spam",
+      "support": 59,
+      "total": 59,
+      "precision": 1.0
+    },
+    {
+      "phrase": "be removed from",
+      "label": "spam",
+      "support": 59,
+      "total": 59,
+      "precision": 1.0
+    },
+    {
+      "phrase": "meta http equiv",
+      "label": "spam",
+      "support": 59,
+      "total": 61,
+      "precision": 0.9672131147540983
+    },
+    {
+      "phrase": "color 3d",
+      "label": "spam",
+      "support": 59,
+      "total": 62,
+      "precision": 0.9516129032258065
+    },
+    {
+      "phrase": "meta http",
+      "label": "spam",
+      "support": 59,
+      "total": 61,
+      "precision": 0.9672131147540983
+    },
+    {
+      "phrase": "180 140 by dogma",
+      "label": "spam",
+      "support": 58,
+      "total": 58,
+      "precision": 1.0
+    },
+    {
+      "phrase": "from rssfeeds jmason org",
+      "label": "ham",
+      "support": 58,
+      "total": 58,
+      "precision": 1.0
+    },
+    {
+      "phrase": "org to yyyy spamassassin",
+      "label": "ham",
+      "support": 58,
+      "total": 58,
+      "precision": 1.0
+    },
+    {
+      "phrase": "slashnull org to yyyy",
+      "label": "ham",
+      "support": 58,
+      "total": 58,
+      "precision": 1.0
+    },
+    {
+      "phrase": "to be removed from",
+      "label": "spam",
+      "support": 58,
+      "total": 58,
+      "precision": 1.0
+    },
+    {
+      "phrase": "from rssfeeds jmason",
+      "label": "ham",
+      "support": 58,
+      "total": 58,
+      "precision": 1.0
+    },
+    {
+      "phrase": "org to yyyy",
+      "label": "ham",
+      "support": 58,
+      "total": 58,
+      "precision": 1.0
+    },
+    {
+      "phrase": "rssfeeds jmason org",
+      "label": "ham",
+      "support": 58,
+      "total": 58,
+      "precision": 1.0
+    },
+    {
+      "phrase": "face 3d",
+      "label": "spam",
+      "support": 58,
+      "total": 61,
+      "precision": 0.9508196721311475
+    },
+    {
+      "phrase": "rssfeeds jmason",
+      "label": "ham",
+      "support": 58,
+      "total": 58,
+      "precision": 1.0
+    },
+    {
+      "phrase": "font face 3d",
+      "label": "spam",
+      "support": 57,
+      "total": 60,
+      "precision": 0.95
+    },
+    {
+      "phrase": "type content",
+      "label": "spam",
+      "support": 57,
+      "total": 57,
+      "precision": 1.0
+    },
+    {
+      "phrase": "width 3d",
+      "label": "spam",
+      "support": 57,
+      "total": 60,
+      "precision": 0.95
+    },
+    {
+      "phrase": "internet mail service",
+      "label": "spam",
+      "support": 53,
+      "total": 54,
+      "precision": 0.9814814814814815
+    },
+    {
+      "phrase": "5 5",
+      "label": "spam",
+      "support": 53,
+      "total": 54,
+      "precision": 0.9814814814814815
+    },
+    {
+      "phrase": "internet mail",
+      "label": "spam",
+      "support": 53,
+      "total": 54,
+      "precision": 0.9814814814814815
+    },
+    {
+      "phrase": "x keywords content",
+      "label": "spam",
+      "support": 51,
+      "total": 51,
+      "precision": 1.0
+    },
+    {
+      "phrase": "keywords content",
+      "label": "spam",
+      "support": 51,
+      "total": 51,
+      "precision": 1.0
+    },
+    {
+      "phrase": "yyyy netnoteinc com",
+      "label": "spam",
+      "support": 50,
+      "total": 50,
+      "precision": 1.0
+    },
+    {
+      "phrase": "yyyy netnoteinc",
+      "label": "spam",
+      "support": 50,
+      "total": 50,
+      "precision": 1.0
+    },
+    {
+      "phrase": "8 11 2 with",
+      "label": "spam",
+      "support": 49,
+      "total": 51,
+      "precision": 0.9607843137254902
+    },
+    {
+      "phrase": "11 2 with",
+      "label": "spam",
+      "support": 49,
+      "total": 51,
+      "precision": 0.9607843137254902
+    },
+    {
+      "phrase": "version 5",
+      "label": "spam",
+      "support": 49,
+      "total": 51,
+      "precision": 0.9607843137254902
+    },
+    {
+      "phrase": "font color 3d",
+      "label": "spam",
+      "support": 48,
+      "total": 48,
+      "precision": 1.0
+    },
+    {
+      "phrase": "url http www",
+      "label": "ham",
+      "support": 48,
+      "total": 48,
+      "precision": 1.0
+    },
+    {
+      "phrase": "content type content",
+      "label": "spam",
+      "support": 47,
+      "total": 47,
+      "precision": 1.0
+    },
+    {
+      "phrase": "210",
+      "label": "spam",
+      "support": 47,
+      "total": 49,
+      "precision": 0.9591836734693877
+    },
+    {
+      "phrase": "exchange internet mail service",
+      "label": "spam",
+      "support": 46,
+      "total": 46,
+      "precision": 1.0
+    },
+    {
+      "phrase": "internet mail service version",
+      "label": "spam",
+      "support": 46,
+      "total": 46,
+      "precision": 1.0
+    },
+    {
+      "phrase": "mail service version 5",
+      "label": "spam",
+      "support": 46,
+      "total": 46,
+      "precision": 1.0
+    },
+    {
+      "phrase": "microsoft exchange internet mail",
+      "label": "spam",
+      "support": 46,
+      "total": 46,
+      "precision": 1.0
+    },
+    {
+      "phrase": "smtp microsoft exchange internet",
+      "label": "spam",
+      "support": 46,
+      "total": 46,
+      "precision": 1.0
+    },
+    {
+      "phrase": "with smtp microsoft exchange",
+      "label": "spam",
+      "support": 46,
+      "total": 46,
+      "precision": 1.0
+    },
+    {
+      "phrase": "exchange internet mail",
+      "label": "spam",
+      "support": 46,
+      "total": 46,
+      "precision": 1.0
+    },
+    {
+      "phrase": "mail service version",
+      "label": "spam",
+      "support": 46,
+      "total": 46,
+      "precision": 1.0
+    },
+    {
+      "phrase": "microsoft exchange internet",
+      "label": "spam",
+      "support": 46,
+      "total": 46,
+      "precision": 1.0
+    },
+    {
+      "phrase": "service version 5",
+      "label": "spam",
+      "support": 46,
+      "total": 46,
+      "precision": 1.0
+    },
+    {
+      "phrase": "smtp microsoft exchange",
+      "label": "spam",
+      "support": 46,
+      "total": 46,
+      "precision": 1.0
+    },
+    {
+      "phrase": "with smtp microsoft",
+      "label": "spam",
+      "support": 46,
+      "total": 46,
+      "precision": 1.0
+    },
+    {
+      "phrase": "exchange internet",
+      "label": "spam",
+      "support": 46,
+      "total": 46,
+      "precision": 1.0
+    },
+    {
+      "phrase": "microsoft exchange",
+      "label": "spam",
+      "support": 46,
+      "total": 47,
+      "precision": 0.9787234042553191
+    },
+    {
+      "phrase": "service version",
+      "label": "spam",
+      "support": 46,
+      "total": 46,
+      "precision": 1.0
+    },
+    {
+      "phrase": "smtp microsoft",
+      "label": "spam",
+      "support": 46,
+      "total": 46,
+      "precision": 1.0
+    },
+    {
+      "phrase": "2002 received from mandark",
+      "label": "spam",
+      "support": 45,
+      "total": 45,
+      "precision": 1.0
+    },
+    {
+      "phrase": "encoding quoted printable html",
+      "label": "spam",
+      "support": 45,
+      "total": 45,
+      "precision": 1.0
+    },
+    {
+      "phrase": "to yyyy netnoteinc com",
+      "label": "spam",
+      "support": 45,
+      "total": 45,
+      "precision": 1.0
+    },
+    {
+      "phrase": "font font face",
+      "label": "spam",
+      "support": 45,
+      "total": 45,
+      "precision": 1.0
+    },
+    {
+      "phrase": "font p p",
+      "label": "spam",
+      "support": 45,
+      "total": 46,
+      "precision": 0.9782608695652174
+    },
+    {
+      "phrase": "quoted printable html",
+      "label": "spam",
+      "support": 45,
+      "total": 45,
+      "precision": 1.0
+    },
+    {
+      "phrase": "to yyyy netnoteinc",
+      "label": "spam",
+      "support": 45,
+      "total": 45,
+      "precision": 1.0
+    },
+    {
+      "phrase": "aol com",
+      "label": "spam",
+      "support": 45,
+      "total": 46,
+      "precision": 0.9782608695652174
+    },
+    {
+      "phrase": "content 3d",
+      "label": "spam",
+      "support": 45,
+      "total": 46,
+      "precision": 0.9782608695652174
+    },
+    {
+      "phrase": "printable html",
+      "label": "spam",
+      "support": 45,
+      "total": 45,
+      "precision": 1.0
+    },
+    {
+      "phrase": "b font color",
+      "label": "spam",
+      "support": 44,
+      "total": 45,
+      "precision": 0.9777777777777777
+    },
+    {
+      "phrase": "service version 5 5",
+      "label": "spam",
+      "support": 43,
+      "total": 43,
+      "precision": 1.0
+    },
+    {
+      "phrase": "version 5 5",
+      "label": "spam",
+      "support": 43,
+      "total": 43,
+      "precision": 1.0
+    },
+    {
+      "phrase": "may 2002",
+      "label": "spam",
+      "support": 43,
+      "total": 43,
+      "precision": 1.0
+    },
+    {
+      "phrase": "ff0000",
+      "label": "spam",
+      "support": 43,
+      "total": 44,
+      "precision": 0.9772727272727273
+    },
+    {
+      "phrase": "b font size",
+      "label": "spam",
+      "support": 42,
+      "total": 44,
+      "precision": 0.9545454545454546
+    },
+    {
+      "phrase": "font size 3d",
+      "label": "spam",
+      "support": 41,
+      "total": 43,
+      "precision": 0.9534883720930233
+    },
+    {
+      "phrase": "3d text",
+      "label": "spam",
+      "support": 41,
+      "total": 43,
+      "precision": 0.9534883720930233
+    },
+    {
+      "phrase": "com mon jun",
+      "label": "spam",
+      "support": 40,
+      "total": 40,
+      "precision": 1.0
+    },
+    {
+      "phrase": "center table",
+      "label": "spam",
+      "support": 40,
+      "total": 41,
+      "precision": 0.975609756097561
+    },
+    {
+      "phrase": "from our",
+      "label": "spam",
+      "support": 40,
+      "total": 42,
+      "precision": 0.9523809523809523
+    },
+    {
+      "phrase": "fill",
+      "label": "spam",
+      "support": 40,
+      "total": 42,
+      "precision": 0.9523809523809523
+    },
+    {
+      "phrase": "11 2 with esmtp",
+      "label": "spam",
+      "support": 39,
+      "total": 41,
+      "precision": 0.9512195121951219
+    },
+    {
+      "phrase": "com mon jun 24",
+      "label": "spam",
+      "support": 39,
+      "total": 39,
+      "precision": 1.0
+    },
+    {
+      "phrase": "content 3d text html",
+      "label": "spam",
+      "support": 39,
+      "total": 39,
+      "precision": 1.0
+    },
+    {
+      "phrase": "3d text html",
+      "label": "spam",
+      "support": 39,
+      "total": 39,
+      "precision": 1.0
+    },
+    {
+      "phrase": "content 3d text",
+      "label": "spam",
+      "support": 39,
+      "total": 39,
+      "precision": 1.0
+    },
+    {
+      "phrase": "this email",
+      "label": "spam",
+      "support": 39,
+      "total": 39,
+      "precision": 1.0
+    },
+    {
+      "phrase": "100000",
+      "label": "ham",
+      "support": 39,
+      "total": 39,
+      "precision": 1.0
+    },
+    {
+      "phrase": "pine",
+      "label": "ham",
+      "support": 39,
+      "total": 39,
+      "precision": 1.0
+    },
+    {
+      "phrase": "11 2 8 11",
+      "label": "spam",
+      "support": 38,
+      "total": 40,
+      "precision": 0.95
+    },
+    {
+      "phrase": "2 8 11 2",
+      "label": "spam",
+      "support": 38,
+      "total": 40,
+      "precision": 0.95
+    },
+    {
+      "phrase": "3d text html charset",
+      "label": "spam",
+      "support": 38,
+      "total": 38,
+      "precision": 1.0
+    },
+    {
+      "phrase": "8 11 2 8",
+      "label": "spam",
+      "support": 38,
+      "total": 40,
+      "precision": 0.95
+    },
+    {
+      "phrase": "by localhost with pop3",
+      "label": "spam",
+      "support": 38,
+      "total": 38,
+      "precision": 1.0
+    },
+    {
+      "phrase": "com 8 11 2",
+      "label": "spam",
+      "support": 38,
+      "total": 39,
+      "precision": 0.9743589743589743
+    },
+    {
+      "phrase": "localhost with pop3 fetchmail",
+      "label": "spam",
+      "support": 38,
+      "total": 38,
+      "precision": 1.0
+    },
+    {
+      "phrase": "pop3 fetchmail 5 9",
+      "label": "spam",
+      "support": 38,
+      "total": 38,
+      "precision": 1.0
+    },
+    {
+      "phrase": "quoted printable html head",
+      "label": "spam",
+      "support": 38,
+      "total": 38,
+      "precision": 1.0
+    },
+    {
+      "phrase": "type content 3d text",
+      "label": "spam",
+      "support": 38,
+      "total": 38,
+      "precision": 1.0
+    },
+    {
+      "phrase": "with pop3 fetchmail 5",
+      "label": "spam",
+      "support": 38,
+      "total": 38,
+      "precision": 1.0
+    },
+    {
+      "phrase": "x keywords content type",
+      "label": "spam",
+      "support": 38,
+      "total": 38,
+      "precision": 1.0
+    },
+    {
+      "phrase": "11 2 8",
+      "label": "spam",
+      "support": 38,
+      "total": 40,
+      "precision": 0.95
+    },
+    {
+      "phrase": "2 8 11",
+      "label": "spam",
+      "support": 38,
+      "total": 40,
+      "precision": 0.95
+    },
+    {
+      "phrase": "br br br",
+      "label": "spam",
+      "support": 38,
+      "total": 39,
+      "precision": 0.9743589743589743
+    },
+    {
+      "phrase": "center font face",
+      "label": "spam",
+      "support": 38,
+      "total": 38,
+      "precision": 1.0
+    },
+    {
+      "phrase": "keywords content type",
+      "label": "spam",
+      "support": 38,
+      "total": 38,
+      "precision": 1.0
+    },
+    {
+      "phrase": "localhost with pop3",
+      "label": "spam",
+      "support": 38,
+      "total": 38,
+      "precision": 1.0
+    },
+    {
+      "phrase": "pop3 fetchmail 5",
+      "label": "spam",
+      "support": 38,
+      "total": 38,
+      "precision": 1.0
+    },
+    {
+      "phrase": "printable html head",
+      "label": "spam",
+      "support": 38,
+      "total": 38,
+      "precision": 1.0
+    },
+    {
+      "phrase": "type content 3d",
+      "label": "spam",
+      "support": 38,
+      "total": 38,
+      "precision": 1.0
+    },
+    {
+      "phrase": "with pop3 fetchmail",
+      "label": "spam",
+      "support": 38,
+      "total": 38,
+      "precision": 1.0
+    },
+    {
+      "phrase": "pop3 fetchmail",
+      "label": "spam",
+      "support": 38,
+      "total": 38,
+      "precision": 1.0
+    },
+    {
+      "phrase": "with pop3",
+      "label": "spam",
+      "support": 38,
+      "total": 38,
+      "precision": 1.0
+    },
+    {
+      "phrase": "bordercolor",
+      "label": "spam",
+      "support": 38,
+      "total": 39,
+      "precision": 0.9743589743589743
+    },
+    {
+      "phrase": "pop3",
+      "label": "spam",
+      "support": 38,
+      "total": 38,
+      "precision": 1.0
+    },
+    {
+      "phrase": "8 url http www",
+      "label": "ham",
+      "support": 37,
+      "total": 37,
+      "precision": 1.0
+    },
+    {
+      "phrase": "font b font",
+      "label": "spam",
+      "support": 37,
+      "total": 38,
+      "precision": 0.9736842105263158
+    },
+    {
+      "phrase": "oct 2002 09",
+      "label": "ham",
+      "support": 37,
+      "total": 37,
+      "precision": 1.0
+    },
+    {
+      "phrase": "zzzzason org",
+      "label": "spam",
+      "support": 37,
+      "total": 37,
+      "precision": 1.0
+    },
+    {
+      "phrase": "zzzzason",
+      "label": "spam",
+      "support": 37,
+      "total": 37,
+      "precision": 1.0
+    },
+    {
+      "phrase": "href 3d http www",
+      "label": "spam",
+      "support": 36,
+      "total": 37,
+      "precision": 0.972972972972973
+    },
+    {
+      "phrase": "oct 2002 08",
+      "label": "ham",
+      "support": 36,
+      "total": 36,
+      "precision": 1.0
+    },
+    {
+      "phrase": "nextpart",
+      "label": "spam",
+      "support": 36,
+      "total": 36,
+      "precision": 1.0
+    },
+    {
+      "phrase": "0 1 by zzzzason",
+      "label": "spam",
+      "support": 35,
+      "total": 35,
+      "precision": 1.0
+    },
+    {
+      "phrase": "1 by zzzzason org",
+      "label": "spam",
+      "support": 35,
+      "total": 35,
+      "precision": 1.0
+    },
+    {
+      "phrase": "by zzzzason org postfix",
+      "label": "spam",
+      "support": 35,
+      "total": 35,
+      "precision": 1.0
+    },
+    {
+      "phrase": "zzzzason org postfix with",
+      "label": "spam",
+      "support": 35,
+      "total": 35,
+      "precision": 1.0
+    },
+    {
+      "phrase": "1 by zzzzason",
+      "label": "spam",
+      "support": 35,
+      "total": 35,
+      "precision": 1.0
+    },
+    {
+      "phrase": "by zzzzason org",
+      "label": "spam",
+      "support": 35,
+      "total": 35,
+      "precision": 1.0
+    },
+    {
+      "phrase": "zzzzason org postfix",
+      "label": "spam",
+      "support": 35,
+      "total": 35,
+      "precision": 1.0
+    },
+    {
+      "phrase": "boundary nextpart",
+      "label": "spam",
+      "support": 35,
+      "total": 35,
+      "precision": 1.0
+    },
+    {
+      "phrase": "by zzzzason",
+      "label": "spam",
+      "support": 35,
+      "total": 35,
+      "precision": 1.0
+    },
+    {
+      "phrase": "date 2002",
+      "label": "ham",
+      "support": 35,
+      "total": 36,
+      "precision": 0.9722222222222222
+    },
+    {
+      "phrase": "discussion list",
+      "label": "ham",
+      "support": 35,
+      "total": 35,
+      "precision": 1.0
+    },
+    {
+      "phrase": "table center",
+      "label": "spam",
+      "support": 35,
+      "total": 36,
+      "precision": 0.9722222222222222
+    },
+    {
+      "phrase": "the subject",
+      "label": "spam",
+      "support": 35,
+      "total": 35,
+      "precision": 1.0
+    },
+    {
+      "phrase": "0800",
+      "label": "spam",
+      "support": 35,
+      "total": 36,
+      "precision": 0.9722222222222222
+    },
+    {
+      "phrase": "fill out",
+      "label": "spam",
+      "support": 34,
+      "total": 35,
+      "precision": 0.9714285714285714
+    },
+    {
+      "phrase": "p p align",
+      "label": "spam",
+      "support": 33,
+      "total": 34,
+      "precision": 0.9705882352941176
+    },
+    {
+      "phrase": "head meta",
+      "label": "spam",
+      "support": 33,
+      "total": 33,
+      "precision": 1.0
+    },
+    {
+      "phrase": "211 219 by localhost",
+      "label": "spam",
+      "support": 32,
+      "total": 32,
+      "precision": 1.0
+    },
+    {
+      "phrase": "219 by localhost with",
+      "label": "spam",
+      "support": 32,
+      "total": 32,
+      "precision": 1.0
+    },
+    {
+      "phrase": "from mail webnote net",
+      "label": "spam",
+      "support": 32,
+      "total": 32,
+      "precision": 1.0
+    },
+    {
+      "phrase": "http www newsisfree com",
+      "label": "ham",
+      "support": 32,
+      "total": 32,
+      "precision": 1.0
+    },
+    {
+      "phrase": "received from mail webnote",
+      "label": "spam",
+      "support": 32,
+      "total": 32,
+      "precision": 1.0
+    },
+    {
+      "phrase": "url http www newsisfree",
+      "label": "ham",
+      "support": 32,
+      "total": 32,
+      "precision": 1.0
+    },
+    {
+      "phrase": "www newsisfree com click",
+      "label": "ham",
+      "support": 32,
+      "total": 32,
+      "precision": 1.0
+    },
+    {
+      "phrase": "219 by localhost",
+      "label": "spam",
+      "support": 32,
+      "total": 32,
+      "precision": 1.0
+    },
+    {
+      "phrase": "from mail webnote",
+      "label": "spam",
+      "support": 32,
+      "total": 32,
+      "precision": 1.0
+    },
+    {
+      "phrase": "html head meta",
+      "label": "spam",
+      "support": 32,
+      "total": 32,
+      "precision": 1.0
+    },
+    {
+      "phrase": "http www newsisfree",
+      "label": "ham",
+      "support": 32,
+      "total": 32,
+      "precision": 1.0
+    },
+    {
+      "phrase": "newsisfree com click",
+      "label": "ham",
+      "support": 32,
+      "total": 32,
+      "precision": 1.0
+    },
+    {
+      "phrase": "www newsisfree com",
+      "label": "ham",
+      "support": 32,
+      "total": 32,
+      "precision": 1.0
+    },
+    {
+      "phrase": "html body",
+      "label": "spam",
+      "support": 32,
+      "total": 33,
+      "precision": 0.9696969696969697
+    },
+    {
+      "phrase": "newsisfree com",
+      "label": "ham",
+      "support": 32,
+      "total": 32,
+      "precision": 1.0
+    },
+    {
+      "phrase": "www newsisfree",
+      "label": "ham",
+      "support": 32,
+      "total": 32,
+      "precision": 1.0
+    },
+    {
+      "phrase": "newsisfree",
+      "label": "ham",
+      "support": 32,
+      "total": 32,
+      "precision": 1.0
+    },
+    {
+      "phrase": "keywords content type text",
+      "label": "spam",
+      "support": 31,
+      "total": 31,
+      "precision": 1.0
+    },
+    {
+      "phrase": "5 5 2653",
+      "label": "spam",
+      "support": 31,
+      "total": 31,
+      "precision": 1.0
+    },
+    {
+      "phrase": "5 2653",
+      "label": "spam",
+      "support": 31,
+      "total": 31,
+      "precision": 1.0
+    },
+    {
+      "phrase": "2653",
+      "label": "spam",
+      "support": 31,
+      "total": 31,
+      "precision": 1.0
+    },
+    {
+      "phrase": "mailings",
+      "label": "spam",
+      "support": 31,
+      "total": 32,
+      "precision": 0.96875
+    },
+    {
+      "phrase": "5 2653 13 id",
+      "label": "spam",
+      "support": 30,
+      "total": 30,
+      "precision": 1.0
+    },
+    {
+      "phrase": "5 5 2653 13",
+      "label": "spam",
+      "support": 30,
+      "total": 30,
+      "precision": 1.0
+    },
+    {
+      "phrase": "charset us ascii sender",
+      "label": "ham",
+      "support": 30,
+      "total": 31,
+      "precision": 0.967741935483871
+    },
+    {
+      "phrase": "meta http equiv 3d",
+      "label": "spam",
+      "support": 30,
+      "total": 31,
+      "precision": 0.967741935483871
+    },
+    {
+      "phrase": "version 5 5 2653",
+      "label": "spam",
+      "support": 30,
+      "total": 30,
+      "precision": 1.0
+    },
+    {
+      "phrase": "2653 13 id",
+      "label": "spam",
+      "support": 30,
+      "total": 30,
+      "precision": 1.0
+    },
+    {
+      "phrase": "5 2653 13",
+      "label": "spam",
+      "support": 30,
+      "total": 30,
+      "precision": 1.0
+    },
+    {
+      "phrase": "b font p",
+      "label": "spam",
+      "support": 30,
+      "total": 30,
+      "precision": 1.0
+    },
+    {
+      "phrase": "http equiv 3d",
+      "label": "spam",
+      "support": 30,
+      "total": 31,
+      "precision": 0.967741935483871
+    },
+    {
+      "phrase": "removed from our",
+      "label": "spam",
+      "support": 30,
+      "total": 30,
+      "precision": 1.0
+    },
+    {
+      "phrase": "us ascii sender",
+      "label": "ham",
+      "support": 30,
+      "total": 31,
+      "precision": 0.967741935483871
+    },
+    {
+      "phrase": "13 id",
+      "label": "spam",
+      "support": 30,
+      "total": 30,
+      "precision": 1.0
+    },
+    {
+      "phrase": "2653 13",
+      "label": "spam",
+      "support": 30,
+      "total": 30,
+      "precision": 1.0
+    },
+    {
+      "phrase": "ascii sender",
+      "label": "ham",
+      "support": 30,
+      "total": 31,
+      "precision": 0.967741935483871
+    },
+    {
+      "phrase": "equiv 3d",
+      "label": "spam",
+      "support": 30,
+      "total": 31,
+      "precision": 0.967741935483871
+    },
+    {
+      "phrase": "user agent",
+      "label": "ham",
+      "support": 30,
+      "total": 30,
+      "precision": 1.0
+    },
+    {
+      "phrase": "guaranteed",
+      "label": "spam",
+      "support": 30,
+      "total": 30,
+      "precision": 1.0
+    },
+    {
+      "phrase": "ns",
+      "label": "spam",
+      "support": 30,
+      "total": 31,
+      "precision": 0.967741935483871
+    },
+    {
+      "phrase": "ascii sender fork admin",
+      "label": "ham",
+      "support": 29,
+      "total": 30,
+      "precision": 0.9666666666666667
+    },
+    {
+      "phrase": "b font color 3d",
+      "label": "spam",
+      "support": 29,
+      "total": 29,
+      "precision": 1.0
+    },
+    {
+      "phrase": "be removed from our",
+      "label": "spam",
+      "support": 29,
+      "total": 29,
+      "precision": 1.0
+    },
+    {
+      "phrase": "by phobos labs spamassassin",
+      "label": "spam",
+      "support": 29,
+      "total": 29,
+      "precision": 1.0
+    },
+    {
+      "phrase": "head meta http equiv",
+      "label": "spam",
+      "support": 29,
+      "total": 29,
+      "precision": 1.0
+    },
+    {
+      "phrase": "labs spamassassin taint org",
+      "label": "spam",
+      "support": 29,
+      "total": 29,
+      "precision": 1.0
+    },
+    {
+      "phrase": "phobos labs spamassassin taint",
+      "label": "spam",
+      "support": 29,
+      "total": 29,
+      "precision": 1.0
+    },
+    {
+      "phrase": "td tr table center",
+      "label": "spam",
+      "support": 29,
+      "total": 30,
+      "precision": 0.9666666666666667
+    },
+    {
+      "phrase": "us ascii sender fork",
+      "label": "ham",
+      "support": 29,
+      "total": 30,
+      "precision": 0.9666666666666667
+    },
+    {
+      "phrase": "ascii sender fork",
+      "label": "ham",
+      "support": 29,
+      "total": 30,
+      "precision": 0.9666666666666667
+    },
+    {
+      "phrase": "font font color",
+      "label": "spam",
+      "support": 29,
+      "total": 29,
+      "precision": 1.0
+    },
+    {
+      "phrase": "head meta http",
+      "label": "spam",
+      "support": 29,
+      "total": 29,
+      "precision": 1.0
+    },
+    {
+      "phrase": "in the subject",
+      "label": "spam",
+      "support": 29,
+      "total": 29,
+      "precision": 1.0
+    },
+    {
+      "phrase": "labs spamassassin taint",
+      "label": "spam",
+      "support": 29,
+      "total": 29,
+      "precision": 1.0
+    },
+    {
+      "phrase": "phobos labs spamassassin",
+      "label": "spam",
+      "support": 29,
+      "total": 29,
+      "precision": 1.0
+    },
+    {
+      "phrase": "reply to this",
+      "label": "spam",
+      "support": 29,
+      "total": 30,
+      "precision": 0.9666666666666667
+    },
+    {
+      "phrase": "tr table center",
+      "label": "spam",
+      "support": 29,
+      "total": 30,
+      "precision": 0.9666666666666667
+    },
+    {
+      "phrase": "1 http",
+      "label": "ham",
+      "support": 29,
+      "total": 30,
+      "precision": 0.9666666666666667
+    },
+    {
+      "phrase": "4 44",
+      "label": "ham",
+      "support": 29,
+      "total": 29,
+      "precision": 1.0
+    },
+    {
+      "phrase": "labs spamassassin",
+      "label": "spam",
+      "support": 29,
+      "total": 29,
+      "precision": 1.0
+    },
+    {
+      "phrase": "3d content type content",
+      "label": "spam",
+      "support": 28,
+      "total": 28,
+      "precision": 1.0
+    },
+    {
+      "phrase": "content type content 3d",
+      "label": "spam",
+      "support": 28,
+      "total": 28,
+      "precision": 1.0
+    },
+    {
+      "phrase": "equiv 3d content type",
+      "label": "spam",
+      "support": 28,
+      "total": 28,
+      "precision": 1.0
+    },
+    {
+      "phrase": "html head meta http",
+      "label": "spam",
+      "support": 28,
+      "total": 28,
+      "precision": 1.0
+    },
+    {
+      "phrase": "http equiv 3d content",
+      "label": "spam",
+      "support": 28,
+      "total": 28,
+      "precision": 1.0
+    },
+    {
+      "phrase": "title meta http equiv",
+      "label": "spam",
+      "support": 28,
+      "total": 29,
+      "precision": 0.9655172413793104
+    },
+    {
+      "phrase": "3d content type",
+      "label": "spam",
+      "support": 28,
+      "total": 28,
+      "precision": 1.0
+    },
+    {
+      "phrase": "equiv 3d content",
+      "label": "spam",
+      "support": 28,
+      "total": 28,
+      "precision": 1.0
+    },
+    {
+      "phrase": "font font font",
+      "label": "spam",
+      "support": 28,
+      "total": 29,
+      "precision": 0.9655172413793104
+    },
+    {
+      "phrase": "netnoteinc com subject",
+      "label": "spam",
+      "support": 28,
+      "total": 28,
+      "precision": 1.0
+    },
+    {
+      "phrase": "oct 2002 10",
+      "label": "ham",
+      "support": 28,
+      "total": 28,
+      "precision": 1.0
+    },
+    {
+      "phrase": "title meta http",
+      "label": "spam",
+      "support": 28,
+      "total": 29,
+      "precision": 0.9655172413793104
+    },
+    {
+      "phrase": "3d content",
+      "label": "spam",
+      "support": 28,
+      "total": 28,
+      "precision": 1.0
+    },
+    {
+      "phrase": "localdomain",
+      "label": "ham",
+      "support": 28,
+      "total": 28,
+      "precision": 1.0
+    },
+    {
+      "phrase": "2002 08 00",
+      "label": "ham",
+      "support": 27,
+      "total": 28,
+      "precision": 0.9642857142857143
+    },
+    {
+      "phrase": "color 3d 000000",
+      "label": "spam",
+      "support": 27,
+      "total": 27,
+      "precision": 1.0
+    },
+    {
+      "phrase": "in mime format",
+      "label": "spam",
+      "support": 27,
+      "total": 28,
+      "precision": 0.9642857142857143
+    },
+    {
+      "phrase": "to undisclosed recipients",
+      "label": "spam",
+      "support": 27,
+      "total": 27,
+      "precision": 1.0
+    },
+    {
+      "phrase": "3d mailto",
+      "label": "spam",
+      "support": 27,
+      "total": 28,
+      "precision": 0.9642857142857143
+    },
+    {
+      "phrase": "font div",
+      "label": "spam",
+      "support": 27,
+      "total": 28,
+      "precision": 0.9642857142857143
+    },
+    {
+      "phrase": "in mime",
+      "label": "spam",
+      "support": 27,
+      "total": 28,
+      "precision": 0.9642857142857143
+    },
+    {
+      "phrase": "localhost localdomain",
+      "label": "ham",
+      "support": 27,
+      "total": 27,
+      "precision": 1.0
+    },
+    {
+      "phrase": "mime format",
+      "label": "spam",
+      "support": 27,
+      "total": 28,
+      "precision": 0.9642857142857143
+    },
+    {
+      "phrase": "to undisclosed",
+      "label": "spam",
+      "support": 27,
+      "total": 27,
+      "precision": 1.0
+    },
+    {
+      "phrase": "undisclosed recipients",
+      "label": "spam",
+      "support": 27,
+      "total": 27,
+      "precision": 1.0
+    },
+    {
+      "phrase": "undisclosed",
+      "label": "spam",
+      "support": 27,
+      "total": 27,
+      "precision": 1.0
+    },
+    {
+      "phrase": "3d arial helvetica sans",
+      "label": "spam",
+      "support": 26,
+      "total": 26,
+      "precision": 1.0
+    },
+    {
+      "phrase": "2002 09 00",
+      "label": "ham",
+      "support": 26,
+      "total": 27,
+      "precision": 0.9629629629629629
+    },
+    {
+      "phrase": "a font p",
+      "label": "spam",
+      "support": 26,
+      "total": 27,
+      "precision": 0.9629629629629629
+    },
+    {
+      "phrase": "body bgcolor 3d",
+      "label": "spam",
+      "support": 26,
+      "total": 27,
+      "precision": 0.9629629629629629
+    },
+    {
+      "phrase": "center font size",
+      "label": "spam",
+      "support": 26,
+      "total": 27,
+      "precision": 0.9629629629629629
+    },
+    {
+      "phrase": "nbsp p p",
+      "label": "spam",
+      "support": 26,
+      "total": 26,
+      "precision": 1.0
+    },
+    {
+      "phrase": "pine lnx 4",
+      "label": "ham",
+      "support": 26,
+      "total": 26,
+      "precision": 1.0
+    },
+    {
+      "phrase": "09 00",
+      "label": "ham",
+      "support": 26,
+      "total": 27,
+      "precision": 0.9629629629629629
+    },
+    {
+      "phrase": "15 by",
+      "label": "spam",
+      "support": 26,
+      "total": 26,
+      "precision": 1.0
+    },
+    {
+      "phrase": "br to",
+      "label": "spam",
+      "support": 26,
+      "total": 26,
+      "precision": 1.0
+    },
+    {
+      "phrase": "help you",
+      "label": "spam",
+      "support": 26,
+      "total": 26,
+      "precision": 1.0
+    },
+    {
+      "phrase": "lnx 4",
+      "label": "ham",
+      "support": 26,
+      "total": 26,
+      "precision": 1.0
+    },
+    {
+      "phrase": "pine lnx",
+      "label": "ham",
+      "support": 26,
+      "total": 26,
+      "precision": 1.0
+    },
+    {
+      "phrase": "cn",
+      "label": "spam",
+      "support": 26,
+      "total": 26,
+      "precision": 1.0
+    },
+    {
+      "phrase": "hq",
+      "label": "spam",
+      "support": 26,
+      "total": 27,
+      "precision": 0.9629629629629629
+    },
+    {
+      "phrase": "lnx",
+      "label": "ham",
+      "support": 26,
+      "total": 26,
+      "precision": 1.0
+    },
+    {
+      "phrase": "purchase",
+      "label": "spam",
+      "support": 26,
+      "total": 27,
+      "precision": 0.9629629629629629
+    },
+    {
+      "phrase": "redhat",
+      "label": "ham",
+      "support": 26,
+      "total": 26,
+      "precision": 1.0
+    },
+    {
+      "phrase": "removal",
+      "label": "spam",
+      "support": 26,
+      "total": 27,
+      "precision": 0.9629629629629629
+    },
+    {
+      "phrase": "thank",
+      "label": "spam",
+      "support": 26,
+      "total": 27,
+      "precision": 0.9629629629629629
+    },
+    {
+      "phrase": "0500 cdt envelope from",
+      "label": "spam",
+      "support": 25,
+      "total": 25,
+      "precision": 1.0
+    },
+    {
+      "phrase": "a multi part message",
+      "label": "spam",
+      "support": 25,
+      "total": 26,
+      "precision": 0.9615384615384616
+    },
+    {
+      "phrase": "by hq pro ns",
+      "label": "spam",
+      "support": 25,
+      "total": 25,
+      "precision": 1.0
+    },
+    {
+      "phrase": "deathtospamdeathtospamdeathtospam this sf net",
+      "label": "spam",
+      "support": 25,
+      "total": 25,
+      "precision": 1.0
+    },
+    {
+      "phrase": "hq pro ns net",
+      "label": "spam",
+      "support": 25,
+      "total": 25,
+      "precision": 1.0
+    },
+    {
+      "phrase": "is a multi part",
+      "label": "spam",
+      "support": 25,
+      "total": 26,
+      "precision": 0.9615384615384616
+    },
+    {
+      "phrase": "list spamassassin sightings lists",
+      "label": "spam",
+      "support": 25,
+      "total": 25,
+      "precision": 1.0
+    },
+    {
+      "phrase": "lists listinfo spamassassin sightings",
+      "label": "spam",
+      "support": 25,
+      "total": 25,
+      "precision": 1.0
+    },
+    {
+      "phrase": "mailing list spamassassin sightings",
+      "label": "spam",
+      "support": 25,
+      "total": 25,
+      "precision": 1.0
+    },
+    {
+      "phrase": "message in mime format",
+      "label": "spam",
+      "support": 25,
+      "total": 26,
+      "precision": 0.9615384615384616
+    },
+    {
+      "phrase": "multi part message in",
+      "label": "spam",
+      "support": 25,
+      "total": 26,
+      "precision": 0.9615384615384616
+    },
+    {
+      "phrase": "net 8 12 5",
+      "label": "spam",
+      "support": 25,
+      "total": 25,
+      "precision": 1.0
+    },
+    {
+      "phrase": "ns net 8 12",
+      "label": "spam",
+      "support": 25,
+      "total": 25,
+      "precision": 1.0
+    },
+    {
+      "phrase": "part message in mime",
+      "label": "spam",
+      "support": 25,
+      "total": 26,
+      "precision": 0.9615384615384616
+    },
+    {
+      "phrase": "printable html head title",
+      "label": "spam",
+      "support": 25,
+      "total": 25,
+      "precision": 1.0
+    },
+    {
+      "phrase": "pro ns net 8",
+      "label": "spam",
+      "support": 25,
+      "total": 25,
+      "precision": 1.0
+    },
+    {
+      "phrase": "sightings lists sourceforge net",
+      "label": "spam",
+      "support": 25,
+      "total": 25,
+      "precision": 1.0
+    },
+    {
+      "phrase": "sightings mailing list spamassassin",
+      "label": "spam",
+      "support": 25,
+      "total": 25,
+      "precision": 1.0
+    },
+    {
+      "phrase": "spamassassin sightings lists sourceforge",
+      "label": "spam",
+      "support": 25,
+      "total": 25,
+      "precision": 1.0
+    },
+    {
+      "phrase": "spamassassin sightings mailing list",
+      "label": "spam",
+      "support": 25,
+      "total": 25,
+      "precision": 1.0
+    },
+    {
+      "phrase": "this is a multi",
+      "label": "spam",
+      "support": 25,
+      "total": 26,
+      "precision": 0.9615384615384616
+    },
+    {
+      "phrase": "0500 cdt envelope",
+      "label": "spam",
+      "support": 25,
+      "total": 25,
+      "precision": 1.0
+    },
+    {
+      "phrase": "3d center font",
+      "label": "spam",
+      "support": 25,
+      "total": 25,
+      "precision": 1.0
+    },
+    {
+      "phrase": "a multi part",
+      "label": "spam",
+      "support": 25,
+      "total": 26,
+      "precision": 0.9615384615384616
+    },
+    {
+      "phrase": "by hq pro",
+      "label": "spam",
+      "support": 25,
+      "total": 25,
+      "precision": 1.0
+    },
+    {
+      "phrase": "cdt envelope from",
+      "label": "spam",
+      "support": 25,
+      "total": 25,
+      "precision": 1.0
+    },
+    {
+      "phrase": "deathtospamdeathtospamdeathtospam this sf",
+      "label": "spam",
+      "support": 25,
+      "total": 25,
+      "precision": 1.0
+    },
+    {
+      "phrase": "font p td",
+      "label": "spam",
+      "support": 25,
+      "total": 25,
+      "precision": 1.0
+    },
+    {
+      "phrase": "hq pro ns",
+      "label": "spam",
+      "support": 25,
+      "total": 25,
+      "precision": 1.0
+    },
+    {
+      "phrase": "href 3d mailto",
+      "label": "spam",
+      "support": 25,
+      "total": 26,
+      "precision": 0.9615384615384616
+    },
+    {
+      "phrase": "is a multi",
+      "label": "spam",
+      "support": 25,
+      "total": 26,
+      "precision": 0.9615384615384616
+    },
+    {
+      "phrase": "list spamassassin sightings",
+      "label": "spam",
+      "support": 25,
+      "total": 25,
+      "precision": 1.0
+    },
+    {
+      "phrase": "listinfo spamassassin sightings",
+      "label": "spam",
+      "support": 25,
+      "total": 25,
+      "precision": 1.0
+    },
+    {
+      "phrase": "message in mime",
+      "label": "spam",
+      "support": 25,
+      "total": 26,
+      "precision": 0.9615384615384616
+    },
+    {
+      "phrase": "multi part message",
+      "label": "spam",
+      "support": 25,
+      "total": 26,
+      "precision": 0.9615384615384616
+    },
+    {
+      "phrase": "ns net 8",
+      "label": "spam",
+      "support": 25,
+      "total": 25,
+      "precision": 1.0
+    },
+    {
+      "phrase": "oct 2002 12",
+      "label": "ham",
+      "support": 25,
+      "total": 25,
+      "precision": 1.0
+    },
+    {
+      "phrase": "part message in",
+      "label": "spam",
+      "support": 25,
+      "total": 26,
+      "precision": 0.9615384615384616
+    },
+    {
+      "phrase": "pro ns net",
+      "label": "spam",
+      "support": 25,
+      "total": 25,
+      "precision": 1.0
+    },
+    {
+      "phrase": "sightings lists sourceforge",
+      "label": "spam",
+      "support": 25,
+      "total": 25,
+      "precision": 1.0
+    },
+    {
+      "phrase": "sightings mailing list",
+      "label": "spam",
+      "support": 25,
+      "total": 25,
+      "precision": 1.0
+    },
+    {
+      "phrase": "spamassassin sightings lists",
+      "label": "spam",
+      "support": 25,
+      "total": 25,
+      "precision": 1.0
+    },
+    {
+      "phrase": "spamassassin sightings mailing",
+      "label": "spam",
+      "support": 25,
+      "total": 25,
+      "precision": 1.0
+    },
+    {
+      "phrase": "tbody tr td",
+      "label": "spam",
+      "support": 25,
+      "total": 26,
+      "precision": 0.9615384615384616
+    },
+    {
+      "phrase": "your email address",
+      "label": "spam",
+      "support": 25,
+      "total": 25,
+      "precision": 1.0
+    },
+    {
+      "phrase": "01 00",
+      "label": "ham",
+      "support": 25,
+      "total": 25,
+      "precision": 1.0
+    },
+    {
+      "phrase": "br you",
+      "label": "spam",
+      "support": 25,
+      "total": 25,
+      "precision": 1.0
+    },
+    {
+      "phrase": "by hq",
+      "label": "spam",
+      "support": 25,
+      "total": 25,
+      "precision": 1.0
+    },
+    {
+      "phrase": "cdt envelope",
+      "label": "spam",
+      "support": 25,
+      "total": 25,
+      "precision": 1.0
+    },
+    {
+      "phrase": "deathtospamdeathtospamdeathtospam this",
+      "label": "spam",
+      "support": 25,
+      "total": 25,
+      "precision": 1.0
+    },
+    {
+      "phrase": "hq pro",
+      "label": "spam",
+      "support": 25,
+      "total": 25,
+      "precision": 1.0
+    },
+    {
+      "phrase": "multi part",
+      "label": "spam",
+      "support": 25,
+      "total": 26,
+      "precision": 0.9615384615384616
+    },
+    {
+      "phrase": "ns net",
+      "label": "spam",
+      "support": 25,
+      "total": 25,
+      "precision": 1.0
+    },
+    {
+      "phrase": "p div",
+      "label": "spam",
+      "support": 25,
+      "total": 25,
+      "precision": 1.0
+    },
+    {
+      "phrase": "part message",
+      "label": "spam",
+      "support": 25,
+      "total": 26,
+      "precision": 0.9615384615384616
+    },
+    {
+      "phrase": "pro ns",
+      "label": "spam",
+      "support": 25,
+      "total": 25,
+      "precision": 1.0
+    },
+    {
+      "phrase": "sightings lists",
+      "label": "spam",
+      "support": 25,
+      "total": 25,
+      "precision": 1.0
+    },
+    {
+      "phrase": "sightings mailing",
+      "label": "spam",
+      "support": 25,
+      "total": 25,
+      "precision": 1.0
+    },
+    {
+      "phrase": "spamassassin sightings",
+      "label": "spam",
+      "support": 25,
+      "total": 25,
+      "precision": 1.0
+    },
+    {
+      "phrase": "thank you",
+      "label": "spam",
+      "support": 25,
+      "total": 26,
+      "precision": 0.9615384615384616
+    },
+    {
+      "phrase": "deathtospamdeathtospamdeathtospam",
+      "label": "spam",
+      "support": 25,
+      "total": 25,
+      "precision": 1.0
+    },
+    {
+      "phrase": "sightings",
+      "label": "spam",
+      "support": 25,
+      "total": 26,
+      "precision": 0.9615384615384616
+    },
+    {
+      "phrase": "transitional",
+      "label": "spam",
+      "support": 25,
+      "total": 26,
+      "precision": 0.9615384615384616
+    },
+    {
+      "phrase": "align 3d center font",
+      "label": "spam",
+      "support": 24,
+      "total": 24,
+      "precision": 1.0
+    },
+    {
+      "phrase": "doctype html public w3c",
+      "label": "spam",
+      "support": 24,
+      "total": 25,
+      "precision": 0.96
+    },
+    {
+      "phrase": "font font face 3d",
+      "label": "spam",
+      "support": 24,
+      "total": 24,
+      "precision": 1.0
+    },
+    {
+      "phrase": "head body bgcolor 3d",
+      "label": "spam",
+      "support": 24,
+      "total": 25,
+      "precision": 0.96
+    },
+    {
+      "phrase": "html public w3c dtd",
+      "label": "spam",
+      "support": 24,
+      "total": 25,
+      "precision": 0.96
+    },
+    {
+      "phrase": "labs netnoteinc com received",
+      "label": "spam",
+      "support": 24,
+      "total": 24,
+      "precision": 1.0
+    },
+    {
+      "phrase": "multipart alternative boundary nextpart",
+      "label": "spam",
+      "support": 24,
+      "total": 24,
+      "precision": 1.0
+    },
+    {
+      "phrase": "net list help mailto",
+      "label": "ham",
+      "support": 24,
+      "total": 24,
+      "precision": 1.0
+    },
+    {
+      "phrase": "public w3c dtd html",
+      "label": "spam",
+      "support": 24,
+      "total": 25,
+      "precision": 0.96
+    },
+    {
+      "phrase": "w3c dtd html 4",
+      "label": "spam",
+      "support": 24,
+      "total": 25,
+      "precision": 0.96
+    },
+    {
+      "phrase": "35 15 by",
+      "label": "spam",
+      "support": 24,
+      "total": 24,
+      "precision": 1.0
+    },
+    {
+      "phrase": "alternative boundary nextpart",
+      "label": "spam",
+      "support": 24,
+      "total": 24,
+      "precision": 1.0
+    },
+    {
+      "phrase": "b font font",
+      "label": "spam",
+      "support": 24,
+      "total": 25,
+      "precision": 0.96
+    },
+    {
+      "phrase": "dtd html 4",
+      "label": "spam",
+      "support": 24,
+      "total": 25,
+      "precision": 0.96
+    },
+    {
+      "phrase": "html public w3c",
+      "label": "spam",
+      "support": 24,
+      "total": 25,
+      "precision": 0.96
+    },
+    {
+      "phrase": "net list help",
+      "label": "ham",
+      "support": 24,
+      "total": 24,
+      "precision": 1.0
+    },
+    {
+      "phrase": "p b font",
+      "label": "spam",
+      "support": 24,
+      "total": 24,
+      "precision": 1.0
+    },
+    {
+      "phrase": "public w3c dtd",
+      "label": "spam",
+      "support": 24,
+      "total": 25,
+      "precision": 0.96
+    },
+    {
+      "phrase": "w3c dtd html",
+      "label": "spam",
+      "support": 24,
+      "total": 25,
+      "precision": 0.96
+    },
+    {
+      "phrase": "000000 size",
+      "label": "spam",
+      "support": 24,
+      "total": 24,
+      "precision": 1.0
+    },
+    {
+      "phrase": "17 35",
+      "label": "spam",
+      "support": 24,
+      "total": 24,
+      "precision": 1.0
+    },
+    {
+      "phrase": "2002 at",
+      "label": "ham",
+      "support": 24,
+      "total": 25,
+      "precision": 0.96
+    },
+    {
+      "phrase": "212 17",
+      "label": "spam",
+      "support": 24,
+      "total": 24,
+      "precision": 1.0
+    },
+    {
+      "phrase": "35 15",
+      "label": "spam",
+      "support": 24,
+      "total": 25,
+      "precision": 0.96
+    },
+    {
+      "phrase": "br if",
+      "label": "spam",
+      "support": 24,
+      "total": 25,
+      "precision": 0.96
+    },
+    {
+      "phrase": "html nextpart",
+      "label": "spam",
+      "support": 24,
+      "total": 24,
+      "precision": 1.0
+    },
+    {
+      "phrase": "i font",
+      "label": "spam",
+      "support": 24,
+      "total": 25,
+      "precision": 0.96
+    },
+    {
+      "phrase": "nextpart 000",
+      "label": "spam",
+      "support": 24,
+      "total": 24,
+      "precision": 1.0
+    },
+    {
+      "phrase": "p body",
+      "label": "spam",
+      "support": 24,
+      "total": 24,
+      "precision": 1.0
+    },
+    {
+      "phrase": "public w3c",
+      "label": "spam",
+      "support": 24,
+      "total": 25,
+      "precision": 0.96
+    },
+    {
+      "phrase": "size 4",
+      "label": "spam",
+      "support": 24,
+      "total": 24,
+      "precision": 1.0
+    },
+    {
+      "phrase": "transitional en",
+      "label": "spam",
+      "support": 24,
+      "total": 25,
+      "precision": 0.96
+    },
+    {
+      "phrase": "w3c dtd",
+      "label": "spam",
+      "support": 24,
+      "total": 25,
+      "precision": 0.96
+    },
+    {
+      "phrase": "1900",
+      "label": "spam",
+      "support": 24,
+      "total": 25,
+      "precision": 0.96
+    },
+    {
+      "phrase": "17 35 15 by",
+      "label": "spam",
+      "support": 23,
+      "total": 23,
+      "precision": 1.0
+    },
+    {
+      "phrase": "212 17 35 15",
+      "label": "spam",
+      "support": 23,
+      "total": 23,
+      "precision": 1.0
+    },
+    {
+      "phrase": "a href 3d mailto",
+      "label": "spam",
+      "support": 23,
+      "total": 24,
+      "precision": 0.9583333333333334
+    },
+    {
+      "phrase": "center font face 3d",
+      "label": "spam",
+      "support": 23,
+      "total": 23,
+      "precision": 1.0
+    },
+    {
+      "phrase": "dogma slashnull org 212",
+      "label": "spam",
+      "support": 23,
+      "total": 23,
+      "precision": 1.0
+    },
+    {
+      "phrase": "font p td tr",
+      "label": "spam",
+      "support": 23,
+      "total": 23,
+      "precision": 1.0
+    },
+    {
+      "phrase": "org 212 17 35",
+      "label": "spam",
+      "support": 23,
+      "total": 23,
+      "precision": 1.0
+    },
+    {
+      "phrase": "slashnull org 212 17",
+      "label": "spam",
+      "support": 23,
+      "total": 23,
+      "precision": 1.0
+    },
+    {
+      "phrase": "17 35 15",
+      "label": "spam",
+      "support": 23,
+      "total": 23,
+      "precision": 1.0
+    },
+    {
+      "phrase": "212 17 35",
+      "label": "spam",
+      "support": 23,
+      "total": 23,
+      "precision": 1.0
+    },
+    {
+      "phrase": "body html nextpart",
+      "label": "spam",
+      "support": 23,
+      "total": 23,
+      "precision": 1.0
+    },
+    {
+      "phrase": "color 3d ff0000",
+      "label": "spam",
+      "support": 23,
+      "total": 23,
+      "precision": 1.0
+    },
+    {
+      "phrase": "message id pine",
+      "label": "ham",
+      "support": 23,
+      "total": 23,
+      "precision": 1.0
+    },
+    {
+      "phrase": "org 212 17",
+      "label": "spam",
+      "support": 23,
+      "total": 23,
+      "precision": 1.0
+    },
+    {
+      "phrase": "p align 3d",
+      "label": "spam",
+      "support": 23,
+      "total": 23,
+      "precision": 1.0
+    },
+    {
+      "phrase": "p body html",
+      "label": "spam",
+      "support": 23,
+      "total": 23,
+      "precision": 1.0
+    },
+    {
+      "phrase": "slashnull org 212",
+      "label": "spam",
+      "support": 23,
+      "total": 23,
+      "precision": 1.0
+    },
+    {
+      "phrase": "yahoo com to",
+      "label": "spam",
+      "support": 23,
+      "total": 24,
+      "precision": 0.9583333333333334
+    },
+    {
+      "phrase": "3d ff0000",
+      "label": "spam",
+      "support": 23,
+      "total": 23,
+      "precision": 1.0
+    },
+    {
+      "phrase": "center body",
+      "label": "spam",
+      "support": 23,
+      "total": 24,
+      "precision": 0.9583333333333334
+    },
+    {
+      "phrase": "font i",
+      "label": "spam",
+      "support": 23,
+      "total": 23,
+      "precision": 1.0
+    },
+    {
+      "phrase": "for webmaster",
+      "label": "spam",
+      "support": 23,
+      "total": 23,
+      "precision": 1.0
+    },
+    {
+      "phrase": "form below",
+      "label": "spam",
+      "support": 23,
+      "total": 23,
+      "precision": 1.0
+    },
+    {
+      "phrase": "id pine",
+      "label": "ham",
+      "support": 23,
+      "total": 23,
+      "precision": 1.0
+    },
+    {
+      "phrase": "org 212",
+      "label": "spam",
+      "support": 23,
+      "total": 23,
+      "precision": 1.0
+    },
+    {
+      "phrase": "subject line",
+      "label": "spam",
+      "support": 23,
+      "total": 23,
+      "precision": 1.0
+    },
+    {
+      "phrase": "rpm",
+      "label": "ham",
+      "support": 23,
+      "total": 24,
+      "precision": 0.9583333333333334
+    },
+    {
+      "phrase": "verify",
+      "label": "spam",
+      "support": 23,
+      "total": 24,
+      "precision": 0.9583333333333334
+    },
+    {
+      "phrase": "0 1 by hq",
+      "label": "spam",
+      "support": 22,
+      "total": 22,
+      "precision": 1.0
+    },
+    {
+      "phrase": "1 by hq pro",
+      "label": "spam",
+      "support": 22,
+      "total": 22,
+      "precision": 1.0
+    },
+    {
+      "phrase": "11 6 egwn with",
+      "label": "ham",
+      "support": 22,
+      "total": 22,
+      "precision": 1.0
+    },
+    {
+      "phrase": "15 by localhost with",
+      "label": "spam",
+      "support": 22,
+      "total": 22,
+      "precision": 1.0
+    },
+    {
+      "phrase": "168 verify no for",
+      "label": "spam",
+      "support": 22,
+      "total": 22,
+      "precision": 1.0
+    },
+    {
+      "phrase": "172 5 4 by",
+      "label": "ham",
+      "support": 22,
+      "total": 22,
+      "precision": 1.0
+    },
+    {
+      "phrase": "1900 mime version 1",
+      "label": "spam",
+      "support": 22,
+      "total": 22,
+      "precision": 1.0
+    },
+    {
+      "phrase": "193 172 5 4",
+      "label": "ham",
+      "support": 22,
+      "total": 22,
+      "precision": 1.0
+    },
+    {
+      "phrase": "2002 return path rpm",
+      "label": "ham",
+      "support": 22,
+      "total": 22,
+      "precision": 1.0
+    },
+    {
+      "phrase": "35 15 by localhost",
+      "label": "spam",
+      "support": 22,
+      "total": 22,
+      "precision": 1.0
+    },
+    {
+      "phrase": "4 0 transitional en",
+      "label": "spam",
+      "support": 22,
+      "total": 23,
+      "precision": 0.9565217391304348
+    },
+    {
+      "phrase": "5 4 by dogma",
+      "label": "ham",
+      "support": 22,
+      "total": 22,
+      "precision": 1.0
+    },
+    {
+      "phrase": "6 egwn with esmtp",
+      "label": "ham",
+      "support": 22,
+      "total": 22,
+      "precision": 1.0
+    },
+    {
+      "phrase": "8 11 6 egwn",
+      "label": "ham",
+      "support": 22,
+      "total": 22,
+      "precision": 1.0
+    },
+    {
+      "phrase": "admin freshrpms net delivered",
+      "label": "ham",
+      "support": 22,
+      "total": 22,
+      "precision": 1.0
+    },
+    {
+      "phrase": "admin freshrpms net errors",
+      "label": "ham",
+      "support": 22,
+      "total": 22,
+      "precision": 1.0
+    },
+    {
+      "phrase": "admin freshrpms net x",
+      "label": "ham",
+      "support": 22,
+      "total": 22,
+      "precision": 1.0
+    },
+    {
+      "phrase": "archive http lists freshrpms",
+      "label": "ham",
+      "support": 22,
+      "total": 22,
+      "precision": 1.0
+    }
+  ]
+}

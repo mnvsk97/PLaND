@@ -1,0 +1,14 @@
+{
+  "valid": true,
+  "baseline_contract_sha256": "a027f88f15f1330cc94c5236dbc59888630db1d1c7987ded2c1a6fb03d308d57",
+  "baseline_sop_sha256": "b3c9ec9c8b7af3ccf5d9aeaee0d7080a3a28e8e7b48bb4864177e16764914f98",
+  "candidate_sop_sha256": "08e44ddbec25cfc4424b7798d8afa14bf729a2256eada5516c66ef6e7df0b6fc",
+  "command_fallback_links": [
+    {
+      "command_step_id": "S03",
+      "fallback_step_id": "S03",
+      "fallback_instruction": "Classify the evidence into exactly one known bucket: `ham`, `spam`.",
+      "fallback_instruction_sha256": "2ef81f3278b58a28816bcb8fe77469dba2a9f0177091ef1aceed9e23a0a16696"
+    }
+  ]
+}

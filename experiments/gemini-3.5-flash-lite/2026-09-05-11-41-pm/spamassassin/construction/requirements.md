@@ -1,0 +1,1 @@
+Classify one email as `spam` when it is unsolicited bulk, fraudulent, or promotional abuse, otherwise as `ham`. Use the complete sanitized email content and ordinary email intent cues. Return only a JSON object with the selected label; do not expose reference answers or evaluation metadata.

@@ -1,0 +1,1 @@
+{"schema_version": 1, "case_id": "mail-3125dcdc7726abc1c128", "sensitive_content_recorded": false, "http_status": 200, "top_level_keys": ["error", "id"], "choices_type": "NoneType", "choices_count": null, "error_type": null, "error_code": 400, "retry_after": null, "retry_after_ms": null}
