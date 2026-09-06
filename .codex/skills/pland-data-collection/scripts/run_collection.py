@@ -54,7 +54,11 @@ def artifact(path: Path) -> dict[str, Any]:
             "bytes": resolved.stat().st_size,
             "sha256": sha256(resolved),
         }
-    files = sorted(item for item in resolved.rglob("*") if item.is_file())
+    # Python creates bytecode caches when it imports a frozen classifier.
+    # These are interpreter artifacts, not mutable SOP/package source.
+    files = sorted(item for item in resolved.rglob("*") if item.is_file()
+                   and "__pycache__" not in item.relative_to(resolved).parts
+                   and item.suffix not in {".pyc", ".pyo"})
     digest = hashlib.sha256()
     total = 0
     for item in files:
