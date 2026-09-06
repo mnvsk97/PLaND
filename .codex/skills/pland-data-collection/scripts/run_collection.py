@@ -159,6 +159,9 @@ def load_state(run_dir: Path) -> tuple[dict[str, Any], dict[str, Any]]:
         raise ValueError("frozen plan changed after collection initialization")
     if sha256(protocol_path) != state["protocol"]["sha256"]:
         raise ValueError("frozen protocol changed after collection initialization")
+    hold = run_dir / "collection-hold.json"
+    if hold.exists():
+        state["safety_hold"] = artifact(hold)
     return state, ledger
 
 
@@ -174,6 +177,8 @@ def latest_decision(state: dict[str, Any], stage: str) -> str | None:
 def require_stage_access(
     state: dict[str, Any], ledger: dict[str, Any], stage: str, *, starting_command: bool = False
 ) -> None:
+    if state.get("safety_hold"):
+        raise ValueError("collection safety hold: inspect " + state["safety_hold"]["path"])
     if stage == "baseline-development" and state["stages"]["prepare"] != "complete":
         raise ValueError("prepare must be complete before baseline development")
     if stage == "candidate-development" and latest_decision(state, "baseline-development") != "ready":
@@ -234,6 +239,8 @@ def initialize(args: argparse.Namespace) -> int:
 def run_command(args: argparse.Namespace) -> int:
     run_dir = args.run_dir.resolve()
     state, ledger = load_state(run_dir)
+    if state.get("safety_hold"):
+        require_stage_access(state, ledger, args.stage)
     completed = [event for event in successful_events(ledger, args.stage) if event["name"] == args.name]
     if completed:
         recorded = completed[-1]

@@ -64,6 +64,15 @@ class CollectionControllerTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "frozen plan changed"):
             MODULE.load_state(self.run_dir)
 
+    def test_safety_hold_blocks_new_and_resumed_commands(self) -> None:
+        self.run_fixture("prepare", "prepare")
+        (self.run_dir / "collection-hold.json").write_text('{"reason":"invalid data"}')
+        for name in ["prepare", "another"]:
+            with self.assertRaisesRegex(ValueError, "collection safety hold"):
+                self.run_fixture("prepare", name)
+        with self.assertRaisesRegex(ValueError, "collection safety hold"):
+            MODULE.complete_stage(Namespace(run_dir=self.run_dir, stage="prepare"))
+
     def test_one_candidate_attempt_allows_generation_run_and_assessment(self) -> None:
         self.run_fixture("prepare", "prepare")
         MODULE.complete_stage(Namespace(run_dir=self.run_dir, stage="prepare"))
