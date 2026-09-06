@@ -42,6 +42,11 @@ data_audit=importlib.util.module_from_spec(spec);spec.loader.exec_module(data_au
 rechecked=data_audit.audit(dataset,Path('/Users/saikrishna/dev/deterministic-skills/tmp/enterprise-datasets/ledgar/sources'),
                           [dataset.with_name('ledgar-prior-opened')])
 assert rechecked==proof and rechecked['passed']
+earliest=Path('/Users/saikrishna/dev/deterministic-skills/tmp/enterprise-datasets/ledgar/evals.csv')
+with earliest.open() as handle: earliest_ids={r['id'] for r in csv.DictReader(handle)}
+with (dataset.with_name('ledgar-prior-opened')/'evals.csv').open() as handle:
+    excluded_ids={r['id'] for r in csv.DictReader(handle)}
+assert earliest_ids <= excluded_ids and not earliest_ids & {r['id'] for r in truth}
 runs = {}
 for path in sorted(directory.glob('*.json')):
     value = json.loads(path.read_text())
@@ -119,6 +124,7 @@ for path in sorted(directory.glob('*-comparison.json')):
     verified.append(path.name)
 result={'status':'PASS','dataset':a.dataset,'dataset_audit_passed':True,'runs':runs,
         'ledger_artifact_hashes_reverified':len(checked_artifacts),'prepared_data_reaudited':True,
+        'entire_earliest_pilot_excluded':{'cases':len(earliest_ids),'evals_sha256':sha(earliest)},
         'statistically_recomputed_comparisons':verified,'final_test_release_verified':bool(tests),
         'final_test_unopened':not tests,'plan_sha256':state['plan']['sha256'],
         'failed_commands_preserved':sum(e['status']=='failed' for e in ledger['events'])}
