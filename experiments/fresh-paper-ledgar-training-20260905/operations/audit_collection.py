@@ -6,6 +6,7 @@ import csv
 import hashlib
 import importlib.util
 import json
+import math
 from pathlib import Path
 
 p = argparse.ArgumentParser()
@@ -115,6 +116,17 @@ for path in sorted(directory.glob('*-comparison.json')):
     assert nc.keys()==hc.keys()
     pairs=[(nc[k],hc[k]) for k in sorted(nc)]
     assert all(x['expected']==y['expected'] for x,y in pairs)
+    for name,run in [('natural_language',n),('hybrid',h)]:
+        cases=run['cases'];metric=saved[name]
+        assert math.isclose(metric['macro_f1'],compare.macro_f1(cases),abs_tol=1e-12)
+        assert saved['per_label_recall'][name]==compare.recall_by_label(cases)
+        assert saved['paired_statistics'][name+'_accuracy_wilson_95']==compare.wilson_interval(sum(c['correct'] for c in cases),len(cases))
+        assert math.isclose(metric['latency_seconds']['total'],sum(c['latency_seconds'] for c in cases),abs_tol=1e-9)
+        assert math.isclose(metric['latency_seconds']['mean'],sum(c['latency_seconds'] for c in cases)/len(cases),abs_tol=1e-9)
+    nl_only=sum(x['correct'] and not y['correct'] for x,y in pairs)
+    h_only=sum(y['correct'] and not x['correct'] for x,y in pairs)
+    assert saved['paired_statistics']['mcnemar_exact_p']==compare.mcnemar_exact(nl_only,h_only)
+    assert saved['mechanism_decomposition']['command_routed_hybrid_precision']==compare.command_precision(h['cases'])
     for key,fn,offset in [('accuracy_difference_bootstrap_95',compare.accuracy_difference,0),
                           ('token_reduction_bootstrap_95',compare.token_reduction,1)]:
         actual=compare.paired_bootstrap(pairs,fn,5000,20260902+offset)
