@@ -70,7 +70,9 @@ files=[]
 for path in sorted(output.rglob('*')):
     if path.is_file(): files.append({'path':str(path.relative_to(output)), 'bytes':path.stat().st_size,
                                     'sha256':hashlib.sha256(path.read_bytes()).hexdigest()})
-receipt={'dataset':a.dataset,'export':str(output),'files':files,'raw_benchmark_inputs_exported':False}
-(output/'case-evidence-manifest.json').write_text(json.dumps({'schema_version':1,'files':files},indent=2)+'\n')
+stable_files=[item for item in files if not item['path'].startswith('logs/')]
+receipt={'dataset':a.dataset,'export':str(output),'files':stable_files,'raw_benchmark_inputs_exported':False,
+         'log_disposition':'Logs are finalized and hashed by the final collection manifest, after the export command closes.'}
+(output/'case-evidence-manifest.json').write_text(json.dumps({'schema_version':1,'files':stable_files},indent=2)+'\n')
 a.receipt.write_text(json.dumps(receipt,indent=2)+'\n')
 print(json.dumps({'export':str(output),'files':len(files)}))

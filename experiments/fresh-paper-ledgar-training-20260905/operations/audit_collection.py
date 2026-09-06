@@ -2,6 +2,7 @@ from pathlib import Path
 OPS = Path(__file__).resolve().parent
 """Audit fresh result arithmetic, frozen pairs, model work, and release order."""
 import argparse
+import csv
 import hashlib
 import importlib.util
 import json
@@ -24,6 +25,23 @@ assert proof['passed'] and proof['counts']['by_split'] == {'development':500,'va
 independent = json.loads((directory/'independent-freshness.json').read_text())
 assert independent['passed']
 assert not (directory/'collection-hold.json').exists()
+dataset=ROOT/'tmp/fresh-paper-ledgar-training-20260905/datasets'/a.dataset
+with (dataset/'evals.csv').open() as handle: truth=list(csv.DictReader(handle))
+truth_by_split={split:{r['id']:json.loads(r['output'])['label'] for r in truth if r['split']==split}
+                for split in ['development','validation','test']}
+spec=importlib.util.spec_from_file_location('controller',ROOT/'.codex/skills/pland-data-collection/scripts/run_collection.py')
+controller=importlib.util.module_from_spec(spec);spec.loader.exec_module(controller)
+checked_artifacts={}
+for event in ledger['events']:
+    for artifact in event.get('inputs',[])+event.get('outputs',[]):
+        path=artifact['path']
+        if path not in checked_artifacts: checked_artifacts[path]=controller.artifact(Path(path))['sha256']
+        assert checked_artifacts[path]==artifact['sha256'], ('changed ledger artifact',path)
+spec=importlib.util.spec_from_file_location('data_audit',ROOT/'datasets/scripts/audit_prepared.py')
+data_audit=importlib.util.module_from_spec(spec);spec.loader.exec_module(data_audit)
+rechecked=data_audit.audit(dataset,Path('/Users/saikrishna/dev/deterministic-skills/tmp/enterprise-datasets/ledgar/sources'),
+                          [dataset.with_name('ledgar-prior-opened')])
+assert rechecked==proof and rechecked['passed']
 runs = {}
 for path in sorted(directory.glob('*.json')):
     value = json.loads(path.read_text())
@@ -32,14 +50,24 @@ for path in sorted(directory.glob('*.json')):
     cases = value['cases']; summary = value['summary']; split = value['split']
     assert len(cases) == {'development':500,'validation':1000,'test':500}[split], path
     assert len({c['id'] for c in cases}) == len(cases), path
+    assert {c['id']:c['expected'] for c in cases}==truth_by_split[split]
+    assert value['invariants']['evals_sha256']==sha(dataset/'evals.csv')
+    assert value['invariants']['selection_sha256']==sha(dataset/'selection.json')
     assert all(c['correct'] == (c['actual']==c['expected']) for c in cases), path
     for metric in ['input_tokens','output_tokens','total_tokens']:
         assert sum(c[metric] for c in cases) == summary[metric], (path,metric)
     assert sum(c['correct'] for c in cases)==summary['correct']
     assert summary['accuracy']==summary['correct']/len(cases)
     assert value['model_digest']==plan['model']['digest']
+    assert value['model']==plan['model']['name']
     assert value['runtime']['execution_backend']=='deepagent'
     assert value['runtime']['workers']==2 and value['runtime']['num_ctx']==16384
+    for key in ['think','stream','temperature','num_predict','keep_alive']:
+        assert value['runtime'][key]==plan['runtime'][key]
+    for key in ['OLLAMA_FLASH_ATTENTION','OLLAMA_KV_CACHE_TYPE','OLLAMA_NUM_PARALLEL','OLLAMA_MAX_LOADED_MODELS']:
+        assert value['runtime'][key.lower()]==plan['runtime']['environment'][key]
+    assert not summary['errors'] and summary['normal_completion_rate']==1
+    assert summary['model_calls']==sum(c['model_calls'] for c in cases)
     for case in cases:
         if case['source']=='command':
             assert case['total_tokens']==0 and case['matched_rule']
@@ -90,6 +118,7 @@ for path in sorted(directory.glob('*-comparison.json')):
     assert saved['hybrid']['total_tokens']==sum(c['total_tokens'] for c in h['cases'])
     verified.append(path.name)
 result={'status':'PASS','dataset':a.dataset,'dataset_audit_passed':True,'runs':runs,
+        'ledger_artifact_hashes_reverified':len(checked_artifacts),'prepared_data_reaudited':True,
         'statistically_recomputed_comparisons':verified,'final_test_release_verified':bool(tests),
         'final_test_unopened':not tests,'plan_sha256':state['plan']['sha256'],
         'failed_commands_preserved':sum(e['status']=='failed' for e in ledger['events'])}

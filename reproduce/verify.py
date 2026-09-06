@@ -98,11 +98,15 @@ def main() -> int:
         sorted((ROOT / "experiments").glob("fresh-paper-*/*/manifest.json"))]
     evidence_files = sum(check_file_list_manifest(path) for path in manifests)
     paper_files = check_paper_files()
+    reports=sorted((ROOT/'paper').glob('*COLLECTION_REPORT.md'))
+    for report in reports:
+        subprocess.run([sys.executable,str(ROOT/'paper/audit_fresh_collection.py'),
+                        '--report',str(report)],cwd=ROOT,check=True)
 
     print(
         f"PASS: {test_directories} test directories; "
         f"{len(manifests)} evidence manifests ({evidence_files} files); "
-        f"{paper_files} paper files",
+        f"{paper_files} paper files; {len(reports)} fresh collection reports",
         flush=True,
     )
     return 0
