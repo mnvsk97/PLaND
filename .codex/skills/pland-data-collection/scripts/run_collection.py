@@ -7,6 +7,7 @@ import argparse
 import hashlib
 import json
 import os
+import shutil
 import subprocess
 import sys
 from datetime import UTC, datetime
@@ -347,6 +348,24 @@ def create_manifest(args: argparse.Namespace) -> int:
     }
     destination = run_dir / "evidence-manifest.json"
     atomic_json(destination, manifest)
+    export_dir = getattr(args, "export_dir", None)
+    if export_dir is not None:
+        export_dir = export_dir.resolve()
+        if not export_dir.is_dir():
+            raise ValueError("export directory must already contain the safe evidence package")
+        for name in ("collection-state.json", "command-ledger.json", "evidence-manifest.json"):
+            shutil.copy2(run_dir / name, export_dir / name)
+        shutil.copytree(run_dir / "logs", export_dir / "logs", dirs_exist_ok=True)
+        safe_files = []
+        for path in sorted(export_dir.rglob("*")):
+            if path.is_file() and path != export_dir / "manifest.json":
+                item = artifact(path)
+                safe_files.append({"path": path.relative_to(export_dir).as_posix(),
+                                   "bytes": item["bytes"], "sha256": item["sha256"]})
+        atomic_json(export_dir / "manifest.json", {
+            "schema_version": 1, "study_id": state["study_id"],
+            "plan_sha256": state["plan"]["sha256"], "files": safe_files,
+        })
     print(json.dumps({"status": "manifested", "artifacts": len(files), "path": str(destination)}))
     return 0
 
@@ -398,6 +417,7 @@ def parser() -> argparse.ArgumentParser:
 
     manifest = sub.add_parser("manifest")
     manifest.add_argument("--run-dir", required=True, type=Path)
+    manifest.add_argument("--export-dir", type=Path)
     manifest.set_defaults(function=create_manifest)
 
     show = sub.add_parser("status")
