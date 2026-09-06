@@ -1,5 +1,6 @@
 """Package and audit LEDGAR only after collection reaches its permitted terminal stage."""
 from pathlib import Path
+import shutil
 from operate import BASE,ROOT,PYTHON,CONTROLLER,controlled,call
 
 OPS=Path(__file__).resolve().parent
@@ -18,5 +19,9 @@ controlled(ds,'paper-audit','verify-repository',[PYTHON,OPS/'verify_repository.p
            '--output',directory/'repository-verification.json'],
            [OPS/'verify_repository.py',ROOT/'reproduce/verify.py'],[directory/'repository-verification.json'])
 call([PYTHON,CONTROLLER,'complete-stage','--run-dir',directory,'--stage','paper-audit'])
+for name in ['report-audit.json','repository-verification.json']:
+    shutil.copy2(directory/name,export/'results'/name)
+(export/'report').mkdir(exist_ok=True)
+for path in [report,report.with_suffix('.json')]: shutil.copy2(path,export/'report'/path.name)
 call([PYTHON,CONTROLLER,'manifest','--run-dir',directory,'--export-dir',export])
 print('LEDGAR evidence and report completed. CFPB and SpamAssassin were not started.')

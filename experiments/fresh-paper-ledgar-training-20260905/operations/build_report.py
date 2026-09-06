@@ -174,6 +174,8 @@ lines+=['','### Repeatability paragraph','',
  'These are repeated executions, not new evaluation samples or further candidate attempts.','',
  '### Limitations paragraph','',
  'The evidence is limited to one local model, balanced subsets, and the specific fixed SOP packages. The data do not represent natural production label frequencies. '
+ 'Freshness means no prior local experimental exposure; it does not establish absence from Qwen pretraining. '
+ 'All three study splits were sampled from official training rows, so these results are not official LEDGAR benchmark validation/test scores. '
  'Development phrase purity does not guarantee correctness on unseen documents; the paired evaluation is the relevant safeguard. '
  'Bootstrap intervals describe sampled-case uncertainty within these prepared tasks and do not cover model changes or distribution shift. '
  'The construction trail does not independently test autonomous rule discovery. Full business workflows, production readiness, energy use, and monetary savings were not evaluated. '
