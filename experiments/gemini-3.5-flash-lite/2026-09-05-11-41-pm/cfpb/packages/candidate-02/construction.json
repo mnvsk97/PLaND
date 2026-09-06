@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "candidate_id": "candidate-02",
+  "development_only": true,
+  "hypothesis": "Restrict routing to four product patterns with at least 94.9 percent observed development precision; all other narratives fall back.",
+  "dependencies": [
+    "Python standard library"
+  ],
+  "network": "none",
+  "side_effects": "none",
+  "cache": {
+    "used": false,
+    "reason": "Each narrative is evaluated once."
+  },
+  "parallelism": {
+    "used": false,
+    "reason": "One bounded regex pass is cheaper; run-level concurrency remains eight."
+  },
+  "parent_candidate_id": "candidate-01"
+}

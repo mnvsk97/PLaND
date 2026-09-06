@@ -1,0 +1,1209 @@
+{
+  "schema_version": 1,
+  "study_id": "gemini-3.5-flash-lite-2026-09-05-11-41-pm",
+  "created_at": "2026-09-06T07:35:06.911572+00:00",
+  "plan_sha256": "57f613822481e0d95cecba0105fe227b96476c70ea9568848f0f0bcc0934eccd",
+  "protocol_sha256": "be753b99ed9a15c8ef490a910bbf94c5d8212be700b85549e8b8548168941b38",
+  "git_head": "a0c9f6aca7aa389ee3f103826b22ea42f89d9fc2",
+  "artifacts": [
+    {
+      "path": "/Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/tmp/quality-first-datasets/cfpb",
+      "kind": "directory",
+      "files": 2003,
+      "bytes": 3107038,
+      "sha256": "9fab5582209bd4b99b7014ed8af592ac5f8d372880f94b4a42db2b20cf919dbd"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/datasets/scripts/audit_prepared.py",
+      "kind": "file",
+      "bytes": 9071,
+      "sha256": "688df5f4e730c2fecaada4849e6fd9a18cd307abd6597ac5c2141b06f112fc90"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/datasets/scripts/prepare_collection.py",
+      "kind": "file",
+      "bytes": 6632,
+      "sha256": "74cad07318511faa8204120a337b900f0937e69614aed10dbf3288ec1cc34909"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/datasets/scripts/prepare_data.py",
+      "kind": "file",
+      "bytes": 27735,
+      "sha256": "f665a0c547be5ecc21a064eb00209301264ff4b3068c649fdba7ddd8506da9b7"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/datasets/sources.lock.json",
+      "kind": "file",
+      "bytes": 3608,
+      "sha256": "146a4f2ddaaf3fd9c3df965ca6eab085ec53ffb2eb3df649be2e2c6e15a3bab8"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/collection/scripts/compare.py",
+      "kind": "file",
+      "bytes": 15109,
+      "sha256": "0388ec65c7ccebc6ea1921da5bba4f6c8cc269650e441e5b5186e46d17b365d1"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/collection/scripts/deepagent_execution.py",
+      "kind": "file",
+      "bytes": 3334,
+      "sha256": "cd068521cb5aa11fe09a30fd0f8be3a002205885274d4488eb175bd1d60e24b9"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/collection/scripts/hosted_execution.py",
+      "kind": "file",
+      "bytes": 9803,
+      "sha256": "ee6247ed7f66d4df342117fbc379e0104c5a65a454b5d095a1947bfbbaeca9ad"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/collection/scripts/run_experiment.py",
+      "kind": "file",
+      "bytes": 27074,
+      "sha256": "03f83e70d463b7903d93fd0e0019aec14535f6817b1fce0ad19dc7f585cdab84"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/collection-state.json",
+      "kind": "file",
+      "bytes": 2972,
+      "sha256": "07cd3b1c9e278d074e4aa8b889b0c16eb37e741c153671deb89c4f1ac89f2949"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/command-ledger.json",
+      "kind": "file",
+      "bytes": 221927,
+      "sha256": "08a4314da5d30e3118b5183d8fd1afb62a9cef1848ab63811f5d7cdf03a92342"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/construction/requirements.md",
+      "kind": "file",
+      "bytes": 335,
+      "sha256": "d575f7131af3c709e780f7f6c45931b605b759df9a9c2380c37d7ebc9bca3d25"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/baseline-development-assess-baseline-development-01-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/baseline-development-assess-baseline-development-01-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 46,
+      "sha256": "4ea79d3bae73be04813f3d38b5adc95d9b22934dffeb7d80eea59826ec7c662b"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/baseline-development-baseline-development-01-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/baseline-development-baseline-development-01-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 27694,
+      "sha256": "9676249ef921ff2f112300fe87f2bacc966736054cee0e4109a9005ac93b5f8c"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/baseline-development-generate-english-baseline-01-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/baseline-development-generate-english-baseline-01-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 189,
+      "sha256": "b4e39d337fa2ad8636fa3f29a55a2c14d69eeda2273e44ed64f487c29a2648e3"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/baseline-development-preflight-baseline-development-01-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/baseline-development-preflight-baseline-development-01-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 2819,
+      "sha256": "be86207f8a9401d45d93569ee20cd136210433f00e65d884804f3c220319c887"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-analyze-development-patterns-01-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-analyze-development-patterns-01-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 41,
+      "sha256": "f0654a7fab06c2cd34451cf8b54ada3688786a30ac0dce926945c44b649378f4"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-assess-candidate-development-02-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-assess-candidate-development-02-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 90,
+      "sha256": "3cebc7931afdbd321116df7918cff1e58206896fbb5211f2949672dc82462d2d"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-assess-development-repeat-20260903-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-assess-development-repeat-20260903-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 90,
+      "sha256": "3cebc7931afdbd321116df7918cff1e58206896fbb5211f2949672dc82462d2d"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-assess-development-repeat-20260904-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-assess-development-repeat-20260904-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 90,
+      "sha256": "3cebc7931afdbd321116df7918cff1e58206896fbb5211f2949672dc82462d2d"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-assess-development-repeat-20260905-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-assess-development-repeat-20260905-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 90,
+      "sha256": "3cebc7931afdbd321116df7918cff1e58206896fbb5211f2949672dc82462d2d"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-build-candidate-01-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-build-candidate-01-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 124,
+      "sha256": "4dbdd5ef2e1cac70a4c53b353a96e8349ccbf091e6beca267dc39188ebc8a1aa"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-build-candidate-02-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-build-candidate-02-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 124,
+      "sha256": "1a881984abe3115adc814635a15b885387d0c8e1ca73a01a04425f138cb2d776"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-candidate-development-02-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-candidate-development-02-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 27909,
+      "sha256": "1d594341faf7de6d9ad23bbd2b085c7d73a06f22ad7235040b638267116bb4c5"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-check-candidate-development-01-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-check-candidate-development-01-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 117,
+      "sha256": "35a1ccd9c6f6ce8487ef1d20bd7eac5abf1bc1befdd21a4a15e8777a1b79587c"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-check-candidate-development-02-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-check-candidate-development-02-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 117,
+      "sha256": "4a10affaf8f27710e1b90b2bc4f3eb89ec574f493512bf676a71c424931468ec"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-compare-development-02-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-compare-development-02-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 326,
+      "sha256": "f9716327c402df3646ffd5ec2aaf2b666475050cc0118b2d3be280fca32e50c7"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-compare-development-repeat-20260903-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-compare-development-repeat-20260903-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 318,
+      "sha256": "2eadf5ca8cf1331186202246ba2085000806e2b51a1827bd26e254528d9c9e7c"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-compare-development-repeat-20260904-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-compare-development-repeat-20260904-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 325,
+      "sha256": "6f73b34ae404fadc712482d38e3ca5e352127bc59e940751493622fc0aed94ce"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-compare-development-repeat-20260905-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-compare-development-repeat-20260905-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 330,
+      "sha256": "e076f90ab5482a634f31df3fb30343daffd9d91a67493da7d519d2f7ed159323"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-development-repeat-20260903-baseline-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-development-repeat-20260903-baseline-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 27694,
+      "sha256": "47644b6ac3b29a61870be267cf22c7e37eccb5573edf35d3f7cbfa182234d770"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-development-repeat-20260903-baseline-preflight-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-development-repeat-20260903-baseline-preflight-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 2832,
+      "sha256": "31f189554a0178ee56f15cc8db15fbf948f7e217be88171d387638529c530b06"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-development-repeat-20260903-hybrid-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-development-repeat-20260903-hybrid-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 27912,
+      "sha256": "2d9681ae1ddabcc04c33e302babe2c8b8b7edbb7d3bec878be7413f639dc1c3b"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-development-repeat-20260903-hybrid-preflight-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-development-repeat-20260903-hybrid-preflight-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 3368,
+      "sha256": "7ed91a0a289081fe310f0ab6ce44053312bcd894c1b83c70eb3cf78d89ffe13d"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-development-repeat-20260904-baseline-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-development-repeat-20260904-baseline-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 27696,
+      "sha256": "3c04459daecc002c26f5d9171b20f25b8ca33b83cad27748ec9243ec3a1ebcf1"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-development-repeat-20260904-baseline-preflight-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-development-repeat-20260904-baseline-preflight-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 2832,
+      "sha256": "5466b7b18196ca3cff00dd51e42c91582b00ae1410a284b3e1a8d5872a6b6759"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-development-repeat-20260904-hybrid-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-development-repeat-20260904-hybrid-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 27932,
+      "sha256": "a978258fcdf358db2180b5cd69716d0430ae6a0e971153bdc02cd8967243ea24"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-development-repeat-20260904-hybrid-preflight-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-development-repeat-20260904-hybrid-preflight-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 3368,
+      "sha256": "76b9da7c81f6b84e334967932bd1be00892d712c87e8cd45a5dc1ea390428762"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-development-repeat-20260905-baseline-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-development-repeat-20260905-baseline-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 27695,
+      "sha256": "095f086e4c7c4d855406dc36888a7dcfad92a026d7095672bbeda9e461577567"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-development-repeat-20260905-baseline-preflight-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-development-repeat-20260905-baseline-preflight-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 2832,
+      "sha256": "f157b86498838dabc0e04456e06d586e974b88b02687b3ce2c777eea7aaecf28"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-development-repeat-20260905-hybrid-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-development-repeat-20260905-hybrid-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 27916,
+      "sha256": "fe42e54d44f9c9f6d8cc7c92d5b319862b71136246d046fa34e90fbf1005e0b1"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-development-repeat-20260905-hybrid-preflight-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-development-repeat-20260905-hybrid-preflight-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 3368,
+      "sha256": "86fa27c4aac33a30e3a23b420ef14a04c37b058813b84f3161903fbce1e71c92"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-preflight-candidate-development-02-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-preflight-candidate-development-02-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 3358,
+      "sha256": "ecf38c0c96afbf8331ddeb2d76463e968e3aee651024d20a45c5d5102a2688cb"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-summarize-development-gate-02-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-summarize-development-gate-02-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 40,
+      "sha256": "0a002b8776d80ef57809eff90d3650a78e74e463cbeb5b1239b15e7033e5f09e"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-validate-candidate-contract-01-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-validate-candidate-contract-01-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 127,
+      "sha256": "fc0a4788e5de834e17113ae988f8228ec3929f9de8533181dab585f1122208e2"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-validate-candidate-contract-02-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/candidate-development-validate-candidate-contract-02-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 127,
+      "sha256": "d8a46a11d3555b4788fc75a770973daa0af26b7619e753de2bf96b72931950b7"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/package-evidence-audit-and-package-cfpb-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/package-evidence-audit-and-package-cfpb-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 102,
+      "sha256": "2f4d4de5e109b2afc462bd595b6b148367c622be9b77596331422dbe4d3f10b5"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/prepare-audit-cfpb-dataset-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/prepare-audit-cfpb-dataset-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 1202,
+      "sha256": "3cafaeda5a5cd74c8e6dead2c5790c3e564eb223de640979d473d9fd20af4f6d"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/prepare-prepare-cfpb-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/prepare-prepare-cfpb-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 3641,
+      "sha256": "eabfadf92845ee2f01f846fda0c623dd25312ed39915a0662b22a6ea6a7359ee"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/selection-compare-selection-repeat-20260903-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/selection-compare-selection-repeat-20260903-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 371,
+      "sha256": "c2d087af63b31b9706839d9c523d5696a5c081f4644b4d1b56a49acf5e05e145"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/selection-compare-selection-repeat-20260904-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/selection-compare-selection-repeat-20260904-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 369,
+      "sha256": "bafe5e7b83c08749c253e7590c9230e92ea5d79150a6a94949f163876092ba28"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/selection-compare-selection-repeat-20260905-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/selection-compare-selection-repeat-20260905-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 373,
+      "sha256": "de0a0522edb728aab3121f99817a34353191e2800469de5ae8fb4d7b17974ec2"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/selection-selection-repeat-20260903-baseline-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/selection-selection-repeat-20260903-baseline-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 54804,
+      "sha256": "7fc29c99e568f1c5d2a8c2cfa90821b7a661264894a0b17b5eab21214b4ce967"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/selection-selection-repeat-20260903-baseline-preflight-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/selection-selection-repeat-20260903-baseline-preflight-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 2830,
+      "sha256": "bb6cd4efd36a8fbf27ae82487805b2cc94e59adc74e8216a06a2a18e1329e8cc"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/selection-selection-repeat-20260903-hybrid-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/selection-selection-repeat-20260903-hybrid-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 55250,
+      "sha256": "545eeda4b2964eff850f6a41430f0c275ee6c6b3b537b339ce24c61ee24aa92d"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/selection-selection-repeat-20260903-hybrid-preflight-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/selection-selection-repeat-20260903-hybrid-preflight-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 3366,
+      "sha256": "ef565a797694171fb40230f307572e21e48f68fb23ccb6d0bf3ba3a8fa89b041"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/selection-selection-repeat-20260904-baseline-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/selection-selection-repeat-20260904-baseline-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 54809,
+      "sha256": "bec1315ab8ed86ea65fdebafdfcdbe0fda093587dbff97cf8648ffa2791586b9"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/selection-selection-repeat-20260904-baseline-preflight-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/selection-selection-repeat-20260904-baseline-preflight-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 2830,
+      "sha256": "01b7243b3d663f72e0b757c1e3779a8bb60b9553a489b67408930ab0c3fc30f7"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/selection-selection-repeat-20260904-hybrid-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/selection-selection-repeat-20260904-hybrid-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 55255,
+      "sha256": "7318aa98dad9e8afa0e3f232d9017a93d2eadb5dd4ceeb2e139b620149201b34"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/selection-selection-repeat-20260904-hybrid-preflight-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/selection-selection-repeat-20260904-hybrid-preflight-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 3366,
+      "sha256": "4e18b53cad8c6e59f83f22aca3e3064c8c8d88faa2ad651363cb7eed98c21224"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/selection-selection-repeat-20260905-baseline-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/selection-selection-repeat-20260905-baseline-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 54809,
+      "sha256": "66512c060297e290cc12f954bbe599a9b907f354d6032d579fa5bacd7711d57c"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/selection-selection-repeat-20260905-baseline-preflight-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/selection-selection-repeat-20260905-baseline-preflight-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 2830,
+      "sha256": "d3f8fc4e0e744b69926cb37d12929b21b8b8ae0e0b44b2a764e078c07d89b258"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/selection-selection-repeat-20260905-hybrid-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/selection-selection-repeat-20260905-hybrid-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 55247,
+      "sha256": "65e1eef4a0f410eaa56820006bb3e5dd70dda9b05e954b893bc9d062b080acfb"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/selection-selection-repeat-20260905-hybrid-preflight-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/selection-selection-repeat-20260905-hybrid-preflight-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 3366,
+      "sha256": "23da4649d217d9dc8f62fa0b8b36fdd7b274703f9082fc5ef4a7de1d5371f9b0"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/selection-summarize-selection-gate-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/logs/selection-summarize-selection-gate-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 41,
+      "sha256": "b88339f64c11e2a0680d68d2a490281048ce611f3b07fe35fcaf1865e470fe5e"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/operations/build_candidate.py",
+      "kind": "file",
+      "bytes": 4272,
+      "sha256": "5361346599889f8fbe0f1b3c97678b5418bdef92adc4512aea428e71b9f811ac"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/operations/refine_candidate_02.py",
+      "kind": "file",
+      "bytes": 2022,
+      "sha256": "07e54b9af75ef5fcf0148d1d1c647776f27d5edac8b42ecfea6d13d8a03a022e"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/packages",
+      "kind": "directory",
+      "files": 31,
+      "bytes": 944535,
+      "sha256": "c6c99e1ee8f16c893b8436285a552267775698db70f0ef2696b703880b36899b"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/packages/baseline-01",
+      "kind": "directory",
+      "files": 9,
+      "bytes": 313406,
+      "sha256": "a21bc1b45d9de0d93e5b2d1e3ea7c115d35ece38cdecd8d2b12a07fd3555ce91"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/packages/baseline-01/skills/cfpb-classification/SKILL.md",
+      "kind": "file",
+      "bytes": 1164,
+      "sha256": "70deb8e12457bac86069bf237e20bb521a354393ca6d0236a615c622f6a85987"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/packages/candidate-01",
+      "kind": "directory",
+      "files": 11,
+      "bytes": 315899,
+      "sha256": "fb883bb80faee7c2cedd710ff15bed0216bd2082069dc9fae25e67964ef5286d"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/packages/candidate-01/classify.py",
+      "kind": "file",
+      "bytes": 1697,
+      "sha256": "aa0388b497e9bd16ea7db2596ed3dd9bc413e134af506c10fb4d64bea690dca5"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/packages/candidate-01/skills/cfpb-classification/SKILL.md",
+      "kind": "file",
+      "bytes": 1407,
+      "sha256": "6610c6ed704177325ad08c503be7079e822ba3117f4a5e031c5f99f4bd7da140"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/packages/candidate-02",
+      "kind": "directory",
+      "files": 11,
+      "bytes": 315230,
+      "sha256": "1bf0b68abfb5084ed51f401ea6948ea075e35bfb63445fc9357366c3b9b50286"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/packages/candidate-02/classify.py",
+      "kind": "file",
+      "bytes": 980,
+      "sha256": "f808502f861526bc029aabfde27aa697b51c69cebf79744126453a40c1df4768"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/packages/candidate-02/skills/cfpb-classification/SKILL.md",
+      "kind": "file",
+      "bytes": 1407,
+      "sha256": "6610c6ed704177325ad08c503be7079e822ba3117f4a5e031c5f99f4bd7da140"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results",
+      "kind": "directory",
+      "files": 10048,
+      "bytes": 108234585,
+      "sha256": "cae2527049a81aed59b7f237ec5ae3ea5ba975bedee83701e93d5d33bda0a51f"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/baseline-decision-01.json",
+      "kind": "file",
+      "bytes": 395,
+      "sha256": "2f7e7a6bb94c5331da97a6ad033ba81a1f99cfbeb9a63df554f3e0be8980354b"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/baseline-development-01.json",
+      "kind": "file",
+      "bytes": 2952799,
+      "sha256": "66f3012bc12e8da02df497c158a212f7820dde6b3f40d4135167249830e5fa0f"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/candidate-check-01.json",
+      "kind": "file",
+      "bytes": 3845,
+      "sha256": "8d4eb96d3eed2ff0ef77f7df56fd0f370d0e1995398ef03d65a3f9640f98f1e8"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/candidate-check-02.json",
+      "kind": "file",
+      "bytes": 1424,
+      "sha256": "cfc8196fcc527e7021573608609426491e5f605a962aa429527aa63d21100969"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/candidate-contract-01.json",
+      "kind": "file",
+      "bytes": 909,
+      "sha256": "38f64fb34900c211acd891f8da8d51ad82fbb1ab1489f15a9254c3448b7cefdc"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/candidate-contract-02.json",
+      "kind": "file",
+      "bytes": 909,
+      "sha256": "38f64fb34900c211acd891f8da8d51ad82fbb1ab1489f15a9254c3448b7cefdc"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/candidate-development-02.json",
+      "kind": "file",
+      "bytes": 2478791,
+      "sha256": "b3aa5e5a96d5c6dd435296a0a6081ad5fb83a17a9d1e7ee7083b1ad01658c5f3"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/candidate-development-assessment-02.json",
+      "kind": "file",
+      "bytes": 3440,
+      "sha256": "4dce06a08dd4cb18eb8dac45effcda8b80ee530de4539cedb0c1fed3a2a6a158"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/candidate-development-gate-02.json",
+      "kind": "file",
+      "bytes": 984,
+      "sha256": "11f1f0248424fe2543cefecb3b09d89b7327ff7fb11b031b29fb6c6e01387b71"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/collection-audit.json",
+      "kind": "file",
+      "bytes": 21339,
+      "sha256": "e334d0f0b5a90e81b1a50192d4eb2b1409c008850c0513b96fc215e3b2155209"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/dataset-audit.json",
+      "kind": "file",
+      "bytes": 3909,
+      "sha256": "660eec32dbcf6103436772dd2cc26ba60675e598405671c0c2a4bad433620436"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/development-comparison-02.json",
+      "kind": "file",
+      "bytes": 9147,
+      "sha256": "5f285ec3741c3295160bf3b41f204e9c3f571fd91bfcf97cac0222637738b7d7"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/development-patterns-01.json",
+      "kind": "file",
+      "bytes": 84335,
+      "sha256": "f4e279fc6964ee2a99f6fff7612d0e6123185740a40b05920840b5c982418860"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/development-repeat-20260903-assessment.json",
+      "kind": "file",
+      "bytes": 3376,
+      "sha256": "d3576afbab4b86a38160c43230274fec69351064a7a370facec9d9d54931fa0f"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/development-repeat-20260903-baseline-preflight.json",
+      "kind": "file",
+      "bytes": 3128,
+      "sha256": "ed8c11ba69131d0d7b466f8cb6335279c3e7b540ebf13de6b365543cb1688401"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/development-repeat-20260903-baseline.json",
+      "kind": "file",
+      "bytes": 2952784,
+      "sha256": "297d35d1d8d162cea6c3dae4551a0c291f9f6f3be9f84b4c58afaf8a51b6ad9d"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/development-repeat-20260903-comparison.json",
+      "kind": "file",
+      "bytes": 9164,
+      "sha256": "84a6cf946d58dbe6ec0e65cd929e5644293edf44046c1cd3fe529460456cac46"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/development-repeat-20260903-hybrid-preflight.json",
+      "kind": "file",
+      "bytes": 3716,
+      "sha256": "b4aee05abb71313d91a5772571889991c0c59eeb94606ae51a597fcba8a714cf"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/development-repeat-20260903-hybrid.json",
+      "kind": "file",
+      "bytes": 2479271,
+      "sha256": "1548835562cbe6c35e5da9a23e6399f2d77d3a8101028a09fd4457fe57a47945"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/development-repeat-20260904-assessment.json",
+      "kind": "file",
+      "bytes": 3392,
+      "sha256": "08399b44c9046ce12dc43967f631f6b3a3786df97ef1e8875594eae14ed08488"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/development-repeat-20260904-baseline-preflight.json",
+      "kind": "file",
+      "bytes": 3128,
+      "sha256": "be9f73f905654cf9aae7991b5ca9b4e1fef4c2a817aeda4b000e300f80e0a65f"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/development-repeat-20260904-baseline.json",
+      "kind": "file",
+      "bytes": 2952809,
+      "sha256": "8f5ec6dd1d0e25794f2b731724212e867a67ad120558b76d0c7d77e028f58b71"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/development-repeat-20260904-comparison.json",
+      "kind": "file",
+      "bytes": 9181,
+      "sha256": "ae457df910b22afc96da41ddc12a3f7967e0c1da14d843aedde9e31862bd1329"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/development-repeat-20260904-hybrid-preflight.json",
+      "kind": "file",
+      "bytes": 3716,
+      "sha256": "da19fd55c0a58176cd62fbdefd1fa744a2296fb040c89bf3cc8261f493881bf2"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/development-repeat-20260904-hybrid.json",
+      "kind": "file",
+      "bytes": 2479244,
+      "sha256": "b81c25779f63f61bfa309a0de050a8b53494568f6d497f3517bd880278e4e0bf"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/development-repeat-20260905-assessment.json",
+      "kind": "file",
+      "bytes": 3374,
+      "sha256": "b8b36e099896536eafb84a81e4dfdfa4af29ff41d6e14072e05e53d261e299a5"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/development-repeat-20260905-baseline-preflight.json",
+      "kind": "file",
+      "bytes": 3128,
+      "sha256": "31b6662643b93b24e0adaed043249028311bcdfbfc23a068d971b06f0113da2e"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/development-repeat-20260905-baseline.json",
+      "kind": "file",
+      "bytes": 2952404,
+      "sha256": "cd5716c33e4263a914a85204e81689635476ed416c691fc59d5d4fefdce2638c"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/development-repeat-20260905-comparison.json",
+      "kind": "file",
+      "bytes": 9172,
+      "sha256": "fd2242ca02f49a29211e3fac6fd835a0a97d1a29fa11730cfcb787ff8fc285aa"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/development-repeat-20260905-hybrid-preflight.json",
+      "kind": "file",
+      "bytes": 3716,
+      "sha256": "0dfd653044866c89d6a81180a190a6402e4efb7a251b6926535e2dcfe41e22d2"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/development-repeat-20260905-hybrid.json",
+      "kind": "file",
+      "bytes": 2479277,
+      "sha256": "c3c37e0bce2593e61a7560c798c2568c6eebcc008d4abaacb90634a65dcc802b"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/preflight-baseline-development-01.json",
+      "kind": "file",
+      "bytes": 3115,
+      "sha256": "ebb1661f4396d346651d1b5d507ce522f6656c03d7512231b0acc1eabe3dcc1c"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/preflight-candidate-development-02.json",
+      "kind": "file",
+      "bytes": 3706,
+      "sha256": "86b68ff4a5cca9544c1faecc51d698f4063466fb5678976f56ba61af59ddfdfa"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/selection-gate.json",
+      "kind": "file",
+      "bytes": 2659,
+      "sha256": "b0fc1e8ad502dfaa4b17b0d030bac85c83c1c47cc5ece149784063a1ecd362a1"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/selection-repeat-20260903-baseline-preflight.json",
+      "kind": "file",
+      "bytes": 3126,
+      "sha256": "62a1e3a029320736f052ad3d57a78c376c39ebf9817f705645887ce3d563b5f8"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/selection-repeat-20260903-baseline.json",
+      "kind": "file",
+      "bytes": 5896559,
+      "sha256": "4a0e10ba0aeb55a7de8513abb363b6b668a53eb30cd42bfb63f58737987429d4"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/selection-repeat-20260903-comparison.json",
+      "kind": "file",
+      "bytes": 7444,
+      "sha256": "98f6899c94d4125db1c3381f29af62c81e91c391090bdc95e97b77fb33adad97"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/selection-repeat-20260903-hybrid-preflight.json",
+      "kind": "file",
+      "bytes": 3714,
+      "sha256": "1146f44e5d02c10bd1c9abf5c5c3611f6d8e7624ddd1527d0e2f5ae5a8b37f84"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/selection-repeat-20260903-hybrid.json",
+      "kind": "file",
+      "bytes": 4919684,
+      "sha256": "d40830208df7bee970249641832c5d25dc6c32ee51f5e578d878d1f7769e08e1"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/selection-repeat-20260904-baseline-preflight.json",
+      "kind": "file",
+      "bytes": 3126,
+      "sha256": "7584f2e2148f8a6419b0696b54fa7a0561caff77579719ff026cf8178f0aaec5"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/selection-repeat-20260904-baseline.json",
+      "kind": "file",
+      "bytes": 5896428,
+      "sha256": "8b36786f705125042fe88124b230c503125f3f2ea8bf15d0be7a6b0f117ea224"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/selection-repeat-20260904-comparison.json",
+      "kind": "file",
+      "bytes": 7455,
+      "sha256": "be1a7e440917dc758cbf2c3786635c4d63425dc992fd34a5cfc5075317ab6cdb"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/selection-repeat-20260904-hybrid-preflight.json",
+      "kind": "file",
+      "bytes": 3714,
+      "sha256": "056eee11011d1c0f118c092dd34b3c99ed579fb9e16cdcbaefae46674632aad7"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/selection-repeat-20260904-hybrid.json",
+      "kind": "file",
+      "bytes": 4918299,
+      "sha256": "6991d39916d120d54b95822f9d11d4942afd2f6c46235fa82e62eb6c9ff3b178"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/selection-repeat-20260905-baseline-preflight.json",
+      "kind": "file",
+      "bytes": 3126,
+      "sha256": "953633b01d1bf3b9a98be660fbbf798fd990beb8162c542c735ef725680e67c0"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/selection-repeat-20260905-baseline.json",
+      "kind": "file",
+      "bytes": 5896625,
+      "sha256": "08da68054570d416dfd26ad7fe9cf8dadc1d58838d92496d39bcb00eea51b034"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/selection-repeat-20260905-comparison.json",
+      "kind": "file",
+      "bytes": 7442,
+      "sha256": "913ffefa96c2665ff685c522074127659f07ab036fe0228a4c19358f9dd67a88"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/selection-repeat-20260905-hybrid-preflight.json",
+      "kind": "file",
+      "bytes": 3714,
+      "sha256": "c22fd0295ca1d477caa68897411ea1b369fc821ec7c0de33c2b142c3f0a505bf"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/selection-repeat-20260905-hybrid.json",
+      "kind": "file",
+      "bytes": 4918149,
+      "sha256": "e869aae2c19694b0a97282c7559c33ac63d63935f95b6fde042c56535d701311"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar-valid/operations/analyze_development.py",
+      "kind": "file",
+      "bytes": 2365,
+      "sha256": "53208034e6849c50330c0fdad04dd8703de21421cab62a79b7b152f653577db5"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar-valid/operations/check_candidate.py",
+      "kind": "file",
+      "bytes": 2782,
+      "sha256": "92b733f7aedaca1b632f874d4d53c413f42a42c0bf94f6af8d0aed236b0c48f0"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar-valid/operations/summarize_development_gate.py",
+      "kind": "file",
+      "bytes": 1424,
+      "sha256": "c6c11f598b9762594e2e5bdc5049e90ff423d24137294cbc11a5df6bd645a3cd"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar-valid/operations/summarize_selection_gate.py",
+      "kind": "file",
+      "bytes": 1638,
+      "sha256": "b76cc37ed7eced473f4feb8e7e52b3226ae0a19efd3a238031a550f2707301ee"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/operations/audit_dataset.py",
+      "kind": "file",
+      "bytes": 7004,
+      "sha256": "ae186b0f47bae904fd7fed5b855d9b5c8abc28a2ffc8ca912723bf15f3025025"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/plan.json",
+      "kind": "file",
+      "bytes": 3160,
+      "sha256": "57f613822481e0d95cecba0105fe227b96476c70ea9568848f0f0bcc0934eccd"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/protocol.md",
+      "kind": "file",
+      "bytes": 2017,
+      "sha256": "be753b99ed9a15c8ef490a910bbf94c5d8212be700b85549e8b8548168941b38"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/reproduce/uv.lock",
+      "kind": "file",
+      "bytes": 368803,
+      "sha256": "2ad625654eef9a2cacbea1f6bee0ec452066e12f1e6ee96b93cfd3655bcfdbf7"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/skills/generate-initial-version/scripts/assess_baseline.py",
+      "kind": "file",
+      "bytes": 2492,
+      "sha256": "87a696ac836015011fd7781b5bbf8013fbe7c0285732496773277a56f99dee15"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/skills/generate-initial-version/scripts/generate.py",
+      "kind": "file",
+      "bytes": 13406,
+      "sha256": "9b6868c8b87c05bc1a8fff223bb9ef03e08bedf5db9b0b15174007cdc3832a31"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/skills/pland-evolver/scripts/assess_candidate.py",
+      "kind": "file",
+      "bytes": 17031,
+      "sha256": "85046bca406b3e44fb1ecf4aa5233fdee9ecc62dcc5ea8c6cd7fa29a0b8a1b91"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/skills/pland-evolver/scripts/compare_variants.py",
+      "kind": "file",
+      "bytes": 10842,
+      "sha256": "4e29c23bf39b6d3b932a76eaed5b48dc37c8630c1d06e4fcebf04135f1badaeb"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/skills/pland-evolver/scripts/sop_contract.py",
+      "kind": "file",
+      "bytes": 5868,
+      "sha256": "2a5625e3b29cd9b38800cc98f87dd994e846f59c6b3ce9c19859ee61d72aa177"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/tmp/confirmatory-datasets/cfpb",
+      "kind": "directory",
+      "files": 1204,
+      "bytes": 20925582,
+      "sha256": "832e7941dd31b726cf4ff4397274cd6f180c9f600e97fe3e804c8ad013084ee1"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/tmp/confirmatory-datasets/cfpb/sources",
+      "kind": "directory",
+      "files": 1,
+      "bytes": 19108164,
+      "sha256": "90961af728a775f9f8555494593db9b42fb2f9a1933ac04d18b26433c858de7c"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/tmp/gemini-3.5-flash-lite/2026-09-05-11-41-pm/datasets/cfpb",
+      "kind": "directory",
+      "files": 2004,
+      "bytes": 3042489,
+      "sha256": "ca0ae62ce8ccf4eb629b1f29d12d86b470867d7f38a7dc47e7b2f80cc936676f"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/tmp/gemini-3.5-flash-lite/2026-09-05-11-41-pm/datasets/cfpb-prior-opened",
+      "kind": "directory",
+      "files": 1,
+      "bytes": 235694,
+      "sha256": "0665e42298e4aecba1c2ff8f6fba358bbb6752557436aa16e19bfa77f22a126b"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/tmp/gemini-3.5-flash-lite/2026-09-05-11-41-pm/datasets/cfpb/data",
+      "kind": "directory",
+      "files": 2000,
+      "bytes": 2453858,
+      "sha256": "42c4cc084c380aa58f5c170c9e184898af522a182c7b555e8652458e74e02edf"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/tmp/gemini-3.5-flash-lite/2026-09-05-11-41-pm/datasets/cfpb/evals.csv",
+      "kind": "file",
+      "bytes": 456965,
+      "sha256": "978383744e7110487d07ac33cc94e2566d07360671ee63cafa80987f525129ab"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "case_id": "9783625",
+  "started_at": "2026-09-06T07:33:41.579163+00:00",
+  "frozen_manifest_sha256": "bde963518bf35723eeb5446b69e198e2972c52135bb4f487d947eb6f782bfd3c",
+  "status": "completed",
+  "case": {
+    "id": "9783625",
+    "expected": "Student loan",
+    "actual": "Student loan",
+    "correct": true,
+    "source": "command",
+    "matched_rule": "\\bstudent loans?\\b|\\b(?:mohela|navient|nelnet)\\b|\\bdepartment of education\\b.{0,100}\\bloans?\\b",
+    "parse_error": null,
+    "raw_message_content": null,
+    "latency_seconds": 8.274998981505632e-05,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "total_tokens": 0,
+    "model_calls": 0,
+    "model_done_reason": null,
+    "deepagent_trace": [],
+    "step_trace": {
+      "command_step_id": "S03",
+      "fallback_step_id": null,
+      "fallback_instruction_sha256": null,
+      "escape_reason": null,
+      "command_work": true,
+      "model_work": false,
+      "command_error": null
+    },
+    "reasoning_tokens": 0,
+    "cached_input_tokens": 0,
+    "service_cost_usd": 0,
+    "request_receipts": []
+  },
+  "rate_limit_retries": [],
+  "ended_at": "2026-09-06T07:33:41.580637+00:00"
+}

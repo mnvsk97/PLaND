@@ -1,0 +1,3519 @@
+{
+  "schema_version": 1,
+  "split": "development",
+  "cases": 500,
+  "label_counts": {
+    "Checking or savings account": 50,
+    "Credit card": 50,
+    "Credit reporting or other personal consumer reports": 50,
+    "Debt collection": 50,
+    "Money transfer, virtual currency, or money service": 50,
+    "Mortgage": 50,
+    "Payday loan, title loan, personal loan, or advance loan": 50,
+    "Prepaid card": 50,
+    "Student loan": 50,
+    "Vehicle loan or lease": 50
+  },
+  "candidates": [
+    {
+      "phrase": "student",
+      "label": "Student loan",
+      "support": 25,
+      "total": 26,
+      "precision": 0.9615384615384616
+    },
+    {
+      "phrase": "student loan",
+      "label": "Student loan",
+      "support": 15,
+      "total": 15,
+      "precision": 1.0
+    },
+    {
+      "phrase": "mohela",
+      "label": "Student loan",
+      "support": 15,
+      "total": 15,
+      "precision": 1.0
+    },
+    {
+      "phrase": "navient",
+      "label": "Student loan",
+      "support": 15,
+      "total": 15,
+      "precision": 1.0
+    },
+    {
+      "phrase": "my mortgage",
+      "label": "Mortgage",
+      "support": 14,
+      "total": 14,
+      "precision": 1.0
+    },
+    {
+      "phrase": "school misconduct",
+      "label": "Student loan",
+      "support": 13,
+      "total": 13,
+      "precision": 1.0
+    },
+    {
+      "phrase": "escrow",
+      "label": "Mortgage",
+      "support": 12,
+      "total": 12,
+      "precision": 1.0
+    },
+    {
+      "phrase": "my loans",
+      "label": "Student loan",
+      "support": 11,
+      "total": 11,
+      "precision": 1.0
+    },
+    {
+      "phrase": "forgiveness",
+      "label": "Student loan",
+      "support": 11,
+      "total": 11,
+      "precision": 1.0
+    },
+    {
+      "phrase": "loans were",
+      "label": "Student loan",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "prepaid",
+      "label": "Prepaid card",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "department of education",
+      "label": "Student loan",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "the department",
+      "label": "Student loan",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "visa gift",
+      "label": "Prepaid card",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "foreclosure",
+      "label": "Mortgage",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "usd",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "the department of education",
+      "label": "Student loan",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "total amount of xxxx",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "a 1 a",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "the department of",
+      "label": "Student loan",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "to use it",
+      "label": "Prepaid card",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "consumer reports",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "from navient",
+      "label": "Student loan",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "loan forgiveness",
+      "label": "Student loan",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "vehicle and",
+      "label": "Vehicle loan or lease",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "1681b",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "discrepancies",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "equifax",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "incomm",
+      "label": "Prepaid card",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "vanilla",
+      "label": "Prepaid card",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "a total amount of",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "deposits for a total",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "for a total amount",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "i fell victim to",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "involved me making deposits",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "making deposits for a",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "me making deposits for",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "which involved me making",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "a total amount",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "deposits for a",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "fell victim to",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "from my consumer",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "i fell victim",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "involved me making",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "making deposits for",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "me making deposits",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "multi layered scam",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "my loans were",
+      "label": "Student loan",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "my paypal account",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "my student loan",
+      "label": "Student loan",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "school misconduct application",
+      "label": "Student loan",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "vanilla visa gift",
+      "label": "Prepaid card",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "visa gift card",
+      "label": "Prepaid card",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "which involved me",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "deposits for",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "escrow account",
+      "label": "Mortgage",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "federal student",
+      "label": "Student loan",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "fell victim",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "for discharge",
+      "label": "Student loan",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "involved me",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "layered scam",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "loan servicer",
+      "label": "Student loan",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "making deposits",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "me making",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "misconduct application",
+      "label": "Student loan",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "mohela to",
+      "label": "Student loan",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "mortgage loan",
+      "label": "Mortgage",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "multi layered",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "my paypal",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "paypal account",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "the cards",
+      "label": "Prepaid card",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "these loans",
+      "label": "Student loan",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "vanilla visa",
+      "label": "Prepaid card",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "which involved",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "xxxx usd",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "activated",
+      "label": "Prepaid card",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "appraisal",
+      "label": "Mortgage",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "fairness",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "forgiven",
+      "label": "Student loan",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "layered",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "modification",
+      "label": "Mortgage",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "multi",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 6,
+      "total": 6,
+      "precision": 1.0
+    },
+    {
+      "phrase": "bureau xxxx xxxx xxxx",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 5,
+      "total": 5,
+      "precision": 1.0
+    },
+    {
+      "phrase": "layered scam operations run",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 5,
+      "total": 5,
+      "precision": 1.0
+    },
+    {
+      "phrase": "multi layered scam operations",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 5,
+      "total": 5,
+      "precision": 1.0
+    },
+    {
+      "phrase": "scam operations run by",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 5,
+      "total": 5,
+      "precision": 1.0
+    },
+    {
+      "phrase": "the requirements for discharge",
+      "label": "Student loan",
+      "support": 5,
+      "total": 5,
+      "precision": 1.0
+    },
+    {
+      "phrase": "vanilla visa gift card",
+      "label": "Prepaid card",
+      "support": 5,
+      "total": 5,
+      "precision": 1.0
+    },
+    {
+      "phrase": "year i fell victim",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 5,
+      "total": 5,
+      "precision": 1.0
+    },
+    {
+      "phrase": "a school misconduct",
+      "label": "Student loan",
+      "support": 5,
+      "total": 5,
+      "precision": 1.0
+    },
+    {
+      "phrase": "accounts on my",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 5,
+      "total": 5,
+      "precision": 1.0
+    },
+    {
+      "phrase": "bureau xxxx xxxx",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 5,
+      "total": 5,
+      "precision": 1.0
+    },
+    {
+      "phrase": "ensure that any",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 5,
+      "total": 5,
+      "precision": 1.0
+    },
+    {
+      "phrase": "fraudulent investment firm",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 5,
+      "total": 5,
+      "precision": 1.0
+    },
+    {
+      "phrase": "layered scam operations",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 5,
+      "total": 5,
+      "precision": 1.0
+    },
+    {
+      "phrase": "operations run by",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 5,
+      "total": 5,
+      "precision": 1.0
+    },
+    {
+      "phrase": "private student loans",
+      "label": "Student loan",
+      "support": 5,
+      "total": 5,
+      "precision": 1.0
+    },
+    {
+      "phrase": "requirements for discharge",
+      "label": "Student loan",
+      "support": 5,
+      "total": 5,
+      "precision": 1.0
+    },
+    {
+      "phrase": "scam operations run",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 5,
+      "total": 5,
+      "precision": 1.0
+    },
+    {
+      "phrase": "the accuracy and",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 5,
+      "total": 5,
+      "precision": 1.0
+    },
+    {
+      "phrase": "the credit card",
+      "label": "Credit card",
+      "support": 5,
+      "total": 5,
+      "precision": 1.0
+    },
+    {
+      "phrase": "a prepaid",
+      "label": "Prepaid card",
+      "support": 5,
+      "total": 5,
+      "precision": 1.0
+    },
+    {
+      "phrase": "a school",
+      "label": "Student loan",
+      "support": 5,
+      "total": 5,
+      "precision": 1.0
+    },
+    {
+      "phrase": "accounts on",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 5,
+      "total": 5,
+      "precision": 1.0
+    },
+    {
+      "phrase": "accuracy and",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 5,
+      "total": 5,
+      "precision": 1.0
+    },
+    {
+      "phrase": "an application",
+      "label": "Student loan",
+      "support": 5,
+      "total": 5,
+      "precision": 1.0
+    },
+    {
+      "phrase": "bureau xxxx",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 5,
+      "total": 5,
+      "precision": 1.0
+    },
+    {
+      "phrase": "by navient",
+      "label": "Student loan",
+      "support": 5,
+      "total": 5,
+      "precision": 1.0
+    },
+    {
+      "phrase": "card at",
+      "label": "Prepaid card",
+      "support": 5,
+      "total": 5,
+      "precision": 1.0
+    },
+    {
+      "phrase": "for school",
+      "label": "Student loan",
+      "support": 5,
+      "total": 5,
+      "precision": 1.0
+    },
+    {
+      "phrase": "fraudulent investment",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 5,
+      "total": 5,
+      "precision": 1.0
+    },
+    {
+      "phrase": "investment firm",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 5,
+      "total": 5,
+      "precision": 1.0
+    },
+    {
+      "phrase": "my escrow",
+      "label": "Mortgage",
+      "support": 5,
+      "total": 5,
+      "precision": 1.0
+    },
+    {
+      "phrase": "operations run",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 5,
+      "total": 5,
+      "precision": 1.0
+    },
+    {
+      "phrase": "private loan",
+      "label": "Student loan",
+      "support": 5,
+      "total": 5,
+      "precision": 1.0
+    },
+    {
+      "phrase": "private student",
+      "label": "Student loan",
+      "support": 5,
+      "total": 5,
+      "precision": 1.0
+    },
+    {
+      "phrase": "purchase agreement",
+      "label": "Debt collection",
+      "support": 5,
+      "total": 5,
+      "precision": 1.0
+    },
+    {
+      "phrase": "scam operations",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 5,
+      "total": 5,
+      "precision": 1.0
+    },
+    {
+      "phrase": "the closing",
+      "label": "Mortgage",
+      "support": 5,
+      "total": 5,
+      "precision": 1.0
+    },
+    {
+      "phrase": "the loans",
+      "label": "Student loan",
+      "support": 5,
+      "total": 5,
+      "precision": 1.0
+    },
+    {
+      "phrase": "to navient",
+      "label": "Student loan",
+      "support": 5,
+      "total": 5,
+      "precision": 1.0
+    },
+    {
+      "phrase": "affirm",
+      "label": "Payday loan, title loan, personal loan, or advance loan",
+      "support": 5,
+      "total": 5,
+      "precision": 1.0
+    },
+    {
+      "phrase": "commencing",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 5,
+      "total": 5,
+      "precision": 1.0
+    },
+    {
+      "phrase": "heloc",
+      "label": "Mortgage",
+      "support": 5,
+      "total": 5,
+      "precision": 1.0
+    },
+    {
+      "phrase": "nelnet",
+      "label": "Student loan",
+      "support": 5,
+      "total": 5,
+      "precision": 1.0
+    },
+    {
+      "phrase": "recipient",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 5,
+      "total": 5,
+      "precision": 1.0
+    },
+    {
+      "phrase": "shellpoint",
+      "label": "Mortgage",
+      "support": 5,
+      "total": 5,
+      "precision": 1.0
+    },
+    {
+      "phrase": "a time to make",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "accuracy and fairness of",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "amount of xxxx usd",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "based on school misconduct",
+      "label": "Student loan",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "card on xx xx",
+      "label": "Prepaid card",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "for discharge based on",
+      "label": "Student loan",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "gift card on xx",
+      "label": "Prepaid card",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "meet the requirements for",
+      "label": "Student loan",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "not meet the requirements",
+      "label": "Student loan",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "of xxxx usd from",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "operations run by xxxx",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "receipt of this letter",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "requirements for discharge based",
+      "label": "Student loan",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "the accuracy and fairness",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "to ensure that any",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "to the fair credit",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "tried to use it",
+      "label": "Prepaid card",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "u s code 1681b",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "was mailed or delivered",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "xxxx which involved me",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "a time to",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "accuracy and fairness",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "and fairness of",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "based on school",
+      "label": "Student loan",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "card on xx",
+      "label": "Prepaid card",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "commencing on or",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "discharge based on",
+      "label": "Student loan",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "for discharge based",
+      "label": "Student loan",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "for school misconduct",
+      "label": "Student loan",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "furnish any information",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "gift card on",
+      "label": "Prepaid card",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "gift cards i",
+      "label": "Prepaid card",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "has caused severe",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "information resulting from",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "is a result",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "is not mine",
+      "label": "Debt collection",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "meet the requirements",
+      "label": "Student loan",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "my right to",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "not meet the",
+      "label": "Student loan",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "of my payment",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "of xxxx usd",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "on school misconduct",
+      "label": "Student loan",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "receipt of this",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "report due to",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "run by xxxx",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "s code 1681b",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "shall not furnish",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "that this information",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "the inclusion of",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "the late payments",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "was mailed or",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "xxxx i went",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "xxxx usd from",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "xxxx which involved",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "00 vanilla",
+      "label": "Prepaid card",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "a time",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "administrative forbearance",
+      "label": "Student loan",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "an escrow",
+      "label": "Mortgage",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "and confidentiality",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "and fairness",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "application and",
+      "label": "Student loan",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "by 15",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "called mohela",
+      "label": "Student loan",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "car i",
+      "label": "Vehicle loan or lease",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "card on",
+      "label": "Prepaid card",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "caused severe",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "code 1681",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "code 1681b",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "coinbase account",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "commencing on",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "debt was",
+      "label": "Debt collection",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "discharge based",
+      "label": "Student loan",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "escrow shortage",
+      "label": "Mortgage",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "express i",
+      "label": "Prepaid card",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "fairness of",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "federal loans",
+      "label": "Student loan",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "from mohela",
+      "label": "Student loan",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "funding llc",
+      "label": "Debt collection",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "inclusion of",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "information resulting",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "insurance policy",
+      "label": "Mortgage",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "loan modification",
+      "label": "Mortgage",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "loan should",
+      "label": "Student loan",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "loans are",
+      "label": "Student loan",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "loans due",
+      "label": "Student loan",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "misconduct by",
+      "label": "Student loan",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "mortgage was",
+      "label": "Mortgage",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "my policy",
+      "label": "Mortgage",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "navient xxxx",
+      "label": "Student loan",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "next month",
+      "label": "Student loan",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "not paid",
+      "label": "Mortgage",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "on school",
+      "label": "Student loan",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "private loans",
+      "label": "Student loan",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "report by",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "report due",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "resulting from",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "short sale",
+      "label": "Mortgage",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "student aid",
+      "label": "Student loan",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "synchrony bank",
+      "label": "Credit card",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "the appraisal",
+      "label": "Mortgage",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "the dealer",
+      "label": "Vehicle loan or lease",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "the forgiveness",
+      "label": "Student loan",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "the inclusion",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "the sender",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "these cards",
+      "label": "Prepaid card",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "usd from",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "xxxx student",
+      "label": "Student loan",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "accident",
+      "label": "Vehicle loan or lease",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "administrative",
+      "label": "Student loan",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "bridgecrest",
+      "label": "Vehicle loan or lease",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "coinbase",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "confidentiality",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "consolidation",
+      "label": "Student loan",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "conventional",
+      "label": "Mortgage",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "crypto",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "fha",
+      "label": "Mortgage",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "inclusion",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "internet",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "network",
+      "label": "Prepaid card",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "operation",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "pslf",
+      "label": "Student loan",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "sender",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "shortage",
+      "label": "Mortgage",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "solve",
+      "label": "Checking or savings account",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "studentaid",
+      "label": "Student loan",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "students",
+      "label": "Student loan",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "transunion",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 4,
+      "total": 4,
+      "precision": 1.0
+    },
+    {
+      "phrase": "00 vanilla visa gift",
+      "label": "Prepaid card",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "15 usc 1666b a",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "15 usc 1666b and",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "1666b and its requirements",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "a billing error made",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "a consumer delete the",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "a creditor to treat",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "a multi layered scam",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "a payment as late",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "a person shall not",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "a private loan should",
+      "label": "Student loan",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "a reflection of my",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "a result on a",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "a school misconduct application",
+      "label": "Student loan",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "a systematic error on",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "a variety of factors",
+      "label": "Student loan",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "agencies ensure the accuracy",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "agency if the person",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "all payments were placed",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "am requesting that the",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "and all payments were",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "and fairness of credit",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "and it was never",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "and its requirements set",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "and not equitable to",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "and the guidance for",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "and this information was",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "and to my family",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "and you do not",
+      "label": "Student loan",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "are not in compliance",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "are reporting a payment",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "are required by law",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "as a consumer delete",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "as late and they",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "as late yet they",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "b i have requested",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "based on misconduct by",
+      "label": "Student loan",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "be discharged based on",
+      "label": "Student loan",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "be removed they are",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "billing error made my",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "by 15 u s",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "carefully considers a variety",
+      "label": "Student loan",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "caused severe hard to",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "character my mode of",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "clearly a billing error",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "commencing on or around",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "company and is not",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "compliance with the following",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "comply with the law",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "considers a variety of",
+      "label": "Student loan",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "consumer delete the late",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "consumer reporting agency shall",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "credit report thank you",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "creditor to treat a",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "date and this information",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "delete the late payments",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "demand the late payment",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "department of education and",
+      "label": "Student loan",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "determining whether a private",
+      "label": "Student loan",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "did not comply with",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "direct violation of the",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "discharge based on misconduct",
+      "label": "Student loan",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "discharged based on school",
+      "label": "Student loan",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "do not meet the",
+      "label": "Student loan",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "due date and this",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "end processing my payment",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "equitable to me as",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "error has caused severe",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "error made my the",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "error on their end",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "exceptional payment history with",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "experience which violates usc",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "factors in determining whether",
+      "label": "Student loan",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "family i demand the",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "fcra i am entitled",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "fell victim to a",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "financial protection bureau xxxx",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "following law 15 usc",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "for a creditor to",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "for the xxxx xxxx",
+      "label": "Student loan",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "fraudulent and not equitable",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "fraudulent investment firm xxxx",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "from my consumer reports",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "furnish any information relating",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "gift cards from xxxx",
+      "label": "Prepaid card",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "guidance for a creditor",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "had exceptional payment history",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "hard to my reputation",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "has caused severe hard",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "has reasonable cause to",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "have had exceptional payment",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "have requested proof that",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "history with xxxx xxxx",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "i demand the late",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "i have had exceptional",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "i have not authorized",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "i have requested proof",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "i was not given",
+      "label": "Vehicle loan or lease",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "i went to the",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "if the person knows",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "in compliance with the",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "in determining whether a",
+      "label": "Student loan",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "in direct violation of",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "in xxxx xxxx and",
+      "label": "Mortgage",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "information was mailed or",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "is a result on",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "is in direct violation",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "is not a reflection",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "is reporting is a",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "it was never provided",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "its requirements set the",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "knows or has reasonable",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "late and they did",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "late i have had",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "late payment reported to",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "late payment that is",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "late yet they are",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "later than xxxx days",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "law 15 usc 1666b",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "living and to my",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "loan should be discharged",
+      "label": "Student loan",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "made my the company",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "misconduct and you do",
+      "label": "Student loan",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "misconduct by your school",
+      "label": "Student loan",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "mode of living and",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "my character my mode",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "my credit report by",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "my credit report thank",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "my credit report the",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "my family i demand",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "my mode of living",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "my name and i",
+      "label": "Credit card",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "my payment experience which",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "my payment this was",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "my paypal account i",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "my private student loans",
+      "label": "Student loan",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "my reputation my character",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "my the company and",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "navient carefully considers a",
+      "label": "Student loan",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "navient on xx xx",
+      "label": "Student loan",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "never late i have",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "never provided this is",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "not a reflection of",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "not comply with the",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "not equitable to me",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "not furnish any information",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "not in compliance with",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "not later than xxxx",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "of factors in determining",
+      "label": "Student loan",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "of living and to",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "of my payment experience",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "on a systematic error",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "on misconduct by your",
+      "label": "Student loan",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "on school misconduct and",
+      "label": "Student loan",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "on their end processing",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "or has reasonable cause",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "payment as late and",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "payment as late yet",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "payment due date and",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "payment experience which violates",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "payment history with xxxx",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "payment reported to be",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "payment that is reporting",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "payment this was clearly",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "payments from my consumer",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "payments were placed on",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "per 15 u s",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "person knows or has",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "person shall not furnish",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "private loan should be",
+      "label": "Student loan",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "processing my payment this",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "proof that this information",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "protection bureau xxxx xxxx",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "reflection of my payment",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "removed they are not",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "report thank you for",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "report xxxx xxxx xxxx",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "reported to be removed",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "reporting a payment as",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "reporting agencies ensure the",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "reporting agency if the",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "reporting is a result",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "reputation my character my",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "requested proof that this",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "requirements set the standards",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "result on a systematic",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "s c 1681i a",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "school misconduct and you",
+      "label": "Student loan",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "set the standards and",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "severe hard to my",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "shall not furnish any",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "should be discharged based",
+      "label": "Student loan",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "standards and the guidance",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "systematic error on their",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "than xxxx days before",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "that is reporting is",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "that my loans were",
+      "label": "Student loan",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "that they could not",
+      "label": "Prepaid card",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "that this information was",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "the company and is",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "the following law 15",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "the guidance for a",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "the late payment reported",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "the late payments from",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "the money to be",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "the person knows or",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "the standards and the",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "their end processing my",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "they are not in",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "they are reporting a",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "they did not comply",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "this error has caused",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "this information was mailed",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "this late payment that",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "this was clearly a",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "to a multi layered",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "to be removed they",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "to me as a",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "to my family i",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "to my reputation my",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "to privacy and confidentiality",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "to request the removal",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "to treat a payment",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "to use the card",
+      "label": "Prepaid card",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "treat a payment as",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "tried to make a",
+      "label": "Prepaid card",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "tried to use the",
+      "label": "Prepaid card",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "u s code 1681",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "usc 1666b and its",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "variety of factors in",
+      "label": "Student loan",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "victim to a multi",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "was clearly a billing",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "was never late i",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "was never provided this",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "whether a private loan",
+      "label": "Student loan",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "with the following law",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "xxxx and all payments",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "xxxx days before the",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "xxxx usd from my",
+      "label": "Money transfer, virtual currency, or money service",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "yet they are reporting",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "you do not meet",
+      "label": "Student loan",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "00 vanilla visa",
+      "label": "Prepaid card",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "1666b and its",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "a 500 00",
+      "label": "Prepaid card",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "a billing error",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    },
+    {
+      "phrase": "a consumer delete",
+      "label": "Credit reporting or other personal consumer reports",
+      "support": 3,
+      "total": 3,
+      "precision": 1.0
+    }
+  ]
+}

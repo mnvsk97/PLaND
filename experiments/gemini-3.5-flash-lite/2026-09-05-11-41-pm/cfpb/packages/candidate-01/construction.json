@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "candidate_id": "candidate-01",
+  "development_only": true,
+  "hypothesis": "Explicit financial-product phrases can route common CFPB complaints locally while ambiguous cross-product narratives abstain.",
+  "dependencies": [
+    "Python standard library"
+  ],
+  "network": "none",
+  "side_effects": "none",
+  "cache": {
+    "used": false,
+    "reason": "Each narrative is evaluated once."
+  },
+  "parallelism": {
+    "used": false,
+    "reason": "One bounded regex pass is cheaper; run-level concurrency remains eight."
+  }
+}

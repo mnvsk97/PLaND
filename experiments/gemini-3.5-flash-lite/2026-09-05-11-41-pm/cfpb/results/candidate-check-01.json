@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "split": "development",
+  "cases": 500,
+  "resolved": 265,
+  "coverage": 0.53,
+  "correct": 193,
+  "precision": 0.7283018867924528,
+  "abstained": 235,
+  "rule_outcomes": [
+    {
+      "label": "Checking or savings account",
+      "rule": "\\bchecking account\\b|\\bsavings account\\b|\\bdeposit account\\b",
+      "correct": false,
+      "cases": 12
+    },
+    {
+      "label": "Checking or savings account",
+      "rule": "\\bchecking account\\b|\\bsavings account\\b|\\bdeposit account\\b",
+      "correct": true,
+      "cases": 9
+    },
+    {
+      "label": "Credit card",
+      "rule": "\\bcredit card account\\b|\\bmy credit card\\b|\\bcard issuer\\b",
+      "correct": false,
+      "cases": 6
+    },
+    {
+      "label": "Credit card",
+      "rule": "\\bcredit card account\\b|\\bmy credit card\\b|\\bcard issuer\\b",
+      "correct": true,
+      "cases": 5
+    },
+    {
+      "label": "Credit reporting or other personal consumer reports",
+      "rule": "\\b(?:equifax|experian|transunion)\\b|\\bconsumer reports?\\b|\\bcredit report(?:ing)?\\b",
+      "correct": false,
+      "cases": 38
+    },
+    {
+      "label": "Credit reporting or other personal consumer reports",
+      "rule": "\\b(?:equifax|experian|transunion)\\b|\\bconsumer reports?\\b|\\bcredit report(?:ing)?\\b",
+      "correct": true,
+      "cases": 40
+    },
+    {
+      "label": "Debt collection",
+      "rule": "\\bdebt collector\\b|\\bcollection agency\\b|\\bcollect(?:ing|ion of) (?:a |the )?debt\\b",
+      "correct": false,
+      "cases": 5
+    },
+    {
+      "label": "Debt collection",
+      "rule": "\\bdebt collector\\b|\\bcollection agency\\b|\\bcollect(?:ing|ion of) (?:a |the )?debt\\b",
+      "correct": true,
+      "cases": 11
+    },
+    {
+      "label": "Money transfer, virtual currency, or money service",
+      "rule": "\\b(?:zelle|venmo|coinbase|cryptocurrency|western union)\\b|\\bcash app\\b|\\bwire transfer\\b",
+      "correct": false,
+      "cases": 6
+    },
+    {
+      "label": "Money transfer, virtual currency, or money service",
+      "rule": "\\b(?:zelle|venmo|coinbase|cryptocurrency|western union)\\b|\\bcash app\\b|\\bwire transfer\\b",
+      "correct": true,
+      "cases": 19
+    },
+    {
+      "label": "Mortgage",
+      "rule": "\\bmortgage\\b|\\bforeclosure\\b|\\bhome equity line of credit\\b|\\bheloc\\b|\\bescrow account\\b",
+      "correct": false,
+      "cases": 2
+    },
+    {
+      "label": "Mortgage",
+      "rule": "\\bmortgage\\b|\\bforeclosure\\b|\\bhome equity line of credit\\b|\\bheloc\\b|\\bescrow account\\b",
+      "correct": true,
+      "cases": 37
+    },
+    {
+      "label": "Payday loan, title loan, personal loan, or advance loan",
+      "rule": "\\b(?:payday|title|personal|advance) loans?\\b|\\baffirm\\b",
+      "correct": true,
+      "cases": 10
+    },
+    {
+      "label": "Prepaid card",
+      "rule": "\\bprepaid (?:debit |gift )?card\\b|\\b(?:vanilla|incomm)\\b.{0,80}\\b(?:visa|card)\\b|\\bvisa gift card\\b",
+      "correct": true,
+      "cases": 12
+    },
+    {
+      "label": "Student loan",
+      "rule": "\\bstudent loans?\\b|\\b(?:mohela|navient|nelnet)\\b|\\bdepartment of education\\b.{0,100}\\bloans?\\b",
+      "correct": false,
+      "cases": 1
+    },
+    {
+      "label": "Student loan",
+      "rule": "\\bstudent loans?\\b|\\b(?:mohela|navient|nelnet)\\b|\\bdepartment of education\\b.{0,100}\\bloans?\\b",
+      "correct": true,
+      "cases": 41
+    },
+    {
+      "label": "Vehicle loan or lease",
+      "rule": "\\b(?:auto|vehicle|car) loans?\\b|\\bauto lease\\b|\\bvehicle lease\\b|\\bbridgecrest\\b",
+      "correct": false,
+      "cases": 2
+    },
+    {
+      "label": "Vehicle loan or lease",
+      "rule": "\\b(?:auto|vehicle|car) loans?\\b|\\bauto lease\\b|\\bvehicle lease\\b|\\bbridgecrest\\b",
+      "correct": true,
+      "cases": 9
+    }
+  ]
+}

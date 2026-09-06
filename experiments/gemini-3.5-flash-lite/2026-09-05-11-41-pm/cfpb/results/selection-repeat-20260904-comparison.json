@@ -1,0 +1,214 @@
+{
+  "schema_version": 2,
+  "natural_language": {
+    "cases": 1000,
+    "correct": 796,
+    "accuracy": 0.796,
+    "macro_f1": 0.7973784823205077,
+    "input_tokens": 688695,
+    "output_tokens": 11831,
+    "total_tokens": 700526,
+    "estimated_model_cost_usd": 0.236186,
+    "model_calls": 1000,
+    "model_tokens": 700526,
+    "command_calls": 0,
+    "command_resolved_cases": 0,
+    "fallback_model_calls": 0,
+    "fallback_model_tokens": 0,
+    "normal_completion_rate": 1.0,
+    "errors": {},
+    "latency_seconds": {
+      "total": 557.4682738585689,
+      "mean": 0.5574682738585689
+    },
+    "wall_seconds": 71.7758256670204,
+    "max_rss_bytes": 236371968,
+    "reasoning_tokens": 0,
+    "cached_input_tokens": 0,
+    "service_cost_usd": 0.236186
+  },
+  "hybrid": {
+    "cases": 1000,
+    "correct": 789,
+    "accuracy": 0.789,
+    "macro_f1": 0.7895291612497177,
+    "input_tokens": 526555,
+    "output_tokens": 9586,
+    "total_tokens": 536141,
+    "estimated_model_cost_usd": 0.1819315,
+    "model_calls": 788,
+    "model_tokens": 536141,
+    "command_calls": 1000,
+    "command_resolved_cases": 212,
+    "fallback_model_calls": 788,
+    "fallback_model_tokens": 536141,
+    "normal_completion_rate": 1.0,
+    "errors": {},
+    "latency_seconds": {
+      "total": 441.2329384853074,
+      "mean": 0.44123293848530737
+    },
+    "wall_seconds": 57.414139332977356,
+    "max_rss_bytes": 233570304,
+    "reasoning_tokens": 0,
+    "cached_input_tokens": 0,
+    "service_cost_usd": 0.1819315
+  },
+  "delta_hybrid_minus_nl": {
+    "accuracy": -0.007000000000000006,
+    "macro_f1": -0.00784932107078995,
+    "total_tokens": -164385,
+    "token_reduction_fraction": 0.2346593845196324,
+    "mean_latency_seconds": -0.11623533537326153,
+    "model_calls": -212
+  },
+  "paired_statistics": {
+    "cases": 1000,
+    "correctness_table": {
+      "both_correct": 776,
+      "natural_language_only": 20,
+      "hybrid_only": 13,
+      "both_wrong": 191
+    },
+    "natural_language_accuracy_wilson_95": [
+      0.769913574238833,
+      0.8198209847377185
+    ],
+    "hybrid_accuracy_wilson_95": [
+      0.7626295063588951,
+      0.813158627236454
+    ],
+    "accuracy_difference_bootstrap_95": [
+      -0.018,
+      0.004
+    ],
+    "token_reduction_bootstrap_95": [
+      0.20598520529222453,
+      0.2637632151214494
+    ],
+    "mcnemar_exact_p": 0.296206368599087,
+    "bootstrap_samples": 5000,
+    "bootstrap_seed": 20260902
+  },
+  "mechanism_decomposition": {
+    "command_routed_cases": 212,
+    "model_fallback_cases": 788,
+    "natural_language_tokens_on_command_routed_cases": 164388,
+    "hybrid_tokens_on_command_routed_cases": 0,
+    "natural_language_tokens_on_model_fallback_cases": 536138,
+    "hybrid_tokens_on_model_fallback_cases": 536141,
+    "tokens_saved_total": 164385,
+    "tokens_saved_by_bypassing_model_calls": 164388,
+    "tokens_saved_on_model_fallback_cases": -3,
+    "command_routed_hybrid_accuracy": 0.9339622641509434,
+    "natural_language_accuracy_on_same_command_routed_cases": 0.9528301886792453,
+    "command_routed_hybrid_precision": 0.9339622641509434
+  },
+  "per_label_recall": {
+    "natural_language": {
+      "Checking or savings account": 0.85,
+      "Credit card": 0.82,
+      "Credit reporting or other personal consumer reports": 0.92,
+      "Debt collection": 0.59,
+      "Money transfer, virtual currency, or money service": 0.68,
+      "Mortgage": 0.99,
+      "Payday loan, title loan, personal loan, or advance loan": 0.58,
+      "Prepaid card": 0.75,
+      "Student loan": 0.92,
+      "Vehicle loan or lease": 0.86
+    },
+    "hybrid": {
+      "Checking or savings account": 0.83,
+      "Credit card": 0.81,
+      "Credit reporting or other personal consumer reports": 0.93,
+      "Debt collection": 0.56,
+      "Money transfer, virtual currency, or money service": 0.67,
+      "Mortgage": 1.0,
+      "Payday loan, title loan, personal loan, or advance loan": 0.63,
+      "Prepaid card": 0.72,
+      "Student loan": 0.93,
+      "Vehicle loan or lease": 0.81
+    },
+    "delta_hybrid_minus_nl": {
+      "Checking or savings account": -0.020000000000000018,
+      "Credit card": -0.009999999999999898,
+      "Credit reporting or other personal consumer reports": 0.010000000000000009,
+      "Debt collection": -0.029999999999999916,
+      "Money transfer, virtual currency, or money service": -0.010000000000000009,
+      "Mortgage": 0.010000000000000009,
+      "Payday loan, title loan, personal loan, or advance loan": 0.050000000000000044,
+      "Prepaid card": -0.030000000000000027,
+      "Student loan": 0.010000000000000009,
+      "Vehicle loan or lease": -0.04999999999999993
+    },
+    "worst_label": "Vehicle loan or lease",
+    "worst_delta": -0.04999999999999993
+  },
+  "gate": {
+    "noninferiority_margin": 0.02,
+    "minimum_token_reduction": 0.05,
+    "minimum_accuracy": 0.8,
+    "require_no_accuracy_regression": false,
+    "minimum_accuracy_difference_lower_bound": null,
+    "max_per_label_recall_drop": null,
+    "minimum_command_precision": null,
+    "quality_noninferior": true,
+    "token_objective_met": true,
+    "absolute_viability": false,
+    "relative_pass": true,
+    "test_release_pass": false
+  },
+  "variant_hashes": {
+    "natural_language": {
+      "sop_sha256": "70deb8e12457bac86069bf237e20bb521a354393ca6d0236a615c622f6a85987",
+      "classifier_sha256": null
+    },
+    "hybrid": {
+      "sop_sha256": "6610c6ed704177325ad08c503be7079e822ba3117f4a5e031c5f99f4bd7da140",
+      "classifier_sha256": "f808502f861526bc029aabfde27aa697b51c69cebf79744126453a40c1df4768"
+    }
+  },
+  "invariants": {
+    "system_prompt_sha256": "5ba5a8e59575b465b87c19c4b106cf052defb6f0c5d655033ca0f03ab142817d",
+    "evals_sha256": "978383744e7110487d07ac33cc94e2566d07360671ee63cafa80987f525129ab",
+    "selection_sha256": "97549c946e15e6227dc0be83621a464c10ba341a257c05b1817dd015e5112d00",
+    "datasource_snapshot_sha256": "fe8e4fc08d3cc03d739ad251c982c27dd700c45c321019a804d81949e6e11361",
+    "scorer_sha256": "03f83e70d463b7903d93fd0e0019aec14535f6817b1fce0ad19dc7f585cdab84",
+    "agent_harness_sha256": "7e3cd3303385b7c9079a8888a24594a6fb8b24eaab16c103d6d3ccfe628850ae",
+    "baseline_sop_sha256": "70deb8e12457bac86069bf237e20bb521a354393ca6d0236a615c622f6a85987",
+    "baseline_sop_contract_sha256": "4a07735fb79ab1efd2c12074b295ea034cccb3e392f1d0c32d35ed72a9387471",
+    "hosted_adapter_sha256": "ee6247ed7f66d4df342117fbc379e0104c5a65a454b5d095a1947bfbbaeca9ad",
+    "evaluation_sha256": "978383744e7110487d07ac33cc94e2566d07360671ee63cafa80987f525129ab",
+    "runtime": {
+      "max_completion_tokens": 1024,
+      "timeout_seconds": 300,
+      "model_provider": "openrouter",
+      "model": "google/gemini-3.5-flash-lite",
+      "base_url": "https://openrouter.ai/api/v1",
+      "stream": false,
+      "seed_supported": false,
+      "provider_endpoint": "google-ai-studio",
+      "reasoning_effort": "low",
+      "extra_body": {
+        "reasoning": {
+          "effort": "low"
+        },
+        "provider": {
+          "only": [
+            "google-ai-studio"
+          ],
+          "allow_fallbacks": false,
+          "require_parameters": true
+        }
+      },
+      "temperature": null,
+      "allow_fallbacks": false,
+      "require_parameters": true,
+      "max_retries": 0,
+      "token_metric": "provider_prompt_plus_completion_including_reasoning",
+      "weight_digest_available": false,
+      "execution_backend": "deepagent",
+      "workers": 8
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "split": "development",
+  "cases": 500,
+  "resolved": 103,
+  "coverage": 0.206,
+  "correct": 100,
+  "precision": 0.970873786407767,
+  "abstained": 397,
+  "rule_outcomes": [
+    {
+      "label": "Mortgage",
+      "rule": "\\bmortgage\\b|\\bforeclosure\\b|\\bhome equity line of credit\\b|\\bheloc\\b|\\bescrow account\\b",
+      "correct": false,
+      "cases": 2
+    },
+    {
+      "label": "Mortgage",
+      "rule": "\\bmortgage\\b|\\bforeclosure\\b|\\bhome equity line of credit\\b|\\bheloc\\b|\\bescrow account\\b",
+      "correct": true,
+      "cases": 37
+    },
+    {
+      "label": "Payday loan, title loan, personal loan, or advance loan",
+      "rule": "\\b(?:payday|title|personal|advance) loans?\\b|\\baffirm\\b",
+      "correct": true,
+      "cases": 10
+    },
+    {
+      "label": "Prepaid card",
+      "rule": "\\bprepaid (?:debit |gift )?card\\b|\\b(?:vanilla|incomm)\\b.{0,80}\\b(?:visa|card)\\b|\\bvisa gift card\\b",
+      "correct": true,
+      "cases": 12
+    },
+    {
+      "label": "Student loan",
+      "rule": "\\bstudent loans?\\b|\\b(?:mohela|navient|nelnet)\\b|\\bdepartment of education\\b.{0,100}\\bloans?\\b",
+      "correct": false,
+      "cases": 1
+    },
+    {
+      "label": "Student loan",
+      "rule": "\\bstudent loans?\\b|\\b(?:mohela|navient|nelnet)\\b|\\bdepartment of education\\b.{0,100}\\bloans?\\b",
+      "correct": true,
+      "cases": 41
+    }
+  ]
+}

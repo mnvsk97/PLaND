@@ -1,0 +1,178 @@
+{
+  "case_id": "9889394",
+  "started_at": "2026-09-06T07:29:09.847453+00:00",
+  "frozen_manifest_sha256": "1b365aca8855c6a0c0010dd72b3c7cd6a935bfb9124cc8cf89ea268fea8ea7e3",
+  "status": "completed",
+  "case": {
+    "id": "9889394",
+    "expected": "Payday loan, title loan, personal loan, or advance loan",
+    "actual": "Credit reporting or other personal consumer reports",
+    "correct": false,
+    "source": "model",
+    "matched_rule": null,
+    "parse_error": null,
+    "raw_message_content": "{\"label\":\"Credit reporting or other personal consumer reports\"}",
+    "latency_seconds": 1.3917780829942785,
+    "input_tokens": 1929,
+    "output_tokens": 196,
+    "total_tokens": 2125,
+    "model_calls": 1,
+    "model_done_reason": "stop",
+    "deepagent_trace": [
+      {
+        "type": "ai",
+        "content": "{\"label\":\"Credit reporting or other personal consumer reports\"}",
+        "tool_calls": [],
+        "usage_metadata": {
+          "input_tokens": 1929,
+          "output_tokens": 196,
+          "total_tokens": 2125,
+          "input_token_details": {
+            "audio": 0,
+            "cache_read": 0,
+            "cache_creation": 0
+          },
+          "output_token_details": {
+            "audio": 0,
+            "reasoning": 185
+          }
+        },
+        "response_metadata": {
+          "token_usage": {
+            "completion_tokens": 196,
+            "prompt_tokens": 1929,
+            "total_tokens": 2125,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 185,
+              "rejected_prediction_tokens": null,
+              "text_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cache_write_tokens": 0,
+              "cached_tokens": 0,
+              "image_tokens": null,
+              "text_tokens": null,
+              "video_tokens": 0
+            },
+            "cost": 0.0010687,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0.0010687,
+              "upstream_inference_prompt_cost": 0.0005787,
+              "upstream_inference_completions_cost": 0.00049
+            }
+          },
+          "model_provider": "openai",
+          "model_name": "google/gemini-3.5-flash-lite",
+          "system_fingerprint": null,
+          "id": "gen-1788679749-OerjbFzDltjkbb1lmOJr",
+          "service_tier": "default",
+          "finish_reason": "stop",
+          "logprobs": null,
+          "hosted": {
+            "id": "gen-1788679749-OerjbFzDltjkbb1lmOJr",
+            "model": "google/gemini-3.5-flash-lite",
+            "provider": "Google AI Studio",
+            "created": 1788679749,
+            "system_fingerprint": null,
+            "usage": {
+              "completion_tokens": 196,
+              "prompt_tokens": 1929,
+              "total_tokens": 2125,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": null,
+                "audio_tokens": 0,
+                "reasoning_tokens": 185,
+                "rejected_prediction_tokens": null,
+                "text_tokens": null,
+                "image_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cache_write_tokens": 0,
+                "cached_tokens": 0,
+                "image_tokens": null,
+                "text_tokens": null,
+                "video_tokens": 0
+              },
+              "cost": 0.0010687,
+              "is_byok": false,
+              "cost_details": {
+                "upstream_inference_cost": 0.0010687,
+                "upstream_inference_prompt_cost": 0.0005787,
+                "upstream_inference_completions_cost": 0.00049
+              }
+            },
+            "finish_reason": "stop",
+            "refusal": null
+          }
+        },
+        "reasoning_details": [
+          {
+            "type": "reasoning.text",
+            "signature": "EpgICpUIARFNMg/r9Y+DrC92gCMRRWpn5wnmbyrrbRe1m0v5GuTMKkIoUtMiqKcUvYlOkDXBj1U+XIeWnrw5xnSFRvCJe1PCqqCcJVGc1Tn13ZqjE+uYIQgqCYHx4WPBNBsnmARVfnhnTkx379kcPNU6ARfAFfKKUn8XizeO4ObV7He8nQJrIWdrIItDk+sQ+rNSt4miI6/qYseeEO8VHeDHKLM2D29A06ypcDusuDYbDPhWNW5ECn9MVJsYpT2yYwHiKzuH2dEfN3sV2ZFYsQex+udM+Cu4BghFFgRkkoEIw5b63Igjhd5I2eeeHtR2CAG6aZ4ESipt4BnfaUS2R2bkQRGxzKDcXfU1LvUYRVR1Vm5saV+NwJ40Luu+wM4IF3jXIHjK2asITwaSx/2TeJMKGyfYKXHl3KcP+2gMeijvW+VN6vHq+tNgC5Y+ihcWn9EaIV41PxAoxgYgptpr2KbZI4gGndHtAPk7XBLvYwAXcp4b7MJPKAIK9TQ6hzqDzQLf/X0bAQVzg/hX0rGaaW73fjp43vhC5E5m3D4/dkUiIdYY2ornhy/K7z9Ka7QPlGOILq8DaENi2OurkTTUeI2VMMrGcdhb1IoNLQ/mQ0RSzKcGqNnszuSd2VTeYBV/XZiO+AINLnRdZbq0OPHOrAUnNNWocnnP2qJR4VjVTdocfv8ms4SiLXovB4LbLyyxfLZLfQsJeZ3RfXaWp/rbGySxz29ERUv4EJhll5dzUdOmy5826hjOO9hcdBtCzCdQRBghnpOg5bYaKjzVJPvuSwQqvQbcMbFfuTpImb7DTrgahZBfJHlqhj3FnkoCIeh739MWxg0+iplfNhmb+sh4GqrFlLFzteDa7zNL1nGjxJ5p/ZMo9Gy72+gR7zPBZ6MhybazpK/B4PxWmHkXoaqxUmBl99DlTJwBAzuM4Dt+NfgxSx5w90EfsGbkulSTeU+pcQyWa30O7CvMXAZMJcCw4mjSiV2INO65Bb3kReZgA34l2exf09fo6EDyIvbzJD+yBROuv6dTOG5P4QY6J7AjoFVzyu08MuLGDdbnx6rfDetcPHUrikZOFhIjgcq50t6tn8t8H4B6P/RIeudNmobu+0BzYpx2mJxhNuOqDEouh6b6xSDR8hSNj3wGfQHWK8yF2CF0TTrH47ocOtPRfD7tXc+c8KWycGeYN/2eAQgk9hgtRBjSPVu5b5G6ByVaxii1LJ4upZs1c9zB1V5hF4kJ8FA9GPCnZS4hUoLgXFnRYYAyM/KaDfOkAX0v4fGduDZIU8ekS7ZaS2mgUKQKrE7buWGsd5vzAiUMhzrfIMFCh/lwWPZJsUW4881D/lYNAn3+v3EOFKKpF/WDooc156bcQtbcPQd/APJBorMuvOuT5C+qAZsIm+NMnSRGQg==",
+            "format": "google-gemini-v1",
+            "index": 0
+          }
+        ]
+      }
+    ],
+    "step_trace": {
+      "command_step_id": "S03",
+      "fallback_step_id": "S03",
+      "fallback_instruction_sha256": "91a943ead4f4f5dbe808d65c74acc5d4f69962f4cb22c12d8c52a11e2b7e20be",
+      "escape_reason": "command_abstained",
+      "command_work": true,
+      "model_work": true,
+      "command_error": null
+    },
+    "reasoning_tokens": 185,
+    "cached_input_tokens": 0,
+    "service_cost_usd": 0.0010687,
+    "request_receipts": [
+      {
+        "id": "gen-1788679749-OerjbFzDltjkbb1lmOJr",
+        "model": "google/gemini-3.5-flash-lite",
+        "provider": "Google AI Studio",
+        "created": 1788679749,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 196,
+          "prompt_tokens": 1929,
+          "total_tokens": 2125,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": null,
+            "audio_tokens": 0,
+            "reasoning_tokens": 185,
+            "rejected_prediction_tokens": null,
+            "text_tokens": null,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "image_tokens": null,
+            "text_tokens": null,
+            "video_tokens": 0
+          },
+          "cost": 0.0010687,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.0010687,
+            "upstream_inference_prompt_cost": 0.0005787,
+            "upstream_inference_completions_cost": 0.00049
+          }
+        },
+        "finish_reason": "stop",
+        "refusal": null
+      }
+    ]
+  },
+  "rate_limit_retries": [],
+  "ended_at": "2026-09-06T07:29:11.240362+00:00"
+}

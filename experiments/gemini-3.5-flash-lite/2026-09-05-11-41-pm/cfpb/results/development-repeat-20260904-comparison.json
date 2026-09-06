@@ -1,0 +1,164 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-09-06T07:26:55.687127+00:00",
+  "comparison": "natural_language_vs_hybrid",
+  "invariants": {
+    "model": "google/gemini-3.5-flash-lite",
+    "model_digest": null,
+    "seed": 20260904,
+    "evals": "/Users/saikrishna/dev/deterministic-skills/tmp/gemini-3.5-flash-lite/2026-09-05-11-41-pm/datasets/cfpb/evals.csv",
+    "evals_sha256": "978383744e7110487d07ac33cc94e2566d07360671ee63cafa80987f525129ab",
+    "split": "development",
+    "runtime": {
+      "max_completion_tokens": 1024,
+      "timeout_seconds": 300,
+      "model_provider": "openrouter",
+      "model": "google/gemini-3.5-flash-lite",
+      "base_url": "https://openrouter.ai/api/v1",
+      "stream": false,
+      "seed_supported": false,
+      "provider_endpoint": "google-ai-studio",
+      "reasoning_effort": "low",
+      "extra_body": {
+        "reasoning": {
+          "effort": "low"
+        },
+        "provider": {
+          "only": [
+            "google-ai-studio"
+          ],
+          "allow_fallbacks": false,
+          "require_parameters": true
+        }
+      },
+      "temperature": null,
+      "allow_fallbacks": false,
+      "require_parameters": true,
+      "max_retries": 0,
+      "token_metric": "provider_prompt_plus_completion_including_reasoning",
+      "weight_digest_available": false,
+      "execution_backend": "deepagent",
+      "workers": 8
+    },
+    "system_prompt_sha256": "5ba5a8e59575b465b87c19c4b106cf052defb6f0c5d655033ca0f03ab142817d",
+    "selection_sha256": "97549c946e15e6227dc0be83621a464c10ba341a257c05b1817dd015e5112d00",
+    "datasource_snapshot_sha256": "fe8e4fc08d3cc03d739ad251c982c27dd700c45c321019a804d81949e6e11361",
+    "scorer_sha256": "03f83e70d463b7903d93fd0e0019aec14535f6817b1fce0ad19dc7f585cdab84",
+    "agent_harness_sha256": "7e3cd3303385b7c9079a8888a24594a6fb8b24eaab16c103d6d3ccfe628850ae",
+    "baseline_sop_sha256": "70deb8e12457bac86069bf237e20bb521a354393ca6d0236a615c622f6a85987",
+    "baseline_sop_contract_sha256": "4a07735fb79ab1efd2c12074b295ea034cccb3e392f1d0c32d35ed72a9387471",
+    "hosted_adapter_sha256": "ee6247ed7f66d4df342117fbc379e0104c5a65a454b5d095a1947bfbbaeca9ad",
+    "evaluation_sha256": "978383744e7110487d07ac33cc94e2566d07360671ee63cafa80987f525129ab"
+  },
+  "natural_language": {
+    "sop": {
+      "variant": "natural_language",
+      "sha256": "70deb8e12457bac86069bf237e20bb521a354393ca6d0236a615c622f6a85987",
+      "classifier_sha256": null,
+      "content": "---\nname: cfpb-classification\ndescription: Execute the cfpb classification workflow using the approved datasource collection. Use when a request requires this workflow.\n---\n\n# Cfpb Classification SOP\n\n1. [S01] Identify the requested item and follow this requirement: Classify one consumer complaint narrative into exactly one supplied CFPB product category according to the financial product that is the main subject of the complaint. Base the decision only on the narrative and label meanings. Return\u2026 <!-- pland:english -->\n2. [S02] Use the approved datasource tools to read only the relevant evidence; the source collection contains .json files. <!-- pland:english -->\n3. [S03] Classify the evidence into exactly one known bucket: `Checking or savings account`, `Credit card`, `Credit reporting or other personal consumer reports`, `Debt collection`, `Money transfer, virtual currency, or money service`, `Mortgage`, `Payday loan, title loan, personal loan, or advance loan`, `Prepaid card`, `Student loan`, `Vehicle loan or lease`. <!-- pland:english -->\n4. [S04] Return exactly one JSON object shaped as `{\"label\":\"<known bucket>\"}`. <!-- pland:english -->\n",
+      "step_representations": {
+        "english": 4
+      },
+      "contract": {
+        "valid": true,
+        "baseline_contract_sha256": "4a07735fb79ab1efd2c12074b295ea034cccb3e392f1d0c32d35ed72a9387471",
+        "baseline_sop_sha256": "70deb8e12457bac86069bf237e20bb521a354393ca6d0236a615c622f6a85987",
+        "candidate_sop_sha256": "70deb8e12457bac86069bf237e20bb521a354393ca6d0236a615c622f6a85987",
+        "command_fallback_links": []
+      }
+    },
+    "metrics": {
+      "quality": 0.814,
+      "quality_metric": "accuracy",
+      "correct": 407,
+      "cases": 500,
+      "input_tokens": 346130,
+      "output_tokens": 6010,
+      "total_tokens": 352140,
+      "estimated_model_cost_usd": 0.118864,
+      "errors": {},
+      "normal_completion_rate": 1.0,
+      "escape_count": 0,
+      "escape_rate": 0.0,
+      "latency_seconds": {
+        "total": 291.4910190179944,
+        "mean": 0.5829820380359888,
+        "p95": null
+      },
+      "accuracy": 0.814
+    }
+  },
+  "hybrid": {
+    "sop": {
+      "variant": "hybrid",
+      "sha256": "6610c6ed704177325ad08c503be7079e822ba3117f4a5e031c5f99f4bd7da140",
+      "classifier_sha256": "f808502f861526bc029aabfde27aa697b51c69cebf79744126453a40c1df4768",
+      "content": "---\nname: cfpb-classification\ndescription: Execute the cfpb classification workflow using the approved datasource collection. Use when a request requires this workflow.\n---\n\n# Cfpb Classification SOP\n\n1. [S01] Identify the requested item and follow this requirement: Classify one consumer complaint narrative into exactly one supplied CFPB product category according to the financial product that is the main subject of the complaint. Base the decision only on the narrative and label meanings. Return\u2026 <!-- pland:english -->\n2. [S02] Use the approved datasource tools to read only the relevant evidence; the source collection contains .json files. <!-- pland:english -->\n3. [S03] Run the bounded local `classify.py` product rules; accept only a supplied label with a named matching rule. Abstain on every ambiguous complaint so the exact English fallback handles it. <!-- pland:command fallback=S03 -->\n   Fallback [S03]: Classify the evidence into exactly one known bucket: `Checking or savings account`, `Credit card`, `Credit reporting or other personal consumer reports`, `Debt collection`, `Money transfer, virtual currency, or money service`, `Mortgage`, `Payday loan, title loan, personal loan, or advance loan`, `Prepaid card`, `Student loan`, `Vehicle loan or lease`. <!-- pland:fallback -->\n4. [S04] Return exactly one JSON object shaped as `{\"label\":\"<known bucket>\"}`. <!-- pland:english -->\n",
+      "step_representations": {
+        "english": 3,
+        "command": 1
+      },
+      "contract": {
+        "valid": true,
+        "baseline_contract_sha256": "4a07735fb79ab1efd2c12074b295ea034cccb3e392f1d0c32d35ed72a9387471",
+        "baseline_sop_sha256": "70deb8e12457bac86069bf237e20bb521a354393ca6d0236a615c622f6a85987",
+        "candidate_sop_sha256": "6610c6ed704177325ad08c503be7079e822ba3117f4a5e031c5f99f4bd7da140",
+        "command_fallback_links": [
+          {
+            "command_step_id": "S03",
+            "fallback_step_id": "S03",
+            "fallback_instruction": "Classify the evidence into exactly one known bucket: `Checking or savings account`, `Credit card`, `Credit reporting or other personal consumer reports`, `Debt collection`, `Money transfer, virtual currency, or money service`, `Mortgage`, `Payday loan, title loan, personal loan, or advance loan`, `Prepaid card`, `Student loan`, `Vehicle loan or lease`.",
+            "fallback_instruction_sha256": "91a943ead4f4f5dbe808d65c74acc5d4f69962f4cb22c12d8c52a11e2b7e20be"
+          }
+        ]
+      }
+    },
+    "metrics": {
+      "quality": 0.824,
+      "quality_metric": "accuracy",
+      "correct": 412,
+      "cases": 500,
+      "input_tokens": 267092,
+      "output_tokens": 5001,
+      "total_tokens": 272093,
+      "estimated_model_cost_usd": 0.09263009999999999,
+      "errors": {},
+      "normal_completion_rate": 1.0,
+      "escape_count": 0,
+      "escape_rate": 0.0,
+      "latency_seconds": {
+        "total": 238.36744125146652,
+        "mean": 0.47673488250293306,
+        "p95": null
+      },
+      "accuracy": 0.824
+    }
+  },
+  "identity": {
+    "experiment_id": "gemini-3.5-flash-lite-2026-09-05-11-41-pm-cfpb",
+    "baseline_run_id": "development-repeat-20260904-baseline",
+    "candidate_run_id": "development-repeat-20260904-hybrid",
+    "candidate_id": "candidate-02",
+    "baseline_sop_sha256": "70deb8e12457bac86069bf237e20bb521a354393ca6d0236a615c622f6a85987",
+    "candidate_sop_sha256": "6610c6ed704177325ad08c503be7079e822ba3117f4a5e031c5f99f4bd7da140",
+    "baseline_skill_content_sha256": "5b5bb8f05c01b09805f0da3fcc9e96cec859c9114b0309d79bc01d227d5772b2",
+    "candidate_skill_content_sha256": "9677814244479c977e187500b6b5cba33a7f237906fce347ee19e5ce8bf5911e"
+  },
+  "cost_weighted_determinisation": {
+    "baseline_model_tokens": 352140,
+    "candidate_model_tokens": 272093,
+    "fallback_model_tokens": 272093,
+    "rate": 0.0
+  },
+  "delta_hybrid_minus_natural_language": {
+    "quality": 0.010000000000000009,
+    "input_tokens": -79038,
+    "output_tokens": -1009,
+    "total_tokens": -80047,
+    "total_token_ratio": 0.7726841597092066,
+    "estimated_model_cost_usd": -0.026233900000000004,
+    "mean_latency_seconds": -0.10624715553305575,
+    "mean_latency_ratio": 0.81775226576278,
+    "accuracy_points": 0.010000000000000009
+  }
+}

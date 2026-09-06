@@ -1,0 +1,695 @@
+{
+  "schema_version": 1,
+  "dataset": "cfpb",
+  "plan_sha256": "57f613822481e0d95cecba0105fe227b96476c70ea9568848f0f0bcc0934eccd",
+  "git_head": "a0c9f6aca7aa389ee3f103826b22ea42f89d9fc2",
+  "model_identity": {
+    "kind": "hosted",
+    "provider": "openrouter",
+    "endpoint": "google-ai-studio",
+    "model": "google/gemini-3.5-flash-lite",
+    "configuration_sha256": "d703b8e16a3dc88aa1ac6a47171414c3873ee8f064db5bb911c5d67252fd9c4d",
+    "weight_digest": null
+  },
+  "dataset_hashes": {
+    "evals_sha256": "978383744e7110487d07ac33cc94e2566d07360671ee63cafa80987f525129ab",
+    "selection_sha256": "97549c946e15e6227dc0be83621a464c10ba341a257c05b1817dd015e5112d00"
+  },
+  "package_hashes": {
+    "baseline_sop_sha256": "70deb8e12457bac86069bf237e20bb521a354393ca6d0236a615c622f6a85987",
+    "candidate_sop_sha256": "6610c6ed704177325ad08c503be7079e822ba3117f4a5e031c5f99f4bd7da140",
+    "classifier_sha256": "f808502f861526bc029aabfde27aa697b51c69cebf79744126453a40c1df4768"
+  },
+  "decisions": {
+    "baseline-development": "ready",
+    "candidate-development": "ready",
+    "selection": "reject"
+  },
+  "stages": {
+    "prepare": "complete",
+    "baseline-development": "complete",
+    "candidate-development": "complete",
+    "selection": "complete",
+    "final-test": "pending",
+    "package-evidence": "pending",
+    "paper-audit": "pending"
+  },
+  "selection_gates": [
+    {
+      "seed": 20260903,
+      "gate": {
+        "noninferiority_margin": 0.02,
+        "minimum_token_reduction": 0.05,
+        "minimum_accuracy": 0.8,
+        "require_no_accuracy_regression": false,
+        "minimum_accuracy_difference_lower_bound": null,
+        "max_per_label_recall_drop": null,
+        "minimum_command_precision": null,
+        "quality_noninferior": true,
+        "token_objective_met": true,
+        "absolute_viability": false,
+        "relative_pass": true,
+        "test_release_pass": false
+      },
+      "passed": false
+    },
+    {
+      "seed": 20260904,
+      "gate": {
+        "noninferiority_margin": 0.02,
+        "minimum_token_reduction": 0.05,
+        "minimum_accuracy": 0.8,
+        "require_no_accuracy_regression": false,
+        "minimum_accuracy_difference_lower_bound": null,
+        "max_per_label_recall_drop": null,
+        "minimum_command_precision": null,
+        "quality_noninferior": true,
+        "token_objective_met": true,
+        "absolute_viability": false,
+        "relative_pass": true,
+        "test_release_pass": false
+      },
+      "passed": false
+    },
+    {
+      "seed": 20260905,
+      "gate": {
+        "noninferiority_margin": 0.02,
+        "minimum_token_reduction": 0.05,
+        "minimum_accuracy": 0.8,
+        "require_no_accuracy_regression": false,
+        "minimum_accuracy_difference_lower_bound": null,
+        "max_per_label_recall_drop": null,
+        "minimum_command_precision": null,
+        "quality_noninferior": true,
+        "token_objective_met": true,
+        "absolute_viability": false,
+        "relative_pass": true,
+        "test_release_pass": false
+      },
+      "passed": false
+    }
+  ],
+  "pair_checks": [
+    {
+      "stage": "development",
+      "seed": 20260903,
+      "paired_invariants_and_cases_match": true
+    },
+    {
+      "stage": "development",
+      "seed": 20260904,
+      "paired_invariants_and_cases_match": true
+    },
+    {
+      "stage": "development",
+      "seed": 20260905,
+      "paired_invariants_and_cases_match": true
+    },
+    {
+      "stage": "selection",
+      "seed": 20260903,
+      "paired_invariants_and_cases_match": true
+    },
+    {
+      "stage": "selection",
+      "seed": 20260904,
+      "paired_invariants_and_cases_match": true
+    },
+    {
+      "stage": "selection",
+      "seed": 20260905,
+      "paired_invariants_and_cases_match": true
+    }
+  ],
+  "run_checks": [
+    {
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/development-repeat-20260903-baseline.json",
+      "stage": "development",
+      "seed": 20260903,
+      "arm": "baseline",
+      "checks": {
+        "model_identity": true,
+        "runtime_workers": true,
+        "split": true,
+        "case_count": true,
+        "evals_sha256": true,
+        "selection_sha256": true,
+        "sop_sha256": true,
+        "classifier_sha256": true,
+        "no_summary_errors": true,
+        "receipts_complete": true,
+        "single_provider": true
+      },
+      "passed": true,
+      "summary": {
+        "cases": 500,
+        "correct": 410,
+        "accuracy": 0.82,
+        "macro_f1": 0.823167247594357,
+        "input_tokens": 346130,
+        "output_tokens": 6073,
+        "total_tokens": 352203,
+        "estimated_model_cost_usd": 0.1190215,
+        "model_calls": 500,
+        "model_tokens": 352203,
+        "command_calls": 0,
+        "command_resolved_cases": 0,
+        "fallback_model_calls": 0,
+        "fallback_model_tokens": 0,
+        "normal_completion_rate": 1.0,
+        "errors": {},
+        "latency_seconds": {
+          "total": 294.91991730211885,
+          "mean": 0.5898398346042377
+        },
+        "wall_seconds": 37.66920633299742,
+        "max_rss_bytes": 227999744,
+        "reasoning_tokens": 0,
+        "cached_input_tokens": 0,
+        "service_cost_usd": 0.1190215
+      }
+    },
+    {
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/development-repeat-20260903-hybrid.json",
+      "stage": "development",
+      "seed": 20260903,
+      "arm": "hybrid",
+      "checks": {
+        "model_identity": true,
+        "runtime_workers": true,
+        "split": true,
+        "case_count": true,
+        "evals_sha256": true,
+        "selection_sha256": true,
+        "sop_sha256": true,
+        "classifier_sha256": true,
+        "no_summary_errors": true,
+        "receipts_complete": true,
+        "single_provider": true
+      },
+      "passed": true,
+      "summary": {
+        "cases": 500,
+        "correct": 411,
+        "accuracy": 0.822,
+        "macro_f1": 0.824989427169513,
+        "input_tokens": 267092,
+        "output_tokens": 5021,
+        "total_tokens": 272113,
+        "estimated_model_cost_usd": 0.0926801,
+        "model_calls": 397,
+        "model_tokens": 272113,
+        "command_calls": 500,
+        "command_resolved_cases": 103,
+        "fallback_model_calls": 397,
+        "fallback_model_tokens": 272113,
+        "normal_completion_rate": 1.0,
+        "errors": {},
+        "latency_seconds": {
+          "total": 246.01860183707322,
+          "mean": 0.49203720367414644
+        },
+        "wall_seconds": 31.41505362497992,
+        "max_rss_bytes": 225230848,
+        "reasoning_tokens": 0,
+        "cached_input_tokens": 0,
+        "service_cost_usd": 0.0926801
+      }
+    },
+    {
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/development-repeat-20260904-baseline.json",
+      "stage": "development",
+      "seed": 20260904,
+      "arm": "baseline",
+      "checks": {
+        "model_identity": true,
+        "runtime_workers": true,
+        "split": true,
+        "case_count": true,
+        "evals_sha256": true,
+        "selection_sha256": true,
+        "sop_sha256": true,
+        "classifier_sha256": true,
+        "no_summary_errors": true,
+        "receipts_complete": true,
+        "single_provider": true
+      },
+      "passed": true,
+      "summary": {
+        "cases": 500,
+        "correct": 407,
+        "accuracy": 0.814,
+        "macro_f1": 0.8182367073395079,
+        "input_tokens": 346130,
+        "output_tokens": 6010,
+        "total_tokens": 352140,
+        "estimated_model_cost_usd": 0.118864,
+        "model_calls": 500,
+        "model_tokens": 352140,
+        "command_calls": 0,
+        "command_resolved_cases": 0,
+        "fallback_model_calls": 0,
+        "fallback_model_tokens": 0,
+        "normal_completion_rate": 1.0,
+        "errors": {},
+        "latency_seconds": {
+          "total": 291.4910190179944,
+          "mean": 0.5829820380359888
+        },
+        "wall_seconds": 37.12679754101555,
+        "max_rss_bytes": 228229120,
+        "reasoning_tokens": 0,
+        "cached_input_tokens": 0,
+        "service_cost_usd": 0.118864
+      }
+    },
+    {
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/development-repeat-20260904-hybrid.json",
+      "stage": "development",
+      "seed": 20260904,
+      "arm": "hybrid",
+      "checks": {
+        "model_identity": true,
+        "runtime_workers": true,
+        "split": true,
+        "case_count": true,
+        "evals_sha256": true,
+        "selection_sha256": true,
+        "sop_sha256": true,
+        "classifier_sha256": true,
+        "no_summary_errors": true,
+        "receipts_complete": true,
+        "single_provider": true
+      },
+      "passed": true,
+      "summary": {
+        "cases": 500,
+        "correct": 412,
+        "accuracy": 0.824,
+        "macro_f1": 0.8272882726727013,
+        "input_tokens": 267092,
+        "output_tokens": 5001,
+        "total_tokens": 272093,
+        "estimated_model_cost_usd": 0.09263009999999999,
+        "model_calls": 397,
+        "model_tokens": 272093,
+        "command_calls": 500,
+        "command_resolved_cases": 103,
+        "fallback_model_calls": 397,
+        "fallback_model_tokens": 272093,
+        "normal_completion_rate": 1.0,
+        "errors": {},
+        "latency_seconds": {
+          "total": 238.36744125146652,
+          "mean": 0.47673488250293306
+        },
+        "wall_seconds": 30.51662108299206,
+        "max_rss_bytes": 225214464,
+        "reasoning_tokens": 0,
+        "cached_input_tokens": 0,
+        "service_cost_usd": 0.09263009999999999
+      }
+    },
+    {
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/development-repeat-20260905-baseline.json",
+      "stage": "development",
+      "seed": 20260905,
+      "arm": "baseline",
+      "checks": {
+        "model_identity": true,
+        "runtime_workers": true,
+        "split": true,
+        "case_count": true,
+        "evals_sha256": true,
+        "selection_sha256": true,
+        "sop_sha256": true,
+        "classifier_sha256": true,
+        "no_summary_errors": true,
+        "receipts_complete": true,
+        "single_provider": true
+      },
+      "passed": true,
+      "summary": {
+        "cases": 500,
+        "correct": 408,
+        "accuracy": 0.816,
+        "macro_f1": 0.8202831468596736,
+        "input_tokens": 346130,
+        "output_tokens": 5950,
+        "total_tokens": 352080,
+        "estimated_model_cost_usd": 0.118714,
+        "model_calls": 500,
+        "model_tokens": 352080,
+        "command_calls": 0,
+        "command_resolved_cases": 0,
+        "fallback_model_calls": 0,
+        "fallback_model_tokens": 0,
+        "normal_completion_rate": 1.0,
+        "errors": {},
+        "latency_seconds": {
+          "total": 274.6667548273399,
+          "mean": 0.5493335096546798
+        },
+        "wall_seconds": 34.96461941598682,
+        "max_rss_bytes": 227934208,
+        "reasoning_tokens": 0,
+        "cached_input_tokens": 0,
+        "service_cost_usd": 0.118714
+      }
+    },
+    {
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/development-repeat-20260905-hybrid.json",
+      "stage": "development",
+      "seed": 20260905,
+      "arm": "hybrid",
+      "checks": {
+        "model_identity": true,
+        "runtime_workers": true,
+        "split": true,
+        "case_count": true,
+        "evals_sha256": true,
+        "selection_sha256": true,
+        "sop_sha256": true,
+        "classifier_sha256": true,
+        "no_summary_errors": true,
+        "receipts_complete": true,
+        "single_provider": true
+      },
+      "passed": true,
+      "summary": {
+        "cases": 500,
+        "correct": 405,
+        "accuracy": 0.81,
+        "macro_f1": 0.8132844081529728,
+        "input_tokens": 267092,
+        "output_tokens": 4925,
+        "total_tokens": 272017,
+        "estimated_model_cost_usd": 0.0924401,
+        "model_calls": 397,
+        "model_tokens": 272017,
+        "command_calls": 500,
+        "command_resolved_cases": 103,
+        "fallback_model_calls": 397,
+        "fallback_model_tokens": 272017,
+        "normal_completion_rate": 1.0,
+        "errors": {},
+        "latency_seconds": {
+          "total": 253.4783747572801,
+          "mean": 0.5069567495145603
+        },
+        "wall_seconds": 32.51716779201524,
+        "max_rss_bytes": 225312768,
+        "reasoning_tokens": 0,
+        "cached_input_tokens": 0,
+        "service_cost_usd": 0.0924401
+      }
+    },
+    {
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/selection-repeat-20260903-baseline.json",
+      "stage": "selection",
+      "seed": 20260903,
+      "arm": "baseline",
+      "checks": {
+        "model_identity": true,
+        "runtime_workers": true,
+        "split": true,
+        "case_count": true,
+        "evals_sha256": true,
+        "selection_sha256": true,
+        "sop_sha256": true,
+        "classifier_sha256": true,
+        "no_summary_errors": true,
+        "receipts_complete": true,
+        "single_provider": true
+      },
+      "passed": true,
+      "summary": {
+        "cases": 1000,
+        "correct": 800,
+        "accuracy": 0.8,
+        "macro_f1": 0.8008782369178409,
+        "input_tokens": 688695,
+        "output_tokens": 11813,
+        "total_tokens": 700508,
+        "estimated_model_cost_usd": 0.236141,
+        "model_calls": 1000,
+        "model_tokens": 700508,
+        "command_calls": 0,
+        "command_resolved_cases": 0,
+        "fallback_model_calls": 0,
+        "fallback_model_tokens": 0,
+        "normal_completion_rate": 1.0,
+        "errors": {},
+        "latency_seconds": {
+          "total": 558.5747947222262,
+          "mean": 0.5585747947222263
+        },
+        "wall_seconds": 71.81336754199583,
+        "max_rss_bytes": 236535808,
+        "reasoning_tokens": 0,
+        "cached_input_tokens": 0,
+        "service_cost_usd": 0.236141
+      }
+    },
+    {
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/selection-repeat-20260903-hybrid.json",
+      "stage": "selection",
+      "seed": 20260903,
+      "arm": "hybrid",
+      "checks": {
+        "model_identity": true,
+        "runtime_workers": true,
+        "split": true,
+        "case_count": true,
+        "evals_sha256": true,
+        "selection_sha256": true,
+        "sop_sha256": true,
+        "classifier_sha256": true,
+        "no_summary_errors": true,
+        "receipts_complete": true,
+        "single_provider": true
+      },
+      "passed": true,
+      "summary": {
+        "cases": 1000,
+        "correct": 794,
+        "accuracy": 0.794,
+        "macro_f1": 0.7941296983817807,
+        "input_tokens": 526555,
+        "output_tokens": 9869,
+        "total_tokens": 536424,
+        "estimated_model_cost_usd": 0.182639,
+        "model_calls": 788,
+        "model_tokens": 536424,
+        "command_calls": 1000,
+        "command_resolved_cases": 212,
+        "fallback_model_calls": 788,
+        "fallback_model_tokens": 536424,
+        "normal_completion_rate": 1.0,
+        "errors": {},
+        "latency_seconds": {
+          "total": 445.31200017104857,
+          "mean": 0.44531200017104855
+        },
+        "wall_seconds": 57.90569545800099,
+        "max_rss_bytes": 232996864,
+        "reasoning_tokens": 185,
+        "cached_input_tokens": 0,
+        "service_cost_usd": 0.182639
+      }
+    },
+    {
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/selection-repeat-20260904-baseline.json",
+      "stage": "selection",
+      "seed": 20260904,
+      "arm": "baseline",
+      "checks": {
+        "model_identity": true,
+        "runtime_workers": true,
+        "split": true,
+        "case_count": true,
+        "evals_sha256": true,
+        "selection_sha256": true,
+        "sop_sha256": true,
+        "classifier_sha256": true,
+        "no_summary_errors": true,
+        "receipts_complete": true,
+        "single_provider": true
+      },
+      "passed": true,
+      "summary": {
+        "cases": 1000,
+        "correct": 796,
+        "accuracy": 0.796,
+        "macro_f1": 0.7973784823205077,
+        "input_tokens": 688695,
+        "output_tokens": 11831,
+        "total_tokens": 700526,
+        "estimated_model_cost_usd": 0.236186,
+        "model_calls": 1000,
+        "model_tokens": 700526,
+        "command_calls": 0,
+        "command_resolved_cases": 0,
+        "fallback_model_calls": 0,
+        "fallback_model_tokens": 0,
+        "normal_completion_rate": 1.0,
+        "errors": {},
+        "latency_seconds": {
+          "total": 557.4682738585689,
+          "mean": 0.5574682738585689
+        },
+        "wall_seconds": 71.7758256670204,
+        "max_rss_bytes": 236371968,
+        "reasoning_tokens": 0,
+        "cached_input_tokens": 0,
+        "service_cost_usd": 0.236186
+      }
+    },
+    {
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/selection-repeat-20260904-hybrid.json",
+      "stage": "selection",
+      "seed": 20260904,
+      "arm": "hybrid",
+      "checks": {
+        "model_identity": true,
+        "runtime_workers": true,
+        "split": true,
+        "case_count": true,
+        "evals_sha256": true,
+        "selection_sha256": true,
+        "sop_sha256": true,
+        "classifier_sha256": true,
+        "no_summary_errors": true,
+        "receipts_complete": true,
+        "single_provider": true
+      },
+      "passed": true,
+      "summary": {
+        "cases": 1000,
+        "correct": 789,
+        "accuracy": 0.789,
+        "macro_f1": 0.7895291612497177,
+        "input_tokens": 526555,
+        "output_tokens": 9586,
+        "total_tokens": 536141,
+        "estimated_model_cost_usd": 0.1819315,
+        "model_calls": 788,
+        "model_tokens": 536141,
+        "command_calls": 1000,
+        "command_resolved_cases": 212,
+        "fallback_model_calls": 788,
+        "fallback_model_tokens": 536141,
+        "normal_completion_rate": 1.0,
+        "errors": {},
+        "latency_seconds": {
+          "total": 441.2329384853074,
+          "mean": 0.44123293848530737
+        },
+        "wall_seconds": 57.414139332977356,
+        "max_rss_bytes": 233570304,
+        "reasoning_tokens": 0,
+        "cached_input_tokens": 0,
+        "service_cost_usd": 0.1819315
+      }
+    },
+    {
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/selection-repeat-20260905-baseline.json",
+      "stage": "selection",
+      "seed": 20260905,
+      "arm": "baseline",
+      "checks": {
+        "model_identity": true,
+        "runtime_workers": true,
+        "split": true,
+        "case_count": true,
+        "evals_sha256": true,
+        "selection_sha256": true,
+        "sop_sha256": true,
+        "classifier_sha256": true,
+        "no_summary_errors": true,
+        "receipts_complete": true,
+        "single_provider": true
+      },
+      "passed": true,
+      "summary": {
+        "cases": 1000,
+        "correct": 796,
+        "accuracy": 0.796,
+        "macro_f1": 0.7961843549700888,
+        "input_tokens": 688695,
+        "output_tokens": 11775,
+        "total_tokens": 700470,
+        "estimated_model_cost_usd": 0.236046,
+        "model_calls": 1000,
+        "model_tokens": 700470,
+        "command_calls": 0,
+        "command_resolved_cases": 0,
+        "fallback_model_calls": 0,
+        "fallback_model_tokens": 0,
+        "normal_completion_rate": 1.0,
+        "errors": {},
+        "latency_seconds": {
+          "total": 555.5304727184703,
+          "mean": 0.5555304727184702
+        },
+        "wall_seconds": 71.7478221670026,
+        "max_rss_bytes": 236306432,
+        "reasoning_tokens": 0,
+        "cached_input_tokens": 0,
+        "service_cost_usd": 0.236046
+      }
+    },
+    {
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/selection-repeat-20260905-hybrid.json",
+      "stage": "selection",
+      "seed": 20260905,
+      "arm": "hybrid",
+      "checks": {
+        "model_identity": true,
+        "runtime_workers": true,
+        "split": true,
+        "case_count": true,
+        "evals_sha256": true,
+        "selection_sha256": true,
+        "sop_sha256": true,
+        "classifier_sha256": true,
+        "no_summary_errors": true,
+        "receipts_complete": true,
+        "single_provider": true
+      },
+      "passed": true,
+      "summary": {
+        "cases": 1000,
+        "correct": 795,
+        "accuracy": 0.795,
+        "macro_f1": 0.7957497449287686,
+        "input_tokens": 526555,
+        "output_tokens": 9556,
+        "total_tokens": 536111,
+        "estimated_model_cost_usd": 0.1818565,
+        "model_calls": 788,
+        "model_tokens": 536111,
+        "command_calls": 1000,
+        "command_resolved_cases": 212,
+        "fallback_model_calls": 788,
+        "fallback_model_tokens": 536111,
+        "normal_completion_rate": 1.0,
+        "errors": {},
+        "latency_seconds": {
+          "total": 452.7018503358122,
+          "mean": 0.4527018503358122
+        },
+        "wall_seconds": 58.64069600001676,
+        "max_rss_bytes": 234045440,
+        "reasoning_tokens": 0,
+        "cached_input_tokens": 0,
+        "service_cost_usd": 0.1818565
+      }
+    }
+  ],
+  "rate_limit_retries": 0,
+  "failed_case_receipts": 0,
+  "final_test_unopened": true,
+  "passed": true
+}

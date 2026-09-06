@@ -1,0 +1,1 @@
+Classify one consumer complaint narrative into exactly one supplied CFPB product category according to the financial product that is the main subject of the complaint. Base the decision only on the narrative and label meanings. Return only a JSON object with the selected label; do not expose reference answers or evaluation metadata.

@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "status": "ready_for_model_run",
+  "model_invoked": false,
+  "cases_inspected": 500,
+  "split": "development",
+  "model": "google/gemini-3.5-flash-lite",
+  "seed": 20260902,
+  "experiment_id": "gemini-3.5-flash-lite-2026-09-05-11-41-pm-cfpb",
+  "run_id": "baseline-development-01-preflight",
+  "candidate_id": "baseline",
+  "attempt": 1,
+  "sop_sha256": "70deb8e12457bac86069bf237e20bb521a354393ca6d0236a615c622f6a85987",
+  "skill_content_sha256": "5b5bb8f05c01b09805f0da3fcc9e96cec859c9114b0309d79bc01d227d5772b2",
+  "frozen_manifest_sha256": "523981816787ff4559461f3475d571d91292bb0c9a2885c4491cf738ade8c622",
+  "invariants": {
+    "system_prompt_sha256": "5ba5a8e59575b465b87c19c4b106cf052defb6f0c5d655033ca0f03ab142817d",
+    "evals_sha256": "978383744e7110487d07ac33cc94e2566d07360671ee63cafa80987f525129ab",
+    "selection_sha256": "97549c946e15e6227dc0be83621a464c10ba341a257c05b1817dd015e5112d00",
+    "datasource_snapshot_sha256": "fe8e4fc08d3cc03d739ad251c982c27dd700c45c321019a804d81949e6e11361",
+    "scorer_sha256": "03f83e70d463b7903d93fd0e0019aec14535f6817b1fce0ad19dc7f585cdab84",
+    "agent_harness_sha256": "7e3cd3303385b7c9079a8888a24594a6fb8b24eaab16c103d6d3ccfe628850ae",
+    "baseline_sop_sha256": "70deb8e12457bac86069bf237e20bb521a354393ca6d0236a615c622f6a85987",
+    "baseline_sop_contract_sha256": "4a07735fb79ab1efd2c12074b295ea034cccb3e392f1d0c32d35ed72a9387471",
+    "hosted_adapter_sha256": "ee6247ed7f66d4df342117fbc379e0104c5a65a454b5d095a1947bfbbaeca9ad",
+    "evaluation_sha256": "978383744e7110487d07ac33cc94e2566d07360671ee63cafa80987f525129ab"
+  },
+  "sop_contract": {
+    "valid": true,
+    "baseline_contract_sha256": "4a07735fb79ab1efd2c12074b295ea034cccb3e392f1d0c32d35ed72a9387471",
+    "baseline_sop_sha256": "70deb8e12457bac86069bf237e20bb521a354393ca6d0236a615c622f6a85987",
+    "candidate_sop_sha256": "70deb8e12457bac86069bf237e20bb521a354393ca6d0236a615c622f6a85987",
+    "command_fallback_links": []
+  },
+  "runtime": {
+    "max_completion_tokens": 1024,
+    "timeout_seconds": 300,
+    "model_provider": "openrouter",
+    "model": "google/gemini-3.5-flash-lite",
+    "base_url": "https://openrouter.ai/api/v1",
+    "stream": false,
+    "seed_supported": false,
+    "provider_endpoint": "google-ai-studio",
+    "reasoning_effort": "low",
+    "extra_body": {
+      "reasoning": {
+        "effort": "low"
+      },
+      "provider": {
+        "only": [
+          "google-ai-studio"
+        ],
+        "allow_fallbacks": false,
+        "require_parameters": true
+      }
+    },
+    "temperature": null,
+    "allow_fallbacks": false,
+    "require_parameters": true,
+    "max_retries": 0,
+    "token_metric": "provider_prompt_plus_completion_including_reasoning",
+    "weight_digest_available": false,
+    "execution_backend": "deepagent",
+    "workers": 8
+  },
+  "model_identity": {
+    "kind": "hosted",
+    "provider": "openrouter",
+    "model": "google/gemini-3.5-flash-lite",
+    "endpoint": "google-ai-studio",
+    "weight_digest": null,
+    "configuration_sha256": "d703b8e16a3dc88aa1ac6a47171414c3873ee8f064db5bb911c5d67252fd9c4d"
+  }
+}

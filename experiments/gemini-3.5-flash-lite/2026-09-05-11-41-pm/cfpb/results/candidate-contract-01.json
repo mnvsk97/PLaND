@@ -1,0 +1,14 @@
+{
+  "valid": true,
+  "baseline_contract_sha256": "4a07735fb79ab1efd2c12074b295ea034cccb3e392f1d0c32d35ed72a9387471",
+  "baseline_sop_sha256": "70deb8e12457bac86069bf237e20bb521a354393ca6d0236a615c622f6a85987",
+  "candidate_sop_sha256": "6610c6ed704177325ad08c503be7079e822ba3117f4a5e031c5f99f4bd7da140",
+  "command_fallback_links": [
+    {
+      "command_step_id": "S03",
+      "fallback_step_id": "S03",
+      "fallback_instruction": "Classify the evidence into exactly one known bucket: `Checking or savings account`, `Credit card`, `Credit reporting or other personal consumer reports`, `Debt collection`, `Money transfer, virtual currency, or money service`, `Mortgage`, `Payday loan, title loan, personal loan, or advance loan`, `Prepaid card`, `Student loan`, `Vehicle loan or lease`.",
+      "fallback_instruction_sha256": "91a943ead4f4f5dbe808d65c74acc5d4f69962f4cb22c12d8c52a11e2b7e20be"
+    }
+  ]
+}

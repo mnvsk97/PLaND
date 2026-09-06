@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-09-06T07:22:33.353014+00:00",
+  "candidate": "candidate-02",
+  "hypothesis": "Restrict routing to four product patterns with at least 94.9 percent observed development precision; all other narratives fall back.",
+  "iteration": 2,
+  "max_iterations": 10,
+  "target_quality": 0.8,
+  "quality_metric": "accuracy",
+  "optimization_metric": "total_tokens",
+  "min_objective_improvement_ratio": 0.05,
+  "require_hybrid_sop": true,
+  "frozen_invariants": {
+    "system_prompt_sha256": "5ba5a8e59575b465b87c19c4b106cf052defb6f0c5d655033ca0f03ab142817d",
+    "evals_sha256": "978383744e7110487d07ac33cc94e2566d07360671ee63cafa80987f525129ab",
+    "selection_sha256": "97549c946e15e6227dc0be83621a464c10ba341a257c05b1817dd015e5112d00",
+    "datasource_snapshot_sha256": "fe8e4fc08d3cc03d739ad251c982c27dd700c45c321019a804d81949e6e11361",
+    "scorer_sha256": "03f83e70d463b7903d93fd0e0019aec14535f6817b1fce0ad19dc7f585cdab84",
+    "agent_harness_sha256": "7e3cd3303385b7c9079a8888a24594a6fb8b24eaab16c103d6d3ccfe628850ae",
+    "baseline_sop_sha256": "70deb8e12457bac86069bf237e20bb521a354393ca6d0236a615c622f6a85987",
+    "baseline_sop_contract_sha256": "4a07735fb79ab1efd2c12074b295ea034cccb3e392f1d0c32d35ed72a9387471",
+    "hosted_adapter_sha256": "ee6247ed7f66d4df342117fbc379e0104c5a65a454b5d095a1947bfbbaeca9ad",
+    "evaluation_sha256": "978383744e7110487d07ac33cc94e2566d07360671ee63cafa80987f525129ab"
+  },
+  "system_prompt": null,
+  "development": {
+    "baseline": {
+      "cases": 500,
+      "correct": 410,
+      "accuracy": 0.82,
+      "macro_f1": 0.8230587464525219,
+      "input_tokens": 346130,
+      "output_tokens": 6065,
+      "total_tokens": 352195,
+      "estimated_model_cost_usd": 0.1190015,
+      "model_calls": 500,
+      "model_tokens": 352195,
+      "command_calls": 0,
+      "command_resolved_cases": 0,
+      "fallback_model_calls": 0,
+      "fallback_model_tokens": 0,
+      "normal_completion_rate": 1.0,
+      "errors": {},
+      "latency_seconds": {
+        "total": 282.9275817129237,
+        "mean": 0.5658551634258474
+      },
+      "wall_seconds": 36.20905458400375,
+      "max_rss_bytes": 227999744,
+      "reasoning_tokens": 0,
+      "cached_input_tokens": 0,
+      "service_cost_usd": 0.1190015
+    },
+    "candidate": {
+      "cases": 500,
+      "correct": 414,
+      "accuracy": 0.828,
+      "macro_f1": 0.8305419732216208,
+      "input_tokens": 267092,
+      "output_tokens": 4871,
+      "total_tokens": 271963,
+      "estimated_model_cost_usd": 0.0923051,
+      "model_calls": 397,
+      "model_tokens": 271963,
+      "command_calls": 500,
+      "command_resolved_cases": 103,
+      "fallback_model_calls": 397,
+      "fallback_model_tokens": 271963,
+      "normal_completion_rate": 1.0,
+      "errors": {},
+      "latency_seconds": {
+        "total": 245.44712654681643,
+        "mean": 0.4908942530936329
+      },
+      "wall_seconds": 31.37967562500853,
+      "max_rss_bytes": 225443840,
+      "reasoning_tokens": 0,
+      "cached_input_tokens": 0,
+      "service_cost_usd": 0.0923051
+    },
+    "delta": {
+      "quality": 0.008000000000000007,
+      "tokens": -80232,
+      "token_ratio": 0.772194380953733,
+      "mean_latency_seconds": -0.07496091033221453,
+      "mean_latency_ratio": 0.8675263297442053,
+      "accuracy_points": 0.008000000000000007
+    }
+  },
+  "validation": null,
+  "failed_checks": [],
+  "decision": "eligible_for_validation"
+}

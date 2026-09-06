@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "stage": "selection",
+  "candidate": "candidate-02",
+  "comparisons": [
+    {
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/selection-repeat-20260903-comparison.json",
+      "gate": {
+        "noninferiority_margin": 0.02,
+        "minimum_token_reduction": 0.05,
+        "minimum_accuracy": 0.8,
+        "require_no_accuracy_regression": false,
+        "minimum_accuracy_difference_lower_bound": null,
+        "max_per_label_recall_drop": null,
+        "minimum_command_precision": null,
+        "quality_noninferior": true,
+        "token_objective_met": true,
+        "absolute_viability": false,
+        "relative_pass": true,
+        "test_release_pass": false
+      },
+      "accuracy_difference_bootstrap_95": [
+        -0.016,
+        0.004
+      ],
+      "token_reduction_bootstrap_95": [
+        0.20557606000093492,
+        0.26334354862347303
+      ]
+    },
+    {
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/selection-repeat-20260904-comparison.json",
+      "gate": {
+        "noninferiority_margin": 0.02,
+        "minimum_token_reduction": 0.05,
+        "minimum_accuracy": 0.8,
+        "require_no_accuracy_regression": false,
+        "minimum_accuracy_difference_lower_bound": null,
+        "max_per_label_recall_drop": null,
+        "minimum_command_precision": null,
+        "quality_noninferior": true,
+        "token_objective_met": true,
+        "absolute_viability": false,
+        "relative_pass": true,
+        "test_release_pass": false
+      },
+      "accuracy_difference_bootstrap_95": [
+        -0.018,
+        0.004
+      ],
+      "token_reduction_bootstrap_95": [
+        0.20598520529222453,
+        0.2637632151214494
+      ]
+    },
+    {
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/selection-repeat-20260905-comparison.json",
+      "gate": {
+        "noninferiority_margin": 0.02,
+        "minimum_token_reduction": 0.05,
+        "minimum_accuracy": 0.8,
+        "require_no_accuracy_regression": false,
+        "minimum_accuracy_difference_lower_bound": null,
+        "max_per_label_recall_drop": null,
+        "minimum_command_precision": null,
+        "quality_noninferior": true,
+        "token_objective_met": true,
+        "absolute_viability": false,
+        "relative_pass": true,
+        "test_release_pass": false
+      },
+      "accuracy_difference_bootstrap_95": [
+        -0.012,
+        0.011
+      ],
+      "token_reduction_bootstrap_95": [
+        0.2060089336007623,
+        0.2638075016980226
+      ]
+    }
+  ],
+  "decision": "reject",
+  "final_test_released": false
+}
