@@ -21,6 +21,14 @@ ledger = json.loads((directory/'command-ledger.json').read_text())
 def sha(path): return hashlib.sha256(path.read_bytes()).hexdigest()
 for field in ['plan','protocol']:
     assert sha(Path(state[field]['path'])) == state[field]['sha256']
+assert state.get('amendments',[])==ledger.get('amendments',[])
+for amendment in state.get('amendments',[]):
+    for key in ['original_plan','original_protocol','amended_plan','amended_protocol','authorization']:
+        artifact=amendment[key]
+        assert sha(Path(artifact['path']))==artifact['sha256']
+    boundary=amendment['effective_after_event_count']
+    assert all(e['stage'] not in {'candidate-development','selection','final-test'} for e in ledger['events'][:boundary])
+    assert all(e.get('plan_sha256')==state['plan']['sha256'] for e in ledger['events'][boundary:])
 proof = json.loads((directory/'dataset-audit.json').read_text())
 assert proof['passed'] and proof['counts']['by_split'] == {'development':500,'validation':1000,'test':500}
 independent = json.loads((directory/'independent-freshness.json').read_text())
@@ -81,6 +89,18 @@ for path in sorted(directory.glob('*.json')):
     runs[path.name]={'cases':len(cases),'accuracy':summary['accuracy'],'tokens':summary['total_tokens'],
                       'sha256':sha(path),'split':split,'seed':value['seed']}
 selection = state['decisions']['selection']
+candidate_history=state['decisions']['candidate-development']
+assert len(candidate_history)<=plan['limits']['candidate_attempts']
+assert len(selection)<=1
+if candidate_history:
+    assert all(d['value']=='refine' for d in candidate_history[:-1])
+    if candidate_history[-1]['value']=='nonviable':
+        assert len(candidate_history)==plan['limits']['candidate_attempts']
+    if selection:
+        assert candidate_history[-1]['value']=='ready'
+        ready_at=candidate_history[-1]['recorded_at']
+        assert all(e['started_at']>=ready_at for e in ledger['events'] if e['stage']=='selection')
+        assert all(e['started_at']<ready_at for e in ledger['events'] if e['stage']=='candidate-development')
 tests = [r for r in runs.values() if r['split']=='test']
 if tests:
     assert selection and selection[-1]['value']=='accept'

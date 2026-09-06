@@ -49,12 +49,13 @@ def audit(report):
                 assert attempt[key]==run['summary'][key]
             assert f"{attempt['total_tokens']:,}" in text
             assert f"{100*attempt['accuracy']:.1f}%" in text
-        comp=directory/f'{stage}-20260902-comparison.json'
+        suffix='' if stage!='development' or item.get('candidate_attempts',1)<=1 else '-'+item['candidate_id']
+        comp=directory/f'{stage}-20260902{suffix}-comparison.json'
         if comp.exists():
             comparison=json.loads(comp.read_text())
             assert comparison==item['comparison']
             for variant,stem in [('natural_language','baseline'),('hybrid','hybrid')]:
-                run_path=directory/f'{stage}-20260902-{stem}.json'
+                run_path=directory/f'{stage}-20260902-{stem}{suffix}.json'
                 if stage=='development' and stem=='baseline':
                     run_path=directory/f'baseline-development-{item["baseline_attempt"]:02}.json'
                 run=json.loads(run_path.read_text())

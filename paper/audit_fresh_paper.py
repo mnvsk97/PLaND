@@ -43,10 +43,11 @@ def verify(md):
             assert not run['summary']['errors'] and run['summary']['normal_completion_rate']==1
         for path in directory.glob('*-comparison.json'):
             if path.name.endswith('-sop-comparison.json'): continue
-            split,seed,_=path.stem.split('-');saved=read(path)
+            parts=path.stem.split('-');split,seed=parts[:2];saved=read(path)
+            suffix='-'+'-'.join(parts[2:-1]) if len(parts)>3 else ''
             npath=directory/f'{split}-{seed}-baseline.json'
             if split=='development': npath=directory/f'baseline-development-{item["baseline_attempt"]:02}.json'
-            n=read(npath);h=read(directory/f'{split}-{seed}-hybrid.json')
+            n=read(npath);h=read(directory/f'{split}-{seed}-hybrid{suffix}.json')
             assert n['invariants']==h['invariants'] and n['runtime']==h['runtime']
             nc={c['id']:c for c in n['cases']};hc={c['id']:c for c in h['cases']}
             assert nc.keys()==hc.keys()

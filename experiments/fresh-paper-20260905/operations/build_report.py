@@ -32,12 +32,14 @@ for ds,name in names.items():
             'sop_sha256':run['sop_sha256']})
     selection=read(directory/'selection-release.json') if (directory/'selection-release.json').exists() else None
     stage='test' if selection and selection['decision']=='accept' else 'validation' if selection else 'development'
-    comp_path=directory/f'{stage}-20260902-comparison.json'
+    ci=read(directory/'chosen-candidate.json') if (directory/'chosen-candidate.json').exists() else {'attempt':1,'candidate_id':'candidate-01'}
+    suffix='' if stage!='development' or ci['attempt']==1 else '-'+ci['candidate_id']
+    comp_path=directory/f'{stage}-20260902{suffix}-comparison.json'
     comparison=read(comp_path) if comp_path.exists() else None
     main_n_path=directory/f'{stage}-20260902-baseline.json' if stage!='development' else Path(selected['run'])
-    main_h_path=directory/f'{stage}-20260902-hybrid.json'
+    main_h_path=directory/f'{stage}-20260902-hybrid{suffix}.json'
     n=read(main_n_path);h=read(main_h_path) if main_h_path.exists() else None
-    construction=BASE/'candidates'/ds/'candidate-01/construction.json'
+    construction=BASE/'candidates'/ds/ci['candidate_id']/'construction.json'
     repeats=[]
     repeat_runs={'baseline':[],'hybrid':[]}
     for index,seed in enumerate([20260903,20260904,20260905]):
@@ -63,6 +65,9 @@ for ds,name in names.items():
         'selection_comparison':read(directory/'validation-20260902-comparison.json') if selection else None,
         'baseline_development':baseline['summary'],'baseline_attempt':selected['attempt'],
         'baseline_history':baseline_history,
+        'candidate_attempts':len(state['decisions']['candidate-development']),
+        'candidate_id':ci['candidate_id'] if h else None,
+        'protocol_amendments':state.get('amendments',[]),
         'baseline_sop_sha256':baseline['sop_sha256'],'candidate_sop_sha256':h['sop_sha256'] if h else None,
         'candidate_skill_content_sha256':h['skill_content_sha256'] if h else None,
         'main_baseline':n['summary'],'main_hybrid':h['summary'] if h else None,
@@ -95,7 +100,7 @@ lines+=['','These measurements test the resulting fixed packages. The constructi
  '| Main / dataset seed | 20260902 |',
  '| Bootstrap | 5,000 paired resamples; accuracy RNG seed 20260902; token RNG seed 20260903; two-sided 95% percentile intervals |',
  '| Readiness | At least 80% development accuracy, complete valid outputs, no errors, at most ten English attempts |',
- '| Candidate limit | One hybrid candidate per dataset |',
+ '| Candidate limit | Up to ten development-only hybrid attempts; stop at first ready; exactly one frozen candidate may reach selection. Author amendment recorded before CFPB candidate work and SpamAssassin collection; LEDGAR candidate 1 already qualified. |',
  '| Selection | Both accuracies ≥80%; accuracy-difference CI lower bound ≥−2 pp; token reduction ≥5%; token-reduction CI lower bound >0; matching frozen invariants and no execution errors |',
  '| Repeats | Three additional paired executions on the reached selection/final split, seeds 20260903–20260905; pair order alternates |','',
  'Token use is reported model input plus output tokens. Accuracy is exact label agreement. All comparisons use the same case identifiers and expected labels within a pair. '
@@ -133,7 +138,7 @@ lines += ['', '| Dataset | English attempt | Development correct / cases | Accur
 for item in summary['datasets'].values():
     for attempt in item['baseline_history']:
         lines.append(f"| {item['name']} | {attempt['attempt']} | {attempt['correct']} / {attempt['cases']} | {percent(attempt['accuracy'],1)} | {attempt['total_tokens']:,} |")
-lines+=['','The host used the two PLaND skills to generate the English scaffold and construct one candidate after baseline readiness. '
+lines+=['','The host used the two PLaND skills to generate the English scaffold and construct development-only candidates after baseline readiness, stopping at the first ready candidate within the approved maximum of ten. '
  'Each candidate uses frequent 4–6-word phrases observed in at least eight development cases, with one label and correct baseline decisions on those cases. '
  'At most three complementary phrases per label are retained. Matching multiple labels, absent matches, invalid inputs, and failed output checks abstain. '
  'The command replaces S03 and retains the exact frozen English S03 as fallback. No prediction cache, paid service, or classifier network access is used.','',
