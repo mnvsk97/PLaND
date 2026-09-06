@@ -1,0 +1,1 @@
+Classify one contract clause by its primary legal function into exactly one supplied LEDGAR provision label. Base the decision only on the clause text and label meanings. Return only a JSON object with the selected label; do not expose reference answers or evaluation metadata.

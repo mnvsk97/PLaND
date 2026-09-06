@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "study_id": "gemini-3.5-flash-lite-2026-09-05-11-41-pm",
+  "created_at": "2026-09-06T06:57:03.821339+00:00",
+  "repository": "/Users/saikrishna/dev/deterministic-skills",
+  "git_head": "3f21c051ee0937e5292f92e9a4c8c5cf825fa78c",
+  "git_status_at_init": "",
+  "plan": {
+    "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/plan.json",
+    "kind": "file",
+    "bytes": 3160,
+    "sha256": "57f613822481e0d95cecba0105fe227b96476c70ea9568848f0f0bcc0934eccd"
+  },
+  "protocol": {
+    "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/protocol.md",
+    "kind": "file",
+    "bytes": 2017,
+    "sha256": "be753b99ed9a15c8ef490a910bbf94c5d8212be700b85549e8b8548168941b38"
+  },
+  "limits": {
+    "baseline_attempts": 10,
+    "candidate_attempts": 10
+  },
+  "stages": {
+    "prepare": "complete",
+    "baseline-development": "complete",
+    "candidate-development": "complete",
+    "selection": "complete",
+    "final-test": "complete",
+    "package-evidence": "complete",
+    "paper-audit": "pending"
+  },
+  "decisions": {
+    "baseline-development": [
+      {
+        "value": "ready",
+        "recorded_at": "2026-09-06T06:58:48.278752+00:00",
+        "evidence": {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar-valid/results/baseline-decision-01.json",
+          "kind": "file",
+          "bytes": 404,
+          "sha256": "064367a94821309be075076481c57d76ad0c2386837dfe1a08f8f047b357ca44"
+        }
+      }
+    ],
+    "candidate-development": [
+      {
+        "value": "refine",
+        "recorded_at": "2026-09-06T07:01:42.666577+00:00",
+        "evidence": {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar-valid/results/candidate-check-01.json",
+          "kind": "file",
+          "bytes": 3007,
+          "sha256": "60bb93e7ff71fdb03f27ab1e3b47f5df8adca3cd3b1ac70df6b00e67ea4639d5"
+        }
+      },
+      {
+        "value": "ready",
+        "recorded_at": "2026-09-06T07:07:23.435393+00:00",
+        "evidence": {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar-valid/results/candidate-development-gate-02.json",
+          "kind": "file",
+          "bytes": 1016,
+          "sha256": "50f4516f6218aefa131a09b0cd8e03c209d15803ecc3e7425b03ffaa35033200"
+        }
+      }
+    ],
+    "selection": [
+      {
+        "value": "accept",
+        "recorded_at": "2026-09-06T07:13:38.234559+00:00",
+        "evidence": {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar-valid/results/selection-gate.json",
+          "kind": "file",
+          "bytes": 2672,
+          "sha256": "b3fb90b1f5f7eaf0fe35a1aa5af0d35dd1265ec93cef202d0253fd8b79687645"
+        }
+      }
+    ]
+  }
+}

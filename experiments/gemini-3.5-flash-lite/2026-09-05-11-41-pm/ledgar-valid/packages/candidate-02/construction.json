@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "candidate_id": "candidate-02",
+  "development_only": true,
+  "hypothesis": "Requiring notice-delivery language and explicit survival events removes cross-reference false positives while retaining conservative local coverage.",
+  "dependencies": [
+    "Python standard library"
+  ],
+  "network": "none",
+  "side_effects": "none",
+  "cache": {
+    "used": false,
+    "reason": "Each clause is evaluated once; lookup reuse is absent."
+  },
+  "parallelism": {
+    "used": false,
+    "reason": "One bounded regex pass is cheaper than coordinating internal workers; run-level concurrency remains eight."
+  },
+  "input_contract": "One nonempty clause string up to 200,000 characters and the supplied label list.",
+  "output_contract": "A supplied label plus matched_rule, or None to trigger the exact English fallback.",
+  "parent_candidate_id": "candidate-01"
+}

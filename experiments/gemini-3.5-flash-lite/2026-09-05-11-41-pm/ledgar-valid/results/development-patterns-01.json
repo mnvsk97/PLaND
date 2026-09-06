@@ -1,0 +1,3519 @@
+{
+  "schema_version": 1,
+  "split": "development",
+  "cases": 500,
+  "label_counts": {
+    "Amendments": 50,
+    "Assignments": 50,
+    "Counterparts": 50,
+    "Entire Agreements": 50,
+    "Expenses": 50,
+    "Governing Laws": 50,
+    "Notices": 50,
+    "Severability": 50,
+    "Survival": 50,
+    "Terms": 50
+  },
+  "candidates": [
+    {
+      "phrase": "counterparts",
+      "label": "Counterparts",
+      "support": 49,
+      "total": 49,
+      "precision": 1.0
+    },
+    {
+      "phrase": "may be executed",
+      "label": "Counterparts",
+      "support": 46,
+      "total": 47,
+      "precision": 0.9787234042553191
+    },
+    {
+      "phrase": "be executed",
+      "label": "Counterparts",
+      "support": 46,
+      "total": 48,
+      "precision": 0.9583333333333334
+    },
+    {
+      "phrase": "an original",
+      "label": "Counterparts",
+      "support": 44,
+      "total": 44,
+      "precision": 1.0
+    },
+    {
+      "phrase": "of the state of",
+      "label": "Governing Laws",
+      "support": 42,
+      "total": 43,
+      "precision": 0.9767441860465116
+    },
+    {
+      "phrase": "of the state",
+      "label": "Governing Laws",
+      "support": 42,
+      "total": 44,
+      "precision": 0.9545454545454546
+    },
+    {
+      "phrase": "the state of",
+      "label": "Governing Laws",
+      "support": 42,
+      "total": 43,
+      "precision": 0.9767441860465116
+    },
+    {
+      "phrase": "state of",
+      "label": "Governing Laws",
+      "support": 42,
+      "total": 43,
+      "precision": 0.9767441860465116
+    },
+    {
+      "phrase": "the state",
+      "label": "Governing Laws",
+      "support": 42,
+      "total": 44,
+      "precision": 0.9545454545454546
+    },
+    {
+      "phrase": "each of which",
+      "label": "Counterparts",
+      "support": 41,
+      "total": 41,
+      "precision": 1.0
+    },
+    {
+      "phrase": "laws of the",
+      "label": "Governing Laws",
+      "support": 41,
+      "total": 42,
+      "precision": 0.9761904761904762
+    },
+    {
+      "phrase": "may be executed in",
+      "label": "Counterparts",
+      "support": 39,
+      "total": 39,
+      "precision": 1.0
+    },
+    {
+      "phrase": "and the same",
+      "label": "Counterparts",
+      "support": 39,
+      "total": 39,
+      "precision": 1.0
+    },
+    {
+      "phrase": "be executed in",
+      "label": "Counterparts",
+      "support": 39,
+      "total": 40,
+      "precision": 0.975
+    },
+    {
+      "phrase": "executed in",
+      "label": "Counterparts",
+      "support": 39,
+      "total": 41,
+      "precision": 0.9512195121951219
+    },
+    {
+      "phrase": "laws of the state",
+      "label": "Governing Laws",
+      "support": 38,
+      "total": 39,
+      "precision": 0.9743589743589743
+    },
+    {
+      "phrase": "one and the same",
+      "label": "Counterparts",
+      "support": 38,
+      "total": 38,
+      "precision": 1.0
+    },
+    {
+      "phrase": "one and the",
+      "label": "Counterparts",
+      "support": 38,
+      "total": 38,
+      "precision": 1.0
+    },
+    {
+      "phrase": "one and",
+      "label": "Counterparts",
+      "support": 38,
+      "total": 38,
+      "precision": 1.0
+    },
+    {
+      "phrase": "counterparts each",
+      "label": "Counterparts",
+      "support": 37,
+      "total": 37,
+      "precision": 1.0
+    },
+    {
+      "phrase": "invalid",
+      "label": "Severability",
+      "support": 37,
+      "total": 37,
+      "precision": 1.0
+    },
+    {
+      "phrase": "counterparts each of which",
+      "label": "Counterparts",
+      "support": 36,
+      "total": 36,
+      "precision": 1.0
+    },
+    {
+      "phrase": "the laws of the",
+      "label": "Governing Laws",
+      "support": 36,
+      "total": 37,
+      "precision": 0.972972972972973
+    },
+    {
+      "phrase": "counterparts each of",
+      "label": "Counterparts",
+      "support": 36,
+      "total": 36,
+      "precision": 1.0
+    },
+    {
+      "phrase": "constitute one",
+      "label": "Counterparts",
+      "support": 35,
+      "total": 35,
+      "precision": 1.0
+    },
+    {
+      "phrase": "all of which",
+      "label": "Counterparts",
+      "support": 33,
+      "total": 34,
+      "precision": 0.9705882352941176
+    },
+    {
+      "phrase": "notices",
+      "label": "Notices",
+      "support": 33,
+      "total": 33,
+      "precision": 1.0
+    },
+    {
+      "phrase": "unenforceable",
+      "label": "Severability",
+      "support": 33,
+      "total": 34,
+      "precision": 0.9705882352941176
+    },
+    {
+      "phrase": "shall constitute",
+      "label": "Counterparts",
+      "support": 32,
+      "total": 32,
+      "precision": 1.0
+    },
+    {
+      "phrase": "agreement may be executed",
+      "label": "Counterparts",
+      "support": 31,
+      "total": 32,
+      "precision": 0.96875
+    },
+    {
+      "phrase": "all prior",
+      "label": "Entire Agreements",
+      "support": 31,
+      "total": 32,
+      "precision": 0.96875
+    },
+    {
+      "phrase": "constitute one and the",
+      "label": "Counterparts",
+      "support": 30,
+      "total": 30,
+      "precision": 1.0
+    },
+    {
+      "phrase": "constitute one and",
+      "label": "Counterparts",
+      "support": 30,
+      "total": 30,
+      "precision": 1.0
+    },
+    {
+      "phrase": "or unenforceable",
+      "label": "Severability",
+      "support": 28,
+      "total": 28,
+      "precision": 1.0
+    },
+    {
+      "phrase": "understandings",
+      "label": "Entire Agreements",
+      "support": 27,
+      "total": 28,
+      "precision": 0.9642857142857143
+    },
+    {
+      "phrase": "an original but",
+      "label": "Counterparts",
+      "support": 26,
+      "total": 26,
+      "precision": 1.0
+    },
+    {
+      "phrase": "of which shall",
+      "label": "Counterparts",
+      "support": 26,
+      "total": 27,
+      "precision": 0.9629629629629629
+    },
+    {
+      "phrase": "and expenses",
+      "label": "Expenses",
+      "support": 26,
+      "total": 27,
+      "precision": 0.9629629629629629
+    },
+    {
+      "phrase": "expenses incurred",
+      "label": "Expenses",
+      "support": 26,
+      "total": 26,
+      "precision": 1.0
+    },
+    {
+      "phrase": "original but",
+      "label": "Counterparts",
+      "support": 26,
+      "total": 26,
+      "precision": 1.0
+    },
+    {
+      "phrase": "but all",
+      "label": "Counterparts",
+      "support": 25,
+      "total": 25,
+      "precision": 1.0
+    },
+    {
+      "phrase": "costs",
+      "label": "Expenses",
+      "support": 25,
+      "total": 26,
+      "precision": 0.9615384615384616
+    },
+    {
+      "phrase": "an original but all",
+      "label": "Counterparts",
+      "support": 24,
+      "total": 24,
+      "precision": 1.0
+    },
+    {
+      "phrase": "respect to the subject",
+      "label": "Entire Agreements",
+      "support": 24,
+      "total": 25,
+      "precision": 0.96
+    },
+    {
+      "phrase": "original but all",
+      "label": "Counterparts",
+      "support": 24,
+      "total": 24,
+      "precision": 1.0
+    },
+    {
+      "phrase": "shall constitute one",
+      "label": "Counterparts",
+      "support": 24,
+      "total": 24,
+      "precision": 1.0
+    },
+    {
+      "phrase": "together shall",
+      "label": "Counterparts",
+      "support": 24,
+      "total": 24,
+      "precision": 1.0
+    },
+    {
+      "phrase": "assign",
+      "label": "Assignments",
+      "support": 24,
+      "total": 24,
+      "precision": 1.0
+    },
+    {
+      "phrase": "sent",
+      "label": "Notices",
+      "support": 24,
+      "total": 25,
+      "precision": 0.96
+    },
+    {
+      "phrase": "and the same instrument",
+      "label": "Counterparts",
+      "support": 23,
+      "total": 23,
+      "precision": 1.0
+    },
+    {
+      "phrase": "the same instrument",
+      "label": "Counterparts",
+      "support": 23,
+      "total": 23,
+      "precision": 1.0
+    },
+    {
+      "phrase": "incurred by",
+      "label": "Expenses",
+      "support": 23,
+      "total": 24,
+      "precision": 0.9583333333333334
+    },
+    {
+      "phrase": "same instrument",
+      "label": "Counterparts",
+      "support": 23,
+      "total": 23,
+      "precision": 1.0
+    },
+    {
+      "phrase": "each of which shall",
+      "label": "Counterparts",
+      "support": 22,
+      "total": 22,
+      "precision": 1.0
+    },
+    {
+      "phrase": "the term of",
+      "label": "Terms",
+      "support": 22,
+      "total": 23,
+      "precision": 0.9565217391304348
+    },
+    {
+      "phrase": "together shall constitute",
+      "label": "Counterparts",
+      "support": 22,
+      "total": 22,
+      "precision": 1.0
+    },
+    {
+      "phrase": "and construed",
+      "label": "Governing Laws",
+      "support": 22,
+      "total": 22,
+      "precision": 1.0
+    },
+    {
+      "phrase": "addressed",
+      "label": "Notices",
+      "support": 22,
+      "total": 22,
+      "precision": 1.0
+    },
+    {
+      "phrase": "principles",
+      "label": "Governing Laws",
+      "support": 22,
+      "total": 23,
+      "precision": 0.9565217391304348
+    },
+    {
+      "phrase": "accordance with the laws",
+      "label": "Governing Laws",
+      "support": 21,
+      "total": 22,
+      "precision": 0.9545454545454546
+    },
+    {
+      "phrase": "with the laws of",
+      "label": "Governing Laws",
+      "support": 21,
+      "total": 22,
+      "precision": 0.9545454545454546
+    },
+    {
+      "phrase": "be an original",
+      "label": "Counterparts",
+      "support": 21,
+      "total": 21,
+      "precision": 1.0
+    },
+    {
+      "phrase": "with the laws",
+      "label": "Governing Laws",
+      "support": 21,
+      "total": 22,
+      "precision": 0.9545454545454546
+    },
+    {
+      "phrase": "postage",
+      "label": "Notices",
+      "support": 21,
+      "total": 21,
+      "precision": 1.0
+    },
+    {
+      "phrase": "prepaid",
+      "label": "Notices",
+      "support": 21,
+      "total": 21,
+      "precision": 1.0
+    },
+    {
+      "phrase": "supersedes",
+      "label": "Entire Agreements",
+      "support": 21,
+      "total": 22,
+      "precision": 0.9545454545454546
+    },
+    {
+      "phrase": "be governed by and",
+      "label": "Governing Laws",
+      "support": 20,
+      "total": 20,
+      "precision": 1.0
+    },
+    {
+      "phrase": "shall constitute one and",
+      "label": "Counterparts",
+      "support": 20,
+      "total": 20,
+      "precision": 1.0
+    },
+    {
+      "phrase": "governed by and",
+      "label": "Governing Laws",
+      "support": 20,
+      "total": 20,
+      "precision": 1.0
+    },
+    {
+      "phrase": "all notices",
+      "label": "Notices",
+      "support": 20,
+      "total": 20,
+      "precision": 1.0
+    },
+    {
+      "phrase": "construed in accordance with",
+      "label": "Governing Laws",
+      "support": 19,
+      "total": 19,
+      "precision": 1.0
+    },
+    {
+      "phrase": "governed by and construed",
+      "label": "Governing Laws",
+      "support": 19,
+      "total": 19,
+      "precision": 1.0
+    },
+    {
+      "phrase": "of which shall be",
+      "label": "Counterparts",
+      "support": 19,
+      "total": 20,
+      "precision": 0.95
+    },
+    {
+      "phrase": "by and construed",
+      "label": "Governing Laws",
+      "support": 19,
+      "total": 19,
+      "precision": 1.0
+    },
+    {
+      "phrase": "construed in accordance",
+      "label": "Governing Laws",
+      "support": 19,
+      "total": 19,
+      "precision": 1.0
+    },
+    {
+      "phrase": "addressed to",
+      "label": "Notices",
+      "support": 19,
+      "total": 19,
+      "precision": 1.0
+    },
+    {
+      "phrase": "any notice",
+      "label": "Notices",
+      "support": 19,
+      "total": 20,
+      "precision": 0.95
+    },
+    {
+      "phrase": "sent by",
+      "label": "Notices",
+      "support": 19,
+      "total": 20,
+      "precision": 0.95
+    },
+    {
+      "phrase": "such provision",
+      "label": "Severability",
+      "support": 19,
+      "total": 19,
+      "precision": 1.0
+    },
+    {
+      "phrase": "illegal",
+      "label": "Severability",
+      "support": 19,
+      "total": 19,
+      "precision": 1.0
+    },
+    {
+      "phrase": "to be an original",
+      "label": "Counterparts",
+      "support": 18,
+      "total": 18,
+      "precision": 1.0
+    },
+    {
+      "phrase": "together shall constitute one",
+      "label": "Counterparts",
+      "support": 18,
+      "total": 18,
+      "precision": 1.0
+    },
+    {
+      "phrase": "any number of",
+      "label": "Counterparts",
+      "support": 18,
+      "total": 18,
+      "precision": 1.0
+    },
+    {
+      "phrase": "expenses incurred by",
+      "label": "Expenses",
+      "support": 18,
+      "total": 18,
+      "precision": 1.0
+    },
+    {
+      "phrase": "any number",
+      "label": "Counterparts",
+      "support": 18,
+      "total": 18,
+      "precision": 1.0
+    },
+    {
+      "phrase": "be invalid",
+      "label": "Severability",
+      "support": 18,
+      "total": 18,
+      "precision": 1.0
+    },
+    {
+      "phrase": "postage prepaid",
+      "label": "Notices",
+      "support": 18,
+      "total": 18,
+      "precision": 1.0
+    },
+    {
+      "phrase": "such notice",
+      "label": "Notices",
+      "support": 18,
+      "total": 18,
+      "precision": 1.0
+    },
+    {
+      "phrase": "the address",
+      "label": "Notices",
+      "support": 18,
+      "total": 18,
+      "precision": 1.0
+    },
+    {
+      "phrase": "counterpart",
+      "label": "Counterparts",
+      "support": 18,
+      "total": 18,
+      "precision": 1.0
+    },
+    {
+      "phrase": "understanding",
+      "label": "Entire Agreements",
+      "support": 18,
+      "total": 18,
+      "precision": 1.0
+    },
+    {
+      "phrase": "but all of which",
+      "label": "Counterparts",
+      "support": 17,
+      "total": 17,
+      "precision": 1.0
+    },
+    {
+      "phrase": "in any number of",
+      "label": "Counterparts",
+      "support": 17,
+      "total": 17,
+      "precision": 1.0
+    },
+    {
+      "phrase": "original but all of",
+      "label": "Counterparts",
+      "support": 17,
+      "total": 17,
+      "precision": 1.0
+    },
+    {
+      "phrase": "but all of",
+      "label": "Counterparts",
+      "support": 17,
+      "total": 17,
+      "precision": 1.0
+    },
+    {
+      "phrase": "in any number",
+      "label": "Counterparts",
+      "support": 17,
+      "total": 17,
+      "precision": 1.0
+    },
+    {
+      "phrase": "without regard to",
+      "label": "Governing Laws",
+      "support": 17,
+      "total": 17,
+      "precision": 1.0
+    },
+    {
+      "phrase": "incurred in",
+      "label": "Expenses",
+      "support": 17,
+      "total": 17,
+      "precision": 1.0
+    },
+    {
+      "phrase": "prior agreements",
+      "label": "Entire Agreements",
+      "support": 17,
+      "total": 17,
+      "precision": 1.0
+    },
+    {
+      "phrase": "which when",
+      "label": "Counterparts",
+      "support": 17,
+      "total": 17,
+      "precision": 1.0
+    },
+    {
+      "phrase": "without regard",
+      "label": "Governing Laws",
+      "support": 17,
+      "total": 17,
+      "precision": 1.0
+    },
+    {
+      "phrase": "courier",
+      "label": "Notices",
+      "support": 17,
+      "total": 17,
+      "precision": 1.0
+    },
+    {
+      "phrase": "overnight",
+      "label": "Notices",
+      "support": 17,
+      "total": 17,
+      "precision": 1.0
+    },
+    {
+      "phrase": "and the same agreement",
+      "label": "Counterparts",
+      "support": 16,
+      "total": 16,
+      "precision": 1.0
+    },
+    {
+      "phrase": "any number of counterparts",
+      "label": "Counterparts",
+      "support": 16,
+      "total": 16,
+      "precision": 1.0
+    },
+    {
+      "phrase": "number of counterparts",
+      "label": "Counterparts",
+      "support": 16,
+      "total": 16,
+      "precision": 1.0
+    },
+    {
+      "phrase": "of which when",
+      "label": "Counterparts",
+      "support": 16,
+      "total": 16,
+      "precision": 1.0
+    },
+    {
+      "phrase": "provision shall be",
+      "label": "Severability",
+      "support": 16,
+      "total": 16,
+      "precision": 1.0
+    },
+    {
+      "phrase": "the same agreement",
+      "label": "Counterparts",
+      "support": 16,
+      "total": 16,
+      "precision": 1.0
+    },
+    {
+      "phrase": "to be invalid",
+      "label": "Severability",
+      "support": 16,
+      "total": 16,
+      "precision": 1.0
+    },
+    {
+      "phrase": "all reasonable",
+      "label": "Expenses",
+      "support": 16,
+      "total": 16,
+      "precision": 1.0
+    },
+    {
+      "phrase": "costs and",
+      "label": "Expenses",
+      "support": 16,
+      "total": 16,
+      "precision": 1.0
+    },
+    {
+      "phrase": "of counterparts",
+      "label": "Counterparts",
+      "support": 16,
+      "total": 16,
+      "precision": 1.0
+    },
+    {
+      "phrase": "same agreement",
+      "label": "Counterparts",
+      "support": 16,
+      "total": 16,
+      "precision": 1.0
+    },
+    {
+      "phrase": "writing and shall be",
+      "label": "Notices",
+      "support": 15,
+      "total": 15,
+      "precision": 1.0
+    },
+    {
+      "phrase": "addressed to the",
+      "label": "Notices",
+      "support": 15,
+      "total": 15,
+      "precision": 1.0
+    },
+    {
+      "phrase": "all prior agreements",
+      "label": "Entire Agreements",
+      "support": 15,
+      "total": 15,
+      "precision": 1.0
+    },
+    {
+      "phrase": "writing and shall",
+      "label": "Notices",
+      "support": 15,
+      "total": 15,
+      "precision": 1.0
+    },
+    {
+      "phrase": "be affected",
+      "label": "Severability",
+      "support": 15,
+      "total": 15,
+      "precision": 1.0
+    },
+    {
+      "phrase": "illegal or",
+      "label": "Severability",
+      "support": 15,
+      "total": 15,
+      "precision": 1.0
+    },
+    {
+      "phrase": "of delaware",
+      "label": "Governing Laws",
+      "support": 15,
+      "total": 15,
+      "precision": 1.0
+    },
+    {
+      "phrase": "of laws",
+      "label": "Governing Laws",
+      "support": 15,
+      "total": 15,
+      "precision": 1.0
+    },
+    {
+      "phrase": "other address",
+      "label": "Notices",
+      "support": 15,
+      "total": 15,
+      "precision": 1.0
+    },
+    {
+      "phrase": "which together",
+      "label": "Counterparts",
+      "support": 15,
+      "total": 15,
+      "precision": 1.0
+    },
+    {
+      "phrase": "assignee",
+      "label": "Assignments",
+      "support": 15,
+      "total": 15,
+      "precision": 1.0
+    },
+    {
+      "phrase": "agreement shall be governed",
+      "label": "Governing Laws",
+      "support": 14,
+      "total": 14,
+      "precision": 1.0
+    },
+    {
+      "phrase": "be executed in any",
+      "label": "Counterparts",
+      "support": 14,
+      "total": 14,
+      "precision": 1.0
+    },
+    {
+      "phrase": "executed in any number",
+      "label": "Counterparts",
+      "support": 14,
+      "total": 14,
+      "precision": 1.0
+    },
+    {
+      "phrase": "in writing and shall",
+      "label": "Notices",
+      "support": 14,
+      "total": 14,
+      "precision": 1.0
+    },
+    {
+      "phrase": "inure to the benefit",
+      "label": "Assignments",
+      "support": 14,
+      "total": 14,
+      "precision": 1.0
+    },
+    {
+      "phrase": "the state of delaware",
+      "label": "Governing Laws",
+      "support": 14,
+      "total": 14,
+      "precision": 1.0
+    },
+    {
+      "phrase": "to the benefit of",
+      "label": "Assignments",
+      "support": 14,
+      "total": 14,
+      "precision": 1.0
+    },
+    {
+      "phrase": "which shall be deemed",
+      "label": "Counterparts",
+      "support": 14,
+      "total": 14,
+      "precision": 1.0
+    },
+    {
+      "phrase": "and all of",
+      "label": "Counterparts",
+      "support": 14,
+      "total": 14,
+      "precision": 1.0
+    },
+    {
+      "phrase": "costs and expenses",
+      "label": "Expenses",
+      "support": 14,
+      "total": 14,
+      "precision": 1.0
+    },
+    {
+      "phrase": "executed in any",
+      "label": "Counterparts",
+      "support": 14,
+      "total": 14,
+      "precision": 1.0
+    },
+    {
+      "phrase": "inure to the",
+      "label": "Assignments",
+      "support": 14,
+      "total": 14,
+      "precision": 1.0
+    },
+    {
+      "phrase": "of which together",
+      "label": "Counterparts",
+      "support": 14,
+      "total": 14,
+      "precision": 1.0
+    },
+    {
+      "phrase": "state of delaware",
+      "label": "Governing Laws",
+      "support": 14,
+      "total": 14,
+      "precision": 1.0
+    },
+    {
+      "phrase": "such other address",
+      "label": "Notices",
+      "support": 14,
+      "total": 14,
+      "precision": 1.0
+    },
+    {
+      "phrase": "to be given",
+      "label": "Notices",
+      "support": 14,
+      "total": 14,
+      "precision": 1.0
+    },
+    {
+      "phrase": "to the benefit",
+      "label": "Assignments",
+      "support": 14,
+      "total": 14,
+      "precision": 1.0
+    },
+    {
+      "phrase": "address as",
+      "label": "Notices",
+      "support": 14,
+      "total": 14,
+      "precision": 1.0
+    },
+    {
+      "phrase": "and supersede",
+      "label": "Entire Agreements",
+      "support": 14,
+      "total": 14,
+      "precision": 1.0
+    },
+    {
+      "phrase": "inure to",
+      "label": "Assignments",
+      "support": 14,
+      "total": 14,
+      "precision": 1.0
+    },
+    {
+      "phrase": "invalid illegal",
+      "label": "Severability",
+      "support": 14,
+      "total": 14,
+      "precision": 1.0
+    },
+    {
+      "phrase": "taken together",
+      "label": "Counterparts",
+      "support": 14,
+      "total": 14,
+      "precision": 1.0
+    },
+    {
+      "phrase": "the remainder",
+      "label": "Severability",
+      "support": 14,
+      "total": 14,
+      "precision": 1.0
+    },
+    {
+      "phrase": "commence",
+      "label": "Terms",
+      "support": 14,
+      "total": 14,
+      "precision": 1.0
+    },
+    {
+      "phrase": "inure",
+      "label": "Assignments",
+      "support": 14,
+      "total": 14,
+      "precision": 1.0
+    },
+    {
+      "phrase": "invalidity",
+      "label": "Severability",
+      "support": 14,
+      "total": 14,
+      "precision": 1.0
+    },
+    {
+      "phrase": "mailed",
+      "label": "Notices",
+      "support": 14,
+      "total": 14,
+      "precision": 1.0
+    },
+    {
+      "phrase": "remainder",
+      "label": "Severability",
+      "support": 14,
+      "total": 14,
+      "precision": 1.0
+    },
+    {
+      "phrase": "repayment",
+      "label": "Survival",
+      "support": 14,
+      "total": 14,
+      "precision": 1.0
+    },
+    {
+      "phrase": "all of which together",
+      "label": "Counterparts",
+      "support": 13,
+      "total": 13,
+      "precision": 1.0
+    },
+    {
+      "phrase": "and all of which",
+      "label": "Counterparts",
+      "support": 13,
+      "total": 13,
+      "precision": 1.0
+    },
+    {
+      "phrase": "and enforced in accordance",
+      "label": "Governing Laws",
+      "support": 13,
+      "total": 13,
+      "precision": 1.0
+    },
+    {
+      "phrase": "enforced in accordance with",
+      "label": "Governing Laws",
+      "support": 13,
+      "total": 13,
+      "precision": 1.0
+    },
+    {
+      "phrase": "incurred in connection with",
+      "label": "Expenses",
+      "support": 13,
+      "total": 13,
+      "precision": 1.0
+    },
+    {
+      "phrase": "an original and",
+      "label": "Counterparts",
+      "support": 13,
+      "total": 13,
+      "precision": 1.0
+    },
+    {
+      "phrase": "and construed in",
+      "label": "Governing Laws",
+      "support": 13,
+      "total": 13,
+      "precision": 1.0
+    },
+    {
+      "phrase": "and enforced in",
+      "label": "Governing Laws",
+      "support": 13,
+      "total": 13,
+      "precision": 1.0
+    },
+    {
+      "phrase": "and expenses of",
+      "label": "Expenses",
+      "support": 13,
+      "total": 13,
+      "precision": 1.0
+    },
+    {
+      "phrase": "and shall continue",
+      "label": "Terms",
+      "support": 13,
+      "total": 13,
+      "precision": 1.0
+    },
+    {
+      "phrase": "enforced in accordance",
+      "label": "Governing Laws",
+      "support": 13,
+      "total": 13,
+      "precision": 1.0
+    },
+    {
+      "phrase": "if any provision",
+      "label": "Severability",
+      "support": 13,
+      "total": 13,
+      "precision": 1.0
+    },
+    {
+      "phrase": "incurred in connection",
+      "label": "Expenses",
+      "support": 13,
+      "total": 13,
+      "precision": 1.0
+    },
+    {
+      "phrase": "invalid illegal or",
+      "label": "Severability",
+      "support": 13,
+      "total": 13,
+      "precision": 1.0
+    },
+    {
+      "phrase": "or more counterparts",
+      "label": "Counterparts",
+      "support": 13,
+      "total": 13,
+      "precision": 1.0
+    },
+    {
+      "phrase": "the remainder of",
+      "label": "Severability",
+      "support": 13,
+      "total": 13,
+      "precision": 1.0
+    },
+    {
+      "phrase": "the remaining provisions",
+      "label": "Severability",
+      "support": 13,
+      "total": 13,
+      "precision": 1.0
+    },
+    {
+      "phrase": "counterparts and",
+      "label": "Counterparts",
+      "support": 13,
+      "total": 13,
+      "precision": 1.0
+    },
+    {
+      "phrase": "enforced in",
+      "label": "Governing Laws",
+      "support": 13,
+      "total": 13,
+      "precision": 1.0
+    },
+    {
+      "phrase": "invalid or",
+      "label": "Severability",
+      "support": 13,
+      "total": 13,
+      "precision": 1.0
+    },
+    {
+      "phrase": "may assign",
+      "label": "Assignments",
+      "support": 13,
+      "total": 13,
+      "precision": 1.0
+    },
+    {
+      "phrase": "more counterparts",
+      "label": "Counterparts",
+      "support": 13,
+      "total": 13,
+      "precision": 1.0
+    },
+    {
+      "phrase": "original and",
+      "label": "Counterparts",
+      "support": 13,
+      "total": 13,
+      "precision": 1.0
+    },
+    {
+      "phrase": "remainder of",
+      "label": "Severability",
+      "support": 13,
+      "total": 13,
+      "precision": 1.0
+    },
+    {
+      "phrase": "remaining provisions",
+      "label": "Severability",
+      "support": 13,
+      "total": 13,
+      "precision": 1.0
+    },
+    {
+      "phrase": "shall commence",
+      "label": "Terms",
+      "support": 13,
+      "total": 13,
+      "precision": 1.0
+    },
+    {
+      "phrase": "supersedes all",
+      "label": "Entire Agreements",
+      "support": 13,
+      "total": 13,
+      "precision": 1.0
+    },
+    {
+      "phrase": "addresses",
+      "label": "Notices",
+      "support": 13,
+      "total": 13,
+      "precision": 1.0
+    },
+    {
+      "phrase": "attorneys",
+      "label": "Expenses",
+      "support": 13,
+      "total": 13,
+      "precision": 1.0
+    },
+    {
+      "phrase": "and construed in accordance",
+      "label": "Governing Laws",
+      "support": 12,
+      "total": 12,
+      "precision": 1.0
+    },
+    {
+      "phrase": "be deemed an original",
+      "label": "Counterparts",
+      "support": 12,
+      "total": 12,
+      "precision": 1.0
+    },
+    {
+      "phrase": "effective date and shall",
+      "label": "Terms",
+      "support": 12,
+      "total": 12,
+      "precision": 1.0
+    },
+    {
+      "phrase": "governed by the laws",
+      "label": "Governing Laws",
+      "support": 12,
+      "total": 12,
+      "precision": 1.0
+    },
+    {
+      "phrase": "agreements and understandings",
+      "label": "Entire Agreements",
+      "support": 12,
+      "total": 12,
+      "precision": 1.0
+    },
+    {
+      "phrase": "be deemed an",
+      "label": "Counterparts",
+      "support": 12,
+      "total": 12,
+      "precision": 1.0
+    },
+    {
+      "phrase": "choice of law",
+      "label": "Governing Laws",
+      "support": 12,
+      "total": 12,
+      "precision": 1.0
+    },
+    {
+      "phrase": "deemed an original",
+      "label": "Counterparts",
+      "support": 12,
+      "total": 12,
+      "precision": 1.0
+    },
+    {
+      "phrase": "an executed",
+      "label": "Counterparts",
+      "support": 12,
+      "total": 12,
+      "precision": 1.0
+    },
+    {
+      "phrase": "as possible",
+      "label": "Severability",
+      "support": 12,
+      "total": 12,
+      "precision": 1.0
+    },
+    {
+      "phrase": "choice of",
+      "label": "Governing Laws",
+      "support": 12,
+      "total": 12,
+      "precision": 1.0
+    },
+    {
+      "phrase": "commence on",
+      "label": "Terms",
+      "support": 12,
+      "total": 12,
+      "precision": 1.0
+    },
+    {
+      "phrase": "deemed an",
+      "label": "Counterparts",
+      "support": 12,
+      "total": 12,
+      "precision": 1.0
+    },
+    {
+      "phrase": "in counterparts",
+      "label": "Counterparts",
+      "support": 12,
+      "total": 12,
+      "precision": 1.0
+    },
+    {
+      "phrase": "or unenforceability",
+      "label": "Severability",
+      "support": 12,
+      "total": 12,
+      "precision": 1.0
+    },
+    {
+      "phrase": "oral or",
+      "label": "Entire Agreements",
+      "support": 12,
+      "total": 12,
+      "precision": 1.0
+    },
+    {
+      "phrase": "required or",
+      "label": "Notices",
+      "support": 12,
+      "total": 12,
+      "precision": 1.0
+    },
+    {
+      "phrase": "choice",
+      "label": "Governing Laws",
+      "support": 12,
+      "total": 12,
+      "precision": 1.0
+    },
+    {
+      "phrase": "reimburse",
+      "label": "Expenses",
+      "support": 12,
+      "total": 12,
+      "precision": 1.0
+    },
+    {
+      "phrase": "unenforceability",
+      "label": "Severability",
+      "support": 12,
+      "total": 12,
+      "precision": 1.0
+    },
+    {
+      "phrase": "an original and all",
+      "label": "Counterparts",
+      "support": 11,
+      "total": 11,
+      "precision": 1.0
+    },
+    {
+      "phrase": "be an original but",
+      "label": "Counterparts",
+      "support": 11,
+      "total": 11,
+      "precision": 1.0
+    },
+    {
+      "phrase": "be executed in one",
+      "label": "Counterparts",
+      "support": 11,
+      "total": 11,
+      "precision": 1.0
+    },
+    {
+      "phrase": "by and construed in",
+      "label": "Governing Laws",
+      "support": 11,
+      "total": 11,
+      "precision": 1.0
+    },
+    {
+      "phrase": "construed and enforced in",
+      "label": "Governing Laws",
+      "support": 11,
+      "total": 11,
+      "precision": 1.0
+    },
+    {
+      "phrase": "each of which when",
+      "label": "Counterparts",
+      "support": 11,
+      "total": 11,
+      "precision": 1.0
+    },
+    {
+      "phrase": "if any provision of",
+      "label": "Severability",
+      "support": 11,
+      "total": 11,
+      "precision": 1.0
+    },
+    {
+      "phrase": "in accordance with and",
+      "label": "Governing Laws",
+      "support": 11,
+      "total": 11,
+      "precision": 1.0
+    },
+    {
+      "phrase": "shall commence on the",
+      "label": "Terms",
+      "support": 11,
+      "total": 11,
+      "precision": 1.0
+    },
+    {
+      "phrase": "such other address as",
+      "label": "Notices",
+      "support": 11,
+      "total": 11,
+      "precision": 1.0
+    },
+    {
+      "phrase": "accordance with and",
+      "label": "Governing Laws",
+      "support": 11,
+      "total": 11,
+      "precision": 1.0
+    },
+    {
+      "phrase": "amendment may be",
+      "label": "Counterparts",
+      "support": 11,
+      "total": 11,
+      "precision": 1.0
+    },
+    {
+      "phrase": "as delivery of",
+      "label": "Counterparts",
+      "support": 11,
+      "total": 11,
+      "precision": 1.0
+    },
+    {
+      "phrase": "at the address",
+      "label": "Notices",
+      "support": 11,
+      "total": 11,
+      "precision": 1.0
+    },
+    {
+      "phrase": "by a court",
+      "label": "Severability",
+      "support": 11,
+      "total": 11,
+      "precision": 1.0
+    },
+    {
+      "phrase": "commence on the",
+      "label": "Terms",
+      "support": 11,
+      "total": 11,
+      "precision": 1.0
+    },
+    {
+      "phrase": "delivery of an",
+      "label": "Counterparts",
+      "support": 11,
+      "total": 11,
+      "precision": 1.0
+    },
+    {
+      "phrase": "entire agreement and",
+      "label": "Entire Agreements",
+      "support": 11,
+      "total": 11,
+      "precision": 1.0
+    },
+    {
+      "phrase": "executed in one",
+      "label": "Counterparts",
+      "support": 11,
+      "total": 11,
+      "precision": 1.0
+    },
+    {
+      "phrase": "held to be",
+      "label": "Severability",
+      "support": 11,
+      "total": 11,
+      "precision": 1.0
+    },
+    {
+      "phrase": "illegal or unenforceable",
+      "label": "Severability",
+      "support": 11,
+      "total": 11,
+      "precision": 1.0
+    },
+    {
+      "phrase": "invalid or unenforceable",
+      "label": "Severability",
+      "support": 11,
+      "total": 11,
+      "precision": 1.0
+    },
+    {
+      "phrase": "of an executed",
+      "label": "Counterparts",
+      "support": 11,
+      "total": 11,
+      "precision": 1.0
+    },
+    {
+      "phrase": "original and all",
+      "label": "Counterparts",
+      "support": 11,
+      "total": 11,
+      "precision": 1.0
+    },
+    {
+      "phrase": "other address as",
+      "label": "Notices",
+      "support": 11,
+      "total": 11,
+      "precision": 1.0
+    },
+    {
+      "phrase": "representations and warranties",
+      "label": "Survival",
+      "support": 11,
+      "total": 11,
+      "precision": 1.0
+    },
+    {
+      "phrase": "required or permitted",
+      "label": "Notices",
+      "support": 11,
+      "total": 11,
+      "precision": 1.0
+    },
+    {
+      "phrase": "shall commence on",
+      "label": "Terms",
+      "support": 11,
+      "total": 11,
+      "precision": 1.0
+    },
+    {
+      "phrase": "such provision shall",
+      "label": "Severability",
+      "support": 11,
+      "total": 11,
+      "precision": 1.0
+    },
+    {
+      "phrase": "supersedes all prior",
+      "label": "Entire Agreements",
+      "support": 11,
+      "total": 11,
+      "precision": 1.0
+    },
+    {
+      "phrase": "taken together shall",
+      "label": "Counterparts",
+      "support": 11,
+      "total": 11,
+      "precision": 1.0
+    },
+    {
+      "phrase": "which together shall",
+      "label": "Counterparts",
+      "support": 11,
+      "total": 11,
+      "precision": 1.0
+    },
+    {
+      "phrase": "address or",
+      "label": "Notices",
+      "support": 11,
+      "total": 11,
+      "precision": 1.0
+    },
+    {
+      "phrase": "amendment may",
+      "label": "Counterparts",
+      "support": 11,
+      "total": 11,
+      "precision": 1.0
+    },
+    {
+      "phrase": "and understanding",
+      "label": "Entire Agreements",
+      "support": 11,
+      "total": 11,
+      "precision": 1.0
+    },
+    {
+      "phrase": "and warranties",
+      "label": "Survival",
+      "support": 11,
+      "total": 11,
+      "precision": 1.0
+    },
+    {
+      "phrase": "delivered or",
+      "label": "Notices",
+      "support": 11,
+      "total": 11,
+      "precision": 1.0
+    },
+    {
+      "phrase": "held to",
+      "label": "Severability",
+      "support": 11,
+      "total": 11,
+      "precision": 1.0
+    },
+    {
+      "phrase": "notices and",
+      "label": "Notices",
+      "support": 11,
+      "total": 11,
+      "precision": 1.0
+    },
+    {
+      "phrase": "or permitted",
+      "label": "Notices",
+      "support": 11,
+      "total": 11,
+      "precision": 1.0
+    },
+    {
+      "phrase": "such amendment",
+      "label": "Amendments",
+      "support": 11,
+      "total": 11,
+      "precision": 1.0
+    },
+    {
+      "phrase": "unenforceable in",
+      "label": "Severability",
+      "support": 11,
+      "total": 11,
+      "precision": 1.0
+    },
+    {
+      "phrase": "adversely",
+      "label": "Amendments",
+      "support": 11,
+      "total": 11,
+      "precision": 1.0
+    },
+    {
+      "phrase": "impaired",
+      "label": "Severability",
+      "support": 11,
+      "total": 11,
+      "precision": 1.0
+    },
+    {
+      "phrase": "a court of competent",
+      "label": "Severability",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "accordance with and governed",
+      "label": "Governing Laws",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "and governed by the",
+      "label": "Governing Laws",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "date and shall continue",
+      "label": "Terms",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "deemed an original but",
+      "label": "Counterparts",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "entire agreement and understanding",
+      "label": "Entire Agreements",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "hereto with respect to",
+      "label": "Entire Agreements",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "hereunder shall be in",
+      "label": "Notices",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "invalid illegal or unenforceable",
+      "label": "Severability",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "mail return receipt requested",
+      "label": "Notices",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "of which together shall",
+      "label": "Counterparts",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "original and all of",
+      "label": "Counterparts",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "parties hereto with respect",
+      "label": "Entire Agreements",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "state of new york",
+      "label": "Governing Laws",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "such provision shall be",
+      "label": "Severability",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "taken together shall constitute",
+      "label": "Counterparts",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "the entire agreement and",
+      "label": "Entire Agreements",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "the parties hereto with",
+      "label": "Entire Agreements",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "the state of new",
+      "label": "Governing Laws",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "which together shall constitute",
+      "label": "Counterparts",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "with and governed by",
+      "label": "Governing Laws",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "a court of",
+      "label": "Severability",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "agreement and understanding",
+      "label": "Entire Agreements",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "and disbursements of",
+      "label": "Expenses",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "and governed by",
+      "label": "Governing Laws",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "be invalid illegal",
+      "label": "Severability",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "conflicts of laws",
+      "label": "Governing Laws",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "enforceability of the",
+      "label": "Severability",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "hereto with respect",
+      "label": "Entire Agreements",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "if any term",
+      "label": "Severability",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "mail return receipt",
+      "label": "Notices",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "of new york",
+      "label": "Governing Laws",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "of the remaining",
+      "label": "Severability",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "or unenforceable in",
+      "label": "Severability",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "parties hereto with",
+      "label": "Entire Agreements",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "state of new",
+      "label": "Governing Laws",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "with and governed",
+      "label": "Governing Laws",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "adversely affect",
+      "label": "Amendments",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "and disbursements",
+      "label": "Expenses",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "and governed",
+      "label": "Governing Laws",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "any amendment",
+      "label": "Amendments",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "be addressed",
+      "label": "Notices",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "counterpart of",
+      "label": "Counterparts",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "deemed given",
+      "label": "Notices",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "disbursements of",
+      "label": "Expenses",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "duly given",
+      "label": "Notices",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "hereto with",
+      "label": "Entire Agreements",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "mail return",
+      "label": "Notices",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "of counsel",
+      "label": "Expenses",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "of new",
+      "label": "Governing Laws",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "so executed",
+      "label": "Counterparts",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "such counterparts",
+      "label": "Counterparts",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "such notices",
+      "label": "Notices",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "the amendment",
+      "label": "Amendments",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "attention",
+      "label": "Notices",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "disbursements",
+      "label": "Expenses",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "nationally",
+      "label": "Notices",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "policies",
+      "label": "Expenses",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "secretary",
+      "label": "Notices",
+      "support": 10,
+      "total": 10,
+      "precision": 1.0
+    },
+    {
+      "phrase": "amendment may be executed",
+      "label": "Counterparts",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "be an original and",
+      "label": "Counterparts",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "be invalid illegal or",
+      "label": "Severability",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "consent of the other",
+      "label": "Assignments",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "effective as delivery of",
+      "label": "Counterparts",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "entire agreement between the",
+      "label": "Entire Agreements",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "executed in one or",
+      "label": "Counterparts",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "fees and expenses of",
+      "label": "Expenses",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "in one or more",
+      "label": "Counterparts",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "of an executed counterpart",
+      "label": "Counterparts",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "of the other party",
+      "label": "Assignments",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "of this agreement is",
+      "label": "Severability",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "of which shall constitute",
+      "label": "Counterparts",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "one or more counterparts",
+      "label": "Counterparts",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "or unenforceable in any",
+      "label": "Severability",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "s obligations under this",
+      "label": "Survival",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "the remainder of this",
+      "label": "Severability",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "the representations and warranties",
+      "label": "Survival",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "which when so executed",
+      "label": "Counterparts",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "adversely affect the",
+      "label": "Amendments",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "among the parties",
+      "label": "Entire Agreements",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "an executed counterpart",
+      "label": "Counterparts",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "and enforceability of",
+      "label": "Severability",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "and other communications",
+      "label": "Notices",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "and supersede all",
+      "label": "Entire Agreements",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "and supersedes all",
+      "label": "Entire Agreements",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "constitute an original",
+      "label": "Counterparts",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "counterpart of this",
+      "label": "Counterparts",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "counterparts and by",
+      "label": "Counterparts",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "delivered by facsimile",
+      "label": "Counterparts",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "different parties hereto",
+      "label": "Counterparts",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "effective as delivery",
+      "label": "Counterparts",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "in one or",
+      "label": "Counterparts",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "oral or written",
+      "label": "Entire Agreements",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "out of pocket",
+      "label": "Expenses",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "prior agreements and",
+      "label": "Entire Agreements",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "remainder of this",
+      "label": "Severability",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "the representations and",
+      "label": "Survival",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "unenforceable in any",
+      "label": "Severability",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "way be affected",
+      "label": "Severability",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "when so executed",
+      "label": "Counterparts",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "which shall constitute",
+      "label": "Counterparts",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "which when so",
+      "label": "Counterparts",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "a manually",
+      "label": "Counterparts",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "address for",
+      "label": "Notices",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "an assignment",
+      "label": "Assignments",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "and enforceability",
+      "label": "Severability",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "attorneys fees",
+      "label": "Expenses",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "be assigned",
+      "label": "Assignments",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "conflict of",
+      "label": "Governing Laws",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "different parties",
+      "label": "Counterparts",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "executed counterpart",
+      "label": "Counterparts",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "facsimile number",
+      "label": "Notices",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "is held",
+      "label": "Severability",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "is invalid",
+      "label": "Severability",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "no amendment",
+      "label": "Amendments",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "notice shall",
+      "label": "Notices",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "of pocket",
+      "label": "Expenses",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "or provision",
+      "label": "Severability",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "overnight courier",
+      "label": "Notices",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "pay all",
+      "label": "Expenses",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "provision in",
+      "label": "Severability",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "reasonable fees",
+      "label": "Expenses",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "supersede all",
+      "label": "Entire Agreements",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "the repayment",
+      "label": "Survival",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "the representations",
+      "label": "Survival",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "unenforceable the",
+      "label": "Severability",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "when so",
+      "label": "Counterparts",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "pocket",
+      "label": "Expenses",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "preparation",
+      "label": "Expenses",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "recognized",
+      "label": "Notices",
+      "support": 9,
+      "total": 9,
+      "precision": 1.0
+    },
+    {
+      "phrase": "all prior agreements and",
+      "label": "Entire Agreements",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "an executed counterpart of",
+      "label": "Counterparts",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "and enforceability of the",
+      "label": "Severability",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "and supersede all prior",
+      "label": "Entire Agreements",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "and supersedes all prior",
+      "label": "Entire Agreements",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "be executed in counterparts",
+      "label": "Counterparts",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "by a court of",
+      "label": "Severability",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "commence on the effective",
+      "label": "Terms",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "enforceability of the remaining",
+      "label": "Severability",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "number of counterparts each",
+      "label": "Counterparts",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "of counterparts each of",
+      "label": "Counterparts",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "of the remaining provisions",
+      "label": "Severability",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "of which when so",
+      "label": "Counterparts",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "or to such other",
+      "label": "Notices",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "prior agreements and understandings",
+      "label": "Entire Agreements",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "shall be deemed an",
+      "label": "Counterparts",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "shall be deemed given",
+      "label": "Notices",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "state of delaware without",
+      "label": "Governing Laws",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "to be invalid illegal",
+      "label": "Severability",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "without regard to the",
+      "label": "Governing Laws",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "a signature page",
+      "label": "Counterparts",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "affected or impaired",
+      "label": "Severability",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "and the repayment",
+      "label": "Survival",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "be addressed to",
+      "label": "Notices",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "be deemed given",
+      "label": "Notices",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "delivery of a",
+      "label": "Counterparts",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "executed counterpart of",
+      "label": "Counterparts",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "executed in counterparts",
+      "label": "Counterparts",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "expenses incurred in",
+      "label": "Expenses",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "for all reasonable",
+      "label": "Expenses",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "if sent by",
+      "label": "Notices",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "invalidity or unenforceability",
+      "label": "Severability",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "of counterparts each",
+      "label": "Counterparts",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "of delaware without",
+      "label": "Governing Laws",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "or to such",
+      "label": "Notices",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "or unenforceable the",
+      "label": "Severability",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "such notice is",
+      "label": "Notices",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "supersede all prior",
+      "label": "Entire Agreements",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "survive the closing",
+      "label": "Survival",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "the party to",
+      "label": "Notices",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "the term shall",
+      "label": "Terms",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "to such other",
+      "label": "Notices",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "a signature",
+      "label": "Counterparts",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "affected or",
+      "label": "Severability",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "and communications",
+      "label": "Notices",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "at such",
+      "label": "Notices",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "be held",
+      "label": "Severability",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "contains the",
+      "label": "Entire Agreements",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "courier service",
+      "label": "Notices",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "delaware without",
+      "label": "Governing Laws",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "delivery service",
+      "label": "Notices",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "given when",
+      "label": "Notices",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "if sent",
+      "label": "Notices",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "invalidity or",
+      "label": "Severability",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "nationally recognized",
+      "label": "Notices",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "notices to",
+      "label": "Notices",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "or communication",
+      "label": "Notices",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "or impaired",
+      "label": "Severability",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "overnight delivery",
+      "label": "Notices",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "recognized overnight",
+      "label": "Notices",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "separate counterparts",
+      "label": "Counterparts",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "such expenses",
+      "label": "Expenses",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "the fees",
+      "label": "Expenses",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "the invalidity",
+      "label": "Severability",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "legality",
+      "label": "Severability",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "negotiation",
+      "label": "Expenses",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "successive",
+      "label": "Terms",
+      "support": 8,
+      "total": 8,
+      "precision": 1.0
+    },
+    {
+      "phrase": "a manually executed counterpart",
+      "label": "Counterparts",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "agreement shall be in",
+      "label": "Notices",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "all notices or other",
+      "label": "Notices",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "and construed and enforced",
+      "label": "Governing Laws",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "and the repayment satisfaction",
+      "label": "Survival",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "any way be affected",
+      "label": "Severability",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "as delivery of a",
+      "label": "Counterparts",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "be addressed to the",
+      "label": "Notices",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "be affected or impaired",
+      "label": "Severability",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "be construed in accordance",
+      "label": "Governing Laws",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "be effective as delivery",
+      "label": "Counterparts",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "by facsimile transmission or",
+      "label": "Counterparts",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "certified or registered mail",
+      "label": "Notices",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "commitments and the repayment",
+      "label": "Survival",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "competent jurisdiction to be",
+      "label": "Severability",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "contains the entire agreement",
+      "label": "Entire Agreements",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "counterpart of a signature",
+      "label": "Counterparts",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "day following the date",
+      "label": "Notices",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "delivery of a manually",
+      "label": "Counterparts",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "delivery of an executed",
+      "label": "Counterparts",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "executed counterpart of a",
+      "label": "Counterparts",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "executed counterpart of this",
+      "label": "Counterparts",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "given pursuant to this",
+      "label": "Notices",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "have been duly given",
+      "label": "Notices",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "if any term or",
+      "label": "Severability",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "if to the company",
+      "label": "Notices",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "in counterparts each of",
+      "label": "Counterparts",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "more counterparts each of",
+      "label": "Counterparts",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "notices or other communications",
+      "label": "Notices",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "obligations under this section",
+      "label": "Survival",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "of a manually executed",
+      "label": "Counterparts",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "of a signature page",
+      "label": "Counterparts",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "of competent jurisdiction to",
+      "label": "Severability",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "or discharge of all",
+      "label": "Survival",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "or more counterparts each",
+      "label": "Counterparts",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "or permitted to be",
+      "label": "Notices",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "out of pocket expenses",
+      "label": "Expenses",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "remainder of this agreement",
+      "label": "Severability",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "remaining provisions of this",
+      "label": "Severability",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "repayment satisfaction or discharge",
+      "label": "Survival",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "required or permitted to",
+      "label": "Notices",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "satisfaction or discharge of",
+      "label": "Survival",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "shall be addressed to",
+      "label": "Notices",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "shall constitute an original",
+      "label": "Counterparts",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "shall survive the resignation",
+      "label": "Survival",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "the remaining provisions of",
+      "label": "Severability",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "the repayment satisfaction or",
+      "label": "Survival",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "to have been duly",
+      "label": "Notices",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "to such other address",
+      "label": "Notices",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "to the company shall",
+      "label": "Notices",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "with this agreement and",
+      "label": "Expenses",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "a manually executed",
+      "label": "Counterparts",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "affect the validity",
+      "label": "Severability",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "all notices or",
+      "label": "Notices",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "all such counterparts",
+      "label": "Counterparts",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    },
+    {
+      "phrase": "and construed and",
+      "label": "Governing Laws",
+      "support": 7,
+      "total": 7,
+      "precision": 1.0
+    }
+  ]
+}

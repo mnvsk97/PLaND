@@ -1,0 +1,38 @@
+{
+  "case_id": "train-54613",
+  "started_at": "2026-09-06T07:09:56.111834+00:00",
+  "frozen_manifest_sha256": "2639e3e5de263501ff192f808d76221ac8528b20cb8c23870be1ccb07e71d5e9",
+  "status": "completed",
+  "case": {
+    "id": "train-54613",
+    "expected": "Governing Laws",
+    "actual": "Governing Laws",
+    "correct": true,
+    "source": "command",
+    "matched_rule": "(?:\\bgoverned by\\b|\\bconstrued in accordance with\\b).{0,140}\\blaws?\\b|\\blaws?\\b.{0,100}\\bstate of\\b",
+    "parse_error": null,
+    "raw_message_content": null,
+    "latency_seconds": 1.0166986612603068e-05,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "total_tokens": 0,
+    "model_calls": 0,
+    "model_done_reason": null,
+    "deepagent_trace": [],
+    "step_trace": {
+      "command_step_id": "S03",
+      "fallback_step_id": null,
+      "fallback_instruction_sha256": null,
+      "escape_reason": null,
+      "command_work": true,
+      "model_work": false,
+      "command_error": null
+    },
+    "reasoning_tokens": 0,
+    "cached_input_tokens": 0,
+    "service_cost_usd": 0,
+    "request_receipts": []
+  },
+  "rate_limit_retries": [],
+  "ended_at": "2026-09-06T07:09:56.112292+00:00"
+}

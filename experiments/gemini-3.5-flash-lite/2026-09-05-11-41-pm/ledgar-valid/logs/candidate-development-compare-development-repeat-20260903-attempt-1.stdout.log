@@ -1,0 +1,1 @@
+{"accuracy_points": 0.0040000000000000036, "estimated_model_cost_usd": -0.05977170000000001, "input_tokens": -170764, "mean_latency_ratio": 0.2925636129480692, "mean_latency_seconds": -0.39882463054190154, "output_tokens": -3417, "quality": 0.0040000000000000036, "total_token_ratio": 0.26668968159409245, "total_tokens": -174181}

@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "split": "development",
+  "cases": 500,
+  "resolved": 419,
+  "coverage": 0.838,
+  "correct": 387,
+  "precision": 0.9236276849642004,
+  "abstained": 81,
+  "rule_outcomes": [
+    {
+      "label": "Amendments",
+      "rule": "\\b(?:any|no|such|the) amendment\\b",
+      "correct": true,
+      "cases": 20
+    },
+    {
+      "label": "Assignments",
+      "rule": "\\bassign\\b|\\bassignee\\b|\\ban assignment\\b|\\bbe assigned\\b",
+      "correct": true,
+      "cases": 37
+    },
+    {
+      "label": "Counterparts",
+      "rule": "\\bcounterparts?\\b",
+      "correct": true,
+      "cases": 50
+    },
+    {
+      "label": "Entire Agreements",
+      "rule": "\\bentire agreement\\b|\\bsupersed(?:e|es|ed|ing)\\b.{0,100}\\bprior\\b|\\ball prior\\b.{0,100}\\bagreements?\\b|\\bagreements and understandings\\b",
+      "correct": false,
+      "cases": 2
+    },
+    {
+      "label": "Entire Agreements",
+      "rule": "\\bentire agreement\\b|\\bsupersed(?:e|es|ed|ing)\\b.{0,100}\\bprior\\b|\\ball prior\\b.{0,100}\\bagreements?\\b|\\bagreements and understandings\\b",
+      "correct": true,
+      "cases": 46
+    },
+    {
+      "label": "Expenses",
+      "rule": "\\bexpenses incurred\\b|\\bcosts and expenses\\b|\\breimburse\\b.{0,100}\\bexpenses\\b",
+      "correct": true,
+      "cases": 34
+    },
+    {
+      "label": "Governing Laws",
+      "rule": "(?:\\bgoverned by\\b|\\bconstrued in accordance with\\b).{0,140}\\blaws?\\b|\\blaws?\\b.{0,100}\\bstate of\\b",
+      "correct": false,
+      "cases": 1
+    },
+    {
+      "label": "Governing Laws",
+      "rule": "(?:\\bgoverned by\\b|\\bconstrued in accordance with\\b).{0,140}\\blaws?\\b|\\blaws?\\b.{0,100}\\bstate of\\b",
+      "correct": true,
+      "cases": 46
+    },
+    {
+      "label": "Notices",
+      "rule": "\\bnotices?\\b",
+      "correct": false,
+      "cases": 24
+    },
+    {
+      "label": "Notices",
+      "rule": "\\bnotices?\\b",
+      "correct": true,
+      "cases": 50
+    },
+    {
+      "label": "Severability",
+      "rule": "\\b(?:invalid|illegal|unenforceable|invalidity)\\b.{0,180}\\b(?:provision|remainder|remaining)\\b|\\bprovision\\b.{0,180}\\b(?:invalid|illegal|unenforceable)\\b",
+      "correct": false,
+      "cases": 1
+    },
+    {
+      "label": "Severability",
+      "rule": "\\b(?:invalid|illegal|unenforceable|invalidity)\\b.{0,180}\\b(?:provision|remainder|remaining)\\b|\\bprovision\\b.{0,180}\\b(?:invalid|illegal|unenforceable)\\b",
+      "correct": true,
+      "cases": 44
+    },
+    {
+      "label": "Survival",
+      "rule": "\\bsurviv(?:e|es|ed|al)\\b|\\brepayment satisfaction or discharge\\b",
+      "correct": false,
+      "cases": 4
+    },
+    {
+      "label": "Survival",
+      "rule": "\\bsurviv(?:e|es|ed|al)\\b|\\brepayment satisfaction or discharge\\b",
+      "correct": true,
+      "cases": 47
+    },
+    {
+      "label": "Terms",
+      "rule": "\\bshall commence\\b|\\bthe term shall\\b|\\bdate and shall continue\\b",
+      "correct": true,
+      "cases": 13
+    }
+  ]
+}

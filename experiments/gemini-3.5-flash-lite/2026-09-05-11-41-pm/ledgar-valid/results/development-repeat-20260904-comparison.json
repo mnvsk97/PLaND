@@ -1,0 +1,164 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-09-06T07:06:57.904269+00:00",
+  "comparison": "natural_language_vs_hybrid",
+  "invariants": {
+    "model": "google/gemini-3.5-flash-lite",
+    "model_digest": null,
+    "seed": 20260904,
+    "evals": "/Users/saikrishna/dev/deterministic-skills/tmp/gemini-3.5-flash-lite/2026-09-05-11-41-pm/datasets/ledgar-valid/evals.csv",
+    "evals_sha256": "0cb73326d9de4277f5f709b5ebb5e13c5bf3ce4e9953633178cecd99436af3bf",
+    "split": "development",
+    "runtime": {
+      "max_completion_tokens": 1024,
+      "timeout_seconds": 300,
+      "model_provider": "openrouter",
+      "model": "google/gemini-3.5-flash-lite",
+      "base_url": "https://openrouter.ai/api/v1",
+      "stream": false,
+      "seed_supported": false,
+      "provider_endpoint": "google-ai-studio",
+      "reasoning_effort": "low",
+      "extra_body": {
+        "reasoning": {
+          "effort": "low"
+        },
+        "provider": {
+          "only": [
+            "google-ai-studio"
+          ],
+          "allow_fallbacks": false,
+          "require_parameters": true
+        }
+      },
+      "temperature": null,
+      "allow_fallbacks": false,
+      "require_parameters": true,
+      "max_retries": 0,
+      "token_metric": "provider_prompt_plus_completion_including_reasoning",
+      "weight_digest_available": false,
+      "execution_backend": "deepagent",
+      "workers": 8
+    },
+    "system_prompt_sha256": "b5c9e69e344e34459df5347953f43a1489167ba4f54972d1c51b8aa89d3dc887",
+    "selection_sha256": "497bb1664c7de6bb1c192f31bca99065752faaa6eb3ff4e6d43130fab11c7a70",
+    "datasource_snapshot_sha256": "f72438462e5e9cc1da89e04521a21f42cb0d2880914aea8925e28dee718b68cb",
+    "scorer_sha256": "03f83e70d463b7903d93fd0e0019aec14535f6817b1fce0ad19dc7f585cdab84",
+    "agent_harness_sha256": "7e3cd3303385b7c9079a8888a24594a6fb8b24eaab16c103d6d3ccfe628850ae",
+    "baseline_sop_sha256": "187274d0362cfd50b28fcc425ef3a83fbd54317615e67c5ed6dfbcbf203a268f",
+    "baseline_sop_contract_sha256": "717bc401308ebdcbe53e05d46682bd904c5246a69e6e307670af38180f80f5ee",
+    "hosted_adapter_sha256": "ee6247ed7f66d4df342117fbc379e0104c5a65a454b5d095a1947bfbbaeca9ad",
+    "evaluation_sha256": "0cb73326d9de4277f5f709b5ebb5e13c5bf3ce4e9953633178cecd99436af3bf"
+  },
+  "natural_language": {
+    "sop": {
+      "variant": "natural_language",
+      "sha256": "187274d0362cfd50b28fcc425ef3a83fbd54317615e67c5ed6dfbcbf203a268f",
+      "classifier_sha256": null,
+      "content": "---\nname: ledgar-classification\ndescription: Execute the ledgar classification workflow using the approved datasource collection. Use when a request requires this workflow.\n---\n\n# Ledgar Classification SOP\n\n1. [S01] Identify the requested item and follow this requirement: Classify one contract clause by its primary legal function into exactly one supplied LEDGAR provision label. Base the decision only on the clause text and label meanings. Return only a JSON object with the selected label; do not expose\u2026 <!-- pland:english -->\n2. [S02] Use the approved datasource tools to read only the relevant evidence; the source collection contains .json files. <!-- pland:english -->\n3. [S03] Classify the evidence into exactly one known bucket: `Amendments`, `Assignments`, `Counterparts`, `Entire Agreements`, `Expenses`, `Governing Laws`, `Notices`, `Severability`, `Survival`, `Terms`. <!-- pland:english -->\n4. [S04] Return exactly one JSON object shaped as `{\"label\":\"<known bucket>\"}`. <!-- pland:english -->\n",
+      "step_representations": {
+        "english": 4
+      },
+      "contract": {
+        "valid": true,
+        "baseline_contract_sha256": "717bc401308ebdcbe53e05d46682bd904c5246a69e6e307670af38180f80f5ee",
+        "baseline_sop_sha256": "187274d0362cfd50b28fcc425ef3a83fbd54317615e67c5ed6dfbcbf203a268f",
+        "candidate_sop_sha256": "187274d0362cfd50b28fcc425ef3a83fbd54317615e67c5ed6dfbcbf203a268f",
+        "command_fallback_links": []
+      }
+    },
+    "metrics": {
+      "quality": 0.97,
+      "quality_metric": "accuracy",
+      "correct": 485,
+      "cases": 500,
+      "input_tokens": 232981,
+      "output_tokens": 4600,
+      "total_tokens": 237581,
+      "estimated_model_cost_usd": 0.0813943,
+      "errors": {},
+      "normal_completion_rate": 1.0,
+      "escape_count": 0,
+      "escape_rate": 0.0,
+      "latency_seconds": {
+        "total": 271.63959841500036,
+        "mean": 0.5432791968300007,
+        "p95": null
+      },
+      "accuracy": 0.97
+    }
+  },
+  "hybrid": {
+    "sop": {
+      "variant": "hybrid",
+      "sha256": "cfb84b4d0abfc762878b6a31f827ac27772bd1e7eec45dd40d25c7bc9ad77b24",
+      "classifier_sha256": "803295f06d6ef39a3f0398d617b814d7f5b4587933278f4457a32b99174434c6",
+      "content": "---\nname: ledgar-classification\ndescription: Execute the ledgar classification workflow using the approved datasource collection. Use when a request requires this workflow.\n---\n\n# Ledgar Classification SOP\n\n1. [S01] Identify the requested item and follow this requirement: Classify one contract clause by its primary legal function into exactly one supplied LEDGAR provision label. Base the decision only on the clause text and label meanings. Return only a JSON object with the selected label; do not expose\u2026 <!-- pland:english -->\n2. [S02] Use the approved datasource tools to read only the relevant evidence; the source collection contains .json files. <!-- pland:english -->\n3. [S03] Run the bounded local `classify.py` rules; accept only a supplied label with a named matching rule. Abstain on every unrecognized clause so the exact English fallback handles it. <!-- pland:command fallback=S03 -->\n   Fallback [S03]: Classify the evidence into exactly one known bucket: `Amendments`, `Assignments`, `Counterparts`, `Entire Agreements`, `Expenses`, `Governing Laws`, `Notices`, `Severability`, `Survival`, `Terms`. <!-- pland:fallback -->\n4. [S04] Return exactly one JSON object shaped as `{\"label\":\"<known bucket>\"}`. <!-- pland:english -->\n",
+      "step_representations": {
+        "english": 3,
+        "command": 1
+      },
+      "contract": {
+        "valid": true,
+        "baseline_contract_sha256": "717bc401308ebdcbe53e05d46682bd904c5246a69e6e307670af38180f80f5ee",
+        "baseline_sop_sha256": "187274d0362cfd50b28fcc425ef3a83fbd54317615e67c5ed6dfbcbf203a268f",
+        "candidate_sop_sha256": "cfb84b4d0abfc762878b6a31f827ac27772bd1e7eec45dd40d25c7bc9ad77b24",
+        "command_fallback_links": [
+          {
+            "command_step_id": "S03",
+            "fallback_step_id": "S03",
+            "fallback_instruction": "Classify the evidence into exactly one known bucket: `Amendments`, `Assignments`, `Counterparts`, `Entire Agreements`, `Expenses`, `Governing Laws`, `Notices`, `Severability`, `Survival`, `Terms`.",
+            "fallback_instruction_sha256": "fe9e4f113f9165e36112eaca1ec0b9e826a29d1df96b1ebe81bad1361a9c3b8f"
+          }
+        ]
+      }
+    },
+    "metrics": {
+      "quality": 0.974,
+      "quality_metric": "accuracy",
+      "correct": 487,
+      "cases": 500,
+      "input_tokens": 62217,
+      "output_tokens": 1116,
+      "total_tokens": 63333,
+      "estimated_model_cost_usd": 0.0214551,
+      "errors": {},
+      "normal_completion_rate": 1.0,
+      "escape_count": 0,
+      "escape_rate": 0.0,
+      "latency_seconds": {
+        "total": 81.18287183801294,
+        "mean": 0.16236574367602588,
+        "p95": null
+      },
+      "accuracy": 0.974
+    }
+  },
+  "identity": {
+    "experiment_id": "gemini-3.5-flash-lite-2026-09-05-11-41-pm-ledgar-valid",
+    "baseline_run_id": "development-repeat-20260904-baseline",
+    "candidate_run_id": "development-repeat-20260904-hybrid",
+    "candidate_id": "candidate-02",
+    "baseline_sop_sha256": "187274d0362cfd50b28fcc425ef3a83fbd54317615e67c5ed6dfbcbf203a268f",
+    "candidate_sop_sha256": "cfb84b4d0abfc762878b6a31f827ac27772bd1e7eec45dd40d25c7bc9ad77b24",
+    "baseline_skill_content_sha256": "2ca05ee03a1ea3289f6cd67b3a2d9361dd012aff4c3a76f28cf2baea712138a6",
+    "candidate_skill_content_sha256": "746cefc04ea6ae8f64fd0dccc121b5d04b6b85733bc13b0153be067fe3ee13b9"
+  },
+  "cost_weighted_determinisation": {
+    "baseline_model_tokens": 237581,
+    "candidate_model_tokens": 63333,
+    "fallback_model_tokens": 63333,
+    "rate": 0.46685130544950987
+  },
+  "delta_hybrid_minus_natural_language": {
+    "quality": 0.0040000000000000036,
+    "input_tokens": -170764,
+    "output_tokens": -3484,
+    "total_tokens": -174248,
+    "total_token_ratio": 0.2665743472752451,
+    "estimated_model_cost_usd": -0.0599392,
+    "mean_latency_seconds": -0.38091345315397485,
+    "mean_latency_ratio": 0.29886243504890225,
+    "accuracy_points": 0.0040000000000000036
+  }
+}

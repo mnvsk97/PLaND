@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-09-06T07:03:11.360829+00:00",
+  "candidate": "candidate-02",
+  "hypothesis": "Requiring notice-delivery language and explicit survival events removes cross-reference false positives while retaining conservative local coverage.",
+  "iteration": 2,
+  "max_iterations": 10,
+  "target_quality": 0.8,
+  "quality_metric": "accuracy",
+  "optimization_metric": "total_tokens",
+  "min_objective_improvement_ratio": 0.05,
+  "require_hybrid_sop": true,
+  "frozen_invariants": {
+    "system_prompt_sha256": "b5c9e69e344e34459df5347953f43a1489167ba4f54972d1c51b8aa89d3dc887",
+    "evals_sha256": "0cb73326d9de4277f5f709b5ebb5e13c5bf3ce4e9953633178cecd99436af3bf",
+    "selection_sha256": "497bb1664c7de6bb1c192f31bca99065752faaa6eb3ff4e6d43130fab11c7a70",
+    "datasource_snapshot_sha256": "f72438462e5e9cc1da89e04521a21f42cb0d2880914aea8925e28dee718b68cb",
+    "scorer_sha256": "03f83e70d463b7903d93fd0e0019aec14535f6817b1fce0ad19dc7f585cdab84",
+    "agent_harness_sha256": "7e3cd3303385b7c9079a8888a24594a6fb8b24eaab16c103d6d3ccfe628850ae",
+    "baseline_sop_sha256": "187274d0362cfd50b28fcc425ef3a83fbd54317615e67c5ed6dfbcbf203a268f",
+    "baseline_sop_contract_sha256": "717bc401308ebdcbe53e05d46682bd904c5246a69e6e307670af38180f80f5ee",
+    "hosted_adapter_sha256": "ee6247ed7f66d4df342117fbc379e0104c5a65a454b5d095a1947bfbbaeca9ad",
+    "evaluation_sha256": "0cb73326d9de4277f5f709b5ebb5e13c5bf3ce4e9953633178cecd99436af3bf"
+  },
+  "system_prompt": null,
+  "development": {
+    "baseline": {
+      "cases": 500,
+      "correct": 483,
+      "accuracy": 0.966,
+      "macro_f1": 0.9655636906837402,
+      "input_tokens": 232981,
+      "output_tokens": 4614,
+      "total_tokens": 237595,
+      "estimated_model_cost_usd": 0.0814293,
+      "model_calls": 500,
+      "model_tokens": 237595,
+      "command_calls": 0,
+      "command_resolved_cases": 0,
+      "fallback_model_calls": 0,
+      "fallback_model_tokens": 0,
+      "normal_completion_rate": 1.0,
+      "errors": {},
+      "latency_seconds": {
+        "total": 278.3646102567727,
+        "mean": 0.5567292205135455
+      },
+      "wall_seconds": 35.75576379199629,
+      "max_rss_bytes": 228147200,
+      "reasoning_tokens": 0,
+      "cached_input_tokens": 0,
+      "service_cost_usd": 0.0814293
+    },
+    "candidate": {
+      "cases": 500,
+      "correct": 486,
+      "accuracy": 0.972,
+      "macro_f1": 0.9718027328342107,
+      "input_tokens": 62217,
+      "output_tokens": 1174,
+      "total_tokens": 63391,
+      "estimated_model_cost_usd": 0.0216001,
+      "model_calls": 133,
+      "model_tokens": 63391,
+      "command_calls": 500,
+      "command_resolved_cases": 367,
+      "fallback_model_calls": 133,
+      "fallback_model_tokens": 63391,
+      "normal_completion_rate": 1.0,
+      "errors": {},
+      "latency_seconds": {
+        "total": 91.1826102064515,
+        "mean": 0.182365220412903
+      },
+      "wall_seconds": 11.855656333005754,
+      "max_rss_bytes": 213499904,
+      "reasoning_tokens": 0,
+      "cached_input_tokens": 0,
+      "service_cost_usd": 0.0216001
+    },
+    "delta": {
+      "quality": 0.006000000000000005,
+      "tokens": -174204,
+      "token_ratio": 0.26680275258317726,
+      "mean_latency_seconds": -0.3743640001006424,
+      "mean_latency_ratio": 0.32756538312230726,
+      "accuracy_points": 0.006000000000000005
+    }
+  },
+  "validation": null,
+  "failed_checks": [],
+  "decision": "eligible_for_validation"
+}

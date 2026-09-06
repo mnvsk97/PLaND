@@ -1,0 +1,214 @@
+{
+  "schema_version": 2,
+  "natural_language": {
+    "cases": 1000,
+    "correct": 974,
+    "accuracy": 0.974,
+    "macro_f1": 0.9736857592732984,
+    "input_tokens": 463513,
+    "output_tokens": 9287,
+    "total_tokens": 472800,
+    "estimated_model_cost_usd": 0.1622714,
+    "model_calls": 1000,
+    "model_tokens": 472800,
+    "command_calls": 0,
+    "command_resolved_cases": 0,
+    "fallback_model_calls": 0,
+    "fallback_model_tokens": 0,
+    "normal_completion_rate": 1.0,
+    "errors": {},
+    "latency_seconds": {
+      "total": 557.9238427793025,
+      "mean": 0.5579238427793025
+    },
+    "wall_seconds": 72.12153604198829,
+    "max_rss_bytes": 236044288,
+    "reasoning_tokens": 0,
+    "cached_input_tokens": 0,
+    "service_cost_usd": 0.1622714
+  },
+  "hybrid": {
+    "cases": 1000,
+    "correct": 969,
+    "accuracy": 0.969,
+    "macro_f1": 0.9688165595836071,
+    "input_tokens": 137715,
+    "output_tokens": 2769,
+    "total_tokens": 140484,
+    "estimated_model_cost_usd": 0.048237,
+    "model_calls": 302,
+    "model_tokens": 140484,
+    "command_calls": 1000,
+    "command_resolved_cases": 698,
+    "fallback_model_calls": 302,
+    "fallback_model_tokens": 140484,
+    "normal_completion_rate": 1.0,
+    "errors": {},
+    "latency_seconds": {
+      "total": 172.32004579060595,
+      "mean": 0.17232004579060595
+    },
+    "wall_seconds": 22.826738083997043,
+    "max_rss_bytes": 225247232,
+    "reasoning_tokens": 0,
+    "cached_input_tokens": 0,
+    "service_cost_usd": 0.048237
+  },
+  "delta_hybrid_minus_nl": {
+    "accuracy": -0.0050000000000000044,
+    "macro_f1": -0.004869199689691239,
+    "total_tokens": -332316,
+    "token_reduction_fraction": 0.7028680203045685,
+    "mean_latency_seconds": -0.38560379698869657,
+    "model_calls": -698
+  },
+  "paired_statistics": {
+    "cases": 1000,
+    "correctness_table": {
+      "both_correct": 963,
+      "natural_language_only": 11,
+      "hybrid_only": 6,
+      "both_wrong": 20
+    },
+    "natural_language_accuracy_wilson_95": [
+      0.9621761711573101,
+      0.9821960617983837
+    ],
+    "hybrid_accuracy_wilson_95": [
+      0.9563345039877078,
+      0.9780759965528414
+    ],
+    "accuracy_difference_bootstrap_95": [
+      -0.013,
+      0.003
+    ],
+    "token_reduction_bootstrap_95": [
+      0.6738588171375849,
+      0.7315347256847546
+    ],
+    "mcnemar_exact_p": 0.332305908203125,
+    "bootstrap_samples": 5000,
+    "bootstrap_seed": 20260902
+  },
+  "mechanism_decomposition": {
+    "command_routed_cases": 698,
+    "model_fallback_cases": 302,
+    "natural_language_tokens_on_command_routed_cases": 332295,
+    "hybrid_tokens_on_command_routed_cases": 0,
+    "natural_language_tokens_on_model_fallback_cases": 140505,
+    "hybrid_tokens_on_model_fallback_cases": 140484,
+    "tokens_saved_total": 332316,
+    "tokens_saved_by_bypassing_model_calls": 332295,
+    "tokens_saved_on_model_fallback_cases": 21,
+    "command_routed_hybrid_accuracy": 0.9785100286532952,
+    "natural_language_accuracy_on_same_command_routed_cases": 0.9842406876790831,
+    "command_routed_hybrid_precision": 0.9785100286532952
+  },
+  "per_label_recall": {
+    "natural_language": {
+      "Amendments": 0.88,
+      "Assignments": 0.97,
+      "Counterparts": 1.0,
+      "Entire Agreements": 0.99,
+      "Expenses": 0.99,
+      "Governing Laws": 1.0,
+      "Notices": 1.0,
+      "Severability": 0.99,
+      "Survival": 1.0,
+      "Terms": 0.92
+    },
+    "hybrid": {
+      "Amendments": 0.91,
+      "Assignments": 0.97,
+      "Counterparts": 1.0,
+      "Entire Agreements": 1.0,
+      "Expenses": 0.98,
+      "Governing Laws": 0.99,
+      "Notices": 0.99,
+      "Severability": 0.99,
+      "Survival": 0.97,
+      "Terms": 0.89
+    },
+    "delta_hybrid_minus_nl": {
+      "Amendments": 0.030000000000000027,
+      "Assignments": 0.0,
+      "Counterparts": 0.0,
+      "Entire Agreements": 0.010000000000000009,
+      "Expenses": -0.010000000000000009,
+      "Governing Laws": -0.010000000000000009,
+      "Notices": -0.010000000000000009,
+      "Severability": 0.0,
+      "Survival": -0.030000000000000027,
+      "Terms": -0.030000000000000027
+    },
+    "worst_label": "Survival",
+    "worst_delta": -0.030000000000000027
+  },
+  "gate": {
+    "noninferiority_margin": 0.02,
+    "minimum_token_reduction": 0.05,
+    "minimum_accuracy": 0.8,
+    "require_no_accuracy_regression": false,
+    "minimum_accuracy_difference_lower_bound": null,
+    "max_per_label_recall_drop": null,
+    "minimum_command_precision": null,
+    "quality_noninferior": true,
+    "token_objective_met": true,
+    "absolute_viability": true,
+    "relative_pass": true,
+    "test_release_pass": true
+  },
+  "variant_hashes": {
+    "natural_language": {
+      "sop_sha256": "187274d0362cfd50b28fcc425ef3a83fbd54317615e67c5ed6dfbcbf203a268f",
+      "classifier_sha256": null
+    },
+    "hybrid": {
+      "sop_sha256": "cfb84b4d0abfc762878b6a31f827ac27772bd1e7eec45dd40d25c7bc9ad77b24",
+      "classifier_sha256": "803295f06d6ef39a3f0398d617b814d7f5b4587933278f4457a32b99174434c6"
+    }
+  },
+  "invariants": {
+    "system_prompt_sha256": "b5c9e69e344e34459df5347953f43a1489167ba4f54972d1c51b8aa89d3dc887",
+    "evals_sha256": "0cb73326d9de4277f5f709b5ebb5e13c5bf3ce4e9953633178cecd99436af3bf",
+    "selection_sha256": "497bb1664c7de6bb1c192f31bca99065752faaa6eb3ff4e6d43130fab11c7a70",
+    "datasource_snapshot_sha256": "f72438462e5e9cc1da89e04521a21f42cb0d2880914aea8925e28dee718b68cb",
+    "scorer_sha256": "03f83e70d463b7903d93fd0e0019aec14535f6817b1fce0ad19dc7f585cdab84",
+    "agent_harness_sha256": "7e3cd3303385b7c9079a8888a24594a6fb8b24eaab16c103d6d3ccfe628850ae",
+    "baseline_sop_sha256": "187274d0362cfd50b28fcc425ef3a83fbd54317615e67c5ed6dfbcbf203a268f",
+    "baseline_sop_contract_sha256": "717bc401308ebdcbe53e05d46682bd904c5246a69e6e307670af38180f80f5ee",
+    "hosted_adapter_sha256": "ee6247ed7f66d4df342117fbc379e0104c5a65a454b5d095a1947bfbbaeca9ad",
+    "evaluation_sha256": "0cb73326d9de4277f5f709b5ebb5e13c5bf3ce4e9953633178cecd99436af3bf",
+    "runtime": {
+      "max_completion_tokens": 1024,
+      "timeout_seconds": 300,
+      "model_provider": "openrouter",
+      "model": "google/gemini-3.5-flash-lite",
+      "base_url": "https://openrouter.ai/api/v1",
+      "stream": false,
+      "seed_supported": false,
+      "provider_endpoint": "google-ai-studio",
+      "reasoning_effort": "low",
+      "extra_body": {
+        "reasoning": {
+          "effort": "low"
+        },
+        "provider": {
+          "only": [
+            "google-ai-studio"
+          ],
+          "allow_fallbacks": false,
+          "require_parameters": true
+        }
+      },
+      "temperature": null,
+      "allow_fallbacks": false,
+      "require_parameters": true,
+      "max_retries": 0,
+      "token_metric": "provider_prompt_plus_completion_including_reasoning",
+      "weight_digest_available": false,
+      "execution_backend": "deepagent",
+      "workers": 8
+    }
+  }
+}

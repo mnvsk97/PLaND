@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "candidate_id": "candidate-01",
+  "development_only": true,
+  "hypothesis": "High-precision legal boilerplate phrases can resolve common LEDGAR clauses locally while ambiguous clauses abstain to the frozen S03 fallback.",
+  "dependencies": [
+    "Python standard library"
+  ],
+  "network": "none",
+  "side_effects": "none",
+  "cache": {
+    "used": false,
+    "reason": "Each clause is evaluated once; lookup reuse is absent."
+  },
+  "parallelism": {
+    "used": false,
+    "reason": "One bounded regex pass is cheaper than coordinating internal workers; run-level concurrency remains eight."
+  },
+  "input_contract": "One nonempty clause string up to 200,000 characters and the supplied label list.",
+  "output_contract": "A supplied label plus matched_rule, or None to trigger the exact English fallback."
+}

@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-09-06T07:06:57.810035+00:00",
+  "candidate": "candidate-02",
+  "hypothesis": "Frozen repeat of candidate-02 after development eligibility.",
+  "iteration": 2,
+  "max_iterations": 10,
+  "target_quality": 0.8,
+  "quality_metric": "accuracy",
+  "optimization_metric": "total_tokens",
+  "min_objective_improvement_ratio": 0.05,
+  "require_hybrid_sop": true,
+  "frozen_invariants": {
+    "system_prompt_sha256": "b5c9e69e344e34459df5347953f43a1489167ba4f54972d1c51b8aa89d3dc887",
+    "evals_sha256": "0cb73326d9de4277f5f709b5ebb5e13c5bf3ce4e9953633178cecd99436af3bf",
+    "selection_sha256": "497bb1664c7de6bb1c192f31bca99065752faaa6eb3ff4e6d43130fab11c7a70",
+    "datasource_snapshot_sha256": "f72438462e5e9cc1da89e04521a21f42cb0d2880914aea8925e28dee718b68cb",
+    "scorer_sha256": "03f83e70d463b7903d93fd0e0019aec14535f6817b1fce0ad19dc7f585cdab84",
+    "agent_harness_sha256": "7e3cd3303385b7c9079a8888a24594a6fb8b24eaab16c103d6d3ccfe628850ae",
+    "baseline_sop_sha256": "187274d0362cfd50b28fcc425ef3a83fbd54317615e67c5ed6dfbcbf203a268f",
+    "baseline_sop_contract_sha256": "717bc401308ebdcbe53e05d46682bd904c5246a69e6e307670af38180f80f5ee",
+    "hosted_adapter_sha256": "ee6247ed7f66d4df342117fbc379e0104c5a65a454b5d095a1947bfbbaeca9ad",
+    "evaluation_sha256": "0cb73326d9de4277f5f709b5ebb5e13c5bf3ce4e9953633178cecd99436af3bf"
+  },
+  "system_prompt": null,
+  "development": {
+    "baseline": {
+      "cases": 500,
+      "correct": 483,
+      "accuracy": 0.966,
+      "macro_f1": 0.9654350622648105,
+      "input_tokens": 232981,
+      "output_tokens": 4546,
+      "total_tokens": 237527,
+      "estimated_model_cost_usd": 0.0812593,
+      "model_calls": 500,
+      "model_tokens": 237527,
+      "command_calls": 0,
+      "command_resolved_cases": 0,
+      "fallback_model_calls": 0,
+      "fallback_model_tokens": 0,
+      "normal_completion_rate": 1.0,
+      "errors": {},
+      "latency_seconds": {
+        "total": 281.88020706985844,
+        "mean": 0.5637604141397169
+      },
+      "wall_seconds": 36.402526958001545,
+      "max_rss_bytes": 227508224,
+      "reasoning_tokens": 0,
+      "cached_input_tokens": 0,
+      "service_cost_usd": 0.0812593
+    },
+    "candidate": {
+      "cases": 500,
+      "correct": 485,
+      "accuracy": 0.97,
+      "macro_f1": 0.969723065447106,
+      "input_tokens": 62217,
+      "output_tokens": 1129,
+      "total_tokens": 63346,
+      "estimated_model_cost_usd": 0.0214876,
+      "model_calls": 133,
+      "model_tokens": 63346,
+      "command_calls": 500,
+      "command_resolved_cases": 367,
+      "fallback_model_calls": 133,
+      "fallback_model_tokens": 63346,
+      "normal_completion_rate": 1.0,
+      "errors": {},
+      "latency_seconds": {
+        "total": 82.46789179890766,
+        "mean": 0.16493578359781533
+      },
+      "wall_seconds": 10.817757292010356,
+      "max_rss_bytes": 213647360,
+      "reasoning_tokens": 0,
+      "cached_input_tokens": 0,
+      "service_cost_usd": 0.0214876
+    },
+    "delta": {
+      "quality": 0.0040000000000000036,
+      "tokens": -174181,
+      "token_ratio": 0.26668968159409245,
+      "mean_latency_seconds": -0.39882463054190154,
+      "mean_latency_ratio": 0.2925636129480692,
+      "accuracy_points": 0.0040000000000000036
+    }
+  },
+  "validation": null,
+  "failed_checks": [],
+  "decision": "eligible_for_validation"
+}

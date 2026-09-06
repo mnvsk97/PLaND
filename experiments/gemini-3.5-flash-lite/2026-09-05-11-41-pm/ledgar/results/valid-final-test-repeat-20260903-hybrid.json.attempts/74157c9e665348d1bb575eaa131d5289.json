@@ -1,0 +1,38 @@
+{
+  "case_id": "train-28902",
+  "started_at": "2026-09-06T07:14:43.702914+00:00",
+  "frozen_manifest_sha256": "daa742932462d385c304fa8f7e838cd3297c122a110e29f6a0fadcf79a009cff",
+  "status": "completed",
+  "case": {
+    "id": "train-28902",
+    "expected": "Expenses",
+    "actual": "Expenses",
+    "correct": true,
+    "source": "command",
+    "matched_rule": "\\bexpenses incurred\\b|\\bcosts and expenses\\b|\\breimburse\\b.{0,100}\\bexpenses\\b",
+    "parse_error": null,
+    "raw_message_content": null,
+    "latency_seconds": 3.612501313909888e-05,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "total_tokens": 0,
+    "model_calls": 0,
+    "model_done_reason": null,
+    "deepagent_trace": [],
+    "step_trace": {
+      "command_step_id": "S03",
+      "fallback_step_id": null,
+      "fallback_instruction_sha256": null,
+      "escape_reason": null,
+      "command_work": true,
+      "model_work": false,
+      "command_error": null
+    },
+    "reasoning_tokens": 0,
+    "cached_input_tokens": 0,
+    "service_cost_usd": 0,
+    "request_receipts": []
+  },
+  "rate_limit_retries": [],
+  "ended_at": "2026-09-06T07:14:43.703198+00:00"
+}
