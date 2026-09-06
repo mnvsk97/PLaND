@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-09-06T04:27:10.989664+00:00",
+  "attempt": 5,
+  "max_attempts": 10,
+  "minimum_quality": 0.8,
+  "observed_quality": 0.762,
+  "run": "/Users/saikrishna/.codex/worktrees/ee41/deterministic-skills/tmp/fresh-paper-continuation-20260905/runs/cfpb/baseline-development-05.json",
+  "sop_sha256": "269815629c6c1cdd867bc99091598eee2060861ffecfc35cfba4fde6d777fc3b",
+  "decision": "refine_baseline"
+}

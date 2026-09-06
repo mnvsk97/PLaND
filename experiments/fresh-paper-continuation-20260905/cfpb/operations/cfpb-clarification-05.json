@@ -1,0 +1,6 @@
+{
+  "based_on_run": "baseline-development-04.json",
+  "step_id": "S02",
+  "reason": "Attempt 4 remained at 75.6%; reporting-related boilerplate still displaced specific product evidence in the development errors. Clarify how to read the supplied narrative before applying the unchanged label definitions.",
+  "instruction": "Read the complete evidence text supplied in this request and separate the consumer's concrete account or transaction facts from copied legal arguments, generic dispute templates, and requested remedies. Identify the named provider, the kind of account or agreement, what happened, and which service the consumer wants corrected. Give those factual details more weight than repeated terms in long statutory quotations. A loan or card account does not become a credit-reporting product merely because the consumer wants its entry deleted; a prepaid card does not become a transfer service merely because its funds were moved. Use a provider's stated role or clearly identifiable product specialization when the narrative omits the generic product name. Treat redaction placeholders as missing information rather than as evidence for a category."
+}

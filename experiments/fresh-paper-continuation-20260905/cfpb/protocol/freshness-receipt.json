@@ -1,0 +1,131 @@
+{
+  "source_custody": [
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/tmp/confirmatory-datasets/cfpb/sources/complaints-api.json",
+      "sha256": "5ef90fe2a075b502bbff8add7372f275df313d6eb095800e6ec023e8192941b8",
+      "bytes": 19108164
+    }
+  ],
+  "prior_opened_cases": 1218,
+  "historical_runs": [
+    {
+      "path": "/Users/saikrishna/.codex/worktrees/ee41/deterministic-skills/experiments/cfpb-text-classification/paper-subset.json",
+      "sha256": "ae818fe47699e7107c557fa5024d66e7eacaa7cb0bbddd586ec6955f8f9d45ab",
+      "cases": 20,
+      "execution_evidence": {
+        "path": "/Users/saikrishna/.codex/worktrees/ee41/deterministic-skills/experiments/cfpb-text-classification/results/summary.json",
+        "sha256": "fb9a230bf348be012542b2faf73f92a838c2139aef92764ba9b67b1155712edf"
+      }
+    },
+    {
+      "path": "/Users/saikrishna/.codex/worktrees/ee41/deterministic-skills/experiments/cfpb-text-classification/results/confirmatory-validation-hybrid.json",
+      "sha256": "3a8ec9dfc2ea705f29082a61c87ad1955dabc789d83bca78e745016a81017e66",
+      "cases": 100
+    },
+    {
+      "path": "/Users/saikrishna/.codex/worktrees/ee41/deterministic-skills/experiments/cfpb-text-classification/results/confirmatory-validation-nl.json",
+      "sha256": "6e85e98b3676ffdd743ef1b1160403793c2c15096a40ba7edb858fc4d03b79b1",
+      "cases": 100
+    },
+    {
+      "path": "/Users/saikrishna/.codex/worktrees/ee41/deterministic-skills/experiments/cfpb-text-classification/results/quality-first-validation-20260903/seed-20260906-nl.json",
+      "sha256": "75c7573d0df51e911d675d84adbd21dc5b4e62b599cd00a3d3a01fbfd3e7363a",
+      "cases": 500
+    },
+    {
+      "path": "/Users/saikrishna/.codex/worktrees/ee41/deterministic-skills/experiments/cfpb-text-classification/results/quality-first-validation-20260903/seed-20260906-quality-first.json",
+      "sha256": "5ff4a340c7dde1eaca730f8934b243faeaf41e969017e72c8a2c3c37c91d275c",
+      "cases": 500
+    },
+    {
+      "path": "/Users/saikrishna/.codex/worktrees/ee41/deterministic-skills/experiments/cfpb-text-classification/results/quality-first-validation-20260903/seed-20260907-nl.json",
+      "sha256": "0955b9e2ba1c43a7ea0b5b3a0cfb69e9e790b896528496e930e6a64dfe48f91e",
+      "cases": 500
+    },
+    {
+      "path": "/Users/saikrishna/.codex/worktrees/ee41/deterministic-skills/experiments/cfpb-text-classification/results/quality-first-validation-20260903/seed-20260907-quality-first.json",
+      "sha256": "cd873479ca3bc7d5005ac3544ce09d1d95536a70e3a842dca4343e3909f3c012",
+      "cases": 500
+    },
+    {
+      "path": "/Users/saikrishna/.codex/worktrees/ee41/deterministic-skills/experiments/cfpb-text-classification/results/quality-first-validation-20260903/seed-20260908-nl.json",
+      "sha256": "c776e7a729c7d8a67fc02062500f7d423b98fbb9b280fceae5b9c6c592ea159c",
+      "cases": 500
+    },
+    {
+      "path": "/Users/saikrishna/.codex/worktrees/ee41/deterministic-skills/experiments/cfpb-text-classification/results/quality-first-validation-20260903/seed-20260908-quality-first.json",
+      "sha256": "427b23873d4e049a9563490ecf1096707796919c4b661917cdbf0baf272a6f3d",
+      "cases": 500
+    },
+    {
+      "path": "/Users/saikrishna/.codex/worktrees/ee41/deterministic-skills/experiments/cfpb-text-classification/results/variance-study-20260903/seed-20260903-hybrid.json",
+      "sha256": "ee30d1f6d25ffda862860272c158954e78d7a5d9b50bc22c25c47fd59381bc29",
+      "cases": 100
+    },
+    {
+      "path": "/Users/saikrishna/.codex/worktrees/ee41/deterministic-skills/experiments/cfpb-text-classification/results/variance-study-20260903/seed-20260903-nl.json",
+      "sha256": "24cac979841e2a300a6e9e6d20ee2f129b8ff4281166dc0f37ea075ded0bdf23",
+      "cases": 100
+    },
+    {
+      "path": "/Users/saikrishna/.codex/worktrees/ee41/deterministic-skills/experiments/cfpb-text-classification/results/variance-study-20260903/seed-20260904-hybrid.json",
+      "sha256": "881f7263265168cea14cc480b76afe6e6c7db3154f05d4d0011f13f844557d0b",
+      "cases": 100
+    },
+    {
+      "path": "/Users/saikrishna/.codex/worktrees/ee41/deterministic-skills/experiments/cfpb-text-classification/results/variance-study-20260903/seed-20260904-nl.json",
+      "sha256": "b7abda36b707ee5843c291904cfc74b7cfd6f3c70483671ed3e5bb8502ddd521",
+      "cases": 100
+    },
+    {
+      "path": "/Users/saikrishna/.codex/worktrees/ee41/deterministic-skills/experiments/cfpb-text-classification/results/variance-study-20260903/seed-20260905-hybrid.json",
+      "sha256": "51acea00919d401c2a35597f84fcfeae0ac58c8628269453ab65d9e5b36ec3fd",
+      "cases": 100
+    },
+    {
+      "path": "/Users/saikrishna/.codex/worktrees/ee41/deterministic-skills/experiments/cfpb-text-classification/results/variance-study-20260903/seed-20260905-nl.json",
+      "sha256": "50512531d699e7d2e11de9772ea936830f2f997616f93475b831e5edbdf43512",
+      "cases": 100
+    }
+  ],
+  "prior_dataset_index": [
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/tmp/confirmatory-datasets/cfpb/evals.csv",
+      "sha256": "873d4de9414525bf1cf417f47f17f3cb7235eb3d2932fc85aa26ad14c518cb37"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/tmp/confirmatory-repeat/cfpb/evals.csv",
+      "sha256": "873d4de9414525bf1cf417f47f17f3cb7235eb3d2932fc85aa26ad14c518cb37"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/tmp/enterprise-datasets/cfpb/evals.csv",
+      "sha256": "7eb54d62fb05a1d936a8195f77e80a336efea5809687f240f14ac54aa3325c0f"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/tmp/paper-datasets/cfpb/evals.csv",
+      "sha256": "aeca1b7d3ffe689293cfecc75ca35cf6cc1175f477902875afb84361e441afed"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/tmp/repro-check-cfpb/evals.csv",
+      "sha256": "7eb54d62fb05a1d936a8195f77e80a336efea5809687f240f14ac54aa3325c0f"
+    },
+    {
+      "path": "/Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/tmp/quality-first-datasets/cfpb/evals.csv",
+      "sha256": "34182bc6925562f3ff9965db8d9181294edb908f734daf72871877e54eefa28f"
+    },
+    {
+      "path": "/Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/tmp/quality-first-datasets-auto-labels-rejected/cfpb/evals.csv",
+      "sha256": "34182bc6925562f3ff9965db8d9181294edb908f734daf72871877e54eefa28f"
+    }
+  ],
+  "exclusions_evals_sha256": "c10147f98c7494b457fd20d301379ef5faafd70601b4b08569cc9ea8c3840d95",
+  "plan_sha256": "fb74c8b1d3d162e3c9f112874dc5a9f21ed35b21282259396b1d767a160e4764",
+  "evals_sha256": "e76c5a0dd00cfe973140a319a710a15275001c4e0cc06fd1d43b5d4e94faaf1c",
+  "selection_sha256": "61ee8ad5acd8de460237d46a84a43a9b81350f3b92ec8cd4d9c56e0330a8a8fe",
+  "splits": {
+    "development": 500,
+    "selection": 1000,
+    "final_test": 500
+  },
+  "seed": 20260902
+}

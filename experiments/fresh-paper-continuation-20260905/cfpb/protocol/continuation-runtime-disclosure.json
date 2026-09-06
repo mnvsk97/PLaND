@@ -1,0 +1,12 @@
+{
+  "status": "verified_runtime_disclosure",
+  "datasets": ["cfpb", "spamassassin"],
+  "execution_authority": "The author's subsequent request to start the next two datasets and minimally update the existing paper extends the earlier LEDGAR-only phase.",
+  "reviewed_plans": ["fresh-paper-cfpb.json", "fresh-paper-spamassassin.json"],
+  "scientific_settings_changed": false,
+  "harness_streaming": false,
+  "ollama_http_streaming": true,
+  "responses_aggregated_before_scoring": true,
+  "explanation": "The same frozen DeepAgent helper and langchain-ollama version used for LEDGAR suppress outward streaming, request streamed HTTP responses internally, and aggregate full responses before scoring. Raw stream:false fields describe the harness interface. This records the known transport-layer distinction and does not introduce a new runtime treatment or a time-to-first-token claim.",
+  "verification": "Each dataset's runtime-audit.json intercepts the actual DeepAgent-to-Ollama call before network inference and records the request options."
+}

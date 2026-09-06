@@ -1,0 +1,127 @@
+{
+  "status": "PASS",
+  "dataset": "cfpb",
+  "dataset_audit_passed": true,
+  "runs": {
+    "baseline-development-01.json": {
+      "cases": 500,
+      "accuracy": 0.744,
+      "tokens": 334702,
+      "sha256": "0b11469c56315e7a263936f5003185e0c8356716fe0b046e0306e8794f8a8f0e",
+      "split": "development",
+      "seed": 20260902
+    },
+    "baseline-development-02.json": {
+      "cases": 500,
+      "accuracy": 0.768,
+      "tokens": 441739,
+      "sha256": "7b43a6177a6f2c86095f78feeac49f04c86f313f008f095a4f5127cb1e9781f9",
+      "split": "development",
+      "seed": 20260902
+    },
+    "baseline-development-03.json": {
+      "cases": 500,
+      "accuracy": 0.756,
+      "tokens": 510693,
+      "sha256": "9a1ba6137eea598cb6d59c62b497e88a023dea2f897d5fa19a9ea20dc709663e",
+      "split": "development",
+      "seed": 20260902
+    },
+    "baseline-development-04.json": {
+      "cases": 500,
+      "accuracy": 0.756,
+      "tokens": 522690,
+      "sha256": "2e3011a9c8ec548b2ad80d8728c6824d973270da0b0c499a003a5cb26d829750",
+      "split": "development",
+      "seed": 20260902
+    },
+    "baseline-development-05.json": {
+      "cases": 500,
+      "accuracy": 0.762,
+      "tokens": 589206,
+      "sha256": "2bc2be815ffd1264249dbb51cd89bc5e73e8a23fc60e0c1fecc4d218cbd71067",
+      "split": "development",
+      "seed": 20260902
+    },
+    "baseline-development-06.json": {
+      "cases": 500,
+      "accuracy": 0.778,
+      "tokens": 664748,
+      "sha256": "2e7d8f0ee083ee7fdc556a1a35ee286120753a6d682f734b275f9c854c5e5e66",
+      "split": "development",
+      "seed": 20260902
+    },
+    "baseline-development-07.json": {
+      "cases": 500,
+      "accuracy": 0.766,
+      "tokens": 636778,
+      "sha256": "e2a4d2b81f1a595eb009f56c2c7eb3ab1bacaedec2c3fe8f76d0ad79542a2bcc",
+      "split": "development",
+      "seed": 20260902
+    },
+    "baseline-development-08.json": {
+      "cases": 500,
+      "accuracy": 0.746,
+      "tokens": 606254,
+      "sha256": "ee553bc7ffb3beb545b7441b1f79693aa8f1c92c576c1ad023771650d2cb2dab",
+      "split": "development",
+      "seed": 20260902
+    },
+    "baseline-development-09.json": {
+      "cases": 500,
+      "accuracy": 0.75,
+      "tokens": 635222,
+      "sha256": "bc4057ce2dd0a08fb5e713dc8f1e231c87c26b04173c7a33e3c387898eb45a75",
+      "split": "development",
+      "seed": 20260902
+    },
+    "baseline-development-10.json": {
+      "cases": 500,
+      "accuracy": 0.724,
+      "tokens": 598316,
+      "sha256": "0c8b7c9520a01f47441e5d19d3d92a87416788be45cf1283f85287def3fa6188",
+      "split": "development",
+      "seed": 20260902
+    }
+  },
+  "transport_protocol_deviation": {
+    "captured_request": {
+      "stream": true,
+      "think": false,
+      "model": "qwen3:14b",
+      "keep_alive": -1,
+      "options": {
+        "num_ctx": 16384,
+        "num_predict": 128,
+        "temperature": 0.0,
+        "seed": 20260902
+      }
+    },
+    "benchmark_inference_performed": false,
+    "planned_stream_field": false,
+    "harness_returns_complete_response": true,
+    "actual_ollama_http_stream": true,
+    "protocol_deviation": true,
+    "harness_sha256": "904b14b2a1a7e5581ec21f0999f32c3295306c36f9ab986eeea83ef4d39ae35d",
+    "explanation": "disable_streaming=True suppresses outward LangChain streaming; langchain-ollama1.1.0 internally requests streamed Ollama responses and aggregates them. Frozen code and dependency versions are identical for both arms. Raw run records are preserved; their stream:false field describes the outward interface, not the HTTP transport."
+  },
+  "ledger_artifact_hashes_reverified": 58,
+  "prepared_data_reaudited": true,
+  "independent_freshness": {
+    "passed": true,
+    "dataset": "cfpb",
+    "selected_cases": 2000,
+    "excluded_cases": 1218,
+    "historically_executed_cases": 618,
+    "historical_evidence_files": 15,
+    "prior_id_overlap": 0,
+    "prior_normalized_content_overlap": 0,
+    "unique_normalized_contents": 2000,
+    "evals_sha256": "e76c5a0dd00cfe973140a319a710a15275001c4e0cc06fd1d43b5d4e94faaf1c"
+  },
+  "statistically_recomputed_comparisons": [],
+  "final_test_release_verified": false,
+  "final_test_unopened": true,
+  "plan_sha256": "593c26792756dd6f342e4b27e14225ba3ffb1ecb158725e62019032b7f19b580",
+  "failed_commands_preserved": 0
+}

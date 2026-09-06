@@ -1,0 +1,10 @@
+{
+  "status": "awaiting_author_clarification",
+  "source_thread": "01a0743c-35f8-7d60-9a0d-165e3127862a",
+  "reason": "The author is questioning whether the intended budget is up to ten hybrid candidates rather than the frozen plan's ten English-baseline attempts and one hybrid candidate.",
+  "permitted_action": "Finish and preserve the already-running CFPB English-baseline attempt 9, then record its development-only readiness decision.",
+  "blocked_actions": ["additional baseline attempts", "CFPB hybrid construction or evaluation", "selection evaluation", "final-test evaluation", "SpamAssassin candidate work"],
+  "plan_changes_made": false,
+  "selection_opened": false,
+  "final_test_opened": false
+}

@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "baseline_sop_sha256": "8b292f3ddc61215d75fca0790d9157a29e502e8631c25a980ac0062bcdc492dc",
+  "baseline_sop_content": "---\nname: cfpb-classification\ndescription: Execute the cfpb classification workflow using the approved datasource collection. Use when a request requires this workflow.\n---\n\n# Cfpb Classification SOP\n\n1. [S01] Identify the requested item and follow this requirement: Classify the supplied consumer complaint narrative into exactly one allowed financial product label by the product involved. <!-- pland:english -->\n2. [S02] Read the complete evidence text supplied in this request. <!-- pland:english -->\n3. [S03] Classify the evidence into exactly one known bucket: `Checking or savings account`, `Credit card`, `Credit reporting or other personal consumer reports`, `Debt collection`, `Money transfer, virtual currency, or money service`, `Mortgage`, `Payday loan, title loan, personal loan, or advance loan`, `Prepaid card`, `Student loan`, `Vehicle loan or lease`. <!-- pland:english -->\n4. [S04] Return exactly one JSON object shaped as `{\"label\":\"<known bucket>\"}`. <!-- pland:english -->\n",
+  "steps": {
+    "S01": {
+      "instruction": "Identify the requested item and follow this requirement: Classify the supplied consumer complaint narrative into exactly one allowed financial product label by the product involved.",
+      "instruction_sha256": "057c7db76d5d0a48e998220999fe2413e2f0926745bbe8b4e5274fce83886f29"
+    },
+    "S02": {
+      "instruction": "Read the complete evidence text supplied in this request.",
+      "instruction_sha256": "6d02e9e59930550e4a884819a8b56e380c52a5c332974e6e6c3bbdf77f5cf9fa"
+    },
+    "S03": {
+      "instruction": "Classify the evidence into exactly one known bucket: `Checking or savings account`, `Credit card`, `Credit reporting or other personal consumer reports`, `Debt collection`, `Money transfer, virtual currency, or money service`, `Mortgage`, `Payday loan, title loan, personal loan, or advance loan`, `Prepaid card`, `Student loan`, `Vehicle loan or lease`.",
+      "instruction_sha256": "91a943ead4f4f5dbe808d65c74acc5d4f69962f4cb22c12d8c52a11e2b7e20be"
+    },
+    "S04": {
+      "instruction": "Return exactly one JSON object shaped as `{\"label\":\"<known bucket>\"}`.",
+      "instruction_sha256": "8f650c2d89356ca8e63ceba7f3868ac18541a0f22a13efcd9ca161496c144e57"
+    }
+  },
+  "contract_sha256": "af4cf15176f854ddcb4ba9e02057dee092672fbfd72521b3723d51c416a5c126"
+}

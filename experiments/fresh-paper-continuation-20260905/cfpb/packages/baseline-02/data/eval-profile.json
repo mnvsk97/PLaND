@@ -1,0 +1,45 @@
+{
+  "columns": [
+    "schema_version",
+    "id",
+    "benchmark",
+    "task_type",
+    "split",
+    "input",
+    "output",
+    "reasoning",
+    "metadata"
+  ],
+  "input_suffixes": [
+    ".json"
+  ],
+  "output": {
+    "json_type": "object",
+    "keys": [
+      "label"
+    ],
+    "labels": [
+      "Checking or savings account",
+      "Credit card",
+      "Credit reporting or other personal consumer reports",
+      "Debt collection",
+      "Money transfer, virtual currency, or money service",
+      "Mortgage",
+      "Payday loan, title loan, personal loan, or advance loan",
+      "Prepaid card",
+      "Student loan",
+      "Vehicle loan or lease"
+    ],
+    "types": {
+      "label": [
+        "string"
+      ]
+    }
+  },
+  "rows": 500,
+  "schema_version": 1,
+  "split_counts": {
+    "development": 500
+  },
+  "task_kind": "classification"
+}

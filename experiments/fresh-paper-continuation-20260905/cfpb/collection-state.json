@@ -1,0 +1,178 @@
+{
+  "schema_version": 1,
+  "study_id": "fresh-paper-20260905-cfpb",
+  "created_at": "2026-09-06T03:45:40.900455+00:00",
+  "repository": "/Users/saikrishna/.codex/worktrees/ee41/deterministic-skills",
+  "git_head": "a3ed124693a2666f86ae2e3ddcf0a8f351bce968",
+  "git_status_at_init": "",
+  "plan": {
+    "path": "/Users/saikrishna/.codex/worktrees/ee41/deterministic-skills/experiments/protocol/fresh-paper-cfpb-amended-20260906.json",
+    "kind": "file",
+    "bytes": 2379,
+    "sha256": "593c26792756dd6f342e4b27e14225ba3ffb1ecb158725e62019032b7f19b580"
+  },
+  "protocol": {
+    "path": "/Users/saikrishna/.codex/worktrees/ee41/deterministic-skills/experiments/protocol/candidate-budget-amendment-20260906.md",
+    "kind": "file",
+    "bytes": 1378,
+    "sha256": "a4245ac867318ee897581852780966cba1e50c7da92773898cbe9517f301889e"
+  },
+  "limits": {
+    "baseline_attempts": 10,
+    "candidate_attempts": 10
+  },
+  "stages": {
+    "prepare": "complete",
+    "baseline-development": "complete",
+    "candidate-development": "pending",
+    "selection": "pending",
+    "final-test": "pending",
+    "package-evidence": "complete",
+    "paper-audit": "pending"
+  },
+  "decisions": {
+    "baseline-development": [
+      {
+        "value": "refine",
+        "recorded_at": "2026-09-06T03:52:50.119771+00:00",
+        "evidence": {
+          "path": "/Users/saikrishna/.codex/worktrees/ee41/deterministic-skills/tmp/fresh-paper-continuation-20260905/runs/cfpb/baseline-decision-01.json",
+          "kind": "file",
+          "bytes": 438,
+          "sha256": "551f4be96055faecf2713469ef3208b96a744976d84397010d40a9d33aa50081"
+        }
+      },
+      {
+        "value": "refine",
+        "recorded_at": "2026-09-06T04:01:04.081467+00:00",
+        "evidence": {
+          "path": "/Users/saikrishna/.codex/worktrees/ee41/deterministic-skills/tmp/fresh-paper-continuation-20260905/runs/cfpb/baseline-decision-02.json",
+          "kind": "file",
+          "bytes": 438,
+          "sha256": "394fb6d549c87609dcdee9a80a22d1222af7dd0cb0a4b4723925dfdd4e937d30"
+        }
+      },
+      {
+        "value": "refine",
+        "recorded_at": "2026-09-06T04:09:45.270911+00:00",
+        "evidence": {
+          "path": "/Users/saikrishna/.codex/worktrees/ee41/deterministic-skills/tmp/fresh-paper-continuation-20260905/runs/cfpb/baseline-decision-03.json",
+          "kind": "file",
+          "bytes": 438,
+          "sha256": "c9b46907e0c60166ea20d04bfa10a49f6025251f1e18caa514a4648656b3290e"
+        }
+      },
+      {
+        "value": "refine",
+        "recorded_at": "2026-09-06T04:18:12.836577+00:00",
+        "evidence": {
+          "path": "/Users/saikrishna/.codex/worktrees/ee41/deterministic-skills/tmp/fresh-paper-continuation-20260905/runs/cfpb/baseline-decision-04.json",
+          "kind": "file",
+          "bytes": 438,
+          "sha256": "5598befb1b2bf56be4d5c197cdaf7f0b69bdfaddeb1f6f8506c6157e473b13dc"
+        }
+      },
+      {
+        "value": "refine",
+        "recorded_at": "2026-09-06T04:27:11.039179+00:00",
+        "evidence": {
+          "path": "/Users/saikrishna/.codex/worktrees/ee41/deterministic-skills/tmp/fresh-paper-continuation-20260905/runs/cfpb/baseline-decision-05.json",
+          "kind": "file",
+          "bytes": 438,
+          "sha256": "724b8a9be8d8481d6fb0dd20f0fcc163ef56ba06a846299fd1d1fa7e286eb256"
+        }
+      },
+      {
+        "value": "refine",
+        "recorded_at": "2026-09-06T04:35:45.117977+00:00",
+        "evidence": {
+          "path": "/Users/saikrishna/.codex/worktrees/ee41/deterministic-skills/tmp/fresh-paper-continuation-20260905/runs/cfpb/baseline-decision-06.json",
+          "kind": "file",
+          "bytes": 438,
+          "sha256": "fc090348f25424be513ae0b708eb00cb1355391811cd79d2c25c6199b76e69a9"
+        }
+      },
+      {
+        "value": "refine",
+        "recorded_at": "2026-09-06T04:44:20.090818+00:00",
+        "evidence": {
+          "path": "/Users/saikrishna/.codex/worktrees/ee41/deterministic-skills/tmp/fresh-paper-continuation-20260905/runs/cfpb/baseline-decision-07.json",
+          "kind": "file",
+          "bytes": 438,
+          "sha256": "bedfa71723d2a6f8baedf977d4ba5aafcfd8d87a04414e657370aedc536b9531"
+        }
+      },
+      {
+        "value": "refine",
+        "recorded_at": "2026-09-06T04:52:46.797838+00:00",
+        "evidence": {
+          "path": "/Users/saikrishna/.codex/worktrees/ee41/deterministic-skills/tmp/fresh-paper-continuation-20260905/runs/cfpb/baseline-decision-08.json",
+          "kind": "file",
+          "bytes": 438,
+          "sha256": "4e31f351e0b44fa79eb60a78111b13cb7ed137d9674fdd136cb60fee90c9eeff"
+        }
+      },
+      {
+        "value": "refine",
+        "recorded_at": "2026-09-06T05:00:56.415533+00:00",
+        "evidence": {
+          "path": "/Users/saikrishna/.codex/worktrees/ee41/deterministic-skills/tmp/fresh-paper-continuation-20260905/runs/cfpb/baseline-decision-09.json",
+          "kind": "file",
+          "bytes": 437,
+          "sha256": "becb6a34c9945f5f50fffc95b71e92cc8ed5fa94350b143a2833c6de8d2c5f40"
+        }
+      },
+      {
+        "value": "nonviable",
+        "recorded_at": "2026-09-06T05:12:05.505041+00:00",
+        "evidence": {
+          "path": "/Users/saikrishna/.codex/worktrees/ee41/deterministic-skills/tmp/fresh-paper-continuation-20260905/runs/cfpb/baseline-decision-10.json",
+          "kind": "file",
+          "bytes": 442,
+          "sha256": "bdfbe39d955844bae631f15e41501f30dc9212f4b6d97d6bfca32c3b8acc8e41"
+        }
+      }
+    ],
+    "candidate-development": [],
+    "selection": []
+  },
+  "amendments": [
+    {
+      "recorded_at": "2026-09-06T05:05:02.279834+00:00",
+      "git_head": "29e76ba85e6deaaf1c60f9181a13828e6bae30f5",
+      "original_plan": {
+        "path": "/Users/saikrishna/.codex/worktrees/ee41/deterministic-skills/experiments/protocol/fresh-paper-cfpb.json",
+        "kind": "file",
+        "bytes": 1874,
+        "sha256": "fb74c8b1d3d162e3c9f112874dc5a9f21ed35b21282259396b1d767a160e4764"
+      },
+      "original_protocol": {
+        "path": "/Users/saikrishna/.codex/worktrees/ee41/deterministic-skills/experiments/protocol/fresh-paper-collection.md",
+        "kind": "file",
+        "bytes": 9785,
+        "sha256": "1d681cae38accd95c8c295e7927b287a492afa5273f058a10b8b93ddf954de79"
+      },
+      "amended_plan": {
+        "path": "/Users/saikrishna/.codex/worktrees/ee41/deterministic-skills/experiments/protocol/fresh-paper-cfpb-amended-20260906.json",
+        "kind": "file",
+        "bytes": 2379,
+        "sha256": "593c26792756dd6f342e4b27e14225ba3ffb1ecb158725e62019032b7f19b580"
+      },
+      "amended_protocol": {
+        "path": "/Users/saikrishna/.codex/worktrees/ee41/deterministic-skills/experiments/protocol/candidate-budget-amendment-20260906.md",
+        "kind": "file",
+        "bytes": 1378,
+        "sha256": "a4245ac867318ee897581852780966cba1e50c7da92773898cbe9517f301889e"
+      },
+      "authorization": {
+        "path": "/Users/saikrishna/.codex/worktrees/ee41/deterministic-skills/experiments/protocol/candidate-budget-amendment-20260906.json",
+        "kind": "file",
+        "bytes": 934,
+        "sha256": "9e6c79d561f41f1cfb39bb2be81efd093e6fedd53779458a0d41bd8bdbed4411"
+      },
+      "effective_after_event_count": 31,
+      "baseline_decisions_preserved": 9,
+      "candidate_and_heldout_unopened": true
+    }
+  ]
+}

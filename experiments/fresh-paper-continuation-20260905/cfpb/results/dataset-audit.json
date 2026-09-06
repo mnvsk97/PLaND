@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "dataset": "CFPB Consumer Complaint Database",
+  "counts": {
+    "total": 2000,
+    "by_split": {
+      "development": 500,
+      "test": 500,
+      "validation": 1000
+    },
+    "by_split_and_label": {
+      "development": {
+        "Checking or savings account": 50,
+        "Credit card": 50,
+        "Credit reporting or other personal consumer reports": 50,
+        "Debt collection": 50,
+        "Money transfer, virtual currency, or money service": 50,
+        "Mortgage": 50,
+        "Payday loan, title loan, personal loan, or advance loan": 50,
+        "Prepaid card": 50,
+        "Student loan": 50,
+        "Vehicle loan or lease": 50
+      },
+      "test": {
+        "Checking or savings account": 50,
+        "Credit card": 50,
+        "Credit reporting or other personal consumer reports": 50,
+        "Debt collection": 50,
+        "Money transfer, virtual currency, or money service": 50,
+        "Mortgage": 50,
+        "Payday loan, title loan, personal loan, or advance loan": 50,
+        "Prepaid card": 50,
+        "Student loan": 50,
+        "Vehicle loan or lease": 50
+      },
+      "validation": {
+        "Checking or savings account": 100,
+        "Credit card": 100,
+        "Credit reporting or other personal consumer reports": 100,
+        "Debt collection": 100,
+        "Money transfer, virtual currency, or money service": 100,
+        "Mortgage": 100,
+        "Payday loan, title loan, personal loan, or advance loan": 100,
+        "Prepaid card": 100,
+        "Student loan": 100,
+        "Vehicle loan or lease": 100
+      }
+    }
+  },
+  "checks": {
+    "unique_ids": true,
+    "split_id_overlap_count": 0,
+    "content_duplicate_count": 0,
+    "runtime_label_leakage_count": 0,
+    "missing_case_count": 0,
+    "balanced_within_each_split": {
+      "development": true,
+      "test": true,
+      "validation": true
+    },
+    "selection_manifest_matches_evals": true,
+    "source_hashes_match": true,
+    "source_split_integrity": true,
+    "pilot_overlap_count": 0,
+    "exclusion_manifest_matches_pilot": true
+  },
+  "hashes": {
+    "evals_sha256": "e76c5a0dd00cfe973140a319a710a15275001c4e0cc06fd1d43b5d4e94faaf1c",
+    "selection_sha256": "61ee8ad5acd8de460237d46a84a43a9b81350f3b92ec8cd4d9c56e0330a8a8fe",
+    "case_manifest_sha256": "157b2a8ff584a1c4017c152dbb623dde16a0816489472809e3e7806dfda96eff"
+  },
+  "sources": [
+    {
+      "path": "complaints-api.json",
+      "sha256": "5ef90fe2a075b502bbff8add7372f275df313d6eb095800e6ec023e8192941b8",
+      "bytes": 19108164
+    }
+  ],
+  "source_verification": [
+    {
+      "path": "complaints-api.json",
+      "exists": true,
+      "sha256_match": true
+    }
+  ],
+  "eligible_unique_by_label": {
+    "Mortgage": 878,
+    "Checking or savings account": 877,
+    "Student loan": 877,
+    "Money transfer, virtual currency, or money service": 874,
+    "Vehicle loan or lease": 871,
+    "Prepaid card": 868,
+    "Payday loan, title loan, personal loan, or advance loan": 860,
+    "Credit card": 842,
+    "Debt collection": 590,
+    "Credit reporting or other personal consumer reports": 525
+  },
+  "requested_split_counts": {
+    "development": 500,
+    "validation": 1000,
+    "test": 500
+  },
+  "source_split_mapping": null,
+  "eligible_unique_by_label_and_source_split": null,
+  "exclusion_manifest": [
+    {
+      "path": "/Users/saikrishna/.codex/worktrees/ee41/deterministic-skills/tmp/fresh-paper-continuation-20260905/datasets/cfpb-prior-opened",
+      "evals_sha256": "c10147f98c7494b457fd20d301379ef5faafd70601b4b08569cc9ea8c3840d95",
+      "cases": 1218,
+      "included_splits": [
+        "all"
+      ],
+      "case_manifest_sha256": "5165ca359d45343c6afac277bac5541ab442ae79da65a2279ed6d581be8ee4eb"
+    }
+  ],
+  "failures": {
+    "overlaps": {
+      "development:test": [],
+      "development:validation": [],
+      "test:validation": []
+    },
+    "duplicates": {},
+    "leakage_ids": [],
+    "missing": []
+  },
+  "passed": true
+}
