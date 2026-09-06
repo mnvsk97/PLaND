@@ -52,6 +52,7 @@ for ds,name in names.items():
         metrics['pairwise_disagreements']=[sum(x[k]!=y[k] for k in x) for x,y in itertools.combinations(maps,2)]
         variability[variant]=metrics
     summary['datasets'][ds]={'name':name,'evidence_root':evidence_root,'host_runtime':read(directory/'runtime-audit.json'),'reported_stage':stage,'selection':selection,'comparison':comparison,
+        'selection_comparison':read(directory/'validation-20260902-comparison.json') if selection else None,
         'baseline_development':baseline['summary'],'baseline_attempt':selected['attempt'],
         'baseline_sop_sha256':baseline['sop_sha256'],'candidate_sop_sha256':h['sop_sha256'] if h else None,
         'candidate_skill_content_sha256':h['skill_content_sha256'] if h else None,
@@ -102,11 +103,17 @@ for item in summary['datasets'].values():
     lines.append(f"| {item['name']} | {item['reported_stage'].replace('test','final test').replace('validation','selection')} | {n['cases']:,} | {percent(n['accuracy'],1)} → {percent(h['accuracy'],1)} | {100*d['accuracy']:+.2f}; {interval(s['accuracy_difference_bootstrap_95'],True)} | {n['model_calls']:,} → {h['model_calls']:,} | {n['total_tokens']:,} → {h['total_tokens']:,} | {percent(d['token_reduction_fraction'])}; {interval(s['token_reduction_bootstrap_95'])} | {'Pass' if c['gate']['test_release_pass'] else 'Reject'} |")
 lines+=['','Final-test criteria are descriptive checks on the frozen package, not another selection or refinement opportunity.','',
  '## Acceptance-gate audit','',
- '| Dataset | Selection decision | Generic invariants and execution | Paired statistical gates | Reserved final test |',
- '| --- | --- | --- | --- | --- |']
+ '| Dataset | Selection decision | Baseline ≥80% | Hybrid ≥80% | Accuracy lower bound ≥−2 pp | Tokens reduced ≥5% | Token lower bound >0 | Reserved final test |',
+ '| --- | --- | --- | --- | --- | --- | --- | --- |']
 for item in summary['datasets'].values():
     s=item['selection']
-    lines.append(f"| {item['name']} | {s['decision'] if s else 'not reached'} | {s['generic_decision'] if s else 'not reached'} | {str(s['statistical_gate']) if s else 'not reached'} | {'evaluated' if item['reported_stage']=='test' else 'unopened'} |")
+    c=item['selection_comparison']
+    checks=[c['natural_language']['accuracy']>=.8,c['hybrid']['accuracy']>=.8,
+            c['paired_statistics']['accuracy_difference_bootstrap_95'][0]>=-.02,
+            c['delta_hybrid_minus_nl']['token_reduction_fraction']>=.05,
+            c['paired_statistics']['token_reduction_bootstrap_95'][0]>0] if c else [None]*5
+    cells=' | '.join('not reached' if x is None else 'Pass' if x else 'Fail' for x in checks)
+    lines.append(f"| {item['name']} | {s['decision'] if s else 'not reached'} | {cells} | {'evaluated' if item['reported_stage']=='test' else 'unopened'} |")
 lines+=['','## Baseline readiness and candidate provenance','',
  '| Dataset | English attempts | Development accuracy | Candidate rules | Baseline SOP SHA-256 | Candidate SOP SHA-256 |',
  '| --- | ---: | ---: | ---: | --- | --- |']
@@ -171,7 +178,7 @@ for item in summary['datasets'].values():
         lines.append(f"On {item['name']}'s {n['cases']:,}-case {stage}, accuracy changed from {percent(n['accuracy'],1)} to {percent(h['accuracy'],1)}; model calls changed from {n['model_calls']:,} to {h['model_calls']:,}, and tokens from {n['total_tokens']:,} to {h['total_tokens']:,} ({percent(c['delta_hybrid_minus_nl']['token_reduction_fraction'])} reduction). The fixed package {'met' if c['gate']['test_release_pass'] else 'did not meet'} the stated statistical criteria at this stage.")
     else: lines.append(f"{item['name']} did not reach selection; its development result is retained as a stopped outcome.")
 lines+=['','### Repeatability paragraph','',
- 'Three additional paired executions used the same frozen packages and the same reached evaluation split, with inference seeds 20260903, 20260904, and 20260905. '
+ 'For each dataset that reached selection, three additional paired executions used the same frozen packages and the same reached evaluation split, with inference seeds 20260903, 20260904, and 20260905. '
  'The repeat table reports each result separately, and the variability table gives sample standard deviations and prediction disagreements. '
  'These are repeated executions, not new evaluation samples or further candidate attempts.','',
  '### Limitations paragraph','',
@@ -226,6 +233,11 @@ for ds,item in summary['datasets'].items():
             lines.append(f"| {label} | {percent(value)} | {percent(c['per_label_recall']['hybrid'][label])} |")
     lines.append('')
 lines += ['The invalid initial LEDGAR sample remains quarantined and is excluded from this report. The accepted LEDGAR restart has its own plan and evidence directory. Previous historical results are not pooled with these fresh results.','']
+completed=sum(len(item['audit']['runs']) for item in summary['datasets'].values())
+failed=sum(item['audit']['failed_commands_preserved'] for item in summary['datasets'].values())
+unopened=sum(item['reported_stage']!='test' for item in summary['datasets'].values())
+summary['scope_counts']={'completed_model_runs':completed,'failed_commands_preserved':failed,'unopened_final_tests':unopened}
+lines += [f'Completed model-run commands: {completed}. Failed commands preserved in the valid collection ledgers: {failed}. Reserved final-test splits unopened: {unopened}.','']
 if a.output.exists(): raise ValueError('Report exists; preserve its previous revision')
 a.output.write_text('\n'.join(lines))
 summary['report_sha256']=hashlib.sha256(a.output.read_bytes()).hexdigest()
