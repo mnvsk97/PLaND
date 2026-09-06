@@ -3,7 +3,7 @@ import argparse
 import json
 import os
 from pathlib import Path
-from operate import BASE, ROOT, PYTHON, RUNNER, baseline, controlled, baseline_gate, call
+from operate import BASE, ROOT, PYTHON, RUNNER, baseline, controlled, baseline_gate, call, plan_path
 
 OPS=Path(__file__).resolve().parent
 p=argparse.ArgumentParser();p.add_argument('dataset');p.add_argument('--clarification',required=True,type=Path)
@@ -13,7 +13,7 @@ assert state['decisions']['baseline-development'][-1]['value']=='refine'
 assert not state['decisions']['candidate-development']
 info=baseline(ds);attempt=info['attempt']+1
 assert attempt==len(state['decisions']['baseline-development'])+1 and attempt<=10
-plan=json.loads((ROOT/f'experiments/protocol/fresh-paper-{ds}.json').read_text())
+plan=json.loads(plan_path(ds).read_text())
 os.environ.update(plan['runtime']['environment']);os.environ['PYTHONDONTWRITEBYTECODE']='1'
 package=BASE/'refinements'/ds/f'baseline-{attempt:02}'
 out=directory/f'baseline-development-{attempt:02}.json'

@@ -14,6 +14,11 @@ CONTROLLER = ROOT/'.codex/skills/pland-data-collection/scripts/run_collection.py
 RUNNER = ROOT/'experiments/text-classification/scripts/run_experiment.py'
 PYTHON = ROOT/'reproduce/.venv/bin/python'
 
+def plan_path(ds):
+    state=BASE/'runs'/ds/'collection-state.json'
+    if state.exists(): return Path(json.loads(state.read_text())['plan']['path'])
+    return ROOT/f'experiments/protocol/fresh-paper-{ds}-amended-20260906.json'
+
 def call(argv):
     print(json.dumps({'argv': [str(x) for x in argv]}), flush=True)
     subprocess.run([str(x) for x in argv], cwd=ROOT, check=True)
@@ -39,7 +44,7 @@ def baseline(ds):
             'run': str(BASE/'runs'/ds/'baseline-development-01.json')}
 
 def model(ds, stage, variant, seed, name=None):
-    plan = json.loads((ROOT/f'experiments/protocol/fresh-paper-{ds}.json').read_text())
+    plan = json.loads(plan_path(ds).read_text())
     os.environ.update(plan['runtime']['environment'])
     os.environ['PYTHONUNBUFFERED'] = '1'
     split = {'candidate-development':'development', 'selection':'validation', 'final-test':'test'}[stage]

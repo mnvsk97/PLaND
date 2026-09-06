@@ -6,6 +6,10 @@ from operate import BASE, ROOT, PYTHON, CONTROLLER, baseline, controlled, call
 
 OPS=Path(__file__).resolve().parent
 ds=sys.argv[1];directory=BASE/'runs'/ds
+hold=directory/'candidate-authorization-hold.json'
+if hold.exists():
+    print(json.dumps({'status':'paused_before_candidate','hold':str(hold)}))
+    sys.exit(0)
 state=json.loads((directory/'collection-state.json').read_text())
 assert state['decisions']['baseline-development'][-1]['value']=='ready'
 assert not state['decisions']['candidate-development']

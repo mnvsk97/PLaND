@@ -82,7 +82,7 @@ class CollectionControllerTests(unittest.TestCase):
         self.run_fixture("candidate-development", "measure-candidate")
         assessment = self.run_fixture("candidate-development", "assess-candidate")
         MODULE.decision(Namespace(run_dir=self.run_dir, stage="candidate-development", value="reject", evidence=assessment))
-        with self.assertRaisesRegex(ValueError, "candidate attempt limit"):
+        with self.assertRaisesRegex(ValueError, "terminal or frozen"):
             self.run_fixture("candidate-development", "second-candidate")
 
     def test_wrong_paper_split_is_rejected(self) -> None:

@@ -49,8 +49,11 @@ evidence. Its gates enforce this order:
    `generate-initial-version` for bounded English-only refinement. Record each
    attempt, then record `ready`, `refine`, or `nonviable` with its decision file.
 3. After `ready`, use `pland-evolver` to construct only the number of candidates
-   permitted by the plan. Record candidate development and its `ready` or
-   `reject` decision.
+   permitted by the plan. Record every candidate development decision. Under
+   an explicitly approved multi-attempt plan, use `refine` for an unsuccessful
+   attempt with budget remaining, and `nonviable` when exhausted. Stop at the
+   first `ready` candidate and freeze it before selection. Never generate
+   another candidate after selection has opened.
 4. Run paired baseline/candidate selection on identical cases. Record `accept`
    or `reject` from the deterministic assessment artifact.
 5. Run final test only after the controller accepts the selection decision.
@@ -65,6 +68,12 @@ evidence. Its gates enforce this order:
 Stop a dataset when the plan's attempt limit is reached, the baseline is
 nonviable, the candidate is rejected, or selection rejects it. Preserve the
 terminal evidence; do not manufacture a replacement candidate.
+
+For an explicit author-approved amendment, retain the original plan and
+protocol bytes and hashes, record the amendment and its effective command
+boundary in the operations history, and freeze new plan files. Never silently
+rewrite an initialized plan or apply an amendment to already opened held-out
+evidence.
 
 ## Controller
 

@@ -26,7 +26,7 @@ STAGES = (
 )
 DECISIONS = {
     "baseline-development": {"ready", "refine", "nonviable"},
-    "candidate-development": {"ready", "reject"},
+    "candidate-development": {"ready", "refine", "nonviable", "reject"},
     "selection": {"accept", "reject"},
 }
 EXPECTED_SPLITS = {"development": 500, "selection": 1000, "final_test": 500}
@@ -183,13 +183,17 @@ def require_stage_access(
         raise ValueError("prepare must be complete before baseline development")
     if stage == "candidate-development" and latest_decision(state, "baseline-development") != "ready":
         raise ValueError("baseline must be ready before candidate development")
+    if stage == "candidate-development" and (state['decisions']['selection'] or successful_events(ledger, 'selection')):
+        raise ValueError("candidate work is forbidden after selection opens")
+    if stage == "candidate-development" and latest_decision(state, stage) in {'ready', 'reject', 'nonviable'}:
+        raise ValueError("candidate development is already terminal or frozen")
     if stage == "selection" and latest_decision(state, "candidate-development") != "ready":
         raise ValueError("candidate must be ready before selection")
     if stage == "final-test" and latest_decision(state, "selection") != "accept":
         raise ValueError("selection must be accepted before final test")
     terminal = (
         latest_decision(state, "baseline-development") == "nonviable"
-        or latest_decision(state, "candidate-development") == "reject"
+        or latest_decision(state, "candidate-development") in {"reject", "nonviable"}
         or latest_decision(state, "selection") == "reject"
         or state["stages"]["final-test"] == "complete"
     )
@@ -271,6 +275,8 @@ def run_command(args: argparse.Namespace) -> int:
         "command": command,
         "cwd": str(cwd),
         "started_at": now(),
+        "plan_sha256": state["plan"]["sha256"],
+        "protocol_sha256": state["protocol"]["sha256"],
         "inputs": inputs,
         "declared_outputs": [str(path.resolve()) for path in args.output],
         "stdout": str(stdout_path),
@@ -302,6 +308,11 @@ def decision(args: argparse.Namespace) -> int:
     if not successful_events(ledger, args.stage):
         raise ValueError("a successful stage command is required before recording a decision")
     evidence = artifact(args.evidence)
+    if args.stage in {'baseline-development', 'candidate-development'}:
+        limit = state['limits']['baseline_attempts' if args.stage == 'baseline-development' else 'candidate_attempts']
+        count = len(state['decisions'][args.stage]) + 1
+        if count > limit or (args.value == 'refine' and count >= limit):
+            raise ValueError('decision exceeds the approved attempt budget')
     entry = {"value": args.value, "recorded_at": now(), "evidence": evidence}
     state["decisions"][args.stage].append(entry)
     state["stages"][args.stage] = "complete" if args.value != "refine" else "in_progress"

@@ -29,7 +29,7 @@ autonomous rule-discovery reliability.]
 | Main inference seed | `[seed]` |
 | Runtime | `[temperature, thinking, streaming, context, output cap, workers, Ollama settings and version]` |
 | Baseline readiness | Accuracy >=80%; normal completion; no run errors; maximum 10 English attempts |
-| Candidate budget | One hybrid candidate per dataset |
+| Candidate budget | [Approved development-attempt maximum]; first development-ready candidate only goes to selection |
 | Selection gates | Both accuracies >=80%; paired accuracy lower bound >=-2 pp; tokens reduced >=5%; paired token-reduction lower bound >0 |
 | Uncertainty | 5,000 paired bootstrap resamples; Wilson intervals; exact McNemar test |
 
