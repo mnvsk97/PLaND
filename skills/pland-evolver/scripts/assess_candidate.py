@@ -124,7 +124,30 @@ def identity_failures(run: dict[str, Any], expected_candidate: str | None = None
     return failures
 
 
-def comparable(left: dict[str, Any], right: dict[str, Any]) -> list[str]:
+def hybrid_contract_failures(run: dict[str, Any]) -> list[str]:
+    contract = run.get("sop", {}).get("contract") or run.get("sop_contract")
+    if not isinstance(contract, dict) or contract.get("valid") is not True:
+        return ["invalid_hybrid_fallback_contract"]
+    links = contract.get("command_fallback_links")
+    command_count = run.get("sop", {}).get("step_representations", {}).get("command", 0)
+    if not isinstance(links, list) or len(links) != command_count or command_count < 1:
+        return ["invalid_hybrid_fallback_contract"]
+    invariant_hash = run.get("invariants", {}).get("baseline_sop_contract_sha256")
+    if not invariant_hash or invariant_hash != contract.get("baseline_contract_sha256"):
+        return ["invalid_hybrid_fallback_contract"]
+    for link in links:
+        if (
+            link.get("command_step_id") != link.get("fallback_step_id")
+            or not link.get("fallback_instruction")
+            or not link.get("fallback_instruction_sha256")
+        ):
+            return ["invalid_hybrid_fallback_contract"]
+    return []
+
+
+def comparable(
+    left: dict[str, Any], right: dict[str, Any], *, require_same_cases: bool = True
+) -> list[str]:
     failures = []
     for field in ("model", "model_digest", "seed", "evals", "runtime"):
         if field == "runtime" and field not in left and field not in right:
@@ -136,6 +159,8 @@ def comparable(left: dict[str, Any], right: dict[str, Any]) -> list[str]:
         "agent_harness_sha256",
         "datasource_snapshot_sha256",
         "scorer_sha256",
+        "baseline_sop_sha256",
+        "baseline_sop_contract_sha256",
     )
     left_invariants = left.get("invariants", {})
     right_invariants = right.get("invariants", {})
@@ -148,11 +173,12 @@ def comparable(left: dict[str, Any], right: dict[str, Any]) -> list[str]:
         failures.append("invariant_mismatch:evaluation_sha256")
     if quality_metric(left) != quality_metric(right):
         failures.append("invariant_mismatch:quality_metric")
-    left_ids, right_ids = case_ids(left), case_ids(right)
-    if left_ids == [] or right_ids == []:
-        failures.append("invalid_case_ids")
-    elif left_ids is not None and right_ids is not None and left_ids != right_ids:
-        failures.append("case_id_mismatch")
+    if require_same_cases:
+        left_ids, right_ids = case_ids(left), case_ids(right)
+        if left_ids == [] or right_ids == []:
+            failures.append("invalid_case_ids")
+        elif left_ids is not None and right_ids is not None and left_ids != right_ids:
+            failures.append("case_id_mismatch")
     return failures
 
 
@@ -218,6 +244,8 @@ def assess(args: argparse.Namespace) -> dict[str, Any]:
         checks.append("development_objective_not_improved")
     if args.require_hybrid_sop and candidate_development.get("sop", {}).get("variant") != "hybrid":
         checks.append("development_sop_not_hybrid")
+    if args.require_hybrid_sop:
+        checks.extend(hybrid_contract_failures(candidate_development))
 
     result: dict[str, Any] = {
         "schema_version": 1,
@@ -257,7 +285,9 @@ def assess(args: argparse.Namespace) -> dict[str, Any]:
 
     candidate_validation = load(args.candidate_validation)
     validation_checks = identity_failures(candidate_validation, args.candidate)
-    validation_checks.extend(comparable(candidate_development, candidate_validation))
+    validation_checks.extend(comparable(
+        candidate_development, candidate_validation, require_same_cases=False
+    ))
     if candidate_validation.get("split") != "validation":
         validation_checks.append("invalid_validation_split")
     if quality(candidate_validation) < required_quality:
@@ -266,6 +296,8 @@ def assess(args: argparse.Namespace) -> dict[str, Any]:
         validation_checks.append("validation_errors")
     if args.require_hybrid_sop and candidate_validation.get("sop", {}).get("variant") != "hybrid":
         validation_checks.append("validation_sop_not_hybrid")
+    if args.require_hybrid_sop:
+        validation_checks.extend(hybrid_contract_failures(candidate_validation))
 
     validation_result: dict[str, Any] = {"candidate": candidate_validation["summary"]}
     if args.baseline_validation is None:

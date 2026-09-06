@@ -5,6 +5,5 @@ __pycache__/
 .venv/
 tmp/
 
-# Local Codex workspace placeholders, not project source.
-/AGENTS.md
+# Local generated workspace placeholder, not project source.
 /agent.py

@@ -32,11 +32,25 @@ def run(command_steps, accuracy, tokens, latency):
             "datasource_snapshot_sha256": "data-hash",
             "evaluation_sha256": "eval-hash",
             "scorer_sha256": "scorer-hash",
+            "baseline_sop_sha256": digest,
+            "baseline_sop_contract_sha256": digest,
         },
         "sop": {
             "sha256": digest,
             "content": "SOP",
             "step_representations": {"total": 3, "english": 3 - command_steps, "reference": 0, "command": command_steps},
+            **({"contract": {
+                "valid": True,
+                "baseline_contract_sha256": digest,
+                "baseline_sop_sha256": digest,
+                "candidate_sop_sha256": digest,
+                "command_fallback_links": [{
+                    "command_step_id": "S02",
+                    "fallback_step_id": "S02",
+                    "fallback_instruction": "Classify the evidence.",
+                    "fallback_instruction_sha256": digest,
+                }],
+            }} if command_steps else {}),
         },
         "summary": {
             "cases": 10,

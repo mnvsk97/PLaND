@@ -3,7 +3,8 @@
 
 The generated DOCX follows the user-supplied SJET article layout: A4,
 full-width front matter, two-column body, and Times New Roman 10 pt.
-Original diagram files remain unchanged. Markdown is the source of truth.
+Author-supplied PNG figures take precedence over SVG figures. Markdown is the
+source of truth.
 """
 
 from __future__ import annotations
@@ -29,6 +30,7 @@ from PIL import Image
 
 FONT = "Times New Roman"
 CONTENT_WIDTH_DXA = 9751  # A4 width minus two 19 mm margins.
+COLUMN_WIDTH_DXA = 4705  # One text column after the 340 dxa column gap.
 FIGURE_MARKERS = {
     "<!-- architecture-diagram -->": "architecture",
     "<!-- evolution-path-diagram -->": "evolution-path",
@@ -222,12 +224,12 @@ def prevent_row_split(row) -> None:
 
 
 def table_widths(rows: list[list[str]]) -> list[int]:
+    if rows[0] == ['Dataset', 'Dev.', 'Validation', 'Reserved test']:
+        return [1475, 660, 1190, 1380]
     if rows[0][0].startswith('Dataset and classification'):
-        return [6000, 1400, 2351]
-    if len(rows[0]) == 5:
-        return [2260, 1370, 2520, 1100, 1776]
-    if len(rows[0]) == 4:
-        return [2260, 1530, 2620, 2616]
+        return [2450, 1000, 1255]
+    if len(rows[0]) == 2:
+        return [1450, 3255]
     columns = len(rows[0])
     scores = []
     for index in range(columns):
@@ -236,16 +238,16 @@ def table_widths(rows: list[list[str]]) -> list[int]:
     # Keep row labels readable even when another column contains long prose.
     scores[0] = max(scores[0], 18)
     total = sum(scores)
-    widths = [round(CONTENT_WIDTH_DXA * score / total) for score in scores]
-    widths[-1] += CONTENT_WIDTH_DXA - sum(widths)
+    widths = [round(COLUMN_WIDTH_DXA * score / total) for score in scores]
+    widths[-1] += COLUMN_WIDTH_DXA - sum(widths)
     return widths
 
 
 def add_table(document: Document, rows: list[list[str]]) -> None:
     widths = table_widths(rows)
     total = sum(widths)
-    widths = [round(value * CONTENT_WIDTH_DXA / total) for value in widths]
-    widths[-1] += CONTENT_WIDTH_DXA - sum(widths)
+    widths = [round(value * COLUMN_WIDTH_DXA / total) for value in widths]
+    widths[-1] += COLUMN_WIDTH_DXA - sum(widths)
     table = document.add_table(rows=len(rows), cols=len(rows[0]))
     table.alignment = WD_TABLE_ALIGNMENT.LEFT
     table.autofit = False
@@ -256,7 +258,7 @@ def add_table(document: Document, rows: list[list[str]]) -> None:
         properties.append(layout)
     layout.set(qn("w:type"), "fixed")
     table_width = properties.first_child_found_in("w:tblW")
-    table_width.set(qn("w:w"), str(CONTENT_WIDTH_DXA))
+    table_width.set(qn("w:w"), str(COLUMN_WIDTH_DXA))
     table_width.set(qn("w:type"), "dxa")
     indent = OxmlElement("w:tblInd")
     indent.set(qn("w:w"), "0")
@@ -283,7 +285,7 @@ def add_table(document: Document, rows: list[list[str]]) -> None:
             cell.vertical_alignment = WD_ALIGN_VERTICAL.CENTER
             paragraph = cell.paragraphs[0]
             set_paragraph_spacing(paragraph, after=0, keep_with_next=row_index < len(rows) - 1)
-            if column_index > 0:
+            if column_index > 0 and (len(rows[0]) > 2 or row_index == 0):
                 paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
             add_inline(paragraph, value)
             for run in paragraph.runs:
@@ -299,7 +301,10 @@ def set_image_alt_text(inline_shape, description: str) -> None:
 
 
 def prepare_jpeg(figures_dir: Path, name: str) -> Path:
-    # The artifact builder renders lossless PNGs from the editable SVG sources.
+    # Prefer an author-supplied PNG replacement when one exists.
+    supplied_png = figures_dir / f"{name}.png"
+    if supplied_png.exists():
+        return supplied_png
     png = figures_dir.parent.parent / 'tmp' / 'paper-build' / 'figures' / f'{name}.png'
     if png.exists() and png.stat().st_mtime >= (figures_dir / f'{name}.svg').stat().st_mtime:
         return png
@@ -481,6 +486,7 @@ def flush_body(document: Document, lines: list[str], *, reference: bool = False)
         paragraph.alignment = WD_ALIGN_PARAGRAPH.LEFT
         paragraph.paragraph_format.left_indent = Inches(0.22)
         paragraph.paragraph_format.first_line_indent = Inches(-0.22)
+        paragraph.paragraph_format.keep_together = True
     add_inline(paragraph, text)
     lines.clear()
 
@@ -511,10 +517,16 @@ def build(markdown: str, destination: Path, figures_dir: Path) -> None:
         if stripped.startswith("```"):
             flush_body(document, body, reference=in_references)
             if in_code:
-                for line in code_lines:
+                # Keep the introduction and all lines of one display together.
+                if document.paragraphs:
+                    document.paragraphs[-1].paragraph_format.keep_with_next = True
+                for line_index, line in enumerate(code_lines):
                     paragraph = document.add_paragraph()
                     paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
-                    set_paragraph_spacing(paragraph, before=0, after=3)
+                    set_paragraph_spacing(
+                        paragraph, before=0, after=3,
+                        keep_with_next=line_index < len(code_lines) - 1,
+                    )
                     equation = OxmlElement('m:oMath')
                     for part_index, part in enumerate(line.split('Qmin')):
                         if part_index:
@@ -565,7 +577,6 @@ def build(markdown: str, destination: Path, figures_dir: Path) -> None:
                     continue
                 parsed_rows.append(cells)
             add_table(document, parsed_rows)
-            set_columns(document.add_section(WD_SECTION_START.CONTINUOUS), 2)
             continue
 
         list_match = re.match(r"^(\d+)\.\s+(.+)$", raw)
@@ -659,7 +670,6 @@ def build(markdown: str, destination: Path, figures_dir: Path) -> None:
 
         if stripped.startswith("**Table "):
             flush_body(document, body, reference=in_references)
-            set_columns(document.add_section(WD_SECTION_START.CONTINUOUS), 1)
             paragraph = document.add_paragraph()
             set_paragraph_spacing(paragraph, before=4, after=2, keep_with_next=True)
             add_inline(paragraph, stripped)

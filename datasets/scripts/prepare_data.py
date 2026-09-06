@@ -50,8 +50,6 @@ CFPB_PRODUCTS = (
     "Student loan",
     "Vehicle loan or lease",
 )
-SROIE_DATASET = "mp-02/sroie"
-SROIE_REVISION = "f845db1c2ccaf883550320fe450d1e723374be32"
 SPAMASSASSIN_BASE_URL = "https://spamassassin.apache.org/old/publiccorpus"
 SPAMASSASSIN_ARCHIVES = (
     "20030228_easy_ham.tar.bz2",
@@ -71,11 +69,6 @@ def sha256(path: Path) -> str:
 
 def stable_rank(seed: int, identifier: str) -> str:
     return hashlib.sha256(f"{seed}:{identifier}".encode()).hexdigest()
-
-
-def sroie_source_id(item: dict[str, Any]) -> str:
-    """Return an ID unique across SROIE's independently indexed splits."""
-    return f"{item.get('upstream_split', 'source')}:{item['row_idx']}"
 
 
 def fetch(url: str, destination: Path) -> None:
@@ -172,13 +165,24 @@ def exclusion_manifest(paths: Iterable[Path]) -> tuple[set[str], set[str], list[
     excluded_ids: set[str] = set()
     excluded_contents: set[str] = set()
     manifest = []
-    for root in paths:
+    for specification in paths:
+        raw = str(specification)
+        if "::" in raw:
+            root_value, split_value = raw.rsplit("::", 1)
+            included_splits = {item for item in split_value.split(",") if item}
+            if not included_splits <= {"development", "validation", "test"}:
+                raise ValueError(f"invalid exclusion split filter: {split_value}")
+            root = Path(root_value)
+        else:
+            root = specification
+            included_splits = None
         evals = root / "evals.csv"
         if not evals.is_file():
             raise ValueError(f"excluded dataset has no evals.csv: {root}")
         case_hashes = []
         with evals.open(newline="", encoding="utf-8") as handle:
-            rows = list(csv.DictReader(handle))
+            rows = [row for row in csv.DictReader(handle)
+                    if included_splits is None or row.get("split") in included_splits]
         for row in rows:
             path = root / row["input"]
             payload = json.loads(path.read_text(encoding="utf-8"))
@@ -188,6 +192,7 @@ def exclusion_manifest(paths: Iterable[Path]) -> tuple[set[str], set[str], list[
             case_hashes.append((row["input"], sha256(path)))
         manifest.append({
             "path": str(root), "evals_sha256": sha256(evals), "cases": len(rows),
+            "included_splits": sorted(included_splits) if included_splits else ["all"],
             "case_manifest_sha256": hashlib.sha256(compact(sorted(case_hashes)).encode()).hexdigest(),
         })
     return excluded_ids, excluded_contents, manifest
@@ -442,158 +447,6 @@ def prepare_cfpb(args: argparse.Namespace, root: Path) -> None:
     }, [source])
 
 
-def hf_rows(split: str) -> list[dict[str, Any]]:
-    rows, offset = [], 0
-    while True:
-        query = urllib.parse.urlencode({
-            "dataset": SROIE_DATASET, "config": "default", "split": split,
-            "offset": offset, "length": 100,
-        })
-        request = urllib.request.Request(
-            f"https://datasets-server.huggingface.co/rows?{query}",
-            headers={"User-Agent": "PLaND-data-preparer/1.0"},
-        )
-        with urllib.request.urlopen(request, timeout=120) as response:
-            payload = json.load(response)
-        rows.extend({**item, "upstream_split": split} for item in payload["rows"])
-        if len(rows) >= payload["num_rows_total"]:
-            return rows
-        offset += len(payload["rows"])
-
-
-def select_sroie_splits(
-    train_rows: list[dict[str, Any]], test_rows: list[dict[str, Any]], seed: int,
-    development_cases: int, validation_cases: int, test_cases: int,
-) -> dict[str, list[dict[str, Any]]]:
-    if development_cases + validation_cases > len(train_rows):
-        raise ValueError("SROIE development and validation exceed official train capacity")
-    if test_cases > len(test_rows):
-        raise ValueError("SROIE test request exceeds official test capacity")
-    ranked_train = sorted(train_rows, key=lambda item: stable_rank(seed, sroie_source_id(item)))
-    ranked_test = sorted(test_rows, key=lambda item: stable_rank(seed, sroie_source_id(item)))
-    return {
-        "development": ranked_train[:development_cases],
-        "validation": ranked_train[development_cases:development_cases + validation_cases],
-        "test": ranked_test[:test_cases],
-    }
-
-
-def prepare_sroie(args: argparse.Namespace, root: Path) -> None:
-    prior_pilot_ids: set[str] = set()
-    prior_pilot_image_hashes: set[str] = set()
-    for path in args.exclude_selection:
-        prior = json.loads(path.read_text(encoding="utf-8"))
-        prior_pilot_ids.update(str(item["id"]) for item in prior.get("selected", []))
-        prior_root = path.parent
-        prior_evals = prior_root / "evals.csv"
-        if prior_evals.is_file():
-            with prior_evals.open(encoding="utf-8", newline="") as handle:
-                for row in csv.DictReader(handle):
-                    case_path = prior_root / row["input"]
-                    if not case_path.is_file():
-                        continue
-                    case = json.loads(case_path.read_text(encoding="utf-8"))
-                    image_path = prior_root / case.get("image", "")
-                    if image_path.is_file():
-                        prior_pilot_image_hashes.add(sha256(image_path))
-    if args.source:
-        payload = json.loads(args.source.read_text(encoding="utf-8"))
-        if isinstance(payload, dict) and "splits" in payload:
-            train_rows = payload["splits"]["train"]
-            test_rows = payload["splits"]["test"]
-        else:
-            upstream = payload["rows"] if isinstance(payload, dict) else payload
-            train_rows = [item for item in upstream if item.get("upstream_split") == "train"]
-            test_rows = [item for item in upstream if item.get("upstream_split") == "test"]
-            if not train_rows or not test_rows:
-                raise ValueError("SROIE source snapshot must preserve official train/test splits")
-        source_paths = [args.source]
-    else:
-        train_rows, test_rows = hf_rows("train"), hf_rows("test")
-        snapshot = root / "sources" / "rows.json"
-        snapshot.parent.mkdir(parents=True, exist_ok=True)
-        # Signed image URLs are transient, but source IDs, annotations, and the snapshot hash are retained.
-        snapshot.write_text(json.dumps({"splits": {"train": train_rows, "test": test_rows}}) + "\n", encoding="utf-8")
-        source_paths = [snapshot]
-    development_cases = args.development_cases if args.development_cases is not None else 100
-    validation_cases = args.validation_cases if args.validation_cases is not None else 100
-    requested_test = args.test_cases if args.test_cases is not None else len(test_rows)
-    # Hugging Face row indexes restart at zero for every split. Including the
-    # split prevents train/test collisions and overwritten images/case files.
-    selected_splits = select_sroie_splits(
-        train_rows, test_rows, args.seed, development_cases, validation_cases, requested_test
-    )
-    tag_names = ["company", "date", "address", "total", "other"]
-    rows = []
-    exclusions: list[dict[str, str]] = []
-    seen_images: dict[str, str] = {}
-
-    def add_item(split: str, item: dict[str, Any]) -> bool:
-        upstream_split = str(item.get("upstream_split", "source"))
-        identifier = f"receipt-{upstream_split}-{item['row_idx']}"
-        if identifier in prior_pilot_ids:
-            exclusions.append({"id": identifier, "reason": "prior_pilot"})
-            return False
-        record = item["row"]
-        image_path = root / "data" / "images" / f"{identifier}.jpg"
-        fetch(record["image"]["src"], image_path)
-        image_hash = sha256(image_path)
-        if image_hash in prior_pilot_image_hashes:
-            image_path.unlink()
-            exclusions.append({"id": identifier, "reason": "prior_pilot_content"})
-            return False
-        if image_hash in seen_images:
-            image_path.unlink()
-            exclusions.append({"id": identifier, "reason": "duplicate_image",
-                               "duplicate_of": seen_images[image_hash]})
-            return False
-        seen_images[image_hash] = identifier
-        fields: dict[str, list[str]] = defaultdict(list)
-        for word, tag in zip(record["words"], record["ner_tags"], strict=True):
-            if tag < 4:
-                fields[tag_names[tag]].append(word)
-        expected = {key: " ".join(fields.get(key, [])) for key in tag_names[:4]}
-        input_path = write_case(root, "sroie", identifier, {
-            "image": image_path.relative_to(root).as_posix(),
-            "frozen_ocr": {"words": record["words"], "bboxes": record["bboxes"]},
-        })
-        rows.append({
-            "schema_version": str(SCHEMA_VERSION), "id": identifier, "benchmark": "sroie",
-            "task_type": "multimodal_extraction", "split": split, "input": input_path,
-            "output": compact(expected),
-            "reasoning": "Structured key fields derived from the dataset token annotations.",
-            "metadata": compact({"source_split": upstream_split, "source_row": item["row_idx"],
-                                 "image_sha256": image_hash}),
-        })
-        return True
-
-    # Reserve the official test set first. Exact duplicate images are retained
-    # once, and no train-derived development/validation case may overlap them.
-    for item in selected_splits["test"]:
-        add_item("test", item)
-    ranked_train = sorted(train_rows, key=lambda item: stable_rank(args.seed, sroie_source_id(item)))
-    train_needed = development_cases + validation_cases
-    accepted_train = 0
-    for item in ranked_train:
-        split = "development" if accepted_train < development_cases else "validation"
-        if add_item(split, item):
-            accepted_train += 1
-        if accepted_train == train_needed:
-            break
-    if accepted_train != train_needed:
-        raise ValueError("not enough unique SROIE train images after cross-split deduplication")
-    write_artifacts(root, rows, {
-        "dataset": SROIE_DATASET, "revision": SROIE_REVISION, "seed": args.seed,
-        "selection_rule": "deduplicate exact images; reserve official test; lowest seeded unique train hashes for development then validation",
-        "official_source_counts": {"train": len(train_rows), "test": len(test_rows)},
-        "requested_counts": {"development": development_cases, "validation": validation_cases, "test": requested_test},
-        "actual_counts": dict(Counter(row["split"] for row in rows)),
-        "exclusions": exclusions,
-        "prior_pilot_ids": sorted(prior_pilot_ids),
-        "selected": [{"id": row["id"], "split": row["split"]} for row in rows],
-    }, source_paths)
-
-
 def sanitize_email(raw: bytes) -> str:
     """Remove corpus or filter annotations that directly reveal the label."""
     text = raw.decode("utf-8", errors="replace").replace("\r\n", "\n")
@@ -698,7 +551,7 @@ def prepare_spamassassin(args: argparse.Namespace, root: Path) -> None:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("dataset", choices=("ledgar", "cfpb", "sroie", "spamassassin"))
+    parser.add_argument("dataset", choices=("ledgar", "cfpb", "spamassassin"))
     parser.add_argument("--output", required=True, type=Path)
     parser.add_argument("--source", type=Path, help="Local source file or LEDGAR split directory")
     parser.add_argument("--seed", type=int, default=DEFAULT_SEED)
@@ -713,7 +566,7 @@ def parse_args() -> argparse.Namespace:
         help="Selection JSON whose ordered labels define the frozen task label set",
     )
     parser.add_argument("--exclude-dataset", action="append", default=[], type=Path,
-                        help="Prepared dataset whose IDs and normalized contents must be excluded")
+                        help="Prepared dataset to exclude; append ::development,validation to filter splits")
     return parser.parse_args()
 
 
@@ -735,7 +588,6 @@ def main() -> int:
     args.output.mkdir(parents=True)
     try:
         {"ledgar": prepare_ledgar, "cfpb": prepare_cfpb,
-         "sroie": prepare_sroie,
          "spamassassin": prepare_spamassassin}[args.dataset](args, args.output)
     except Exception:
         shutil.rmtree(args.output)

@@ -70,7 +70,9 @@ class SkillPipelineTests(unittest.TestCase):
                 "2. [S02] Use the approved datasource tools to read only the relevant evidence; "
                 "the source collection contains .txt files. <!-- pland:english -->",
                 "2. [S02] Run `python scripts/route.py` for stable routing and use its result when "
-                "it returns a known bucket. <!-- pland:command -->",
+                "it returns a known bucket. <!-- pland:command fallback=S02 -->\n"
+                "   Fallback [S02]: Use the approved datasource tools to read only the relevant "
+                "evidence; the source collection contains .txt files. <!-- pland:fallback -->",
             )
             self.assertNotEqual(candidate_sop_text, sop_text)
             candidate_sop.write_text(candidate_sop_text, encoding="utf-8")
@@ -87,6 +89,8 @@ class SkillPipelineTests(unittest.TestCase):
                 "agent_harness_sha256": digest(agent / "agent.py"),
                 "datasource_snapshot_sha256": manifest["sources"][0]["sha256"],
                 "scorer_sha256": "fixture-scorer",
+                "baseline_sop_sha256": digest(agent / "skills/support-routing/SKILL.md"),
+                "baseline_sop_contract_sha256": manifest["baseline_sop_contract"]["contract_sha256"],
             }
 
             def run(split: str, tokens: int, *, candidate: bool) -> dict:
@@ -116,6 +120,18 @@ class SkillPipelineTests(unittest.TestCase):
                             "reference": 0,
                             "command": 1 if candidate else 0,
                         },
+                        **({"contract": {
+                            "valid": True,
+                            "baseline_contract_sha256": manifest["baseline_sop_contract"]["contract_sha256"],
+                            "baseline_sop_sha256": digest(agent / "skills/support-routing/SKILL.md"),
+                            "candidate_sop_sha256": digest(candidate_sop),
+                            "command_fallback_links": [{
+                                "command_step_id": "S02",
+                                "fallback_step_id": "S02",
+                                "fallback_instruction": "Use the approved datasource tools to read only the relevant evidence; the source collection contains .txt files.",
+                                "fallback_instruction_sha256": "unused-by-assessor",
+                            }],
+                        }} if candidate else {}),
                     },
                     "summary": {
                         "accuracy": 1.0,

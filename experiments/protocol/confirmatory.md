@@ -7,12 +7,9 @@ new rules.
 ## Design
 
 - Local Ollama `qwen3:14b`; temperature 0; reasoning off.
-- Seed `20260902` for text; previously frozen seeds for multimodal harnesses.
+- Seed `20260902`.
 - At most ten evolution attempts; none after the pilot SOP is frozen.
 - Text: 100 development, 100 validation, 1,000 test cases.
-- SROIE: 100 development, 100 validation, and 300 eligible official-test
-  receipts after pilot and duplicate exclusions.
-- RVL mirror: 100 development, 100 validation, and all 369 eligible test images.
 - Exclude pilots and preserve official source splits when available.
 - Keep raw licensed data local; commit proofs, hashes, counts, aggregate results,
   and safe traces.
@@ -32,8 +29,7 @@ Validation releases test only when:
 2. The paired 95% bootstrap lower bound for `accuracy_hybrid - accuracy_NL` is
    at least `-0.02`.
 3. Token reduction is at least 5% with a positive paired 95% lower bound.
-4. Both classification accuracies are at least 0.80; receipt extraction instead
-   requires field F1 of at least 0.50.
+4. Both classification accuracies are at least 0.80.
 
 Checks 1-3 support the relative PLaND claim; check 4 prevents an efficient but
 nonviable baseline from releasing test.

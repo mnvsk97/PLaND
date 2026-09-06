@@ -29,34 +29,6 @@ class PrepareDataTests(unittest.TestCase):
         self.assertIn("Subject: A normal subject", cleaned)
         self.assertIn("Body text.", cleaned)
 
-    def test_sroie_source_ids_include_upstream_split(self):
-        fixture_rows = []
-        for upstream_split in ("train", "test"):
-            fixture_rows.append({
-                "row_idx": 0,
-                "upstream_split": upstream_split,
-                "row": {
-                    "image": {"src": "unused-in-unit-test"},
-                    "words": ["ACME", "2026-01-01", "1 MAIN ST", "10.00"],
-                    "bboxes": [[0, 0, 1, 1]] * 4,
-                    "ner_tags": [0, 1, 2, 3],
-                },
-            })
-        self.assertEqual(MODULE.sroie_source_id(fixture_rows[0]), "train:0")
-        self.assertEqual(MODULE.sroie_source_id(fixture_rows[1]), "test:0")
-        self.assertNotEqual(*(MODULE.sroie_source_id(row) for row in fixture_rows))
-
-    def test_sroie_selection_preserves_official_boundaries_and_is_repeatable(self):
-        train = [{"row_idx": index, "upstream_split": "train"} for index in range(8)]
-        test = [{"row_idx": index, "upstream_split": "test"} for index in range(5)]
-        first = MODULE.select_sroie_splits(train, test, 7, 3, 2, 5)
-        second = MODULE.select_sroie_splits(list(reversed(train)), list(reversed(test)), 7, 3, 2, 5)
-        self.assertEqual(first, second)
-        self.assertTrue(all(item["upstream_split"] == "train" for item in first["development"] + first["validation"]))
-        self.assertTrue(all(item["upstream_split"] == "test" for item in first["test"]))
-        self.assertFalse({MODULE.sroie_source_id(item) for item in first["development"]} &
-                         {MODULE.sroie_source_id(item) for item in first["validation"]})
-
     def test_balanced_selection_is_order_independent(self):
         records = [
             {"id": f"{label}-{index}", "label": label}
@@ -142,6 +114,27 @@ class PrepareDataTests(unittest.TestCase):
             kept, manifest = MODULE.exclude_records(records, "text", "id", [root])
             self.assertEqual([row["id"] for row in kept], ["safe"])
             self.assertEqual(manifest[0]["cases"], 1)
+
+    def test_exclusion_can_preserve_unopened_test(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary); (root / "data/cases").mkdir(parents=True)
+            rows = []
+            for split in ("development", "test"):
+                path = root / f"data/cases/{split}.json"
+                path.write_text(json.dumps({"text": f"{split} text"}))
+                rows.append({"schema_version":"2", "id":split, "benchmark":"x",
+                             "task_type":"text_classification", "split":split,
+                             "input":str(path.relative_to(root)), "output":"{}",
+                             "reasoning":"", "metadata":"{}"})
+            with (root / "evals.csv").open("w", newline="") as handle:
+                writer = csv.DictWriter(handle, fieldnames=MODULE.EVAL_FIELDS)
+                writer.writeheader(); writer.writerows(rows)
+            kept, manifest = MODULE.exclude_records(
+                [{"id":"new", "text":"test text", "label":"x"}], "text", "id",
+                [Path(f"{root}::development")],
+            )
+            self.assertEqual([item["id"] for item in kept], ["new"])
+            self.assertEqual(manifest[0]["included_splits"], ["development"])
 
     def test_cfpb_api_snapshot_is_read_as_canonical_rows(self):
         with tempfile.TemporaryDirectory() as temporary:

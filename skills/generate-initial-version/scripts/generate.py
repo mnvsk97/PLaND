@@ -122,6 +122,33 @@ def write(path: Path, value: str) -> None:
     path.write_text(value, encoding="utf-8")
 
 
+def text_sha256(value: str) -> str:
+    return hashlib.sha256(value.encode("utf-8")).hexdigest()
+
+
+def baseline_sop_contract(content: str) -> dict[str, Any]:
+    pattern = re.compile(
+        r"^\s*\d+[.)]\s+\[(S\d+)\]\s+(.+?)\s+<!--\s*pland:english\s*-->\s*$",
+        re.MULTILINE,
+    )
+    steps = {
+        step_id: {"instruction": instruction, "instruction_sha256": text_sha256(instruction)}
+        for step_id, instruction in pattern.findall(content)
+    }
+    if not steps:
+        raise ValueError("generated SOP has no stable English steps")
+    contract = {
+        "schema_version": 1,
+        "baseline_sop_sha256": text_sha256(content),
+        "baseline_sop_content": content,
+        "steps": steps,
+    }
+    contract["contract_sha256"] = hashlib.sha256(
+        json.dumps(contract, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    ).hexdigest()
+    return contract
+
+
 def sop(
     workflow: str,
     requirement: str,
@@ -270,9 +297,12 @@ def invoke_workflow(request: str):
 Use only the approved datasource collection and tools. The application invokes this agent through `invoke_workflow`, which explicitly loads the `{args.workflow}` SOP before the request. Return the required result without exposing internal reference answers or credentials.
 """,
     )
+    sop_content = sop(args.workflow, requirement, sources_data, profile)
+    write(output / f"skills/{args.workflow}/SKILL.md", sop_content)
+    contract = baseline_sop_contract(sop_content)
     write(
-        output / f"skills/{args.workflow}/SKILL.md",
-        sop(args.workflow, requirement, sources_data, profile),
+        output / "data/baseline-sop-contract.json",
+        json.dumps(contract, indent=2) + "\n",
     )
     write(
         output / "tools/datasources.py",
@@ -326,6 +356,11 @@ def read_datasource(relative_path: str) -> str:
             "sha256": hashlib.sha256(
                 (json.dumps(profile, indent=2, sort_keys=True) + "\n").encode()
             ).hexdigest(),
+        },
+        "baseline_sop_contract": {
+            "path": "data/baseline-sop-contract.json",
+            "sha256": text_sha256(json.dumps(contract, indent=2) + "\n"),
+            "contract_sha256": contract["contract_sha256"],
         },
         "guidance": ({"path": str(guidance), "sha256": sha256(guidance)} if guidance else None),
         "model_provider": args.model_provider,

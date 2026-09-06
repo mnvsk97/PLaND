@@ -34,10 +34,11 @@ Freeze the generated system prompt before baseline measurement. Keep the runtime
 4. Stop if the candidate-attempt count has reached `max_iterations`. If capacity remains, increment the one-based iteration, cluster development failures and unnecessary expense, and propose one bounded change inside the workflow SOP package. Never mine validation or held-out cases for candidate rules. When generating a code candidate, explicitly inspect whether stable work can be cached and whether two or more independent operations can run in parallel.
 5. For each SOP step, retain one representation: a direct English instruction, a one-level relative reference, or an explicit Python/Bash command.
 6. Replace an English step with a command only when the operation is mechanical, stable, locally testable, and cheaper or more reliable than model interpretation. Never hide an LLM call inside a deterministic command.
-7. Preserve the complete accepted English path as the command's fallback. Do
-   not shorten or rewrite that path in the same candidate that introduces a
-   command; evaluate any later instruction compression as its own bounded
-   change.
+7. Preserve the complete accepted English path as the command's fallback. A
+   command `[SNN]` ends with `<!-- pland:command fallback=SNN -->` and includes
+   `Fallback [SNN]: <exact original instruction> <!-- pland:fallback -->`.
+   Validate this link against the frozen baseline contract before any case
+   runs. Do not shorten or rewrite that fallback.
 8. Rerun the same development and validation protocol. A final acceptance requires both candidate and baseline validation runs on the same frozen eval set. Accept the candidate only if it meets the primary quality floor, every task-supplied guardrail, and configured cost, latency, dependency, network, and security policies; otherwise restore the prior accepted version.
 9. Record the hypothesis, diff, metrics, and accept/reject decision. For every accepted hybrid candidate, save a separate NL-versus-hybrid comparison artifact; console output alone is insufficient.
 
@@ -90,9 +91,9 @@ python3 scripts/compare_variants.py \
 
 The comparison refuses mismatched model, digest, seed, eval file, split, system-prompt hash, agent-harness hash, datasource snapshot, or scorer hash. It must retain both SOP snapshots and both absolute metric sets—not only deltas—including accuracy, correct/case counts, input/output/total tokens, estimated model cost, total/mean/p95 latency, and representation counts.
 
-Keep each stable baseline step identifier and end every numbered SOP step with one machine-readable representation marker: `<!-- pland:english -->`, `<!-- pland:reference -->`, or `<!-- pland:command -->`. A script counts as a command step only when the evaluated runtime invokes it and its result performs, controls, validates, or replaces that step. A script that only produces text for later model interpretation is a reference transformation. A hybrid SOP has at least one command step and at least one non-command step. Save the marked SOP content and full SHA-256 before any eval case.
+Keep each stable baseline step identifier and end every numbered SOP step with one machine-readable representation marker: `<!-- pland:english -->`, `<!-- pland:reference -->`, or `<!-- pland:command fallback=SNN -->`. A script counts as a command step only when the evaluated runtime invokes it and its result performs, controls, validates, or replaces that step. A script that only produces text for later model interpretation is a reference transformation. A hybrid SOP has at least one validated command/fallback link and at least one non-command step. Save the marked SOP content, full SHA-256, frozen baseline-contract hash, and validated links before any eval case.
 
-Every command candidate retains its original English instruction as fallback. Derive preconditions and output guards from the supplied requirements, policy, tool schemas, and development traces; never embed benchmark- or domain-specific rules in PLaND itself. Escape to English when a precondition, execution, required verification, or guard fails. Record the step ID, escape reason, model work, and command work. Generated tool arguments require provenance from runtime input, an earlier tool result, or deterministic derivation. A guard is enforced only when runtime execution passes through it; otherwise keep the step English.
+Before evaluation, run `python3 scripts/sop_contract.py --baseline-sop <frozen-SKILL.md> --candidate-sop <candidate-SKILL.md> --output <contract-validation.json>`. Every command candidate retains its exact original English instruction as fallback. Derive preconditions and output guards from the supplied requirements, policy, tool schemas, and development traces; never embed benchmark- or domain-specific rules in PLaND itself. The runtime must refuse an invalid contract, link command execution to the declared step, execute the frozen baseline instruction on escape, and record the command and fallback IDs, fallback-instruction hash, escape reason, model work, and command work. Generated tool arguments require provenance from runtime input, an earlier tool result, or deterministic derivation. A guard is enforced only when runtime execution passes through it; otherwise keep the step English.
 
 Read [run contract](references/run-contract.md) when implementing the harness or deciding whether a candidate is valid. Read [code policy](references/code-policy.md) before generating or accepting Python, Bash, dependencies, or network behavior.
 

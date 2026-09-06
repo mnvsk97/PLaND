@@ -126,3 +126,10 @@ protocol inside each retained experiment directory. Historical experiments
 outside the paper retain their own instructions. Always compare
 dataset hashes, model digest, SOP hashes, prompts, runtime settings, and split
 before comparing a new run with the committed result.
+
+## Fresh paper collection
+
+The approved LEDGAR → CFPB → SpamAssassin collection is specified in
+[`experiments/protocol/fresh-paper-collection.md`](experiments/protocol/fresh-paper-collection.md).
+It uses exactly 500 development, 1,000 selection, and 500 final-test cases per
+dataset. The repo-local collection skill records execution and enforces gates.

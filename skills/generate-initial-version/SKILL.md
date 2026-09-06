@@ -27,7 +27,7 @@ python3 scripts/generate.py \
   [--guidance <generation-guidance-file>]
 ```
 
-The user describes the task, success criteria, restrictions, approved data sources, and available tools in natural language and supplies examples when available. The generator translates that material into the initial agent and task-local evaluation files; the user should not need to author Python or Bash. Present the interpreted task contract for confirmation before baseline measurement, especially when success depends on state changes, action ordering, or semantic judgment. The local scaffold derives an initial SOP from the concise requirement, datasource file types, and eval output structure without treating classification as the default task. It never copies per-case IDs, answers, or reasoning into the agent. Then read the requirements, datasource manifest, eval profile, and guidance and shorten or clarify the generated steps when necessary. The baseline SOP must remain entirely English. Each numbered step has a stable identifier such as `[S01]`, states one observable action or decision, and ends with `<!-- pland:english -->`. Preserve an identifier when wording or representation later changes; never reuse a retired identifier. Only the evolver may introduce reference or command steps after trace evidence exists, and it must retain the original English instruction as the fallback.
+The user describes the task, success criteria, restrictions, approved data sources, and available tools in natural language and supplies examples when available. The generator translates that material into the initial agent and task-local evaluation files; the user should not need to author Python or Bash. Present the interpreted task contract for confirmation before baseline measurement, especially when success depends on state changes, action ordering, or semantic judgment. The local scaffold derives an initial SOP from the concise requirement, datasource file types, and eval output structure without treating classification as the default task. It never copies per-case IDs, answers, or reasoning into the agent. Then read the requirements, datasource manifest, eval profile, and guidance and shorten or clarify the generated steps when necessary. The baseline SOP must remain entirely English. Each numbered step has a stable identifier such as `[S01]`, states one observable action or decision, and ends with `<!-- pland:english -->`. Preserve an identifier when wording or representation later changes; never reuse a retired identifier. Finalize the English SOP before freezing `data/baseline-sop-contract.json`, which records every exact instruction and hash. Only the evolver may introduce reference or command steps after trace evidence exists.
 
 ## Generated contract
 
@@ -40,11 +40,14 @@ The project contains:
 - task-local runner and scorer files generated or adapted from the confirmed natural-language success contract;
 - `data/manifest.json` with source paths and hashes;
 - `data/eval-profile.json` with task structure but no case-level answers;
+- `data/baseline-sop-contract.json` with the frozen English steps and hashes;
 - `pyproject.toml` with open-source runtime dependencies.
 
 `instructions.md` is the generated system prompt. Finalize it before baseline measurement; after the baseline begins, PLaND treats its exact content and SHA-256 hash as frozen experiment invariants.
 
 The model is supplied through `PLAND_MODEL`. Use `--model-provider ollama` only when local Ollama is an explicit requirement; it adds the open-source `langchain-ollama` integration, deterministic local-model settings, disables the unnecessary default subagent, and hides filesystem tools outside the generated read-only workflow. Otherwise retain the provider-neutral default. Datasources remain in place unless the user explicitly requests copying. Do not store credentials.
+
+Before hybrid evolution, measure the English baseline on development only. Run `scripts/assess_baseline.py` after each version. If it returns `refine_baseline`, make one bounded English-only clarification based only on development traces and rerun development. Stop at `ready_to_freeze` or after the fixed attempt limit (default 10). Record every version, diff, run, decision, and hash. Freeze the selected English SOP and its baseline contract only after readiness; validation and held-out cases remain unopened. If attempt 10 is still below the configured floor, stop with `baseline_nonviable` and do not generate a hybrid candidate.
 
 Read [generation contract](references/generation-contract.md) when modifying the skeleton or deciding what belongs in the system prompt versus the SOP.
 

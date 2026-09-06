@@ -93,6 +93,8 @@ def compare(natural: dict[str, Any], hybrid: dict[str, Any]) -> dict[str, Any]:
         "agent_harness_sha256",
         "datasource_snapshot_sha256",
         "scorer_sha256",
+        "baseline_sop_sha256",
+        "baseline_sop_contract_sha256",
     )
     natural_invariants = natural.get("invariants", {})
     hybrid_invariants = hybrid.get("invariants", {})
@@ -116,6 +118,17 @@ def compare(natural: dict[str, Any], hybrid: dict[str, Any]) -> dict[str, Any]:
         raise ValueError("natural-language run contains command steps")
     if hybrid_steps.get("command", 0) < 1:
         raise ValueError("hybrid run must contain at least one command step")
+    contract = hybrid["sop"].get("contract") or hybrid.get("sop_contract")
+    links = contract.get("command_fallback_links") if isinstance(contract, dict) else None
+    if (
+        not isinstance(contract, dict)
+        or contract.get("valid") is not True
+        or not isinstance(links, list)
+        or len(links) != hybrid_steps.get("command", 0)
+        or contract.get("baseline_contract_sha256")
+        != hybrid_invariants.get("baseline_sop_contract_sha256")
+    ):
+        raise ValueError("invalid hybrid command/fallback contract")
     natural_cases = natural.get("cases")
     hybrid_cases = hybrid.get("cases")
     if natural_cases is not None or hybrid_cases is not None:
