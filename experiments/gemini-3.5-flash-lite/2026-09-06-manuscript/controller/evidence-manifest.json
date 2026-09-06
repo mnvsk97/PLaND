@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "study_id": "gemini-3.5-flash-lite-2026-09-05-11-41-pm-amendment-02",
-  "created_at": "2026-09-06T09:01:26.967056+00:00",
+  "created_at": "2026-09-06T14:33:47.270432+00:00",
   "plan_sha256": "35c4c89d99f7cd788a38f2e36ea46ca75beb58ee9e5fcab44019b5a66036bea7",
   "protocol_sha256": "53af6300149647f9aa80a866e9053d973ecd9a9a03e37109dcbc17741f70638a",
   "git_head": "78d00c6aa388a3978087877bc5c3d4bd135c3f40",
@@ -905,8 +905,8 @@
     {
       "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/controller/command-ledger.json",
       "kind": "file",
-      "bytes": 249497,
-      "sha256": "d74c159124728f2d927d29d19b106e697923744cbaf7b265c2d27a709498ee4e"
+      "bytes": 269817,
+      "sha256": "878c6f1136e92b03f14c63916450e481d1306c40bd7cc2cbd02d93f4fb0f7f74"
     },
     {
       "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/controller/logs/paper-audit-build-manuscript-01-attempt-1.stderr.log",
@@ -979,6 +979,102 @@
       "kind": "file",
       "bytes": 47,
       "sha256": "395756f941ecc65bf775f1fbafa87492ce401b45a29871412a3f916d4fd33d5c"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/controller/logs/paper-audit-mean-accuracy-build-manuscript-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/controller/logs/paper-audit-mean-accuracy-build-manuscript-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 169,
+      "sha256": "bdbd742ac9bbd61c5af54f45fbbaa717dd0b32c9d4c1b7604a831067a4fe70ea"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/controller/logs/paper-audit-mean-accuracy-check-unchanged-evidence-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/controller/logs/paper-audit-mean-accuracy-check-unchanged-evidence-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 451,
+      "sha256": "689fd48b663f304b1f676ae0f8c698a77903c11c5079d1a7c8126248dc249dda"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/controller/logs/paper-audit-mean-accuracy-finalize-artifacts-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/controller/logs/paper-audit-mean-accuracy-finalize-artifacts-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 89,
+      "sha256": "0803d61a9ae70831b1980b68bafe90815e369d9f42b5a632e7ba45389f89547b"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/controller/logs/paper-audit-mean-accuracy-freeze-paper-manifest-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/controller/logs/paper-audit-mean-accuracy-freeze-paper-manifest-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 47,
+      "sha256": "395756f941ecc65bf775f1fbafa87492ce401b45a29871412a3f916d4fd33d5c"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/controller/logs/paper-audit-mean-accuracy-recompute-manuscript-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/controller/logs/paper-audit-mean-accuracy-recompute-manuscript-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 608,
+      "sha256": "a54c98105ab1dc806b9fd5a2ceceb5fc5406decef18b34e326b5d9b099f405a5"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/controller/logs/paper-audit-mean-accuracy-render-manuscript-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/controller/logs/paper-audit-mean-accuracy-render-manuscript-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 101,
+      "sha256": "aa3bb0d23faa52cb1b8a8e544e33aeffe93c17ba73a071292281f75bce5cbe91"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/controller/logs/paper-audit-mean-accuracy-unit-tests-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 1523,
+      "sha256": "569d8707c4cc189f15427115f516e2443bd2fe3a67e0b37ebd64a04f6aa207ae"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/controller/logs/paper-audit-mean-accuracy-unit-tests-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/controller/logs/paper-audit-mean-accuracy-verify-final-paper-attempt-1.stderr.log",
+      "kind": "file",
+      "bytes": 14653,
+      "sha256": "f33e09deed95769c65a23524312e08bdbcc408cac1954938773ed402db91da53"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/controller/logs/paper-audit-mean-accuracy-verify-final-paper-attempt-1.stdout.log",
+      "kind": "file",
+      "bytes": 4285,
+      "sha256": "ea254a688d144abd595626981488d86540e6b443c101e2f019d84ba0c5bcd565"
     },
     {
       "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/controller/logs/paper-audit-recompute-manuscript-01-attempt-1.stderr.log",
@@ -1211,20 +1307,20 @@
     {
       "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/manuscript.template.md",
       "kind": "file",
-      "bytes": 31724,
-      "sha256": "76ef9afce6c6422b885724a2c97c0100b490d6333cb282c844c66c1477fc0935"
+      "bytes": 31923,
+      "sha256": "072d4da8dfeb7e03c5a66f740606fe32507ae3cbd20008142b894c647835bcaa"
     },
     {
       "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/paper-artifacts.json",
       "kind": "file",
       "bytes": 4281,
-      "sha256": "d5c4aabb96a28b623afbce2119b133b09a304c7c6402a55e8e1147342199bf9b"
+      "sha256": "89334eb72c02e07e24829c662dcd9cd29636734536a943600cc92ac8c4bc85c5"
     },
     {
       "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/paper-calculations.json",
       "kind": "file",
-      "bytes": 51389,
-      "sha256": "2e96d25cae35c80e7c7eb1003b3668ccd22c566f645d8e5e1dd2c60d865dbc6f"
+      "bytes": 53281,
+      "sha256": "f5c6b3cff55b9a058b71541f66e7a4b61d5ecf004f569468bf5851dfcfbec2f6"
     },
     {
       "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/provenance-addendum.md",
@@ -1242,7 +1338,7 @@
       "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/visual-qa.json",
       "kind": "file",
       "bytes": 2055,
-      "sha256": "ad578cc8330f02d6cd8e66a99c4de14b87010caecf661bd4d0ebe709b0766e7a"
+      "sha256": "3afc021149d422c9a2e199c7e28775a71c35f8fae5fc793244ccb392019addb2"
     },
     {
       "path": "/Users/saikrishna/dev/deterministic-skills/paper",
@@ -1254,32 +1350,32 @@
     {
       "path": "/Users/saikrishna/dev/deterministic-skills/paper/PLaND.docx",
       "kind": "file",
-      "bytes": 792654,
-      "sha256": "7dd6f07d3c6abcde66c2fe2aebdd805b7dd463aca874f226fe97d7e2ee4be18b"
+      "bytes": 792702,
+      "sha256": "99213e9884f7fbdf5efb2b429f29370969321ee58366559648cca41d74eacccf"
     },
     {
       "path": "/Users/saikrishna/dev/deterministic-skills/paper/PLaND.html",
       "kind": "file",
-      "bytes": 448622,
-      "sha256": "de4200521bb56264158f3fbe0277412022eb13b6ee1b37bc107778e6038ea03f"
+      "bytes": 448781,
+      "sha256": "aaa6595adeb12c5c091ef0d3493d91c8354086a5f8cc135d95ab206b22ef0640"
     },
     {
       "path": "/Users/saikrishna/dev/deterministic-skills/paper/PLaND.md",
       "kind": "file",
-      "bytes": 39011,
-      "sha256": "fe408b746c3284585ba0851baba15be831bc7b9b89654b7df1855016d29e1ce2"
+      "bytes": 39170,
+      "sha256": "750cf9609b6e6ac6f0b795d0b06639790d6a5718a9732e5635759ff4ae68062d"
     },
     {
       "path": "/Users/saikrishna/dev/deterministic-skills/paper/PLaND.pdf",
       "kind": "file",
-      "bytes": 629801,
-      "sha256": "f05bb689932e1b22126a6c930e9189d1bce42f5e864cb69599960205d20fd0ce"
+      "bytes": 630156,
+      "sha256": "7f01adcd064d0eabb0e9dde14985f08b38a7abcecd9b35d1545f06dcbd3c8eaf"
     },
     {
       "path": "/Users/saikrishna/dev/deterministic-skills/paper/audit_paper.py",
       "kind": "file",
-      "bytes": 22337,
-      "sha256": "0d044592ecbd13ed817a090cdfc204d059c79c57d87f7020d53ae5f27698e45f"
+      "bytes": 23709,
+      "sha256": "c10020337917b5f67f410a09dda308e8e42dcbfc4d53f890ca19e7a7afa44429"
     },
     {
       "path": "/Users/saikrishna/dev/deterministic-skills/paper/build_artifacts.cjs",
@@ -1299,6 +1395,12 @@
       "files": 7,
       "bytes": 435596,
       "sha256": "4238dc44a5faf3e0ab72861432a20a8d3847e0605460d758d68295bf6c0b9840"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/paper/test_audit_paper.py",
+      "kind": "file",
+      "bytes": 5111,
+      "sha256": "97c534b9f808b1e69a9fd28ddc43ab2e5bca7a0da219065f4dfa2a079d26922f"
     },
     {
       "path": "/Users/saikrishna/dev/deterministic-skills/reproduce/uv.lock",
@@ -1346,6 +1448,13 @@
       "files": 83,
       "bytes": 793723,
       "sha256": "7c68151326f4bce49d14273356791884f713a00be5b64ce4f4ea843dab93f8eb"
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/tmp/paper-review-20260906/mean-accuracy",
+      "kind": "directory",
+      "files": 9,
+      "bytes": 5832101,
+      "sha256": "55b35f6fd3b46d870a21e5a9966b158f4eaebf86dbd46804e3ffb371bdaaa197"
     },
     {
       "path": "/Users/saikrishna/dev/deterministic-skills/tmp/paper-review-20260906/release",

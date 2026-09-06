@@ -1,0 +1,17 @@
+test_check_not_disabled_by_optimization (test_audit_paper.PaperAuditTests.test_check_not_disabled_by_optimization) ... ok
+test_duplicates_rejected (test_audit_paper.PaperAuditTests.test_duplicates_rejected) ... ok
+test_literal_label_and_constant_bootstrap (test_audit_paper.PaperAuditTests.test_literal_label_and_constant_bootstrap) ... ok
+test_main_mean_and_individual_appendix_values (test_audit_paper.PaperAuditTests.test_main_mean_and_individual_appendix_values) ... ok
+test_mean_does_not_override_one_failed_gate (test_audit_paper.PaperAuditTests.test_mean_does_not_override_one_failed_gate) ... ok
+test_mean_rejects_missing_or_duplicate_repeats (test_audit_paper.PaperAuditTests.test_mean_rejects_missing_or_duplicate_repeats) ... ok
+test_mean_rejects_mixed_splits_and_unequal_denominators (test_audit_paper.PaperAuditTests.test_mean_rejects_mixed_splits_and_unequal_denominators) ... ok
+test_mean_uses_all_unrounded_case_counts (test_audit_paper.PaperAuditTests.test_mean_uses_all_unrounded_case_counts) ... ok
+test_quantile_interpolation (test_audit_paper.PaperAuditTests.test_quantile_interpolation) ... ok
+test_summary_derived_from_cases (test_audit_paper.PaperAuditTests.test_summary_derived_from_cases) ... ok
+test_wrong_correctness_rejected (test_audit_paper.PaperAuditTests.test_wrong_correctness_rejected) ... ok
+test_wrong_tokens_rejected (test_audit_paper.PaperAuditTests.test_wrong_tokens_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.002s
+
+OK

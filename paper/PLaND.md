@@ -7,7 +7,7 @@
 ## Abstract
 
 <!-- audit:abstract -->
-Path to Least Non Determinism (PLaND) is an evaluation-driven methodology for replacing suitable language-model work with code. It starts with an English standard operating procedure (SOP). A host reasoning agent inspects development examples and execution records, proposes a revised SOP package, and tests whether an executable step can reduce model use while preserving quality within a stated tolerance. Unresolved inputs use the unchanged English baseline. We collected new LEDGAR, CFPB, and SpamAssassin subsets with 500 development, 1,000 selection, and 500 reserved final-test cases each. Each reached split received three paired baseline/hybrid executions using hosted Gemini 3.5 Flash Lite. Selection required both arms to reach 80% accuracy, a paired accuracy-interval lower bound of at least −2 percentage points, and at least 5% fewer tokens with a positive interval lower bound. LEDGAR and SpamAssassin passed selection and final assessment in all repeats. LEDGAR final-test accuracy changed from 94.8–95.0% to 95.8%, with 74.54–74.58% fewer tokens. SpamAssassin changed from 97.4–97.8% to 97.0–97.4%, with 28.12–28.14% fewer tokens. CFPB hybrid selection accuracy was 78.9–79.5%, below the floor, so its final test remained closed. Two provider-blocked selection emails were replaced under recorded amendments without reducing sample size. The study records package construction and evaluates frozen execution; it does not estimate autonomous discovery reliability across independent construction trials.
+Path to Least Non Determinism (PLaND) is an evaluation-driven methodology for replacing suitable language-model work with code. It starts with an English standard operating procedure (SOP). A host reasoning agent inspects development examples and execution records, proposes a revised SOP package, and tests whether an executable step can reduce model use while preserving quality within a stated tolerance. Unresolved inputs use the unchanged English baseline. We collected new LEDGAR, CFPB, and SpamAssassin subsets with 500 development, 1,000 selection, and 500 reserved final-test cases each. Each reached split received three paired baseline/hybrid executions using hosted Gemini 3.5 Flash Lite. Selection required both arms to reach 80% accuracy, a paired accuracy-interval lower bound of at least −2 percentage points, and at least 5% fewer tokens with a positive interval lower bound. LEDGAR and SpamAssassin passed selection and final assessment in all repeats. Mean final-test accuracy across three runs changed from 94.93% to 95.80% for LEDGAR, with 74.54–74.58% fewer tokens. SpamAssassin mean accuracy changed from 97.67% to 97.20%, with 28.12–28.14% fewer tokens. CFPB hybrid mean selection accuracy was 79.27%; every run missed the floor, so its final test remained closed. Two provider-blocked selection emails were replaced under recorded amendments without reducing sample size. The study records package construction and evaluates frozen execution; it does not estimate autonomous discovery reliability across independent construction trials.
 <!-- /audit:abstract -->
 
 **Keywords:** agentic workflows, agent skills, SOP evolution, deterministic execution, language-model agents, token efficiency, hybrid systems
@@ -142,26 +142,26 @@ Replacement preserves sample size but changes the selection population to provid
 
 Every English baseline reached readiness on its first attempt. LEDGAR and CFPB each rejected one hybrid development candidate before qualifying the second. SpamAssassin qualified its first hybrid. Table 2 reports development repeats of the qualified packages; primary construction assessments and unsuccessful attempts remain in the evidence.
 
-**Table 2. Development attempts and repeat accuracy**
+**Table 2. Development attempts and mean accuracy**
 
 <!-- audit:development_table -->
-| Dataset | B attempts | H attempts | Accuracy B → H (%) |
+| Dataset | B attempts | H attempts | Mean accuracy B → H (%) |
 | --- | --- | --- | --- |
-| LEDGAR | 1 | 2 | 96.0–97.0 → 97.0–97.4 |
-| CFPB | 1 | 2 | 81.4–82.0 → 81.0–82.4 |
-| SpamAssassin | 1 | 1 | 98.6–99.2 → 98.6–98.8 |
+| LEDGAR | 1 | 2 | 96.53 → 97.20 |
+| CFPB | 1 | 2 | 81.67 → 81.87 |
+| SpamAssassin | 1 | 1 | 98.87 → 98.67 |
 <!-- /audit:development_table -->
 
-In Tables 2–4, B is the English baseline and H is the hybrid. Ranges show the minimum and maximum over three runs, not confidence intervals. Each selection run used 1,000 cases per arm.
+In Tables 2–4, B is the English baseline and H is the hybrid. Mean accuracy is the sum of the three per-run accuracies divided by three, using unrounded values. The repeats use the same cases; averaging does not increase the number of independent cases. Token savings are shown as the minimum–maximum across runs, not confidence intervals. Each selection run used 1,000 cases per arm.
 
 **Table 3. Selection results across three paired executions**
 
 <!-- audit:selection_table -->
-| Dataset | Accuracy B → H (%) | Tokens saved (%) | Decision |
+| Dataset | Mean accuracy B → H (%) | Tokens saved (%) | Decision |
 | --- | --- | --- | --- |
-| LEDGAR | 97.0–97.4 → 96.7–96.9 | 70.29–70.30 | Accept |
-| CFPB | 79.6–80.0 → 78.9–79.5 | 23.42–23.47 | Reject |
-| SpamAssassin | 98.8–99.0 → 97.9–98.1 | 32.15 | Accept |
+| LEDGAR | 97.23 → 96.83 | 70.29–70.30 | Accept |
+| CFPB | 79.73 → 79.27 | 23.42–23.47 | Reject |
+| SpamAssassin | 98.93 → 98.03 | 32.15 | Accept |
 <!-- /audit:selection_table -->
 
 LEDGAR and SpamAssassin passed every selection requirement in each repeat, permitting final testing. CFPB was rejected. We did not average away a failed gate or select only the most favorable repeat.
@@ -169,7 +169,7 @@ LEDGAR and SpamAssassin passed every selection requirement in each repeat, permi
 ### 4.2 LEDGAR final test
 
 <!-- audit:ledgar_result -->
-Across the three final-test executions, baseline accuracy was 94.8–95.0%, and hybrid accuracy was 95.8%. The rules answered 370 of 500 cases (74.0%) without a model call. Rule accuracy on those cases was 95.9%. Total model-token use fell 74.54–74.58%. All three paired accuracy intervals stayed within the allowed lower bound; their lower endpoints were -0.4, -0.6, -0.6 percentage points. Every final-test comparison passed the recorded criteria.
+Across the three final-test executions, mean baseline accuracy was 94.93%, and mean hybrid accuracy was 95.80%. The rules answered 370 of 500 cases (74.0%) without a model call. Rule accuracy on those cases was 95.9%. Total model-token use fell 74.54–74.58%. All three paired accuracy intervals stayed within the allowed lower bound; their lower endpoints were -0.4, -0.6, -0.6 percentage points. Every final-test comparison passed the recorded criteria.
 <!-- /audit:ledgar_result -->
 
 The result supports selective routing for this balanced ten-category clause subset. It does not show that the rules are correct on every routed case, on the full LEDGAR label set, or on clauses from another source distribution.
@@ -177,7 +177,7 @@ The result supports selective routing for this balanced ten-category clause subs
 ### 4.3 CFPB selection rejection
 
 <!-- audit:cfpb_result -->
-CFPB failed the absolute accuracy floor in every selection repeat. Baseline accuracy was 80.0, 79.6, 79.6%, and hybrid accuracy was 79.4, 78.9, 79.5%, respectively. The hybrid never reached the required 80%, despite reducing tokens by 23.42–23.47%. Its paired accuracy intervals met the −2-point requirement, and its token intervals were positive. Those relative improvements could not compensate for failing the absolute floor. Selection rejection was terminal: no replacement candidate was created and the 500-case final test was not opened.
+CFPB failed the absolute accuracy floor in every selection repeat. Across the three runs, mean baseline accuracy was 79.73%, and mean hybrid accuracy was 79.27%. The hybrid never reached the required 80%, despite reducing tokens by 23.42–23.47%. Its paired accuracy intervals met the −2-point requirement, and its token intervals were positive. Those relative improvements could not compensate for failing the absolute floor. Selection rejection was terminal: no replacement candidate was created and the 500-case final test was not opened.
 <!-- /audit:cfpb_result -->
 
 The baseline itself was near the floor and fell below it in two repeats. This left little accuracy headroom under the fixed conditions. The result rejects this workflow under the protocol, not the possibility of useful rules for complaint classification.
@@ -185,7 +185,7 @@ The baseline itself was near the floor and fell below it in two repeats. This le
 ### 4.4 SpamAssassin final test
 
 <!-- audit:spam_result -->
-Across the three final-test executions, baseline accuracy was 97.4–97.8%, and hybrid accuracy was 97.0–97.4%. The rules answered 177 of 500 cases (35.4%) without a model call. Rule accuracy on those cases was 97.7%. Total model-token use fell 28.12–28.14%. All three paired accuracy intervals stayed within the allowed lower bound; their lower endpoints were -1.6, -1.6, -1.4 percentage points. Every final-test comparison passed the recorded criteria.
+Across the three final-test executions, mean baseline accuracy was 97.67%, and mean hybrid accuracy was 97.20%. The rules answered 177 of 500 cases (35.4%) without a model call. Rule accuracy on those cases was 97.7%. Total model-token use fell 28.12–28.14%. All three paired accuracy intervals stayed within the allowed lower bound; their lower endpoints were -1.6, -1.6, -1.4 percentage points. Every final-test comparison passed the recorded criteria.
 <!-- /audit:spam_result -->
 
 SpamAssassin's hybrid had lower observed accuracy than the baseline in every selection and final-test repeat. It passed because the estimated loss stayed within the predeclared tolerance, not because accuracy improved. The old public corpus and provider-block replacements limit generalization to current email.
@@ -193,10 +193,10 @@ SpamAssassin's hybrid had lower observed accuracy than the baseline in every sel
 **Table 4. Reserved final-test results across three paired executions**
 
 <!-- audit:final_table -->
-| Dataset | Accuracy B → H (%) | Calls B → H | Tokens saved (%) |
+| Dataset | Mean accuracy B → H (%) | Calls B → H | Tokens saved (%) |
 | --- | --- | --- | --- |
-| LEDGAR | 94.8–95.0 → 95.8 | 500 → 130 | 74.54–74.58 |
-| SpamAssassin | 97.4–97.8 → 97.0–97.4 | 500 → 323 | 28.12–28.14 |
+| LEDGAR | 94.93 → 95.80 | 500 → 130 | 74.54–74.58 |
+| SpamAssassin | 97.67 → 97.20 | 500 → 323 | 28.12–28.14 |
 <!-- /audit:final_table -->
 
 Both final tests used 500 cases per arm in each repeat. CFPB has no final-test result. Appendix A reports all held-out repeats and their intervals individually.

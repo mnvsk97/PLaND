@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="source-sha256" content="fe408b746c3284585ba0851baba15be831bc7b9b89654b7df1855016d29e1ce2"><title>PLaND Path to Least Non Determinism</title>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="source-sha256" content="750cf9609b6e6ac6f0b795d0b06639790d6a5718a9732e5635759ff4ae68062d"><title>PLaND Path to Least Non Determinism</title>
 <style>body{max-width:850px;margin:48px auto;padding:0 28px;font:17px/1.5 Georgia,serif;color:#161616}h1,h2,h3{line-height:1.2}h1{color:#004a93}h2{color:#0070c0}h3{color:#000}h1{font-size:29px}h2{font-size:23px;margin-top:32px}h3{font-size:19px;margin-top:24px}a{color:#245579}table{border-collapse:collapse;width:100%;font-size:14px;margin:16px 0 22px;break-inside:avoid}td,th{border:1px solid #d9d9d9;padding:9px 10px;text-align:center}td:first-child,th:first-child{text-align:left}th{background:#e8eef3}thead{display:table-header-group}tr{break-inside:avoid}figure{margin:20px 0}img{width:100%;height:auto;max-width:320px;display:block;margin:auto}code{font-size:.86em;overflow-wrap:anywhere}.equation{text-align:center;font-family:'Cambria Math',serif;line-height:1.7;margin:15px 0}.columns{column-count:2;column-gap:24px}p{text-align:justify}h2,h3{break-after:avoid}figure{break-inside:avoid}@media(max-width:700px){.columns{column-count:1}}@media print{@page{size:A4;margin:19mm}body{font:10pt/1.1 'Times New Roman',serif;margin:0;max-width:none;padding:0}h2,h3{break-after:avoid}figure{break-inside:avoid}table{font-size:9pt}}</style></head><body><h1>PLaND Path to Least Non Determinism</h1>
 <p><strong>Maddipatla Naga Venkata Sai Krishna</strong>, <strong>Asit Kumar Sahoo</strong></p>
 <p><em>Affiliations: Both authors are Independent Researchers, San Francisco, CA, USA. Corresponding author: Maddipatla Naga Venkata Sai Krishna; <a href="mailto:mnvsk97@gmail.com">mnvsk97@gmail.com</a>.</em></p>
 <h2>Abstract</h2>
 <!-- audit:abstract -->
-<p>Path to Least Non Determinism (PLaND) is an evaluation-driven methodology for replacing suitable language-model work with code. It starts with an English standard operating procedure (SOP). A host reasoning agent inspects development examples and execution records, proposes a revised SOP package, and tests whether an executable step can reduce model use while preserving quality within a stated tolerance. Unresolved inputs use the unchanged English baseline. We collected new LEDGAR, CFPB, and SpamAssassin subsets with 500 development, 1,000 selection, and 500 reserved final-test cases each. Each reached split received three paired baseline/hybrid executions using hosted Gemini 3.5 Flash Lite. Selection required both arms to reach 80% accuracy, a paired accuracy-interval lower bound of at least −2 percentage points, and at least 5% fewer tokens with a positive interval lower bound. LEDGAR and SpamAssassin passed selection and final assessment in all repeats. LEDGAR final-test accuracy changed from 94.8–95.0% to 95.8%, with 74.54–74.58% fewer tokens. SpamAssassin changed from 97.4–97.8% to 97.0–97.4%, with 28.12–28.14% fewer tokens. CFPB hybrid selection accuracy was 78.9–79.5%, below the floor, so its final test remained closed. Two provider-blocked selection emails were replaced under recorded amendments without reducing sample size. The study records package construction and evaluates frozen execution; it does not estimate autonomous discovery reliability across independent construction trials.</p>
+<p>Path to Least Non Determinism (PLaND) is an evaluation-driven methodology for replacing suitable language-model work with code. It starts with an English standard operating procedure (SOP). A host reasoning agent inspects development examples and execution records, proposes a revised SOP package, and tests whether an executable step can reduce model use while preserving quality within a stated tolerance. Unresolved inputs use the unchanged English baseline. We collected new LEDGAR, CFPB, and SpamAssassin subsets with 500 development, 1,000 selection, and 500 reserved final-test cases each. Each reached split received three paired baseline/hybrid executions using hosted Gemini 3.5 Flash Lite. Selection required both arms to reach 80% accuracy, a paired accuracy-interval lower bound of at least −2 percentage points, and at least 5% fewer tokens with a positive interval lower bound. LEDGAR and SpamAssassin passed selection and final assessment in all repeats. Mean final-test accuracy across three runs changed from 94.93% to 95.80% for LEDGAR, with 74.54–74.58% fewer tokens. SpamAssassin mean accuracy changed from 97.67% to 97.20%, with 28.12–28.14% fewer tokens. CFPB hybrid mean selection accuracy was 79.27%; every run missed the floor, so its final test remained closed. Two provider-blocked selection emails were replaced under recorded amendments without reducing sample size. The study records package construction and evaluates frozen execution; it does not estimate autonomous discovery reliability across independent construction trials.</p>
 <!-- /audit:abstract -->
 
 <p><strong>Keywords:</strong> agentic workflows, agent skills, SOP evolution, deterministic execution, language-model agents, token efficiency, hybrid systems</p>
@@ -110,7 +110,7 @@
 <h2>4 Results</h2>
 <h3>4.1 Development and selection</h3>
 <p>Every English baseline reached readiness on its first attempt. LEDGAR and CFPB each rejected one hybrid development candidate before qualifying the second. SpamAssassin qualified its first hybrid. Table 2 reports development repeats of the qualified packages; primary construction assessments and unsuccessful attempts remain in the evidence.</p>
-<p><strong>Table 2. Development attempts and repeat accuracy</strong></p>
+<p><strong>Table 2. Development attempts and mean accuracy</strong></p>
 <!-- audit:development_table -->
 <table>
 <thead>
@@ -118,57 +118,57 @@
 <th>Dataset</th>
 <th>B attempts</th>
 <th>H attempts</th>
-<th>Accuracy B → H (%)</th>
+<th>Mean accuracy B → H (%)</th>
 </tr>
 </thead>
 <tbody><tr>
 <td>LEDGAR</td>
 <td>1</td>
 <td>2</td>
-<td>96.0–97.0 → 97.0–97.4</td>
+<td>96.53 → 97.20</td>
 </tr>
 <tr>
 <td>CFPB</td>
 <td>1</td>
 <td>2</td>
-<td>81.4–82.0 → 81.0–82.4</td>
+<td>81.67 → 81.87</td>
 </tr>
 <tr>
 <td>SpamAssassin</td>
 <td>1</td>
 <td>1</td>
-<td>98.6–99.2 → 98.6–98.8</td>
+<td>98.87 → 98.67</td>
 </tr>
 </tbody></table>
 <!-- /audit:development_table -->
 
-<p>In Tables 2–4, B is the English baseline and H is the hybrid. Ranges show the minimum and maximum over three runs, not confidence intervals. Each selection run used 1,000 cases per arm.</p>
+<p>In Tables 2–4, B is the English baseline and H is the hybrid. Mean accuracy is the sum of the three per-run accuracies divided by three, using unrounded values. The repeats use the same cases; averaging does not increase the number of independent cases. Token savings are shown as the minimum–maximum across runs, not confidence intervals. Each selection run used 1,000 cases per arm.</p>
 <p><strong>Table 3. Selection results across three paired executions</strong></p>
 <!-- audit:selection_table -->
 <table>
 <thead>
 <tr>
 <th>Dataset</th>
-<th>Accuracy B → H (%)</th>
+<th>Mean accuracy B → H (%)</th>
 <th>Tokens saved (%)</th>
 <th>Decision</th>
 </tr>
 </thead>
 <tbody><tr>
 <td>LEDGAR</td>
-<td>97.0–97.4 → 96.7–96.9</td>
+<td>97.23 → 96.83</td>
 <td>70.29–70.30</td>
 <td>Accept</td>
 </tr>
 <tr>
 <td>CFPB</td>
-<td>79.6–80.0 → 78.9–79.5</td>
+<td>79.73 → 79.27</td>
 <td>23.42–23.47</td>
 <td>Reject</td>
 </tr>
 <tr>
 <td>SpamAssassin</td>
-<td>98.8–99.0 → 97.9–98.1</td>
+<td>98.93 → 98.03</td>
 <td>32.15</td>
 <td>Accept</td>
 </tr>
@@ -178,19 +178,19 @@
 <p>LEDGAR and SpamAssassin passed every selection requirement in each repeat, permitting final testing. CFPB was rejected. We did not average away a failed gate or select only the most favorable repeat.</p>
 <h3>4.2 LEDGAR final test</h3>
 <!-- audit:ledgar_result -->
-<p>Across the three final-test executions, baseline accuracy was 94.8–95.0%, and hybrid accuracy was 95.8%. The rules answered 370 of 500 cases (74.0%) without a model call. Rule accuracy on those cases was 95.9%. Total model-token use fell 74.54–74.58%. All three paired accuracy intervals stayed within the allowed lower bound; their lower endpoints were -0.4, -0.6, -0.6 percentage points. Every final-test comparison passed the recorded criteria.</p>
+<p>Across the three final-test executions, mean baseline accuracy was 94.93%, and mean hybrid accuracy was 95.80%. The rules answered 370 of 500 cases (74.0%) without a model call. Rule accuracy on those cases was 95.9%. Total model-token use fell 74.54–74.58%. All three paired accuracy intervals stayed within the allowed lower bound; their lower endpoints were -0.4, -0.6, -0.6 percentage points. Every final-test comparison passed the recorded criteria.</p>
 <!-- /audit:ledgar_result -->
 
 <p>The result supports selective routing for this balanced ten-category clause subset. It does not show that the rules are correct on every routed case, on the full LEDGAR label set, or on clauses from another source distribution.</p>
 <h3>4.3 CFPB selection rejection</h3>
 <!-- audit:cfpb_result -->
-<p>CFPB failed the absolute accuracy floor in every selection repeat. Baseline accuracy was 80.0, 79.6, 79.6%, and hybrid accuracy was 79.4, 78.9, 79.5%, respectively. The hybrid never reached the required 80%, despite reducing tokens by 23.42–23.47%. Its paired accuracy intervals met the −2-point requirement, and its token intervals were positive. Those relative improvements could not compensate for failing the absolute floor. Selection rejection was terminal: no replacement candidate was created and the 500-case final test was not opened.</p>
+<p>CFPB failed the absolute accuracy floor in every selection repeat. Across the three runs, mean baseline accuracy was 79.73%, and mean hybrid accuracy was 79.27%. The hybrid never reached the required 80%, despite reducing tokens by 23.42–23.47%. Its paired accuracy intervals met the −2-point requirement, and its token intervals were positive. Those relative improvements could not compensate for failing the absolute floor. Selection rejection was terminal: no replacement candidate was created and the 500-case final test was not opened.</p>
 <!-- /audit:cfpb_result -->
 
 <p>The baseline itself was near the floor and fell below it in two repeats. This left little accuracy headroom under the fixed conditions. The result rejects this workflow under the protocol, not the possibility of useful rules for complaint classification.</p>
 <h3>4.4 SpamAssassin final test</h3>
 <!-- audit:spam_result -->
-<p>Across the three final-test executions, baseline accuracy was 97.4–97.8%, and hybrid accuracy was 97.0–97.4%. The rules answered 177 of 500 cases (35.4%) without a model call. Rule accuracy on those cases was 97.7%. Total model-token use fell 28.12–28.14%. All three paired accuracy intervals stayed within the allowed lower bound; their lower endpoints were -1.6, -1.6, -1.4 percentage points. Every final-test comparison passed the recorded criteria.</p>
+<p>Across the three final-test executions, mean baseline accuracy was 97.67%, and mean hybrid accuracy was 97.20%. The rules answered 177 of 500 cases (35.4%) without a model call. Rule accuracy on those cases was 97.7%. Total model-token use fell 28.12–28.14%. All three paired accuracy intervals stayed within the allowed lower bound; their lower endpoints were -1.6, -1.6, -1.4 percentage points. Every final-test comparison passed the recorded criteria.</p>
 <!-- /audit:spam_result -->
 
 <p>SpamAssassin&#39;s hybrid had lower observed accuracy than the baseline in every selection and final-test repeat. It passed because the estimated loss stayed within the predeclared tolerance, not because accuracy improved. The old public corpus and provider-block replacements limit generalization to current email.</p>
@@ -200,20 +200,20 @@
 <thead>
 <tr>
 <th>Dataset</th>
-<th>Accuracy B → H (%)</th>
+<th>Mean accuracy B → H (%)</th>
 <th>Calls B → H</th>
 <th>Tokens saved (%)</th>
 </tr>
 </thead>
 <tbody><tr>
 <td>LEDGAR</td>
-<td>94.8–95.0 → 95.8</td>
+<td>94.93 → 95.80</td>
 <td>500 → 130</td>
 <td>74.54–74.58</td>
 </tr>
 <tr>
 <td>SpamAssassin</td>
-<td>97.4–97.8 → 97.0–97.4</td>
+<td>97.67 → 97.20</td>
 <td>500 → 323</td>
 <td>28.12–28.14</td>
 </tr>

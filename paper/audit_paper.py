@@ -162,6 +162,27 @@ def span(rows, key, digits=1, arm=None):
     return lo if lo == hi else f'{lo}–{hi}'
 
 
+def mean_accuracy(rows, arm):
+    """Descriptive mean of three same-split repeats, never a release gate."""
+    check(len(rows) == len(REPEATS) and {r['repeat'] for r in rows} == set(REPEATS),
+          'incomplete accuracy repeats')
+    check(len({(r['dataset'], r['stage']) for r in rows}) == 1, 'mixed accuracy group')
+    sizes = {r[arm]['cases'] for r in rows}
+    check(len(sizes) == 1 and next(iter(sizes)) > 0, 'unequal or empty accuracy denominators')
+    return math.fsum(r[arm]['correct'] / r[arm]['cases'] for r in rows) / len(rows)
+
+
+def accuracy_summaries(rows):
+    summaries = []
+    for dataset, stage in dict.fromkeys((r['dataset'], r['stage']) for r in rows):
+        group = [r for r in rows if (r['dataset'], r['stage']) == (dataset, stage)]
+        summaries.append({'dataset': dataset, 'stage': stage, 'repeats': len(group),
+                          'cases_per_repeat': group[0]['baseline']['cases'],
+                          'baseline_mean_accuracy': mean_accuracy(group, 'baseline'),
+                          'hybrid_mean_accuracy': mean_accuracy(group, 'hybrid')})
+    return summaries
+
+
 def passages(rows):
     def select(dataset, stage):
         return [r for r in rows if r['dataset'] == dataset and r['stage'] == stage]
@@ -172,26 +193,26 @@ def passages(rows):
         'It starts with an English standard operating procedure (SOP). A host reasoning agent inspects development examples and execution records, proposes a revised SOP package, and tests whether an executable step can reduce model use while preserving quality within a stated tolerance. Unresolved inputs use the unchanged English baseline. '
         'We collected new LEDGAR, CFPB, and SpamAssassin subsets with 500 development, 1,000 selection, and 500 reserved final-test cases each. '
         'Each reached split received three paired baseline/hybrid executions using hosted Gemini 3.5 Flash Lite. Selection required both arms to reach 80% accuracy, a paired accuracy-interval lower bound of at least −2 percentage points, and at least 5% fewer tokens with a positive interval lower bound. '
-        f'LEDGAR and SpamAssassin passed selection and final assessment in all repeats. LEDGAR final-test accuracy changed from {span(l,"accuracy",arm="baseline")}% to {span(l,"accuracy",arm="hybrid")}%, with {span(l,"token_reduction",2)}% fewer tokens. '
-        f'SpamAssassin changed from {span(s,"accuracy",arm="baseline")}% to {span(s,"accuracy",arm="hybrid")}%, with {span(s,"token_reduction",2)}% fewer tokens. '
-        f'CFPB hybrid selection accuracy was {span(c,"accuracy",arm="hybrid")}%, below the floor, so its final test remained closed. '
+        f'LEDGAR and SpamAssassin passed selection and final assessment in all repeats. Mean final-test accuracy across three runs changed from {pct(mean_accuracy(l,"baseline"),2)}% to {pct(mean_accuracy(l,"hybrid"),2)}% for LEDGAR, with {span(l,"token_reduction",2)}% fewer tokens. '
+        f'SpamAssassin mean accuracy changed from {pct(mean_accuracy(s,"baseline"),2)}% to {pct(mean_accuracy(s,"hybrid"),2)}%, with {span(s,"token_reduction",2)}% fewer tokens. '
+        f'CFPB hybrid mean selection accuracy was {pct(mean_accuracy(c,"hybrid"),2)}%; every run missed the floor, so its final test remained closed. '
         'Two provider-blocked selection emails were replaced under recorded amendments without reducing sample size. The study records package construction and evaluates frozen execution; it does not estimate autonomous discovery reliability across independent construction trials.'
     )
-    blocks['selection_table'] = '| Dataset | Accuracy B → H (%) | Tokens saved (%) | Decision |\n| --- | --- | --- | --- |\n' + '\n'.join(
-        f'| {d} | {span(select(d,"selection"),"accuracy",arm="baseline")} → {span(select(d,"selection"),"accuracy",arm="hybrid")} | {span(select(d,"selection"),"token_reduction",2)} | {"Accept" if all(r["passed"] for r in select(d,"selection")) else "Reject"} |' for d in DATASETS)
-    blocks['final_table'] = '| Dataset | Accuracy B → H (%) | Calls B → H | Tokens saved (%) |\n| --- | --- | --- | --- |\n' + '\n'.join(
-        f'| {d} | {span(select(d,"final-test"),"accuracy",arm="baseline")} → {span(select(d,"final-test"),"accuracy",arm="hybrid")} | {select(d,"final-test")[0]["baseline"]["model_calls"]} → {select(d,"final-test")[0]["hybrid"]["model_calls"]} | {span(select(d,"final-test"),"token_reduction",2)} |' for d in ('LEDGAR','SpamAssassin'))
+    blocks['selection_table'] = '| Dataset | Mean accuracy B → H (%) | Tokens saved (%) | Decision |\n| --- | --- | --- | --- |\n' + '\n'.join(
+        f'| {d} | {pct(mean_accuracy(select(d,"selection"),"baseline"),2)} → {pct(mean_accuracy(select(d,"selection"),"hybrid"),2)} | {span(select(d,"selection"),"token_reduction",2)} | {"Accept" if all(r["passed"] for r in select(d,"selection")) else "Reject"} |' for d in DATASETS)
+    blocks['final_table'] = '| Dataset | Mean accuracy B → H (%) | Calls B → H | Tokens saved (%) |\n| --- | --- | --- | --- |\n' + '\n'.join(
+        f'| {d} | {pct(mean_accuracy(select(d,"final-test"),"baseline"),2)} → {pct(mean_accuracy(select(d,"final-test"),"hybrid"),2)} | {select(d,"final-test")[0]["baseline"]["model_calls"]} → {select(d,"final-test")[0]["hybrid"]["model_calls"]} | {span(select(d,"final-test"),"token_reduction",2)} |' for d in ('LEDGAR','SpamAssassin'))
     for name, group in [('ledgar', l), ('spam', s)]:
         r = group[0]
         blocks[f'{name}_result'] = (
-            f'Across the three final-test executions, baseline accuracy was {span(group,"accuracy",arm="baseline")}%, and hybrid accuracy was {span(group,"accuracy",arm="hybrid")}%. '
+            f'Across the three final-test executions, mean baseline accuracy was {pct(mean_accuracy(group,"baseline"),2)}%, and mean hybrid accuracy was {pct(mean_accuracy(group,"hybrid"),2)}%. '
             f'The rules answered {r["command_cases"]} of {r["baseline"]["cases"]} cases ({pct(r["command_cases"]/r["baseline"]["cases"])}%) without a model call. '
             f'Rule accuracy on those cases was {pct(r["command_precision"])}%. Total model-token use fell {span(group,"token_reduction",2)}%. '
             f'All three paired accuracy intervals stayed within the allowed lower bound; their lower endpoints were {", ".join(pct(x["accuracy_ci"][0]) for x in group)} percentage points. '
             'Every final-test comparison passed the recorded criteria.'
         )
     blocks['cfpb_result'] = (
-        f'CFPB failed the absolute accuracy floor in every selection repeat. Baseline accuracy was {", ".join(pct(r["baseline"]["accuracy"]) for r in c)}%, and hybrid accuracy was {", ".join(pct(r["hybrid"]["accuracy"]) for r in c)}%, respectively. '
+        f'CFPB failed the absolute accuracy floor in every selection repeat. Across the three runs, mean baseline accuracy was {pct(mean_accuracy(c,"baseline"),2)}%, and mean hybrid accuracy was {pct(mean_accuracy(c,"hybrid"),2)}%. '
         f'The hybrid never reached the required 80%, despite reducing tokens by {span(c,"token_reduction",2)}%. Its paired accuracy intervals met the −2-point requirement, and its token intervals were positive. '
         'Those relative improvements could not compensate for failing the absolute floor. Selection rejection was terminal: no replacement candidate was created and the 500-case final test was not opened.'
     )
@@ -210,8 +231,8 @@ def passages(rows):
     blocks['interval_table'] = '| Dataset and split | Run | Accuracy 95% interval (points) | Token saving 95% interval (%) |\n| --- | --- | --- | --- |\n' + '\n'.join(
         f'| {r["dataset"]} {"selection" if r["stage"]=="selection" else "test"} | {REPEATS.index(r["repeat"])+1} | [{pct(r["accuracy_ci"][0],2)}, {pct(r["accuracy_ci"][1],2)}] | [{pct(r["token_ci"][0],2)}, {pct(r["token_ci"][1],2)}] |'
         for r in rows if r['stage'] != 'development')
-    blocks['development_table'] = '| Dataset | B attempts | H attempts | Accuracy B → H (%) |\n| --- | --- | --- | --- |\n' + '\n'.join(
-        f'| {d} | 1 | {1 if d=="SpamAssassin" else 2} | {span(select(d,"development"),"accuracy",arm="baseline")} → {span(select(d,"development"),"accuracy",arm="hybrid")} |' for d in DATASETS)
+    blocks['development_table'] = '| Dataset | B attempts | H attempts | Mean accuracy B → H (%) |\n| --- | --- | --- | --- |\n' + '\n'.join(
+        f'| {d} | 1 | {1 if d=="SpamAssassin" else 2} | {pct(mean_accuracy(select(d,"development"),"baseline"),2)} → {pct(mean_accuracy(select(d,"development"),"hybrid"),2)} |' for d in DATASETS)
     blocks['conclusion'] = (
         'PLaND provides a process for starting with English instructions, proposing executable replacements from development evidence, and accepting them only after a separate quality-and-token check. '
         f'In this study, LEDGAR and SpamAssassin passed selection and final assessment across all three paired executions, reducing final-test model tokens by {span(l,"token_reduction",2)}% and {span(s,"token_reduction",2)}%, respectively. '
@@ -280,7 +301,9 @@ def main():
     payload = {'schema_version':1, 'source_commit':'4ad24c9838922b3db777ac4ba4dbc34de7a449ae',
                'plan_sha256':sha(BASE/'plan.json'), 'model_identity':plan['model']['identity'],
                'evidence_files_verified':evidence_files, 'case_pairs':sum(r['baseline']['cases'] for r in rows),
-               'paired_runs':len(rows), 'runs':rows}
+               'paired_runs':len(rows), 'runs':rows,
+               'accuracy_aggregation':'arithmetic mean of three per-run accuracies; descriptive only, not a gate',
+               'accuracy_summaries':accuracy_summaries(rows)}
     target = ROOT/OUT/'paper-calculations.json'
     source = ROOT/'paper/PLaND.md'
     text = (ROOT/OUT/'manuscript.template.md').read_text()

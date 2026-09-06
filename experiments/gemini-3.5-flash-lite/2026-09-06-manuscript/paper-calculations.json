@@ -1346,5 +1346,72 @@
         }
       ]
     }
+  ],
+  "accuracy_aggregation": "arithmetic mean of three per-run accuracies; descriptive only, not a gate",
+  "accuracy_summaries": [
+    {
+      "dataset": "LEDGAR",
+      "stage": "development",
+      "repeats": 3,
+      "cases_per_repeat": 500,
+      "baseline_mean_accuracy": 0.9653333333333333,
+      "hybrid_mean_accuracy": 0.972
+    },
+    {
+      "dataset": "LEDGAR",
+      "stage": "selection",
+      "repeats": 3,
+      "cases_per_repeat": 1000,
+      "baseline_mean_accuracy": 0.9723333333333333,
+      "hybrid_mean_accuracy": 0.9683333333333333
+    },
+    {
+      "dataset": "LEDGAR",
+      "stage": "final-test",
+      "repeats": 3,
+      "cases_per_repeat": 500,
+      "baseline_mean_accuracy": 0.9493333333333333,
+      "hybrid_mean_accuracy": 0.9579999999999999
+    },
+    {
+      "dataset": "CFPB",
+      "stage": "development",
+      "repeats": 3,
+      "cases_per_repeat": 500,
+      "baseline_mean_accuracy": 0.8166666666666665,
+      "hybrid_mean_accuracy": 0.8186666666666667
+    },
+    {
+      "dataset": "CFPB",
+      "stage": "selection",
+      "repeats": 3,
+      "cases_per_repeat": 1000,
+      "baseline_mean_accuracy": 0.7973333333333334,
+      "hybrid_mean_accuracy": 0.7926666666666667
+    },
+    {
+      "dataset": "SpamAssassin",
+      "stage": "development",
+      "repeats": 3,
+      "cases_per_repeat": 500,
+      "baseline_mean_accuracy": 0.9886666666666667,
+      "hybrid_mean_accuracy": 0.9866666666666667
+    },
+    {
+      "dataset": "SpamAssassin",
+      "stage": "selection",
+      "repeats": 3,
+      "cases_per_repeat": 1000,
+      "baseline_mean_accuracy": 0.9893333333333333,
+      "hybrid_mean_accuracy": 0.9803333333333333
+    },
+    {
+      "dataset": "SpamAssassin",
+      "stage": "final-test",
+      "repeats": 3,
+      "cases_per_repeat": 500,
+      "baseline_mean_accuracy": 0.9766666666666666,
+      "hybrid_mean_accuracy": 0.972
+    }
   ]
 }

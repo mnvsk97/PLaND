@@ -1,0 +1,10 @@
+PASS: all 24 per-run results and decisions, and the complete appendices, are unchanged.
+LEDGAR development 96.53 -> 97.2
+LEDGAR selection 97.23 -> 96.83
+LEDGAR final-test 94.93 -> 95.8
+CFPB development 81.67 -> 81.87
+CFPB selection 79.73 -> 79.27
+SpamAssassin development 98.87 -> 98.67
+SpamAssassin selection 98.93 -> 98.03
+SpamAssassin final-test 97.67 -> 97.2
+PASS: all eight dataset/split means agree with independent exact-fraction calculations.

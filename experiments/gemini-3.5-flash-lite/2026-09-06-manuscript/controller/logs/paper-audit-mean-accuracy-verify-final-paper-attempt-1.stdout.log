@@ -1,0 +1,55 @@
+TEST .codex/skills/pland-data-collection/tests
+{"status": "initialized", "study_id": "fixture", "run_dir": "/private/var/folders/62/7dxh3qf50wn_kcg66m4b2k4h0000gn/T/tmpxbi12xep/run"}
+{"status": "initialized", "study_id": "fixture", "run_dir": "/private/var/folders/62/7dxh3qf50wn_kcg66m4b2k4h0000gn/T/tmpnpko9puo/run"}
+{"status": "initialized", "study_id": "fixture", "run_dir": "/private/var/folders/62/7dxh3qf50wn_kcg66m4b2k4h0000gn/T/tmphlfwv4t_/run"}
+{"status": "failed", "name": "failed-preflight", "exit_code": 7}
+{"status": "initialized", "study_id": "fixture", "run_dir": "/private/var/folders/62/7dxh3qf50wn_kcg66m4b2k4h0000gn/T/tmpd9zh8810/run"}
+{"status": "complete", "name": "prepare", "exit_code": 0}
+{"stage": "prepare", "status": "complete"}
+{"status": "complete", "name": "baseline-1", "exit_code": 0}
+{"stage": "baseline-development", "decision": "ready"}
+{"status": "complete", "name": "candidate-1", "exit_code": 0}
+{"stage": "candidate-development", "decision": "ready"}
+{"status": "complete", "name": "selection", "exit_code": 0}
+{"stage": "selection", "decision": "accept"}
+{"status": "complete", "name": "final", "exit_code": 0}
+{"stage": "final-test", "status": "complete"}
+{"status": "already_complete", "name": "final"}
+{"status": "complete", "name": "package", "exit_code": 0}
+{"stage": "package-evidence", "status": "complete"}
+{"status": "manifested", "artifacts": 22, "path": "/private/var/folders/62/7dxh3qf50wn_kcg66m4b2k4h0000gn/T/tmpd9zh8810/run/evidence-manifest.json"}
+{"status": "initialized", "study_id": "fixture", "run_dir": "/private/var/folders/62/7dxh3qf50wn_kcg66m4b2k4h0000gn/T/tmp9fqeh91o/run"}
+{"status": "initialized", "study_id": "fixture", "run_dir": "/private/var/folders/62/7dxh3qf50wn_kcg66m4b2k4h0000gn/T/tmpvjy2fg72/run"}
+{"status": "initialized", "study_id": "fixture", "run_dir": "/private/var/folders/62/7dxh3qf50wn_kcg66m4b2k4h0000gn/T/tmp55puq82a/run"}
+{"status": "complete", "name": "prepare", "exit_code": 0}
+{"stage": "prepare", "status": "complete"}
+{"status": "complete", "name": "baseline", "exit_code": 0}
+{"stage": "baseline-development", "decision": "ready"}
+{"status": "complete", "name": "generate-candidate", "exit_code": 0}
+{"status": "complete", "name": "measure-candidate", "exit_code": 0}
+{"status": "complete", "name": "assess-candidate", "exit_code": 0}
+{"stage": "candidate-development", "decision": "reject"}
+{"status": "initialized", "study_id": "fixture", "run_dir": "/private/var/folders/62/7dxh3qf50wn_kcg66m4b2k4h0000gn/T/tmp5eyx3rn8/run"}
+{"status": "initialized", "study_id": "fixture", "run_dir": "/private/var/folders/62/7dxh3qf50wn_kcg66m4b2k4h0000gn/T/tmpei4st3p0/run"}
+{"status": "complete", "name": "prepare", "exit_code": 0}
+{"status": "initialized", "study_id": "fixture", "run_dir": "/private/var/folders/62/7dxh3qf50wn_kcg66m4b2k4h0000gn/T/tmpr9vxhr2n/run"}
+TEST datasets/tests
+TEST experiments/collection/tests
+TEST paper
+TEST skills/generate-initial-version/tests
+{"output": "/private/var/folders/62/7dxh3qf50wn_kcg66m4b2k4h0000gn/T/tmpmw7ajkh2/agent", "workflow": "invoice-extraction", "sources": 1}
+{"output": "/private/var/folders/62/7dxh3qf50wn_kcg66m4b2k4h0000gn/T/tmpxc3ranp4/agent-a", "workflow": "document-classifier", "sources": 1}
+{"output": "/private/var/folders/62/7dxh3qf50wn_kcg66m4b2k4h0000gn/T/tmpxc3ranp4/agent-b", "workflow": "document-classifier", "sources": 1}
+{"output": "/private/var/folders/62/7dxh3qf50wn_kcg66m4b2k4h0000gn/T/tmp0t00n5gy/agent", "workflow": "document-classifier", "sources": 1}
+TEST skills/pland-evolver/tests
+Checked LEDGAR development: three pairs and development assessments.
+Checked LEDGAR selection: three pairs and bootstrap intervals.
+Checked LEDGAR final-test: three pairs and bootstrap intervals.
+Checked CFPB development: three pairs and development assessments.
+Checked CFPB selection: three pairs and bootstrap intervals.
+Checked SpamAssassin development: three pairs and development assessments.
+Checked SpamAssassin selection: three pairs and bootstrap intervals.
+Checked SpamAssassin final-test: three pairs and bootstrap intervals.
+Checked 24 manuscript artifact/source hashes.
+PASS: 24 paired runs; 16,500 paired cases; 39387 evidence/code files.
+PASS: 6 test directories; 39387 frozen evidence/code files; 24 manuscript files.

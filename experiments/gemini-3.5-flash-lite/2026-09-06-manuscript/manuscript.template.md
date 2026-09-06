@@ -142,13 +142,13 @@ Replacement preserves sample size but changes the selection population to provid
 
 Every English baseline reached readiness on its first attempt. LEDGAR and CFPB each rejected one hybrid development candidate before qualifying the second. SpamAssassin qualified its first hybrid. Table 2 reports development repeats of the qualified packages; primary construction assessments and unsuccessful attempts remain in the evidence.
 
-**Table 2. Development attempts and repeat accuracy**
+**Table 2. Development attempts and mean accuracy**
 
 <!-- audit:development_table -->
 
 <!-- /audit:development_table -->
 
-In Tables 2–4, B is the English baseline and H is the hybrid. Ranges show the minimum and maximum over three runs, not confidence intervals. Each selection run used 1,000 cases per arm.
+In Tables 2–4, B is the English baseline and H is the hybrid. Mean accuracy is the sum of the three per-run accuracies divided by three, using unrounded values. The repeats use the same cases; averaging does not increase the number of independent cases. Token savings are shown as the minimum–maximum across runs, not confidence intervals. Each selection run used 1,000 cases per arm.
 
 **Table 3. Selection results across three paired executions**
 

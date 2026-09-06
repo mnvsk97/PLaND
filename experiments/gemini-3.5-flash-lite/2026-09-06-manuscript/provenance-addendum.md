@@ -59,6 +59,17 @@ They do not alter any frozen raw output, accuracy, token count, gate, or final
 test access decision. `paper-calculations.json` and the final manuscript are the
 reviewed numerical report.
 
+## Mean accuracy presentation
+
+The author requested mean accuracy as the headline statistic after publication
+of manuscript commit `f9c324ea8e286086f6cd54f03e0f2607c497f8ab`. The abstract,
+main tables, and result paragraphs now use the arithmetic mean of the three
+per-run accuracies, calculated from unrounded correct-case counts and fixed
+denominators. The individual held-out accuracies and paired confidence
+intervals remain in Appendix A. Token-savings ranges are unchanged. Means are
+descriptive only: every original per-repeat gate, including CFPB's rejection,
+remains authoritative. No model execution, input, output, or split was changed.
+
 ## Distribution boundary
 
 The collection commit was not publicly retrievable during the initial
