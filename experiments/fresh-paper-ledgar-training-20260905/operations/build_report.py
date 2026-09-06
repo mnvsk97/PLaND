@@ -79,7 +79,7 @@ lines+=['','These measurements test the resulting fixed packages. The constructi
  '| Item | Frozen value |','| --- | --- |',
  '| Study | fresh-paper-ledgar-training-20260905 |',
  '| Model | qwen3:14b; '+next(iter(summary['datasets'].values()))['model_digest']+' |',
- '| Runtime | Native Ollama 0.33.0; DeepAgent 0.7.12; langchain-ollama 1.1.0; temperature 0; thinking and streaming disabled; context 16,384; output cap 128; two case workers and two server slots; Flash Attention; q8_0 KV cache; one loaded model; keep alive −1 |',
+ '| Runtime | Native Ollama 0.33.0; DeepAgent 0.7.12; langchain-ollama 1.1.0; temperature 0; thinking disabled; complete responses at harness boundary, internally streamed Ollama HTTP transport (documented deviation); context 16,384; output cap 128; two case workers and two server slots; Flash Attention; q8_0 KV cache; one loaded model; keep alive −1 |',
  '| Main / dataset seed | 20260902 |',
  '| Bootstrap | 5,000 paired resamples; accuracy RNG seed 20260902; token RNG seed 20260903; two-sided 95% percentile intervals |',
  '| Readiness | At least 80% development accuracy, complete valid outputs, no errors, at most ten English attempts |',
@@ -189,6 +189,15 @@ a.output.parent.mkdir(parents=True,exist_ok=True)
 item=summary['datasets']['ledgar']
 host=read(BASE/'runs/ledgar/runtime-audit.json');assert host['status']=='PASS'
 summary['host_runtime']=host
+disposition_path=ROOT/'experiments/protocol/ledgar-transport-disposition.json'
+disposition=read(disposition_path);assert disposition['decision']=='accept_with_disclosure'
+summary['transport_disposition']=disposition
+lines+=['## Disclosed transport deviation','',
+        'The frozen plan specified streaming disabled. The harness returned complete responses, but the installed langchain-ollama client internally requested streamed Ollama HTTP responses and aggregated them. '
+        'The raw run records are unchanged: their `stream: false` field describes outward harness behavior and must not be interpreted as the HTTP request flag. '
+        'A no-inference interception of the exact DeepAgent call path confirmed HTTP `stream: true`. Both arms used the same frozen implementation and dependency versions throughout. '
+        'The author accepted retaining this evidence with explicit disclosure; the approval receipt is included in `protocol/ledgar-transport-disposition.json`. '
+        'No package, model setting, candidate, or result was changed after observing held-out outcomes.','']
 lines+=['## Host and execution environment','',
         f"{host['hardware']['machdep.cpu.brand_string']}; {host['hardware']['hw.ncpu']} logical CPUs; "
         f"{int(host['hardware']['hw.memsize'])/2**30:g} GiB unified memory; macOS {host['os']}; "
