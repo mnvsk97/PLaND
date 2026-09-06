@@ -4912,6 +4912,130 @@
       "finished_at": "2026-09-06T08:59:48.106230+00:00",
       "exit_code": 0,
       "outputs": []
+    },
+    {
+      "name": "release-clean-checkout-install",
+      "stage": "paper-audit",
+      "attempt": 1,
+      "status": "complete",
+      "command": [
+        "env",
+        "-u",
+        "PYTHONPATH",
+        "-u",
+        "OPENROUTER_API_KEY",
+        "-u",
+        "OPENAI_API_KEY",
+        "-u",
+        "GEMINI_API_KEY",
+        "-u",
+        "GOOGLE_API_KEY",
+        "/tmp/pland-release-check.eGbLeP/tooling/bin/uv",
+        "sync",
+        "--project",
+        "reproduce",
+        "--frozen"
+      ],
+      "cwd": "/private/tmp/pland-release-check.eGbLeP/checkout",
+      "started_at": "2026-09-06T09:00:42.611718+00:00",
+      "plan_sha256": "35c4c89d99f7cd788a38f2e36ea46ca75beb58ee9e5fcab44019b5a66036bea7",
+      "protocol_sha256": "53af6300149647f9aa80a866e9053d973ecd9a9a03e37109dcbc17741f70638a",
+      "inputs": [
+        {
+          "path": "/private/tmp/pland-release-check.eGbLeP/checkout/reproduce/uv.lock",
+          "kind": "file",
+          "bytes": 368803,
+          "sha256": "2ad625654eef9a2cacbea1f6bee0ec452066e12f1e6ee96b93cfd3655bcfdbf7"
+        },
+        {
+          "path": "/private/tmp/pland-release-check.eGbLeP/checkout/reproduce/pyproject.toml",
+          "kind": "file",
+          "bytes": 442,
+          "sha256": "84a8eaddff842426b88375b6abd4355cfe9af949b985c83841a6c0968aad033e"
+        }
+      ],
+      "declared_outputs": [
+        "/private/tmp/pland-release-check.eGbLeP/checkout/reproduce/.venv/pyvenv.cfg"
+      ],
+      "stdout": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/controller/logs/paper-audit-release-clean-checkout-install-attempt-1.stdout.log",
+      "stderr": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/controller/logs/paper-audit-release-clean-checkout-install-attempt-1.stderr.log",
+      "finished_at": "2026-09-06T09:00:42.745590+00:00",
+      "exit_code": 0,
+      "outputs": [
+        {
+          "path": "/private/tmp/pland-release-check.eGbLeP/checkout/reproduce/.venv/pyvenv.cfg",
+          "kind": "file",
+          "bytes": 166,
+          "sha256": "5054be864ac56d0835c0444b45727b3738ee9d9d2740b342803d5705259cd553"
+        }
+      ]
+    },
+    {
+      "name": "release-clean-checkout-verify",
+      "stage": "paper-audit",
+      "attempt": 1,
+      "status": "complete",
+      "command": [
+        "env",
+        "-u",
+        "PYTHONPATH",
+        "-u",
+        "OPENROUTER_API_KEY",
+        "-u",
+        "OPENAI_API_KEY",
+        "-u",
+        "GEMINI_API_KEY",
+        "-u",
+        "GOOGLE_API_KEY",
+        "/tmp/pland-release-check.eGbLeP/checkout/reproduce/.venv/bin/python",
+        "reproduce/verify.py"
+      ],
+      "cwd": "/private/tmp/pland-release-check.eGbLeP/checkout",
+      "started_at": "2026-09-06T09:00:52.630157+00:00",
+      "plan_sha256": "35c4c89d99f7cd788a38f2e36ea46ca75beb58ee9e5fcab44019b5a66036bea7",
+      "protocol_sha256": "53af6300149647f9aa80a866e9053d973ecd9a9a03e37109dcbc17741f70638a",
+      "inputs": [
+        {
+          "path": "/private/tmp/pland-release-check.eGbLeP/checkout/reproduce/verify.py",
+          "kind": "file",
+          "bytes": 1543,
+          "sha256": "1b69727f65fcda0aea7f601e3108f33f9aaba39ec7b199ce92f07a45b73df01d"
+        },
+        {
+          "path": "/private/tmp/pland-release-check.eGbLeP/checkout/experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/paper-artifacts.json",
+          "kind": "file",
+          "bytes": 4281,
+          "sha256": "d5c4aabb96a28b623afbce2119b133b09a304c7c6402a55e8e1147342199bf9b"
+        }
+      ],
+      "declared_outputs": [],
+      "stdout": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/controller/logs/paper-audit-release-clean-checkout-verify-attempt-1.stdout.log",
+      "stderr": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/controller/logs/paper-audit-release-clean-checkout-verify-attempt-1.stderr.log",
+      "finished_at": "2026-09-06T09:01:15.748641+00:00",
+      "exit_code": 0,
+      "outputs": []
+    },
+    {
+      "name": "release-clean-checkout-state",
+      "stage": "paper-audit",
+      "attempt": 1,
+      "status": "complete",
+      "command": [
+        "python3",
+        "-c",
+        "import pathlib,subprocess; r=pathlib.Path.cwd(); status=subprocess.check_output([\"git\",\"status\",\"--porcelain\"],text=True); assert not status,status; assert not (r/\"tmp\").exists(); assert not (r/\".env\").exists(); print(\"PASS: isolated clean checkout\",subprocess.check_output([\"git\",\"rev-parse\",\"HEAD\"],text=True).strip()); print(\"No source-workspace tmp directory or .env file; verification used a newly installed locked environment.\")"
+      ],
+      "cwd": "/private/tmp/pland-release-check.eGbLeP/checkout",
+      "started_at": "2026-09-06T09:01:26.625857+00:00",
+      "plan_sha256": "35c4c89d99f7cd788a38f2e36ea46ca75beb58ee9e5fcab44019b5a66036bea7",
+      "protocol_sha256": "53af6300149647f9aa80a866e9053d973ecd9a9a03e37109dcbc17741f70638a",
+      "inputs": [],
+      "declared_outputs": [],
+      "stdout": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/controller/logs/paper-audit-release-clean-checkout-state-attempt-1.stdout.log",
+      "stderr": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/controller/logs/paper-audit-release-clean-checkout-state-attempt-1.stderr.log",
+      "finished_at": "2026-09-06T09:01:26.729382+00:00",
+      "exit_code": 0,
+      "outputs": []
     }
   ]
 }

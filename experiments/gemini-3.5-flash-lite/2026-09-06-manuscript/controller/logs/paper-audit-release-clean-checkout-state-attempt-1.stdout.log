@@ -1,0 +1,2 @@
+PASS: isolated clean checkout f9c324ea8e286086f6cd54f03e0f2607c497f8ab
+No source-workspace tmp directory or .env file; verification used a newly installed locked environment.
