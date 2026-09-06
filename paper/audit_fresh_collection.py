@@ -14,19 +14,23 @@ def audit(report):
     summary=json.loads(report.with_suffix('.json').read_text())
     assert summary['report_sha256']==hashlib.sha256(report.read_bytes()).hexdigest()
     verified=[]
+    manifests=list(summary.get('case_evidence_manifests',[]))
     if 'case_evidence_manifest' in summary:
-        item=summary['case_evidence_manifest'];path=ROOT/item['path']
+        manifests.append(summary['case_evidence_manifest'])
+    for item in manifests:
+        path=ROOT/item['path']
         assert hashlib.sha256(path.read_bytes()).hexdigest()==item['sha256']
         for entry in json.loads(path.read_text())['files']:
             artifact=path.parent/entry['path']
             assert artifact.stat().st_size==entry['bytes']
             assert hashlib.sha256(artifact.read_bytes()).hexdigest()==entry['sha256']
     for ds,item in summary['datasets'].items():
-        directory=ROOT/summary.get('evidence_root','experiments/fresh-paper-20260905')/ds/'results'
+        directory=ROOT/item.get('evidence_root',summary.get('evidence_root','experiments/fresh-paper-20260905'))/ds/'results'
         receipt=json.loads((directory/'collection-audit.json').read_text())
         assert receipt['status']=='PASS' and receipt==item['audit']
-        if 'host_runtime' in summary:
-            assert summary['host_runtime']==json.loads((directory/'runtime-audit.json').read_text())
+        host=item.get('host_runtime',summary.get('host_runtime'))
+        if host:
+            assert host==json.loads((directory/'runtime-audit.json').read_text())
             disposition=json.loads((directory.parent/'protocol/ledgar-transport-disposition.json').read_text())
             assert disposition==summary['transport_disposition'] and disposition['decision']=='accept_with_disclosure'
             assert 'Disclosed transport deviation' in text and 'HTTP `stream: true`' in text
@@ -48,6 +52,13 @@ def audit(report):
             for low_high in ['accuracy_difference_bootstrap_95','token_reduction_bootstrap_95']:
                 assert len(comparison['paired_statistics'][low_high])==2
         if stage=='test': assert item['selection']['decision']=='accept'
+        if not comp.exists():
+            assert item['comparison'] is None and stage=='development'
+            run=json.loads((directory/f'baseline-development-{item["baseline_attempt"]:02}.json').read_text())
+            assert item['main_baseline']==run['summary']
+            assert sum(c['correct'] for c in run['cases'])==run['summary']['correct']
+            assert sum(c['total_tokens'] for c in run['cases'])==run['summary']['total_tokens']
+            assert f"{run['summary']['total_tokens']:,}" in text
         assert item['data_audit']['counts']['by_split']=={'development':500,'validation':1000,'test':500}
         for repeat in item['repeats']:
             saved=json.loads((directory/f'{stage}-{repeat["seed"]}-comparison.json').read_text())
