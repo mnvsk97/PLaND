@@ -5,7 +5,8 @@ description = "Locked environment for reproducing and verifying the PLaND reposi
 requires-python = ">=3.11,<3.15"
 dependencies = [
   "deepagents==0.7.12",
-  "langchain-ollama==1.1.0",
+  "langchain-openai==1.6.0",
+  "python-dotenv==1.1.1",
   "liteparse==2.14.3",
 ]
 

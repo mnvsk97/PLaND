@@ -1,6 +1,0 @@
-{
-  "based_on_run": "baseline-development-05.json",
-  "step_id": "S04",
-  "reason": "Attempt 5 scored 76.2%, with persistent adjacent-product errors despite the reading and classification guidance. Add one final consistency check for those distinctions while retaining the exact output schema.",
-  "instruction": "Before returning the label, check that it describes the disputed financial product rather than merely a law, symptom, or requested remedy. If choosing Credit reporting or other personal consumer reports, verify that the complaint concerns a bureau or reporting service rather than the named lender's loan, card, or a collector's debt. If choosing Money transfer, virtual currency, or money service, verify that executing or processing the transfer is itself disputed rather than merely the way funds left a prepaid card or deposit account. For a purchase-charge or billing dispute, distinguish a credit-card borrowing account from a debit card tied to an explicitly identified deposit account; the word bank alone does not establish the latter. Resolve the choice using the narrative's strongest product evidence, then return exactly one JSON object shaped as {\"label\":\"<known bucket>\"} with no explanation or additional fields."
-}

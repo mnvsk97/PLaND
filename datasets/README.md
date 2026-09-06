@@ -1,7 +1,7 @@
 # PLaND datasets
 
 This directory prepares frozen evaluation subsets with standard-library Python
-and public downloads. Repository setup and Ollama instructions are in
+and public downloads. Repository setup instructions are in
 [`../README.md`](../README.md).
 
 ## Scope and format
@@ -58,59 +58,26 @@ IDs and content. Output directories must not exist. LEDGAR preserves official
 LexGLUE splits; CFPB and SpamAssassin use seeded disjoint splits because they
 lack equivalent boundaries. CFPB freezes the API response and records its hash.
 
-Audit and create check-in-safe proof metadata without raw text:
-
-```bash
-python datasets/scripts/audit_prepared.py \
-  --dataset tmp/confirmatory-datasets/ledgar \
-  --repeat-dataset tmp/confirmatory-repeat/ledgar \
-  --output datasets/proofs/ledgar-confirmatory.json
-```
-
-Proofs cover counts, balance, source and case hashes, missing files, duplicate
-IDs/content, label leakage, pilot overlap, exclusions, split integrity, and
-repeat preparation.
-
-## Locked sources and quality-first reconstruction
+## Locked sources
 
 [`sources.lock.json`](sources.lock.json) records the exact source revisions,
 file sizes, SHA-256 values, upstream-terms links, and redistribution boundary.
-It covers the three paper datasets. Raw records remain outside Git under `tmp/`. A hash mismatch is a different
-dataset condition and must not be presented as an exact reproduction.
+It covers the three paper datasets. Raw records remain outside Git under
+`tmp/`. A hash mismatch is a different dataset condition and must not be
+presented as an exact reproduction.
 
-The later quality-first validation datasets are rebuilt with one command. It
-verifies the frozen raw bytes, verifies each original 1,200-case confirmatory
-selection, freezes the same labels, excludes prior IDs and normalized content,
-and checks the resulting `evals.csv` and `selection.json` hashes:
+## Current collection
 
-```bash
-python datasets/scripts/prepare_quality_first.py \
-  --source-root tmp/source-snapshots \
-  --confirmatory-root tmp/confirmatory-datasets \
-  --output tmp/quality-first-datasets
-```
-
-The source root must contain the paths listed in `sources.lock.json`. LEDGAR
-and SpamAssassin files can be downloaded from their locked URLs. The CFPB API
-is mutable, so exact reproduction requires the frozen `complaints-api.json`
-snapshot with the recorded hash; a fresh API response is intentionally
-rejected. Use `--check-inputs-only` to validate source custody and the prior
-selection without creating outputs. The command creates all three datasets in
-a staging directory and publishes the output only after every expected hash
-matches.
-
-## Fresh paper collection
-
-The approved protocol is [`../experiments/protocol/fresh-paper-collection.md`](../experiments/protocol/fresh-paper-collection.md).
-It uses 500 development, 1,000 selection, and 500 final-test cases per dataset.
-The author approved the plan on 2026-09-05. The preparer verifies locked raw bytes, excludes previously
-opened splits and normalized-content duplicates, preserves unopened held-out
-splits, and writes a new freeze manifest atomically:
+The reviewed `plan.json` and `protocol.md` are stored inside the timestamped
+model run. The collection uses 500 development, 1,000 selection, and 500
+final-test cases per dataset. The preparer verifies locked raw bytes, excludes
+previously opened splits and normalized-content duplicates, preserves unopened
+held-out splits, and writes a new freeze manifest atomically:
 
 ```bash
-python datasets/scripts/prepare_fresh_collection.py \
-  --plan experiments/protocol/fresh-paper-ledgar.json \
-  --output tmp/fresh-paper-20260905/datasets/ledgar
+python datasets/scripts/prepare_collection.py \
+  --plan experiments/<model-name>/<date-time>/plan.json \
+  --output tmp/<model-name>/<date-time>/datasets/ledgar
 ```
 
 Invoke preparation through the collection controller. Run LEDGAR first, then
@@ -137,10 +104,9 @@ CFPB and SpamAssassin, retaining each freshness receipt and every failed attempt
 
 Use accuracy and macro F1 for the three classification datasets.
 
-The three-seed text variance study reuses these exact prepared snapshots; its
-cross-run summary is `experiments/variance-study/summary.json`, and every run
-records the `evals.csv` and `selection.json` SHA-256 values. Raw source records
-remain in ignored `tmp/` and are not present in committed result JSON.
+Every new run records the `evals.csv` and `selection.json` SHA-256 values. Raw
+source records remain in ignored `tmp/` and are not present in committed result
+JSON.
 
 Run dataset tests with:
 

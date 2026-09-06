@@ -149,7 +149,7 @@ def comparable(
     left: dict[str, Any], right: dict[str, Any], *, require_same_cases: bool = True
 ) -> list[str]:
     failures = []
-    for field in ("model", "model_digest", "seed", "evals", "runtime"):
+    for field in ("model", "model_digest", "model_identity", "seed", "evals", "runtime"):
         if field == "runtime" and field not in left and field not in right:
             continue
         if left.get(field) != right.get(field):

@@ -110,6 +110,8 @@ retried without erasing the failure.
 ## Completion report
 
 Report completed, rejected, failed, and unopened stages separately. State the
-dataset, split, case count, model digest, plan hash, SOP/package hashes, and
-evidence-manifest path. Do not call collection paper-ready until the repository
-verifier and paper audit both pass against the new evidence.
+dataset, split, case count, frozen model identity, plan hash, SOP/package
+hashes, and evidence-manifest path. For a local model, include its full digest;
+for a hosted model, include provider, endpoint, and configuration hash without
+mislabeling that hash as model weights. Do not call collection paper-ready
+until the repository verifier and paper audit both pass against the new evidence.

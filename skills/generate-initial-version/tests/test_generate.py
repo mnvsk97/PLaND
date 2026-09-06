@@ -73,7 +73,10 @@ class GenerateTests(unittest.TestCase):
             self.assertEqual(project["project"]["dependencies"], ["deepagents"])
             tool_source = (output / "tools/datasources.py").read_text(encoding="utf-8")
             self.assertIn("def read_datasource(relative_path: str)", tool_source)
-            self.assertEqual(json.loads((output / "data/manifest.json").read_text())["model_provider"], "generic")
+            self.assertNotIn(
+                "model_provider",
+                json.loads((output / "data/manifest.json").read_text()),
+            )
 
     def test_equivalent_generation_is_deterministic_and_answer_free(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -100,30 +103,6 @@ class GenerateTests(unittest.TestCase):
             )
             self.assertNotIn("case-1", generated)
             self.assertNotIn("gold", generated)
-
-    def test_generates_ollama_agent_with_declared_integration(self):
-        with tempfile.TemporaryDirectory() as directory:
-            root = Path(directory)
-            requirements = root / "requirements.md"
-            requirements.write_text("Classify the supplied document.", encoding="utf-8")
-            sources = root / "sources"
-            sources.mkdir()
-            (sources / "example.txt").write_text("Subject: Test", encoding="utf-8")
-            evals = self.write_evals(root)
-            output = root / "agent"
-
-            subprocess.run(
-                [sys.executable, SCRIPT, "--workflow", "document-classifier", "--requirements", requirements, "--sources", sources, "--evals", evals, "--output", output, "--model-provider", "ollama"],
-                check=True,
-            )
-
-            agent_source = (output / "agent.py").read_text(encoding="utf-8")
-            self.assertIn("from langchain_ollama import ChatOllama", agent_source)
-            self.assertIn("reasoning=False", agent_source)
-            self.assertIn("GeneralPurposeSubagentProfile(enabled=False)", agent_source)
-            self.assertIn('"write_file"', agent_source)
-            project = tomllib.loads((output / "pyproject.toml").read_text(encoding="utf-8"))
-            self.assertEqual(project["project"]["dependencies"], ["deepagents", "langchain-ollama"])
 
     def test_rejects_empty_datasources(self):
         with tempfile.TemporaryDirectory() as directory:

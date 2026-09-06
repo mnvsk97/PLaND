@@ -1,9 +1,0 @@
-{
-  "orchestrator_model": "gpt-6-astra",
-  "reasoning": "high",
-  "methodology_skill": "generate-initial-version",
-  "finalization": "English S02 reads the document supplied by the fixed request harness; system prompt binds JSON label schema before measurement.",
-  "execution": "experiments/text-classification/scripts/deepagent_execution.py executes this fixed SOP with Qwen through create_deep_agent.",
-  "development_cases": 500,
-  "selection_or_test_used": false
-}

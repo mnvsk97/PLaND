@@ -14,8 +14,6 @@ The manuscript is available in four matching formats:
 - [Markdown](paper/PLaND.md)
 
 The three figures used by the paper are in [`paper/figures/`](paper/figures/).
-The [revision record](paper/REVISION_NOTES.md) maps the annotated and live-discussion
-feedback to revised sections and documents the ten review passes.
 
 ## Repository structure
 
@@ -28,30 +26,16 @@ PLaND/
 └── reproduce/      locked Python environment and repository verification
 ```
 
-## Reported experiments
+## Experiment collection
 
-| Experiment | Paper result |
-|---|---|
-| LEDGAR | One 1,000-clause evaluation; hybrid passed the criteria and tokens fell 40.02% |
-| CFPB | Hybrid rejected on validation |
-| SpamAssassin | Hybrid rejected on validation |
-| Three additional paired runs per dataset | Appendix A: LEDGAR passed 3/3; CFPB and SpamAssassin were rejected 3/3 |
-
-The main paper reports one comparison protocol on these three datasets.
-The earlier LEDGAR selection check is disclosed in the methods, not presented as a second result. Repeated runs
-reuse the same cases and are reported separately, not as new unseen tests.
-Other historical experiments remain archived but are outside the paper's scope.
-
-The corresponding code and machine-readable results are under:
+The historical local-model result trees have been removed before the new
+collection. Shared experiment code is under:
 
 ```text
 experiments/
-├── protocol/                       frozen confirmatory protocol and runtime
-├── ledgar-text-classification/
-├── cfpb-text-classification/
-├── spamassassin-email-classification/
-├── variance-study/
-└── text-classification/          shared text runner and scorer
+├── collection/                      shared runner, scorer, and tests
+└── <model-name>/
+    └── YYYY-MM-DD-HH-MM-am|pm/      frozen plan and collected evidence
 ```
 
 ## Verify the repository
@@ -70,20 +54,9 @@ reproduce/.venv/bin/python reproduce/verify.py
 `reproduce/uv.lock` freezes their exact resolved versions. They are grouped
 under `reproduce/` because they exist only to run and verify the experiments.
 
-## Reproduction status
-
-| Goal | Status |
-|---|---|
-| Verify the committed code, results, manifests, and paper files | Fully reproducible from a clean clone |
-| Rerun LEDGAR and SpamAssassin on the locked public source files | Reproducible when the recorded Ollama model digest is available |
-| Exactly rerun CFPB | Requires the frozen `complaints-api.json` snapshot, which is not redistributed |
-| Rerun with current CFPB or model data | Supported, but must be reported as a new experimental condition |
-
-Therefore, the public repository is sufficient to verify all reported evidence,
-but it is not sufficient by itself to regenerate every historical number. Exact
-regeneration additionally requires the recorded raw-input bytes and
-`qwen3:14b` model digest. This limitation must be disclosed when describing the
-repository as reproducible.
+Until the new collection is complete, repository verification covers source,
+tests, and the existing manuscript artifacts; it does not claim that deleted
+historical model outputs remain reproducible from this checkout.
 
 ## Prepare datasets
 
@@ -96,40 +69,9 @@ from the locked public files. Exact CFPB reconstruction requires the
 frozen local snapshot recorded by the source lock; using current upstream data
 is a new experimental condition.
 
-## Reproduce the repeated text studies
+## New collection
 
-The reported text runs used Ollama 0.33.0 and `qwen3:14b` with digest:
-
-```text
-bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8
-```
-
-Prepare the datasets first, check that exact digest with `ollama show
-qwen3:14b`, and configure the frozen runtime:
-
-```bash
-export OLLAMA_FLASH_ATTENTION=1 OLLAMA_KV_CACHE_TYPE=q8_0
-export OLLAMA_NUM_PARALLEL=2 OLLAMA_MAX_LOADED_MODELS=1
-export OLLAMA_KEEP_ALIVE=-1
-```
-
-Run the three-seed replications into a new ignored output directory:
-
-```bash
-reproduce/.venv/bin/python experiments/variance-study/run_variance_study.py \
-  --dataset-root tmp/confirmatory-datasets \
-  --output-root tmp/reproduction-runs/variance
-```
-
-Commands for the original text comparisons are in the README or dataset
-protocol inside each retained experiment directory. Historical experiments
-outside the paper retain their own instructions. Always compare
-dataset hashes, model digest, SOP hashes, prompts, runtime settings, and split
-before comparing a new run with the committed result.
-
-## Fresh paper collection
-
-The approved LEDGAR → CFPB → SpamAssassin collection is specified in
-[`experiments/protocol/fresh-paper-collection.md`](experiments/protocol/fresh-paper-collection.md).
-It uses exactly 500 development, 1,000 selection, and 500 final-test cases per
-dataset. The repo-local collection skill records execution and enforces gates.
+The new LEDGAR → CFPB → SpamAssassin collection uses exactly 500 development,
+1,000 selection, and 500 final-test cases per dataset. Its reviewed `plan.json`
+and `protocol.md` live inside the timestamped model directory. The repo-local
+collection skill records execution and enforces selection/final-test gates.

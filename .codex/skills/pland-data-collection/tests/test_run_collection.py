@@ -93,6 +93,25 @@ class CollectionControllerTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "requires exactly 500 development"):
             MODULE.validate_plan(plan, wrong, self.root)
 
+    def test_hosted_model_identity_is_accepted_without_fake_digest(self) -> None:
+        plan = json.loads(self.plan.read_text())
+        plan["model"] = {"name": "vendor/model", "identity": {
+            "kind": "hosted", "provider": "service", "endpoint": "endpoint",
+            "model": "vendor/model", "configuration_sha256": "a" * 64,
+        }}
+        MODULE.validate_plan(plan, self.plan, self.root.resolve())
+
+    def test_hosted_identity_rejects_digest_or_invalid_hash(self) -> None:
+        plan = json.loads(self.plan.read_text())
+        plan["model"]["identity"] = {"kind": "hosted", "provider": "service",
+            "endpoint": "endpoint", "model": "fixture", "configuration_sha256": "a" * 64}
+        with self.assertRaisesRegex(ValueError, "exactly one"):
+            MODULE.validate_plan(plan, self.plan, self.root)
+        plan["model"].pop("digest")
+        plan["model"]["identity"]["configuration_sha256"] = "not-a-hash"
+        with self.assertRaisesRegex(ValueError, "exactly one"):
+            MODULE.validate_plan(plan, self.plan, self.root)
+
     def test_candidate_retry_is_development_only_and_stops_at_first_ready(self) -> None:
         state, ledger = MODULE.load_state(self.run_dir)
         state['limits']['candidate_attempts']=10

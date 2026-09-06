@@ -68,11 +68,17 @@ def metrics(run: dict[str, Any]) -> dict[str, Any]:
 
 def compare(natural: dict[str, Any], hybrid: dict[str, Any]) -> dict[str, Any]:
     mismatches = []
-    for field in ("model", "model_digest", "seed", "evals", "split", "runtime"):
+    for field in ("model", "model_digest", "model_identity", "seed", "evals", "split", "runtime"):
         if field == "runtime" and field not in natural and field not in hybrid:
             continue
         if natural.get(field) != hybrid.get(field):
             mismatches.append(field)
+    if natural.get('model_identity', {}).get('kind') == 'hosted':
+        if not natural.get('model_identity', {}).get('configuration_sha256'):
+            mismatches.append('missing hosted model identity')
+        if natural.get('observed_providers') and hybrid.get('observed_providers'):
+            if natural['observed_providers'] != hybrid['observed_providers']:
+                mismatches.append('observed_providers')
     if mismatches:
         raise ValueError("incomparable run invariants: " + ", ".join(mismatches))
     for run, expected in ((natural, "baseline"), (hybrid, None)):
@@ -187,7 +193,11 @@ def compare(natural: dict[str, Any], hybrid: dict[str, Any]) -> dict[str, Any]:
             "output_tokens": hybrid_metrics["output_tokens"] - natural_metrics["output_tokens"],
             "total_tokens": hybrid_tokens - natural_tokens if (hybrid_tokens := hybrid_metrics["total_tokens"]) is not None else None,
             "total_token_ratio": hybrid_metrics["total_tokens"] / natural_tokens if natural_tokens else None,
-            "estimated_model_cost_usd": hybrid_metrics["estimated_model_cost_usd"] - natural_metrics["estimated_model_cost_usd"],
+            "estimated_model_cost_usd": (
+                hybrid_metrics["estimated_model_cost_usd"] - natural_metrics["estimated_model_cost_usd"]
+                if hybrid_metrics["estimated_model_cost_usd"] is not None
+                and natural_metrics["estimated_model_cost_usd"] is not None else None
+            ),
             "mean_latency_seconds": hybrid_metrics["latency_seconds"]["mean"] - natural_latency,
             "mean_latency_ratio": hybrid_metrics["latency_seconds"]["mean"] / natural_latency if natural_latency else None,
             **(

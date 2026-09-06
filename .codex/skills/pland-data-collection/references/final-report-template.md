@@ -25,9 +25,9 @@ autonomous rule-discovery reliability.]
 | Evidence manifest | `[manifest_path and sha256]` |
 | Datasets | LEDGAR; CFPB; SpamAssassin |
 | Split sizes per dataset | 500 development; 1,000 selection; 500 final test |
-| Evaluated model | `qwen3:14b` (`[full_model_digest]`) |
+| Evaluated model | `[model name; local digest or hosted provider/endpoint/configuration hash]` |
 | Main inference seed | `[seed]` |
-| Runtime | `[temperature, thinking, streaming, context, output cap, workers, Ollama settings and version]` |
+| Runtime | `[provider, temperature/reasoning, streaming, context, output cap, workers, client and service versions]` |
 | Baseline readiness | Accuracy >=80%; normal completion; no run errors; maximum 10 English attempts |
 | Candidate budget | [Approved development-attempt maximum]; first development-ready candidate only goes to selection |
 | Selection gates | Both accuracies >=80%; paired accuracy lower bound >=-2 pp; tokens reduced >=5%; paired token-reduction lower bound >0 |
@@ -95,7 +95,7 @@ that these reuse the same prepared cases and are not independent samples.]
 | SpamAssassin | `[hash]` | `[hash]` | `[hash]` | `500 / 1,000 / 500` | `[0]` | `[0]` | `[0]` | `[Pass/Fail]` |
 
 Baseline and hybrid runs were considered comparable only when case identifiers,
-dataset bytes, model and digest, system prompt, runner, scorer, inference seed,
+dataset bytes, model identity, system prompt, runner, scorer, inference seed,
 runtime, permissions, and frozen baseline fallback contract matched.
 
 ## Paper-ready findings
@@ -104,7 +104,7 @@ runtime, permissions, and frozen baseline fallback contract matched.
 
 [Generate a concise paragraph describing the three datasets, fixed 500/1,000/500
 split, exclusion of all previously opened identifiers and normalized content,
-balanced label selection, frozen Qwen model/runtime, paired baseline/hybrid
+balanced label selection, frozen evaluated model/runtime, paired baseline/hybrid
 execution, exact-match accuracy, token measurement, and four selection gates.]
 
 ### Results paragraph
@@ -121,7 +121,7 @@ test samples.]
 
 ### Limitations paragraph
 
-[State that the study uses one local model, balanced classification subsets,
+[State that the study uses one evaluated model, balanced classification subsets,
 and fixed SOP packages. It does not independently measure autonomous discovery
 reliability, full workflows, production distribution shift, dollar or energy
 savings, or reduced output variability unless the collected evidence directly

@@ -23,7 +23,6 @@ python3 scripts/generate.py \
   --sources <datasource-directory> \
   --evals <evals.csv> \
   --output <agent-directory> \
-  [--model-provider generic|ollama] \
   [--guidance <generation-guidance-file>]
 ```
 
@@ -45,7 +44,7 @@ The project contains:
 
 `instructions.md` is the generated system prompt. Finalize it before baseline measurement; after the baseline begins, PLaND treats its exact content and SHA-256 hash as frozen experiment invariants.
 
-The model is supplied through `PLAND_MODEL`. Use `--model-provider ollama` only when local Ollama is an explicit requirement; it adds the open-source `langchain-ollama` integration, deterministic local-model settings, disables the unnecessary default subagent, and hides filesystem tools outside the generated read-only workflow. Otherwise retain the provider-neutral default. Datasources remain in place unless the user explicitly requests copying. Do not store credentials.
+The model is supplied through `PLAND_MODEL`; provider configuration belongs outside the generated project. Datasources remain in place unless the user explicitly requests copying. Do not store credentials.
 
 Before hybrid evolution, measure the English baseline on development only. Run `scripts/assess_baseline.py` after each version. If it returns `refine_baseline`, make one bounded English-only clarification based only on development traces and rerun development. Stop at `ready_to_freeze` or after the fixed attempt limit (default 10). Record every version, diff, run, decision, and hash. Freeze the selected English SOP and its baseline contract only after readiness; validation and held-out cases remain unopened. If attempt 10 is still below the configured floor, stop with `baseline_nonviable` and do not generate a hybrid candidate.
 

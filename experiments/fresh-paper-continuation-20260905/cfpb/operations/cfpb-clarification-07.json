@@ -1,6 +1,0 @@
-{
-  "based_on_run": "baseline-development-06.json",
-  "step_id": "S01",
-  "reason": "Attempt 6 reached 77.8%, but incorrect credit-reporting predictions still accounted for substantial card, loan, collector, and vehicle errors. Simplify the task instruction and make the respondent's product the primary classification target.",
-  "instruction": "Classify the complaint into the financial-product category provided by the company whose conduct is challenged. Prefer the most specific supported product, including a product identifiable from the respondent's role or specialization. Reporting by a creditor about its own card or loan remains that card or loan product; reporting by a debt collector remains Debt collection. Choose Credit reporting or other personal consumer reports for a credit bureau or consumer-reporting service, not simply because a consumer discusses a report, identity theft, or the FCRA. Identify the underlying service first, then apply the product definitions."
-}

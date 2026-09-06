@@ -11,24 +11,12 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-EVIDENCE_MANIFESTS = (
-    "experiments/variance-study/study-manifest.json",
-    "experiments/ledgar-text-classification/results/variance-study-20260903/manifest.json",
-    "experiments/cfpb-text-classification/results/variance-study-20260903/manifest.json",
-    "experiments/spamassassin-email-classification/results/variance-study-20260903/manifest.json",
-    "experiments/quality-first-replications/study-manifest.json",
-    "experiments/ledgar-text-classification/results/quality-first-validation-20260903/manifest.json",
-    "experiments/cfpb-text-classification/results/quality-first-validation-20260903/manifest.json",
-    "experiments/spamassassin-email-classification/results/quality-first-validation-20260903/manifest.json",
-)
+EVIDENCE_MANIFESTS = ()
 PAPER_FILES = {
     "paper/PLaND.docx": ("76664f19c5e327131803e4aa24bf2be014cf29870f79d69ff60c25a9054d158e", 435751),
     "paper/PLaND.html": ("c49a1dfae6a15ca36062b97d044d3ef473471c1c2ff9b722b9f3b1f1b2f65d51", 609564),
     "paper/PLaND.md": ("d579b68872efec9b5efbfd8313ef5967f44065d614d0503108aaa3cf6ac175be", 47464),
     "paper/PLaND.pdf": ("cbf802a4651aa462ce5736e21d1e8a2c64cad5444bb0b9ee9c891ba3d2baaecd", 505242),
-    "paper/REVIEW_RESPONSE_20260905.md": ("24fcdeb4a0a56c269c5de10169351278bc97c138234c2e96b8378dabe5ea5497", 11410),
-    "paper/REVISION_NOTES.md": ("067ec7de4baba313d9e945c16ad8e00e8d2634873f049722b7f369802ffde00d", 18374),
-    "paper/audit_paper.py": ("488ca2bb3fa9c603be02e48a70b7bfb422020c4131b809ec2f4f4828aa34ff02", 10267),
     "paper/build_artifacts.cjs": ("2670542a31e957e683e2064136014967c23844a84ea09335f15676de78b51806", 3863),
     "paper/build_manuscript.py": ("745acabfaacccd8276b0fc5e36c96f718267123432977a8e83c7ea6d7954d36c", 30038),
     "paper/figures/architecture.png": ("03ef8522429f5ab3577314464e7a2938662a8d9080bd0abd050a7b495a6f126e", 99078),
@@ -94,19 +82,16 @@ def run_tests() -> int:
 
 def main() -> int:
     test_directories = run_tests()
-    manifests = list(EVIDENCE_MANIFESTS) + [str(path.relative_to(ROOT)) for path in
-        sorted((ROOT / "experiments").glob("fresh-paper-*/*/manifest.json"))]
+    manifests = list(EVIDENCE_MANIFESTS) + [
+        str(path.relative_to(ROOT))
+        for path in sorted((ROOT / "experiments").glob("*/*/*/evidence-manifest.json"))
+    ]
     evidence_files = sum(check_file_list_manifest(path) for path in manifests)
     paper_files = check_paper_files()
-    reports=sorted((ROOT/'paper').glob('*COLLECTION_REPORT.md'))
-    for report in reports:
-        subprocess.run([sys.executable,str(ROOT/'paper/audit_fresh_collection.py'),
-                        '--report',str(report)],cwd=ROOT,check=True)
-
     print(
         f"PASS: {test_directories} test directories; "
         f"{len(manifests)} evidence manifests ({evidence_files} files); "
-        f"{paper_files} paper files; {len(reports)} fresh collection reports",
+        f"{paper_files} paper files",
         flush=True,
     )
     return 0

@@ -194,27 +194,7 @@ description: Execute the {workflow.replace('-', ' ')} workflow using the approve
 """
 
 
-def model_source(provider: str) -> tuple[str, list[str]]:
-    if provider == "ollama":
-        return (
-            '''from deepagents import GeneralPurposeSubagentProfile, HarnessProfile, register_harness_profile
-from langchain_ollama import ChatOllama
-
-MODEL = ChatOllama(
-    model=os.environ["PLAND_MODEL"],
-    temperature=0,
-    reasoning=False,
-    seed=int(os.environ.get("PLAND_SEED", "42")),
-)
-register_harness_profile(
-    "ollama",
-    HarnessProfile(
-        excluded_tools=frozenset({"delete", "edit_file", "execute", "glob", "grep", "ls", "write_file"}),
-        general_purpose_subagent=GeneralPurposeSubagentProfile(enabled=False),
-    ),
-)''',
-            ["deepagents", "langchain-ollama"],
-        )
+def model_source() -> tuple[str, list[str]]:
     return ('MODEL = os.environ["PLAND_MODEL"]', ["deepagents"])
 
 
@@ -226,7 +206,6 @@ def main() -> int:
     parser.add_argument("--evals", required=True, type=Path)
     parser.add_argument("--output", required=True, type=Path)
     parser.add_argument("--guidance", type=Path)
-    parser.add_argument("--model-provider", choices=("generic", "ollama"), default="generic")
     args = parser.parse_args()
 
     if not NAME_PATTERN.fullmatch(args.workflow):
@@ -254,7 +233,7 @@ def main() -> int:
     except (OSError, ValueError) as error:
         raise SystemExit(str(error)) from error
 
-    model, dependencies = model_source(args.model_provider)
+    model, dependencies = model_source()
     output.mkdir(parents=True)
     write(
         output / "agent.py",
@@ -363,7 +342,6 @@ def read_datasource(relative_path: str) -> str:
             "contract_sha256": contract["contract_sha256"],
         },
         "guidance": ({"path": str(guidance), "sha256": sha256(guidance)} if guidance else None),
-        "model_provider": args.model_provider,
         "datasource_root": str(sources),
         "sources": sources_data,
     }

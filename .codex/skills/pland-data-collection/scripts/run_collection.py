@@ -123,8 +123,24 @@ def validate_plan(plan: dict[str, Any], plan_path: Path, root: Path) -> Path:
             "1000 selection, and 500 final_test cases"
         )
     model = plan["model"]
-    if not isinstance(model, dict) or not model.get("name") or not model.get("digest"):
-        raise ValueError("plan model requires name and digest")
+    if not isinstance(model, dict) or not model.get("name"):
+        raise ValueError("plan model requires a name")
+    digest = model.get("digest")
+    identity = model.get("identity")
+    local = isinstance(digest, str) and bool(digest.strip())
+    hosted = (
+        isinstance(identity, dict)
+        and identity.get("kind") == "hosted"
+        and identity.get("model") == model["name"]
+        and all(isinstance(identity.get(key), str) and identity[key].strip()
+                for key in ("provider", "endpoint"))
+        and isinstance(identity.get("configuration_sha256"), str)
+        and len(identity["configuration_sha256"]) == 64
+        and all(character in "0123456789abcdef"
+                for character in identity["configuration_sha256"])
+    )
+    if local == hosted:
+        raise ValueError("plan model requires exactly one local digest or hosted identity")
     limits = plan["limits"]
     for key in ("baseline_attempts", "candidate_attempts"):
         if not isinstance(limits.get(key), int) or limits[key] < 1:
