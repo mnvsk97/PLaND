@@ -81,6 +81,12 @@ def main():
             opened.update(r['id'] for r in csv.DictReader(handle) if r['split'] in splits)
     historical, evidence = historical_exposure([ROOT, MAIN, EARLIER], dataset)
     opened.update(historical)
+    for relative in plan.get('sampling', {}).get('exclude_datasets', []):
+        path = ROOT/relative/'evals.csv'
+        with path.open() as handle:
+            ids = {row['id'] for row in csv.DictReader(handle)}
+        opened.update(ids)
+        evidence.append({'path':str(path),'sha256':sha(path),'cases':len(ids),'reason':'entire invalid reservation quarantined'})
 
     lookup = {}
     prior_paths = []
@@ -111,6 +117,11 @@ def main():
                '--labels-from', str(original/'selection.json'), '--exclude-dataset', str(exclusions),
                '--seed', str(plan['seeds']['dataset']), '--development-cases', '500',
                '--validation-cases', '1000', '--test-cases', '500']
+    sampling = plan.get('sampling', {})
+    if sampling.get('upstream_partition') == 'train':
+        if dataset != 'ledgar' or sampling.get('mode') != 'balanced_new_study_splits':
+            raise ValueError('Training-only sampling requires the explicit LEDGAR restart plan')
+        command.append('--ledgar-training-only')
     print(json.dumps({'argv': command}), flush=True)
     subprocess.run(command, check=True, cwd=ROOT)
     receipt = {'source_custody': custody, 'prior_opened_cases': len(opened),

@@ -13,7 +13,7 @@ def audit(report):
     assert summary['report_sha256']==hashlib.sha256(report.read_bytes()).hexdigest()
     verified=[]
     for ds,item in summary['datasets'].items():
-        directory=ROOT/'experiments/fresh-paper-20260905'/ds/'results'
+        directory=ROOT/summary.get('evidence_root','experiments/fresh-paper-20260905')/ds/'results'
         receipt=json.loads((directory/'collection-audit.json').read_text())
         assert receipt['status']=='PASS' and receipt==item['audit']
         stage=item['reported_stage']

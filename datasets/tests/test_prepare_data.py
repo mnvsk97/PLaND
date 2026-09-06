@@ -15,6 +15,27 @@ SPEC.loader.exec_module(MODULE)
 
 
 class PrepareDataTests(unittest.TestCase):
+    def test_approved_training_only_preparation_keeps_new_splits_disjoint(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root=Path(temporary); source=root/'source';source.mkdir()
+            for partition in ['train','validation','test']:
+                records=[{'input':f'{partition} unique clause {label} {i}', 'gold':[label]}
+                         for label in ['a','b'] for i in range(8)]
+                (source/f'{partition}.jsonl').write_text(''.join(json.dumps(r)+'\n' for r in records))
+            output=root/'prepared';output.mkdir()
+            args=SimpleNamespace(source=source,exclude_dataset=[],development_cases=4,
+                                 validation_cases=8,test_cases=4,classes=2,seed=7,
+                                 ledgar_training_only=True,labels_from=None)
+            MODULE.prepare_ledgar(args,output)
+            with (output/'evals.csv').open() as handle: rows=list(csv.DictReader(handle))
+            self.assertEqual(len(rows),16)
+            self.assertEqual(len({r['id'] for r in rows}),16)
+            self.assertTrue(all(r['id'].startswith('train-') for r in rows))
+            self.assertEqual(dict(__import__('collections').Counter(r['split'] for r in rows)),
+                             {'development':4,'validation':8,'test':4})
+            selection=json.loads((output/'selection.json').read_text())
+            self.assertEqual(selection['source_split_mapping'],dict.fromkeys(['development','validation','test'],'train'))
+
     def test_spamassassin_sanitizer_removes_label_leaks_and_continuations(self):
         raw = (
             b"From: sender@example.com\r\n"
