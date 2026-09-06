@@ -1,0 +1,475 @@
+{
+  "schema_version": 1,
+  "events": [
+    {
+      "name": "prepare-ledgar",
+      "stage": "prepare",
+      "attempt": 1,
+      "status": "complete",
+      "command": [
+        "reproduce/.venv/bin/python",
+        "datasets/scripts/prepare_collection.py",
+        "--plan",
+        "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/plan.json",
+        "--dataset",
+        "ledgar",
+        "--output",
+        "tmp/gemini-3.5-flash-lite/2026-09-05-11-41-pm/datasets/ledgar"
+      ],
+      "cwd": "/Users/saikrishna/dev/deterministic-skills",
+      "started_at": "2026-09-06T06:51:46.645036+00:00",
+      "plan_sha256": "57f613822481e0d95cecba0105fe227b96476c70ea9568848f0f0bcc0934eccd",
+      "protocol_sha256": "be753b99ed9a15c8ef490a910bbf94c5d8212be700b85549e8b8548168941b38",
+      "inputs": [
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/plan.json",
+          "kind": "file",
+          "bytes": 3160,
+          "sha256": "57f613822481e0d95cecba0105fe227b96476c70ea9568848f0f0bcc0934eccd"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/datasets/sources.lock.json",
+          "kind": "file",
+          "bytes": 3608,
+          "sha256": "146a4f2ddaaf3fd9c3df965ca6eab085ec53ffb2eb3df649be2e2c6e15a3bab8"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/datasets/scripts/prepare_collection.py",
+          "kind": "file",
+          "bytes": 6632,
+          "sha256": "74cad07318511faa8204120a337b900f0937e69614aed10dbf3288ec1cc34909"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/datasets/scripts/prepare_data.py",
+          "kind": "file",
+          "bytes": 27735,
+          "sha256": "f665a0c547be5ecc21a064eb00209301264ff4b3068c649fdba7ddd8506da9b7"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/tmp/enterprise-datasets/ledgar/sources",
+          "kind": "directory",
+          "files": 3,
+          "bytes": 99601829,
+          "sha256": "710bbaf6ad92138da9de40ae798f71509385dcd01ff53f3ba296a3a85ec0c387"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/tmp/confirmatory-datasets/ledgar",
+          "kind": "directory",
+          "files": 1203,
+          "bytes": 998231,
+          "sha256": "3f0e823f5fdeef1f8d5e44af3b9c0ffc45f1884106051458d0110151adf7d038"
+        },
+        {
+          "path": "/Users/saikrishna/.codex/worktrees/7f06/deterministic-skills/tmp/quality-first-datasets/ledgar",
+          "kind": "directory",
+          "files": 1753,
+          "bytes": 1467468,
+          "sha256": "32af74932075a21b636abb8e3014311cb392596047104a543f2c420c56eda51f"
+        }
+      ],
+      "declared_outputs": [
+        "/Users/saikrishna/dev/deterministic-skills/tmp/gemini-3.5-flash-lite/2026-09-05-11-41-pm/datasets/ledgar",
+        "/Users/saikrishna/dev/deterministic-skills/tmp/gemini-3.5-flash-lite/2026-09-05-11-41-pm/datasets/ledgar-prior-opened"
+      ],
+      "stdout": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/logs/prepare-prepare-ledgar-attempt-1.stdout.log",
+      "stderr": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/logs/prepare-prepare-ledgar-attempt-1.stderr.log",
+      "finished_at": "2026-09-06T06:51:48.767051+00:00",
+      "exit_code": 0,
+      "outputs": [
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/tmp/gemini-3.5-flash-lite/2026-09-05-11-41-pm/datasets/ledgar",
+          "kind": "directory",
+          "files": 2004,
+          "bytes": 1656300,
+          "sha256": "7e117c53a08fd945d5ad886e2ab46d1d2e5e4002598a90161ec9d7f52bb909bb"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/tmp/gemini-3.5-flash-lite/2026-09-05-11-41-pm/datasets/ledgar-prior-opened",
+          "kind": "directory",
+          "files": 1,
+          "bytes": 375833,
+          "sha256": "8c750accb5daf4ca706ec755b59ab2e2d70677bf762d33daee413826ae5eb657"
+        }
+      ]
+    },
+    {
+      "name": "audit-ledgar-dataset",
+      "stage": "prepare",
+      "attempt": 1,
+      "status": "complete",
+      "command": [
+        "reproduce/.venv/bin/python",
+        "datasets/scripts/audit_prepared.py",
+        "--dataset",
+        "tmp/gemini-3.5-flash-lite/2026-09-05-11-41-pm/datasets/ledgar",
+        "--source-dir",
+        "tmp/enterprise-datasets/ledgar/sources",
+        "--pilot-dataset",
+        "tmp/gemini-3.5-flash-lite/2026-09-05-11-41-pm/datasets/ledgar-prior-opened",
+        "--output",
+        "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/results/dataset-audit.json"
+      ],
+      "cwd": "/Users/saikrishna/dev/deterministic-skills",
+      "started_at": "2026-09-06T06:52:03.436803+00:00",
+      "plan_sha256": "57f613822481e0d95cecba0105fe227b96476c70ea9568848f0f0bcc0934eccd",
+      "protocol_sha256": "be753b99ed9a15c8ef490a910bbf94c5d8212be700b85549e8b8548168941b38",
+      "inputs": [
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/tmp/gemini-3.5-flash-lite/2026-09-05-11-41-pm/datasets/ledgar",
+          "kind": "directory",
+          "files": 2004,
+          "bytes": 1656300,
+          "sha256": "7e117c53a08fd945d5ad886e2ab46d1d2e5e4002598a90161ec9d7f52bb909bb"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/tmp/gemini-3.5-flash-lite/2026-09-05-11-41-pm/datasets/ledgar-prior-opened",
+          "kind": "directory",
+          "files": 1,
+          "bytes": 375833,
+          "sha256": "8c750accb5daf4ca706ec755b59ab2e2d70677bf762d33daee413826ae5eb657"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/tmp/enterprise-datasets/ledgar/sources",
+          "kind": "directory",
+          "files": 3,
+          "bytes": 99601829,
+          "sha256": "710bbaf6ad92138da9de40ae798f71509385dcd01ff53f3ba296a3a85ec0c387"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/datasets/scripts/audit_prepared.py",
+          "kind": "file",
+          "bytes": 9071,
+          "sha256": "688df5f4e730c2fecaada4849e6fd9a18cd307abd6597ac5c2141b06f112fc90"
+        }
+      ],
+      "declared_outputs": [
+        "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/results/dataset-audit.json"
+      ],
+      "stdout": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/logs/prepare-audit-ledgar-dataset-attempt-1.stdout.log",
+      "stderr": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/logs/prepare-audit-ledgar-dataset-attempt-1.stderr.log",
+      "finished_at": "2026-09-06T06:52:03.765969+00:00",
+      "exit_code": 0,
+      "outputs": [
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/results/dataset-audit.json",
+          "kind": "file",
+          "bytes": 6544,
+          "sha256": "4a433bcc027eb624e0b265939022d3f37f13d0ae0ca9163a49875988fb7e92da"
+        }
+      ]
+    },
+    {
+      "name": "generate-english-baseline-01",
+      "stage": "baseline-development",
+      "attempt": 1,
+      "status": "complete",
+      "command": [
+        "reproduce/.venv/bin/python",
+        "skills/generate-initial-version/scripts/generate.py",
+        "--workflow",
+        "ledgar-classification",
+        "--requirements",
+        "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/construction/requirements.md",
+        "--sources",
+        "tmp/gemini-3.5-flash-lite/2026-09-05-11-41-pm/datasets/ledgar/data",
+        "--evals",
+        "tmp/gemini-3.5-flash-lite/2026-09-05-11-41-pm/datasets/ledgar/evals.csv",
+        "--output",
+        "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/packages/baseline-01"
+      ],
+      "cwd": "/Users/saikrishna/dev/deterministic-skills",
+      "started_at": "2026-09-06T06:52:58.373743+00:00",
+      "plan_sha256": "57f613822481e0d95cecba0105fe227b96476c70ea9568848f0f0bcc0934eccd",
+      "protocol_sha256": "be753b99ed9a15c8ef490a910bbf94c5d8212be700b85549e8b8548168941b38",
+      "inputs": [
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/construction/requirements.md",
+          "kind": "file",
+          "bytes": 278,
+          "sha256": "8ed1dfca9d3e81c27288b7fac061c37c98d7459c7258c108b02b371a8ac73ade"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/tmp/gemini-3.5-flash-lite/2026-09-05-11-41-pm/datasets/ledgar/data",
+          "kind": "directory",
+          "files": 2000,
+          "bytes": 1112474,
+          "sha256": "058aad51714c8c69a38a9fc1c9ca81a074b9751bcb5b857df862525499ae7a67"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/tmp/gemini-3.5-flash-lite/2026-09-05-11-41-pm/datasets/ledgar/evals.csv",
+          "kind": "file",
+          "bytes": 399663,
+          "sha256": "667a644fce342917d3c5ae03ee55aadf78c9f69088b5c6ead74000ae15b19c25"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/skills/generate-initial-version/scripts/generate.py",
+          "kind": "file",
+          "bytes": 13406,
+          "sha256": "9b6868c8b87c05bc1a8fff223bb9ef03e08bedf5db9b0b15174007cdc3832a31"
+        }
+      ],
+      "declared_outputs": [
+        "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/packages/baseline-01"
+      ],
+      "stdout": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/logs/baseline-development-generate-english-baseline-01-attempt-1.stdout.log",
+      "stderr": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/logs/baseline-development-generate-english-baseline-01-attempt-1.stderr.log",
+      "finished_at": "2026-09-06T06:52:58.495504+00:00",
+      "exit_code": 0,
+      "outputs": [
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/packages/baseline-01",
+          "kind": "directory",
+          "files": 9,
+          "bytes": 319797,
+          "sha256": "177be3d10ac196061667fb6595b3a45ea2f41e7af3bac87245c0312f5dd149ca"
+        }
+      ]
+    },
+    {
+      "name": "preflight-baseline-development-01",
+      "stage": "baseline-development",
+      "attempt": 1,
+      "status": "complete",
+      "command": [
+        "reproduce/.venv/bin/python",
+        "experiments/collection/scripts/run_experiment.py",
+        "--dataset",
+        "tmp/gemini-3.5-flash-lite/2026-09-05-11-41-pm/datasets/ledgar",
+        "--split",
+        "development",
+        "--system-prompt",
+        "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/packages/baseline-01/instructions.md",
+        "--sop",
+        "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/packages/baseline-01/skills/ledgar-classification/SKILL.md",
+        "--max-completion-tokens",
+        "1024",
+        "--request-timeout",
+        "300",
+        "--seed",
+        "20260902",
+        "--experiment-id",
+        "gemini-3.5-flash-lite-2026-09-05-11-41-pm-ledgar",
+        "--run-id",
+        "baseline-development-01-preflight",
+        "--candidate-id",
+        "baseline",
+        "--attempt",
+        "1",
+        "--workers",
+        "8",
+        "--preflight-only",
+        "--output",
+        "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/results/preflight-baseline-development-01.json"
+      ],
+      "cwd": "/Users/saikrishna/dev/deterministic-skills",
+      "started_at": "2026-09-06T06:54:06.705354+00:00",
+      "plan_sha256": "57f613822481e0d95cecba0105fe227b96476c70ea9568848f0f0bcc0934eccd",
+      "protocol_sha256": "be753b99ed9a15c8ef490a910bbf94c5d8212be700b85549e8b8548168941b38",
+      "inputs": [
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/tmp/gemini-3.5-flash-lite/2026-09-05-11-41-pm/datasets/ledgar",
+          "kind": "directory",
+          "files": 2004,
+          "bytes": 1656300,
+          "sha256": "7e117c53a08fd945d5ad886e2ab46d1d2e5e4002598a90161ec9d7f52bb909bb"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/packages/baseline-01",
+          "kind": "directory",
+          "files": 9,
+          "bytes": 319797,
+          "sha256": "177be3d10ac196061667fb6595b3a45ea2f41e7af3bac87245c0312f5dd149ca"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/collection/scripts/run_experiment.py",
+          "kind": "file",
+          "bytes": 27074,
+          "sha256": "03f83e70d463b7903d93fd0e0019aec14535f6817b1fce0ad19dc7f585cdab84"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/collection/scripts/hosted_execution.py",
+          "kind": "file",
+          "bytes": 9335,
+          "sha256": "e1d5b8d019de6dd8ff87e21ce809bd72889ff729706d2348523c411f3e6acaa6"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/collection/scripts/deepagent_execution.py",
+          "kind": "file",
+          "bytes": 3334,
+          "sha256": "cd068521cb5aa11fe09a30fd0f8be3a002205885274d4488eb175bd1d60e24b9"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/reproduce/uv.lock",
+          "kind": "file",
+          "bytes": 368803,
+          "sha256": "2ad625654eef9a2cacbea1f6bee0ec452066e12f1e6ee96b93cfd3655bcfdbf7"
+        }
+      ],
+      "declared_outputs": [
+        "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/results/preflight-baseline-development-01.json"
+      ],
+      "stdout": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/logs/baseline-development-preflight-baseline-development-01-attempt-1.stdout.log",
+      "stderr": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/logs/baseline-development-preflight-baseline-development-01-attempt-1.stderr.log",
+      "finished_at": "2026-09-06T06:54:06.808054+00:00",
+      "exit_code": 0,
+      "outputs": [
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/results/preflight-baseline-development-01.json",
+          "kind": "file",
+          "bytes": 3119,
+          "sha256": "af16dc0fd3bd01f153e806a38dd94eb8dce32ba5d46bd347381480cad8abdec4"
+        }
+      ]
+    },
+    {
+      "name": "baseline-development-01",
+      "stage": "baseline-development",
+      "attempt": 1,
+      "status": "complete",
+      "command": [
+        "reproduce/.venv/bin/python",
+        "experiments/collection/scripts/run_experiment.py",
+        "--dataset",
+        "tmp/gemini-3.5-flash-lite/2026-09-05-11-41-pm/datasets/ledgar",
+        "--split",
+        "development",
+        "--system-prompt",
+        "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/packages/baseline-01/instructions.md",
+        "--sop",
+        "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/packages/baseline-01/skills/ledgar-classification/SKILL.md",
+        "--max-completion-tokens",
+        "1024",
+        "--request-timeout",
+        "300",
+        "--seed",
+        "20260902",
+        "--experiment-id",
+        "gemini-3.5-flash-lite-2026-09-05-11-41-pm-ledgar",
+        "--run-id",
+        "baseline-development-01",
+        "--candidate-id",
+        "baseline",
+        "--attempt",
+        "1",
+        "--workers",
+        "8",
+        "--checkpoint-every",
+        "10",
+        "--output",
+        "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/results/baseline-development-01.json"
+      ],
+      "cwd": "/Users/saikrishna/dev/deterministic-skills",
+      "started_at": "2026-09-06T06:54:16.924092+00:00",
+      "plan_sha256": "57f613822481e0d95cecba0105fe227b96476c70ea9568848f0f0bcc0934eccd",
+      "protocol_sha256": "be753b99ed9a15c8ef490a910bbf94c5d8212be700b85549e8b8548168941b38",
+      "inputs": [
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/tmp/gemini-3.5-flash-lite/2026-09-05-11-41-pm/datasets/ledgar",
+          "kind": "directory",
+          "files": 2004,
+          "bytes": 1656300,
+          "sha256": "7e117c53a08fd945d5ad886e2ab46d1d2e5e4002598a90161ec9d7f52bb909bb"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/packages/baseline-01",
+          "kind": "directory",
+          "files": 9,
+          "bytes": 319797,
+          "sha256": "177be3d10ac196061667fb6595b3a45ea2f41e7af3bac87245c0312f5dd149ca"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/collection/scripts/run_experiment.py",
+          "kind": "file",
+          "bytes": 27074,
+          "sha256": "03f83e70d463b7903d93fd0e0019aec14535f6817b1fce0ad19dc7f585cdab84"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/collection/scripts/hosted_execution.py",
+          "kind": "file",
+          "bytes": 9335,
+          "sha256": "e1d5b8d019de6dd8ff87e21ce809bd72889ff729706d2348523c411f3e6acaa6"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/collection/scripts/deepagent_execution.py",
+          "kind": "file",
+          "bytes": 3334,
+          "sha256": "cd068521cb5aa11fe09a30fd0f8be3a002205885274d4488eb175bd1d60e24b9"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/reproduce/uv.lock",
+          "kind": "file",
+          "bytes": 368803,
+          "sha256": "2ad625654eef9a2cacbea1f6bee0ec452066e12f1e6ee96b93cfd3655bcfdbf7"
+        }
+      ],
+      "declared_outputs": [
+        "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/results/baseline-development-01.json"
+      ],
+      "stdout": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/logs/baseline-development-baseline-development-01-attempt-1.stdout.log",
+      "stderr": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/logs/baseline-development-baseline-development-01-attempt-1.stderr.log",
+      "finished_at": "2026-09-06T06:54:53.918088+00:00",
+      "exit_code": 0,
+      "outputs": [
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/results/baseline-development-01.json",
+          "kind": "file",
+          "bytes": 2920394,
+          "sha256": "6d8f1bb2e33f1721b083a3da8b9fb33cd636211f23549e6eadc989f537f90c49"
+        }
+      ]
+    },
+    {
+      "name": "assess-baseline-development-01",
+      "stage": "baseline-development",
+      "attempt": 1,
+      "status": "complete",
+      "command": [
+        "reproduce/.venv/bin/python",
+        "skills/generate-initial-version/scripts/assess_baseline.py",
+        "--run",
+        "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/results/baseline-development-01.json",
+        "--attempt",
+        "1",
+        "--max-attempts",
+        "10",
+        "--minimum-quality",
+        "0.8",
+        "--output",
+        "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/results/baseline-decision-01.json"
+      ],
+      "cwd": "/Users/saikrishna/dev/deterministic-skills",
+      "started_at": "2026-09-06T06:55:13.013106+00:00",
+      "plan_sha256": "57f613822481e0d95cecba0105fe227b96476c70ea9568848f0f0bcc0934eccd",
+      "protocol_sha256": "be753b99ed9a15c8ef490a910bbf94c5d8212be700b85549e8b8548168941b38",
+      "inputs": [
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/results/baseline-development-01.json",
+          "kind": "file",
+          "bytes": 2920394,
+          "sha256": "6d8f1bb2e33f1721b083a3da8b9fb33cd636211f23549e6eadc989f537f90c49"
+        },
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/skills/generate-initial-version/scripts/assess_baseline.py",
+          "kind": "file",
+          "bytes": 2492,
+          "sha256": "87a696ac836015011fd7781b5bbf8013fbe7c0285732496773277a56f99dee15"
+        }
+      ],
+      "declared_outputs": [
+        "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/results/baseline-decision-01.json"
+      ],
+      "stdout": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/logs/baseline-development-assess-baseline-development-01-attempt-1.stdout.log",
+      "stderr": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/logs/baseline-development-assess-baseline-development-01-attempt-1.stderr.log",
+      "finished_at": "2026-09-06T06:55:13.054899+00:00",
+      "exit_code": 0,
+      "outputs": [
+        {
+          "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/results/baseline-decision-01.json",
+          "kind": "file",
+          "bytes": 397,
+          "sha256": "7ba5fc95deb9eddb603110869915e793751839163951e866f4fca5c4e3c59d97"
+        }
+      ]
+    }
+  ]
+}

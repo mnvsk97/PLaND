@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "study_id": "gemini-3.5-flash-lite-2026-09-05-11-41-pm",
+  "created_at": "2026-09-06T06:51:38.508016+00:00",
+  "repository": "/Users/saikrishna/dev/deterministic-skills",
+  "git_head": "e5d9f8826e3d0bbdf62cc9b2dc3313ad5c59e66f",
+  "git_status_at_init": "",
+  "plan": {
+    "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/plan.json",
+    "kind": "file",
+    "bytes": 3160,
+    "sha256": "57f613822481e0d95cecba0105fe227b96476c70ea9568848f0f0bcc0934eccd"
+  },
+  "protocol": {
+    "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/protocol.md",
+    "kind": "file",
+    "bytes": 2017,
+    "sha256": "be753b99ed9a15c8ef490a910bbf94c5d8212be700b85549e8b8548168941b38"
+  },
+  "limits": {
+    "baseline_attempts": 10,
+    "candidate_attempts": 10
+  },
+  "stages": {
+    "prepare": "complete",
+    "baseline-development": "pending",
+    "candidate-development": "pending",
+    "selection": "pending",
+    "final-test": "pending",
+    "package-evidence": "pending",
+    "paper-audit": "pending"
+  },
+  "decisions": {
+    "baseline-development": [],
+    "candidate-development": [],
+    "selection": []
+  }
+}

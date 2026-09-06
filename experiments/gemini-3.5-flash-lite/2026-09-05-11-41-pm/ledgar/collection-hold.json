@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "status": "invalid_runtime_identity",
+  "reason": "The runner serialized the approved 300-second timeout as 300.0, producing a configuration hash that did not match the frozen plan.",
+  "approved_configuration_sha256": "d703b8e16a3dc88aa1ac6a47171414c3873ee8f064db5bb911c5d67252fd9c4d",
+  "observed_configuration_sha256": "76170a3e2ca8259d39b4bd32825363b7d08508240c090b1d93c207e5152474fc",
+  "disposition": "Preserve this completed development run as invalid evidence. Do not record a readiness decision or open candidate, selection, or final-test stages from it."
+}

@@ -77,6 +77,12 @@ class UsageTests(unittest.TestCase):
         self.assertEqual(config.identity()['provider'], 'fixture-provider')
         self.assertNotIn('api_key', json.dumps(config.identity()))
 
+    def test_integral_timeout_has_one_canonical_configuration_hash(self):
+        self.assertEqual(OR.HostedConfig(4096, 300).contract(),
+                         OR.HostedConfig(4096, 300.0).contract())
+        self.assertEqual(OR.HostedConfig(4096, 300).identity(),
+                         OR.HostedConfig(4096, 300.0).identity())
+
     def test_output_namespace(self):
         OR.validate_output_path(Path('/tmp') / OR.MODEL_DIRECTORY / '2026-09-05-11-07-pm/ledgar/results/baseline.json')
         for path in ('/tmp/local-model/ledgar/results/run.json',

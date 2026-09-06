@@ -1,0 +1,256 @@
+{
+  "schema_version": 1,
+  "dataset": "lighteval/lexglue:ledgar",
+  "counts": {
+    "total": 2000,
+    "by_split": {
+      "development": 500,
+      "test": 500,
+      "validation": 1000
+    },
+    "by_split_and_label": {
+      "development": {
+        "Amendments": 50,
+        "Assignments": 50,
+        "Counterparts": 50,
+        "Entire Agreements": 50,
+        "Expenses": 50,
+        "Governing Laws": 50,
+        "Notices": 50,
+        "Severability": 50,
+        "Survival": 50,
+        "Terms": 50
+      },
+      "test": {
+        "Amendments": 50,
+        "Assignments": 50,
+        "Counterparts": 50,
+        "Entire Agreements": 50,
+        "Expenses": 50,
+        "Governing Laws": 50,
+        "Notices": 50,
+        "Severability": 50,
+        "Survival": 50,
+        "Terms": 50
+      },
+      "validation": {
+        "Amendments": 100,
+        "Assignments": 100,
+        "Counterparts": 100,
+        "Entire Agreements": 100,
+        "Expenses": 100,
+        "Governing Laws": 100,
+        "Notices": 100,
+        "Severability": 100,
+        "Survival": 100,
+        "Terms": 100
+      }
+    }
+  },
+  "checks": {
+    "unique_ids": true,
+    "split_id_overlap_count": 0,
+    "content_duplicate_count": 0,
+    "runtime_label_leakage_count": 0,
+    "missing_case_count": 0,
+    "balanced_within_each_split": {
+      "development": true,
+      "test": true,
+      "validation": true
+    },
+    "selection_manifest_matches_evals": true,
+    "source_hashes_match": true,
+    "source_split_integrity": true,
+    "pilot_overlap_count": 0,
+    "exclusion_manifest_matches_pilot": true
+  },
+  "hashes": {
+    "evals_sha256": "667a644fce342917d3c5ae03ee55aadf78c9f69088b5c6ead74000ae15b19c25",
+    "selection_sha256": "c5c46d59e1e4aca4f3f26ee35302c894e4061b6ed4572bc495bb0251c021c52b",
+    "case_manifest_sha256": "a79342bf989e0fe02afce596c6a408c24725140bbb6f2b83344ead38c81a84b5"
+  },
+  "sources": [
+    {
+      "path": "train.jsonl",
+      "sha256": "d715cde50f04e36401b76704d693cedc2697169dbcbc97c8c8519767edfe94ec",
+      "bytes": 75058429
+    },
+    {
+      "path": "validation.jsonl",
+      "sha256": "5890aaee646adf03ca9665c1207b2a1ec95f60007c3e8a86f36b753992786ce1",
+      "bytes": 12420569
+    },
+    {
+      "path": "test.jsonl",
+      "sha256": "d78bb9c8e149b169bfb4c2e910d21c6fea32968c11a5aff880f2ef6fb86bd86c",
+      "bytes": 12122831
+    }
+  ],
+  "source_verification": [
+    {
+      "path": "train.jsonl",
+      "exists": true,
+      "sha256_match": true
+    },
+    {
+      "path": "validation.jsonl",
+      "exists": true,
+      "sha256_match": true
+    },
+    {
+      "path": "test.jsonl",
+      "exists": true,
+      "sha256_match": true
+    }
+  ],
+  "eligible_unique_by_label": {
+    "Governing Laws": 3047,
+    "Counterparts": 2286,
+    "Notices": 2373,
+    "Entire Agreements": 2244,
+    "Severability": 1683,
+    "Amendments": 1398,
+    "Survival": 1374,
+    "Assignments": 1241,
+    "Expenses": 1144,
+    "Terms": 1079
+  },
+  "requested_split_counts": {
+    "development": 500,
+    "validation": 1000,
+    "test": 500
+  },
+  "source_split_mapping": {
+    "development": "train",
+    "validation": "train",
+    "test": "train"
+  },
+  "eligible_unique_by_label_and_source_split": {
+    "train": {
+      "Waivers": 858,
+      "Erisa": 318,
+      "Counterparts": 2286,
+      "Further Assurances": 1001,
+      "Base Salary": 656,
+      "Notices": 2373,
+      "Records": 322,
+      "Indemnity": 266,
+      "Warranties": 489,
+      "Governing Laws": 3047,
+      "Arbitration": 381,
+      "Assignments": 1241,
+      "Financial Statements": 663,
+      "Litigations": 1019,
+      "Compliance With Laws": 950,
+      "Vacations": 335,
+      "Entire Agreements": 2244,
+      "Severability": 1683,
+      "Waiver Of Jury Trials": 725,
+      "Survival": 1374,
+      "Organizations": 402,
+      "Binding Effects": 580,
+      "Use Of Proceeds": 852,
+      "Terms": 1079,
+      "Confidentiality": 985,
+      "Amendments": 1398,
+      "Vesting": 448,
+      "Publicity": 338,
+      "General": 949,
+      "Representations": 562,
+      "Withholdings": 508,
+      "No Defaults": 322,
+      "Successors": 424,
+      "Remedies": 649,
+      "Taxes": 1066,
+      "Interests": 362,
+      "Defined Terms": 346,
+      "Interpretations": 367,
+      "Change In Control": 348,
+      "Expenses": 1144,
+      "Forfeitures": 296,
+      "Titles": 314,
+      "Releases": 606,
+      "Specific Performance": 316,
+      "Insurances": 1082,
+      "Disclosures": 577,
+      "Construction": 383,
+      "Employment": 308,
+      "Effective Dates": 457,
+      "Jurisdictions": 199,
+      "Fees": 566,
+      "Applicable Laws": 348,
+      "Payments": 837,
+      "Brokers": 387,
+      "Participations": 441,
+      "Consents": 441,
+      "Subsidiaries": 540,
+      "Intellectual Property": 460,
+      "Capitalization": 432,
+      "Terminations": 1099,
+      "Costs": 167,
+      "Duties": 349,
+      "Miscellaneous": 471,
+      "Existence": 252,
+      "Transactions With Affiliates": 347,
+      "Indemnifications": 919,
+      "Closings": 539,
+      "Benefits": 393,
+      "Cooperation": 459,
+      "Death": 276,
+      "Positions": 190,
+      "Authority": 535,
+      "Authorizations": 611,
+      "Liens": 304,
+      "Agreements": 248,
+      "Approvals": 176,
+      "Sales": 325,
+      "Definitions": 559,
+      "Enforcements": 195,
+      "Headings": 573,
+      "No Conflicts": 726,
+      "Submission To Jurisdiction": 232,
+      "Solvency": 413,
+      "Venues": 129,
+      "Adjustments": 321,
+      "Effectiveness": 227,
+      "No Waivers": 428,
+      "Modifications": 251,
+      "Disability": 255,
+      "Enforceability": 241,
+      "Tax Withholdings": 377,
+      "Integration": 303,
+      "Consent To Jurisdiction": 172,
+      "Non-Disparagement": 356,
+      "Powers": 124,
+      "Sanctions": 118,
+      "Books": 23,
+      "Anti-Corruption Laws": 105,
+      "Assigns": 31,
+      "Qualifications": 46
+    },
+    "validation": {},
+    "test": {}
+  },
+  "exclusion_manifest": [
+    {
+      "path": "tmp/gemini-3.5-flash-lite/2026-09-05-11-41-pm/datasets/ledgar-prior-opened",
+      "evals_sha256": "876e9accdec9f134cb3ce0559e70d541e6567e86e119ec6bb925c493fbe9a63e",
+      "cases": 2200,
+      "included_splits": [
+        "all"
+      ],
+      "case_manifest_sha256": "58cf0b8b1e0849f970bc1edf5ede3e5b98d041e8abec0dacb195ed75a561878e"
+    }
+  ],
+  "failures": {
+    "overlaps": {
+      "development:test": [],
+      "development:validation": [],
+      "test:validation": []
+    },
+    "duplicates": {},
+    "leakage_ids": [],
+    "missing": []
+  },
+  "passed": true
+}

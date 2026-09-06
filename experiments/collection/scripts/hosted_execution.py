@@ -7,7 +7,7 @@ import json
 import math
 import os
 import re
-from dataclasses import asdict, dataclass
+from dataclasses import dataclass
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -56,8 +56,18 @@ class HostedConfig:
         configured_base_url()
 
     def contract(self):
+        # argparse parses --request-timeout as float. Normalize integral values
+        # so the executed contract hashes to the reviewed JSON value (300), not
+        # a representation-only variant (300.0).
+        timeout_seconds = (
+            int(self.timeout_seconds)
+            if float(self.timeout_seconds).is_integer()
+            else self.timeout_seconds
+        )
         return {
-            **asdict(self), "model_provider": PROVIDER_NAME, "model": MODEL,
+            "max_completion_tokens": self.max_completion_tokens,
+            "timeout_seconds": timeout_seconds,
+            "model_provider": PROVIDER_NAME, "model": MODEL,
             "base_url": configured_base_url(), "stream": False, "seed_supported": False,
             "provider_endpoint": PROVIDER_ENDPOINT,
             "reasoning_effort": REASONING_EFFORT,

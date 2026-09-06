@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-09-06T06:55:13.050152+00:00",
+  "attempt": 1,
+  "max_attempts": 10,
+  "minimum_quality": 0.8,
+  "observed_quality": 0.97,
+  "run": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/results/baseline-development-01.json",
+  "sop_sha256": "187274d0362cfd50b28fcc425ef3a83fbd54317615e67c5ed6dfbcbf203a268f",
+  "decision": "ready_to_freeze"
+}
