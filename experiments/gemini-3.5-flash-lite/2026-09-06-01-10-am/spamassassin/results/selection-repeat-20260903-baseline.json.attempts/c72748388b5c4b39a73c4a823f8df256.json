@@ -1,0 +1,178 @@
+{
+  "case_id": "mail-0b8c54c3db00c7aa2e07",
+  "started_at": "2026-09-06T08:14:39.850184+00:00",
+  "frozen_manifest_sha256": "a26333f914de8e25241d904e5b085ab6c205521005f3637512da9136872dc61f",
+  "status": "completed",
+  "case": {
+    "id": "mail-0b8c54c3db00c7aa2e07",
+    "expected": "spam",
+    "actual": "spam",
+    "correct": true,
+    "source": "model",
+    "matched_rule": null,
+    "parse_error": null,
+    "raw_message_content": "{\n  \"label\": \"spam\"\n}",
+    "latency_seconds": 0.5572257500025444,
+    "input_tokens": 1067,
+    "output_tokens": 11,
+    "total_tokens": 1078,
+    "model_calls": 1,
+    "model_done_reason": "stop",
+    "deepagent_trace": [
+      {
+        "type": "ai",
+        "content": "{\n  \"label\": \"spam\"\n}",
+        "tool_calls": [],
+        "usage_metadata": {
+          "input_tokens": 1067,
+          "output_tokens": 11,
+          "total_tokens": 1078,
+          "input_token_details": {
+            "audio": 0,
+            "cache_read": 0,
+            "cache_creation": 0
+          },
+          "output_token_details": {
+            "audio": 0,
+            "reasoning": 0
+          }
+        },
+        "response_metadata": {
+          "token_usage": {
+            "completion_tokens": 11,
+            "prompt_tokens": 1067,
+            "total_tokens": 1078,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "rejected_prediction_tokens": null,
+              "text_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cache_write_tokens": 0,
+              "cached_tokens": 0,
+              "image_tokens": null,
+              "text_tokens": null,
+              "video_tokens": 0
+            },
+            "cost": 0.0003476,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0.0003476,
+              "upstream_inference_prompt_cost": 0.0003201,
+              "upstream_inference_completions_cost": 2.75e-05
+            }
+          },
+          "model_provider": "openai",
+          "model_name": "google/gemini-3.5-flash-lite",
+          "system_fingerprint": null,
+          "id": "gen-1788682479-SKIpGDTn4pHdaa1BiVQt",
+          "service_tier": "default",
+          "finish_reason": "stop",
+          "logprobs": null,
+          "hosted": {
+            "id": "gen-1788682479-SKIpGDTn4pHdaa1BiVQt",
+            "model": "google/gemini-3.5-flash-lite",
+            "provider": "Google AI Studio",
+            "created": 1788682479,
+            "system_fingerprint": null,
+            "usage": {
+              "completion_tokens": 11,
+              "prompt_tokens": 1067,
+              "total_tokens": 1078,
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": null,
+                "audio_tokens": 0,
+                "reasoning_tokens": 0,
+                "rejected_prediction_tokens": null,
+                "text_tokens": null,
+                "image_tokens": 0
+              },
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cache_write_tokens": 0,
+                "cached_tokens": 0,
+                "image_tokens": null,
+                "text_tokens": null,
+                "video_tokens": 0
+              },
+              "cost": 0.0003476,
+              "is_byok": false,
+              "cost_details": {
+                "upstream_inference_cost": 0.0003476,
+                "upstream_inference_prompt_cost": 0.0003201,
+                "upstream_inference_completions_cost": 2.75e-05
+              }
+            },
+            "finish_reason": "stop",
+            "refusal": null
+          }
+        },
+        "reasoning_details": [
+          {
+            "type": "reasoning.text",
+            "signature": "El4KXAERTTIPF+6009sKNqZSV1+nv7aGKoMo2btmkShkMBejZOtWLfUVTSM9ajnnwLBAs1xUbmV2c1rvu69bpd7q4tCr+8KN8SbfB776Sr+YEsHyvLNNU8GCuKZeQUrd",
+            "format": "google-gemini-v1",
+            "index": 0
+          }
+        ]
+      }
+    ],
+    "step_trace": {
+      "command_step_id": null,
+      "fallback_step_id": null,
+      "fallback_instruction_sha256": null,
+      "escape_reason": null,
+      "command_work": false,
+      "model_work": true,
+      "command_error": null
+    },
+    "reasoning_tokens": 0,
+    "cached_input_tokens": 0,
+    "service_cost_usd": 0.0003476,
+    "request_receipts": [
+      {
+        "id": "gen-1788682479-SKIpGDTn4pHdaa1BiVQt",
+        "model": "google/gemini-3.5-flash-lite",
+        "provider": "Google AI Studio",
+        "created": 1788682479,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 11,
+          "prompt_tokens": 1067,
+          "total_tokens": 1078,
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": null,
+            "audio_tokens": 0,
+            "reasoning_tokens": 0,
+            "rejected_prediction_tokens": null,
+            "text_tokens": null,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "image_tokens": null,
+            "text_tokens": null,
+            "video_tokens": 0
+          },
+          "cost": 0.0003476,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.0003476,
+            "upstream_inference_prompt_cost": 0.0003201,
+            "upstream_inference_completions_cost": 2.75e-05
+          }
+        },
+        "finish_reason": "stop",
+        "refusal": null
+      }
+    ]
+  },
+  "rate_limit_retries": [],
+  "ended_at": "2026-09-06T08:14:40.408521+00:00"
+}

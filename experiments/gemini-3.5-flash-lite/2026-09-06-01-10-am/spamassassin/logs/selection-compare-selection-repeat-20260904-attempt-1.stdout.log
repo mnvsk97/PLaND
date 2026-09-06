@@ -1,0 +1,1 @@
+{"delta": {"accuracy": -0.007000000000000006, "macro_f1": -0.007004292467345796, "mean_latency_seconds": -0.19961891107214613, "model_calls": -345, "token_reduction_fraction": 0.3214746352181408, "total_tokens": -847438}, "gate": {"absolute_viability": true, "quality_noninferior": true, "relative_pass": true, "test_release_pass": true, "token_objective_met": true}}

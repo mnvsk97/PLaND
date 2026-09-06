@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "case_id": "mail-0ae0fc25ca50549e73a8",
+  "sensitive_content_recorded": false,
+  "http_status": 200,
+  "top_level_keys": [
+    "choices",
+    "created",
+    "id",
+    "model",
+    "object",
+    "provider",
+    "service_tier",
+    "system_fingerprint",
+    "usage"
+  ],
+  "choices_type": "list",
+  "choices_count": 1,
+  "error_type": null,
+  "error_code": null,
+  "error_keys": null,
+  "message_length": 0,
+  "message_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "safe_message": "",
+  "message_categories": {
+    "rate limit": false,
+    "context": false,
+    "token": false,
+    "input": false,
+    "invalid": false,
+    "safety": false,
+    "provider": false
+  },
+  "retry_after": null,
+  "retry_after_ms": null
+}

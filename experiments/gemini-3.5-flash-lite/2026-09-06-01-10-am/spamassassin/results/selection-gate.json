@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "stage": "selection",
+  "candidate": "candidate-02",
+  "comparisons": [
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-01-10-am/spamassassin/results/selection-repeat-20260903-comparison.json",
+      "gate": {
+        "noninferiority_margin": 0.02,
+        "minimum_token_reduction": 0.05,
+        "minimum_accuracy": 0.8,
+        "require_no_accuracy_regression": false,
+        "minimum_accuracy_difference_lower_bound": null,
+        "max_per_label_recall_drop": null,
+        "minimum_command_precision": null,
+        "quality_noninferior": true,
+        "token_objective_met": true,
+        "absolute_viability": true,
+        "relative_pass": true,
+        "test_release_pass": true
+      },
+      "accuracy_difference_bootstrap_95": [
+        -0.018,
+        -0.005
+      ],
+      "token_reduction_bootstrap_95": [
+        0.2800589173664962,
+        0.36632979514366343
+      ]
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-01-10-am/spamassassin/results/selection-repeat-20260904-comparison.json",
+      "gate": {
+        "noninferiority_margin": 0.02,
+        "minimum_token_reduction": 0.05,
+        "minimum_accuracy": 0.8,
+        "require_no_accuracy_regression": false,
+        "minimum_accuracy_difference_lower_bound": null,
+        "max_per_label_recall_drop": null,
+        "minimum_command_precision": null,
+        "quality_noninferior": true,
+        "token_objective_met": true,
+        "absolute_viability": true,
+        "relative_pass": true,
+        "test_release_pass": true
+      },
+      "accuracy_difference_bootstrap_95": [
+        -0.014,
+        -0.001
+      ],
+      "token_reduction_bootstrap_95": [
+        0.28005837138752626,
+        0.36634976530185964
+      ]
+    },
+    {
+      "path": "/Users/saikrishna/dev/deterministic-skills/experiments/gemini-3.5-flash-lite/2026-09-06-01-10-am/spamassassin/results/selection-repeat-20260905-comparison.json",
+      "gate": {
+        "noninferiority_margin": 0.02,
+        "minimum_token_reduction": 0.05,
+        "minimum_accuracy": 0.8,
+        "require_no_accuracy_regression": false,
+        "minimum_accuracy_difference_lower_bound": null,
+        "max_per_label_recall_drop": null,
+        "minimum_command_precision": null,
+        "quality_noninferior": true,
+        "token_objective_met": true,
+        "absolute_viability": true,
+        "relative_pass": true,
+        "test_release_pass": true
+      },
+      "accuracy_difference_bootstrap_95": [
+        -0.016,
+        -0.003
+      ],
+      "token_reduction_bootstrap_95": [
+        0.2800373318350352,
+        0.36629530164160945
+      ]
+    }
+  ],
+  "decision": "accept",
+  "final_test_released": true
+}

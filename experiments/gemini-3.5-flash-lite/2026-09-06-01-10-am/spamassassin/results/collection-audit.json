@@ -1,0 +1,289 @@
+{
+  "schema_version": 1,
+  "outcome": "complete",
+  "selection_decision": "accept",
+  "final_test_released": true,
+  "counts": {
+    "total": 2000,
+    "splits": {
+      "development": 500,
+      "test": 500,
+      "validation": 1000
+    },
+    "selection_labels": {
+      "ham": 500,
+      "spam": 500
+    }
+  },
+  "blocked_case_ids": [
+    "mail-3125dcdc7726abc1c128",
+    "mail-449598896e25273135c3"
+  ],
+  "replacement_case_ids": [
+    "mail-023db858450b084e7238",
+    "mail-0ae0fc25ca50549e73a8"
+  ],
+  "failed_command_events": 2,
+  "transient_failure_receipts": [
+    {
+      "case_id": "mail-e6da957252621ae8d22d",
+      "started_at": "2026-09-06T08:22:17.815570+00:00",
+      "frozen_manifest_sha256": "05011a5d0a433767444da1ed11ab189f6966410630ef2ecb5d8b2e0485cf6319",
+      "status": "failed",
+      "error_type": "OpenAIConnectionError",
+      "status_code": null,
+      "billing_status": "unknown",
+      "ended_at": "2026-09-06T08:22:17.844572+00:00"
+    },
+    {
+      "case_id": "mail-e6da957252621ae8d22d",
+      "started_at": "2026-09-06T08:23:22.580564+00:00",
+      "frozen_manifest_sha256": "05011a5d0a433767444da1ed11ab189f6966410630ef2ecb5d8b2e0485cf6319",
+      "status": "failed",
+      "error_type": "OpenAIConnectionError",
+      "status_code": null,
+      "billing_status": "unknown",
+      "ended_at": "2026-09-06T08:23:22.604281+00:00"
+    }
+  ],
+  "package_checks": {
+    "baseline-01": true,
+    "candidate-01": true
+  },
+  "checks": {
+    "exact_split_sizes": true,
+    "selection_balance": true,
+    "known_blocked_cases_absent": true,
+    "second_amendment_audit_passed": true,
+    "replacement_provider_screen_passed": true,
+    "prior_full_selection_screen_passed": true,
+    "development_carry_forward_passed": true,
+    "packages_byte_identical": true,
+    "selection_gate_accepted": true,
+    "twelve_complete_error_free_outputs": true,
+    "all_six_comparisons_passed": true,
+    "sole_provider_preserved": true,
+    "transient_interruptions_preserved_and_resumed": true
+  },
+  "runs": [
+    {
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-06-01-10-am/spamassassin/results/selection-repeat-20260903-baseline.json",
+      "split": "selection",
+      "seed": 20260903,
+      "arm": "baseline",
+      "cases": 1000,
+      "accuracy": 0.99,
+      "total_tokens": 2636096,
+      "errors": {},
+      "passed": true
+    },
+    {
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-06-01-10-am/spamassassin/results/selection-repeat-20260903-hybrid.json",
+      "split": "selection",
+      "seed": 20260903,
+      "arm": "hybrid",
+      "cases": 1000,
+      "accuracy": 0.979,
+      "total_tokens": 1788601,
+      "errors": {},
+      "passed": true
+    },
+    {
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-06-01-10-am/spamassassin/results/selection-repeat-20260904-baseline.json",
+      "split": "selection",
+      "seed": 20260904,
+      "arm": "baseline",
+      "cases": 1000,
+      "accuracy": 0.988,
+      "total_tokens": 2636096,
+      "errors": {},
+      "passed": true
+    },
+    {
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-06-01-10-am/spamassassin/results/selection-repeat-20260904-hybrid.json",
+      "split": "selection",
+      "seed": 20260904,
+      "arm": "hybrid",
+      "cases": 1000,
+      "accuracy": 0.981,
+      "total_tokens": 1788658,
+      "errors": {},
+      "passed": true
+    },
+    {
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-06-01-10-am/spamassassin/results/selection-repeat-20260905-baseline.json",
+      "split": "selection",
+      "seed": 20260905,
+      "arm": "baseline",
+      "cases": 1000,
+      "accuracy": 0.99,
+      "total_tokens": 2636117,
+      "errors": {},
+      "passed": true
+    },
+    {
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-06-01-10-am/spamassassin/results/selection-repeat-20260905-hybrid.json",
+      "split": "selection",
+      "seed": 20260905,
+      "arm": "hybrid",
+      "cases": 1000,
+      "accuracy": 0.981,
+      "total_tokens": 1788728,
+      "errors": {},
+      "passed": true
+    },
+    {
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-06-01-10-am/spamassassin/results/final-test-repeat-20260903-baseline.json",
+      "split": "final-test",
+      "seed": 20260903,
+      "arm": "baseline",
+      "cases": 500,
+      "accuracy": 0.978,
+      "total_tokens": 1464817,
+      "errors": {},
+      "passed": true
+    },
+    {
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-06-01-10-am/spamassassin/results/final-test-repeat-20260903-hybrid.json",
+      "split": "final-test",
+      "seed": 20260903,
+      "arm": "hybrid",
+      "cases": 500,
+      "accuracy": 0.972,
+      "total_tokens": 1052802,
+      "errors": {},
+      "passed": true
+    },
+    {
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-06-01-10-am/spamassassin/results/final-test-repeat-20260904-baseline.json",
+      "split": "final-test",
+      "seed": 20260904,
+      "arm": "baseline",
+      "cases": 500,
+      "accuracy": 0.974,
+      "total_tokens": 1465131,
+      "errors": {},
+      "passed": true
+    },
+    {
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-06-01-10-am/spamassassin/results/final-test-repeat-20260904-hybrid.json",
+      "split": "final-test",
+      "seed": 20260904,
+      "arm": "hybrid",
+      "cases": 500,
+      "accuracy": 0.97,
+      "total_tokens": 1052891,
+      "errors": {},
+      "passed": true
+    },
+    {
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-06-01-10-am/spamassassin/results/final-test-repeat-20260905-baseline.json",
+      "split": "final-test",
+      "seed": 20260905,
+      "arm": "baseline",
+      "cases": 500,
+      "accuracy": 0.978,
+      "total_tokens": 1464835,
+      "errors": {},
+      "passed": true
+    },
+    {
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-06-01-10-am/spamassassin/results/final-test-repeat-20260905-hybrid.json",
+      "split": "final-test",
+      "seed": 20260905,
+      "arm": "hybrid",
+      "cases": 500,
+      "accuracy": 0.974,
+      "total_tokens": 1052948,
+      "errors": {},
+      "passed": true
+    }
+  ],
+  "comparisons": [
+    {
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-06-01-10-am/spamassassin/results/selection-repeat-20260903-comparison.json",
+      "split": "selection",
+      "seed": 20260903,
+      "accuracy_difference_bootstrap_95": [
+        -0.018,
+        -0.005
+      ],
+      "token_reduction_bootstrap_95": [
+        0.2800589173664962,
+        0.36632979514366343
+      ],
+      "passed": true
+    },
+    {
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-06-01-10-am/spamassassin/results/selection-repeat-20260904-comparison.json",
+      "split": "selection",
+      "seed": 20260904,
+      "accuracy_difference_bootstrap_95": [
+        -0.014,
+        -0.001
+      ],
+      "token_reduction_bootstrap_95": [
+        0.28005837138752626,
+        0.36634976530185964
+      ],
+      "passed": true
+    },
+    {
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-06-01-10-am/spamassassin/results/selection-repeat-20260905-comparison.json",
+      "split": "selection",
+      "seed": 20260905,
+      "accuracy_difference_bootstrap_95": [
+        -0.016,
+        -0.003
+      ],
+      "token_reduction_bootstrap_95": [
+        0.2800373318350352,
+        0.36629530164160945
+      ],
+      "passed": true
+    },
+    {
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-06-01-10-am/spamassassin/results/final-test-repeat-20260903-comparison.json",
+      "split": "final-test",
+      "seed": 20260903,
+      "accuracy_difference_bootstrap_95": [
+        -0.016,
+        0.004
+      ],
+      "token_reduction_bootstrap_95": [
+        0.22134523302653328,
+        0.35176858398455824
+      ],
+      "passed": true
+    },
+    {
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-06-01-10-am/spamassassin/results/final-test-repeat-20260904-comparison.json",
+      "split": "final-test",
+      "seed": 20260904,
+      "accuracy_difference_bootstrap_95": [
+        -0.016,
+        0.006
+      ],
+      "token_reduction_bootstrap_95": [
+        0.22141105611952241,
+        0.3518357152006292
+      ],
+      "passed": true
+    },
+    {
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-06-01-10-am/spamassassin/results/final-test-repeat-20260905-comparison.json",
+      "split": "final-test",
+      "seed": 20260905,
+      "accuracy_difference_bootstrap_95": [
+        -0.014,
+        0.006
+      ],
+      "token_reduction_bootstrap_95": [
+        0.22126230406592223,
+        0.3516602177021607
+      ],
+      "passed": true
+    }
+  ],
+  "passed": true
+}

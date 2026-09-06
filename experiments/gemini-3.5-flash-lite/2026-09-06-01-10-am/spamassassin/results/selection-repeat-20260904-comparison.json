@@ -1,0 +1,190 @@
+{
+  "schema_version": 2,
+  "natural_language": {
+    "cases": 1000,
+    "correct": 988,
+    "accuracy": 0.988,
+    "macro_f1": 0.9879987998799881,
+    "input_tokens": 2627940,
+    "output_tokens": 8156,
+    "total_tokens": 2636096,
+    "estimated_model_cost_usd": 0.76809731,
+    "model_calls": 1000,
+    "model_tokens": 2636096,
+    "command_calls": 0,
+    "command_resolved_cases": 0,
+    "fallback_model_calls": 0,
+    "fallback_model_tokens": 0,
+    "normal_completion_rate": 1.0,
+    "errors": {},
+    "latency_seconds": {
+      "total": 591.8167642093613,
+      "mean": 0.5918167642093612
+    },
+    "wall_seconds": 79.02963166599511,
+    "max_rss_bytes": 237191168,
+    "reasoning_tokens": 86,
+    "cached_input_tokens": 150647,
+    "service_cost_usd": 0.76809731
+  },
+  "hybrid": {
+    "cases": 1000,
+    "correct": 981,
+    "accuracy": 0.981,
+    "macro_f1": 0.9809945074126423,
+    "input_tokens": 1783359,
+    "output_tokens": 5299,
+    "total_tokens": 1788658,
+    "estimated_model_cost_usd": 0.51852928,
+    "model_calls": 655,
+    "model_tokens": 1788658,
+    "command_calls": 1000,
+    "command_resolved_cases": 345,
+    "fallback_model_calls": 655,
+    "fallback_model_tokens": 1788658,
+    "normal_completion_rate": 1.0,
+    "errors": {},
+    "latency_seconds": {
+      "total": 392.19785313721513,
+      "mean": 0.3921978531372151
+    },
+    "wall_seconds": 50.40953941599582,
+    "max_rss_bytes": 232996864,
+    "reasoning_tokens": 0,
+    "cached_input_tokens": 110096,
+    "service_cost_usd": 0.51852928
+  },
+  "delta_hybrid_minus_nl": {
+    "accuracy": -0.007000000000000006,
+    "macro_f1": -0.007004292467345796,
+    "total_tokens": -847438,
+    "token_reduction_fraction": 0.3214746352181408,
+    "mean_latency_seconds": -0.19961891107214613,
+    "model_calls": -345
+  },
+  "paired_statistics": {
+    "cases": 1000,
+    "correctness_table": {
+      "both_correct": 979,
+      "natural_language_only": 9,
+      "hybrid_only": 2,
+      "both_wrong": 10
+    },
+    "natural_language_accuracy_wilson_95": [
+      0.9791427315245017,
+      0.9931223521935965
+    ],
+    "hybrid_accuracy_wilson_95": [
+      0.9705155440876868,
+      0.9878031142492091
+    ],
+    "accuracy_difference_bootstrap_95": [
+      -0.014,
+      -0.001
+    ],
+    "token_reduction_bootstrap_95": [
+      0.28005837138752626,
+      0.36634976530185964
+    ],
+    "mcnemar_exact_p": 0.0654296875,
+    "bootstrap_samples": 5000,
+    "bootstrap_seed": 20260902
+  },
+  "mechanism_decomposition": {
+    "command_routed_cases": 345,
+    "model_fallback_cases": 655,
+    "natural_language_tokens_on_command_routed_cases": 847401,
+    "hybrid_tokens_on_command_routed_cases": 0,
+    "natural_language_tokens_on_model_fallback_cases": 1788695,
+    "hybrid_tokens_on_model_fallback_cases": 1788658,
+    "tokens_saved_total": 847438,
+    "tokens_saved_by_bypassing_model_calls": 847401,
+    "tokens_saved_on_model_fallback_cases": 37,
+    "command_routed_hybrid_accuracy": 0.9768115942028985,
+    "natural_language_accuracy_on_same_command_routed_cases": 0.9971014492753624,
+    "command_routed_hybrid_precision": 0.9768115942028985
+  },
+  "per_label_recall": {
+    "natural_language": {
+      "ham": 0.978,
+      "spam": 0.998
+    },
+    "hybrid": {
+      "ham": 0.964,
+      "spam": 0.998
+    },
+    "delta_hybrid_minus_nl": {
+      "ham": -0.014000000000000012,
+      "spam": 0.0
+    },
+    "worst_label": "ham",
+    "worst_delta": -0.014000000000000012
+  },
+  "gate": {
+    "noninferiority_margin": 0.02,
+    "minimum_token_reduction": 0.05,
+    "minimum_accuracy": 0.8,
+    "require_no_accuracy_regression": false,
+    "minimum_accuracy_difference_lower_bound": null,
+    "max_per_label_recall_drop": null,
+    "minimum_command_precision": null,
+    "quality_noninferior": true,
+    "token_objective_met": true,
+    "absolute_viability": true,
+    "relative_pass": true,
+    "test_release_pass": true
+  },
+  "variant_hashes": {
+    "natural_language": {
+      "sop_sha256": "b3c9ec9c8b7af3ccf5d9aeaee0d7080a3a28e8e7b48bb4864177e16764914f98",
+      "classifier_sha256": null
+    },
+    "hybrid": {
+      "sop_sha256": "08e44ddbec25cfc4424b7798d8afa14bf729a2256eada5516c66ef6e7df0b6fc",
+      "classifier_sha256": "99498926e339d0f2867e78d365c9ddb60f41d02db4fd69ad041e5efb7218863a"
+    }
+  },
+  "invariants": {
+    "system_prompt_sha256": "eed23baceeaeaa6d3b52ce5f3adfe84cea01e7bb091f0881d75d5e364d6385dd",
+    "evals_sha256": "6e91f99f2cfb7afb895c82bf072518fb31bcc0dc9c3fc328d1484dd9cd907016",
+    "selection_sha256": "35d580043e7520f963abf0d2abdfb2246744e918f52a7e3cff93686eabea3247",
+    "datasource_snapshot_sha256": "46d1efe0e6dd00588472c2ff1da6f1b94ddbfe2181138e1b167ac3375523f303",
+    "scorer_sha256": "03f83e70d463b7903d93fd0e0019aec14535f6817b1fce0ad19dc7f585cdab84",
+    "agent_harness_sha256": "7e3cd3303385b7c9079a8888a24594a6fb8b24eaab16c103d6d3ccfe628850ae",
+    "baseline_sop_sha256": "b3c9ec9c8b7af3ccf5d9aeaee0d7080a3a28e8e7b48bb4864177e16764914f98",
+    "baseline_sop_contract_sha256": "a027f88f15f1330cc94c5236dbc59888630db1d1c7987ded2c1a6fb03d308d57",
+    "hosted_adapter_sha256": "ee6247ed7f66d4df342117fbc379e0104c5a65a454b5d095a1947bfbbaeca9ad",
+    "evaluation_sha256": "6e91f99f2cfb7afb895c82bf072518fb31bcc0dc9c3fc328d1484dd9cd907016",
+    "runtime": {
+      "max_completion_tokens": 1024,
+      "timeout_seconds": 300,
+      "model_provider": "openrouter",
+      "model": "google/gemini-3.5-flash-lite",
+      "base_url": "https://openrouter.ai/api/v1",
+      "stream": false,
+      "seed_supported": false,
+      "provider_endpoint": "google-ai-studio",
+      "reasoning_effort": "low",
+      "extra_body": {
+        "reasoning": {
+          "effort": "low"
+        },
+        "provider": {
+          "only": [
+            "google-ai-studio"
+          ],
+          "allow_fallbacks": false,
+          "require_parameters": true
+        }
+      },
+      "temperature": null,
+      "allow_fallbacks": false,
+      "require_parameters": true,
+      "max_retries": 0,
+      "token_metric": "provider_prompt_plus_completion_including_reasoning",
+      "weight_digest_available": false,
+      "execution_backend": "deepagent",
+      "workers": 8
+    }
+  }
+}
