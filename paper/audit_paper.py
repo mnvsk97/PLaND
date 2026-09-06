@@ -122,7 +122,8 @@ def main():
     if opt.artifacts:
         html=(PAPER/'PLaND.html').read_text()
         assert source_hash in html
-        assert not re.search(forbidden,html,re.I)
+        html_without_embedded_figures = re.sub(r'src="data:[^"]+"', 'src=""', html)
+        assert not re.search(forbidden, html_without_embedded_figures, re.I)
         with zipfile.ZipFile(PAPER/'PLaND.docx') as z:
             xml=z.read('word/document.xml').decode()
             assert not re.search(forbidden,xml,re.I)

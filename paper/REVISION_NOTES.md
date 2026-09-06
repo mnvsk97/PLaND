@@ -2,7 +2,7 @@
 
 Revision dates: September 4–5, 2026, Pacific time.
 
-Scope: revise the manuscript and its matching PDF, Word, and HTML; preserve the original diagrams. Retain only LEDGAR, CFPB, and SpamAssassin in the reported study. Preserve archived experiments and their evidence manifests. No model experiments are rerun for this revision.
+Scope: revise the manuscript and its matching PDF, Word, and HTML; preserve the original diagrams. Retain only LEDGAR, CFPB, and SpamAssassin in the reported study. Out-of-scope dataset experiments and local data were subsequently removed. No model experiments were rerun for this revision.
 
 Sources of feedback: the annotated nine-page PDF in this task and the September 4 live discussion, [Wispr Paper Revision Feedback](https://notes.wisprflow.ai/shared/ZQnKepL0XU4y2zaVXNRWJcOeUFCStlixZwmOAH3y4Ks), 9:34–10:51 p.m. Pacific, identified by the user as the discussion with Asit. Speaker numbers in the transcript are not assigned to named individuals here.
 
@@ -12,7 +12,7 @@ The original page locations below refer to the reviewed PDF, not to pagination a
 
 | Reviewed location and exact anchor | Feedback | Revised location and action |
 | --- | --- | --- |
-| Entire paper; dataset scope | Keep only LEDGAR, CFPB, and SpamAssassin. | Abstract; Section 3.1, Table 1; Sections 4.1–4.3. Removed the document/OCR datasets, their rows, pilot narratives, and unused bibliography entries. Archived data remain intact. |
+| Entire paper; dataset scope | Keep only LEDGAR, CFPB, and SpamAssassin. | Abstract; Section 3.1, Table 1; Sections 4.1–4.3. Removed the document/OCR datasets, their rows, pilot narratives, unused bibliography entries, experiments, and local caches. |
 | Entire paper; “quality-first” | Remove the additional study and all dependent discussion. | Removed its section and table, abstract/conclusion claims, policy comparisons, and associated caveats throughout the manuscript. |
 | p. 4, “0.50” | Where did this value come from? | Removed the extraction-quality threshold with the out-of-scope extraction dataset. It is not presented as a classification criterion. |
 | p. 4, “LiteParse supplied an OCR condition rather than a separate dataset” | Which dataset was parsed? | This referred to SROIE, not an independent dataset. The sentence and reference are removed with the entire excluded track. |

@@ -29,34 +29,6 @@ class PrepareDataTests(unittest.TestCase):
         self.assertIn("Subject: A normal subject", cleaned)
         self.assertIn("Body text.", cleaned)
 
-    def test_sroie_source_ids_include_upstream_split(self):
-        fixture_rows = []
-        for upstream_split in ("train", "test"):
-            fixture_rows.append({
-                "row_idx": 0,
-                "upstream_split": upstream_split,
-                "row": {
-                    "image": {"src": "unused-in-unit-test"},
-                    "words": ["ACME", "2026-01-01", "1 MAIN ST", "10.00"],
-                    "bboxes": [[0, 0, 1, 1]] * 4,
-                    "ner_tags": [0, 1, 2, 3],
-                },
-            })
-        self.assertEqual(MODULE.sroie_source_id(fixture_rows[0]), "train:0")
-        self.assertEqual(MODULE.sroie_source_id(fixture_rows[1]), "test:0")
-        self.assertNotEqual(*(MODULE.sroie_source_id(row) for row in fixture_rows))
-
-    def test_sroie_selection_preserves_official_boundaries_and_is_repeatable(self):
-        train = [{"row_idx": index, "upstream_split": "train"} for index in range(8)]
-        test = [{"row_idx": index, "upstream_split": "test"} for index in range(5)]
-        first = MODULE.select_sroie_splits(train, test, 7, 3, 2, 5)
-        second = MODULE.select_sroie_splits(list(reversed(train)), list(reversed(test)), 7, 3, 2, 5)
-        self.assertEqual(first, second)
-        self.assertTrue(all(item["upstream_split"] == "train" for item in first["development"] + first["validation"]))
-        self.assertTrue(all(item["upstream_split"] == "test" for item in first["test"]))
-        self.assertFalse({MODULE.sroie_source_id(item) for item in first["development"]} &
-                         {MODULE.sroie_source_id(item) for item in first["validation"]})
-
     def test_balanced_selection_is_order_independent(self):
         records = [
             {"id": f"{label}-{index}", "label": label}

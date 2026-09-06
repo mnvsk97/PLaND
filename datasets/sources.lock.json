@@ -77,42 +77,6 @@
           "sha256": "40bc444c596ff3e71505ae334f115b16f9b946786ee68f09b921b6b99217fd00"
         }
       ]
-    },
-    "sroie": {
-      "dataset": "mp-02/sroie",
-      "revision": "f845db1c2ccaf883550320fe450d1e723374be32",
-      "terms": "https://huggingface.co/datasets/mp-02/sroie",
-      "redistribute_raw": false,
-      "snapshot": {
-        "path": "sroie/rows.json",
-        "sha256": "c6c85028bc48c8e80a741364c0a12f0d5738b41229087687f722374991365267"
-      }
-    },
-    "qs_ocr_tobacco3482": {
-      "dataset": "QS-OCR-Small v1.0 with Tobacco3482 label audit",
-      "terms": "https://github.com/QuickSign/ocrized-text-dataset",
-      "redistribute_raw": false,
-      "files": [
-        {
-          "path": "qs-ocr/QS-OCR-small.tar.gz",
-          "url": "https://github.com/QuickSign/ocrized-text-dataset/releases/download/v1.0/QS-OCR-small.tar.gz",
-          "bytes": 2461826,
-          "sha256": "9fb802036a2d95159a2fcb7c7bcd35ccbcc6d590f1cf39e7229a4fa9ee608b76"
-        },
-        {
-          "path": "qs-ocr/tobacco3482_multi_labels.csv",
-          "url": "https://raw.githubusercontent.com/gordon-lim/tobacco3482-mistakes/81cc09446eee924fd1cc5530b0830a818a425c97/tobacco3482_multi_labels.csv",
-          "revision": "81cc09446eee924fd1cc5530b0830a818a425c97",
-          "sha256": "1bbe87ee7e8e1c2c54e67ca95c84025c13e09990089fa9c3e9a10059b66fb5e4"
-        }
-      ]
-    },
-    "rvl_cdip_mirror": {
-      "dataset": "jordyvl/rvl_cdip_100_examples_per_class",
-      "revision": "23c07577ae7d98d696806b794289926673929de6",
-      "terms": "https://huggingface.co/datasets/jordyvl/rvl_cdip_100_examples_per_class",
-      "redistribute_raw": false,
-      "snapshot_note": "Exact preparation requires this mirror revision and the per-image hashes retained in the committed selection proof."
     }
   },
   "preparations": {

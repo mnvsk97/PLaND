@@ -6,10 +6,9 @@ and public downloads. Repository setup and Ollama instructions are in
 
 ## Scope and format
 
-| Category | Datasets | Purpose |
-| --- | --- | --- |
-| Text classification | LEDGAR, CFPB, SpamAssassin | Test whether stable rules can bypass model work while preserving semantic quality. |
-| Document image | SROIE, Tobacco/RVL | Add OCR, extraction, and perceptual error. |
+| Datasets | Purpose |
+| --- | --- |
+| LEDGAR, CFPB, SpamAssassin | Test whether stable rules can bypass model work while preserving semantic quality. |
 
 Each `evals.csv` uses schema version 2 and contains `id`, `benchmark`,
 `task_type`, `split`, `input`, `output`, `reasoning`, and `metadata`. `input`
@@ -52,21 +51,7 @@ python datasets/scripts/prepare_data.py cfpb \
   --development-cases 100 --validation-cases 100 --test-cases 1000
 ```
 
-SROIE exact reconstruction similarly requires the frozen rows snapshot:
-
-```bash
-python datasets/scripts/prepare_data.py sroie \
-  --source tmp/source-snapshots/sroie/rows.json \
-  --output tmp/datasets/sroie
-
-python datasets/scripts/prepare_data.py sroie \
-  --source tmp/source-snapshots/sroie/rows.json \
-  --exclude-selection tmp/datasets/sroie/selection.json \
-  --development-cases 100 --validation-cases 100 --test-cases 347 \
-  --output tmp/paper-datasets/sroie-confirmatory
-```
-
-Without either frozen snapshot, a current download is a new dataset condition,
+Without the frozen CFPB snapshot, a current download is a new dataset condition,
 not an exact reproduction. Selection ranks cases by
 `SHA-256(seed, source id)`, deduplicates normalized content, and excludes pilot
 IDs and content. Output directories must not exist. LEDGAR preserves official
@@ -90,8 +75,7 @@ repeat preparation.
 
 [`sources.lock.json`](sources.lock.json) records the exact source revisions,
 file sizes, SHA-256 values, upstream-terms links, and redistribution boundary.
-It covers every paper dataset, including QS-OCR/Tobacco3482, SROIE, and the
-RVL-CDIP sampling mirror. Raw records remain outside Git under `tmp/`. A hash mismatch is a different
+It covers the three paper datasets. Raw records remain outside Git under `tmp/`. A hash mismatch is a different
 dataset condition and must not be presented as an exact reproduction.
 
 The later quality-first validation datasets are rebuilt with one command. It
@@ -122,14 +106,6 @@ matches.
 | LEDGAR | 100 / 100 / 1,000 | Passed; identical repeat | Validation passed; test plus three optimized replications |
 | CFPB | 100 / 100 / 1,000 | Passed; identical repeat | Validation rejection repeated three times; test untouched |
 | SpamAssassin | 100 / 100 / 1,000 | Passed; identical repeat | Validation rejection repeated three times; test untouched |
-| QS-OCR/Tobacco3482 | 100 / 100 / 1,000 | Passed; identical repeat | Baseline nonviable |
-| SROIE | 100 / 100 / 300 | Passed after duplicate exclusions | Baseline nonviable |
-| RVL-CDIP mirror | 100 / 100 / 369 | Passed; repeat not recorded | Baseline nonviable |
-
-SROIE uses all eligible official-test receipts after exclusions; RVL has a
-631-case test-capacity shortfall. Neither is padded across source boundaries.
-SROIE IDs include the upstream split because row indexes restart in train and
-test. The same SROIE cases support frozen-OCR and raw-image runs.
 
 ## Evaluation rules
 
@@ -142,10 +118,7 @@ test. The same SROIE cases support frozen-OCR and raw-image runs.
 4. Compare matching cases and report the task-specific quality metric plus
    tokens, calls, latency, cost, resources, and representation.
 
-Use accuracy/macro F1 for classification and field F1/exact match for SROIE.
-Never combine those metrics into one score. Frozen-OCR and end-to-end SROIE
-runs are separate conditions; OCR engine, version, configuration, and output
-hash are invariants.
+Use accuracy and macro F1 for the three classification datasets.
 
 The three-seed text variance study reuses these exact prepared snapshots; its
 cross-run summary is `experiments/variance-study/summary.json`, and every run

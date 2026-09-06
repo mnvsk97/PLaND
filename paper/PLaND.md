@@ -6,19 +6,19 @@
 
 ## Abstract
 
-Language-model workflows often mix ambiguous decisions with routine decisions that explicit rules could handle. We present Path to Least Non Determinism (PLaND), a methodology for moving suitable work from natural-language instructions into executable code. A workflow starts with an English standard operating procedure (SOP). An evolver skill guides a host agent to propose changes using development examples and execution records. Each candidate is compared with the baseline under fixed quality and token-use criteria. We evaluate fixed natural-language and hybrid SOPs on three classification tasks: LEDGAR legal clauses, CFPB consumer complaints, and SpamAssassin email. The reported evaluations use 1,000 LEDGAR clauses, 100 CFPB complaints, and 100 SpamAssassin emails. On LEDGAR, accuracy changed from 93.5% to 92.7%, within the study's two-percentage-point tolerance after accounting for sampling uncertainty. Model calls fell from 1,000 to 589 and token use fell 40.02%. CFPB and SpamAssassin did not meet the acceptance criteria. Three additional paired runs per dataset reproduced these acceptance decisions. These results show that deterministic routing can substantially reduce model use, but the benefit depends on both the task and the allowed accuracy loss. The experiments measure the execution of fixed SOPs; they do not measure how reliably an agent can discover useful rules from run histories without researcher involvement.
+Business processes and agentic systems contain decisions with different computational requirements. Some require interpretation, contextual judgment, novelty handling, or exception resolution; others are stable enough to execute deterministically. When these boundaries are not known in advance, a natural-language agent provides an expressive starting point, but repeatedly routing stable work through a language model creates avoidable model calls and token consumption. We present Path to Least Non Determinism (PLaND), an evaluation-driven methodology for progressively reducing model-mediated computation within accuracy limits set before evaluation. PLaND begins with an entirely English standard operating procedure (SOP). Its evolver skill instructs a host reasoning agent to inspect development examples and execution records, then propose one revised SOP, called a candidate. A candidate may add Python or Bash code and retain model reasoning for unresolved inputs. Evaluation compares predicted and expected answers on separate examples. We compare fixed English-only and hybrid SOPs on LEDGAR legal clauses, CFPB consumer complaints, and SpamAssassin email. The reported results cover 1,000 LEDGAR test clauses and 100 validation examples each for CFPB and SpamAssassin. Acceptance requires both workflows to reach 80% accuracy, an accuracy decrease within two percentage points after accounting for sampling uncertainty, and at least 5% fewer tokens with evidence of a positive reduction. On LEDGAR, accuracy changed from 93.5% to 92.7%, model calls fell from 1,000 to 589, and token use fell 40.02%. LEDGAR met these requirements; CFPB and SpamAssassin did not. Three additional paired runs per dataset reproduced these decisions using the same examples. The experiments evaluate the execution of fixed SOPs; they do not independently evaluate autonomous rule discovery from run histories.
 
-**Keywords:** agentic workflows, agent skills, deterministic execution, language-model agents, workflow optimization, token efficiency, hybrid systems
+**Keywords:** agentic workflows, agent skills, SOP evolution, deterministic execution, language-model agents, token efficiency, hybrid systems
 
 ## 1 Introduction
 
-Business processes often contain both stable and ambiguous decisions. A language model can interpret unfamiliar inputs and handle exceptions, but it may also spend tokens repeatedly applying the same recognizable rule. For example, a contract clause that explicitly specifies its governing law may be easier to classify than a clause that combines several legal functions. The practical question is which decisions can be handled by code while keeping the workflow's quality within an acceptable range.
+Business processes often contain both stable and ambiguous decisions. A language model can interpret unfamiliar inputs and handle exceptions, but it may also spend tokens repeatedly applying the same recognizable rule. For example, a contract clause that explicitly specifies its governing law may be easier to classify than a clause that combines several legal functions. The practical question is: Which decisions can be handled by code while keeping the workflow's quality within an acceptable range?
 
 Existing infrastructure provides ways to package and execute these workflows. The Agent Skills specification organizes reusable instructions in a `SKILL.md` file with optional supporting files [1]. DeepAgents supports loading skills [2], while LangGraph provides graph-based workflow orchestration [3]. These are existing systems on which a methodology can build, not components introduced or independently benchmarked in this paper.
 
 Related research optimizes model programs, prompts, workflows, and reusable skills. DSPy optimizes language-model pipelines against task metrics [4]. AutoFlow and AFlow generate and improve workflows [5, 6], while Automated Design of Agentic Systems searches over agent designs [7]. SkillOpt, SkillRevise, SkillReducer, and ACES study the optimization or evaluation of reusable skills [8-11]. PLaND focuses on a specific change within a workflow: replacing suitable model-mediated decisions with explicit computation, while retaining model reasoning for the remaining inputs and evaluating the complete result.
 
-PLaND begins with an English standard operating procedure (SOP), then permits a hybrid SOP that combines model instructions with executable rules. Further changes may produce a workflow whose stable steps are explicit graph nodes. This last stage is a proposed direction, not an outcome demonstrated here. In this paper, reducing non-determinism means reducing dependence on model-mediated execution. It does not mean finding a globally optimal workflow or proving that repeated model outputs become less variable.
+PLaND begins with an English standard operating procedure (SOP). We call this initial workflow the baseline: the language model follows the English instructions for every case. A hybrid SOP adds an executable step, meaning code that performs a defined operation when its conditions are met. In our experiments, this step is a Python classification script; cases it cannot classify go to the same language model. We call that path fallback. Figure 1 illustrates these two workflows. Further changes may organize stable steps as nodes in a workflow graph. That is a proposed direction. In this paper, reducing non-determinism means reducing dependence on model-mediated execution. It does not mean finding a globally optimal workflow or proving that repeated model outputs become less variable.
 
 We evaluate this approach on LEDGAR, CFPB, and SpamAssassin. These tasks let us test whether code can avoid model calls, whether accuracy remains within a stated tolerance, and whether the same acceptance decision holds across repeated runs. They are individual classification tasks, not complete business processes.
 
@@ -26,33 +26,49 @@ We evaluate this approach on LEDGAR, CFPB, and SpamAssassin. These tasks let us 
 
 ### 2.1 Skill structure and executable steps
 
-A skill is a directory whose main instructions are written in `SKILL.md`. Optional `references/` files provide supporting instructions or domain material, `scripts/` contains executable code, and `assets/` holds resources such as templates [1]. A reference file in this directory is supporting material for the agent; it is not a bibliographic citation and does not make a decision deterministic by itself.
+A skill is a directory whose main instructions are written in `SKILL.md`. Optional `references/` files provide supporting instructions or domain material, `scripts/` contains executable code, and `assets/` holds reusable resources such as document templates, images, or lookup tables [1]. A reference file in this directory is supporting material for the agent; it is not a bibliographic citation and does not make a decision deterministic by itself.
 
-PLaND distinguishes instructions that a model interprets from code that the runtime executes. We use the term executable step for a Python or Bash operation with defined inputs and outputs. Earlier SOPs call this a command. An executable step contributes to deterministic execution only if the runtime actually calls the code and uses its result. Merely mentioning code in a prompt does not establish that it ran.
+An executable step may use Python or Bash and must have defined inputs and outputs. The workflow must actually execute the code and use its result. For example, a Python classification script can return a label directly. Merely mentioning that script in the English instructions does not establish that it ran.
 
 Figure 1 illustrates the progression using LEDGAR. The English SOP asks the model to read a clause, identify its legal function, compare the allowed labels, and choose one. The hybrid SOP adds a rule-based classifier. Inputs that the rules cannot resolve return to the model. Section 3.2 explains how the benchmark executes this choice.
 
 <!-- evolution-path-diagram -->
 
-**Figure 1. From English instructions to selective code execution.** The first two stages summarize the evaluated LEDGAR SOPs. The third is a proposed future organization of a workflow, not a measured result. A graph implementation need not use a particular orchestration framework.
+**Figure 1. From English instructions to selective code execution.** The first two stages summarize the evaluated LEDGAR SOPs. Production logs may reveal recurring paths that can be encoded as steps in a workflow graph, using existing orchestration tools [3]. The third stage illustrates this future direction; it was not evaluated here.
 
-### 2.2 Evolution and the fixed evaluation boundary
+### 2.2 How an SOP evolves
 
-PLaND uses two skills. `generate-initial-version` turns task requirements, approved data sources, and evaluation examples into an initial agent and English SOP. `pland-evolver` guides a host reasoning agent to inspect development runs and propose a bounded change to that SOP and its supporting files. The methodology is task-agnostic: a task-specific runner executes the workflow, and a task-specific scorer checks the output.
+PLaND uses two skills [12]. The `generate-initial-version` skill creates an initial agent with one English SOP from the task requirements, approved data sources, and evaluation specification. The `pland-evolver` skill then instructs a host reasoning agent to run that SOP, inspect its execution records, and propose changes. The two skills are reusable across tasks; the generated SOP and its code are specific to the task. Appendix D summarizes their instructions and links to the complete skill files.
 
-The dataset supplies inputs and expected answers. Running a workflow on development inputs produces execution records, including its output, errors, routing decisions, model calls, and tokens. These records can guide candidate revision. Validation cases serve a different purpose: they decide whether the resulting candidate is acceptable. Reserved test cases provide a final assessment after that decision. Thus, datasets and run histories are complementary; the histories are produced by running the workflow on examples from the dataset.
+A candidate is a proposed revised version of the whole SOP package: its instructions and any supporting code. Each candidate contains one bounded change, such as adding a Python classification rule. Search means proposing and evaluating candidates until one meets the requirements or the attempt, time, or cost limit is reached. Evolution is the resulting progression from the current SOP to an accepted revision. A dataset row is one input on which a candidate runs; it is not itself a candidate.
 
-Only the SOP package and its directly related files may change during a paired comparison. The task, model, system prompt, data snapshot, scorer, runtime settings, permissions, and acceptance criteria remain fixed. The comparison tools check case identifiers and recorded fingerprints for mismatches. Figure 2 shows this boundary. The evolver policy permits a bounded search, with a default limit of ten candidates; this policy limit is not a claim that ten candidates were generated in every reported experiment.
+Development, validation, and test are three separate groups of examples from a dataset. Development examples are available while creating and revising the SOP. Validation examples check whether a proposed revision works on cases that did not guide it. The test set stays untouched during selection and provides the final assessment afterward. This separation reduces the risk of accepting a rule that only works on examples already studied. Section 3.1 states the sizes and which evaluations were completed.
+
+The evolution process is:
+
+1. Run the current SOP on development examples. Save its answers, errors, model calls, tokens, and execution records.
+2. Inspect those records for recurring patterns or avoidable model work. Propose one change and save the resulting candidate SOP package.
+3. Check the candidate on development examples. If it meets the preliminary requirements, compare it with the baseline on separate validation examples.
+4. Accept the candidate only if every quality and token requirement in Section 3.3 passes. Otherwise retain the current SOP. To try another revision, return to development evidence and evaluate the new candidate on an unused set. Do not turn validation answers into new rules.
+5. Freeze the selected candidate before opening the reserved test set. Run the final assessment without further tuning. Repeated runs of an unchanged package measure repeatability, not another step of evolution.
+
+Consider this illustrative LEDGAR clause: "This Agreement shall be governed by the laws of the State of California." Its expected label is Governing Laws. The baseline asks the model to read the clause and choose a label. Suppose development records show that phrases such as "governed by the laws of" recur in this category. A proposed candidate adds a Python rule for that pattern and uses the model when no single category is identified. The revised instructions and Python rule together form one candidate.
+
+Success on this one clause is insufficient. The candidate and baseline must process many separate validation clauses, and their predicted labels are compared with the expected answers. A narrower phrase rule would constitute another candidate. This example explains how a proposal could arise; it is not a reconstruction of an independently recorded agent discovery. The reported experiments evaluate saved SOPs after their rules were created. They measure accuracy and model use, but do not test whether an agent can discover those rules automatically.
+
+The runner is the program that executes an SOP on each example. The scorer checks the result. For all three classification tasks here, the scorer gives one point when the returned label exactly matches the expected label and zero otherwise. Accuracy is the proportion of correct labels. Expected answers are used for scoring and are not included in the inputs sent to the model or Python classification script. Section 3.2 explains execution, and Appendix B gives the implementation details.
+
+Figure 2 shows what stays fixed during a comparison. Only the SOP package and its directly related files may change. The task, model, system prompt, selected data, scorer, runtime settings, permissions, and acceptance requirements stay the same for baseline and candidate. File fingerprints and case identifiers check this consistency. The default search budget allows at most ten candidate attempts; it is a stopping limit, not a claim that these experiments generated ten candidates. Appendix D distinguishes that policy from the saved comparisons.
 
 <!-- architecture-diagram -->
 
-**Figure 2. What can change during a comparison.** Candidate changes are confined to the SOP package. The same evaluation conditions apply to the baseline and candidate. Development records can guide revisions, but validation and test answers are not supplied as agent inputs.
-
-The experiments below evaluate saved, fixed SOPs and scripts. They establish how those packages behave when executed. They do not separately measure the success rate of the earlier generation step across independent agent attempts. An evaluation of automatic rule discovery would need to record the development histories supplied to the agent, the code it generates, and its performance on new cases. That question is distinct from whether a fixed rule-based route saves model calls.
+**Figure 2. What can change during a comparison.** Generate the initial agent and English SOP once, then fix the evaluation setup. Candidate changes are confined to the SOP package. Development records can guide revisions; validation and test answers remain with the evaluator.
 
 ### 2.3 Quality and expense
 
-Let W denote the baseline workflow and W′ a proposed replacement. Q(W) is its task quality, measured here as classification accuracy. E(W) is its expense, measured here as total model input and output tokens. Qmin is the minimum acceptable accuracy. We call a workflow usable under the study criteria when it reaches Qmin; this is the meaning of baseline viability. The symbol ε denotes the largest allowed decrease in accuracy relative to the baseline.
+The quality requirements specify how accurate a workflow must be before lower model use counts as an improvement. For these experiments, both the baseline and candidate must classify at least 80% of cases correctly, and the candidate may lose at most two percentage points of accuracy after accounting for sampling uncertainty. A change from 93.5% to 91.5% is a two-point decrease; it is not a 2% relative decrease. Section 3.3 states the four acceptance requirements, including a minimum 5% token reduction.
+
+Let W denote the baseline workflow and W′ a proposed replacement. Q(W) is classification accuracy, E(W) is total model input and output tokens, Qmin is the minimum acceptable accuracy, and ε is the largest allowed accuracy decrease. Here Qmin = 0.80 and ε = 0.02.
 
 The intended comparison is:
 
@@ -62,64 +78,64 @@ Q(W) ≥ Qmin, Q(W′) ≥ Qmin
 Q(W′) − Q(W) ≥ −ε
 ```
 
-For these experiments, Qmin is 0.80 and ε is 0.02. In plain terms, both workflows must classify at least 80% of cases correctly, and the candidate may lose at most two percentage points of accuracy. A change from 93.5% to 91.5% is a two-point decrease; it is not a 2% relative decrease. Section 3.3 gives the full decision rule, including uncertainty and the minimum token reduction.
-
 These values are study-specific engineering choices recorded in the comparison configuration [12]. They are not thresholds established by the dataset creators or universal standards for these tasks. The records do not provide an application-specific error-cost analysis that would justify 80% or two points for deployment. We therefore interpret acceptance only under these stated tolerances. A real application should choose its accuracy requirements before evaluation, based on the consequences of its errors. Non-inferiority testing provides a framework for assessing an allowed loss [13]; it does not supply the numerical margin used here.
 
 ## 3 Experimental Setup
 
-### 3.1 Evaluation datasets
+### 3.1 Datasets and data splits
 
-We use three public sources: LEDGAR contract clauses through the LexGLUE task [14, 15], consumer complaint narratives from the Consumer Financial Protection Bureau (CFPB) [16], and the SpamAssassin public email corpus [17]. Table 1 lists the examples used in the reported comparisons. These balanced subsets support controlled comparisons; their label frequencies do not represent the natural frequency of cases in production.
+We use three public sources: LEDGAR contract clauses through the LexGLUE task [14, 15], consumer complaint narratives from the Consumer Financial Protection Bureau (CFPB) [16], and the SpamAssassin public email corpus [17]. The tasks are to identify a legal clause type, a complaint's product category, or whether an email is spam. LEDGAR and CFPB each use ten labels; SpamAssassin uses two. Appendix C lists the labels and preparation details.
 
-**Table 1. Evaluation datasets**
+**Table 1. Prepared dataset splits (numbers of examples)**
 
-| Dataset and classification task | Labels | Evaluated examples |
-| --- | --- | --- |
-| LEDGAR legal clause type | 10 | 1,000 |
-| CFPB complaint product | 10 | 100 |
-| SpamAssassin spam or legitimate email | 2 | 100 |
+| Dataset | Dev. | Validation | Reserved test |
+| --- | --- | --- | --- |
+| LEDGAR | 100 | 100 | 1,000 |
+| CFPB | 100 | 100 | 1,000 |
+| SpamAssassin | 100 | 100 | 1,000 |
 
-LEDGAR uses ten clause labels: Governing Laws, Counterparts, Notices, Entire Agreements, Severability, Amendments, Survival, Assignments, Expenses, and Terms. Selection preserves the source dataset's training, validation, and test boundaries. CFPB uses ten product categories from a saved complaint-data snapshot. SpamAssassin uses spam and legitimate email from its public archives. The dataset manifests list the exact labels, source identifiers, selection settings, and exclusions [12]. Each split is balanced across the selected labels. Checks found no duplicate cases or content overlap between the prepared splits or with earlier development material.
+In Table 1, Dev. means development. Each dataset has three non-overlapping groups, with the roles defined in Section 2.2: development guides revisions, validation selects the candidate, and the reserved test measures the selected version. The table shows examples prepared, not the number of completed model evaluations. These subsets contain equal numbers per label and do not represent natural label frequencies in production. The dataset manifests and audit records identify the selected examples and check for duplicate identifiers, duplicate content, and overlap with earlier development material [12].
 
-Before the reported evaluation, the LEDGAR hybrid was selected using separate development examples and a 100-clause validation check. It was then fixed and evaluated on the 1,000 different clauses reported here as LEDGAR. The earlier selection check is not a second result in this paper. CFPB and SpamAssassin results come from their 100-case validation sets; their reserved tests were not run because the candidates failed the acceptance criteria. This difference in evaluation stage limits direct comparisons across tasks.
+In the completed evaluations reported below, LEDGAR passed validation and proceeded to its 1,000-case test. CFPB and SpamAssassin failed validation, so their 1,000-case tests remained unused. Their reported results therefore cover 100 validation examples each. The unequal reported sample sizes follow from this stopping rule; all three datasets had the same split sizes prepared. Appendix C records the evaluation stage for each.
 
-### 3.2 How the baseline and hybrid workflows run
+### 3.2 How the baseline and hybrid classify each case
 
-For each case, the baseline sends the input, allowed labels, and English SOP to the model. The scorer compares the returned label with the expected answer. Token use is the model's reported input-token count plus output-token count, summed across cases.
+The baseline and hybrid process the same examples. As defined in Section 1, the baseline sends every case to the language model with the English SOP and the list of possible labels. For the illustrative governing-law clause in Section 2.2, the model reads the clause and chooses Governing Laws.
 
-For the hybrid, the benchmark runner first calls the classifier function in `classify.py` with the input text and allowed labels. LEDGAR and CFPB use explicit text-pattern rules that return a label only when the matches identify one label group. SpamAssassin returns the spam label for a single matching rule. If the script returns a permitted label, the runner uses it without a model call. If the script cannot decide, it returns no label, and the runner sends the case to the model using the hybrid SOP's fallback instructions. This return-to-model behavior is called fallback.
+The hybrid tries the Python classification script first. When a rule identifies one category, the workflow uses that label without calling the model. When the rules find no answer or conflicting categories, the script returns no answer and the workflow sends the same case to the model. This is fallback. For example, a clear governing-law phrase can be handled by code, while a clause matching several categories goes to the model for interpretation. The email script uses the same principle but returns only a spam label when its rule matches.
 
-The saved SOP describes the script as `python classify.py`, but the benchmark imports and calls its Python function rather than asking an agent to execute a shell command. The scripts return a fixed confidence value of 0.99 with a match; that value is a routing marker, not a calibrated probability of correctness. The runner checks that the returned label is allowed. It does not independently verify a 99% confidence threshold. Actual accuracy must be measured from labeled cases.
+The scorer checks every final label against the expected answer, regardless of which path produced it. A matching label scores one and any other answer scores zero. Model-token use is the sum of the input and output tokens reported by the model across all cases. A case answered entirely by the Python script uses no model tokens. Appendix B describes the code calls, output checks, and recorded fields.
 
-The evaluated hybrid SOPs also changed the wording of the model fallback. The comparison therefore measures the combined effect of adding rules and changing those instructions. In LEDGAR, the fallback became shorter during candidate generation; prompt shortening was not a separately specified architectural change. A separate comparison with unchanged fallback wording would be needed to isolate the effect of routing alone. Section 4.1 reports where the observed token savings occurred without treating that accounting as such an isolated experiment.
+The evaluated hybrids also changed the English instructions used on the fallback path. In LEDGAR those instructions became shorter when the hybrid was created; shortening was not a separately evaluated architectural decision. The results therefore measure the complete revised SOP, including both its rules and its changed wording. Keeping the original English wording unchanged in another comparison would be necessary to measure the effect of adding code alone. Section 4.1 separates the observed token savings by path.
 
 ### 3.3 Acceptance criteria and uncertainty
 
-The same four requirements apply to all three datasets [12]:
+We fixed four acceptance requirements in the study protocol before the reported evaluations. The same requirements apply to all three datasets [12]:
 
-1. Both the baseline and candidate must achieve at least 80% accuracy.
-2. The lower end of the paired 95% interval for the candidate's accuracy change must be no worse than minus two percentage points.
-3. Total model tokens must decrease by at least 5%.
-4. The lower end of the paired 95% interval for token reduction must be above zero.
+1. Minimum accuracy: both workflows must classify at least 80% of examples correctly.
+2. Accuracy safety check: after allowing for uncertainty in the sampled examples, the candidate's estimated accuracy loss must remain within two percentage points.
+3. Token saving: the candidate must use at least 5% fewer total model tokens.
+4. Token safety check: the uncertainty range for the token saving must stay above zero.
 
-All four must pass. The first requirement checks minimum quality. The second checks whether the data support an accuracy loss no larger than the chosen tolerance. The last two require a meaningful observed token reduction and evidence that the reduction is positive. Like the accuracy thresholds in Section 2.3, the 5% target is a study setting, not an externally established optimum.
+All four must pass. The accuracy and token thresholds are the authors' study settings, as explained in Section 2.3. They do not come from the dataset creators and do not establish deployment requirements for a particular application.
 
-We estimate uncertainty with 5,000 paired bootstrap resamples [18]. Each resample selects case identifiers with replacement and includes both workflows' outcomes for each selected case. We recompute the accuracy difference and token reduction, then use the 2.5th and 97.5th percentiles as the interval endpoints. Pairing preserves the fact that the two workflows saw the same inputs. These intervals describe sampling uncertainty within the prepared task, not reliability under arbitrary future data or model changes.
+An uncertainty range accounts for the fact that a different sample of examples could give a different result. For LEDGAR, the candidate scored 92.7% against the baseline's 93.5%, a decrease of 0.8 percentage points. Its estimated range ran from 1.6 points worse to no change. The less favorable end, 1.6 points worse, was still within the two-point allowance. This passed the accuracy safety check; it does not guarantee that accuracy can never fall by more than two points.
 
-Figure 3 separates candidate revision from evaluation. We report one paired comparison for each dataset: the same examples are processed by the English-only baseline and the fixed hybrid. The three main comparisons comprise six workflow runs. The earlier LEDGAR selection check is documented in Section 3.1 and retained in the archive, but is not included in these result tables or run totals.
+Formally, we calculate a paired 95% bootstrap interval [18]. "Paired" means both workflows process the same cases. Its lower endpoint must be at least -2 percentage points for accuracy change and strictly above zero for token reduction. Appendix B explains the calculation. These intervals describe uncertainty from sampling examples within the prepared task; they do not cover changes in the model or production data.
+
+Figure 3 shows where the acceptance decision belongs in the evolution process described in Section 2.2. The current paper reports one fixed baseline and hybrid comparison per dataset, with three further paired runs described in Section 3.4.
 
 <!-- evolution-diagram -->
 
-**Figure 3. Candidate revision and evaluation use different examples.** Development runs guide changes. A fixed candidate is evaluated on validation cases. A passing candidate proceeds to the reserved test without further tuning; a failing candidate is rejected. A revised candidate needs a new, unused evaluation boundary.
+**Figure 3. How a candidate is proposed and checked.** A candidate is one revised SOP package. Search repeats the proposal and evaluation steps within the attempt limit. Development examples guide changes; separate validation examples decide acceptance. "Pass gates" means meeting all four requirements in Section 3.3. After the Yes branch, the selected candidate is frozen for its reserved test. Revising a rejected candidate requires development evidence and an unused evaluation set.
 
 ### 3.4 Execution environment and repeated runs
 
-The text experiments used local Ollama with `qwen3:14b` on an Apple M5 Pro with 48 GB unified memory. The main runs were sequential, with temperature set to zero, thinking and streaming disabled, JSON output, and a 128-token response limit. Exact model identifiers and implementation details are recorded in Appendix B rather than in the main description.
+The experiments used `qwen3:14b` through local Ollama on an Apple M5 Pro with 48 GB unified memory. The main comparisons processed one case at a time. Appendix B records the model settings and implementation details.
 
-We also performed three additional paired runs per dataset using the same fixed SOPs and prepared cases. These runs reused the same LEDGAR, CFPB, and SpamAssassin examples listed in Table 1. They check repeatability; they are not new tests on unseen examples. Each pair used the same inference seed and runtime configuration for its two variants. A seed sets the starting state for a pseudo-random procedure. Dataset selection, model inference, and bootstrap resampling use seeds for different purposes; changing an inference seed does not create a new dataset split.
+We then repeated the baseline and hybrid comparison three times for each dataset. One paired run means that both workflows process the same evaluation examples under matching model and runtime settings. The three runs reused the 1,000 LEDGAR examples and the 100 examples each for CFPB and SpamAssassin described in Section 3.1. Repeating a 1,000-case evaluation three times still covers 1,000 distinct cases. It measures repeatability, and does not create three new dataset splits or three new candidate SOPs.
 
-The repeated runs used a more explicit runtime configuration, including structured output and two parallel requests. Two-worker concurrency was a constraint of the available local execution environment, not a requirement of PLaND or a factor tested by the experiment. Because these settings differ from the original sequential runs, we report the repeated results separately in Appendix A. The three repeats across three datasets add nine pairs, or eighteen workflow runs, for twelve pairs and twenty-four runs in the evidence reported here. This count excludes development, the earlier LEDGAR selection check, and other archived experiments.
+For these repeated runs, the local setup allowed at most two requests at the same time. This was an execution constraint, not a requirement of PLaND. The repeats also used a stricter output format, so Appendix A reports them separately from the original comparisons. Appendix B explains all settings, including inference seeds.
 
 ## 4 Results
 
@@ -127,27 +143,27 @@ Table 2 presents the main results. All accuracy and token comparisons show the n
 
 **Table 2. Main evaluation results**
 
-| Dataset and stage | Accuracy | Total model tokens | Token reduction | Decision |
-| --- | --- | --- | --- | --- |
-| LEDGAR, 1,000 cases | 93.5% → 92.7% | 376,088 → 225,573 | 40.02% | Pass |
-| CFPB validation, 100 cases | 79.0% → 72.0% | 60,514 → 35,247 | 41.75% | Reject; test not run |
-| SpamAssassin validation, 100 cases | 90.0% → 86.0% | 238,077 → 228,359 | 4.08% | Reject; test not run |
+| Dataset | Baseline to hybrid result |
+| --- | --- |
+| LEDGAR, 1,000 cases | Accuracy: 93.5% → 92.7%; tokens: 376,088 → 225,573 (40.02% reduction); **Pass** |
+| CFPB, 100 cases | Accuracy: 79.0% → 72.0%; tokens: 60,514 → 35,247 (41.75% reduction); **Reject** |
+| SpamAssassin, 100 cases | Accuracy: 90.0% → 86.0%; tokens: 238,077 → 228,359 (4.08% reduction); **Reject** |
 
 Table 3 supplies the uncertainty estimates used for these decisions. Accuracy changes and their intervals are in percentage points. Token-reduction intervals are percentages of baseline token use.
 
 **Table 3. Paired uncertainty estimates for the main comparisons**
 
-| Dataset and stage | Accuracy change | Accuracy change 95% interval | Token reduction 95% interval |
-| --- | --- | --- | --- |
-| LEDGAR | −0.8 points | −1.6 to 0.0 points | 37.00% to 43.08% |
-| CFPB validation | −7.0 points | −13.0 to −2.0 points | 31.30% to 53.14% |
-| SpamAssassin validation | −4.0 points | −9.0 to +1.0 points | 1.02% to 8.50% |
+| Dataset | Observed change and paired 95% interval |
+| --- | --- |
+| LEDGAR | Accuracy: −0.8 points (−1.6 to 0.0); token reduction: 40.02% (37.00% to 43.08%) |
+| CFPB | Accuracy: −7.0 points (−13.0 to −2.0); token reduction: 41.75% (31.30% to 53.14%) |
+| SpamAssassin | Accuracy: −4.0 points (−9.0 to +1.0); token reduction: 4.08% (1.02% to 8.50%) |
 
 ### 4.1 LEDGAR
 
 On the 1,000 LEDGAR clauses, the baseline classified 935 cases correctly and the hybrid classified 927 correctly: eight fewer correct answers, or a 0.8-percentage-point decrease. The paired interval ranged from a 1.6-point decrease to no change. Its lower end remained within the study's two-point tolerance, so the quality criterion passed. This result supports acceptance under that tolerance, not a claim that quality was unchanged.
 
-The hybrid handled 411 clauses through the script and sent the remaining 589 to the model. It therefore removed 41.1% of model calls and reduced tokens from 376,088 to 225,573, a 40.02% decrease. Of the 411 script-routed clauses, 395 were classified correctly, giving measured routing accuracy of 96.11%. This illustrates why the script's fixed 0.99 marker should not be read as measured precision.
+The hybrid handled 411 clauses through the Python classification script and sent the remaining 589 to the model. It therefore removed 41.1% of model calls and reduced tokens from 376,088 to 225,573, a 40.02% decrease. The Python script classified 395 of its 411 clauses correctly, giving measured accuracy of 96.11% on those cases. Although the script attaches a fixed confidence value of 0.99 to each match, that number is written into the code. It does not mean that 99% of its answers are correct.
 
 The token records distinguish two locations of savings. The baseline used 146,366 tokens on the 411 clauses that the hybrid handled without the model. On the remaining clauses, tokens decreased from 229,722 to 225,573, a difference of 4,149. Thus, 97.24% of the total 150,515-token saving occurred on bypassed calls, and 2.76% occurred on the fallback cases. The fallback SOP was shorter, but this accounting does not separate the effect of shorter input instructions from changes in generated output. The combined SOP change remains a limitation of attributing the full result to deterministic routing.
 
@@ -155,9 +171,13 @@ The token records distinguish two locations of savings. The baseline used 146,36
 
 CFPB's hybrid reduced model calls from 100 to 58 and tokens by 41.75%, but accuracy fell from 79% to 72%. Both variants were below the 80% minimum, and the seven-point observed decrease also failed the relative-quality requirement. The candidate was rejected and the reserved test was not evaluated. Lower token use did not compensate for the loss in classification quality.
 
+Further development of the complaint SOP and its Python rules might improve the result. Additional tailoring is outside this comparison, so these results do not test that possibility. We evaluate the saved packages under common requirements to keep the assessment consistent across tasks. This does not establish equal development effort or the best achievable accuracy for each task.
+
 ### 4.3 SpamAssassin
 
-SpamAssassin's hybrid reduced model calls from 100 to 97. Accuracy fell from 90% to 86%, and token use fell only 4.08%. It failed both the allowed-loss criterion and the 5% token-reduction target, so the reserved test was not evaluated. The three script-routed emails were classified correctly by both variants; the observed accuracy decrease occurred among cases sent to the model. This makes the fallback wording relevant even when the executable rules themselves make no errors on the routed cases.
+SpamAssassin's hybrid reduced model calls from 100 to 97. Accuracy fell from 90% to 86%, and token use fell only 4.08%. It failed both the allowed-loss criterion and the 5% token-reduction target, so the reserved test was not evaluated. The three emails handled by the Python classification script were classified correctly by both variants; the observed accuracy decrease occurred among cases sent to the model. This makes the fallback wording relevant even when the Python rules themselves make no errors on the cases they handle.
+
+More suitable email rules or a revised English SOP might improve both accuracy and model use. As with CFPB, additional tailoring falls outside this comparison and would need separate development and evaluation. The PLaND skills remain task-agnostic; the SOP and classification rules are the parts tailored to the task. We retained the same evaluation requirements rather than tuning a rejected package against its evaluation answers.
 
 ## 5 Discussion
 
@@ -191,6 +211,8 @@ A second direction is to evaluate complete workflows with state, tool calls, and
 
 A third direction is to study maintenance over time. Input distributions can change, making a previously acceptable rule unreliable. A longitudinal evaluation could test monitoring, rollback, and returning affected inputs to the model. These mechanisms are proposed future work, not features validated by the present experiments.
 
+Runtime evidence could also guide automatic construction of a more deterministic workflow. Production logs may reveal recurring input patterns, repeated tool sequences, failures, and expensive model calls. A future system could use those records to propose a graph in which stable paths execute as code and ambiguous cases retain model reasoning, as illustrated in Figure 1. Such proposals would still need evaluation on separate examples before deployment. Whether an agent can reliably generate and maintain this complete workflow remains an open question.
+
 Further comparisons should include other models, languages, and methods for generating code from examples or execution records. A routing-only comparison that preserves the entire baseline fallback would clarify the contribution of each change. Application-specific error costs and direct resource measurements would make acceptance decisions more relevant to deployment.
 
 ## 7 Conclusion
@@ -203,9 +225,9 @@ The authors used AI-assisted tools for coding, experiment support, and manuscrip
 
 ## Data and Code Availability
 
-The [PLaND repository](https://github.com/mnvsk97/PLaND) contains the methodology skills, task runners, saved SOPs, and evaluation records [12]. The reported comparisons use LEDGAR's `confirmatory-test` files and the `confirmatory-validation` files for CFPB and SpamAssassin in the [LEDGAR results](https://github.com/mnvsk97/PLaND/tree/f9aa70753c64bd6d409b9ff6ae934edd1f7bedc4/experiments/ledgar-text-classification/results), [CFPB results](https://github.com/mnvsk97/PLaND/tree/f9aa70753c64bd6d409b9ff6ae934edd1f7bedc4/experiments/cfpb-text-classification/results), and [SpamAssassin results](https://github.com/mnvsk97/PLaND/tree/f9aa70753c64bd6d409b9ff6ae934edd1f7bedc4/experiments/spamassassin-email-classification/results) folders. Their `variance-study-20260903` subfolders contain the repeated runs. Dataset selection manifests reside alongside each experiment. These links pin the evidence snapshot rather than a moving branch.
+The [PLaND repository](https://github.com/mnvsk97/PLaND) provides the two methodology skills, shared classification runner and scorer, saved SOPs, and evaluation records [12]. The [LEDGAR results](https://github.com/mnvsk97/PLaND/tree/f9aa70753c64bd6d409b9ff6ae934edd1f7bedc4/experiments/ledgar-text-classification/results), [CFPB results](https://github.com/mnvsk97/PLaND/tree/f9aa70753c64bd6d409b9ff6ae934edd1f7bedc4/experiments/cfpb-text-classification/results), and [SpamAssassin results](https://github.com/mnvsk97/PLaND/tree/f9aa70753c64bd6d409b9ff6ae934edd1f7bedc4/experiments/spamassassin-email-classification/results) links identify a fixed evidence snapshot. Table 2 uses the files with prefix `confirmatory-test` for LEDGAR and `confirmatory-validation` for CFPB and SpamAssassin. Each experiment's `variance-study-20260903` folder contains the three paired runs in Appendix A. Appendix C identifies the dataset manifests and Appendix D links to the skill instructions.
 
-The repository retains outputs, comparisons, source identifiers, and hashes. Raw datasets are subject to their source terms. The CFPB inputs were prepared from a saved local API snapshot that is not redistributed in the repository. Consequently, the saved outputs can be audited, but an exact rerun requires that same snapshot; a fresh download from the live database is not an identical replacement. The paper's three-dataset scope does not remove other historical experiment records from the archive.
+Saved run records include case identifiers, expected and predicted labels, correctness, the path used, model calls, tokens, timing, and file fingerprints. These records support auditing the comparisons; they are not a complete record of autonomous candidate discovery. Raw datasets are subject to their source terms and are not included in the repository. Exact regeneration requires the recorded input files and model version. In particular, the CFPB inputs came from a saved local API snapshot that is not redistributed. A fresh download from the live database would constitute a different input snapshot. Repository verification checks saved files and code tests; it does not rerun model inference. Appendix B gives the verification command and the separate requirements for rerunning an experiment.
 
 ## Appendix A Repeated runs
 
@@ -213,11 +235,11 @@ The repeatability check introduced in Section 3.4 ran each fixed baseline and hy
 
 **Table 4. Three additional paired runs per dataset**
 
-| Dataset and reused split | Accuracy in every run | Mean total model tokens | Mean token reduction | Decision in all three runs |
-| --- | --- | --- | --- | --- |
-| LEDGAR, 1,000 cases | 93.7% → 92.9% | 376,090 → 225,575.33 | 40.02% | Pass |
-| CFPB validation, 100 cases | 78.0% → 71.0% | 58,372 → 33,120 | 43.26% | Reject |
-| SpamAssassin validation, 100 cases | 88.0% → 85.0% | 188,384 → 178,880.67 | 5.04% | Reject |
+| Dataset | Result in all three runs |
+| --- | --- |
+| LEDGAR, 1,000 cases | Accuracy: 93.7% → 92.9%; mean tokens: 376,090 → 225,575.33 (40.02% reduction); **Pass** |
+| CFPB, 100 cases | Accuracy: 78.0% → 71.0%; mean tokens: 58,372 → 33,120 (43.26% reduction); **Reject** |
+| SpamAssassin, 100 cases | Accuracy: 88.0% → 85.0%; mean tokens: 188,384 → 178,880.67 (5.04% reduction); **Reject** |
 
 Within each dataset and variant, predicted labels were identical across the three runs, so the sample standard deviation of accuracy was zero. Baseline tokens were identical across runs. Hybrid tokens ranged from 225,575 to 225,576 for LEDGAR and from 178,880 to 178,881 for SpamAssassin, with sample standard deviation 0.58 tokens in each case; CFPB used 33,120 tokens in every run. Model calls remained 1,000 to 589 for LEDGAR, 100 to 58 for CFPB, and 100 to 97 for SpamAssassin.
 
@@ -225,11 +247,51 @@ LEDGAR's paired accuracy intervals were −1.6 to −0.1, −1.6 to 0.0, and −
 
 ## Appendix B Reproduction details
 
-The repeated-run preflight records Ollama 0.33.0 and `qwen3:14b` with model digest `bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8`. The recorded environment uses an Apple M5 Pro with 48 GB unified memory. The original runner requested JSON output, disabled thinking and streaming, set temperature to zero, and capped generated output at 128 tokens. It did not explicitly set a context-window option.
+### B.1 Runtime and scoring
 
-The repeated-run configuration used a 4,096-token context, the same 128-token output cap, and an exact JSON schema for the label and confidence fields. It preloaded and retained the model, enabled Flash Attention and q8_0 KV cache, kept one model loaded, and allowed two parallel requests. Pair order was baseline then hybrid, hybrid then baseline, and baseline then hybrid. The same inference seed was used within a pair; the three pairs used different seeds. Exact seed values, commands, timestamps, and environment records are preserved with the run manifests rather than repeated in the main text.
+The shared classification runner calls the Python function in `classify.py` directly. The `python classify.py` wording in the saved SOP names the executable step; the benchmark does not ask an autonomous agent to launch a shell process. LEDGAR and CFPB return a label when the text patterns identify exactly one allowed category. SpamAssassin returns spam when its rule matches. A missing or disallowed label sends the case to the model. The fixed 0.99 value returned by the scripts is not a measured confidence or an enforced probability threshold.
 
-The comparison code sorts records by case identifier and uses 5,000 paired resamples. Its token bootstrap uses the configured comparison seed plus one; this is separate from the model's inference seed. The saved records also include Wilson intervals for individual accuracies and an exact McNemar test, but neither determines acceptance under the four criteria in Section 3.3. Reproduction checks validate file hashes and tests without rerunning model inference or changing a held-out result.
+The scorer is implemented in the [shared classification runner](https://github.com/mnvsk97/PLaND/blob/f9aa70753c64bd6d409b9ff6ae934edd1f7bedc4/experiments/text-classification/scripts/run_experiment.py). It compares the returned label with the label stored in the evaluation row. A matching label is correct; a different or missing label is incorrect. The same exact-match rule is used for all three datasets. Expected labels are read by the evaluator but are not included in the model prompt or the Python classifier's arguments. Output parsing errors and timing are recorded separately from label correctness.
+
+The repeated runs used the `qwen3:14b` model on an Apple M5 Pro with 48 GB unified memory. The original runner requested JSON output, disabled thinking and streaming, set temperature to zero, and capped generated output at 128 tokens. It did not explicitly set a context-window option.
+
+The repeated-run configuration used a 4,096-token context, the same 128-token output cap, and an exact JSON schema for the label and confidence fields. It preloaded and retained the model, enabled Flash Attention and q8_0 KV cache, kept one model loaded, and allowed two parallel requests. Pair order was baseline then hybrid, hybrid then baseline, and baseline then hybrid. Exact settings, commands, timestamps, and environment records accompany the run manifests.
+
+### B.2 Seeds and repeated runs
+
+An inference seed sets the starting state of the model runtime's pseudo-random procedure. Using the same seed and settings within a baseline/hybrid pair makes their executions more comparable; it does not guarantee identical outputs across software or hardware changes. The three paired runs used seeds 20260903, 20260904, and 20260905. Dataset selection and statistical resampling have their own seeds. Changing an inference seed reruns the model on the same cases; it does not create new data or a new candidate.
+
+The main comparisons comprise one baseline/hybrid pair per dataset. The three additional pairs per dataset give four pairs per dataset in the archived evidence. Across three datasets, this is twelve pairs, or twenty-four executions of an SOP over its evaluation set. Development runs and the LEDGAR selection check are outside that count.
+
+### B.3 Uncertainty calculation
+
+The comparison code sorts records by case identifier and draws 5,000 paired bootstrap resamples [18]. Each resample selects cases with replacement and retains both workflows' results for each selected case. It then recalculates the accuracy difference and token reduction. The 2.5th and 97.5th percentiles form the reported 95% interval. The lower endpoint is the less favorable estimate used in the safety checks in Section 3.3. It is not a guaranteed worst possible outcome or a 95% probability statement about this particular interval.
+
+The token bootstrap uses the comparison seed plus one; this is separate from the model's inference seed. The saved records also include Wilson intervals for individual accuracies and an exact McNemar test, but neither determines acceptance under the four criteria. The [frozen protocol](https://github.com/mnvsk97/PLaND/blob/f9aa70753c64bd6d409b9ff6ae934edd1f7bedc4/experiments/confirmatory-study.json) records the numerical thresholds and resampling settings.
+
+### B.4 Verification and rerunning
+
+From a checkout containing the `reproduce/` directory, `uv sync --project reproduce --frozen` installs the locked test environment, and `reproduce/.venv/bin/python reproduce/verify.py` checks the saved evidence and runs code tests. This verifies repository files without calling the model. The pinned evidence snapshot in reference [12] predates this simplified verification entry point; its experiment folders retain the original run commands. Full reruns require the source files identified by the dataset manifests and the recorded model version. The [dataset preparation instructions](https://github.com/mnvsk97/PLaND/blob/f9aa70753c64bd6d409b9ff6ae934edd1f7bedc4/datasets/README.md) describe preparation; the [repeatability study](https://github.com/mnvsk97/PLaND/tree/f9aa70753c64bd6d409b9ff6ae934edd1f7bedc4/experiments/variance-study) contains its runner, preflight settings, and results. The unavailable CFPB snapshot limits exact public regeneration as stated in Data and Code Availability.
+
+## Appendix C Dataset sources and selection
+
+LEDGAR comes from the contract-clause corpus introduced by Tuggener et al. [14], using the LexGLUE classification task [15]. Our selected labels are Governing Laws, Counterparts, Notices, Entire Agreements, Severability, Amendments, Survival, Assignments, Expenses, and Terms. The preparation retains the source split boundaries: development examples come from the source training split, validation from validation, and reserved test from test. The main reported LEDGAR result uses the reserved test after selection on a separate validation set.
+
+CFPB uses the product field associated with published complaint narratives in a saved Consumer Complaint Database snapshot [16]. The selected categories are Mortgage; Checking or savings account; Student loan; Money transfer, virtual currency, or money service; Vehicle loan or lease; Prepaid card; Payday loan, title loan, personal loan, or advance loan; Credit card; Debt collection; and Credit reporting or other personal consumer reports. These are the labels retained from that snapshot; newer source records may use different categories.
+
+SpamAssassin uses the public email corpus [17], combining legitimate email (ham) from the easy-ham and hard-ham archives with spam from the spam and spam-2 archives. The selected source files are the four archives dated 20030228. CFPB and SpamAssassin did not supply the same predefined split structure as LexGLUE; preparation assigned separate examples from their saved sources to development, validation, and test. Their main results use validation because the candidate did not pass the criteria for opening the reserved test.
+
+Each experiment's `confirmatory-dataset.json` records split sizes, selection seed, source-file hashes, exclusions, and audit results [12]. The [dataset proof records](https://github.com/mnvsk97/PLaND/tree/f9aa70753c64bd6d409b9ff6ae934edd1f7bedc4/datasets/proofs) retain the checks against prepared inputs. The audit found zero overlapping case identifiers, zero duplicate selected content, and zero overlap with the excluded earlier development examples. All three prepared splits were balanced within the selected labels. These checks concern the saved selections, not the full source datasets.
+
+## Appendix D What the two PLaND skills instruct
+
+The [generate-initial-version skill](https://github.com/mnvsk97/PLaND/blob/f9aa70753c64bd6d409b9ff6ae934edd1f7bedc4/skills/generate-initial-version/SKILL.md) specifies the initial agent, one English SOP, approved data access, and task-specific runner and scorer files. It derives the scaffold from requirements and the evaluation structure without copying case answers into the agent. Python or Bash replacements for SOP steps are introduced only during subsequent evolution.
+
+The [pland-evolver skill](https://github.com/mnvsk97/PLaND/blob/f9aa70753c64bd6d409b9ff6ae934edd1f7bedc4/skills/pland-evolver/SKILL.md) instructs the host agent to measure the current SOP, inspect development records, propose one bounded change, and compare the candidate under fixed conditions. It saves the hypothesis, package changes, measurements, and accept/reject decision. A rejected candidate leaves the previous accepted version in place. Once a reserved test result is opened, the skill instructs the agent to stop evolving and report it.
+
+The default limit is ten candidate attempts. The search may end earlier when the requirements are satisfied or a configured time, cost, or no-improvement limit is reached. Exhausting the budget is not acceptance. The reported text comparisons contain one fixed baseline package and one fixed hybrid package per dataset; they do not establish how many autonomous proposals were needed to create those packages. Three repeated executions of the same pair therefore do not count as three candidate attempts.
+
+The linked evolver policy requires a newly added executable step to preserve the complete English fallback, with later instruction shortening evaluated separately. The saved hybrids studied here also changed fallback wording, as disclosed in Section 3.2. Their measurements assess those complete packages and do not establish compliance with every instruction of that later policy.
 
 ## References
 

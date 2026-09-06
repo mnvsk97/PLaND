@@ -32,14 +32,7 @@ class PrepareQualityFirstTests(unittest.TestCase):
                             for name in MODULE.DATASETS))
         self.assertEqual(
             set(lock["sources"]),
-            {
-                "ledgar",
-                "cfpb",
-                "spamassassin",
-                "sroie",
-                "qs_ocr_tobacco3482",
-                "rvl_cdip_mirror",
-            },
+            {"ledgar", "cfpb", "spamassassin"},
         )
 
     def test_verify_inputs_requires_hashes_counts_and_frozen_labels(self):
