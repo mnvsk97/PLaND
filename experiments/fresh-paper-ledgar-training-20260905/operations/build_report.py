@@ -192,12 +192,15 @@ summary['host_runtime']=host
 disposition_path=ROOT/'experiments/protocol/ledgar-transport-disposition.json'
 disposition=read(disposition_path);assert disposition['decision']=='accept_with_disclosure'
 summary['transport_disposition']=disposition
+item['raw_run_runtime']=item['runtime']
+item['runtime']={k:v for k,v in item['raw_run_runtime'].items() if k!='stream'}
+item['runtime'].update(harness_streaming=False,ollama_http_streaming=True,
+                       responses_aggregated_before_scoring=True)
 lines+=['## Disclosed transport deviation','',
-        'The frozen plan specified streaming disabled. The harness returned complete responses, but the installed langchain-ollama client internally requested streamed Ollama HTTP responses and aggregated them. '
-        'The raw run records are unchanged: their `stream: false` field describes outward harness behavior and must not be interpreted as the HTTP request flag. '
-        'A no-inference interception of the exact DeepAgent call path confirmed HTTP `stream: true`. Both arms used the same frozen implementation and dependency versions throughout. '
-        'The author accepted retaining this evidence with explicit disclosure; the approval receipt is included in `protocol/ledgar-transport-disposition.json`. '
-        'No package, model setting, candidate, or result was changed after observing held-out outcomes.','']
+        'Transport metadata correction: the harness received complete responses, while Ollama used HTTP `stream: true` internally. '
+        'Both arms used the same frozen path and aggregated responses before scoring. Raw `stream: false` fields are preserved as recorded, '
+        'but are superseded for wire-level interpretation by the audited runtime metadata. No measurements or packages changed; '
+        'the disposition is recorded in `protocol/ledgar-transport-disposition.json`.','']
 lines+=['## Host and execution environment','',
         f"{host['hardware']['machdep.cpu.brand_string']}; {host['hardware']['hw.ncpu']} logical CPUs; "
         f"{int(host['hardware']['hw.memsize'])/2**30:g} GiB unified memory; macOS {host['os']}; "

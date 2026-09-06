@@ -1,0 +1,17 @@
+{
+  "decision": "accept_with_disclosure",
+  "source_thread": "01a0743c-35f8-7d60-9a0d-165e3127862a",
+  "source_turn": "01a074ca-c4bb-71e2-99da-77b8749f940c",
+  "author_message": "how the fuck does it matter if streaming or non streaming?",
+  "recorded_disposition": "The source task directed acceptance of the completed LEDGAR execution without rerunning, correction of transport metadata, preservation of raw artifacts, and completion of the remaining repeat and evidence/report audits.",
+  "reason": "Both arms used the identical frozen DeepAgent/Ollama path and aggregated full responses before scoring. The study measures correctness, model calls, and model tokens, not time-to-first-token.",
+  "correction": {
+    "raw_run_field_preserved": {"stream": false},
+    "harness_streaming": false,
+    "ollama_http_streaming": true,
+    "responses_aggregated_before_scoring": true
+  },
+  "changes_to_model_packages_or_measurements": false,
+  "rerun_required": false,
+  "scope": "LEDGAR only; complete the audited evidence package and report; do not start CFPB or SpamAssassin."
+}
