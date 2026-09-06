@@ -41,7 +41,7 @@ def main():
     record = {'schema_version':1, 'pages':count, 'reviewed_pages':args.reviewed_pages,
               'pdf_sha256':digest(destination), 'docx_sha256':digest(ROOT/'paper/PLaND.docx'),
               'source_sha256':digest(ROOT/'paper/PLaND.md'), 'page_checks':page_records,
-              'review':'All rendered pages inspected for clipping, overlap, table wrapping, figure readability, captions, page flow, and references. The v1 table wraps and orphan final reference page were corrected in v2.',
+              'review':'All rendered pages inspected for clipping, overlap, table wrapping, figure readability, captions, page flow, equations, and references.',
               'format':'A4; two-column body; Times New Roman 10 pt; tables 9 pt', 'passed':True}
     (Path(__file__).parent / 'visual-qa.json').write_text(json.dumps(record, indent=2) + '\n')
     print(f'Finalized reviewed {count}-page PDF; editable Word and HTML share the audited Markdown source.')

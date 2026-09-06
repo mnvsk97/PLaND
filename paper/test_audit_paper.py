@@ -3,7 +3,8 @@ import copy
 import unittest
 
 from audit_paper import (OUT, REPEATS, accuracy_summaries, check, close, intervals,
-                         mean_accuracy, passages, pct, quantile, read, summarize)
+                         mean_accuracy, mean_token_reduction, passages, pct, quantile,
+                         read, summarize)
 
 
 class PaperAuditTests(unittest.TestCase):
@@ -85,6 +86,15 @@ class PaperAuditTests(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, 'accuracy denominators'):
             mean_accuracy(rows, 'baseline')
 
+    def test_token_reduction_mean_uses_all_three_runs(self):
+        rows = copy.deepcopy(read(OUT / 'paper-calculations.json')['runs'])
+        group = [r for r in rows if r['dataset'] == 'LEDGAR' and r['stage'] == 'final-test']
+        expected = sum(r['token_reduction'] for r in group) / 3
+        self.assertAlmostEqual(mean_token_reduction(group), expected)
+        self.assertEqual(pct(mean_token_reduction(group), 2), '74.56')
+        with self.assertRaisesRegex(RuntimeError, 'incomplete token-reduction repeats'):
+            mean_token_reduction(group[:2])
+
     def test_mean_does_not_override_one_failed_gate(self):
         rows = copy.deepcopy(read(OUT / 'paper-calculations.json')['runs'])
         group = [r for r in rows if r['dataset'] == 'LEDGAR' and r['stage'] == 'selection']
@@ -96,11 +106,20 @@ class PaperAuditTests(unittest.TestCase):
 
     def test_main_mean_and_individual_appendix_values(self):
         blocks = passages(read(OUT / 'paper-calculations.json')['runs'])
+        self.assertIn('| Mean token reduction (%) |', blocks['selection_table'])
+        self.assertIn('| Mean token reduction (%) |', blocks['final_table'])
+        self.assertIn('LEDGAR, final-test, 500 cases | Mean accuracy: 94.93% → 95.80%', blocks['main_table'])
+        self.assertIn('CFPB, selection, 1,000 cases | Mean accuracy: 79.73% → 79.27%', blocks['main_table'])
+        self.assertNotIn('CFPB, final-test', blocks['main_table'])
+        self.assertNotIn('interval', blocks['ledgar_result'])
+        self.assertNotIn('interval', blocks['spam_result'])
         self.assertIn('| Mean accuracy B → H (%) |', blocks['final_table'])
         self.assertIn('| LEDGAR | 94.93 → 95.80 |', blocks['final_table'])
+        self.assertIn('| LEDGAR | 94.93 → 95.80 | 500 → 130 | 74.56 |', blocks['final_table'])
         self.assertIn('| CFPB | 79.73 → 79.27 |', blocks['selection_table'])
-        self.assertIn('| LEDGAR test | 1 | 94.8 → 95.8 |', blocks['repeat_table'])
-        self.assertIn('| LEDGAR test | 1 | [-0.40, 2.60] |', blocks['interval_table'])
+        self.assertIn('| CFPB | 79.73 → 79.27 | 23.45 | Reject |', blocks['selection_table'])
+        self.assertIn('| LEDGAR final test | 1 | 94.8 / 95.8 |', blocks['repeat_table'])
+        self.assertIn('| LEDGAR final test | 1 | -0.40 to 2.60 |', blocks['interval_table'])
 
 
 if __name__ == '__main__':

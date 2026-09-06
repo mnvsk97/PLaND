@@ -172,6 +172,14 @@ def mean_accuracy(rows, arm):
     return math.fsum(r[arm]['correct'] / r[arm]['cases'] for r in rows) / len(rows)
 
 
+def mean_token_reduction(rows):
+    """Descriptive mean of the three per-run token reductions."""
+    check(len(rows) == len(REPEATS) and {r['repeat'] for r in rows} == set(REPEATS),
+          'incomplete token-reduction repeats')
+    check(len({(r['dataset'], r['stage']) for r in rows}) == 1, 'mixed token-reduction group')
+    return math.fsum(r['token_reduction'] for r in rows) / len(rows)
+
+
 def accuracy_summaries(rows):
     summaries = []
     for dataset, stage in dict.fromkeys((r['dataset'], r['stage']) for r in rows):
@@ -189,32 +197,34 @@ def passages(rows):
     l, s, c = select('LEDGAR', 'final-test'), select('SpamAssassin', 'final-test'), select('CFPB', 'selection')
     blocks = {}
     blocks['abstract'] = (
-        'Path to Least Non Determinism (PLaND) is an evaluation-driven methodology for replacing suitable language-model work with code. '
-        'It starts with an English standard operating procedure (SOP). A host reasoning agent inspects development examples and execution records, proposes a revised SOP package, and tests whether an executable step can reduce model use while preserving quality within a stated tolerance. Unresolved inputs use the unchanged English baseline. '
-        'We collected new LEDGAR, CFPB, and SpamAssassin subsets with 500 development, 1,000 selection, and 500 reserved final-test cases each. '
-        'Each reached split received three paired baseline/hybrid executions using hosted Gemini 3.5 Flash Lite. Selection required both arms to reach 80% accuracy, a paired accuracy-interval lower bound of at least −2 percentage points, and at least 5% fewer tokens with a positive interval lower bound. '
-        f'LEDGAR and SpamAssassin passed selection and final assessment in all repeats. Mean final-test accuracy across three runs changed from {pct(mean_accuracy(l,"baseline"),2)}% to {pct(mean_accuracy(l,"hybrid"),2)}% for LEDGAR, with {span(l,"token_reduction",2)}% fewer tokens. '
-        f'SpamAssassin mean accuracy changed from {pct(mean_accuracy(s,"baseline"),2)}% to {pct(mean_accuracy(s,"hybrid"),2)}%, with {span(s,"token_reduction",2)}% fewer tokens. '
-        f'CFPB hybrid mean selection accuracy was {pct(mean_accuracy(c,"hybrid"),2)}%; every run missed the floor, so its final test remained closed. '
-        'Two provider-blocked selection emails were replaced under recorded amendments without reducing sample size. The study records package construction and evaluates frozen execution; it does not estimate autonomous discovery reliability across independent construction trials.'
+        "Business processes and agentic systems contain decisions with different computational requirements. Some require interpretation, contextual judgment, novelty handling, or exception resolution; others are stable enough to execute deterministically. When these boundaries are not known in advance, a natural-language agent provides an expressive starting point, but repeatedly routing stable work through a language model creates avoidable model calls and token consumption. We present Path to Least Non Determinism (PLaND), an evaluation-driven methodology for progressively reducing model-mediated computation within accuracy limits set before evaluation. PLaND begins with an entirely English standard operating procedure (SOP). Its evolver skill instructs a host reasoning agent to inspect development examples and execution records, then propose one revised SOP, called a candidate. A candidate may add Python or Bash code and retain model reasoning for unresolved inputs. Evaluation compares predicted and expected answers on separate examples. This study evaluates these packages, not candidate discovery across independent runs. Using Gemini 3.5 Flash Lite, we tested PLaND on three classification tasks: LEDGAR legal clauses, CFPB consumer complaints, and SpamAssassin email. "
+        'For each dataset, we used 500 cases for development and 1,000 for selection. We reserved another 500 cases for the final test. At every stage a dataset reached, we ran the comparison three times and report the mean. '
+        f'LEDGAR passed all three final-test runs. Mean accuracy improved from {pct(mean_accuracy(l,"baseline"),2)}% to {pct(mean_accuracy(l,"hybrid"),2)}%, while mean token use fell by {pct(mean_token_reduction(l),2)}%. '
+        f'SpamAssassin also passed all three final-test runs. Mean accuracy changed slightly from {pct(mean_accuracy(s,"baseline"),2)}% to {pct(mean_accuracy(s,"hybrid"),2)}%, while mean token use fell by {pct(mean_token_reduction(s),2)}%. '
+        f'CFPB did not pass selection. Its mean accuracy changed from {pct(mean_accuracy(c,"baseline"),2)}% to {pct(mean_accuracy(c,"hybrid"),2)}%, and the hybrid result stayed below the required 80% in all three runs. We therefore did not open the CFPB final test.'
     )
-    blocks['selection_table'] = '| Dataset | Mean accuracy B → H (%) | Tokens saved (%) | Decision |\n| --- | --- | --- | --- |\n' + '\n'.join(
-        f'| {d} | {pct(mean_accuracy(select(d,"selection"),"baseline"),2)} → {pct(mean_accuracy(select(d,"selection"),"hybrid"),2)} | {span(select(d,"selection"),"token_reduction",2)} | {"Accept" if all(r["passed"] for r in select(d,"selection")) else "Reject"} |' for d in DATASETS)
-    blocks['final_table'] = '| Dataset | Mean accuracy B → H (%) | Calls B → H | Tokens saved (%) |\n| --- | --- | --- | --- |\n' + '\n'.join(
-        f'| {d} | {pct(mean_accuracy(select(d,"final-test"),"baseline"),2)} → {pct(mean_accuracy(select(d,"final-test"),"hybrid"),2)} | {select(d,"final-test")[0]["baseline"]["model_calls"]} → {select(d,"final-test")[0]["hybrid"]["model_calls"]} | {span(select(d,"final-test"),"token_reduction",2)} |' for d in ('LEDGAR','SpamAssassin'))
-    for name, group in [('ledgar', l), ('spam', s)]:
-        r = group[0]
-        blocks[f'{name}_result'] = (
-            f'Across the three final-test executions, mean baseline accuracy was {pct(mean_accuracy(group,"baseline"),2)}%, and mean hybrid accuracy was {pct(mean_accuracy(group,"hybrid"),2)}%. '
-            f'The rules answered {r["command_cases"]} of {r["baseline"]["cases"]} cases ({pct(r["command_cases"]/r["baseline"]["cases"])}%) without a model call. '
-            f'Rule accuracy on those cases was {pct(r["command_precision"])}%. Total model-token use fell {span(group,"token_reduction",2)}%. '
-            f'All three paired accuracy intervals stayed within the allowed lower bound; their lower endpoints were {", ".join(pct(x["accuracy_ci"][0]) for x in group)} percentage points. '
-            'Every final-test comparison passed the recorded criteria.'
-        )
+    blocks['selection_table'] = '| Dataset | Mean accuracy B → H (%) | Mean token reduction (%) | Decision |\n| --- | --- | --- | --- |\n' + '\n'.join(
+        f'| {d} | {pct(mean_accuracy(select(d,"selection"),"baseline"),2)} → {pct(mean_accuracy(select(d,"selection"),"hybrid"),2)} | {pct(mean_token_reduction(select(d,"selection")),2)} | {"Accept" if all(r["passed"] for r in select(d,"selection")) else "Reject"} |' for d in DATASETS)
+    blocks['final_table'] = '| Dataset | Mean accuracy B → H (%) | Calls B → H | Mean token reduction (%) |\n| --- | --- | --- | --- |\n' + '\n'.join(
+        f'| {d} | {pct(mean_accuracy(select(d,"final-test"),"baseline"),2)} → {pct(mean_accuracy(select(d,"final-test"),"hybrid"),2)} | {select(d,"final-test")[0]["baseline"]["model_calls"]} → {select(d,"final-test")[0]["hybrid"]["model_calls"]} | {pct(mean_token_reduction(select(d,"final-test")),2)} |' for d in ('LEDGAR','SpamAssassin'))
+    blocks['main_table'] = '| Dataset and split | Baseline to hybrid result |\n| --- | --- |\n' + '\n'.join(
+        f'| {group[0]["dataset"]}, {group[0]["stage"]}, {group[0]["baseline"]["cases"]:,} cases | Mean accuracy: {pct(mean_accuracy(group,"baseline"),2)}% → {pct(mean_accuracy(group,"hybrid"),2)}%; mean token reduction: {pct(mean_token_reduction(group),2)}%; **{"Pass" if all(r["passed"] for r in group) else "Reject"}** |'
+        for group in (l, c, s))
+    blocks['ledgar_result'] = (
+        f'On the {l[0]["baseline"]["cases"]:,} LEDGAR final-test clauses, mean accuracy changed from {pct(mean_accuracy(l,"baseline"),2)}% for the baseline to {pct(mean_accuracy(l,"hybrid"),2)}% for the hybrid. '
+        'The quality and token requirements passed in every repeat.\n\n'
+        f'The hybrid handled {l[0]["command_cases"]} clauses through the Python classification script and sent the remaining {l[0]["hybrid"]["model_calls"]} to the model. '
+        f'Model calls therefore fell from {l[0]["baseline"]["model_calls"]} to {l[0]["hybrid"]["model_calls"]} per run, and the mean token reduction was {pct(mean_token_reduction(l),2)}%.'
+    )
+    blocks['spam_result'] = (
+        f"SpamAssassin's hybrid reduced model calls from {s[0]['baseline']['model_calls']} to {s[0]['hybrid']['model_calls']} per final-test run. "
+        f'Mean accuracy changed from {pct(mean_accuracy(s,"baseline"),2)}% to {pct(mean_accuracy(s,"hybrid"),2)}%, and the mean token reduction was {pct(mean_token_reduction(s),2)}%. '
+        'It passed the quality and token requirements in every repeat. Its small accuracy loss stayed within the allowed tolerance; passing does not mean that accuracy improved.'
+    )
     blocks['cfpb_result'] = (
-        f'CFPB failed the absolute accuracy floor in every selection repeat. Across the three runs, mean baseline accuracy was {pct(mean_accuracy(c,"baseline"),2)}%, and mean hybrid accuracy was {pct(mean_accuracy(c,"hybrid"),2)}%. '
-        f'The hybrid never reached the required 80%, despite reducing tokens by {span(c,"token_reduction",2)}%. Its paired accuracy intervals met the −2-point requirement, and its token intervals were positive. '
-        'Those relative improvements could not compensate for failing the absolute floor. Selection rejection was terminal: no replacement candidate was created and the 500-case final test was not opened.'
+        f"CFPB's hybrid reduced model calls from {c[0]['baseline']['model_calls']:,} to {c[0]['hybrid']['model_calls']} per selection run, with a mean token reduction of {pct(mean_token_reduction(c),2)}%, "
+        f'but mean accuracy changed from {pct(mean_accuracy(c,"baseline"),2)}% to {pct(mean_accuracy(c,"hybrid"),2)}%. '
+        'Every hybrid repeat missed the 80% minimum. The candidate was rejected and the reserved test was not evaluated. Lower token use did not compensate for failing the accuracy floor.'
     )
     blocks['mechanism'] = (
         'Fallback input-token counts matched the baseline on every corresponding final-test case. '
@@ -225,18 +235,20 @@ def passages(rows):
         + ', '.join(str(abs(x['baseline']-x['hybrid'])) for r in rows for x in r['fallback_input_token_differences'])
         + ' tokens across the three pairs despite the unchanged prompt-construction contract. The saved receipts do not explain this small discrepancy; it is retained in the reported totals.'
     )
-    blocks['repeat_table'] = '| Dataset and split | Run | Accuracy B → H (%) | Tokens B → H |\n| --- | --- | --- | --- |\n' + '\n'.join(
-        f'| {r["dataset"]} {"selection" if r["stage"]=="selection" else "test"} | {REPEATS.index(r["repeat"])+1} | {pct(r["baseline"]["accuracy"])} → {pct(r["hybrid"]["accuracy"])} | {r["baseline"]["total_tokens"]:,} → {r["hybrid"]["total_tokens"]:,} |'
+    blocks['repeat_table'] = '| Dataset and stage | Run | Accuracy: baseline / hybrid (%) | Model tokens: baseline / hybrid |\n| --- | --- | --- | --- |\n' + '\n'.join(
+        f'| {r["dataset"]} {"selection" if r["stage"]=="selection" else "final test"} | {REPEATS.index(r["repeat"])+1} | {pct(r["baseline"]["accuracy"])} / {pct(r["hybrid"]["accuracy"])} | {r["baseline"]["total_tokens"]:,} / {r["hybrid"]["total_tokens"]:,} |'
         for r in rows if r['stage'] != 'development')
-    blocks['interval_table'] = '| Dataset and split | Run | Accuracy 95% interval (points) | Token saving 95% interval (%) |\n| --- | --- | --- | --- |\n' + '\n'.join(
-        f'| {r["dataset"]} {"selection" if r["stage"]=="selection" else "test"} | {REPEATS.index(r["repeat"])+1} | [{pct(r["accuracy_ci"][0],2)}, {pct(r["accuracy_ci"][1],2)}] | [{pct(r["token_ci"][0],2)}, {pct(r["token_ci"][1],2)}] |'
+    blocks['interval_table'] = '| Dataset and stage | Run | Accuracy difference 95% CI (points) | Token reduction 95% CI (%) |\n| --- | --- | --- | --- |\n' + '\n'.join(
+        f'| {r["dataset"]} {"selection" if r["stage"]=="selection" else "final test"} | {REPEATS.index(r["repeat"])+1} | {pct(r["accuracy_ci"][0],2)} to {pct(r["accuracy_ci"][1],2)} | {pct(r["token_ci"][0],2)} to {pct(r["token_ci"][1],2)} |'
         for r in rows if r['stage'] != 'development')
     blocks['development_table'] = '| Dataset | B attempts | H attempts | Mean accuracy B → H (%) |\n| --- | --- | --- | --- |\n' + '\n'.join(
         f'| {d} | 1 | {1 if d=="SpamAssassin" else 2} | {pct(mean_accuracy(select(d,"development"),"baseline"),2)} → {pct(mean_accuracy(select(d,"development"),"hybrid"),2)} |' for d in DATASETS)
     blocks['conclusion'] = (
-        'PLaND provides a process for starting with English instructions, proposing executable replacements from development evidence, and accepting them only after a separate quality-and-token check. '
-        f'In this study, LEDGAR and SpamAssassin passed selection and final assessment across all three paired executions, reducing final-test model tokens by {span(l,"token_reduction",2)}% and {span(s,"token_reduction",2)}%, respectively. '
-        'CFPB failed the selection accuracy floor and did not proceed to final test. These results show that selective code execution can reduce model use under explicit quality limits, but that useful-looking rules do not always produce an acceptable workflow. Independent tests of the construction process and broader tasks are needed before making stronger claims.'
+        'PLaND is a methodology for reducing model-mediated work through evaluated changes to an English SOP. Its central mechanism is selective code execution with model fallback. '
+        f'On LEDGAR, the evaluated hybrid had a mean token reduction of {pct(mean_token_reduction(l),2)}%, with mean accuracy changing from {pct(mean_accuracy(l,"baseline"),2)}% to {pct(mean_accuracy(l,"hybrid"),2)}%. '
+        f'SpamAssassin had a mean token reduction of {pct(mean_token_reduction(s),2)}%, with mean accuracy changing from {pct(mean_accuracy(s,"baseline"),2)}% to {pct(mean_accuracy(s,"hybrid"),2)}%. '
+        'Both passed the stated requirements in all three paired runs. CFPB did not pass selection, and its reserved test was not evaluated. '
+        'These results show why both quality and token use should be tested before accepting a substitution. The study evaluates the selected packages; it does not establish how reliably independent evolver runs will discover useful candidates or how PLaND performs in complete production workflows.'
     )
     return blocks
 

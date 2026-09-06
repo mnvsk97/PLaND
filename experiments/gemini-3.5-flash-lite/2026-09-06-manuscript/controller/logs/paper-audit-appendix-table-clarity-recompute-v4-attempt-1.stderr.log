@@ -1,0 +1,3 @@
+usage: audit_paper.py [-h] [--write] [--artifacts] [--freeze-artifacts]
+                      [--freeze-evidence]
+audit_paper.py: error: unrecognized arguments: --recompute-manuscript

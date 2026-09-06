@@ -14,13 +14,13 @@
     },
     {
       "path": "experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/finalize_artifacts.py",
-      "bytes": 2402,
-      "sha256": "c1db4fbb313600cde183fac70016556fd3d39be0775891ca654d30d26833f89d"
+      "bytes": 2340,
+      "sha256": "cdf72c78f5d27e640972f801f8cac480010065f0ccaa5590972602348ab47e3c"
     },
     {
       "path": "experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/manuscript.template.md",
-      "bytes": 31923,
-      "sha256": "072d4da8dfeb7e03c5a66f740606fe32507ae3cbd20008142b894c647835bcaa"
+      "bytes": 38697,
+      "sha256": "d273444ce6aa55dc7d5946774fb452fbc488d75207b9cc8bc38f054521512b05"
     },
     {
       "path": "experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/paper-calculations.json",
@@ -34,38 +34,38 @@
     },
     {
       "path": "experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/review-response.md",
-      "bytes": 3626,
-      "sha256": "568354d80088c102c5a95c9554f6e9c2b5a141c372331c3042f814572412a649"
+      "bytes": 4009,
+      "sha256": "3f0ee354c4aaed4d4a34a0f5efed5d7984ab89de2d4f8f9d374a336453360961"
     },
     {
       "path": "experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/visual-qa.json",
-      "bytes": 2055,
-      "sha256": "3afc021149d422c9a2e199c7e28775a71c35f8fae5fc793244ccb392019addb2"
+      "bytes": 2169,
+      "sha256": "68803b81efa33f23dd1bac39edfd0d34206e6ccaeeba0222004078db83834f31"
     },
     {
       "path": "paper/PLaND.docx",
-      "bytes": 792702,
-      "sha256": "99213e9884f7fbdf5efb2b429f29370969321ee58366559648cca41d74eacccf"
+      "bytes": 795507,
+      "sha256": "b7e47dad42fb19f0e7d92d8bb5d964b826a4570742293ce43cf19eb7a9046d40"
     },
     {
       "path": "paper/PLaND.html",
-      "bytes": 448781,
-      "sha256": "aaa6595adeb12c5c091ef0d3493d91c8354086a5f8cc135d95ab206b22ef0640"
+      "bytes": 456244,
+      "sha256": "1920a75217d530d0a3c4ebf0e38afe976921e1154c237a0b758df6654e02efb6"
     },
     {
       "path": "paper/PLaND.md",
-      "bytes": 39170,
-      "sha256": "750cf9609b6e6ac6f0b795d0b06639790d6a5718a9732e5635759ff4ae68062d"
+      "bytes": 46423,
+      "sha256": "21e52c59828200e40cb04e7088a85f2b1147000006c069557be540722e80d93e"
     },
     {
       "path": "paper/PLaND.pdf",
-      "bytes": 630156,
-      "sha256": "7f01adcd064d0eabb0e9dde14985f08b38a7abcecd9b35d1545f06dcbd3c8eaf"
+      "bytes": 682199,
+      "sha256": "6baf9ac2d118b6b3a00690473525d13863a34f8a323a1fd88fd6a706402ec1c4"
     },
     {
       "path": "paper/audit_paper.py",
-      "bytes": 23709,
-      "sha256": "c10020337917b5f67f410a09dda308e8e42dcbfc4d53f890ca19e7a7afa44429"
+      "bytes": 25490,
+      "sha256": "e28047a15588017e9cee9f438700bc6c6f664252740c940626a1d28545ec583f"
     },
     {
       "path": "paper/build_artifacts.cjs",
@@ -74,8 +74,8 @@
     },
     {
       "path": "paper/build_manuscript.py",
-      "bytes": 30967,
-      "sha256": "1da6d90780502cd9d4f5adea0c4f935bb02eae11126151717bc10bbfed9d6691"
+      "bytes": 31212,
+      "sha256": "9de6160b82f462a0a3eea7ce5f0385c1b599673a1090d8ab02d9aaa26eb2022f"
     },
     {
       "path": "paper/figures/architecture.png",
@@ -114,8 +114,8 @@
     },
     {
       "path": "paper/test_audit_paper.py",
-      "bytes": 5111,
-      "sha256": "97c534b9f808b1e69a9fd28ddc43ab2e5bca7a0da219065f4dfa2a079d26922f"
+      "bytes": 6502,
+      "sha256": "0cc06be85b0023b2f4f2d8cfe6712aff08b96b8fbc6dbcfb446dd18ffcf303a2"
     },
     {
       "path": "reproduce/verify.py",

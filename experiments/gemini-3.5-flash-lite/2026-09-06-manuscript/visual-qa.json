@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "pages": 8,
+  "pages": 9,
   "reviewed_pages": [
     1,
     2,
@@ -9,62 +9,69 @@
     5,
     6,
     7,
-    8
+    8,
+    9
   ],
-  "pdf_sha256": "7f01adcd064d0eabb0e9dde14985f08b38a7abcecd9b35d1545f06dcbd3c8eaf",
-  "docx_sha256": "99213e9884f7fbdf5efb2b429f29370969321ee58366559648cca41d74eacccf",
-  "source_sha256": "750cf9609b6e6ac6f0b795d0b06639790d6a5718a9732e5635759ff4ae68062d",
+  "pdf_sha256": "6baf9ac2d118b6b3a00690473525d13863a34f8a323a1fd88fd6a706402ec1c4",
+  "docx_sha256": "b7e47dad42fb19f0e7d92d8bb5d964b826a4570742293ce43cf19eb7a9046d40",
+  "source_sha256": "21e52c59828200e40cb04e7088a85f2b1147000006c069557be540722e80d93e",
   "page_checks": [
     {
       "page": 1,
-      "render_sha256": "63a909ad2a9b2b2fdf71384f7dbc93def7ac606b044243b1bf5dcd0ab86a1a01",
-      "text_characters": 5717,
+      "render_sha256": "d50f81d541576535e10aea7b36e80f2cd08774cb07eaee2c4b83074df9b620bf",
+      "text_characters": 6066,
       "a4": true
     },
     {
       "page": 2,
-      "render_sha256": "f2b9c180736d726d787e0f0c386d58f8cff2dd61537fa2d3b6b3ea98c47a4489",
-      "text_characters": 3597,
+      "render_sha256": "60ccc90ff72a453493c50cada30e22b03d9ec655f4959305079a99d51beaecbc",
+      "text_characters": 5176,
       "a4": true
     },
     {
       "page": 3,
-      "render_sha256": "02a17db554b427345184b9108b59f5b529d3b264f45f825f0b94d8161c1e098e",
-      "text_characters": 4775,
+      "render_sha256": "e37149d84242d5014c2ed72217be64fe4acde58c1475dc384121ce6c3432fda9",
+      "text_characters": 4508,
       "a4": true
     },
     {
       "page": 4,
-      "render_sha256": "15ab2b6beb1bc7a60158f365121c0de1035b2ddc3b1920d4d3fe7355cab52d37",
-      "text_characters": 6275,
+      "render_sha256": "009059bbab50f5a4d0accfc7b9135d1d9a03c7bd989ce96b4208f12efe04a796",
+      "text_characters": 4867,
       "a4": true
     },
     {
       "page": 5,
-      "render_sha256": "1fcaccf03d205ffa7b48a3097d83700d1ee36d16517f19df574deb32fc02455c",
-      "text_characters": 5158,
+      "render_sha256": "eb8db650bf2f5bf23053ec7c397ca1173d4ac7786d8cff4c75f0e26e18018bf3",
+      "text_characters": 5750,
       "a4": true
     },
     {
       "page": 6,
-      "render_sha256": "90be460930353fff9e47199ea73bb26f438339f251a662c3acb69fe7157a0936",
-      "text_characters": 5471,
+      "render_sha256": "edd429140e94098b1b6e53d0bd68d7a19c25f741cde9eb3c1d9ca0165414b668",
+      "text_characters": 5086,
       "a4": true
     },
     {
       "page": 7,
-      "render_sha256": "29a756fb9b9fcd75b62bf9616921d986e1230e0f84c3464e64b8f17669689c84",
-      "text_characters": 3014,
+      "render_sha256": "f1555fca02b1c54b6ac886009617e00613435358135a0aeb2db48db75ffa201c",
+      "text_characters": 2818,
       "a4": true
     },
     {
       "page": 8,
-      "render_sha256": "27603376588dd40aab9bd1e8fc0443f5e0723b4faf20ab828f75a1826a42f7c5",
-      "text_characters": 4645,
+      "render_sha256": "6b5b98edb6b2df146906ce7ebc4cf71d11c00a7061039884bac1e4cb5d1f744e",
+      "text_characters": 5864,
+      "a4": true
+    },
+    {
+      "page": 9,
+      "render_sha256": "5c8a5bf8791ba5e4c9f7b15bb5bde60163b6b51ee10f0ee4780bc55bd1781231",
+      "text_characters": 6040,
       "a4": true
     }
   ],
-  "review": "All rendered pages inspected for clipping, overlap, table wrapping, figure readability, captions, page flow, and references. The v1 table wraps and orphan final reference page were corrected in v2.",
+  "review": "All rendered pages inspected for clipping, overlap, table wrapping, figure readability, captions, page flow, equations, and references.",
   "format": "A4; two-column body; Times New Roman 10 pt; tables 9 pt",
   "passed": true
 }

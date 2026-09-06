@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/Users/saikrishna/dev/deterministic-skills/paper/build_manuscript.py", line 762, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/Users/saikrishna/dev/deterministic-skills/paper/build_manuscript.py", line 755, in main
+    validate_source(markdown, allow_pending=args.allow_pending_results)
+  File "/Users/saikrishna/dev/deterministic-skills/paper/build_manuscript.py", line 489, in validate_source
+    raise ValueError(f"Abstract has {len(abstract_words)} words; maximum is 300")
+ValueError: Abstract has 308 words; maximum is 300
+Error: build_manuscript.py failed
+    at run (/Users/saikrishna/dev/deterministic-skills/paper/build_artifacts.cjs:16:36)
+    at main (/Users/saikrishna/dev/deterministic-skills/paper/build_artifacts.cjs:33:3)

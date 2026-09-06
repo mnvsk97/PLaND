@@ -224,6 +224,8 @@ def prevent_row_split(row) -> None:
 
 
 def table_widths(rows: list[list[str]]) -> list[int]:
+    if len(rows[0]) == 2:
+        return [1450, 3255]
     if rows[0] == ['Dataset', 'Dev.', 'Selection', 'Final test']:
         return [1390, 790, 1260, 1265]
     if rows[0][1] == 'B attempts':
@@ -232,8 +234,9 @@ def table_widths(rows: list[list[str]]) -> list[int]:
         return [1375, 1420, 1000, 910]
     if len(rows[0]) > 2 and rows[0][2] == 'Calls B → H':
         return [1390, 1430, 800, 1085]
-    if rows[0][0] == 'Dataset and split':
-        return [1380, 485, 1120, 1720] if rows[0][-1] == 'Tokens B → H' else [1380, 485, 1420, 1420]
+    if rows[0][0] in {'Dataset and split', 'Dataset and stage'}:
+        tokens_column = rows[0][-1] in {'Tokens B → H', 'Model tokens: baseline / hybrid'}
+        return [1380, 485, 1120, 1720] if tokens_column else [1380, 485, 1420, 1420]
     if rows[0] == ['Dataset', 'Dev.', 'Validation', 'Reserved test']:
         return [1475, 660, 1190, 1380]
     if rows[0][0].startswith('Dataset and classification'):
@@ -495,7 +498,7 @@ def flush_body(document: Document, lines: list[str], *, reference: bool = False)
         return
     text = " ".join(line.strip() for line in lines)
     paragraph = document.add_paragraph()
-    set_paragraph_spacing(paragraph, after=1 if reference else 4)
+    set_paragraph_spacing(paragraph, after=0 if reference else 4)
     paragraph.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
     paragraph.paragraph_format.first_line_indent = Inches(0.2)
     if reference:
@@ -504,6 +507,9 @@ def flush_body(document: Document, lines: list[str], *, reference: bool = False)
         paragraph.paragraph_format.first_line_indent = Inches(-0.22)
         paragraph.paragraph_format.keep_together = True
     add_inline(paragraph, text)
+    if reference:
+        for run in paragraph.runs:
+            set_run_font(run, size=8.5)
     lines.clear()
 
 
