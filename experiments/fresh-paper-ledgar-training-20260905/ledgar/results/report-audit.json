@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "report": "/Users/saikrishna/.codex/worktrees/ee41/deterministic-skills/paper/LEDGAR_COLLECTION_REPORT.md",
+  "report_sha256": "e6059ce993bf406eb23ac38e4e5a833517971bf5360f77d3ea576d42cc1b0da2",
+  "datasets": [
+    {
+      "dataset": "ledgar",
+      "stage": "test",
+      "repeated_pairs": 3
+    }
+  ]
+}

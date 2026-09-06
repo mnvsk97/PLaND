@@ -48,11 +48,18 @@ class GenerateTests(unittest.TestCase):
             compile((output / "tools/datasources.py").read_text(encoding="utf-8"), str(output / "tools/datasources.py"), "exec")
             self.assertEqual(json.loads((output / "data/manifest.json").read_text())["workflow"], "document-classifier")
             manifest = json.loads((output / "data/manifest.json").read_text())
+            sop = (output / "skills/document-classifier/SKILL.md").read_text()
+            contract = json.loads((output / "data/baseline-sop-contract.json").read_text())
+            self.assertEqual(set(contract["steps"]), {"S01", "S02", "S03", "S04"})
+            self.assertEqual(contract["baseline_sop_content"], sop)
+            self.assertEqual(
+                manifest["baseline_sop_contract"]["contract_sha256"],
+                contract["contract_sha256"],
+            )
             self.assertEqual(manifest["evals"]["path"], str(evals.resolve()))
             profile = json.loads((output / "data/eval-profile.json").read_text())
             self.assertEqual(profile["task_kind"], "classification")
             self.assertEqual(profile["output"]["labels"], ["contract", "invoice"])
-            sop = (output / "skills/document-classifier/SKILL.md").read_text()
             self.assertIn("Classify the supplied document.", sop)
             self.assertIn("`contract`, `invoice`", sop)
             self.assertNotIn("case-1", sop)

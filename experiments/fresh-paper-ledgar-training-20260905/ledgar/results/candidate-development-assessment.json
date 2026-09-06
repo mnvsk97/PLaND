@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-09-06T02:53:51.046751+00:00",
+  "candidate": "candidate-01",
+  "hypothesis": "Conservative development-derived lexical routes reduce model work with exact English fallback.",
+  "iteration": 1,
+  "max_iterations": 1,
+  "target_quality": 0.8,
+  "quality_metric": "accuracy",
+  "optimization_metric": "total_tokens",
+  "min_objective_improvement_ratio": 0.0,
+  "require_hybrid_sop": true,
+  "frozen_invariants": {
+    "system_prompt_sha256": "a9455467adc1e07e41bc3c2f50dcf233cfa33234faec8d21ac1bc144f7a7a0db",
+    "evals_sha256": "0cb73326d9de4277f5f709b5ebb5e13c5bf3ce4e9953633178cecd99436af3bf",
+    "selection_sha256": "4506bd6e59e106b79babdf54b8f4f6f0c2f5ad9e4d27268575a1d7105cb03440",
+    "datasource_snapshot_sha256": "f72438462e5e9cc1da89e04521a21f42cb0d2880914aea8925e28dee718b68cb",
+    "scorer_sha256": "bc55185ef4bfafe65fd930b30f81cd73ff14c87e49dd9e7f0a72f46f986be4f7",
+    "agent_harness_sha256": "3f5495238fa272ea81b964721db7408e3e4e1b885b82f7e1e7930aba42be73b6",
+    "baseline_sop_sha256": "2236217828abb3f0494a3dc10f5aba1d5b6bfe89d07fe3fbddfa41e312eb3a1d",
+    "baseline_sop_contract_sha256": "c218685cce3d8946e12e2cb841f778645349e6c1cd45e43f49166d8fae8573db",
+    "evaluation_sha256": "0cb73326d9de4277f5f709b5ebb5e13c5bf3ce4e9953633178cecd99436af3bf"
+  },
+  "system_prompt": null,
+  "development": {
+    "baseline": {
+      "cases": 500,
+      "correct": 476,
+      "accuracy": 0.952,
+      "macro_f1": 0.9516192099882111,
+      "input_tokens": 220032,
+      "output_tokens": 3768,
+      "total_tokens": 223800,
+      "estimated_model_cost_usd": 0.0,
+      "model_calls": 500,
+      "model_tokens": 223800,
+      "command_calls": 0,
+      "command_resolved_cases": 0,
+      "fallback_model_calls": 0,
+      "fallback_model_tokens": 0,
+      "normal_completion_rate": 1.0,
+      "errors": {},
+      "latency_seconds": {
+        "total": 418.7834054478444,
+        "mean": 0.8375668108956889
+      },
+      "wall_seconds": 210.22541333298432,
+      "max_rss_bytes": 156565504
+    },
+    "candidate": {
+      "cases": 500,
+      "correct": 475,
+      "accuracy": 0.95,
+      "macro_f1": 0.9494804504158697,
+      "input_tokens": 129940,
+      "output_tokens": 2171,
+      "total_tokens": 132111,
+      "estimated_model_cost_usd": 0.0,
+      "model_calls": 290,
+      "model_tokens": 132111,
+      "command_calls": 500,
+      "command_resolved_cases": 210,
+      "fallback_model_calls": 290,
+      "fallback_model_tokens": 132111,
+      "normal_completion_rate": 1.0,
+      "errors": {},
+      "latency_seconds": {
+        "total": 250.59944524415187,
+        "mean": 0.5011988904883037
+      },
+      "wall_seconds": 125.53613999998197,
+      "max_rss_bytes": 158023680
+    },
+    "delta": {
+      "quality": -0.0020000000000000018,
+      "tokens": -91689,
+      "token_ratio": 0.5903083109919571,
+      "mean_latency_seconds": -0.33636792040738517,
+      "mean_latency_ratio": 0.5983986996241227,
+      "accuracy_points": -0.0020000000000000018
+    }
+  },
+  "validation": null,
+  "failed_checks": [],
+  "decision": "eligible_for_validation"
+}

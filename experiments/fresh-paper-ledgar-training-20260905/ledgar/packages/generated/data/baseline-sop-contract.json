@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "baseline_sop_sha256": "c260ac0c35debf68804195edce52d7978b30f8d442191ba604202bf9e40e6545",
+  "baseline_sop_content": "---\nname: ledgar-classification\ndescription: Execute the ledgar classification workflow using the approved datasource collection. Use when a request requires this workflow.\n---\n\n# Ledgar Classification SOP\n\n1. [S01] Identify the requested item and follow this requirement: Classify the supplied contract clause into exactly one allowed provision label by its main legal function. <!-- pland:english -->\n2. [S02] Use the approved datasource tools to read only the relevant evidence; the source collection contains .json files. <!-- pland:english -->\n3. [S03] Classify the evidence into exactly one known bucket: `Amendments`, `Assignments`, `Counterparts`, `Entire Agreements`, `Expenses`, `Governing Laws`, `Notices`, `Severability`, `Survival`, `Terms`. <!-- pland:english -->\n4. [S04] Return exactly one JSON object shaped as `{\"label\":\"<known bucket>\"}`. <!-- pland:english -->\n",
+  "steps": {
+    "S01": {
+      "instruction": "Identify the requested item and follow this requirement: Classify the supplied contract clause into exactly one allowed provision label by its main legal function.",
+      "instruction_sha256": "cf86cb7e90a35fa8485c22aa3c73d13297368993c756509dd69748d53c7f906b"
+    },
+    "S02": {
+      "instruction": "Use the approved datasource tools to read only the relevant evidence; the source collection contains .json files.",
+      "instruction_sha256": "7e5ee1e094f33f502ccecad5886a623946763656ea6d281f0c380d32abf4d568"
+    },
+    "S03": {
+      "instruction": "Classify the evidence into exactly one known bucket: `Amendments`, `Assignments`, `Counterparts`, `Entire Agreements`, `Expenses`, `Governing Laws`, `Notices`, `Severability`, `Survival`, `Terms`.",
+      "instruction_sha256": "fe9e4f113f9165e36112eaca1ec0b9e826a29d1df96b1ebe81bad1361a9c3b8f"
+    },
+    "S04": {
+      "instruction": "Return exactly one JSON object shaped as `{\"label\":\"<known bucket>\"}`.",
+      "instruction_sha256": "8f650c2d89356ca8e63ceba7f3868ac18541a0f22a13efcd9ca161496c144e57"
+    }
+  },
+  "contract_sha256": "1b7214b6944bcd7491126f54d75cea13677cb16c3c6880cec6511f122874571d"
+}

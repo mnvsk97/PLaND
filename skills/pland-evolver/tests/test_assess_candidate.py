@@ -34,6 +34,8 @@ def run_payload(split, accuracy, tokens=100, latency=1.0, errors=None, candidate
             "datasource_snapshot_sha256": "data-hash",
             "evaluation_sha256": digest,
             "scorer_sha256": "scorer-hash",
+            "baseline_sop_sha256": digest,
+            "baseline_sop_contract_sha256": digest,
         },
         "split": split,
         "summary": {
@@ -154,11 +156,23 @@ class AssessCandidateTests(unittest.TestCase):
     def test_accepts_quality_preserving_token_reduction(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
+            baseline_development = run_payload("development", 0.9, 200)
+            candidate_development = run_payload(
+                "development", 1.0, 100, candidate_id="candidate"
+            )
+            candidate_validation = run_payload(
+                "validation", 1.0, 90, 1.2, candidate_id="candidate"
+            )
+            baseline_validation = run_payload("validation", 1.0, 180, 1.0)
+            baseline_development["cases"] = [{"id": "development-case"}]
+            candidate_development["cases"] = [{"id": "development-case"}]
+            candidate_validation["cases"] = [{"id": "selection-case"}]
+            baseline_validation["cases"] = [{"id": "selection-case"}]
             args = argparse.Namespace(
-                baseline_development=self.write(root, "base-dev.json", run_payload("development", 0.9, 200)),
-                candidate_development=self.write(root, "candidate-dev.json", run_payload("development", 1.0, 100, candidate_id="candidate")),
-                candidate_validation=self.write(root, "candidate-val.json", run_payload("validation", 1.0, 90, 1.2, candidate_id="candidate")),
-                baseline_validation=self.write(root, "base-val.json", run_payload("validation", 1.0, 180, 1.0)),
+                baseline_development=self.write(root, "base-dev.json", baseline_development),
+                candidate_development=self.write(root, "candidate-dev.json", candidate_development),
+                candidate_validation=self.write(root, "candidate-val.json", candidate_validation),
+                baseline_validation=self.write(root, "base-val.json", baseline_validation),
                 candidate="candidate",
                 hypothesis="test",
                 iteration=1,

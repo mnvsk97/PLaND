@@ -99,6 +99,23 @@ selection without creating outputs. The command creates all three datasets in
 a staging directory and publishes the output only after every expected hash
 matches.
 
+## Fresh paper collection
+
+The approved protocol is [`../experiments/protocol/fresh-paper-collection.md`](../experiments/protocol/fresh-paper-collection.md).
+It uses 500 development, 1,000 selection, and 500 final-test cases per dataset.
+The author approved the plan on 2026-09-05. The preparer verifies locked raw bytes, excludes previously
+opened splits and normalized-content duplicates, preserves unopened held-out
+splits, and writes a new freeze manifest atomically:
+
+```bash
+python datasets/scripts/prepare_fresh_collection.py \
+  --plan experiments/protocol/fresh-paper-ledgar.json \
+  --output tmp/fresh-paper-20260905/datasets/ledgar
+```
+
+Invoke preparation through the collection controller. Run LEDGAR first, then
+CFPB and SpamAssassin, retaining each freshness receipt and every failed attempt.
+
 ## Confirmatory populations
 
 | Dataset | Development / validation / test | Audit | Experiment |

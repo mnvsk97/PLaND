@@ -165,13 +165,24 @@ def exclusion_manifest(paths: Iterable[Path]) -> tuple[set[str], set[str], list[
     excluded_ids: set[str] = set()
     excluded_contents: set[str] = set()
     manifest = []
-    for root in paths:
+    for specification in paths:
+        raw = str(specification)
+        if "::" in raw:
+            root_value, split_value = raw.rsplit("::", 1)
+            included_splits = {item for item in split_value.split(",") if item}
+            if not included_splits <= {"development", "validation", "test"}:
+                raise ValueError(f"invalid exclusion split filter: {split_value}")
+            root = Path(root_value)
+        else:
+            root = specification
+            included_splits = None
         evals = root / "evals.csv"
         if not evals.is_file():
             raise ValueError(f"excluded dataset has no evals.csv: {root}")
         case_hashes = []
         with evals.open(newline="", encoding="utf-8") as handle:
-            rows = list(csv.DictReader(handle))
+            rows = [row for row in csv.DictReader(handle)
+                    if included_splits is None or row.get("split") in included_splits]
         for row in rows:
             path = root / row["input"]
             payload = json.loads(path.read_text(encoding="utf-8"))
@@ -181,6 +192,7 @@ def exclusion_manifest(paths: Iterable[Path]) -> tuple[set[str], set[str], list[
             case_hashes.append((row["input"], sha256(path)))
         manifest.append({
             "path": str(root), "evals_sha256": sha256(evals), "cases": len(rows),
+            "included_splits": sorted(included_splits) if included_splits else ["all"],
             "case_manifest_sha256": hashlib.sha256(compact(sorted(case_hashes)).encode()).hexdigest(),
         })
     return excluded_ids, excluded_contents, manifest
@@ -319,11 +331,17 @@ def prepare_ledgar(args: argparse.Namespace, root: Path) -> None:
     records, exclusions = exclude_records(records, "text", "id", args.exclude_dataset)
     split_counts = requested_splits(args)
     cases = sum(split_counts.values())
-    selected, labels = choose_balanced_official_splits(
-        records, "label", "id", "upstream_split", split_counts, args.classes, args.seed,
-        {"development": "train", "validation": "validation", "test": "test"},
-        frozen_labels(args),
-    )
+    training_only = getattr(args, 'ledgar_training_only', False)
+    source_mapping = {"development":"train", "validation":"train", "test":"train"} if training_only else {
+        "development":"train", "validation":"validation", "test":"test"}
+    if training_only:
+        records = [row for row in records if row['upstream_split']=='train']
+        selected, labels = choose_balanced(records, "label", "id", cases, args.classes,
+                                           args.seed, split_counts, frozen_labels(args))
+    else:
+        selected, labels = choose_balanced_official_splits(
+            records, "label", "id", "upstream_split", split_counts, args.classes, args.seed,
+            source_mapping, frozen_labels(args))
     rows = []
     for split, item in selected:
         input_path = write_case(root, "ledgar", item["id"], {"text": item["text"]})
@@ -337,8 +355,9 @@ def prepare_ledgar(args: argparse.Namespace, root: Path) -> None:
     write_artifacts(root, rows, {
         "dataset": "lighteval/lexglue:ledgar", "revision": LEDGAR_REVISION,
         "seed": args.seed,
-        "selection_rule": "top labels by eligible count; lowest seeded hashes within preserved official splits",
-        "source_split_mapping": {"development": "train", "validation": "validation", "test": "test"},
+        "selection_rule": ("frozen labels; lowest seeded hashes from official training rows; disjoint balanced study splits"
+                           if training_only else "top labels by eligible count; lowest seeded hashes within preserved official splits"),
+        "source_split_mapping": source_mapping,
         "requested_split_counts": split_counts,
         "eligible_unique_by_label": dict(Counter(item["label"] for item in records)),
         "eligible_unique_by_label_and_source_split": {
@@ -549,12 +568,14 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--test-cases", type=int)
     parser.add_argument("--exclude-selection", action="append", default=[], type=Path)
     parser.add_argument("--classes", type=int, default=10)
+    parser.add_argument("--ledgar-training-only", action="store_true",
+                        help="Explicitly approved new study splits from untouched official LEDGAR training rows")
     parser.add_argument(
         "--labels-from", type=Path,
         help="Selection JSON whose ordered labels define the frozen task label set",
     )
     parser.add_argument("--exclude-dataset", action="append", default=[], type=Path,
-                        help="Prepared dataset whose IDs and normalized contents must be excluded")
+                        help="Prepared dataset to exclude; append ::development,validation to filter splits")
     return parser.parse_args()
 
 

@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "checks": {
+    "empty_abstains": true,
+    "invalid_type_abstains": true,
+    "oversized_abstains": true,
+    "unmatched_abstains": true,
+    "unapproved_label_abstains": true,
+    "each_phrase_routes_its_label": true,
+    "traceable_rule_ids": true,
+    "conflicting_labels_abstain": true,
+    "case_and_spacing_normalization": true,
+    "stdlib_only": true
+  },
+  "rules": 21
+}

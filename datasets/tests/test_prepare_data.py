@@ -15,6 +15,27 @@ SPEC.loader.exec_module(MODULE)
 
 
 class PrepareDataTests(unittest.TestCase):
+    def test_approved_training_only_preparation_keeps_new_splits_disjoint(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root=Path(temporary); source=root/'source';source.mkdir()
+            for partition in ['train','validation','test']:
+                records=[{'input':f'{partition} unique clause {label} {i}', 'gold':[label]}
+                         for label in ['a','b'] for i in range(8)]
+                (source/f'{partition}.jsonl').write_text(''.join(json.dumps(r)+'\n' for r in records))
+            output=root/'prepared';output.mkdir()
+            args=SimpleNamespace(source=source,exclude_dataset=[],development_cases=4,
+                                 validation_cases=8,test_cases=4,classes=2,seed=7,
+                                 ledgar_training_only=True,labels_from=None)
+            MODULE.prepare_ledgar(args,output)
+            with (output/'evals.csv').open() as handle: rows=list(csv.DictReader(handle))
+            self.assertEqual(len(rows),16)
+            self.assertEqual(len({r['id'] for r in rows}),16)
+            self.assertTrue(all(r['id'].startswith('train-') for r in rows))
+            self.assertEqual(dict(__import__('collections').Counter(r['split'] for r in rows)),
+                             {'development':4,'validation':8,'test':4})
+            selection=json.loads((output/'selection.json').read_text())
+            self.assertEqual(selection['source_split_mapping'],dict.fromkeys(['development','validation','test'],'train'))
+
     def test_spamassassin_sanitizer_removes_label_leaks_and_continuations(self):
         raw = (
             b"From: sender@example.com\r\n"
@@ -114,6 +135,27 @@ class PrepareDataTests(unittest.TestCase):
             kept, manifest = MODULE.exclude_records(records, "text", "id", [root])
             self.assertEqual([row["id"] for row in kept], ["safe"])
             self.assertEqual(manifest[0]["cases"], 1)
+
+    def test_exclusion_can_preserve_unopened_test(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary); (root / "data/cases").mkdir(parents=True)
+            rows = []
+            for split in ("development", "test"):
+                path = root / f"data/cases/{split}.json"
+                path.write_text(json.dumps({"text": f"{split} text"}))
+                rows.append({"schema_version":"2", "id":split, "benchmark":"x",
+                             "task_type":"text_classification", "split":split,
+                             "input":str(path.relative_to(root)), "output":"{}",
+                             "reasoning":"", "metadata":"{}"})
+            with (root / "evals.csv").open("w", newline="") as handle:
+                writer = csv.DictWriter(handle, fieldnames=MODULE.EVAL_FIELDS)
+                writer.writeheader(); writer.writerows(rows)
+            kept, manifest = MODULE.exclude_records(
+                [{"id":"new", "text":"test text", "label":"x"}], "text", "id",
+                [Path(f"{root}::development")],
+            )
+            self.assertEqual([item["id"] for item in kept], ["new"])
+            self.assertEqual(manifest[0]["included_splits"], ["development"])
 
     def test_cfpb_api_snapshot_is_read_as_canonical_rows(self):
         with tempfile.TemporaryDirectory() as temporary:
