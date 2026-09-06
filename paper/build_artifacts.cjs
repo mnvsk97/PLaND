@@ -20,6 +20,8 @@ async function main() {
   fs.mkdirSync(tmp, {recursive:true});
   const names = ['evolution-path', 'architecture', 'evolution-loop'];
   function figureSource(name) {
+    const reviewed = path.join(paper, 'figures', `${name}-reviewed.svg`);
+    if (fs.existsSync(reviewed)) return {path: reviewed, mime: 'image/svg+xml'};
     const png = path.join(paper, 'figures', `${name}.png`);
     if (fs.existsSync(png)) return {path: png, mime: 'image/png'};
     return {path: path.join(paper, 'figures', `${name}.svg`), mime: 'image/svg+xml'};

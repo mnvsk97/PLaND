@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "pages": 8,
+  "reviewed_pages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "pdf_sha256": "f05bb689932e1b22126a6c930e9189d1bce42f5e864cb69599960205d20fd0ce",
+  "docx_sha256": "7dd6f07d3c6abcde66c2fe2aebdd805b7dd463aca874f226fe97d7e2ee4be18b",
+  "source_sha256": "fe408b746c3284585ba0851baba15be831bc7b9b89654b7df1855016d29e1ce2",
+  "page_checks": [
+    {
+      "page": 1,
+      "render_sha256": "3263295dd2e410d9f87008c7884f49eee1421bbdea09764efde6f88107679620",
+      "text_characters": 5665,
+      "a4": true
+    },
+    {
+      "page": 2,
+      "render_sha256": "f2b9c180736d726d787e0f0c386d58f8cff2dd61537fa2d3b6b3ea98c47a4489",
+      "text_characters": 3597,
+      "a4": true
+    },
+    {
+      "page": 3,
+      "render_sha256": "02a17db554b427345184b9108b59f5b529d3b264f45f825f0b94d8161c1e098e",
+      "text_characters": 4775,
+      "a4": true
+    },
+    {
+      "page": 4,
+      "render_sha256": "15ab2b6beb1bc7a60158f365121c0de1035b2ddc3b1920d4d3fe7355cab52d37",
+      "text_characters": 6275,
+      "a4": true
+    },
+    {
+      "page": 5,
+      "render_sha256": "e4196108fb56864ecbc1dab88558f25c29b022ae28a0d1373e21b802e37a9df7",
+      "text_characters": 4995,
+      "a4": true
+    },
+    {
+      "page": 6,
+      "render_sha256": "90be460930353fff9e47199ea73bb26f438339f251a662c3acb69fe7157a0936",
+      "text_characters": 5471,
+      "a4": true
+    },
+    {
+      "page": 7,
+      "render_sha256": "29a756fb9b9fcd75b62bf9616921d986e1230e0f84c3464e64b8f17669689c84",
+      "text_characters": 3014,
+      "a4": true
+    },
+    {
+      "page": 8,
+      "render_sha256": "27603376588dd40aab9bd1e8fc0443f5e0723b4faf20ab828f75a1826a42f7c5",
+      "text_characters": 4645,
+      "a4": true
+    }
+  ],
+  "review": "All rendered pages inspected for clipping, overlap, table wrapping, figure readability, captions, page flow, and references. The v1 table wraps and orphan final reference page were corrected in v2.",
+  "format": "A4; two-column body; Times New Roman 10 pt; tables 9 pt",
+  "passed": true
+}

@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "path_base": "repository_root",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 3311,
+      "sha256": "043db6c469bea3b23945f4c95a567e8e11260d7a732897b9cf1831da40c24456"
+    },
+    {
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/evidence-files.json",
+      "bytes": 11533658,
+      "sha256": "1d44f99c5bae7ae13f2934ea8146269aab9979d4547414063e41d8ebf3f00de5"
+    },
+    {
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/finalize_artifacts.py",
+      "bytes": 2402,
+      "sha256": "c1db4fbb313600cde183fac70016556fd3d39be0775891ca654d30d26833f89d"
+    },
+    {
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/manuscript.template.md",
+      "bytes": 31724,
+      "sha256": "76ef9afce6c6422b885724a2c97c0100b490d6333cb282c844c66c1477fc0935"
+    },
+    {
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/paper-calculations.json",
+      "bytes": 51389,
+      "sha256": "2e96d25cae35c80e7c7eb1003b3668ccd22c566f645d8e5e1dd2c60d865dbc6f"
+    },
+    {
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/provenance-addendum.md",
+      "bytes": 4415,
+      "sha256": "73e9930586f2e2c9aa83a5e8ffec26cfb40e65ed85ba6cb7707379ce6aea062f"
+    },
+    {
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/review-response.md",
+      "bytes": 3626,
+      "sha256": "568354d80088c102c5a95c9554f6e9c2b5a141c372331c3042f814572412a649"
+    },
+    {
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/visual-qa.json",
+      "bytes": 2055,
+      "sha256": "ad578cc8330f02d6cd8e66a99c4de14b87010caecf661bd4d0ebe709b0766e7a"
+    },
+    {
+      "path": "paper/PLaND.docx",
+      "bytes": 792654,
+      "sha256": "7dd6f07d3c6abcde66c2fe2aebdd805b7dd463aca874f226fe97d7e2ee4be18b"
+    },
+    {
+      "path": "paper/PLaND.html",
+      "bytes": 448622,
+      "sha256": "de4200521bb56264158f3fbe0277412022eb13b6ee1b37bc107778e6038ea03f"
+    },
+    {
+      "path": "paper/PLaND.md",
+      "bytes": 39011,
+      "sha256": "fe408b746c3284585ba0851baba15be831bc7b9b89654b7df1855016d29e1ce2"
+    },
+    {
+      "path": "paper/PLaND.pdf",
+      "bytes": 629801,
+      "sha256": "f05bb689932e1b22126a6c930e9189d1bce42f5e864cb69599960205d20fd0ce"
+    },
+    {
+      "path": "paper/audit_paper.py",
+      "bytes": 22337,
+      "sha256": "0d044592ecbd13ed817a090cdfc204d059c79c57d87f7020d53ae5f27698e45f"
+    },
+    {
+      "path": "paper/build_artifacts.cjs",
+      "bytes": 4018,
+      "sha256": "463ae7001005cf34d9d1618add9791859dea49265afa231b1c49e79a083b6973"
+    },
+    {
+      "path": "paper/build_manuscript.py",
+      "bytes": 30967,
+      "sha256": "1da6d90780502cd9d4f5adea0c4f935bb02eae11126151717bc10bbfed9d6691"
+    },
+    {
+      "path": "paper/figures/architecture.png",
+      "bytes": 99078,
+      "sha256": "03ef8522429f5ab3577314464e7a2938662a8d9080bd0abd050a7b495a6f126e"
+    },
+    {
+      "path": "paper/figures/architecture.svg",
+      "bytes": 4005,
+      "sha256": "ef074c760719982e9b0279adcbab0f8d65b050ca4a8998b4e92253c687be844c"
+    },
+    {
+      "path": "paper/figures/evolution-loop-reviewed.svg",
+      "bytes": 3021,
+      "sha256": "6102fe751becd97e476706d8fe6f5c7dc53778ec0f36862ea9078d3ee424819f"
+    },
+    {
+      "path": "paper/figures/evolution-loop.png",
+      "bytes": 118304,
+      "sha256": "1dd668c6ab572510e28e1233dbc612bff5f5691a5d0e4d749228f220b87ccad2"
+    },
+    {
+      "path": "paper/figures/evolution-loop.svg",
+      "bytes": 5506,
+      "sha256": "84311cb74abd9a27dfb89880247e8a114fc443159263796b9266fa70f70897f6"
+    },
+    {
+      "path": "paper/figures/evolution-path.png",
+      "bytes": 201220,
+      "sha256": "4aa5da539f5544a4b9f25d607afec9922d323894f7668b88b129a932d6b3b18a"
+    },
+    {
+      "path": "paper/figures/evolution-path.svg",
+      "bytes": 4462,
+      "sha256": "1be052aa9d5fd73309a1914fb73b2259e839bc01d05a04ede88c8802d4827b88"
+    },
+    {
+      "path": "paper/test_audit_paper.py",
+      "bytes": 2199,
+      "sha256": "50b74dc155aa00a6516ed3057c1197ec771ddb6bfff051bb919afae38079fa42"
+    },
+    {
+      "path": "reproduce/verify.py",
+      "bytes": 1543,
+      "sha256": "1b69727f65fcda0aea7f601e3108f33f9aaba39ec7b199ce92f07a45b73df01d"
+    }
+  ]
+}

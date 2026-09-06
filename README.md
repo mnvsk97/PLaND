@@ -54,9 +54,16 @@ reproduce/.venv/bin/python reproduce/verify.py
 `reproduce/uv.lock` freezes their exact resolved versions. They are grouped
 under `reproduce/` because they exist only to run and verify the experiments.
 
-Until the new collection is complete, repository verification covers source,
-tests, and the existing manuscript artifacts; it does not claim that deleted
-historical model outputs remain reproducible from this checkout.
+The manuscript now uses the completed Gemini collection. Verification checks
+the frozen evidence inventory, tests, case-level calculations, and current
+manuscript artifacts without calling a model. LEDGAR and SpamAssassin reached
+final test; CFPB was rejected at selection and its final test stayed closed.
+The [manuscript audit and review responses](experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/)
+record the exact evidence and limitations, including provider-block replacements.
+Verification of saved outputs is not a promise of bit-for-bit hosted inference
+regeneration. The public [collection snapshot](https://github.com/mnvsk97/PLaND/tree/4ad24c9838922b3db777ac4ba4dbc34de7a449ae)
+preserves the experiment evidence; the current `main` branch also includes the
+reviewed paper and its audit.
 
 ## Prepare datasets
 

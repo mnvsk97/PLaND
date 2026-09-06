@@ -1,0 +1,132 @@
+test_candidate_nonviable_keeps_heldout_closed_and_allows_packaging (test_run_collection.CollectionControllerTests.test_candidate_nonviable_keeps_heldout_closed_and_allows_packaging) ... ok
+test_candidate_retry_is_development_only_and_stops_at_first_ready (test_run_collection.CollectionControllerTests.test_candidate_retry_is_development_only_and_stops_at_first_ready) ... ok
+test_failure_is_preserved (test_run_collection.CollectionControllerTests.test_failure_is_preserved) ... ok
+test_final_test_is_gated_and_completed_commands_resume (test_run_collection.CollectionControllerTests.test_final_test_is_gated_and_completed_commands_resume) ... ok
+test_hosted_identity_rejects_digest_or_invalid_hash (test_run_collection.CollectionControllerTests.test_hosted_identity_rejects_digest_or_invalid_hash) ... ok
+test_hosted_model_identity_is_accepted_without_fake_digest (test_run_collection.CollectionControllerTests.test_hosted_model_identity_is_accepted_without_fake_digest) ... ok
+test_one_candidate_attempt_allows_generation_run_and_assessment (test_run_collection.CollectionControllerTests.test_one_candidate_attempt_allows_generation_run_and_assessment) ... ok
+test_plan_change_is_rejected (test_run_collection.CollectionControllerTests.test_plan_change_is_rejected) ... ok
+test_safety_hold_blocks_new_and_resumed_commands (test_run_collection.CollectionControllerTests.test_safety_hold_blocks_new_and_resumed_commands) ... ok
+test_wrong_paper_split_is_rejected (test_run_collection.CollectionControllerTests.test_wrong_paper_split_is_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 1.318s
+
+OK
+test_clean_balanced_fixture_passes (test_audit_prepared.AuditTests.test_clean_balanced_fixture_passes) ... ok
+test_pilot_content_overlap_fails_audit (test_audit_prepared.AuditTests.test_pilot_content_overlap_fails_audit) ... ok
+test_completed_and_partial_model_runs_are_excluded (test_collection_exposure.FreshExposureTests.test_completed_and_partial_model_runs_are_excluded) ... ok
+test_approved_training_only_preparation_keeps_new_splits_disjoint (test_prepare_data.PrepareDataTests.test_approved_training_only_preparation_keeps_new_splits_disjoint) ... ok
+test_balanced_selection_is_order_independent (test_prepare_data.PrepareDataTests.test_balanced_selection_is_order_independent) ... ok
+test_case_count_must_balance_across_classes (test_prepare_data.PrepareDataTests.test_case_count_must_balance_across_classes) ... ok
+test_cfpb_api_snapshot_is_read_as_canonical_rows (test_prepare_data.PrepareDataTests.test_cfpb_api_snapshot_is_read_as_canonical_rows) ... ok
+test_cfpb_product_snapshot_is_read_as_canonical_rows (test_prepare_data.PrepareDataTests.test_cfpb_product_snapshot_is_read_as_canonical_rows) ... ok
+test_confirmatory_split_counts_balance_each_class (test_prepare_data.PrepareDataTests.test_confirmatory_split_counts_balance_each_class) ... ok
+test_excluded_dataset_removes_ids_and_normalized_content (test_prepare_data.PrepareDataTests.test_excluded_dataset_removes_ids_and_normalized_content) ... ok
+test_exclusion_can_preserve_unopened_test (test_prepare_data.PrepareDataTests.test_exclusion_can_preserve_unopened_test) ... ok
+test_frozen_labels_prevent_task_drift_after_exclusion (test_prepare_data.PrepareDataTests.test_frozen_labels_prevent_task_drift_after_exclusion) ... ok
+test_official_split_selection_preserves_boundaries (test_prepare_data.PrepareDataTests.test_official_split_selection_preserves_boundaries) ... ok
+test_spamassassin_sanitizer_removes_label_leaks_and_continuations (test_prepare_data.PrepareDataTests.test_spamassassin_sanitizer_removes_label_leaks_and_continuations) ... ok
+test_text_deduplication_is_global_and_order_independent (test_prepare_data.PrepareDataTests.test_text_deduplication_is_global_and_order_independent) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.014s
+
+OK
+test_command_precision_requires_command_cases (test_compare.CompareTests.test_command_precision_requires_command_cases) ... ok
+test_mcnemar_exact_identical_is_one (test_compare.CompareTests.test_mcnemar_exact_identical_is_one) ... ok
+test_mechanism_fields_are_defined_by_source (test_compare.CompareTests.test_mechanism_fields_are_defined_by_source) ... ok
+test_normalizes_deepagent_summary (test_compare.CompareTests.test_normalizes_deepagent_summary) ... ok
+test_paired_accuracy_difference (test_compare.CompareTests.test_paired_accuracy_difference) ... ok
+test_rate_threshold_tolerates_binary_float_equality (test_compare.CompareTests.test_rate_threshold_tolerates_binary_float_equality) ... ok
+test_recall_by_label_and_command_precision (test_compare.CompareTests.test_recall_by_label_and_command_precision) ... ok
+test_token_reduction (test_compare.CompareTests.test_token_reduction) ... ok
+test_wilson_interval_contains_observed_rate (test_compare.CompareTests.test_wilson_interval_contains_observed_rate) ... ok
+test_baseline_and_fallback_use_same_request (test_hosted_model.RunnerTests.test_baseline_and_fallback_use_same_request) ... ok
+test_command_bypass_does_not_call_model (test_hosted_model.RunnerTests.test_command_bypass_does_not_call_model) ... ok
+test_failure_is_redacted_and_checkpoint_can_resume (test_hosted_model.RunnerTests.test_failure_is_redacted_and_checkpoint_can_resume) ... ok
+test_hosted_preflight_is_offline (test_hosted_model.RunnerTests.test_hosted_preflight_is_offline) ... ok
+test_rate_limit_retries_without_failing_run (test_hosted_model.RunnerTests.test_rate_limit_retries_without_failing_run) ... ok
+test_resume_rejects_changed_endpoint (test_hosted_model.RunnerTests.test_resume_rejects_changed_endpoint) ... ok
+test_actual_chatopenai_serialization_and_roundtrip (test_hosted_model.TransportTests.test_actual_chatopenai_serialization_and_roundtrip) ... /Users/saikrishna/dev/deterministic-skills/reproduce/.venv/lib/python3.14/site-packages/langsmith/_internal/_beta_decorator.py:70: DeprecationWarning: 'asyncio.iscoroutinefunction' is deprecated and slated for removal in Python 3.16; use inspect.iscoroutinefunction() instead
+  if asyncio.iscoroutinefunction(func):
+ok
+test_actual_deepagent_has_no_tools_and_cases_are_isolated (test_hosted_model.TransportTests.test_actual_deepagent_has_no_tools_and_cases_are_isolated) ... /Users/saikrishna/dev/deterministic-skills/reproduce/.venv/lib/python3.14/site-packages/google/genai/types.py:42: DeprecationWarning: '_UnionGenericAlias' is deprecated and slated for removal in Python 3.17
+  VersionedUnionType = Union[builtin_types.UnionType, _UnionGenericAlias]
+ok
+test_invalid_extra_fields_and_refusal (test_hosted_model.TransportTests.test_invalid_extra_fields_and_refusal) ... ok
+test_missing_key_fails_before_http (test_hosted_model.TransportTests.test_missing_key_fails_before_http) ... ok
+test_integral_timeout_has_one_canonical_configuration_hash (test_hosted_model.UsageTests.test_integral_timeout_has_one_canonical_configuration_hash) ... ok
+test_missing_usage_is_not_zero (test_hosted_model.UsageTests.test_missing_usage_is_not_zero) ... ok
+test_optional_fields_remain_unknown (test_hosted_model.UsageTests.test_optional_fields_remain_unknown) ... ok
+test_output_namespace (test_hosted_model.UsageTests.test_output_namespace) ... ok
+test_provider_config_is_frozen_and_secret_free (test_hosted_model.UsageTests.test_provider_config_is_frozen_and_secret_free) ... ok
+test_reasoning_not_double_counted (test_hosted_model.UsageTests.test_reasoning_not_double_counted) ... ok
+test_usage_inconsistency_rejected (test_hosted_model.UsageTests.test_usage_inconsistency_rejected) ... ok
+test_macro_f1 (test_metrics.MetricsTests.test_macro_f1) ... ok
+test_write_json_atomic_replaces_target (test_metrics.MetricsTests.test_write_json_atomic_replaces_target) ... ok
+test_hybrid_preflight_freezes_exact_link_without_model (test_run_preflight.RunPreflightTests.test_hybrid_preflight_freezes_exact_link_without_model) ... ok
+test_hybrid_preflight_rejects_rewritten_fallback (test_run_preflight.RunPreflightTests.test_hybrid_preflight_rejects_rewritten_fallback) ... ok
+
+----------------------------------------------------------------------
+Ran 30 tests in 1.791s
+
+OK
+test_check_not_disabled_by_optimization (test_audit_paper.PaperAuditTests.test_check_not_disabled_by_optimization) ... ok
+test_duplicates_rejected (test_audit_paper.PaperAuditTests.test_duplicates_rejected) ... ok
+test_literal_label_and_constant_bootstrap (test_audit_paper.PaperAuditTests.test_literal_label_and_constant_bootstrap) ... ok
+test_quantile_interpolation (test_audit_paper.PaperAuditTests.test_quantile_interpolation) ... ok
+test_summary_derived_from_cases (test_audit_paper.PaperAuditTests.test_summary_derived_from_cases) ... ok
+test_wrong_correctness_rejected (test_audit_paper.PaperAuditTests.test_wrong_correctness_rejected) ... ok
+test_wrong_tokens_rejected (test_audit_paper.PaperAuditTests.test_wrong_tokens_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.000s
+
+OK
+test_ready_at_floor (test_assess_baseline.AssessBaselineTests.test_ready_at_floor) ... ok
+test_refines_before_limit (test_assess_baseline.AssessBaselineTests.test_refines_before_limit) ... ok
+test_stops_at_limit (test_assess_baseline.AssessBaselineTests.test_stops_at_limit) ... ok
+test_derives_structured_output_fields_and_types (test_generate.GenerateTests.test_derives_structured_output_fields_and_types) ... ok
+test_equivalent_generation_is_deterministic_and_answer_free (test_generate.GenerateTests.test_equivalent_generation_is_deterministic_and_answer_free) ... ok
+test_generates_one_sop_skill (test_generate.GenerateTests.test_generates_one_sop_skill) ... ok
+test_rejects_empty_datasources (test_generate.GenerateTests.test_rejects_empty_datasources) ... ok
+test_rejects_invalid_eval_schema (test_generate.GenerateTests.test_rejects_invalid_eval_schema) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.332s
+
+OK
+test_accepts_evals_sha256_invariant_alias (test_assess_candidate.AssessCandidateTests.test_accepts_evals_sha256_invariant_alias) ... ok
+test_accepts_generic_workflow_quality_without_accuracy (test_assess_candidate.AssessCandidateTests.test_accepts_generic_workflow_quality_without_accuracy) ... ok
+test_accepts_quality_preserving_token_reduction (test_assess_candidate.AssessCandidateTests.test_accepts_quality_preserving_token_reduction) ... ok
+test_accuracy_is_a_floor_while_tokens_optimize (test_assess_candidate.AssessCandidateTests.test_accuracy_is_a_floor_while_tokens_optimize) ... ok
+test_applies_non_inferiority_margin (test_assess_candidate.AssessCandidateTests.test_applies_non_inferiority_margin) ... ok
+test_rejects_candidate_without_objective_improvement (test_assess_candidate.AssessCandidateTests.test_rejects_candidate_without_objective_improvement) ... ok
+test_rejects_changed_frozen_system_prompt (test_assess_candidate.AssessCandidateTests.test_rejects_changed_frozen_system_prompt) ... ok
+test_rejects_changed_runtime_settings (test_assess_candidate.AssessCandidateTests.test_rejects_changed_runtime_settings) ... ok
+test_rejects_development_regression (test_assess_candidate.AssessCandidateTests.test_rejects_development_regression) ... ok
+test_rejects_equal_expense_when_minimum_is_zero (test_assess_candidate.AssessCandidateTests.test_rejects_equal_expense_when_minimum_is_zero) ... ok
+test_rejects_final_acceptance_without_baseline_validation (test_assess_candidate.AssessCandidateTests.test_rejects_final_acceptance_without_baseline_validation) ... ok
+test_skill_content_hash_tracks_references_and_scripts_not_assets (test_assess_candidate.AssessCandidateTests.test_skill_content_hash_tracks_references_and_scripts_not_assets) ... ok
+test_stops_after_configured_iteration_limit (test_assess_candidate.AssessCandidateTests.test_stops_after_configured_iteration_limit) ... ok
+test_stops_when_baseline_is_nonviable (test_assess_candidate.AssessCandidateTests.test_stops_when_baseline_is_nonviable) ... ok
+test_accepts_evaluation_hash_aliases (test_compare_variants.CompareVariantsTests.test_accepts_evaluation_hash_aliases) ... ok
+test_aligns_cases_by_id_and_rejects_duplicates (test_compare_variants.CompareVariantsTests.test_aligns_cases_by_id_and_rejects_duplicates) ... ok
+test_compares_generic_workflow_quality_without_accuracy (test_compare_variants.CompareVariantsTests.test_compares_generic_workflow_quality_without_accuracy) ... ok
+test_determinisation_charges_fallback_model_work (test_compare_variants.CompareVariantsTests.test_determinisation_charges_fallback_model_work) ... ok
+test_rejects_changed_runtime_settings (test_compare_variants.CompareVariantsTests.test_rejects_changed_runtime_settings) ... ok
+test_rejects_changed_system_prompt (test_compare_variants.CompareVariantsTests.test_rejects_changed_system_prompt) ... ok
+test_rejects_conflicting_evaluation_hash_aliases (test_compare_variants.CompareVariantsTests.test_rejects_conflicting_evaluation_hash_aliases) ... ok
+test_rejects_incomparable_runs (test_compare_variants.CompareVariantsTests.test_rejects_incomparable_runs) ... ok
+test_rejects_non_hybrid_comparison (test_compare_variants.CompareVariantsTests.test_rejects_non_hybrid_comparison) ... ok
+test_saves_core_metric_deltas (test_compare_variants.CompareVariantsTests.test_saves_core_metric_deltas) ... ok
+test_generated_scaffold_flows_into_paired_evolver_assessment (test_skill_pipeline.SkillPipelineTests.test_generated_scaffold_flows_into_paired_evolver_assessment) ... ok
+test_accepts_exact_explicit_command_fallback_link (test_sop_contract.SopContractTests.test_accepts_exact_explicit_command_fallback_link) ... ok
+test_rejects_rewritten_fallback (test_sop_contract.SopContractTests.test_rejects_rewritten_fallback) ... ok
+test_rejects_unlinked_command (test_sop_contract.SopContractTests.test_rejects_unlinked_command) ... ok
+
+----------------------------------------------------------------------
+Ran 28 tests in 0.086s
+
+OK

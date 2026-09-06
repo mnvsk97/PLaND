@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/Users/saikrishna/dev/deterministic-skills/paper/audit_paper.py", line 289, in <module>
+    main()
+    ~~~~^^
+  File "/Users/saikrishna/dev/deterministic-skills/paper/audit_paper.py", line 260, in main
+    rows.append(audit_pair(dataset, stage, repeat, plan))
+                ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/saikrishna/dev/deterministic-skills/paper/audit_paper.py", line 120, in audit_pair
+    check(close(value, comparison['paired_statistics'][key]), f'{dataset} {stage} {repeat}: interval mismatch {key}')
+                       ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'paired_statistics'

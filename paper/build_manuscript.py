@@ -123,7 +123,7 @@ def add_inline(paragraph, value: str) -> None:
             set_run_font(paragraph.add_run(match.group(4)), bold=True)
         elif match.group(5):
             run = paragraph.add_run(match.group(5))
-            set_run_font(run)
+            set_run_font(run, size=8.5)
             run.font.name = "Courier New"
             run._element.get_or_add_rPr().rFonts.set(qn("w:ascii"), "Courier New")
             run._element.get_or_add_rPr().rFonts.set(qn("w:hAnsi"), "Courier New")
@@ -224,6 +224,16 @@ def prevent_row_split(row) -> None:
 
 
 def table_widths(rows: list[list[str]]) -> list[int]:
+    if rows[0] == ['Dataset', 'Dev.', 'Selection', 'Final test']:
+        return [1390, 790, 1260, 1265]
+    if rows[0][1] == 'B attempts':
+        return [1390, 900, 900, 1515]
+    if rows[0][-1] == 'Decision':
+        return [1375, 1420, 1000, 910]
+    if len(rows[0]) > 2 and rows[0][2] == 'Calls B → H':
+        return [1390, 1430, 800, 1085]
+    if rows[0][0] == 'Dataset and split':
+        return [1380, 485, 1120, 1720] if rows[0][-1] == 'Tokens B → H' else [1380, 485, 1420, 1420]
     if rows[0] == ['Dataset', 'Dev.', 'Validation', 'Reserved test']:
         return [1475, 660, 1190, 1380]
     if rows[0][0].startswith('Dataset and classification'):
@@ -277,7 +287,7 @@ def add_table(document: Document, rows: list[list[str]]) -> None:
         prevent_row_split(docx_row)
         for column_index, (value, cell) in enumerate(zip(word_row, docx_row.cells)):
             set_cell_width(cell, widths[column_index])
-            set_cell_margins(cell)
+            set_cell_margins(cell, start=60, end=60, top=60, bottom=60)
             if row_index == 0:
                 shading = OxmlElement('w:shd')
                 shading.set(qn('w:fill'), 'E8EEF3')
@@ -289,7 +299,7 @@ def add_table(document: Document, rows: list[list[str]]) -> None:
                 paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
             add_inline(paragraph, value)
             for run in paragraph.runs:
-                set_run_font(run, size=10, bold=(row_index == 0))
+                set_run_font(run, size=9, bold=(row_index == 0))
     spacer = document.add_paragraph()
     set_paragraph_spacing(spacer, after=2)
 
@@ -301,6 +311,12 @@ def set_image_alt_text(inline_shape, description: str) -> None:
 
 
 def prepare_jpeg(figures_dir: Path, name: str) -> Path:
+    reviewed_svg = figures_dir / f"{name}-reviewed.svg"
+    if reviewed_svg.exists():
+        rendered = figures_dir.parent.parent / 'tmp' / 'paper-build' / 'figures' / f'{name}.png'
+        if not rendered.exists() or rendered.stat().st_mtime < reviewed_svg.stat().st_mtime:
+            raise RuntimeError('Render reviewed figures with build_artifacts.cjs first')
+        return rendered
     # Prefer an author-supplied PNG replacement when one exists.
     supplied_png = figures_dir / f"{name}.png"
     if supplied_png.exists():

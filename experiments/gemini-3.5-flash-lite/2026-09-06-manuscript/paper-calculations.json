@@ -1,0 +1,1350 @@
+{
+  "schema_version": 1,
+  "source_commit": "4ad24c9838922b3db777ac4ba4dbc34de7a449ae",
+  "plan_sha256": "57f613822481e0d95cecba0105fe227b96476c70ea9568848f0f0bcc0934eccd",
+  "model_identity": {
+    "kind": "hosted",
+    "provider": "openrouter",
+    "endpoint": "google-ai-studio",
+    "model": "google/gemini-3.5-flash-lite",
+    "configuration_sha256": "d703b8e16a3dc88aa1ac6a47171414c3873ee8f064db5bb911c5d67252fd9c4d",
+    "weight_digest": null
+  },
+  "evidence_files_verified": 39387,
+  "case_pairs": 16500,
+  "paired_runs": 24,
+  "runs": [
+    {
+      "dataset": "LEDGAR",
+      "stage": "development",
+      "repeat": 20260903,
+      "baseline": {
+        "cases": 500,
+        "correct": 483,
+        "accuracy": 0.966,
+        "model_calls": 500,
+        "input_tokens": 232981,
+        "output_tokens": 4546,
+        "total_tokens": 237527
+      },
+      "hybrid": {
+        "cases": 500,
+        "correct": 485,
+        "accuracy": 0.97,
+        "model_calls": 133,
+        "input_tokens": 62217,
+        "output_tokens": 1129,
+        "total_tokens": 63346
+      },
+      "accuracy_difference": 0.0040000000000000036,
+      "accuracy_ci": null,
+      "token_reduction": 0.7333103184059075,
+      "token_ci": null,
+      "passed": true,
+      "command_cases": 367,
+      "command_precision": 0.9863760217983651,
+      "tokens_saved_by_bypass": 174096,
+      "tokens_saved_on_fallback": 85,
+      "fallback_input_token_differences": [],
+      "baseline_sop_sha256": "187274d0362cfd50b28fcc425ef3a83fbd54317615e67c5ed6dfbcbf203a268f",
+      "hybrid_sop_sha256": "cfb84b4d0abfc762878b6a31f827ac27772bd1e7eec45dd40d25c7bc9ad77b24",
+      "classifier_sha256": "803295f06d6ef39a3f0398d617b814d7f5b4587933278f4457a32b99174434c6",
+      "evals_sha256": "0cb73326d9de4277f5f709b5ebb5e13c5bf3ce4e9953633178cecd99436af3bf",
+      "inputs": [
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/results/valid-development-repeat-20260903-baseline.json",
+          "sha256": "499c553ac37bc9566d6cd800ec1c9c37f2fd162811299e0c520be957251dde75"
+        },
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/results/valid-development-repeat-20260903-hybrid.json",
+          "sha256": "7297fbdc644039d3590435323cad32d58138e978c3cb4647338ca828b2416911"
+        },
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar-valid/results/development-repeat-20260903-comparison.json",
+          "sha256": "3525fbd07467a237bb4472e5b79fb0acde1c72a3c2c1ba1601ef18ffdf84b8e5"
+        }
+      ]
+    },
+    {
+      "dataset": "LEDGAR",
+      "stage": "development",
+      "repeat": 20260904,
+      "baseline": {
+        "cases": 500,
+        "correct": 485,
+        "accuracy": 0.97,
+        "model_calls": 500,
+        "input_tokens": 232981,
+        "output_tokens": 4600,
+        "total_tokens": 237581
+      },
+      "hybrid": {
+        "cases": 500,
+        "correct": 487,
+        "accuracy": 0.974,
+        "model_calls": 133,
+        "input_tokens": 62217,
+        "output_tokens": 1116,
+        "total_tokens": 63333
+      },
+      "accuracy_difference": 0.0040000000000000036,
+      "accuracy_ci": null,
+      "token_reduction": 0.7334256527247549,
+      "token_ci": null,
+      "passed": true,
+      "command_cases": 367,
+      "command_precision": 0.9863760217983651,
+      "tokens_saved_by_bypass": 174192,
+      "tokens_saved_on_fallback": 56,
+      "fallback_input_token_differences": [],
+      "baseline_sop_sha256": "187274d0362cfd50b28fcc425ef3a83fbd54317615e67c5ed6dfbcbf203a268f",
+      "hybrid_sop_sha256": "cfb84b4d0abfc762878b6a31f827ac27772bd1e7eec45dd40d25c7bc9ad77b24",
+      "classifier_sha256": "803295f06d6ef39a3f0398d617b814d7f5b4587933278f4457a32b99174434c6",
+      "evals_sha256": "0cb73326d9de4277f5f709b5ebb5e13c5bf3ce4e9953633178cecd99436af3bf",
+      "inputs": [
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/results/valid-development-repeat-20260904-baseline.json",
+          "sha256": "56bd3e5b4989283ec9f2bc9817f96ef51341892eb1286ea66ec502f38980394f"
+        },
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/results/valid-development-repeat-20260904-hybrid.json",
+          "sha256": "f7ad072482b1cfda107eaa043ef19f27533683ec4182eb92d146b70eb328b639"
+        },
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar-valid/results/development-repeat-20260904-comparison.json",
+          "sha256": "151898a77014dbda99a69c6c6df03ffab058fbed23f560b5b801b764bf64aab1"
+        }
+      ]
+    },
+    {
+      "dataset": "LEDGAR",
+      "stage": "development",
+      "repeat": 20260905,
+      "baseline": {
+        "cases": 500,
+        "correct": 480,
+        "accuracy": 0.96,
+        "model_calls": 500,
+        "input_tokens": 232981,
+        "output_tokens": 4665,
+        "total_tokens": 237646
+      },
+      "hybrid": {
+        "cases": 500,
+        "correct": 486,
+        "accuracy": 0.972,
+        "model_calls": 133,
+        "input_tokens": 62217,
+        "output_tokens": 1138,
+        "total_tokens": 63355
+      },
+      "accuracy_difference": 0.01200000000000001,
+      "accuracy_ci": null,
+      "token_reduction": 0.7334059904227296,
+      "token_ci": null,
+      "passed": true,
+      "command_cases": 367,
+      "command_precision": 0.9863760217983651,
+      "tokens_saved_by_bypass": 174245,
+      "tokens_saved_on_fallback": 46,
+      "fallback_input_token_differences": [],
+      "baseline_sop_sha256": "187274d0362cfd50b28fcc425ef3a83fbd54317615e67c5ed6dfbcbf203a268f",
+      "hybrid_sop_sha256": "cfb84b4d0abfc762878b6a31f827ac27772bd1e7eec45dd40d25c7bc9ad77b24",
+      "classifier_sha256": "803295f06d6ef39a3f0398d617b814d7f5b4587933278f4457a32b99174434c6",
+      "evals_sha256": "0cb73326d9de4277f5f709b5ebb5e13c5bf3ce4e9953633178cecd99436af3bf",
+      "inputs": [
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/results/valid-development-repeat-20260905-baseline.json",
+          "sha256": "6cd9da1dbd455d6db35d35a4b35ebb7346b09c5fd7c77700e4f2a5854d0b808d"
+        },
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/results/valid-development-repeat-20260905-hybrid.json",
+          "sha256": "10bf1c4becd82e9fa4021e7cdab74a11f883fb3566da1e157857bcc20b304327"
+        },
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar-valid/results/development-repeat-20260905-comparison.json",
+          "sha256": "c5eaa96ba8f52d7c66abe2da228d5322675c0eed45f7af7bcd379122d4d39b5b"
+        }
+      ]
+    },
+    {
+      "dataset": "LEDGAR",
+      "stage": "selection",
+      "repeat": 20260903,
+      "baseline": {
+        "cases": 1000,
+        "correct": 970,
+        "accuracy": 0.97,
+        "model_calls": 1000,
+        "input_tokens": 463513,
+        "output_tokens": 9157,
+        "total_tokens": 472670
+      },
+      "hybrid": {
+        "cases": 1000,
+        "correct": 967,
+        "accuracy": 0.967,
+        "model_calls": 302,
+        "input_tokens": 137715,
+        "output_tokens": 2709,
+        "total_tokens": 140424
+      },
+      "accuracy_difference": -0.0030000000000000027,
+      "accuracy_ci": [
+        -0.011,
+        0.005
+      ],
+      "token_reduction": 0.7029132375653204,
+      "token_ci": [
+        0.6738023638639514,
+        0.7316441249703339
+      ],
+      "passed": true,
+      "command_cases": 698,
+      "command_precision": 0.9785100286532952,
+      "tokens_saved_by_bypass": 332209,
+      "tokens_saved_on_fallback": 37,
+      "fallback_input_token_differences": [],
+      "baseline_sop_sha256": "187274d0362cfd50b28fcc425ef3a83fbd54317615e67c5ed6dfbcbf203a268f",
+      "hybrid_sop_sha256": "cfb84b4d0abfc762878b6a31f827ac27772bd1e7eec45dd40d25c7bc9ad77b24",
+      "classifier_sha256": "803295f06d6ef39a3f0398d617b814d7f5b4587933278f4457a32b99174434c6",
+      "evals_sha256": "0cb73326d9de4277f5f709b5ebb5e13c5bf3ce4e9953633178cecd99436af3bf",
+      "inputs": [
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/results/valid-selection-repeat-20260903-baseline.json",
+          "sha256": "e253ef1a9999712f7ca663737d43f3b5b28df9e416ac8b81ea71a1e01fe5dd6a"
+        },
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/results/valid-selection-repeat-20260903-hybrid.json",
+          "sha256": "5ee6fa696ab1fd5c1c4872f2ae67cafb9b51b68125f84bccad8d9034f4bdac23"
+        },
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar-valid/results/selection-repeat-20260903-comparison.json",
+          "sha256": "aa012632d1f09a3f00d6dd8a23ddc491d6fa67a981d232fa9e2f00396a5fd44d"
+        }
+      ]
+    },
+    {
+      "dataset": "LEDGAR",
+      "stage": "selection",
+      "repeat": 20260904,
+      "baseline": {
+        "cases": 1000,
+        "correct": 973,
+        "accuracy": 0.973,
+        "model_calls": 1000,
+        "input_tokens": 463513,
+        "output_tokens": 9204,
+        "total_tokens": 472717
+      },
+      "hybrid": {
+        "cases": 1000,
+        "correct": 969,
+        "accuracy": 0.969,
+        "model_calls": 302,
+        "input_tokens": 137715,
+        "output_tokens": 2677,
+        "total_tokens": 140392
+      },
+      "accuracy_difference": -0.0040000000000000036,
+      "accuracy_ci": [
+        -0.012,
+        0.004
+      ],
+      "token_reduction": 0.7030104692659668,
+      "token_ci": [
+        0.674001317710767,
+        0.7316916658259917
+      ],
+      "passed": true,
+      "command_cases": 698,
+      "command_precision": 0.9785100286532952,
+      "tokens_saved_by_bypass": 332231,
+      "tokens_saved_on_fallback": 94,
+      "fallback_input_token_differences": [],
+      "baseline_sop_sha256": "187274d0362cfd50b28fcc425ef3a83fbd54317615e67c5ed6dfbcbf203a268f",
+      "hybrid_sop_sha256": "cfb84b4d0abfc762878b6a31f827ac27772bd1e7eec45dd40d25c7bc9ad77b24",
+      "classifier_sha256": "803295f06d6ef39a3f0398d617b814d7f5b4587933278f4457a32b99174434c6",
+      "evals_sha256": "0cb73326d9de4277f5f709b5ebb5e13c5bf3ce4e9953633178cecd99436af3bf",
+      "inputs": [
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/results/valid-selection-repeat-20260904-baseline.json",
+          "sha256": "120b94f8d63d9360eb79acabbc0f8a175e5a4a011b2691a351a62b60714258bd"
+        },
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/results/valid-selection-repeat-20260904-hybrid.json",
+          "sha256": "e3828c3aa60268a8729c67e2848e67f027b04035336a671aa5e23ca5f27d5bf7"
+        },
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar-valid/results/selection-repeat-20260904-comparison.json",
+          "sha256": "33268d61d1346c48f2ed124d7deed2ab14885129bbd6f72cef25954f1b57bfa7"
+        }
+      ]
+    },
+    {
+      "dataset": "LEDGAR",
+      "stage": "selection",
+      "repeat": 20260905,
+      "baseline": {
+        "cases": 1000,
+        "correct": 974,
+        "accuracy": 0.974,
+        "model_calls": 1000,
+        "input_tokens": 463513,
+        "output_tokens": 9287,
+        "total_tokens": 472800
+      },
+      "hybrid": {
+        "cases": 1000,
+        "correct": 969,
+        "accuracy": 0.969,
+        "model_calls": 302,
+        "input_tokens": 137715,
+        "output_tokens": 2769,
+        "total_tokens": 140484
+      },
+      "accuracy_difference": -0.0050000000000000044,
+      "accuracy_ci": [
+        -0.013,
+        0.003
+      ],
+      "token_reduction": 0.7028680203045685,
+      "token_ci": [
+        0.6738588171375849,
+        0.7315347256847546
+      ],
+      "passed": true,
+      "command_cases": 698,
+      "command_precision": 0.9785100286532952,
+      "tokens_saved_by_bypass": 332295,
+      "tokens_saved_on_fallback": 21,
+      "fallback_input_token_differences": [],
+      "baseline_sop_sha256": "187274d0362cfd50b28fcc425ef3a83fbd54317615e67c5ed6dfbcbf203a268f",
+      "hybrid_sop_sha256": "cfb84b4d0abfc762878b6a31f827ac27772bd1e7eec45dd40d25c7bc9ad77b24",
+      "classifier_sha256": "803295f06d6ef39a3f0398d617b814d7f5b4587933278f4457a32b99174434c6",
+      "evals_sha256": "0cb73326d9de4277f5f709b5ebb5e13c5bf3ce4e9953633178cecd99436af3bf",
+      "inputs": [
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/results/valid-selection-repeat-20260905-baseline.json",
+          "sha256": "3ba5dec7a1530711ec73154ee80780d3c6b57bd1d84c2c81456d75e6a2a46893"
+        },
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/results/valid-selection-repeat-20260905-hybrid.json",
+          "sha256": "644f3098998e77597a3d032144aff0ed86db6ee0485096b1d9f43f2ec7c78f1f"
+        },
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar-valid/results/selection-repeat-20260905-comparison.json",
+          "sha256": "6e7e6a182d7ddd8e32c3b1a45aacc3eb60e11dbcc08d785de17bef835d541400"
+        }
+      ]
+    },
+    {
+      "dataset": "LEDGAR",
+      "stage": "final-test",
+      "repeat": 20260903,
+      "baseline": {
+        "cases": 500,
+        "correct": 474,
+        "accuracy": 0.948,
+        "model_calls": 500,
+        "input_tokens": 237869,
+        "output_tokens": 4688,
+        "total_tokens": 242557
+      },
+      "hybrid": {
+        "cases": 500,
+        "correct": 479,
+        "accuracy": 0.958,
+        "model_calls": 130,
+        "input_tokens": 60524,
+        "output_tokens": 1129,
+        "total_tokens": 61653
+      },
+      "accuracy_difference": 0.010000000000000009,
+      "accuracy_ci": [
+        -0.004,
+        0.026
+      ],
+      "token_reduction": 0.7458205700103481,
+      "token_ci": [
+        0.7064591554125391,
+        0.7836280509259784
+      ],
+      "passed": true,
+      "command_cases": 370,
+      "command_precision": 0.9594594594594594,
+      "tokens_saved_by_bypass": 180828,
+      "tokens_saved_on_fallback": 76,
+      "fallback_input_token_differences": [],
+      "baseline_sop_sha256": "187274d0362cfd50b28fcc425ef3a83fbd54317615e67c5ed6dfbcbf203a268f",
+      "hybrid_sop_sha256": "cfb84b4d0abfc762878b6a31f827ac27772bd1e7eec45dd40d25c7bc9ad77b24",
+      "classifier_sha256": "803295f06d6ef39a3f0398d617b814d7f5b4587933278f4457a32b99174434c6",
+      "evals_sha256": "0cb73326d9de4277f5f709b5ebb5e13c5bf3ce4e9953633178cecd99436af3bf",
+      "inputs": [
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/results/valid-final-test-repeat-20260903-baseline.json",
+          "sha256": "983ab8b73e0668f1096bfa5120fe015eb23716c56386867ecbcceb1a65cdefac"
+        },
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/results/valid-final-test-repeat-20260903-hybrid.json",
+          "sha256": "8c275a6877c9562eed5a5ba493612767019a5a572a154824501a6d611e16c4c0"
+        },
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar-valid/results/final-test-repeat-20260903-comparison.json",
+          "sha256": "cb0fe4b3e9e82a6587f7a9eaa22140e0222822f370f31e73bfe565d3c4150bd6"
+        }
+      ]
+    },
+    {
+      "dataset": "LEDGAR",
+      "stage": "final-test",
+      "repeat": 20260904,
+      "baseline": {
+        "cases": 500,
+        "correct": 475,
+        "accuracy": 0.95,
+        "model_calls": 500,
+        "input_tokens": 237869,
+        "output_tokens": 4552,
+        "total_tokens": 242421
+      },
+      "hybrid": {
+        "cases": 500,
+        "correct": 479,
+        "accuracy": 0.958,
+        "model_calls": 130,
+        "input_tokens": 60524,
+        "output_tokens": 1176,
+        "total_tokens": 61700
+      },
+      "accuracy_difference": 0.008000000000000007,
+      "accuracy_ci": [
+        -0.006,
+        0.022
+      ],
+      "token_reduction": 0.745484095849782,
+      "token_ci": [
+        0.706225441356263,
+        0.7834409882275687
+      ],
+      "passed": true,
+      "command_cases": 370,
+      "command_precision": 0.9594594594594594,
+      "tokens_saved_by_bypass": 180760,
+      "tokens_saved_on_fallback": -39,
+      "fallback_input_token_differences": [],
+      "baseline_sop_sha256": "187274d0362cfd50b28fcc425ef3a83fbd54317615e67c5ed6dfbcbf203a268f",
+      "hybrid_sop_sha256": "cfb84b4d0abfc762878b6a31f827ac27772bd1e7eec45dd40d25c7bc9ad77b24",
+      "classifier_sha256": "803295f06d6ef39a3f0398d617b814d7f5b4587933278f4457a32b99174434c6",
+      "evals_sha256": "0cb73326d9de4277f5f709b5ebb5e13c5bf3ce4e9953633178cecd99436af3bf",
+      "inputs": [
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/results/valid-final-test-repeat-20260904-baseline.json",
+          "sha256": "066acbd047b5fe6fefabc61a4ef96daddea4edabc1bb6cc720cb839ff17e21cf"
+        },
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/results/valid-final-test-repeat-20260904-hybrid.json",
+          "sha256": "010e31ec1a81db726fcb35caba96f0470b8d3db841f69eb2aaadd290ad2c2dba"
+        },
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar-valid/results/final-test-repeat-20260904-comparison.json",
+          "sha256": "ab55403bacff8b5224d4c9c0b4c334e2a9919fc38f320fb14bca5df7560c1908"
+        }
+      ]
+    },
+    {
+      "dataset": "LEDGAR",
+      "stage": "final-test",
+      "repeat": 20260905,
+      "baseline": {
+        "cases": 500,
+        "correct": 475,
+        "accuracy": 0.95,
+        "model_calls": 500,
+        "input_tokens": 237869,
+        "output_tokens": 4503,
+        "total_tokens": 242372
+      },
+      "hybrid": {
+        "cases": 500,
+        "correct": 479,
+        "accuracy": 0.958,
+        "model_calls": 130,
+        "input_tokens": 60524,
+        "output_tokens": 1183,
+        "total_tokens": 61707
+      },
+      "accuracy_difference": 0.008000000000000007,
+      "accuracy_ci": [
+        -0.006,
+        0.022049999999999268
+      ],
+      "token_reduction": 0.7454037595101745,
+      "token_ci": [
+        0.7061042441539688,
+        0.7832557207110762
+      ],
+      "passed": true,
+      "command_cases": 370,
+      "command_precision": 0.9594594594594594,
+      "tokens_saved_by_bypass": 180726,
+      "tokens_saved_on_fallback": -61,
+      "fallback_input_token_differences": [],
+      "baseline_sop_sha256": "187274d0362cfd50b28fcc425ef3a83fbd54317615e67c5ed6dfbcbf203a268f",
+      "hybrid_sop_sha256": "cfb84b4d0abfc762878b6a31f827ac27772bd1e7eec45dd40d25c7bc9ad77b24",
+      "classifier_sha256": "803295f06d6ef39a3f0398d617b814d7f5b4587933278f4457a32b99174434c6",
+      "evals_sha256": "0cb73326d9de4277f5f709b5ebb5e13c5bf3ce4e9953633178cecd99436af3bf",
+      "inputs": [
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/results/valid-final-test-repeat-20260905-baseline.json",
+          "sha256": "af204c618ad85fca74d9e69cea5ffbc7d8e3d6a200d2c638cccb3e9740c39617"
+        },
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar/results/valid-final-test-repeat-20260905-hybrid.json",
+          "sha256": "3d13e3f71c8f30f61d43912ce6f05cf3aff5846b564844919e5dc5d2b12ff2b4"
+        },
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/ledgar-valid/results/final-test-repeat-20260905-comparison.json",
+          "sha256": "40330e0c3152b89c34c6521679cf3893fe904b277da936ddc830565188af2374"
+        }
+      ]
+    },
+    {
+      "dataset": "CFPB",
+      "stage": "development",
+      "repeat": 20260903,
+      "baseline": {
+        "cases": 500,
+        "correct": 410,
+        "accuracy": 0.82,
+        "model_calls": 500,
+        "input_tokens": 346130,
+        "output_tokens": 6073,
+        "total_tokens": 352203
+      },
+      "hybrid": {
+        "cases": 500,
+        "correct": 411,
+        "accuracy": 0.822,
+        "model_calls": 397,
+        "input_tokens": 267092,
+        "output_tokens": 5021,
+        "total_tokens": 272113
+      },
+      "accuracy_difference": 0.0020000000000000018,
+      "accuracy_ci": null,
+      "token_reduction": 0.22739726805279908,
+      "token_ci": null,
+      "passed": true,
+      "command_cases": 103,
+      "command_precision": 0.970873786407767,
+      "tokens_saved_by_bypass": 80115,
+      "tokens_saved_on_fallback": -25,
+      "fallback_input_token_differences": [],
+      "baseline_sop_sha256": "70deb8e12457bac86069bf237e20bb521a354393ca6d0236a615c622f6a85987",
+      "hybrid_sop_sha256": "6610c6ed704177325ad08c503be7079e822ba3117f4a5e031c5f99f4bd7da140",
+      "classifier_sha256": "f808502f861526bc029aabfde27aa697b51c69cebf79744126453a40c1df4768",
+      "evals_sha256": "978383744e7110487d07ac33cc94e2566d07360671ee63cafa80987f525129ab",
+      "inputs": [
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/development-repeat-20260903-baseline.json",
+          "sha256": "297d35d1d8d162cea6c3dae4551a0c291f9f6f3be9f84b4c58afaf8a51b6ad9d"
+        },
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/development-repeat-20260903-hybrid.json",
+          "sha256": "1548835562cbe6c35e5da9a23e6399f2d77d3a8101028a09fd4457fe57a47945"
+        },
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/development-repeat-20260903-comparison.json",
+          "sha256": "84a6cf946d58dbe6ec0e65cd929e5644293edf44046c1cd3fe529460456cac46"
+        }
+      ]
+    },
+    {
+      "dataset": "CFPB",
+      "stage": "development",
+      "repeat": 20260904,
+      "baseline": {
+        "cases": 500,
+        "correct": 407,
+        "accuracy": 0.814,
+        "model_calls": 500,
+        "input_tokens": 346130,
+        "output_tokens": 6010,
+        "total_tokens": 352140
+      },
+      "hybrid": {
+        "cases": 500,
+        "correct": 412,
+        "accuracy": 0.824,
+        "model_calls": 397,
+        "input_tokens": 267092,
+        "output_tokens": 5001,
+        "total_tokens": 272093
+      },
+      "accuracy_difference": 0.010000000000000009,
+      "accuracy_ci": null,
+      "token_reduction": 0.22731584029079344,
+      "token_ci": null,
+      "passed": true,
+      "command_cases": 103,
+      "command_precision": 0.970873786407767,
+      "tokens_saved_by_bypass": 80069,
+      "tokens_saved_on_fallback": -22,
+      "fallback_input_token_differences": [],
+      "baseline_sop_sha256": "70deb8e12457bac86069bf237e20bb521a354393ca6d0236a615c622f6a85987",
+      "hybrid_sop_sha256": "6610c6ed704177325ad08c503be7079e822ba3117f4a5e031c5f99f4bd7da140",
+      "classifier_sha256": "f808502f861526bc029aabfde27aa697b51c69cebf79744126453a40c1df4768",
+      "evals_sha256": "978383744e7110487d07ac33cc94e2566d07360671ee63cafa80987f525129ab",
+      "inputs": [
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/development-repeat-20260904-baseline.json",
+          "sha256": "8f5ec6dd1d0e25794f2b731724212e867a67ad120558b76d0c7d77e028f58b71"
+        },
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/development-repeat-20260904-hybrid.json",
+          "sha256": "b81c25779f63f61bfa309a0de050a8b53494568f6d497f3517bd880278e4e0bf"
+        },
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/development-repeat-20260904-comparison.json",
+          "sha256": "ae457df910b22afc96da41ddc12a3f7967e0c1da14d843aedde9e31862bd1329"
+        }
+      ]
+    },
+    {
+      "dataset": "CFPB",
+      "stage": "development",
+      "repeat": 20260905,
+      "baseline": {
+        "cases": 500,
+        "correct": 408,
+        "accuracy": 0.816,
+        "model_calls": 500,
+        "input_tokens": 346130,
+        "output_tokens": 5950,
+        "total_tokens": 352080
+      },
+      "hybrid": {
+        "cases": 500,
+        "correct": 405,
+        "accuracy": 0.81,
+        "model_calls": 397,
+        "input_tokens": 267092,
+        "output_tokens": 4925,
+        "total_tokens": 272017
+      },
+      "accuracy_difference": -0.005999999999999894,
+      "accuracy_ci": null,
+      "token_reduction": 0.2274000227221086,
+      "token_ci": null,
+      "passed": true,
+      "command_cases": 103,
+      "command_precision": 0.970873786407767,
+      "tokens_saved_by_bypass": 80078,
+      "tokens_saved_on_fallback": -15,
+      "fallback_input_token_differences": [],
+      "baseline_sop_sha256": "70deb8e12457bac86069bf237e20bb521a354393ca6d0236a615c622f6a85987",
+      "hybrid_sop_sha256": "6610c6ed704177325ad08c503be7079e822ba3117f4a5e031c5f99f4bd7da140",
+      "classifier_sha256": "f808502f861526bc029aabfde27aa697b51c69cebf79744126453a40c1df4768",
+      "evals_sha256": "978383744e7110487d07ac33cc94e2566d07360671ee63cafa80987f525129ab",
+      "inputs": [
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/development-repeat-20260905-baseline.json",
+          "sha256": "cd5716c33e4263a914a85204e81689635476ed416c691fc59d5d4fefdce2638c"
+        },
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/development-repeat-20260905-hybrid.json",
+          "sha256": "c3c37e0bce2593e61a7560c798c2568c6eebcc008d4abaacb90634a65dcc802b"
+        },
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/development-repeat-20260905-comparison.json",
+          "sha256": "fd2242ca02f49a29211e3fac6fd835a0a97d1a29fa11730cfcb787ff8fc285aa"
+        }
+      ]
+    },
+    {
+      "dataset": "CFPB",
+      "stage": "selection",
+      "repeat": 20260903,
+      "baseline": {
+        "cases": 1000,
+        "correct": 800,
+        "accuracy": 0.8,
+        "model_calls": 1000,
+        "input_tokens": 688695,
+        "output_tokens": 11813,
+        "total_tokens": 700508
+      },
+      "hybrid": {
+        "cases": 1000,
+        "correct": 794,
+        "accuracy": 0.794,
+        "model_calls": 788,
+        "input_tokens": 526555,
+        "output_tokens": 9869,
+        "total_tokens": 536424
+      },
+      "accuracy_difference": -0.006000000000000005,
+      "accuracy_ci": [
+        -0.016,
+        0.004
+      ],
+      "token_reduction": 0.23423572607307838,
+      "token_ci": [
+        0.20557606000093492,
+        0.26334354862347303
+      ],
+      "passed": false,
+      "command_cases": 212,
+      "command_precision": 0.9339622641509434,
+      "tokens_saved_by_bypass": 164411,
+      "tokens_saved_on_fallback": -327,
+      "fallback_input_token_differences": [],
+      "baseline_sop_sha256": "70deb8e12457bac86069bf237e20bb521a354393ca6d0236a615c622f6a85987",
+      "hybrid_sop_sha256": "6610c6ed704177325ad08c503be7079e822ba3117f4a5e031c5f99f4bd7da140",
+      "classifier_sha256": "f808502f861526bc029aabfde27aa697b51c69cebf79744126453a40c1df4768",
+      "evals_sha256": "978383744e7110487d07ac33cc94e2566d07360671ee63cafa80987f525129ab",
+      "inputs": [
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/selection-repeat-20260903-baseline.json",
+          "sha256": "4a0e10ba0aeb55a7de8513abb363b6b668a53eb30cd42bfb63f58737987429d4"
+        },
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/selection-repeat-20260903-hybrid.json",
+          "sha256": "d40830208df7bee970249641832c5d25dc6c32ee51f5e578d878d1f7769e08e1"
+        },
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/selection-repeat-20260903-comparison.json",
+          "sha256": "98f6899c94d4125db1c3381f29af62c81e91c391090bdc95e97b77fb33adad97"
+        }
+      ]
+    },
+    {
+      "dataset": "CFPB",
+      "stage": "selection",
+      "repeat": 20260904,
+      "baseline": {
+        "cases": 1000,
+        "correct": 796,
+        "accuracy": 0.796,
+        "model_calls": 1000,
+        "input_tokens": 688695,
+        "output_tokens": 11831,
+        "total_tokens": 700526
+      },
+      "hybrid": {
+        "cases": 1000,
+        "correct": 789,
+        "accuracy": 0.789,
+        "model_calls": 788,
+        "input_tokens": 526555,
+        "output_tokens": 9586,
+        "total_tokens": 536141
+      },
+      "accuracy_difference": -0.007000000000000006,
+      "accuracy_ci": [
+        -0.018,
+        0.004
+      ],
+      "token_reduction": 0.2346593845196324,
+      "token_ci": [
+        0.20598520529222453,
+        0.2637632151214494
+      ],
+      "passed": false,
+      "command_cases": 212,
+      "command_precision": 0.9339622641509434,
+      "tokens_saved_by_bypass": 164388,
+      "tokens_saved_on_fallback": -3,
+      "fallback_input_token_differences": [],
+      "baseline_sop_sha256": "70deb8e12457bac86069bf237e20bb521a354393ca6d0236a615c622f6a85987",
+      "hybrid_sop_sha256": "6610c6ed704177325ad08c503be7079e822ba3117f4a5e031c5f99f4bd7da140",
+      "classifier_sha256": "f808502f861526bc029aabfde27aa697b51c69cebf79744126453a40c1df4768",
+      "evals_sha256": "978383744e7110487d07ac33cc94e2566d07360671ee63cafa80987f525129ab",
+      "inputs": [
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/selection-repeat-20260904-baseline.json",
+          "sha256": "8b36786f705125042fe88124b230c503125f3f2ea8bf15d0be7a6b0f117ea224"
+        },
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/selection-repeat-20260904-hybrid.json",
+          "sha256": "6991d39916d120d54b95822f9d11d4942afd2f6c46235fa82e62eb6c9ff3b178"
+        },
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/selection-repeat-20260904-comparison.json",
+          "sha256": "be1a7e440917dc758cbf2c3786635c4d63425dc992fd34a5cfc5075317ab6cdb"
+        }
+      ]
+    },
+    {
+      "dataset": "CFPB",
+      "stage": "selection",
+      "repeat": 20260905,
+      "baseline": {
+        "cases": 1000,
+        "correct": 796,
+        "accuracy": 0.796,
+        "model_calls": 1000,
+        "input_tokens": 688695,
+        "output_tokens": 11775,
+        "total_tokens": 700470
+      },
+      "hybrid": {
+        "cases": 1000,
+        "correct": 795,
+        "accuracy": 0.795,
+        "model_calls": 788,
+        "input_tokens": 526555,
+        "output_tokens": 9556,
+        "total_tokens": 536111
+      },
+      "accuracy_difference": -0.0010000000000000009,
+      "accuracy_ci": [
+        -0.012,
+        0.011
+      ],
+      "token_reduction": 0.2346410267391894,
+      "token_ci": [
+        0.2060089336007623,
+        0.2638075016980226
+      ],
+      "passed": false,
+      "command_cases": 212,
+      "command_precision": 0.9339622641509434,
+      "tokens_saved_by_bypass": 164412,
+      "tokens_saved_on_fallback": -53,
+      "fallback_input_token_differences": [],
+      "baseline_sop_sha256": "70deb8e12457bac86069bf237e20bb521a354393ca6d0236a615c622f6a85987",
+      "hybrid_sop_sha256": "6610c6ed704177325ad08c503be7079e822ba3117f4a5e031c5f99f4bd7da140",
+      "classifier_sha256": "f808502f861526bc029aabfde27aa697b51c69cebf79744126453a40c1df4768",
+      "evals_sha256": "978383744e7110487d07ac33cc94e2566d07360671ee63cafa80987f525129ab",
+      "inputs": [
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/selection-repeat-20260905-baseline.json",
+          "sha256": "08da68054570d416dfd26ad7fe9cf8dadc1d58838d92496d39bcb00eea51b034"
+        },
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/selection-repeat-20260905-hybrid.json",
+          "sha256": "e869aae2c19694b0a97282c7559c33ac63d63935f95b6fde042c56535d701311"
+        },
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/cfpb/results/selection-repeat-20260905-comparison.json",
+          "sha256": "913ffefa96c2665ff685c522074127659f07ab036fe0228a4c19358f9dd67a88"
+        }
+      ]
+    },
+    {
+      "dataset": "SpamAssassin",
+      "stage": "development",
+      "repeat": 20260903,
+      "baseline": {
+        "cases": 500,
+        "correct": 493,
+        "accuracy": 0.986,
+        "model_calls": 500,
+        "input_tokens": 1361528,
+        "output_tokens": 4246,
+        "total_tokens": 1365774
+      },
+      "hybrid": {
+        "cases": 500,
+        "correct": 493,
+        "accuracy": 0.986,
+        "model_calls": 313,
+        "input_tokens": 928251,
+        "output_tokens": 2561,
+        "total_tokens": 930812
+      },
+      "accuracy_difference": 0.0,
+      "accuracy_ci": null,
+      "token_reduction": 0.3184728952227821,
+      "token_ci": null,
+      "passed": true,
+      "command_cases": 187,
+      "command_precision": 1.0,
+      "tokens_saved_by_bypass": 434986,
+      "tokens_saved_on_fallback": -24,
+      "fallback_input_token_differences": [],
+      "baseline_sop_sha256": "b3c9ec9c8b7af3ccf5d9aeaee0d7080a3a28e8e7b48bb4864177e16764914f98",
+      "hybrid_sop_sha256": "08e44ddbec25cfc4424b7798d8afa14bf729a2256eada5516c66ef6e7df0b6fc",
+      "classifier_sha256": "99498926e339d0f2867e78d365c9ddb60f41d02db4fd69ad041e5efb7218863a",
+      "evals_sha256": "6dfefbcfbfd2ea068e3b07da48361b1743f855f0fd2964ec34bfefd347d6593b",
+      "inputs": [
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/spamassassin/results/development-repeat-20260903-baseline.json",
+          "sha256": "e62e3d6cfc307ca676e35dc801edda9fd449c45883db25da546d75f66f792f03"
+        },
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/spamassassin/results/development-repeat-20260903-hybrid.json",
+          "sha256": "31850e4c1ec27c30572d82160af58d04fed5428fb14341d85144c2cd1384b863"
+        },
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/spamassassin/results/development-repeat-20260903-comparison.json",
+          "sha256": "81868f55def42e0d18b10280f0337219e479c715161d6a5e464d036c3550e527"
+        }
+      ]
+    },
+    {
+      "dataset": "SpamAssassin",
+      "stage": "development",
+      "repeat": 20260904,
+      "baseline": {
+        "cases": 500,
+        "correct": 496,
+        "accuracy": 0.992,
+        "model_calls": 500,
+        "input_tokens": 1361528,
+        "output_tokens": 4183,
+        "total_tokens": 1365711
+      },
+      "hybrid": {
+        "cases": 500,
+        "correct": 494,
+        "accuracy": 0.988,
+        "model_calls": 313,
+        "input_tokens": 928251,
+        "output_tokens": 2575,
+        "total_tokens": 930826
+      },
+      "accuracy_difference": -0.0040000000000000036,
+      "accuracy_ci": null,
+      "token_reduction": 0.31843120543072434,
+      "token_ci": null,
+      "passed": true,
+      "command_cases": 187,
+      "command_precision": 1.0,
+      "tokens_saved_by_bypass": 434898,
+      "tokens_saved_on_fallback": -13,
+      "fallback_input_token_differences": [],
+      "baseline_sop_sha256": "b3c9ec9c8b7af3ccf5d9aeaee0d7080a3a28e8e7b48bb4864177e16764914f98",
+      "hybrid_sop_sha256": "08e44ddbec25cfc4424b7798d8afa14bf729a2256eada5516c66ef6e7df0b6fc",
+      "classifier_sha256": "99498926e339d0f2867e78d365c9ddb60f41d02db4fd69ad041e5efb7218863a",
+      "evals_sha256": "6dfefbcfbfd2ea068e3b07da48361b1743f855f0fd2964ec34bfefd347d6593b",
+      "inputs": [
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/spamassassin/results/development-repeat-20260904-baseline.json",
+          "sha256": "7063ebd094d453df91af29d27eaac1124fa7ddb26952e27c16c90919db394e04"
+        },
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/spamassassin/results/development-repeat-20260904-hybrid.json",
+          "sha256": "b8b466ffab2545271dcb0824940100655829e6b6f7c2b2fe44ee72442f576c8a"
+        },
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/spamassassin/results/development-repeat-20260904-comparison.json",
+          "sha256": "aa7e35ef02fc75dba00726a6a6b1ee37b7b4d73bb36f37ad13130e8a807edc0b"
+        }
+      ]
+    },
+    {
+      "dataset": "SpamAssassin",
+      "stage": "development",
+      "repeat": 20260905,
+      "baseline": {
+        "cases": 500,
+        "correct": 494,
+        "accuracy": 0.988,
+        "model_calls": 500,
+        "input_tokens": 1361528,
+        "output_tokens": 3955,
+        "total_tokens": 1365483
+      },
+      "hybrid": {
+        "cases": 500,
+        "correct": 493,
+        "accuracy": 0.986,
+        "model_calls": 313,
+        "input_tokens": 928251,
+        "output_tokens": 2590,
+        "total_tokens": 930841
+      },
+      "accuracy_difference": -0.0020000000000000018,
+      "accuracy_ci": null,
+      "token_reduction": 0.31830641611795973,
+      "token_ci": null,
+      "passed": true,
+      "command_cases": 187,
+      "command_precision": 1.0,
+      "tokens_saved_by_bypass": 434750,
+      "tokens_saved_on_fallback": -108,
+      "fallback_input_token_differences": [],
+      "baseline_sop_sha256": "b3c9ec9c8b7af3ccf5d9aeaee0d7080a3a28e8e7b48bb4864177e16764914f98",
+      "hybrid_sop_sha256": "08e44ddbec25cfc4424b7798d8afa14bf729a2256eada5516c66ef6e7df0b6fc",
+      "classifier_sha256": "99498926e339d0f2867e78d365c9ddb60f41d02db4fd69ad041e5efb7218863a",
+      "evals_sha256": "6dfefbcfbfd2ea068e3b07da48361b1743f855f0fd2964ec34bfefd347d6593b",
+      "inputs": [
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/spamassassin/results/development-repeat-20260905-baseline.json",
+          "sha256": "8914b6eb3a9f35d2f3b92836537da8a71dc86ec642485d390132d232747d3e51"
+        },
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/spamassassin/results/development-repeat-20260905-hybrid.json",
+          "sha256": "f902d55c871c51c49ffb20f8e58dfe425f807823b5102a8ee34acd9adba7a02a"
+        },
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/spamassassin/results/development-repeat-20260905-comparison.json",
+          "sha256": "4ed0f9a756a07a5c7769461d722f8202d66fe2879a0bf8a7164d47accf6cd093"
+        }
+      ]
+    },
+    {
+      "dataset": "SpamAssassin",
+      "stage": "selection",
+      "repeat": 20260903,
+      "baseline": {
+        "cases": 1000,
+        "correct": 990,
+        "accuracy": 0.99,
+        "model_calls": 1000,
+        "input_tokens": 2627939,
+        "output_tokens": 8157,
+        "total_tokens": 2636096
+      },
+      "hybrid": {
+        "cases": 1000,
+        "correct": 979,
+        "accuracy": 0.979,
+        "model_calls": 655,
+        "input_tokens": 1783360,
+        "output_tokens": 5241,
+        "total_tokens": 1788601
+      },
+      "accuracy_difference": -0.01100000000000001,
+      "accuracy_ci": [
+        -0.018,
+        -0.005
+      ],
+      "token_reduction": 0.32149625810289156,
+      "token_ci": [
+        0.2800589173664962,
+        0.36632979514366343
+      ],
+      "passed": true,
+      "command_cases": 345,
+      "command_precision": 0.9768115942028985,
+      "tokens_saved_by_bypass": 847392,
+      "tokens_saved_on_fallback": 103,
+      "fallback_input_token_differences": [
+        {
+          "id": "mail-00fd61a11302eba86e84",
+          "baseline": 286,
+          "hybrid": 285
+        }
+      ],
+      "baseline_sop_sha256": "b3c9ec9c8b7af3ccf5d9aeaee0d7080a3a28e8e7b48bb4864177e16764914f98",
+      "hybrid_sop_sha256": "08e44ddbec25cfc4424b7798d8afa14bf729a2256eada5516c66ef6e7df0b6fc",
+      "classifier_sha256": "99498926e339d0f2867e78d365c9ddb60f41d02db4fd69ad041e5efb7218863a",
+      "evals_sha256": "6e91f99f2cfb7afb895c82bf072518fb31bcc0dc9c3fc328d1484dd9cd907016",
+      "inputs": [
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-06-01-10-am/spamassassin/results/selection-repeat-20260903-baseline.json",
+          "sha256": "96f4a4d5aa112f7e485d671674d52332a001b25ef0708b79461d83ffcb5e4c95"
+        },
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-06-01-10-am/spamassassin/results/selection-repeat-20260903-hybrid.json",
+          "sha256": "7972066c6c72ca66e12e087e919643dfc306ea3e4e7d62a45dd038eb9608c974"
+        },
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-06-01-10-am/spamassassin/results/selection-repeat-20260903-comparison.json",
+          "sha256": "d2897227e72a6fd8c538bca932b7b0d9b5de2e150701f37cd601adef68ea1f5d"
+        }
+      ]
+    },
+    {
+      "dataset": "SpamAssassin",
+      "stage": "selection",
+      "repeat": 20260904,
+      "baseline": {
+        "cases": 1000,
+        "correct": 988,
+        "accuracy": 0.988,
+        "model_calls": 1000,
+        "input_tokens": 2627940,
+        "output_tokens": 8156,
+        "total_tokens": 2636096
+      },
+      "hybrid": {
+        "cases": 1000,
+        "correct": 981,
+        "accuracy": 0.981,
+        "model_calls": 655,
+        "input_tokens": 1783359,
+        "output_tokens": 5299,
+        "total_tokens": 1788658
+      },
+      "accuracy_difference": -0.007000000000000006,
+      "accuracy_ci": [
+        -0.014,
+        -0.001
+      ],
+      "token_reduction": 0.3214746352181408,
+      "token_ci": [
+        0.28005837138752626,
+        0.36634976530185964
+      ],
+      "passed": true,
+      "command_cases": 345,
+      "command_precision": 0.9768115942028985,
+      "tokens_saved_by_bypass": 847401,
+      "tokens_saved_on_fallback": 37,
+      "fallback_input_token_differences": [
+        {
+          "id": "mail-00fd61a11302eba86e84",
+          "baseline": 287,
+          "hybrid": 284
+        }
+      ],
+      "baseline_sop_sha256": "b3c9ec9c8b7af3ccf5d9aeaee0d7080a3a28e8e7b48bb4864177e16764914f98",
+      "hybrid_sop_sha256": "08e44ddbec25cfc4424b7798d8afa14bf729a2256eada5516c66ef6e7df0b6fc",
+      "classifier_sha256": "99498926e339d0f2867e78d365c9ddb60f41d02db4fd69ad041e5efb7218863a",
+      "evals_sha256": "6e91f99f2cfb7afb895c82bf072518fb31bcc0dc9c3fc328d1484dd9cd907016",
+      "inputs": [
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-06-01-10-am/spamassassin/results/selection-repeat-20260904-baseline.json",
+          "sha256": "effcc96471568495d1c200505588f7e4a5b780ebd680f071ab02d72e4fe85d7d"
+        },
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-06-01-10-am/spamassassin/results/selection-repeat-20260904-hybrid.json",
+          "sha256": "af6dcabab16a0229b49bec0929e0687fc9da8577f548b9a452453f5608102a76"
+        },
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-06-01-10-am/spamassassin/results/selection-repeat-20260904-comparison.json",
+          "sha256": "78e10ac3262ece90b15b3435493e50a9759c9318103d4fe5182209908271fc12"
+        }
+      ]
+    },
+    {
+      "dataset": "SpamAssassin",
+      "stage": "selection",
+      "repeat": 20260905,
+      "baseline": {
+        "cases": 1000,
+        "correct": 990,
+        "accuracy": 0.99,
+        "model_calls": 1000,
+        "input_tokens": 2627938,
+        "output_tokens": 8179,
+        "total_tokens": 2636117
+      },
+      "hybrid": {
+        "cases": 1000,
+        "correct": 981,
+        "accuracy": 0.981,
+        "model_calls": 655,
+        "input_tokens": 1783358,
+        "output_tokens": 5370,
+        "total_tokens": 1788728
+      },
+      "accuracy_difference": -0.009000000000000008,
+      "accuracy_ci": [
+        -0.016,
+        -0.003
+      ],
+      "token_reduction": 0.3214534863209789,
+      "token_ci": [
+        0.2800373318350352,
+        0.36629530164160945
+      ],
+      "passed": true,
+      "command_cases": 345,
+      "command_precision": 0.9768115942028985,
+      "tokens_saved_by_bypass": 847360,
+      "tokens_saved_on_fallback": 29,
+      "fallback_input_token_differences": [
+        {
+          "id": "mail-00fd61a11302eba86e84",
+          "baseline": 285,
+          "hybrid": 283
+        }
+      ],
+      "baseline_sop_sha256": "b3c9ec9c8b7af3ccf5d9aeaee0d7080a3a28e8e7b48bb4864177e16764914f98",
+      "hybrid_sop_sha256": "08e44ddbec25cfc4424b7798d8afa14bf729a2256eada5516c66ef6e7df0b6fc",
+      "classifier_sha256": "99498926e339d0f2867e78d365c9ddb60f41d02db4fd69ad041e5efb7218863a",
+      "evals_sha256": "6e91f99f2cfb7afb895c82bf072518fb31bcc0dc9c3fc328d1484dd9cd907016",
+      "inputs": [
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-06-01-10-am/spamassassin/results/selection-repeat-20260905-baseline.json",
+          "sha256": "e0805898b134825304346ac65400a4f8a533a121920c45dc724246ce149bc60c"
+        },
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-06-01-10-am/spamassassin/results/selection-repeat-20260905-hybrid.json",
+          "sha256": "432f49485ce737e20ccffb15cfa5f2c42bd03ad9ccb897dad22286dc0e3725c4"
+        },
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-06-01-10-am/spamassassin/results/selection-repeat-20260905-comparison.json",
+          "sha256": "696f5f34256c10f49d3e2de3a51bfca6c9dc105523675dee7bede78a8c0b5b5d"
+        }
+      ]
+    },
+    {
+      "dataset": "SpamAssassin",
+      "stage": "final-test",
+      "repeat": 20260903,
+      "baseline": {
+        "cases": 500,
+        "correct": 489,
+        "accuracy": 0.978,
+        "model_calls": 500,
+        "input_tokens": 1460745,
+        "output_tokens": 4072,
+        "total_tokens": 1464817
+      },
+      "hybrid": {
+        "cases": 500,
+        "correct": 486,
+        "accuracy": 0.972,
+        "model_calls": 323,
+        "input_tokens": 1050259,
+        "output_tokens": 2543,
+        "total_tokens": 1052802
+      },
+      "accuracy_difference": -0.006000000000000005,
+      "accuracy_ci": [
+        -0.016,
+        0.004
+      ],
+      "token_reduction": 0.28127404310572585,
+      "token_ci": [
+        0.22134523302653328,
+        0.35176858398455824
+      ],
+      "passed": true,
+      "command_cases": 177,
+      "command_precision": 0.9774011299435028,
+      "tokens_saved_by_bypass": 411938,
+      "tokens_saved_on_fallback": 77,
+      "fallback_input_token_differences": [],
+      "baseline_sop_sha256": "b3c9ec9c8b7af3ccf5d9aeaee0d7080a3a28e8e7b48bb4864177e16764914f98",
+      "hybrid_sop_sha256": "08e44ddbec25cfc4424b7798d8afa14bf729a2256eada5516c66ef6e7df0b6fc",
+      "classifier_sha256": "99498926e339d0f2867e78d365c9ddb60f41d02db4fd69ad041e5efb7218863a",
+      "evals_sha256": "6e91f99f2cfb7afb895c82bf072518fb31bcc0dc9c3fc328d1484dd9cd907016",
+      "inputs": [
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-06-01-10-am/spamassassin/results/final-test-repeat-20260903-baseline.json",
+          "sha256": "8c15eccfe6e27f7bf3789c5ade85c3aa3465541c07f8dfc3c14fb2b3e1fe70df"
+        },
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-06-01-10-am/spamassassin/results/final-test-repeat-20260903-hybrid.json",
+          "sha256": "0523753aa0bcd31d3953973516fc044bf0cc0af328492da6ac35b5adc22f9d45"
+        },
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-06-01-10-am/spamassassin/results/final-test-repeat-20260903-comparison.json",
+          "sha256": "6cf5cdbe937036abfcaa7a4d7f688fdf5774cb99b08a97b1a8fdfc3bef690210"
+        }
+      ]
+    },
+    {
+      "dataset": "SpamAssassin",
+      "stage": "final-test",
+      "repeat": 20260904,
+      "baseline": {
+        "cases": 500,
+        "correct": 487,
+        "accuracy": 0.974,
+        "model_calls": 500,
+        "input_tokens": 1460746,
+        "output_tokens": 4385,
+        "total_tokens": 1465131
+      },
+      "hybrid": {
+        "cases": 500,
+        "correct": 485,
+        "accuracy": 0.97,
+        "model_calls": 323,
+        "input_tokens": 1050259,
+        "output_tokens": 2632,
+        "total_tokens": 1052891
+      },
+      "accuracy_difference": -0.0040000000000000036,
+      "accuracy_ci": [
+        -0.016,
+        0.006
+      ],
+      "token_reduction": 0.2813673316583978,
+      "token_ci": [
+        0.22141105611952241,
+        0.3518357152006292
+      ],
+      "passed": true,
+      "command_cases": 177,
+      "command_precision": 0.9774011299435028,
+      "tokens_saved_by_bypass": 411949,
+      "tokens_saved_on_fallback": 291,
+      "fallback_input_token_differences": [],
+      "baseline_sop_sha256": "b3c9ec9c8b7af3ccf5d9aeaee0d7080a3a28e8e7b48bb4864177e16764914f98",
+      "hybrid_sop_sha256": "08e44ddbec25cfc4424b7798d8afa14bf729a2256eada5516c66ef6e7df0b6fc",
+      "classifier_sha256": "99498926e339d0f2867e78d365c9ddb60f41d02db4fd69ad041e5efb7218863a",
+      "evals_sha256": "6e91f99f2cfb7afb895c82bf072518fb31bcc0dc9c3fc328d1484dd9cd907016",
+      "inputs": [
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-06-01-10-am/spamassassin/results/final-test-repeat-20260904-baseline.json",
+          "sha256": "e02da53ef14c8592dea922c3489eb04b719c121439aa42b91932c8fe50bb5859"
+        },
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-06-01-10-am/spamassassin/results/final-test-repeat-20260904-hybrid.json",
+          "sha256": "ec828d4dc0a154edb95c6d2324999750f3a84fa245810094eb9fd63a001756c2"
+        },
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-06-01-10-am/spamassassin/results/final-test-repeat-20260904-comparison.json",
+          "sha256": "b9c11fc6147e9a0505a0c4a1a7bc9911367bc33756e787d9166c685e76dead7e"
+        }
+      ]
+    },
+    {
+      "dataset": "SpamAssassin",
+      "stage": "final-test",
+      "repeat": 20260905,
+      "baseline": {
+        "cases": 500,
+        "correct": 489,
+        "accuracy": 0.978,
+        "model_calls": 500,
+        "input_tokens": 1460745,
+        "output_tokens": 4090,
+        "total_tokens": 1464835
+      },
+      "hybrid": {
+        "cases": 500,
+        "correct": 487,
+        "accuracy": 0.974,
+        "model_calls": 323,
+        "input_tokens": 1050259,
+        "output_tokens": 2689,
+        "total_tokens": 1052948
+      },
+      "accuracy_difference": -0.0040000000000000036,
+      "accuracy_ci": [
+        -0.014,
+        0.006
+      ],
+      "token_reduction": 0.2811832049343441,
+      "token_ci": [
+        0.22126230406592223,
+        0.3516602177021607
+      ],
+      "passed": true,
+      "command_cases": 177,
+      "command_precision": 0.9774011299435028,
+      "tokens_saved_by_bypass": 411892,
+      "tokens_saved_on_fallback": -5,
+      "fallback_input_token_differences": [],
+      "baseline_sop_sha256": "b3c9ec9c8b7af3ccf5d9aeaee0d7080a3a28e8e7b48bb4864177e16764914f98",
+      "hybrid_sop_sha256": "08e44ddbec25cfc4424b7798d8afa14bf729a2256eada5516c66ef6e7df0b6fc",
+      "classifier_sha256": "99498926e339d0f2867e78d365c9ddb60f41d02db4fd69ad041e5efb7218863a",
+      "evals_sha256": "6e91f99f2cfb7afb895c82bf072518fb31bcc0dc9c3fc328d1484dd9cd907016",
+      "inputs": [
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-06-01-10-am/spamassassin/results/final-test-repeat-20260905-baseline.json",
+          "sha256": "a52464a9ed07d53919d85810af93e91700da62c19da19544d4d9bdb9e8f89cd1"
+        },
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-06-01-10-am/spamassassin/results/final-test-repeat-20260905-hybrid.json",
+          "sha256": "af4010fd4cc20c454b6d0bf5fa02b03a720a4c6513f4bdc064027e6d29216a07"
+        },
+        {
+          "path": "experiments/gemini-3.5-flash-lite/2026-09-06-01-10-am/spamassassin/results/final-test-repeat-20260905-comparison.json",
+          "sha256": "1fe52b7d987e41e0d6e3b30874e55fdb642623310fec4f3dfd9f3caca0f8d21e"
+        }
+      ]
+    }
+  ]
+}

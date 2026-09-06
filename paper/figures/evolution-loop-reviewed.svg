@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="905" viewBox="0 0 700 905">
+  <title>Development proposals, selection gate, and reserved final test</title>
+  <desc>The host agent proposes from development records. Development can loop; selection rejection stops. Acceptance freezes the package before final assessment and reporting.</desc>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10Z" fill="#25364a"/></marker></defs>
+  <rect width="700" height="905" fill="white"/>
+  <g fill="#f4f7fa" stroke="#25364a" stroke-width="2.4">
+    <rect x="70" y="18" width="430" height="90" rx="12"/>
+    <rect x="70" y="150" width="430" height="108" rx="12"/>
+    <rect x="70" y="307" width="430" height="76" rx="12"/>
+    <rect x="70" y="438" width="430" height="76" rx="12"/>
+    <rect x="70" y="563" width="430" height="76" rx="12"/>
+    <rect x="70" y="688" width="430" height="76" rx="12"/>
+    <rect x="70" y="813" width="430" height="76" rx="12"/>
+    <rect x="540" y="165" width="150" height="78" rx="12" fill="#fff"/>
+    <rect x="540" y="438" width="150" height="76" rx="12" fill="#fff"/>
+  </g>
+  <g fill="none" stroke="#25364a" stroke-width="2.5" marker-end="url(#arrow)">
+    <path d="M285 108V148"/><path d="M285 258V305"/><path d="M285 383V436"/>
+    <path d="M285 514V561"/><path d="M285 639V686"/><path d="M285 764V811"/>
+    <path d="M70 345H22V204H68"/><path d="M500 204H538"/><path d="M500 476H538"/>
+  </g>
+  <g font-family="Arial, sans-serif" font-size="24" text-anchor="middle" fill="#15283d">
+    <text x="285" y="52">Qualify English baseline</text><text x="285" y="84" font-size="21">Development only; stop if nonviable</text>
+    <text x="285" y="180">Host agent inspects dev. records</text><text x="285" y="212">Proposes English SOP or code</text><text x="285" y="242" font-size="21">No rule or budget exhausted: stop</text>
+    <text x="285" y="338">Development checks pass?</text><text x="285" y="368" font-size="21">Otherwise revise within the budget</text>
+    <text x="285" y="469">Frozen candidate passes selection?</text><text x="285" y="499" font-size="21">All three paired comparisons</text>
+    <text x="285" y="596">Accept as the selected SOP</text><text x="285" y="626">Keep the package frozen</text>
+    <text x="285" y="719">Evaluate reserved final test</text><text x="285" y="749">No further tuning</text>
+    <text x="285" y="845">Report final result</text><text x="285" y="875" font-size="21">Passing is not automatic deployment</text>
+    <text x="615" y="198">Stop</text><text x="615" y="228" font-size="20">Keep baseline</text>
+    <text x="615" y="469">Reject</text><text x="615" y="499" font-size="20">Test closed</text>
+  </g>
+  <g font-family="Arial, sans-serif" font-size="20" fill="#25364a">
+    <text x="298" y="414">Yes — freeze for selection</text><text x="298" y="544">Yes</text>
+    <text x="30" y="290">No</text><text x="506" y="463">No</text>
+  </g>
+</svg>
