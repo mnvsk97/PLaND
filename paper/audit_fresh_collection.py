@@ -31,8 +31,15 @@ def audit(report):
         host=item.get('host_runtime',summary.get('host_runtime'))
         if host:
             assert host==json.loads((directory/'runtime-audit.json').read_text())
-            disposition=json.loads((directory.parent/'protocol/ledgar-transport-disposition.json').read_text())
-            assert disposition==summary['transport_disposition'] and disposition['decision']=='accept_with_disclosure'
+            if item.get('runtime_disclosure'):
+                disclosure=json.loads((directory.parent/'protocol/continuation-runtime-disclosure.json').read_text())
+                assert disclosure==item['runtime_disclosure']
+                assert disclosure['scientific_settings_changed'] is False
+                assert disclosure['harness_streaming'] is False and disclosure['ollama_http_streaming'] is True
+                assert disclosure['responses_aggregated_before_scoring'] is True
+            else:
+                disposition=json.loads((directory.parent/'protocol/ledgar-transport-disposition.json').read_text())
+                assert disposition==summary['transport_disposition'] and disposition['decision']=='accept_with_disclosure'
             assert 'Disclosed transport deviation' in text and 'HTTP `stream: true`' in text
         stage=item['reported_stage']
         comp=directory/f'{stage}-20260902-comparison.json'

@@ -52,6 +52,7 @@ for ds,name in names.items():
         metrics['pairwise_disagreements']=[sum(x[k]!=y[k] for k in x) for x,y in itertools.combinations(maps,2)]
         variability[variant]=metrics
     summary['datasets'][ds]={'name':name,'evidence_root':evidence_root,'host_runtime':read(directory/'runtime-audit.json'),'reported_stage':stage,'selection':selection,'comparison':comparison,
+        'runtime_disclosure':read(ROOT/'experiments/protocol/continuation-runtime-disclosure.json') if ds!='ledgar' else None,
         'selection_comparison':read(directory/'validation-20260902-comparison.json') if selection else None,
         'baseline_development':baseline['summary'],'baseline_attempt':selected['attempt'],
         'baseline_sop_sha256':baseline['sop_sha256'],'candidate_sop_sha256':h['sop_sha256'] if h else None,

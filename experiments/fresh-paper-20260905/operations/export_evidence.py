@@ -32,7 +32,7 @@ if candidate.exists(): shutil.copytree(candidate,output/'packages/candidate-01',
 for path in (BASE/'packages'/a.dataset).glob('*.json'): copy(path,output/'construction'/path.name)
 for path in OPS.glob('*.py'): copy(path,output/'operations'/path.name)
 for path in OPS.glob('*.json'): copy(path,output/'operations'/path.name)
-for path in [ROOT/f'experiments/protocol/fresh-paper-{a.dataset}.json',ROOT/'experiments/protocol/fresh-paper-collection.md',ROOT/'experiments/protocol/ledgar-transport-disposition.json',
+for path in [ROOT/f'experiments/protocol/fresh-paper-{a.dataset}.json',ROOT/'experiments/protocol/fresh-paper-collection.md',ROOT/'experiments/protocol/continuation-runtime-disclosure.json',
              BASE/'datasets'/a.dataset/'freshness-receipt.json',BASE/'datasets'/a.dataset/'selection.json']:
     copy(path,output/'protocol'/path.name)
 for path in ['experiments/text-classification/scripts/run_experiment.py','experiments/text-classification/scripts/deepagent_execution.py',
