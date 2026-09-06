@@ -26,6 +26,8 @@ for name in ['generated']+sorted(p.name for p in (BASE/'packages'/a.dataset).glo
     source=BASE/'packages'/a.dataset/name
     if source.exists(): shutil.copytree(source,output/'packages'/name,ignore=shutil.ignore_patterns('__pycache__','*.pyc'))
 candidate=BASE/'candidates'/a.dataset/'candidate-01'
+for source in sorted((BASE/'refinements'/a.dataset).glob('baseline-*')):
+    shutil.copytree(source,output/'packages'/source.name,ignore=shutil.ignore_patterns('__pycache__','*.pyc'))
 if candidate.exists(): shutil.copytree(candidate,output/'packages/candidate-01',ignore=shutil.ignore_patterns('__pycache__','*.pyc'))
 for path in (BASE/'packages'/a.dataset).glob('*.json'): copy(path,output/'construction'/path.name)
 for path in OPS.glob('*.py'): copy(path,output/'operations'/path.name)
