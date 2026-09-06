@@ -224,6 +224,27 @@ class RunnerTests(unittest.TestCase):
         self.assertEqual(result, 0)
         self.assertEqual(len(list(receipts.glob('*.json'))), 2)
 
+    def test_rate_limit_retries_without_failing_run(self):
+        class RateLimited(RuntimeError):
+            status_code = 429
+            response = type('Response', (), {
+                'status_code': 429,
+                'headers': {'retry-after': '0.25'},
+            })()
+
+        with patch.object(RUN.time, 'sleep') as sleep:
+            result, call = self.run_cli(side_effect=[
+                RateLimited('rate limited'),
+                ({'label': 'a'}, self.raw),
+            ])
+        self.assertEqual(result, 0)
+        self.assertEqual(call.call_count, 2)
+        sleep.assert_called_once_with(0.25)
+        receipts = self.output.parent / (self.output.name + '.attempts')
+        event = json.loads(next(receipts.glob('*.json')).read_text())
+        self.assertEqual(event['status'], 'completed')
+        self.assertEqual(len(event['rate_limit_retries']), 1)
+
     def test_resume_rejects_changed_endpoint(self):
         with self.assertRaises(RuntimeError):
             self.run_cli(side_effect=RuntimeError('network failed'))

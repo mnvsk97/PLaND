@@ -5,9 +5,11 @@ from __future__ import annotations
 
 import argparse
 import csv
+import email.utils
 import hashlib
 import importlib.util
 import json
+import math
 import os
 import re
 import resource
@@ -91,6 +93,36 @@ def write_json_atomic(path: Path, payload: dict[str, Any]) -> None:
     temporary = path.with_suffix(path.suffix + ".tmp")
     temporary.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
     temporary.replace(path)
+
+
+def is_rate_limit(error: Exception) -> bool:
+    response = getattr(error, "response", None)
+    return getattr(error, "status_code", None) == 429 or getattr(response, "status_code", None) == 429
+
+
+def rate_limit_delay(error: Exception, attempt: int, case_id: str) -> float:
+    """Honor Retry-After; otherwise use bounded, case-jittered backoff."""
+    response = getattr(error, "response", None)
+    headers = getattr(response, "headers", {}) if response is not None else {}
+    retry_ms = headers.get("retry-after-ms")
+    try:
+        delay = float(retry_ms) / 1000 if retry_ms is not None else None
+    except (TypeError, ValueError):
+        delay = None
+    if delay is None:
+        retry_after = headers.get("retry-after")
+        try:
+            delay = float(retry_after) if retry_after is not None else None
+        except (TypeError, ValueError):
+            try:
+                parsed = email.utils.parsedate_to_datetime(retry_after)
+                delay = parsed.timestamp() - datetime.now(UTC).timestamp()
+            except (TypeError, ValueError, OverflowError):
+                delay = None
+    if delay is None or not math.isfinite(delay) or delay <= 0:
+        jitter = 0.75 + int(hashlib.sha256(case_id.encode()).hexdigest()[:2], 16) / 510
+        delay = min(60.0, 2.0 ** min(attempt, 6)) * jitter
+    return min(300.0, max(0.1, delay))
 
 
 def main() -> int:
@@ -382,19 +414,31 @@ def main() -> int:
         event = {"case_id": row["id"], "started_at": datetime.now(UTC).isoformat(),
                  "frozen_manifest_sha256": frozen_manifest_hash, "status": "started"}
         write_json_atomic(receipt, event)
-        try:
-            case = run_case(row)
-        except Exception as error:
-            # Provider exception text may contain request content or credentials.
-            event.update(status="failed", error_type=type(error).__name__,
-                         status_code=getattr(error, "status_code", None),
-                         billing_status="unknown", ended_at=datetime.now(UTC).isoformat())
-            response = getattr(error, 'response', None)
-            if response is not None:
-                event['retry_after'] = response.headers.get('retry-after')
-            write_json_atomic(receipt, event)
-            raise RuntimeError(f"hosted-model case failed; inspect receipt {receipt}") from None
-        event.update(status="completed", case=case, ended_at=datetime.now(UTC).isoformat())
+        rate_limit_retries = []
+        while True:
+            try:
+                case = run_case(row)
+                break
+            except Exception as error:
+                if is_rate_limit(error):
+                    delay = rate_limit_delay(error, len(rate_limit_retries) + 1, row["id"])
+                    rate_limit_retries.append({
+                        "attempt": len(rate_limit_retries) + 1,
+                        "observed_at": datetime.now(UTC).isoformat(),
+                        "delay_seconds": delay,
+                    })
+                    event.update(status="rate_limited_retry", rate_limit_retries=rate_limit_retries)
+                    write_json_atomic(receipt, event)
+                    time.sleep(delay)
+                    continue
+                # Provider exception text may contain request content or credentials.
+                event.update(status="failed", error_type=type(error).__name__,
+                             status_code=getattr(error, "status_code", None),
+                             billing_status="unknown", ended_at=datetime.now(UTC).isoformat())
+                write_json_atomic(receipt, event)
+                raise RuntimeError(f"hosted-model case failed; inspect receipt {receipt}") from None
+        event.update(status="completed", case=case, rate_limit_retries=rate_limit_retries,
+                     ended_at=datetime.now(UTC).isoformat())
         write_json_atomic(receipt, event)
         return case
 

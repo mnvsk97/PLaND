@@ -21,6 +21,12 @@ Require accuracy of at least 80%, a candidate accuracy difference no worse than
 interval lower bound, 5,000 bootstrap samples, and zero execution errors. Keep
 the model endpoint fixed with provider fallbacks disabled.
 
+Treat HTTP 429 responses as capacity signals, not experiment failures. Record
+each rate-limit event, honor `Retry-After` when supplied, otherwise use bounded
+exponential backoff with case-specific jitter, and retry until the case succeeds
+or the operator explicitly stops the process. Do not change the model, provider,
+endpoint, or routing policy to escape a rate limit.
+
 Record case outputs, correctness, tokens, cost, latency, provider receipts,
 runtime settings, SOP/package hashes, source hashes, commands, logs, decisions,
 and failures. Generate an evidence manifest and audit it before changing paper

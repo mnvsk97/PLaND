@@ -58,7 +58,14 @@
     "stream": false,
     "max_retries": 0,
     "allow_provider_fallbacks": false,
-    "require_parameters": true
+    "require_parameters": true,
+    "rate_limit_policy": {
+      "retry_until_available": true,
+      "honor_retry_after": true,
+      "fallback_backoff": "exponential_with_case_jitter",
+      "maximum_delay_seconds": 300,
+      "rate_limits_are_run_failures": false
+    }
   },
   "repeats": {
     "paired_executions": 3,
