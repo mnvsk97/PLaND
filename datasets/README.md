@@ -77,6 +77,7 @@ held-out splits, and writes a new freeze manifest atomically:
 ```bash
 python datasets/scripts/prepare_collection.py \
   --plan experiments/<model-name>/<date-time>/plan.json \
+  --dataset ledgar \
   --output tmp/<model-name>/<date-time>/datasets/ledgar
 ```
 

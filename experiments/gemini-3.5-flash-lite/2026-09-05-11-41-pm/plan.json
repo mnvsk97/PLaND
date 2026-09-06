@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "study_id": "gemini-3.5-flash-lite-2026-09-05-11-41-pm",
+  "protocol": "experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm/protocol.md",
+  "datasets": [
+    "ledgar",
+    "cfpb",
+    "spamassassin"
+  ],
+  "splits": {
+    "development": 500,
+    "selection": 1000,
+    "final_test": 500
+  },
+  "model": {
+    "name": "google/gemini-3.5-flash-lite",
+    "identity": {
+      "kind": "hosted",
+      "provider": "openrouter",
+      "endpoint": "google-ai-studio",
+      "model": "google/gemini-3.5-flash-lite",
+      "configuration_sha256": "d703b8e16a3dc88aa1ac6a47171414c3873ee8f064db5bb911c5d67252fd9c4d",
+      "weight_digest": null
+    }
+  },
+  "limits": {
+    "baseline_attempts": 10,
+    "candidate_attempts": 10
+  },
+  "acceptance": {
+    "quality_metric": "accuracy",
+    "quality_floor": 0.8,
+    "noninferiority_margin": 0.02,
+    "minimum_token_reduction": 0.05,
+    "bootstrap_samples": 5000,
+    "bootstrap_seed": 20260902,
+    "token_interval_lower_bound_must_be_positive": true,
+    "execution_errors_allowed": 0
+  },
+  "seeds": {
+    "dataset": 20260902,
+    "inference": 20260902,
+    "repeats": [
+      20260903,
+      20260904,
+      20260905
+    ]
+  },
+  "runtime": {
+    "backend": "deepagent",
+    "deepagents_version": "0.7.12",
+    "transport": "openai-compatible-chat-completions",
+    "reasoning_effort": "low",
+    "workers": 8,
+    "max_completion_tokens": 1024,
+    "request_timeout_seconds": 300,
+    "temperature": null,
+    "stream": false,
+    "max_retries": 0,
+    "allow_provider_fallbacks": false,
+    "require_parameters": true
+  },
+  "repeats": {
+    "paired_executions": 3,
+    "arms": [
+      "baseline",
+      "hybrid"
+    ],
+    "splits": [
+      "development",
+      "selection",
+      "final_test"
+    ],
+    "planned_case_evaluations_per_dataset": 12000,
+    "final_test_requires_selection_accept": true
+  },
+  "candidate_policy": {
+    "development_attempt_limit": 10,
+    "stop_at_first_ready": true,
+    "selection_candidates": 1,
+    "development_inputs_only": true,
+    "preserve_rejected_attempts": true,
+    "selection_reject_is_terminal": true,
+    "exhausted_outcome": "candidate_nonviable",
+    "final_test_requires_selection_accept": true
+  },
+  "sampling": {
+    "ledgar": {
+      "upstream_partition": "train",
+      "mode": "balanced_new_study_splits"
+    },
+    "cfpb": {
+      "mode": "balanced_new_study_splits"
+    },
+    "spamassassin": {
+      "mode": "balanced_new_study_splits"
+    },
+    "exclude_every_previously_opened_id_and_normalized_content": true
+  },
+  "paper": {
+    "source": "paper/PLaND.md",
+    "claim_boundary": "paper/PLaND.pdf"
+  },
+  "order": [
+    "ledgar",
+    "cfpb",
+    "spamassassin"
+  ],
+  "final_release": "selection accept only",
+  "approval": {
+    "date": "2026-09-05",
+    "user_response": "yeah this is it",
+    "candidate_attempts_clarification": "up to 10 hybrid development attempts"
+  }
+}

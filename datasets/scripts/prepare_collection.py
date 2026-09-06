@@ -42,10 +42,13 @@ def historical_exposure(roots, dataset):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--plan', type=Path, required=True)
+    parser.add_argument('--dataset', choices=('ledgar', 'cfpb', 'spamassassin'), required=True)
     parser.add_argument('--output', type=Path, required=True)
     args = parser.parse_args()
     plan = json.loads(args.plan.read_text())
-    dataset, = plan['datasets']
+    dataset = args.dataset
+    if dataset not in plan['datasets']:
+        raise ValueError(f'dataset is not approved by the plan: {dataset}')
     if args.output.exists():
         raise ValueError('output already exists')
     sources = {
@@ -72,7 +75,8 @@ def main():
             opened.update(r['id'] for r in csv.DictReader(handle) if r['split'] in splits)
     historical, evidence = historical_exposure([ROOT, MAIN, EARLIER], dataset)
     opened.update(historical)
-    for relative in plan.get('sampling', {}).get('exclude_datasets', []):
+    dataset_sampling = plan.get('sampling', {}).get(dataset, {})
+    for relative in dataset_sampling.get('exclude_datasets', []):
         path = ROOT/relative/'evals.csv'
         with path.open() as handle:
             ids = {row['id'] for row in csv.DictReader(handle)}
@@ -108,7 +112,7 @@ def main():
                '--labels-from', str(original/'selection.json'), '--exclude-dataset', str(exclusions),
                '--seed', str(plan['seeds']['dataset']), '--development-cases', '500',
                '--validation-cases', '1000', '--test-cases', '500']
-    sampling = plan.get('sampling', {})
+    sampling = dataset_sampling
     if sampling.get('upstream_partition') == 'train':
         if dataset != 'ledgar' or sampling.get('mode') != 'balanced_new_study_splits':
             raise ValueError('Training-only sampling requires the explicit LEDGAR restart plan')
