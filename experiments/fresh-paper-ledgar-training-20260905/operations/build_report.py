@@ -187,6 +187,12 @@ lines+=['','### Repeatability paragraph','',
  'The statistical outcomes are fixed. Any future candidate revision requires a new development process and unused evaluation evidence.','']
 a.output.parent.mkdir(parents=True,exist_ok=True)
 item=summary['datasets']['ledgar']
+host=read(BASE/'runs/ledgar/runtime-audit.json');assert host['status']=='PASS'
+summary['host_runtime']=host
+lines+=['## Host and execution environment','',
+        f"{host['hardware']['machdep.cpu.brand_string']}; {host['hardware']['hw.ncpu']} logical CPUs; "
+        f"{int(host['hardware']['hw.memsize'])/2**30:g} GiB unified memory; macOS {host['os']}; "
+        f"{host['architecture']}; Python {host['python']}. Native Ollama and package versions were verified in `results/runtime-audit.json`.",'']
 evidence=ROOT/summary['evidence_root']/'ledgar'
 manifest=evidence/'case-evidence-manifest.json'
 summary['case_evidence_manifest']={'path':str(manifest.relative_to(ROOT)),
