@@ -319,6 +319,8 @@ def create_manifest(args: argparse.Namespace) -> int:
     if state["stages"]["package-evidence"] != "complete":
         raise ValueError("complete package-evidence before generating its manifest")
     files: dict[str, dict[str, Any]] = {}
+    for item in (state["plan"], state["protocol"]):
+        files[item["path"]] = artifact(Path(item["path"]))
     for path in (run_dir / "collection-state.json", run_dir / "command-ledger.json"):
         files[str(path.resolve())] = artifact(path)
     for event in ledger["events"]:

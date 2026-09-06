@@ -97,7 +97,10 @@ def audit(root: Path, source_dir: Path | None = None,
             "source_hashes_match": all(item["sha256_match"] for item in source_results),
             "source_split_integrity": not source_split_violations,
             "pilot_overlap_count": pilot_overlap_count,
-            "exclusion_manifest_matches_pilot": selection.get("excluded_datasets", []) == pilot_manifest,
+            "exclusion_manifest_matches_pilot": [
+                {key: value for key, value in item.items() if key != "included_splits"}
+                for item in selection.get("excluded_datasets", [])
+            ] == pilot_manifest,
         },
         "hashes": {"evals_sha256": digest(root / "evals.csv"),
                    "selection_sha256": digest(root / "selection.json"),
