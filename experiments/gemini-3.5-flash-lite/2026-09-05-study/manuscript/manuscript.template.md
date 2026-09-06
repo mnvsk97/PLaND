@@ -289,9 +289,9 @@ These intervals describe uncertainty from sampling the prepared examples, not ch
 
 ### B.4 Evidence and verification
 
-The collection root is `experiments/gemini-3.5-flash-lite/`. It contains the frozen plan, recorded amendments, controllers, comparisons, and evidence manifests. `paper-calculations.json` lists the exact files and hashes used for every reported result, including the superseded SpamAssassin records. Distinct conditions are retained separately.
+The consolidated collection is in `experiments/gemini-3.5-flash-lite/2026-09-05-study/`. It contains all three datasets, the frozen plan, amendments, controllers, comparisons, and manifests. `paper-calculations.json` lists the files and hashes used for each reported result, including superseded SpamAssassin records. Distinct conditions remain in separate subdirectories.
 
-The manuscript audit is in `2026-09-06-manuscript/`. Its `paper-calculations.json` identifies every reported pair, file hash, SOP hash, classifier hash, gate, and recomputed interval. `evidence-files.json` inventories saved collection and code files; `paper-artifacts.json` identifies manuscript outputs. The provenance addendum records superseded metadata issues without changing frozen results.
+The `manuscript/` subdirectory contains the audit, portable evidence inventory, artifact index, provenance addendum, and review records.
 
 Run `uv sync --project reproduce --frozen`, then `reproduce/.venv/bin/python reproduce/verify.py`. Run `reproduce/.venv/bin/python paper/audit_paper.py --artifacts` to recompute results and verify manuscript files. These commands are offline and do not open CFPB's reserved test. The audit derives accuracy and tokens from case outputs, independently rebuilds paired bootstrap intervals, and checks saved comparisons. Command ledgers retain original collection and retry commands.
 

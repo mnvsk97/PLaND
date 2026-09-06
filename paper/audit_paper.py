@@ -18,9 +18,9 @@ import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE = Path('experiments/gemini-3.5-flash-lite/2026-09-05-11-41-pm')
-SPAM = Path('experiments/gemini-3.5-flash-lite/2026-09-06-01-10-am/spamassassin')
-OUT = Path('experiments/gemini-3.5-flash-lite/2026-09-06-manuscript')
+BASE = Path('experiments/gemini-3.5-flash-lite/2026-09-05-study')
+SPAM = BASE / 'spamassassin/amendment-02-final'
+OUT = BASE / 'manuscript'
 REPEATS = (20260903, 20260904, 20260905)
 DATASETS = {'LEDGAR': BASE / 'ledgar-valid', 'CFPB': BASE / 'cfpb', 'SpamAssassin': SPAM}
 
@@ -74,12 +74,12 @@ def intervals(pairs, samples, seed):
 def run_path(dataset, stage, repeat, arm):
     if dataset == 'LEDGAR':
         return BASE / 'ledgar/results' / f'valid-{stage}-repeat-{repeat}-{arm}.json'
-    directory = BASE / 'spamassassin' if dataset == 'SpamAssassin' and stage == 'development' else DATASETS[dataset]
+    directory = BASE / 'spamassassin/initial' if dataset == 'SpamAssassin' and stage == 'development' else DATASETS[dataset]
     return directory / 'results' / f'{stage}-repeat-{repeat}-{arm}.json'
 
 
 def comparison_path(dataset, stage, repeat):
-    directory = BASE / 'spamassassin' if dataset == 'SpamAssassin' and stage == 'development' else DATASETS[dataset]
+    directory = BASE / 'spamassassin/initial' if dataset == 'SpamAssassin' and stage == 'development' else DATASETS[dataset]
     return directory / 'results' / f'{stage}-repeat-{repeat}-comparison.json'
 
 

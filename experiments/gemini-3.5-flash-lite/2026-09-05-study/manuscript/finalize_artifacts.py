@@ -8,7 +8,7 @@ from pathlib import Path
 
 from pypdf import PdfReader
 
-ROOT = Path(__file__).resolve().parents[3]
+ROOT = Path(__file__).resolve().parents[4]
 
 
 def digest(path):

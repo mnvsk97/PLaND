@@ -4,68 +4,68 @@
   "files": [
     {
       "path": "README.md",
-      "bytes": 3311,
-      "sha256": "043db6c469bea3b23945f4c95a567e8e11260d7a732897b9cf1831da40c24456"
+      "bytes": 3330,
+      "sha256": "c5be00ab0fded3ba58420148d34e05026603b30883d99cb0c5b4ce20a9e485fa"
     },
     {
-      "path": "experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/evidence-files.json",
-      "bytes": 11533658,
-      "sha256": "1d44f99c5bae7ae13f2934ea8146269aab9979d4547414063e41d8ebf3f00de5"
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-05-study/manuscript/evidence-files.json",
+      "bytes": 11650835,
+      "sha256": "ac4f754533c39434db87edab0998b19a0614fd216548dcbcd5fcdaa18134916f"
     },
     {
-      "path": "experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/finalize_artifacts.py",
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-05-study/manuscript/finalize_artifacts.py",
       "bytes": 2340,
-      "sha256": "cdf72c78f5d27e640972f801f8cac480010065f0ccaa5590972602348ab47e3c"
+      "sha256": "ee3160425c6678da11500c1819d1bfb359d19d77e05f6ac5708988f425fcaa52"
     },
     {
-      "path": "experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/manuscript.template.md",
-      "bytes": 38697,
-      "sha256": "d273444ce6aa55dc7d5946774fb452fbc488d75207b9cc8bc38f054521512b05"
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-05-study/manuscript/manuscript.template.md",
+      "bytes": 38466,
+      "sha256": "f5ec5dba7d428d63a61bfdec33f9ee7a6e40185ec462762aee9b73bf29419838"
     },
     {
-      "path": "experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/paper-calculations.json",
-      "bytes": 53281,
-      "sha256": "f5c6b3cff55b9a058b71541f66e7a4b61d5ecf004f569468bf5851dfcfbec2f6"
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-05-study/manuscript/paper-calculations.json",
+      "bytes": 53479,
+      "sha256": "0820448f29c41e13401ac3b95f7e9eb7d06d8b0ea29fa9b8ead88e486c9f0fff"
     },
     {
-      "path": "experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/provenance-addendum.md",
-      "bytes": 5064,
-      "sha256": "36d2aa49430b055b76d5e0fa749def0ac16a02894684c086f00dd84976c566e4"
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-05-study/manuscript/provenance-addendum.md",
+      "bytes": 5343,
+      "sha256": "18b878965404d627c2dd342b8d526bc76e7194625a30d36595e5373f4058e1db"
     },
     {
-      "path": "experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/review-response.md",
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-05-study/manuscript/review-response.md",
       "bytes": 4009,
       "sha256": "3f0ee354c4aaed4d4a34a0f5efed5d7984ab89de2d4f8f9d374a336453360961"
     },
     {
-      "path": "experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/visual-qa.json",
+      "path": "experiments/gemini-3.5-flash-lite/2026-09-05-study/manuscript/visual-qa.json",
       "bytes": 2169,
-      "sha256": "68803b81efa33f23dd1bac39edfd0d34206e6ccaeeba0222004078db83834f31"
+      "sha256": "a32696e79512d0eb38d4353298276fbd450746bae552f176780e37ce5fc4b1b6"
     },
     {
       "path": "paper/PLaND.docx",
-      "bytes": 795507,
-      "sha256": "b7e47dad42fb19f0e7d92d8bb5d964b826a4570742293ce43cf19eb7a9046d40"
+      "bytes": 795434,
+      "sha256": "520f08312d1226d8ad930760dd4d436438910af4f4f90b22e37b02ebf1ec2952"
     },
     {
       "path": "paper/PLaND.html",
-      "bytes": 456244,
-      "sha256": "1920a75217d530d0a3c4ebf0e38afe976921e1154c237a0b758df6654e02efb6"
+      "bytes": 455980,
+      "sha256": "18c1e281b252773c952c64ff133e5408e9bd790674c7345f8f22f232ff69cfcc"
     },
     {
       "path": "paper/PLaND.md",
-      "bytes": 46423,
-      "sha256": "21e52c59828200e40cb04e7088a85f2b1147000006c069557be540722e80d93e"
+      "bytes": 46192,
+      "sha256": "08d78f88142a4a5a5e0a1b172e040b296e2d939031b098e7842bec942f65864f"
     },
     {
       "path": "paper/PLaND.pdf",
-      "bytes": 682199,
-      "sha256": "6baf9ac2d118b6b3a00690473525d13863a34f8a323a1fd88fd6a706402ec1c4"
+      "bytes": 681623,
+      "sha256": "827a310e8419d5ab2ab2b829e151c912c4c389d2fda29b3789d96b68d41d8f62"
     },
     {
       "path": "paper/audit_paper.py",
-      "bytes": 25490,
-      "sha256": "e28047a15588017e9cee9f438700bc6c6f664252740c940626a1d28545ec583f"
+      "bytes": 25425,
+      "sha256": "8eb71d541203ec930d2105f01c1ae5a80e70cf7a20ffc50711324ad52ecca936"
     },
     {
       "path": "paper/build_artifacts.cjs",

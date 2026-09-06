@@ -58,7 +58,7 @@ The manuscript now uses the completed Gemini collection. Verification checks
 the frozen evidence inventory, tests, case-level calculations, and current
 manuscript artifacts without calling a model. LEDGAR and SpamAssassin reached
 final test; CFPB was rejected at selection and its final test stayed closed.
-The [manuscript audit and review responses](experiments/gemini-3.5-flash-lite/2026-09-06-manuscript/)
+The [manuscript audit and review responses](experiments/gemini-3.5-flash-lite/2026-09-05-study/manuscript/)
 record the exact evidence and limitations, including provider-block replacements.
 Verification of saved outputs is not a promise of bit-for-bit hosted inference
 regeneration. The public [collection snapshot](https://github.com/mnvsk97/PLaND/tree/4ad24c9838922b3db777ac4ba4dbc34de7a449ae)
@@ -80,5 +80,5 @@ is a new experimental condition.
 
 The new LEDGAR → CFPB → SpamAssassin collection uses exactly 500 development,
 1,000 selection, and 500 final-test cases per dataset. Its reviewed `plan.json`
-and `protocol.md` live inside the timestamped model directory. The repo-local
+and `protocol.md` live inside the consolidated September 5 study directory. The repo-local
 collection skill records execution and enforces selection/final-test gates.

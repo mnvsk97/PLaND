@@ -8,6 +8,11 @@ new directory. Its inherited entries still point to the original collection;
 new commands are restricted to the paper-audit stage. It does not rerun models
 or reopen any dataset gate.
 
+The repository later consolidated the study under
+`experiments/gemini-3.5-flash-lite/2026-09-05-study/`. This was a path-only
+reorganization: original collection evidence retained its bytes, and historical
+ledgers continue to record the paths that existed when their commands ran.
+
 ## Scope of the current verification
 
 The portable `evidence-files.json` inventories saved collection files and frozen
@@ -54,7 +59,7 @@ recorded source hashes and preparation audits remain in the original evidence.
   separately covered by the new portable inventory.
 
 These clarifications supersede inconsistent prose in
-`2026-09-05-11-41-pm/fresh-evaluation-report.md`, which is retained unchanged.
+`2026-09-05-study/fresh-evaluation-report.md`, which is retained unchanged.
 They do not alter any frozen raw output, accuracy, token count, gate, or final
 test access decision. `paper-calculations.json` and the final manuscript are the
 reviewed numerical report.

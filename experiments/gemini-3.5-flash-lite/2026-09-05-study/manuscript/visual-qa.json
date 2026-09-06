@@ -12,9 +12,9 @@
     8,
     9
   ],
-  "pdf_sha256": "6baf9ac2d118b6b3a00690473525d13863a34f8a323a1fd88fd6a706402ec1c4",
-  "docx_sha256": "b7e47dad42fb19f0e7d92d8bb5d964b826a4570742293ce43cf19eb7a9046d40",
-  "source_sha256": "21e52c59828200e40cb04e7088a85f2b1147000006c069557be540722e80d93e",
+  "pdf_sha256": "827a310e8419d5ab2ab2b829e151c912c4c389d2fda29b3789d96b68d41d8f62",
+  "docx_sha256": "520f08312d1226d8ad930760dd4d436438910af4f4f90b22e37b02ebf1ec2952",
+  "source_sha256": "08d78f88142a4a5a5e0a1b172e040b296e2d939031b098e7842bec942f65864f",
   "page_checks": [
     {
       "page": 1,
@@ -60,14 +60,14 @@
     },
     {
       "page": 8,
-      "render_sha256": "6b5b98edb6b2df146906ce7ebc4cf71d11c00a7061039884bac1e4cb5d1f744e",
-      "text_characters": 5864,
+      "render_sha256": "0f43adcf76bb96c87e6d73fdfea953bbac55381c0e27430918734d8c6331adf5",
+      "text_characters": 5804,
       "a4": true
     },
     {
       "page": 9,
-      "render_sha256": "5c8a5bf8791ba5e4c9f7b15bb5bde60163b6b51ee10f0ee4780bc55bd1781231",
-      "text_characters": 6040,
+      "render_sha256": "cf2a799da8b7aa7954b356b03515d1374e1065e83966b61ae3c86ad350b59945",
+      "text_characters": 5874,
       "a4": true
     }
   ],
