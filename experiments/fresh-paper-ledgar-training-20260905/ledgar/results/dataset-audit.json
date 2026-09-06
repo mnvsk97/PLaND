@@ -1,0 +1,256 @@
+{
+  "schema_version": 1,
+  "dataset": "lighteval/lexglue:ledgar",
+  "counts": {
+    "total": 2000,
+    "by_split": {
+      "development": 500,
+      "test": 500,
+      "validation": 1000
+    },
+    "by_split_and_label": {
+      "development": {
+        "Amendments": 50,
+        "Assignments": 50,
+        "Counterparts": 50,
+        "Entire Agreements": 50,
+        "Expenses": 50,
+        "Governing Laws": 50,
+        "Notices": 50,
+        "Severability": 50,
+        "Survival": 50,
+        "Terms": 50
+      },
+      "test": {
+        "Amendments": 50,
+        "Assignments": 50,
+        "Counterparts": 50,
+        "Entire Agreements": 50,
+        "Expenses": 50,
+        "Governing Laws": 50,
+        "Notices": 50,
+        "Severability": 50,
+        "Survival": 50,
+        "Terms": 50
+      },
+      "validation": {
+        "Amendments": 100,
+        "Assignments": 100,
+        "Counterparts": 100,
+        "Entire Agreements": 100,
+        "Expenses": 100,
+        "Governing Laws": 100,
+        "Notices": 100,
+        "Severability": 100,
+        "Survival": 100,
+        "Terms": 100
+      }
+    }
+  },
+  "checks": {
+    "unique_ids": true,
+    "split_id_overlap_count": 0,
+    "content_duplicate_count": 0,
+    "runtime_label_leakage_count": 0,
+    "missing_case_count": 0,
+    "balanced_within_each_split": {
+      "development": true,
+      "test": true,
+      "validation": true
+    },
+    "selection_manifest_matches_evals": true,
+    "source_hashes_match": true,
+    "source_split_integrity": true,
+    "pilot_overlap_count": 0,
+    "exclusion_manifest_matches_pilot": true
+  },
+  "hashes": {
+    "evals_sha256": "0cb73326d9de4277f5f709b5ebb5e13c5bf3ce4e9953633178cecd99436af3bf",
+    "selection_sha256": "4506bd6e59e106b79babdf54b8f4f6f0c2f5ad9e4d27268575a1d7105cb03440",
+    "case_manifest_sha256": "9c2a5992135575e995827ead15c5ad17e3f628a911e714e6bbf81a262b0f224c"
+  },
+  "sources": [
+    {
+      "path": "train.jsonl",
+      "sha256": "d715cde50f04e36401b76704d693cedc2697169dbcbc97c8c8519767edfe94ec",
+      "bytes": 75058429
+    },
+    {
+      "path": "validation.jsonl",
+      "sha256": "5890aaee646adf03ca9665c1207b2a1ec95f60007c3e8a86f36b753992786ce1",
+      "bytes": 12420569
+    },
+    {
+      "path": "test.jsonl",
+      "sha256": "d78bb9c8e149b169bfb4c2e910d21c6fea32968c11a5aff880f2ef6fb86bd86c",
+      "bytes": 12122831
+    }
+  ],
+  "source_verification": [
+    {
+      "path": "train.jsonl",
+      "exists": true,
+      "sha256_match": true
+    },
+    {
+      "path": "validation.jsonl",
+      "exists": true,
+      "sha256_match": true
+    },
+    {
+      "path": "test.jsonl",
+      "exists": true,
+      "sha256_match": true
+    }
+  ],
+  "eligible_unique_by_label": {
+    "Governing Laws": 2997,
+    "Counterparts": 2236,
+    "Notices": 2323,
+    "Entire Agreements": 2194,
+    "Severability": 1633,
+    "Amendments": 1348,
+    "Survival": 1324,
+    "Assignments": 1191,
+    "Expenses": 1094,
+    "Terms": 1029
+  },
+  "requested_split_counts": {
+    "development": 500,
+    "validation": 1000,
+    "test": 500
+  },
+  "source_split_mapping": {
+    "development": "train",
+    "validation": "train",
+    "test": "train"
+  },
+  "eligible_unique_by_label_and_source_split": {
+    "train": {
+      "Waivers": 858,
+      "Erisa": 318,
+      "Counterparts": 2236,
+      "Further Assurances": 1001,
+      "Base Salary": 656,
+      "Notices": 2323,
+      "Records": 322,
+      "Indemnity": 266,
+      "Warranties": 489,
+      "Governing Laws": 2997,
+      "Arbitration": 381,
+      "Assignments": 1191,
+      "Financial Statements": 663,
+      "Litigations": 1019,
+      "Compliance With Laws": 950,
+      "Vacations": 335,
+      "Entire Agreements": 2194,
+      "Severability": 1633,
+      "Waiver Of Jury Trials": 725,
+      "Survival": 1324,
+      "Organizations": 402,
+      "Binding Effects": 580,
+      "Use Of Proceeds": 852,
+      "Terms": 1029,
+      "Confidentiality": 985,
+      "Amendments": 1348,
+      "Vesting": 448,
+      "Publicity": 338,
+      "General": 949,
+      "Representations": 562,
+      "Withholdings": 508,
+      "No Defaults": 322,
+      "Successors": 424,
+      "Remedies": 649,
+      "Taxes": 1066,
+      "Interests": 362,
+      "Defined Terms": 346,
+      "Interpretations": 367,
+      "Change In Control": 348,
+      "Expenses": 1094,
+      "Forfeitures": 296,
+      "Titles": 314,
+      "Releases": 606,
+      "Specific Performance": 316,
+      "Insurances": 1082,
+      "Disclosures": 577,
+      "Construction": 383,
+      "Employment": 308,
+      "Effective Dates": 457,
+      "Jurisdictions": 199,
+      "Fees": 566,
+      "Applicable Laws": 348,
+      "Payments": 837,
+      "Brokers": 387,
+      "Participations": 441,
+      "Consents": 441,
+      "Subsidiaries": 540,
+      "Intellectual Property": 460,
+      "Capitalization": 432,
+      "Terminations": 1099,
+      "Costs": 167,
+      "Duties": 349,
+      "Miscellaneous": 471,
+      "Existence": 252,
+      "Transactions With Affiliates": 347,
+      "Indemnifications": 919,
+      "Closings": 539,
+      "Benefits": 393,
+      "Cooperation": 459,
+      "Death": 276,
+      "Positions": 190,
+      "Authority": 535,
+      "Authorizations": 611,
+      "Liens": 304,
+      "Agreements": 248,
+      "Approvals": 176,
+      "Sales": 325,
+      "Definitions": 559,
+      "Enforcements": 195,
+      "Headings": 573,
+      "No Conflicts": 726,
+      "Submission To Jurisdiction": 232,
+      "Solvency": 413,
+      "Venues": 129,
+      "Adjustments": 321,
+      "Effectiveness": 227,
+      "No Waivers": 428,
+      "Modifications": 251,
+      "Disability": 255,
+      "Enforceability": 241,
+      "Tax Withholdings": 377,
+      "Integration": 303,
+      "Consent To Jurisdiction": 172,
+      "Non-Disparagement": 356,
+      "Powers": 124,
+      "Sanctions": 118,
+      "Books": 23,
+      "Anti-Corruption Laws": 105,
+      "Assigns": 31,
+      "Qualifications": 46
+    },
+    "validation": {},
+    "test": {}
+  },
+  "exclusion_manifest": [
+    {
+      "path": "/Users/saikrishna/.codex/worktrees/ee41/deterministic-skills/tmp/fresh-paper-ledgar-training-20260905/datasets/ledgar-prior-opened",
+      "evals_sha256": "eac7fad6420425e3c08ccadb3bc00818ed0559638d3e85b10f271d62b6ce2a31",
+      "cases": 4201,
+      "included_splits": [
+        "all"
+      ],
+      "case_manifest_sha256": "c42006ab1d2f7cb7bb639f2bdf65fcc79fd3d907670207769e7338c82e102ebe"
+    }
+  ],
+  "failures": {
+    "overlaps": {
+      "development:test": [],
+      "development:validation": [],
+      "test:validation": []
+    },
+    "duplicates": {},
+    "leakage_ids": [],
+    "missing": []
+  },
+  "passed": true
+}

@@ -1,0 +1,27 @@
+{
+  "purpose": "synthetic Ollama configuration diagnostic, excluded from paper evidence",
+  "runs": [
+    {
+      "request": 0,
+      "start": 165468.712131958,
+      "first_token": 165469.339078375,
+      "last_token": 165474.642061083,
+      "elapsed_seconds": 5.930575917009264,
+      "eval_count": 128,
+      "eval_duration": 5303013000,
+      "done_reason": "length"
+    },
+    {
+      "request": 1,
+      "start": 165468.712040625,
+      "first_token": 165469.338950083,
+      "last_token": 165474.641952833,
+      "elapsed_seconds": 5.930803499999456,
+      "eval_count": 128,
+      "eval_duration": 5303259000,
+      "done_reason": "length"
+    }
+  ],
+  "generation_overlap_seconds": 5.302874457993312,
+  "concurrent_generation_verified": true
+}

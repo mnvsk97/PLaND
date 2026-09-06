@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "study_id": "fresh-paper-ledgar-training-20260905",
+  "protocol": "experiments/protocol/fresh-paper-ledgar-training.md",
+  "datasets": [
+    "ledgar"
+  ],
+  "splits": {
+    "development": 500,
+    "selection": 1000,
+    "final_test": 500
+  },
+  "model": {
+    "name": "qwen3:14b",
+    "digest": "bdbd181c33f2ed1b31c972991882db3cf4d192569092138a7d29e973cd9debe8"
+  },
+  "limits": {
+    "baseline_attempts": 10,
+    "candidate_attempts": 1
+  },
+  "acceptance": {
+    "quality_metric": "accuracy",
+    "quality_floor": 0.8,
+    "noninferiority_margin": 0.02,
+    "minimum_token_reduction": 0.05,
+    "bootstrap_samples": 5000,
+    "bootstrap_seed": 20260902,
+    "token_interval_lower_bound_must_be_positive": true,
+    "execution_errors_allowed": 0
+  },
+  "seeds": {
+    "dataset": 20260902,
+    "inference": 20260902,
+    "repeats": [
+      20260903,
+      20260904,
+      20260905
+    ]
+  },
+  "runtime": {
+    "backend": "deepagent",
+    "deepagents_version": "0.7.12",
+    "langchain_ollama_version": "1.1.0",
+    "ollama_version": "0.33.0",
+    "workers": 2,
+    "num_ctx": 16384,
+    "num_predict": 128,
+    "temperature": 0,
+    "think": false,
+    "stream": false,
+    "keep_alive": -1,
+    "environment": {
+      "OLLAMA_NUM_PARALLEL": "2",
+      "OLLAMA_MAX_LOADED_MODELS": "1",
+      "OLLAMA_FLASH_ATTENTION": "1",
+      "OLLAMA_KV_CACHE_TYPE": "q8_0",
+      "OLLAMA_KEEP_ALIVE": "-1"
+    }
+  },
+  "paper": {
+    "source": "paper/PLaND.md",
+    "claim_boundary": "paper/PLaND.pdf"
+  },
+  "order": [
+    "ledgar"
+  ],
+  "approval": {
+    "date": "2026-09-05",
+    "source_thread": "01a0743c-35f8-7d60-9a0d-165e3127862a",
+    "source_turn": "01a0749a-161d-7692-a917-d51ab3e447ad",
+    "question": "May we use only untouched rows from the official LEDGAR training partition to create new balanced 500 development / 1,000 selection / 500 final-test study splits?",
+    "user_response": "sure, lets only do ledgar for now",
+    "prior_settings_approval": "Approve the existing plan"
+  },
+  "final_release": "selection accept only",
+  "repeats": "Three paired executions on final test if selection accepted, otherwise selection; never retune.",
+  "sampling": {
+    "upstream_partition": "train",
+    "mode": "balanced_new_study_splits",
+    "labels_from": "experiments/ledgar-text-classification/selection.json",
+    "exclude_datasets": [
+      "tmp/fresh-paper-20260905/datasets/ledgar"
+    ],
+    "exclude_every_previously_opened_id_and_normalized_content": true
+  },
+  "scope": "LEDGAR only; no CFPB or SpamAssassin; stop after audited LEDGAR evidence and report; main manuscript integration deferred."
+}

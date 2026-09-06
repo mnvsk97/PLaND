@@ -1,0 +1,21 @@
+{
+  "decision": "accept",
+  "assessment": "/Users/saikrishna/.codex/worktrees/ee41/deterministic-skills/tmp/fresh-paper-ledgar-training-20260905/runs/ledgar/selection-assessment.json",
+  "comparison": "/Users/saikrishna/.codex/worktrees/ee41/deterministic-skills/tmp/fresh-paper-ledgar-training-20260905/runs/ledgar/validation-20260902-comparison.json",
+  "generic_decision": "accept",
+  "statistical_gate": {
+    "noninferiority_margin": 0.02,
+    "minimum_token_reduction": 0.05,
+    "minimum_accuracy": 0.8,
+    "require_no_accuracy_regression": false,
+    "minimum_accuracy_difference_lower_bound": null,
+    "max_per_label_recall_drop": null,
+    "minimum_command_precision": null,
+    "quality_noninferior": true,
+    "token_objective_met": true,
+    "absolute_viability": true,
+    "relative_pass": true,
+    "test_release_pass": true
+  },
+  "execution_errors_clear": true
+}

@@ -1,0 +1,164 @@
+{
+  "candidate_id": "candidate-01",
+  "methodology_skill": "pland-evolver",
+  "orchestrator_model": "gpt-6-astra",
+  "reasoning": "high",
+  "hypothesis": "Frequent label-specific phrases that reproduced correct development decisions can bypass some Qwen calls; all ambiguous inputs retain exact English fallback.",
+  "baseline_run_sha256": "b193c72ee55ff17b8ec44823e545785812153d89732ae8adc3a6532fc85694fc",
+  "development_cases": 500,
+  "selection_or_test_used": false,
+  "rules": [
+    {
+      "id": "phrase-01",
+      "phrase": "inure to the benefit of",
+      "label": "Assignments",
+      "development_support": 14,
+      "development_correct": 14
+    },
+    {
+      "id": "phrase-02",
+      "phrase": "consent of the other",
+      "label": "Assignments",
+      "development_support": 9,
+      "development_correct": 9
+    },
+    {
+      "id": "phrase-03",
+      "phrase": "agreement may be executed in",
+      "label": "Counterparts",
+      "development_support": 27,
+      "development_correct": 27
+    },
+    {
+      "id": "phrase-04",
+      "phrase": "shall constitute one and the same",
+      "label": "Counterparts",
+      "development_support": 20,
+      "development_correct": 20
+    },
+    {
+      "id": "phrase-05",
+      "phrase": "counterparts each of which shall",
+      "label": "Counterparts",
+      "development_support": 19,
+      "development_correct": 19
+    },
+    {
+      "id": "phrase-06",
+      "phrase": "parties hereto with respect to the",
+      "label": "Entire Agreements",
+      "development_support": 10,
+      "development_correct": 10
+    },
+    {
+      "id": "phrase-07",
+      "phrase": "entire agreement and understanding",
+      "label": "Entire Agreements",
+      "development_support": 10,
+      "development_correct": 10
+    },
+    {
+      "id": "phrase-08",
+      "phrase": "the entire agreement between the parties",
+      "label": "Entire Agreements",
+      "development_support": 9,
+      "development_correct": 9
+    },
+    {
+      "id": "phrase-09",
+      "phrase": "fees and expenses of",
+      "label": "Expenses",
+      "development_support": 9,
+      "development_correct": 9
+    },
+    {
+      "id": "phrase-10",
+      "phrase": "be governed by and construed",
+      "label": "Governing Laws",
+      "development_support": 19,
+      "development_correct": 19
+    },
+    {
+      "id": "phrase-11",
+      "phrase": "by the laws of the state",
+      "label": "Governing Laws",
+      "development_support": 14,
+      "development_correct": 14
+    },
+    {
+      "id": "phrase-12",
+      "phrase": "this agreement shall be governed",
+      "label": "Governing Laws",
+      "development_support": 13,
+      "development_correct": 13
+    },
+    {
+      "id": "phrase-13",
+      "phrase": "writing and shall be",
+      "label": "Notices",
+      "development_support": 15,
+      "development_correct": 15
+    },
+    {
+      "id": "phrase-14",
+      "phrase": "mail return receipt requested",
+      "label": "Notices",
+      "development_support": 10,
+      "development_correct": 10
+    },
+    {
+      "id": "phrase-15",
+      "phrase": "invalid illegal or unenforceable",
+      "label": "Severability",
+      "development_support": 10,
+      "development_correct": 10
+    },
+    {
+      "id": "phrase-16",
+      "phrase": "if any provision of this agreement",
+      "label": "Severability",
+      "development_support": 8,
+      "development_correct": 8
+    },
+    {
+      "id": "phrase-17",
+      "phrase": "of this agreement is",
+      "label": "Severability",
+      "development_support": 9,
+      "development_correct": 9
+    },
+    {
+      "id": "phrase-18",
+      "phrase": "the representations and warranties",
+      "label": "Survival",
+      "development_support": 9,
+      "development_correct": 9
+    },
+    {
+      "id": "phrase-19",
+      "phrase": "s obligations under this",
+      "label": "Survival",
+      "development_support": 9,
+      "development_correct": 9
+    },
+    {
+      "id": "phrase-20",
+      "phrase": "shall commence on the",
+      "label": "Terms",
+      "development_support": 11,
+      "development_correct": 11
+    },
+    {
+      "id": "phrase-21",
+      "phrase": "term of this agreement shall",
+      "label": "Terms",
+      "development_support": 8,
+      "development_correct": 8
+    }
+  ],
+  "construction_rule": "Enumerate normalized 4-6 word phrases; minimum 8 development matches, all same gold label and baseline-correct; at most 3 complementary phrases per label with at least 4 new matches.",
+  "caching": "No prediction cache. Immutable rule constants loaded once; no mutable per-case state.",
+  "parallelism": "No internal parallelism: phrase matching is small and sequential; existing two independent case workers are retained.",
+  "permissions": "Pure string processing, no I/O/network/subprocess in classify; 200000-character bound; invalid/empty/conflicting outputs abstain.",
+  "frozen_fallback_step": "S03"
+}

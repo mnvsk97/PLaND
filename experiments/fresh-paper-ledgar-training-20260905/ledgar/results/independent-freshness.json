@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "new_cases": 2000,
+  "all_official_training_rows": true,
+  "recovered_prior_ids": 4201,
+  "prior_exclusion_ids": 4201,
+  "id_overlap": 0,
+  "normalized_content_overlap": 0,
+  "all_recovered_prior_ids_excluded": true,
+  "incident_sha256": "f12bb9756dc8d970350229a5402765318f54a498110de879c1fc691588bab649"
+}

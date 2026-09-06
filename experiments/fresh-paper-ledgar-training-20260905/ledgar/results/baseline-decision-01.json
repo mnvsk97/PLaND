@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-09-06T02:51:43.500734+00:00",
+  "attempt": 1,
+  "max_attempts": 10,
+  "minimum_quality": 0.8,
+  "observed_quality": 0.952,
+  "run": "/Users/saikrishna/.codex/worktrees/ee41/deterministic-skills/tmp/fresh-paper-ledgar-training-20260905/runs/ledgar/baseline-development-01.json",
+  "sop_sha256": "2236217828abb3f0494a3dc10f5aba1d5b6bfe89d07fe3fbddfa41e312eb3a1d",
+  "decision": "ready_to_freeze"
+}
